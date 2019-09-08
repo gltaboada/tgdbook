@@ -3,8 +3,8 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./index.html">Prácticas de Simulación</a></li>
+        <li><a href="./index.html">Prácticas de TGD</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/rubenfcasal/simbook/edit/master/%s
+    edit: https://github.com/gltaboada/tgdbook/edit/master/%s
     download: ["pdf", "epub"]

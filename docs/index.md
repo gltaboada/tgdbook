@@ -1,7 +1,7 @@
 --- 
 title: "Prácticas de Tecnologías de Gestión de Datos"
 author: "Rubén F. Casal (ruben.fcasal@udc.es), Guillermo López Taboada (guillermo.lopez.taboada@udc.es)"
-date: "`r Sys.Date()`"
+date: "2019-09-08"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -18,28 +18,15 @@ Este libro contiene algunas de las prácticas de la asignatura de [Tecnologías 
 
 Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/) y está disponible en el repositorio Github: [rubenfcasal/simbook](https://github.com/rubenfcasal/simbook). Para generar el libro (compilar) puede ser recomendable instalar la última versión de [RStudio]((https://www.rstudio.com/products/rstudio/download/)) y la versión de desarrollo de `bookdown` disponible en [Github](https://github.com/rstudio/bookdown):
 
-```{r eval=FALSE}
+
+```r
 devtools::install_github("rstudio/bookdown")
 ```
 
 
-```{r echo=FALSE}
-# ![](images/by-nc-nd-88x31.png)
-knitr::include_graphics("images/by-nc-nd-88x31.png")
-```
+![](images/by-nc-nd-88x31.png)<!-- -->
 
 Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES) 
 (espero poder liberarlo bajo una licencia menos restrictiva más adelante...).
 
-```{r include=FALSE}
-# PENDIENTE:
-# Repositorio github:
-# github-repo: rstudio/bookdown-demo
-# site: bookdown::bookdown_site
-#
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-# knitr::opts_chunk$set(cache = TRUE)
-```
+

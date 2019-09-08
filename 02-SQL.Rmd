@@ -1,0 +1,123 @@
+SQL en R
+========
+
+## Introducción a SQL
+
+SQL (Structured Query Language) ... 
+
+Paquetes:
+
+- [DBI] (https://cran.r-project.org/web/packages/DBI/index.html)
+- RODBC
+- dbConnect
+- RSQLite
+- RMySQL
+- RPostgreSQL
+
+aunque el básico sqldf 
+
+```{r,error=FALSE,message=FALSE,warning=FALSE}
+library(sqldf)
+```
+
+```{r}
+sqldf('SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC')
+```
+
+### SQL Queries
+
+El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:
+
+```{r,eval=FALSE}
+sqldf("SELECT * FROM iris")
+sqldf("select * from iris")
+```
+
+pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:
+
+```{r,eval=FALSE}
+sqldf("SELECT * FROM IRIS")
+```
+
+La sintaxis básica de SELECT es:
+
+```{r,eval=FALSE}
+SELECT variable1, variable2 FROM data
+```
+
+#### Asterisco/Wildcard
+
+Lo extrae todo
+
+```{r}
+bod2 <- sqldf('SELECT * FROM BOD')
+```
+
+#### Limit
+
+Limita el número de resultados
+
+```{r}
+sqldf('SELECT * FROM iris LIMIT 5')
+```
+
+#### Order By
+
+Ordena las variables
+
+```{r,eval=FALSE}
+ORDER BY var1 {ASC/DESC}, var2 {ASC/DESC}
+```
+
+```{r}
+sqldf("SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5")
+```
+
+#### Where
+
+Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.
+
+```{r}
+sqldf('SELECT demand FROM BOD WHERE Time < 3')
+```
+
+```{r}
+sqldf('SELECT * FROM rock WHERE (peri > 5000 AND shape < .05) OR perm > 1000')
+```
+
+Y extendiendo su uso con IN o LIKE (es último sólo con %), pudiendo aplicárseles el NOT:
+
+```{r}
+sqldf('SELECT * FROM BOD WHERE Time IN (1,7)')
+```
+
+```{r}
+sqldf('SELECT * FROM BOD WHERE Time NOT IN (1,7)')
+```
+
+```{r}
+sqldf('SELECT * FROM chickwts WHERE feed LIKE "%bean" LIMIT 5')
+```
+
+```{r}
+sqldf('SELECT * FROM chickwts WHERE feed NOT LIKE "%bean" LIMIT 5')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
