@@ -1,7 +1,63 @@
-SQL en R
-========
+Introducción al lenguaje SQL
+============================
 
-## Introducción a SQL
+Los sistemas de información gestionan repositorios de información en múltiples formatos, 
+siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured 
+Query Language)
+
+## Bases de Datos Relacionales
+
+### Definiciones
+
+* Dominio: contexto (organización, empresa, evento...) objeto de gestión de la información.
+
+* Dato: hecho con significado implícito, registable, relevante en un determinado dominio.
+
+* Base de datos: colección de datos de un determinado dominio relacionados entre sí, organizados de forma que sea posible manipularlos y recuperarlos de forma eficiente.
+
+* Sistema de Gestión de Bases de Datos (SGBD): software que permite a los usuarios crear y manipular bases de datos mediante operaciones CRUD:
+ +Crear / Insertar Datos (Create)
+ +Consultar / Leer (Read)
+ +Actualizar / Modificar (Update)
+ +Eliminar (Delete)
+
+* Modelo de datos: abstracción conceptual que propone una manera de organizar y manipular los datos. Definido mediante:
+ +Estructura: elementos para organizar datos
+ +Integridad: reglas para relaciones los elementos
+ +Manipulación: operaciones sobre los datos adaptadas a la estructura y reglas
+
+* Modelo de datos conceptual Entidad Relación (entidades, relaciones, atributos)
+
+* Modelo de datos lógico o de representación (modelo relacional de Codd)
+
+* Modelo de datos físico (tal y como se almacenan los datos)
+
+* Modelo Relacional
+ +Datos en relaciones (tablas)
+ +Base matemática formal
+ +Flexible
+
+Una fila de la tabla (relación) es una tupla y una columna un atributo. 
+
+![](images/Relacion.png)
+
+Una base de datos es un conjunto de tablas (al menos una).
+
+![](images/BBDD.png)
+
+La tabla no es una relación porque la relación es un conjunto sin orden y una tabla puede tener filas repetidas y tiene orden.
+
+
+* Restricción de dominio: el valor de cada atributo debe de ser único, no descomponible (nombre completo descomponible en nombre y apellidos, Domicilio 
+
+
+## Sintaxis SQL
+
+
+
+## Conexión con bases de datos desde R 
+
+### Introducción a SQL en R
 
 SQL (Structured Query Language) ... 
 
