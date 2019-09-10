@@ -1,6 +1,9 @@
 Introducción a Tecnologías NoSQL
 ================================
 
+```{r , child = '_global_options.Rmd'}
+```
+
 ## Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)
 
 NoSQL - “Not Only SQL” - es una nueva categoría de bases de datos no-relacionales y altamente distribuidas.

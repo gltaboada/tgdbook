@@ -1,23 +1,25 @@
-book_filename: "Practicas_de_TGD"
-chapter_name:
+book_filename: 'Practicas_de_TGD'
+repo: https://github.com/gltaboada/tgdbook
 output_dir: docs
-output: pdf_document
 new_session: yes
 language:
   label:
     fig: 'Figura '
     tab: 'Tabla '
     eq: 'Ecuación '
-    thm: 'Teorema '
-    lem: 'Lema '
-    def: 'Definición '
-    cor: 'Corolario '
-    prp: 'Proposición '
-    exm: 'Ejemplo '
-    exr: 'Ejercicio '
-    proof: 'Demostración. '
-    remark: 'Nota: '
-    solution: 'Solución. '
+    thm: 'Teorema '         # theorem
+    lem: 'Lema '            # lemma
+    def: 'Definición '      # definition
+    cor: 'Corolario '       # corollary
+    prp: 'Proposición '     # proposition
+    exm: 'Ejemplo '         # example
+    exr: 'Ejercicio '       # exercise
+    proof: 'Demostración. ' # proof
+    remark: 'Nota: '        # remark
+    solution: 'Solución. '  # solution
+    cnj: 'Algoritmo '       # conjecture
+    # Empleamos el entorno "Conjetura" como "Algoritmo"
   ui:
     edit: Edit
     chapter_name: "Capítulo "
+delete_merged_file: yes

@@ -1,7 +1,11 @@
 Introducción a las Tecnologías de Gestión de Datos
 ==================================================
 
-## Introducción
+
+```{r , child = '_global_options.Rmd'}
+```
+
+<!-- ## Introducción -->
 
 
 La información relevante de la materia está disponible en la guía docente y la ficha de la asignatura

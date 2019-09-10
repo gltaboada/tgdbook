@@ -1,7 +1,7 @@
 Introducción a las Tecnologías de Gestión de Datos
 ==================================================
 
-## Introducción
+<!-- ## Introducción -->
 
 
 La información relevante de la materia está disponible en la guía docente y la ficha de la asignatura
@@ -31,7 +31,7 @@ En particular, los resultados de aprendizaje son:
 
 ## Planificación
 
-- Clase 1 (12/9): Seminario R
+- Clase 1 (12/9): Seminario R: Manipulación de datos con el paquete básico de R
 
 - Clase 2 (19/9): Tema 1: Conceptos de bases de datos
 
@@ -55,9 +55,9 @@ En particular, los resultados de aprendizaje son:
 
 - Clase 12 (28/11): Seminario machine learning CESGA/localhost
 
-- Clase 13 (5/12): Seminario conceptos avanzados de R
+- Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos 
 
-- Clase 14 (12/12): Tema 3: Introducción al análisis de datos masivos 
+- Clase 14 (12/12): Seminario conceptos avanzados de R
 
 - Clase 15 (19/12): Seminario aplicaciones Big Data en investigación e industria
 

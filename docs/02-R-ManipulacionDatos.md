@@ -39,9 +39,27 @@ En `R` para leer archivos de texto se suele utilizar la función `read.table()`.
 Supóngase, por ejemplo, que en el directorio actual está el fichero
 *empleados.txt*. La lectura de este fichero vendría dada por el código:
 
-```{r}
+
+```r
 datos <- read.table(file = "empleados.txt", header = TRUE)
 head(datos)
+```
+
+```
+##   id   sexo   fechnac educ         catlab salario salini tiempemp expprev
+## 1  1 Hombre  2/3/1952   15      Directivo   57000  27000       98     144
+## 2  2 Hombre 5/23/1958   16 Administrativo   40200  18750       98      36
+## 3  3  Mujer 7/26/1929   12 Administrativo   21450  12000       98     381
+## 4  4  Mujer 4/15/1947    8 Administrativo   21900  13200       98     190
+## 5  5 Hombre  2/9/1955   15 Administrativo   45000  21000       98     138
+## 6  6 Hombre 8/22/1958   15 Administrativo   32100  13500       98      67
+##   minoria
+## 1      No
+## 2      No
+## 3      No
+## 4      No
+## 5      No
+## 6      No
 ```
 Si el fichero estuviese en el directorio *c:\\datos* bastaría con especificar
 `file = "c:/datos/empleados.txt"`.
@@ -65,7 +83,8 @@ Los argumentos utilizados habitualmente para esta función son:
 Resumiendo, los (principales) argumentos por defecto de la función
 `read.table` son los que se muestran en la siguiente línea:
 
-```{r, eval=FALSE}
+
+```r
 read.table(file, header = FALSE, sep = "", dec = ".")  
 ```
 
@@ -75,7 +94,8 @@ Para más detalles sobre esta función véase
 Estan disponibles otras funciones con valores por defecto de los parámetros 
 adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores 
 se puede utilizar `read.delim()` o `read.delim2()`:
-```{r, eval=FALSE}
+
+```r
 read.delim(file, header = TRUE, sep = "\t", dec = ".")
 read.delim2(file, header = TRUE, sep = "\t", dec = ",")
 ```
@@ -94,10 +114,35 @@ se necesita:
 
 Por ejemplo:
 
-```{r, warning=FALSE}
+
+```r
 library(foreign)
 datos <- read.spss(file = "Employee data.sav", to.data.frame = TRUE)
+```
+
+```
+## re-encoding from CP1252
+```
+
+```r
 head(datos)
+```
+
+```
+##   id   sexo     fechnac educ         catlab salario salini tiempemp
+## 1  1 Hombre 11654150400   15      Directivo   57000  27000       98
+## 2  2 Hombre 11852956800   16 Administrativo   40200  18750       98
+## 3  3  Mujer 10943337600   12 Administrativo   21450  12000       98
+## 4  4  Mujer 11502518400    8 Administrativo   21900  13200       98
+## 5  5 Hombre 11749363200   15 Administrativo   45000  21000       98
+## 6  6 Hombre 11860819200   15 Administrativo   32100  13500       98
+##   expprev minoria
+## 1     144      No
+## 2      36      No
+## 3     381      No
+## 4     190      No
+## 5     138      No
+## 6      67      No
 ```
 
 **Nota**: Si hay fechas, puede ser recomendable emplear la función `spss.get()` del paquete `Hmisc`.
@@ -123,7 +168,8 @@ Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
 
 -   Por lo tanto, la lectura de este fichero se puede hacer con:
 
-    ```{r, eval=FALSE}
+    
+    ```r
     datos <- read.table("coches.csv", header = TRUE, sep = ";", dec = ",")
     ```
 
@@ -131,12 +177,14 @@ Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
 una adaptación de la función general `read.table` con las siguientes
 opciones:
 
-```{r, eval=FALSE}
+
+```r
 read.csv2(file, header = TRUE, sep = ";", dec = ",")
 ```
 Por lo tanto, la lectura del fichero *coches.csv* se puede hacer de modo
 más directo con:
-```{r, eval=FALSE}
+
+```r
 datos <- read.csv2("coches.csv")
 ```
 
@@ -151,19 +199,29 @@ similar, pero funcionando en sentido inverso, a la ya vista
 
 Veamos un ejemplo:
 
-```{r}
+
+```r
 tipo <- c("A", "B", "C")
 longitud <- c(120.34, 99.45, 115.67)
 datos <- data.frame(tipo, longitud)
 datos
 ```
+
+```
+##   tipo longitud
+## 1    A   120.34
+## 2    B    99.45
+## 3    C   115.67
+```
 Para guardar el data.frame `datos` en un fichero de texto se
 puede utilizar:
-```{r, eval=FALSE}
+
+```r
 write.table(datos, file = "datos.txt")
 ```
 Otra posibilidad es utilizar la función:
-```{r, eval=FALSE}
+
+```r
 write.csv2(datos, file = "datos.csv")
 ```
 que dará lugar al fichero *datos.csv* importable directamente desde Excel.
@@ -194,9 +252,20 @@ A continuación se tratan las operaciones más básicas.
 
 Consideremos de nuevo la
 base de datos `cars` incluida en el paquete `datasets`:
-```{r} 
+
+```r
 data(cars)
 head(cars)
+```
+
+```
+##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10
 ```
 
 Utilizando el comando `help(cars)`
@@ -210,9 +279,25 @@ variables:
 Recordemos que, para acceder a la variable `speed` se puede
 hacer directamente con su nombre o bien utilizando notación
 "matricial".
-```{r}
+
+```r
 cars$speed
+```
+
+```
+##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
+## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
+## [47] 24 24 24 25
+```
+
+```r
 cars[, 1]  # Equivalente
+```
+
+```
+##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
+## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
+## [47] 24 24 24 25
 ```
 Supongamos ahora que queremos transformar la variable original `speed`
 (millas por hora) en una nueva variable `velocidad` (kilómetros por
@@ -220,31 +305,55 @@ hora) y añadir esta nueva variable al data.frame `cars`.
 La transformación que permite pasar millas a kilómetros es
 `kilómetros=millas/0.62137` que en `R` se hace directamente con:
 
-```{r, eval=FALSE}
+
+```r
 cars$speed/0.62137
 ```
 
  Finalmente, incluimos la nueva variable que llamaremos
 `velocidad` en `cars`:
-```{r}
+
+```r
 cars$velocidad <- cars$speed / 0.62137
 head(cars)
+```
+
+```
+##   speed dist velocidad
+## 1     4    2  6.437388
+## 2     4   10  6.437388
+## 3     7    4 11.265430
+## 4     7   22 11.265430
+## 5     8   16 12.874777
+## 6     9   10 14.484124
 ```
 
 También transformaremos la variable `dist` (en pies) en una nueva
 variable `distancia` (en metros). Ahora la transformación deseada es
 `metros=pies/3.2808`:
 
-```{r}
+
+```r
 cars$distancia <- cars$dis / 3.2808
 head(cars)
+```
+
+```
+##   speed dist velocidad distancia
+## 1     4    2  6.437388 0.6096074
+## 2     4   10  6.437388 3.0480371
+## 3     7    4 11.265430 1.2192148
+## 4     7   22 11.265430 6.7056815
+## 5     8   16 12.874777 4.8768593
+## 6     9   10 14.484124 3.0480371
 ```
 
  Ahora, eliminaremos las variables originales `speed` y
 `dist`, y guardaremos el data.frame resultante con el nombre `coches`.
 En primer lugar, veamos varias formas de acceder a las variables de
 interés:
-```{r, eval=FALSE}
+
+```r
 cars[, c(3, 4)]
 cars[, c("velocidad", "distancia")]
 cars[, -c(1, 2)]
@@ -252,16 +361,27 @@ cars[, -c(1, 2)]
 
 Utilizando alguna de las opciones anteriores se obtiene el `data.frame`
 deseado:
-```{r}
+
+```r
 coches <- cars[, c("velocidad", "distancia")]
 head(coches)
 ```
 
+```
+##   velocidad distancia
+## 1  6.437388 0.6096074
+## 2  6.437388 3.0480371
+## 3 11.265430 1.2192148
+## 4 11.265430 6.7056815
+## 5 12.874777 4.8768593
+## 6 14.484124 3.0480371
+```
+
 Finalmente los datos anteriores podrían ser guardados en un fichero
 exportable a Excel con el siguiente comando:
-```{r, eval=FALSE}
-write.csv2(coches, file = "coches.csv")
 
+```r
+write.csv2(coches, file = "coches.csv")
 ```
 
 ### Operaciones con casos
@@ -276,25 +396,49 @@ los valores de `dist`. Para ello utilizaremos el conocido como vector de
 Este vector establece el orden en que tienen que ser elegidos los
 elementos para obtener la ordenación deseada. 
 Veamos un ejemplo sencillo:
-```{r}
+
+```r
 x <- c(2.5, 4.3, 1.2, 3.1, 5.0) # valores originales
 ii <- order(x)
 ii    # vector de ordenación
+```
+
+```
+## [1] 3 1 4 2 5
+```
+
+```r
 x[ii] # valores ordenados
+```
+
+```
+## [1] 1.2 2.5 3.1 4.3 5.0
 ```
 En el caso de vectores, el procedimiento anterior se podría
 hacer directamente con: 
-```{r, eval=FALSE}
+
+```r
 sort(x)
 ```
 
 Sin embargo, para ordenar data.frames será necesario la utilización del
 vector de índices de ordenación. A continuación, los datos de `cars`
 ordenados por `dist`:
-```{r}
+
+```r
 ii <- order(cars$dist) # Vector de índices de ordenación
 cars2 <- cars[ii, ]    # Datos ordenados por dist
 head(cars2)
+```
+
+```
+##    speed dist velocidad distancia
+## 1      4    2  6.437388 0.6096074
+## 3      7    4 11.265430 1.2192148
+## 2      4   10  6.437388 3.0480371
+## 6      9   10 14.484124 3.0480371
+## 12    12   14 19.312165 4.2672519
+## 5      8   16 12.874777 4.8768593
 ```
 
 #### Filtrado
@@ -303,15 +447,51 @@ El filtrado de datos consiste en
 elegir una submuestra que cumpla determinadas condiciones. Para ello se
 puede utilizar la función `subset`.
 A continuación se muestran un par de ejemplos:
-```{r}
+
+```r
 subset(cars, dist > 85) # datos con dis>85
+```
+
+```
+##    speed dist velocidad distancia
+## 47    24   92  38.62433  28.04194
+## 48    24   93  38.62433  28.34674
+## 49    24  120  38.62433  36.57644
+```
+
+```r
 subset(cars, speed > 10 & speed < 15 & dist > 45) # speed en (10,15) y dist>45
+```
+
+```
+##    speed dist velocidad distancia
+## 19    13   46  20.92151  14.02097
+## 22    14   60  22.53086  18.28822
+## 23    14   80  22.53086  24.38430
 ```
 También se pueden hacer el filtrado empleando directamente los
 correspondientes vectores de índices:
-```{r}
+
+```r
 ii <- cars$dist > 85
 cars[ii, ]   # dis>85
+```
+
+```
+##    speed dist velocidad distancia
+## 47    24   92  38.62433  28.04194
+## 48    24   93  38.62433  28.34674
+## 49    24  120  38.62433  36.57644
+```
+
+```r
 ii <- cars$speed > 10 & cars$speed < 15 & cars$dist > 45
 cars[ii, ]  # speed en (10,15) y dist>45
+```
+
+```
+##    speed dist velocidad distancia
+## 19    13   46  20.92151  14.02097
+## 22    14   60  22.53086  18.28822
+## 23    14   80  22.53086  24.38430
 ```

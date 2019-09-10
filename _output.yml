@@ -1,10 +1,21 @@
 bookdown::gitbook:
   css: style.css
+  split_by: section
   config:
     toc:
       before: |
-        <li><a href="./index.html">Prácticas de TGD</a></li>
+        <li><a href="./">Prácticas de TGD</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
     edit: https://github.com/gltaboada/tgdbook/edit/master/%s
-    download: ["pdf", "epub"]
+    sharing:
+      github: yes
+      facebook: no
+      twitter: no
+    download: "pdf"
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes

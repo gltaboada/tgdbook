@@ -2,8 +2,8 @@ Introducción al lenguaje SQL
 ============================
 
 
-```{r , child = '_global_options.Rmd'}
-```
+
+
 
 
 Los sistemas de información gestionan repositorios de información en múltiples formatos, 
@@ -43,16 +43,19 @@ siendo el más popular las bases de datos relacionales a las que se accede media
 
 Una fila de la tabla (relación) es una tupla y una columna un atributo (ver Figura \@ref(fig:relacion)). 
 
-`r citefig("relacion")`
+(ver Figura \@ref(fig:relacion))
 
-`r latexfig("relacion")`
+(ver Figura \@ref(fig:relacion))
 
 
-```{r relacion, echo=FALSE, fig.cap="Esquema de una relación."}
-# out.width=
-# ![](![](images/Relacion.png){width=600px})
-knitr::include_graphics("images/Relacion.png")
-```
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{images/Relacion} 
+
+}
+
+\caption{Esquema de una relación.}(\#fig:relacion)
+\end{figure}
 
 Una base de datos es un conjunto de tablas (al menos una).
 
@@ -111,7 +114,8 @@ A continuación 27 clásulas SQL básicas
 
 ### Extracción SQL (11 statements)
 
-```{r eval=FALSE} 
+
+```r
 SELECT column1, column2....columnN
 FROM   table_name;
 
@@ -162,7 +166,8 @@ HAVING (arithematic function condition);
 ### Crear/Actualizar/Borrar tablas SQL (8 statements)
 
 
-```{r eval=FALSE}
+
+```r
 CREATE TABLE table_name(
 column1 datatype,
 column2 datatype,
@@ -191,7 +196,8 @@ ALTER TABLE table_name RENAME TO new_table_name;
 
 ### Añadir/Actualizar/Borrar tuplas en SQL (3 statements)
 
-```{r eval=FALSE}
+
+```r
 INSERT INTO table_name( column1, column2....columnN)
 VALUES ( value1, value2....valueN);
 
@@ -205,7 +211,8 @@ WHERE  {CONDITION};
 
 ### Gestión Bases de Datos (5 statements)
 
-```{r eval=FALSE}
+
+```r
 CREATE DATABASE database_name;
 
 DROP DATABASE database_name;
@@ -220,7 +227,8 @@ ROLLBACK;
 
 ### Ejemplos de consultas SQL
 
-```{r eval=FALSE}
+
+```r
 SELECT Nombre, Apellido1, Apellido2, Municipio, Provincia 
 FROM Cliente
 WHERE Municipio = 'Lugo'
@@ -235,7 +243,6 @@ WHERE IdProducto = 963
 
 DELETE Cliente
 WHERE Email = 'alexandregb@gmail.com'
-
 ```
 
 
@@ -266,32 +273,48 @@ A continuación se presenta una serie de ejercicios con la sintaxis de SQL opera
 datos, solamente el uso de SQL para extraer datos con el objetivo de ser analizados en R. 
 
 
-```{r,error=FALSE,message=FALSE,warning=FALSE}
+
+```r
 library(sqldf)
 ```
 
-```{r}
+
+```r
 sqldf('SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC')
+```
+
+```
+##    age circumference
+## 1  118            30
+## 2  484            58
+## 3  664            87
+## 4 1004           115
+## 5 1231           120
+## 6 1372           142
+## 7 1582           145
 ```
 
 ### SQL Queries
 
 El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:
 
-```{r,eval=FALSE}
+
+```r
 sqldf("SELECT * FROM iris")
 sqldf("select * from iris")
 ```
 
 pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:
 
-```{r,eval=FALSE}
+
+```r
 sqldf("SELECT * FROM IRIS")
 ```
 
 La sintaxis básica de SELECT es:
 
-```{r,eval=FALSE}
+
+```r
 SELECT variable1, variable2 FROM data
 ```
 
@@ -299,7 +322,8 @@ SELECT variable1, variable2 FROM data
 
 Lo extrae todo
 
-```{r}
+
+```r
 bod2 <- sqldf('SELECT * FROM BOD')
 ```
 
@@ -307,50 +331,123 @@ bod2 <- sqldf('SELECT * FROM BOD')
 
 Limita el número de resultados
 
-```{r}
+
+```r
 sqldf('SELECT * FROM iris LIMIT 5')
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
 ```
 
 #### Order By
 
 Ordena las variables
 
-```{r,eval=FALSE}
+
+```r
 ORDER BY var1 {ASC/DESC}, var2 {ASC/DESC}
 ```
 
-```{r}
+
+```r
 sqldf("SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5")
+```
+
+```
+##   Tree age circumference
+## 1    2 118            33
+## 2    4 118            32
+## 3    1 118            30
+## 4    3 118            30
+## 5    5 118            30
 ```
 
 #### Where
 
 Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.
 
-```{r}
+
+```r
 sqldf('SELECT demand FROM BOD WHERE Time < 3')
 ```
 
-```{r}
+```
+##   demand
+## 1    8.3
+## 2   10.3
+```
+
+
+```r
 sqldf('SELECT * FROM rock WHERE (peri > 5000 AND shape < .05) OR perm > 1000')
+```
+
+```
+##   area     peri    shape perm
+## 1 5048  941.543 0.328641 1300
+## 2 1016  308.642 0.230081 1300
+## 3 5605 1145.690 0.464125 1300
+## 4 8793 2280.490 0.420477 1300
 ```
 
 Y extendiendo su uso con IN o LIKE (es último sólo con %), pudiendo aplicárseles el NOT:
 
-```{r}
+
+```r
 sqldf('SELECT * FROM BOD WHERE Time IN (1,7)')
 ```
 
-```{r}
+```
+##   Time demand
+## 1    1    8.3
+## 2    7   19.8
+```
+
+
+```r
 sqldf('SELECT * FROM BOD WHERE Time NOT IN (1,7)')
 ```
 
-```{r}
+```
+##   Time demand
+## 1    2   10.3
+## 2    3   19.0
+## 3    4   16.0
+## 4    5   15.6
+```
+
+
+```r
 sqldf('SELECT * FROM chickwts WHERE feed LIKE "%bean" LIMIT 5')
 ```
 
-```{r}
+```
+##   weight      feed
+## 1    179 horsebean
+## 2    160 horsebean
+## 3    136 horsebean
+## 4    227 horsebean
+## 5    217 horsebean
+```
+
+
+```r
 sqldf('SELECT * FROM chickwts WHERE feed NOT LIKE "%bean" LIMIT 5')
+```
+
+```
+##   weight    feed
+## 1    309 linseed
+## 2    229 linseed
+## 3    181 linseed
+## 4    141 linseed
+## 5    260 linseed
 ```
 
 
