@@ -55,9 +55,9 @@ En particular, los resultados de aprendizaje son:
 
 - Clase 12 (28/11): Seminario machine learning CESGA/localhost
 
-- Clase 13 (5/12): Seminario conceptos avanzados de R
+- Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos 
 
-- Clase 14 (12/12): Tema 3: Introducción al análisis de datos masivos 
+- Clase 14 (12/12): Seminario conceptos avanzados de R
 
 - Clase 15 (19/12): Seminario aplicaciones Big Data en investigación e industria
 
