@@ -1,6 +1,7 @@
 book_filename: "Practicas_de_TGD"
 chapter_name:
 output_dir: docs
+output: pdf_document
 new_session: yes
 language:
   label:

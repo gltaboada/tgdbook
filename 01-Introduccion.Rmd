@@ -3,276 +3,100 @@ Introducción a las Tecnologías de Gestión de Datos
 
 ## Introducción
 
-  Problemas de la experimentación directa sobre la realidad:
 
-  -   Coste elevado.
+La información relevante de la materia está disponible en la guía docente y la ficha de la asignatura
 
--   En ocasiones las pruebas son destructivas.
+En particular, los resultados de aprendizaje son:
 
--   Lentitud.
+* Manejar de forma autónoma y solvente el software necesario para acceder a conjuntos de datos en entornos profesionales y/o en la nube.	
 
--   Puede no ser ética.
+* Saber gestionar conjuntos de datos masivos en un entorno multidisciplinar que permita la participación en proyectos profesionales complejos que requieran el uso de técnicas estadísticas.	
 
--   experimentación sobre seres humanos.
+* Saber relacionar el software de diseño y gestión de bases de datos con el específicamente implementado para el análisis de datos.
 
--   Puede resultar imposible.
+## Contenidos
 
--   Acontecimientos futuros, ...
+1. Introducción al lenguaje SQL	
+	+ Bases de datos relacionales
+	+ Sintaxis SQL
+	+ Conexión con bases de datos desde R
+2. Introducción a tecnologías NoSQL	
+	+ Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)
+	+ Conexión de R a NoSQL
+3. Tecnologías para el tratamiento de datos masivos	
+	+ Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)
+	+ Visualización y generación de cuadros de mando 
+	+ Introducción al análisis de datos masivos.
 
--   ...
 
-Puede ser preferible trabajar con un modelo del sistema real. La realidad puede ser muy compleja por lo que es habitual emplear un
-modelo para tratar de explicarla:
+## Planificación
 
--   Modelos deterministas.
+- Clase 1 (12/9): Seminario R: Manipulación de datos con el paquete básico de R
 
--   Modelos estocásticos (con componente aleatoria).
+- Clase 2 (19/9): Tema 1: Conceptos de bases de datos
 
-    -   Cuando no se dispone de la suficiente información sobre las
-        variables que influyen en el fenómeno en estudio.
-    
-    -   Se tienen en cuenta esta incertidumbre.
+- Clase 3 (26/9): Tema 1: Introducción a SQL
 
-La inferencia estadística proporciona herramientas para
-estimar los parámetros y contrastar la validez de un modelo estocástico a
-partir de los datos observados.
+- Clase 4 (3/10): Seminario dplyr
 
-La idea es emplear el modelo para resolver el problema de interés. 
-Cuando la solución no se puede obtener de modo
-analítico (teórico) se puede recurrir a la simulación.
+- Clase 5 (10/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
 
-**Simulación**: realizar experimentos con un modelo con el objetivo
-de recopilar información bajo determinadas condiciones. Nos centraremos en el caso de la **simulación estocástica**: 
+- Clase 6 (17/10): Tema 1: Continuación de ejercicios prácticos SQL
 
--   Las conclusiones se obtienen habitualmente generando
-    repetidamente simulaciones del modelo aleatorio.
-    
+- Clase 7 (24/10): Tema 2: Introducción a NoSQL
 
+- Clase 8 (31/10): Tema 2: Ejercicios prácticos de NoSQL
 
-### Ventajas de la simulación (Shannon, 1975):
+- Clase 9 (7/11): Tema 3: Ecosistema Big Data (Hadoop, Spark)
 
--   Cuando la resolución analítica no puede llevarse a cabo.
+- Clase 10 (14/11): Tema 3: Tecnologías Big Data (Rspark/sparklyr)
 
--   Cuando existen medios de resolver analíticamente el problema
-    pero dicha resolución es complicada y costosa 
-    (o solo proporciona una solución aproximada).
+- Clase 11 (21/11): Seminario visualización con power BI 
 
--   Si se desea experimentar antes de que exista el sistema 
-    (pruebas para la construcción de un sistema).
+- Clase 12 (28/11): Seminario machine learning CESGA/localhost
 
--   Cuando es imposible experimentar sobre el sistema real 
-    por ser dicha experimentación destructiva.
+- Clase 13 (5/12): Seminario conceptos avanzados de R
 
--   En ocasiones en las que la experimentación sobre el sistema es
-    posible pero no ética.
+- Clase 14 (12/12): Tema 3: Introducción al análisis de datos masivos 
 
--   En sistemas que evolucionan muy lentamente en el tiempo.
+- Clase 15 (19/12): Seminario aplicaciones Big Data en investigación e industria
 
 
-### Inconvenientes de la simulación:
+### Evaluación
 
--   La construcción de un buen modelo puede ser una tarea muy costosa 
-    (compleja, laboriosa y requerir mucho tiempo; e.g. modelos climáticos).
+-   **Examen** (60%): El examen de la materia evaluará los siguientes aspectos: 
+Conceptos de la materia: Dominio de los conocimientos teóricos y operativos de la materia.
+Asimilación práctica de materia: Asimilación y comprensión de los conocimientos teóricos y operativos de la materia.
 
--   Frecuentemente el modelo omite variables o relaciones importantes entre ellas
-    (los resultados pueden no ser válidos para el sistema real).
+-   **Prácticas de laboratorio** (30%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.
 
--   Resulta difícil conocer la precisión de la simulación
-    (especialmente en lo relativo a la precisión del modelo formulado).
+-   **Trabajos tutelados** (10%): Evaluación de los trabajos tutelados desarrollados por los estudiantes.
 
--   Problemas de extrapolación de las conclusiones.
 
--   Tiempo de computación.
+#### Observaciones sobre la evaluación:
 
+* Las prácticas de laboratorio se realizarán en grupos de 2.
 
-## Generación de números (pseudo)aleatorios
+* Para poder aprobar la asignatura en la primera oportunidad será necesario obtener como mínimo el 30% de la nota máxima de la suma de las prácticas de laboratorio y trabajos tutelados e, igualmente, el 30% de la nota máxima final de la Prueba mixta (examen), y tener una nota total (prácticas más trabajos tutelados más prueba mixta) igual o superior al 50% de la nota máxima.
 
-Aplicaciones:
+* En la segunda oportunidad solamente se podrá recuperar la nota del examen. Las notas de prácticas y de trabajos tutelados serán las obtenidas durante el curso. Para los alumnos que utilicen la oportunidad adelantada de diciembre se utilizarán las notas de prácticas y trabajos tutelados que obtuvieran en su último curso. En esta oportunidad solo será necesario para aprobar obtener una nota total igual o superior al 50% de la nota máxima.
 
--   Estadística:
+* Una vez que un estudiante es evaluado en una práctica de laboratorio o en un trabajo tutelado implica que será calificado. Por tanto, la calificación "No Presentado" no es posible una vez que una práctica/trabajo ha sido evaluada.
 
-  -   Muestreo, remuestreo, ...
+## Fuentes de información:
 
--   Aproximación de distribuciones (de estadísticos, estimadores, ...)
+### Básica
 
--   Realización de contrastes, intervalos de confianza, ...
+* Daroczi, G. (2015). Mastering Data Analysis with R. Packt Publishing
+* Grolemund, G. y Wickham, H. (2016). R for Data Science. https://r4ds.had.co.nz/ & O'Reilly
+* Silberschatz, A., Korth, H. y Sudarshan, S. (2014). Fundamentos de Bases de Datos. Mc Graw Hill
+* Rubén Fernández Casal (2019). Ayuda y Recursos para el Aprendizaje de R. https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r/
 
--   Comparación de estimadores, contrastes, ...
+### Complementaria:
 
--   Validación teoría (distribución asintótica,...)
+* Wes McKinney (2017). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython. O'Reilly (2ª ed.)
+* Tom White (2015). Hadoop: The Definitive Guide. O'Reilly (4ª ed.)
+* Alex Holmes (2014). Hadoop in practice. Manning (2ª ed.)
+* Centro de Supercomputación de Galicia (2019). Servicio de Big Data del CESGA. https://bigdata.cesga.es/
 
--   Inferencia Bayesiana
 
--   Optimización: Algoritmos genéticos, ...
-
--   Computación: Diseño, verificación y validación de algoritmos,...
-
--   Criptografía: Protocolos de comunicación segura, ...
-
--   Física: Simulación de fenómenos naturales, ...
-
--   Análisis numérico: Evaluación de expresiones, ...
-
--   ...
-
-
-En el Capítulo XX nos centraremos en algunas de las aplicaciones de utilidad en Estadística.
-
-
-## Números aleatorios puros
-
-Una sucesión de números aleatorios puros (true random), se
-caracteriza por que no existe ninguna regla o plan que nos permita
-conocer sus valores.
-
-Se almacena(ban) en *tablas de dígitos aleatorios* (*true random*)
-y normalmente son obtenidos por procesos físicos
-(loterías, ruletas, ruidos,...)
-
-```{r, echo=FALSE, fig.align = 'center'}
-#  ![RAND](images/RAND.png)
-knitr::include_graphics("images/RAND.png")
-```
-
-Se emplean para seleccionar números aleatorios 
-en un rango de 1 a *m*:
-
--   Se selecciona al azar un pto de inicio en la tabla 
-    y una dirección.
-
--   Se agrupan los dígitos de forma que “cubran” el valor de *m*.
-
--   Se seleccionan los valores menores o iguales que *m* 
-    (se descarta el resto).
-
-Algunos enlaces:
-
--   [A Million Random Digits with 100,000 Normal Deviates](https://en.wikipedia.org/wiki/A_Million_Random_Digits_with_100,000_Normal_Deviates) .
-    RAND Corporation. 1955.
-
--   Generadores de números aleatorios “online”:
-
-    -   [http://www.random.org/integers](http://www.random.org/integers)
-        (ver paquete **random** en R).
-    
-    -   [http://www.fourmilab.ch/hotbits](http://www.fourmilab.ch/hotbits)
-
--   Generadores mediante hardware:
-
-    -   [http://software.intel.com](http://software.intel.com/en-us/articles/intel-digital-random-number-generator-drng-software-implementation-guide).
-    
-    -   [http://spectrum.ieee.org](http://spectrum.ieee.org/semiconductors/devices/a-memristor-true-randomnumber-generator)
-
-
-  Sus principales aplicaciones hoy en día son en criptografía (impredictibilidad).
-
-### Inconvenientes:
-
-  -   Es necesario/recomendable conocer su distribución.
-
--   Los datos generados deberían ser i.i.d.
-
--   Reproductivilidad.
-
--   Pueden requerir del almacenamiento en tablas.
-
-### Alternativas:
-
-  -   **números pseudo-aleatorios**: simulan realizaciones de una
-variable aleatoria (uniforme).
-
--   números cuasi-aleatorios: secuencias determinísticas con una
-distribución más uniforme en el rango considerado (se podría
-                                                   pensar que son una única generación de una variable aleatoria).
-
-
-Números pseudoaleatorios
-------------------------
-
-### Generación de números pseudoaleatorios mediante software
-
-La mayoría de los métodos de simulación se basan en la posibilidad
-de generar números pseudoaleatorios con distribución
-$\mathcal{U}(0,1)$. 
-Se obtienen mediante un algoritmo recursivo denominado
-**generador**:
-
-  $$x_{i}=f\left(  x_{i-1},x_{i-2},\cdots,x_{i-k}\right)$$
-
-  -   $k$ orden del generador.
-
--   $\left(  x_{0},x_{1},\cdots,x_{k-1}\right)$ **semilla**
-  (estado inicial).
-
-El **periodo** o *longitud del ciclo* es la longitud de la secuencia antes
-de que vuelva a repetirse. Lo denotaremos por $p$.
-
-
-Los números de la sucesión serán predecibles, conociendo el
-algoritmo y la semilla.
-
--   Sin embargo, si no se conociesen, **no se debería poder
-distinguir** una serie de números pseudoaleatorios **de una
-sucesión de números verdaderamente aleatoria** (utilizando
-                                                recursos computacionales razonables).
-
--   En caso contrario esta predecibilidad puede dar lugar a serios
-problemas (e.g. [http://eprint.iacr.org/2007/419](http://eprint.iacr.org/2007/419)).
-
-Como regla general, por lo menos mientras se está desarrollando un
-programa, interesa **fijar la semilla de aleatorización**.
-
--   Permite la reproductibilidad de los resultados.
-
--   Facilita la depuración del código.
-
-Todo generador de números pseudoaleatorios mínimamente aceptable
-debe comportarse como si se tratase de una muestra genuina de datos
-independientes de una $\mathcal{U}(0,1)$.
-Otras propiedades de interés serían:
-
--   Reproducibilidad a partir de la semilla.
-
--   Periodo suficientemente largo.
-
--   Eficiencia (rapidez y requerimientos de memoria).
-
--   Portabilidad.
-
--   Generación de sub-secuencias (computación en paralelo).
-
--   Parsimonia, ...
-
-
-Gran cantidad de algoritmos:
-
--   Cuadrados medios, Lehmer,...
-
--   Congruenciales
-
--   Registros desfasados
-
--   Combinaciones
-
--   ...
-
-Código fuente disponible en múltiples librerias:
-
--   GNU Scientific Library (GSL):
-    [http://www.gnu.org/software/gsl/manual](http://www.gnu.org/software/gsl/manual/html\_node/Random-Number-Generation.html)
-
--   StatLib: [http://lib.stat.cmu.edu](http://lib.stat.cmu.edu)
-
--   Numerical recipes: [http://www.nrbook.com/nr3](http://www.nrbook.com/nr3)
-
--   [http://random.mat.sbg.ac.at/software](http://random.mat.sbg.ac.at/software)
-
--   KISS (Keep It Simple Stupid / Small and Simple):
-    [http://www.fortran.com/kiss.f90](http://www.fortran.com/kiss.f90)
-
--   UNU.RAN (paquete `Runuran`):
-    [http://statmath.wu.ac.at/unuran](http://statmath.wu.ac.at/unuran)
-
--   ...
-  
-Nos centraremos en los generadores congruenciales, descritos en la [Sección 3.1][Generadores congruenciales].

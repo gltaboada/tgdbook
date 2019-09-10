@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 3 Introducción a Tecnologías NoSQL | Prácticas de Tecnologías de Gestión de Datos</title>
+  <title>Capítulo 4 Tecnologías para el Tratamiendo de Datos Masivos | Prácticas de Tecnologías de Gestión de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 3 Introducción a Tecnologías NoSQL | Prácticas de Tecnologías de Gestión de Datos" />
+  <meta property="og:title" content="Capítulo 4 Tecnologías para el Tratamiendo de Datos Masivos | Prácticas de Tecnologías de Gestión de Datos" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 3 Introducción a Tecnologías NoSQL | Prácticas de Tecnologías de Gestión de Datos" />
+  <meta name="twitter:title" content="Capítulo 4 Tecnologías para el Tratamiendo de Datos Masivos | Prácticas de Tecnologías de Gestión de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduccion-al-lenguaje-sql.html"/>
-<link rel="next" href="tecnologias-para-el-tratamiendo-de-datos-masivos.html"/>
+<link rel="prev" href="introduccion-a-tecnologias-nosql.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,122 +194,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduccion-a-tecnologias-nosql" class="section level1">
-<h1><span class="header-section-number">Capítulo 3</span> Introducción a Tecnologías NoSQL</h1>
-<div id="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos" class="section level2">
-<h2><span class="header-section-number">3.1</span> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</h2>
-<p>NoSQL - “Not Only SQL” - es una nueva categoría de bases de datos no-relacionales y altamente distribuidas.</p>
-<p>Las bases de datos NoSQL nacen de la necesidad de:</p>
-<ul>
-<li><p>Simplicidad en los diseños</p></li>
-<li><p>Escalado horizontal</p></li>
-<li><p>Mayor control en la disponibilidad</p></li>
-</ul>
-<p>Pero cuidado, en muchos escenarios las BBDD relacionales siguen siendo la mejor opción.</p>
-<div id="caracteristicas-de-las-bases-de-datos-nosql" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> Características de las bases de datos NoSQL</h3>
-<ul>
-<li>Libre de esquemas – no se diseñan las tablas y relaciones por adelantado, además de permitir la migración del esquema.</li>
-<li>Proporcionan replicación a través de escalado horizontal.</li>
-<li>Este escalado horizontal se traduce en arquitectura distribuida</li>
-<li>Generalmente ofrecen consistencia débil</li>
-<li>Hacen uso de estructuras de datos sencillas, normalmente pares clave/valor a bajo nivel</li>
-<li>Suelen tener un sistema de consultas propio (o SQL-like)</li>
-<li>Siguen el modelo BASE (<em>B</em>asic Availability, Soft state, Eventual consistency) en lugar de ACID (<em>A</em>tomicity, <em>C</em>onsistency, <em>I</em>solation, <em>D</em>urability)</li>
-</ul>
-<p>El modelo BASE consiste en:</p>
-<ul>
-<li>Basic Availability – el sistema garantiza disponibilidad, en términos del teorema CAP.</li>
-<li>Soft state – el estado del sistema puede cambiar a lo largo del tiempo, incluso sin entrada. Esto es provocado por el modelo de consistencia eventual.</li>
-<li>Eventual consistency – el sistema alcanzará un estado consistente con el tiempo, siempre y cuando no reciba entrada durante ese tiempo.</li>
-</ul>
-<div id="teorema-cap" class="section level4">
-<h4><span class="header-section-number">3.1.1.1</span> Teorema CAP</h4>
-<p>Es imposible para un sistema de cómputo distribuido garantizar simultáneamente:</p>
-<ul>
-<li>Consistency – Todos los nodos ven los mismos datos al mismo tiempo</li>
-<li>Availability – Toda petición obtiene una respuesta en caso tanto de éxito como fallo</li>
-<li>Partition Tolerance – El sistema seguirá funcionando ante pérdidas arbitrarias de información o fallos parciales</li>
-</ul>
-<p><img src="images/TeoremaCAP.jpg" /></p>
-<p>Las razones para escoger NoSQL son:</p>
-<ul>
-<li>Analítica</li>
-<li>Gran cantidad de escrituras, análisis en bloque</li>
-<li>Escalabilidad</li>
-<li>Tan fácil como añadir un nuevo nodo a la red, bajo coste.</li>
-<li>Redundancia</li>
-<li>Están diseñadas teniendo en cuenta la redundancia</li>
-<li>Rápido desarrollo</li>
-<li>Al ser schema-less o schema on-read son más flexibles que schema on-write</li>
-<li>Flexibilidad en el almacenamiento de datos</li>
-<li>Almacenan todo tipo de datos: texto, imágenes, BLOBs</li>
-<li>Gran rendimiento en consultas sobre datos que no implican relaciones jerárquicas</li>
-<li>Gran rendimiento sobre BBDD desnormalizadas</li>
-<li>Tamaño</li>
-<li>El tamaño del esquema de datos es demasiado grande</li>
-<li>Muchos datos temporales fuera de almacén principal</li>
-</ul>
-<p>Razones para NO escoger NoSQL:
-* Consistencia y Disponibilidad de los datos son críticas
-* Relaciones entre datos son importantes
-+ E.g. joins numerosos y/o importantes
-* En general, cuando el modelo ACID encaja mejor</p>
+<div id="tecnologias-para-el-tratamiendo-de-datos-masivos" class="section level1">
+<h1><span class="header-section-number">Capítulo 4</span> Tecnologías para el Tratamiendo de Datos Masivos</h1>
+<div id="tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr" class="section level2">
+<h2><span class="header-section-number">4.1</span> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</h2>
+<p>Introducción a los conceptos básicos del ecosistema Hadoop</p>
 </div>
+<div id="visualizacion-y-generacion-de-cuadros-de-mando" class="section level2">
+<h2><span class="header-section-number">4.2</span> Visualización y Generación de Cuadros de Mando</h2>
 </div>
-<div id="tipos-de-bases-de-datos-nosql" class="section level3">
-<h3><span class="header-section-number">3.1.2</span> Tipos de Bases de Datos NoSQL</h3>
-<p><img src="images/TiposBBDDNoSQL.png" /></p>
-<p><img src="images/TiposBBDDNoSQL2.png" /></p>
-<p><img src="images/451ResearchMap.png" /></p>
-<p><img src="images/DBEnginesRanking.png" /></p>
-<p><img src="images/451ResearchSkills.png" /></p>
-</div>
-<div id="mongodb-nosql-documental" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> MongoDB: NoSQL documental</h3>
-<p><img src="images/MongoDB.jpg" /></p>
-</div>
-<div id="redis-nosql-key-value" class="section level3">
-<h3><span class="header-section-number">3.1.4</span> Redis: NoSQL key-value</h3>
-<p>In-memory data structure store, útil para base de datos de login-password, sensor-valor, URL-respuesta, con una sintaxis muy sencilla:</p>
-<ul>
-<li>El comando SET almacena valores</li>
-<li>SET server:name “luna”</li>
-<li>Recuperamos esos valores con GET</li>
-<li>GET server:name</li>
-<li>INCR incrementa atómicamente un valor</li>
-<li>INCR clients</li>
-<li>DEL elimina claves y sus valores asociados</li>
-<li>DEL clients</li>
-<li>TTL (Time To Live) útil para cachés</li>
-<li>EXPIRE promocion 60</li>
-</ul>
-</div>
-<div id="cassandra-nosql-columnar" class="section level3">
-<h3><span class="header-section-number">3.1.5</span> Cassandra: NoSQL columnar</h3>
-<p><img src="images/BlogRDMS.png" /></p>
-<p><img src="images/BlogNoSQL.png" /></p>
-</div>
-<div id="neo4j-nosql-grafos" class="section level3">
-<h3><span class="header-section-number">3.1.6</span> Neo4j: NoSQL grafos</h3>
-<p><img src="images/Neo4jlogo.png" /></p>
-<p><img src="images/CypherQuery.png" /></p>
-<p><img src="images/CypherResult.png" /></p>
-</div>
-<div id="otros-search-engines" class="section level3">
-<h3><span class="header-section-number">3.1.7</span> Otros: search engines</h3>
-<p>Son sistemas especializados en búsquedas, procesamiento de lenguaje natural como ElasticSearch, Solr, Splunk (logs de aplicaciones), etc…</p>
-</div>
-</div>
-<div id="conexion-de-r-a-nosql" class="section level2">
-<h2><span class="header-section-number">3.2</span> Conexión de R a NoSQL</h2>
-<p>Step1: Install Packages plyr,XML
-Step2: Take xml file url
-Step3: create XML Internal Document type object in R using xmlParse()
-Step4 :Convert xml object to list by using xmlToList()
-Step5: convert list object to data frame by using ldply(xl, data.frame)</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;XML&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;plyr&quot;</span>)</a></code></pre></div>
+<div id="introduccion-al-analisis-de-datos-masivos" class="section level2">
+<h2><span class="header-section-number">4.3</span> Introducción al Análisis de Datos Masivos</h2>
 
 </div>
 </div>
@@ -318,8 +213,8 @@ Step5: convert list object to data frame by using ldply(xl, data.frame)</p>
           </div>
         </div>
       </div>
-<a href="introduccion-al-lenguaje-sql.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tecnologias-para-el-tratamiendo-de-datos-masivos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduccion-a-tecnologias-nosql.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -349,7 +244,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/gltaboada/tgdbook/edit/master/03-NoSQL.Rmd",
+"link": "https://github.com/gltaboada/tgdbook/edit/master/04-Hadoop.Rmd",
 "text": "Edit"
 },
 "history": {
