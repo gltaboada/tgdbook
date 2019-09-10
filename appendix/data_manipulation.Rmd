@@ -1,0 +1,185 @@
+<p style="font-size:48px;font-weight:bold;line-height:100%">Manipulating Data Frames Using sqldf - A Brief Overview</p>
+Last updated by Josh Mills on 8/8/12
+--------------------------------------------------------
+******
+<a name = "Top"></a>
+
+Table of Contents
+========================================================
+<a href = "#Example Data Set" target = "_self">Data Sets Used</a>
+<a href = "#Joins and Merges" target = "_self">Joins and Merges with ```sqldf```</a>
+<a href = "#Aggregation" target = "_self">Aggregation Functions and Limitations of ```sqldf```</a>
+********
+
+Introduction
+========================================================
+For those who are learning R and who may be well-versed in SQL, the ```sqldf``` package provides a mechanism to manipulate R data frames using SQL. Even for experienced R programmers, ```sqldf``` can be a useful tool for data manipulation. [This site](http://www.sqlcourse.com/index.html "SQL Course.com") provides a useful introduction to SQL. [SQLCourse.com 2012]
+
+The following packages will be used in this document:
+
+[**sqldf**](https://code.google.com/p/sqldf/ "sqldf: SQL select on R data frames") - A package that allows manipulation of R data frames with SQL (as well as connectivity with a limited set of database engines). [Grothendieck 2012]
+
+[**plyr**](http://plyr.had.co.nz/ "Hadley Wickham's plyr site") - A useful package for aggregating and summarizing data over multiple subgroups, with more advanced applications. [Wickham 2011]
+
+Load these packages into memory.
+
+```{r eval=TRUE, warning = FALSE, error = FALSE, include = FALSE, tidy = FALSE}
+library(sqldf)
+library(plyr)
+```
+
+<a name = "Example Data Set"></a>
+********
+
+Data Sets Used
+========================================================
+<p style="font-size:10px;line-height:20%"><a href = "#Top" target = "_self">[Top]</a></p>
+
+Highway Data (crashes.csv and roads.csv)
+------------------------
+These are fictional data sets containing crash and highway data with the following variables:
+
+**Crash data (crashes.csv)**
+* `Year` - The year in which the observation was taken
+* `Road` - The name of the road being studied
+* `N_Crashes` - The number of crashes on the road during that year
+* `Volume` - Average annual daily traffic (AADT) volumes on the road during that year. See [this site](http://www.ncdot.gov/doh/preconstruct/traffic/safety/teaas/data/chapter_08.pdf) for a formal definition. [North Carolina Department of Transportation 2012]
+
+**Road data (roads.csv)**
+* `Road` - The name of the road being studied
+* `District` - The administrative district responsible for the road's upkeep and maintenance
+* `Length` - Length of the road in miles
+
+<a name = "Joins and Merges"></a>
+********
+Joins and Merges with ```sqldf```
+========================================================
+<p style="font-size:10px;line-height:20%"><a href = "#Top" target = "_self">[Top]</a></p>
+
+Read in and explore the data to get a feel for the data's structure.
+
+```{r eval = TRUE}
+setwd("W:/Data Mining and Modeling/Applied Analytics - R Discussion/Related Files")
+crashes <- read.csv("crashes.csv")
+roads <- read.csv("roads.csv")
+head(crashes)
+tail(crashes)
+print(roads)
+```
+
+Performing joins is one of the most common operations in SQL. Left joins return all rows in the "left-hand" table - the crash data set in this case, whereas right joins return all rows in the "right-hand" table - the road data set in this case. Inner joins return only rows with matching data for the common variable, and full outer joins return all rows in all data sets, even if there are rows without matches. Currently, ```sqldf``` does not support right joins or full outer joins.
+
+It is useful to format SQL statements with spaces and line breaks for readability and to store the query in a character string. The following statement will perform a left join of the crash data set to the road data set based on the common variable ```Road```. 
+
+```{r eval = TRUE, tidy = FALSE}
+join_string <- "select
+                crashes.*
+              , roads.District
+              , roads.Length
+              from crashes
+                left join roads
+                on crashes.Road = roads.Road"
+```
+
+A new data frame, ```crashes_join_roads```, will be created using the ```sqldf``` statement. The ```sqldf``` statement, at minimum, requires a character string with the SQL operation to be performed. The ```stringsAsFactors``` argument will force categorical variables (like ```Road``` and ```District```) to have the class ```character``` rather than ```factor```.
+
+```{r eval = TRUE, tidy = FALSE}
+crashes_join_roads <- sqldf(join_string,stringsAsFactors = FALSE)
+head(crashes_join_roads)
+tail(crashes_join_roads)
+```
+
+By using an inner join, only matching rows will be kept.
+
+```{r eval = TRUE, tidy = FALSE}
+join_string2 <- "select
+                crashes.*
+              , roads.District
+              , roads.Length
+              from crashes
+                inner join roads
+                on crashes.Road = roads.Road"
+```
+
+```{r eval = TRUE}
+crashes_join_roads2 <- sqldf(join_string2,stringsAsFactors = FALSE)
+head(crashes_join_roads2)
+tail(crashes_join_roads2)
+```
+
+The ```merge``` statement in base R can perform the equivalent of inner and left joins, as well as right and full outer joins, which are unavailable in ```sqldf```.
+
+```{r eval = TRUE}
+crashes_merge_roads <- merge(crashes, roads, by = c("Road"))
+head(crashes_merge_roads)
+tail(crashes_merge_roads)
+crashes_merge_roads2 <- merge(crashes, roads, by = c("Road"), all.x = TRUE)
+head(crashes_merge_roads2)
+tail(crashes_merge_roads2)
+crashes_merge_roads3 <- merge(crashes, roads, by = c("Road"), all.y = TRUE)
+head(crashes_merge_roads3)
+tail(crashes_merge_roads3)
+crashes_merge_roads4 <- merge(crashes, roads, by = c("Road"), all.x = TRUE, all.y = TRUE)
+head(crashes_merge_roads4)
+tail(crashes_merge_roads4)
+```
+
+Note how the order of the rows in the data frames were rearranged when using the ```merge``` statement.
+
+The ```sqldf``` statement can process [SQLite](http://www.sqlite.org/lang.html "SQL As Understood By SQLite") commands, which include most of the standard syntax used in ANSI SQL, except for some of the join operations outlined previously mentioned. [SQLite.org 2012]
+
+Modifying the inner join query to include a ```where``` is the equivalent of combining ```merge``` and ```subset``` statements.
+
+```{r eval = TRUE, tidy = FALSE}
+join_string2 <- "select
+                crashes.*
+              , roads.District
+              , roads.Length
+                from crashes
+                    inner join roads
+                    on crashes.Road = roads.Road
+                where crashes.Road = 'US-40'"                
+crashes_join_roads4 <- sqldf(join_string2,stringsAsFactors = FALSE)
+head(crashes_join_roads4)
+tail(crashes_join_roads4)
+```
+
+<a name = "Aggregation"></a>
+********
+Aggregation Functions and Limitations of ```sqldf```
+========================================================
+<p style="font-size:10px;line-height:20%"><a href = "#Top" target = "_self">[Top]</a></p>
+
+Aggregate functions available using SQLite can be used through the use of a ```group by``` clause.
+
+```{r eval = TRUE, tidy = FALSE}
+group_string <- "select
+                  crashes.Road
+                 , avg(crashes.N_Crashes) as Mean_Crashes
+                 from crashes
+                    left join roads
+                    on crashes.Road = roads.Road
+                 group by 1"
+sqldf(group_string)
+```
+
+The available aggregation functions within SQLite or ANSI SQL are limited, however. While ```sqldf``` can make certain data manipulation operations easier, more advanced data manipulation tasks and calculations must be performed in R, such as using Hadley Wickham's ```plyr``` package.
+
+```{r eval = TRUE, tidy = FALSE}
+ddply(crashes_merge_roads,
+      c("Road"),
+      function(X) data.frame(Mean_Crashes = mean(X$N_Crashes),
+                             Q1_Crashes = quantile(X$N_Crashes, 0.25),
+                             Q3_Crashes = quantile(X$N_Crashes, 0.75),
+                             Median_Crashes = quantile(X$N_Crashes, 0.50))
+      )
+```
+
+********
+**References**
+* SQLCourse.com (2012). *SQLCourse.com(r): Interactive Online SQL Training.* [Link](http://www.sqlcourse.com/index.html)
+* G. Grothendieck (2012). *sqldf: Perform SQL Selects on R Data Frames. R package version 0.4-6.4.* [Link](http://CRAN.R-project.org/package=sqldf)
+* H. Wickham (2011). *The Split-Apply-Combine Strategy for Data Analysis.* Journal of Statistical Software, 40(1), 1-29. [Link](http://www.jstatsoft.org/v40/i01/)
+* North Carolina Department of Transportation (2012). *Training Material for Traffic Engineering Accident Analysis System (TEAAS).* [Link](http://www.ncdot.gov/doh/preconstruct/traffic/safety/teaas/)
+* SQLite.org (2012). *SQL As Understood By SQLite.* [Link](http://www.sqlite.org/lang.html)
+
