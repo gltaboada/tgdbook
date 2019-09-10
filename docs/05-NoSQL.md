@@ -1,9 +1,6 @@
 Introducción a Tecnologías NoSQL
 ================================
 
-```{r , child = '_global_options.Rmd'}
-```
-
 ## Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)
 
 NoSQL - “Not Only SQL” - es una nueva categoría de bases de datos no-relacionales y altamente distribuidas.
@@ -133,11 +130,13 @@ Step3: create XML Internal Document type object in R using xmlParse()
 Step4 :Convert xml object to list by using xmlToList()
 Step5: convert list object to data frame by using ldply(xl, data.frame)
 
-```{r,eval=FALSE}
+
+```r
 install.packages("XML")
 ```
 
-```{r,eval=FALSE}
+
+```r
 install.packages("plyr")
 ```
 

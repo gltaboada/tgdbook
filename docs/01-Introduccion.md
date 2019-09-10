@@ -1,9 +1,8 @@
 Introducción a las Tecnologías de Gestión de Datos
 ==================================================
 
+<!-- ## Introducción -->
 
-```{r , child = '_global_options.Rmd'}
-```
 
 La información relevante de la materia está disponible en la guía docente y la ficha de la asignatura
 
@@ -14,7 +13,6 @@ En particular, los resultados de aprendizaje son:
 * Saber gestionar conjuntos de datos masivos en un entorno multidisciplinar que permita la participación en proyectos profesionales complejos que requieran el uso de técnicas estadísticas.	
 
 * Saber relacionar el software de diseño y gestión de bases de datos con el específicamente implementado para el análisis de datos.
-
 
 ## Contenidos
 
@@ -32,12 +30,6 @@ En particular, los resultados de aprendizaje son:
 
 
 ## Planificación
-
-La planificación es susceptible de ser modificada en función de necesidades docentes/organizativas. En particular algunos apartados pueden ser ampliados o reducidos en función de 
-conocimientos previos y el grado de avance demostrado en las clases.
-
-El inicio de la materia es un seminario de homogeneización de conceptos y conocimientos de R así como cumplimentar un cuestionario para conocer el grado de conceptos previos relacionados 
-con las tecnologías de Gestión de Datos, a cumplimentar durante la primera sesión de clase: https://forms.gle/R98siniMrKweEbMr5
 
 - Clase 1 (12/9): Seminario R: Manipulación de datos con el paquete básico de R
 
@@ -61,7 +53,7 @@ con las tecnologías de Gestión de Datos, a cumplimentar durante la primera ses
 
 - Clase 11 (21/11): Seminario visualización con power BI 
 
-- Clase 12 (28/11): Seminario machine learning con CESGA y/o Rapidminer
+- Clase 12 (28/11): Seminario machine learning CESGA/localhost
 
 - Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos 
 
@@ -78,16 +70,12 @@ Asimilación práctica de materia: Asimilación y comprensión de los conocimien
 
 -   **Prácticas de laboratorio** (30%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.
 
--   **Trabajos tutelados** (10%): Evaluación de los trabajos tutelados desarrollados por los estudiantes. 
+-   **Trabajos tutelados** (10%): Evaluación de los trabajos tutelados desarrollados por los estudiantes.
 
 
 #### Observaciones sobre la evaluación:
 
-* Las prácticas de laboratorio se realizarán en grupos de al menos 2 estudiantes. Una vez enunciada una práctica se dispone de 14 días para su entrega.
-
-* Los trabajos tutelados son trabajos individuales a propuesta de los estudiantes, propuesta que han de comentar con el coordinador via email y que ha de aceptar expresamente. 
-El plazo de entrega del trabajo tutelado es el último día de clase del cuadrimestre. 
-La no realización del trabajo tutelado implica que la nota del examen pasa a ser el 67% de la nota final y la de prácticas el 33%. 
+* Las prácticas de laboratorio se realizarán en grupos de 2.
 
 * Para poder aprobar la asignatura en la primera oportunidad será necesario obtener como mínimo el 30% de la nota máxima de la suma de las prácticas de laboratorio y trabajos tutelados e, igualmente, el 30% de la nota máxima final de la Prueba mixta (examen), y tener una nota total (prácticas más trabajos tutelados más prueba mixta) igual o superior al 50% de la nota máxima.
 

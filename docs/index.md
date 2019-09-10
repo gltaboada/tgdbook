@@ -1,7 +1,7 @@
 --- 
 title: "Prácticas de Tecnologías de Gestión de Datos"
 author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)"
-date: "`r Sys.Date()`"
+date: "2019-09-10"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -26,23 +26,10 @@ donde puede descargarse en formato [pdf](https://gltaboada.github.io/tgdbook/Pra
 
 Para generar el libro (compilar) se recomendaría consultar el libro de ["Escritura de libros con bookdown" ](https://rubenfcasal.github.io/bookdown_intro) en castellano.
 
-```{r echo=FALSE}
-# ![](images/by-nc-nd-88x31.png)
-knitr::include_graphics("images/by-nc-nd-88x31.png")
-```
+
+\includegraphics[width=1.22in]{images/by-nc-nd-88x31} 
 
 Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES) 
 (esperamos poder liberarlo bajo una licencia menos restrictiva más adelante...).
 
-```{r include=FALSE}
-# PENDIENTE:
-# Repositorio github:
-# github-repo: rstudio/bookdown-demo
-# site: bookdown::bookdown_site
-#
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-# knitr::opts_chunk$set(cache = TRUE)
-```
+

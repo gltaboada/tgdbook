@@ -1,9 +1,6 @@
 Tecnologías para el Tratamiendo de Datos Masivos
 ================================================
 
-```{r , child = '_global_options.Rmd'}
-```
-
 ## Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)
 
 Introducción a los conceptos básicos del ecosistema Hadoop
