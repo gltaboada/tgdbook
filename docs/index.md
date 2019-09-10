@@ -1,7 +1,7 @@
 --- 
 title: "Prácticas de Tecnologías de Gestión de Datos"
 author: "Rubén F. Casal (ruben.fcasal@udc.es), Guillermo López Taboada (guillermo.lopez.taboada@udc.es)"
-date: "2019-09-09"
+date: "2019-09-10"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión de Datos</title>
+  <title>Capítulo 3 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión de Datos" />
+  <meta property="og:title" content="Capítulo 3 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión de Datos" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión de Datos" />
+  <meta name="twitter:title" content="Capítulo 3 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduccion-a-las-tecnologias-de-gestion-de-datos.html"/>
-<link rel="next" href="introduccion-al-lenguaje-sql-1.html"/>
+<link rel="prev" href="introduccion-al-lenguaje-sql.html"/>
+<link rel="next" href="introduccion-al-lenguaje-sql-2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -228,14 +228,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduccion-al-lenguaje-sql" class="section level1">
-<h1><span class="header-section-number">Capítulo 2</span> Introducción al lenguaje SQL</h1>
+<div id="introduccion-al-lenguaje-sql-1" class="section level1">
+<h1><span class="header-section-number">Capítulo 3</span> Introducción al lenguaje SQL</h1>
 <p>Los sistemas de información gestionan repositorios de información en múltiples formatos,
 siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured Query Language)</p>
-<div id="bases-de-datos-relacionales" class="section level2">
-<h2><span class="header-section-number">2.1</span> Bases de Datos Relacionales</h2>
-<div id="definiciones" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Definiciones</h3>
+<div id="bases-de-datos-relacionales-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Bases de Datos Relacionales</h2>
+<div id="definiciones-1" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Definiciones</h3>
 <ul>
 <li><p><strong>Dominio</strong>: contexto (organización, empresa, evento…) objeto de gestión de la información.</p></li>
 <li><p><strong>Dato</strong>: hecho con significado implícito, registable, relevante en un determinado dominio.</p></li>
@@ -314,130 +314,130 @@ La Restricción de integridad referencial nos dice que la clave foránea ha de c
 </ul>
 </div>
 </div>
-<div id="sintaxis-sql" class="section level2">
-<h2><span class="header-section-number">2.2</span> Sintaxis SQL</h2>
+<div id="sintaxis-sql-1" class="section level2">
+<h2><span class="header-section-number">3.2</span> Sintaxis SQL</h2>
 <p>A continuación 27 clásulas SQL básicas</p>
-<div id="extraccion-sql-11-statements" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Extracción SQL (11 statements)</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb2-2" title="2">FROM   table_name;</a>
-<a class="sourceLine" id="cb2-3" title="3"></a>
-<a class="sourceLine" id="cb2-4" title="4">SELECT DISTINCT column1, column2....columnN</a>
-<a class="sourceLine" id="cb2-5" title="5">FROM   table_name;</a>
-<a class="sourceLine" id="cb2-6" title="6"></a>
-<a class="sourceLine" id="cb2-7" title="7">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb2-8" title="8">FROM   table_name</a>
-<a class="sourceLine" id="cb2-9" title="9">WHERE  CONDITION;</a>
-<a class="sourceLine" id="cb2-10" title="10"></a>
-<a class="sourceLine" id="cb2-11" title="11">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb2-12" title="12">FROM   table_name</a>
-<a class="sourceLine" id="cb2-13" title="13">WHERE  CONDITION<span class="dv">-1</span> {AND<span class="op">|</span>OR} CONDITION<span class="dv">-2</span>;</a>
-<a class="sourceLine" id="cb2-14" title="14"></a>
-<a class="sourceLine" id="cb2-15" title="15">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb2-16" title="16">FROM   table_name</a>
-<a class="sourceLine" id="cb2-17" title="17">WHERE  column_name <span class="kw">IN</span> (val<span class="dv">-1</span>, val<span class="dv">-2</span>,...val<span class="op">-</span>N);</a>
-<a class="sourceLine" id="cb2-18" title="18"></a>
-<a class="sourceLine" id="cb2-19" title="19">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb2-20" title="20">FROM   table_name</a>
-<a class="sourceLine" id="cb2-21" title="21">WHERE  column_name BETWEEN val<span class="dv">-1</span> AND val<span class="dv">-2</span>;</a>
-<a class="sourceLine" id="cb2-22" title="22"></a>
-<a class="sourceLine" id="cb2-23" title="23">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb2-24" title="24">FROM   table_name</a>
-<a class="sourceLine" id="cb2-25" title="25">WHERE  column_name LIKE { PATTERN };</a>
-<a class="sourceLine" id="cb2-26" title="26"></a>
-<a class="sourceLine" id="cb2-27" title="27">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb2-28" title="28">FROM   table_name</a>
-<a class="sourceLine" id="cb2-29" title="29">WHERE  CONDITION</a>
-<a class="sourceLine" id="cb2-30" title="30">ORDER BY column_name {ASC<span class="op">|</span>DESC};</a>
-<a class="sourceLine" id="cb2-31" title="31"></a>
-<a class="sourceLine" id="cb2-32" title="32">SELECT <span class="kw">SUM</span>(column_name)</a>
-<a class="sourceLine" id="cb2-33" title="33">FROM   table_name</a>
-<a class="sourceLine" id="cb2-34" title="34">WHERE  CONDITION</a>
-<a class="sourceLine" id="cb2-35" title="35">GROUP BY column_name;</a>
-<a class="sourceLine" id="cb2-36" title="36"></a>
-<a class="sourceLine" id="cb2-37" title="37">SELECT <span class="kw">COUNT</span>(column_name)</a>
-<a class="sourceLine" id="cb2-38" title="38">FROM   table_name</a>
-<a class="sourceLine" id="cb2-39" title="39">WHERE  CONDITION;</a>
-<a class="sourceLine" id="cb2-40" title="40"></a>
-<a class="sourceLine" id="cb2-41" title="41">SELECT <span class="kw">SUM</span>(column_name)</a>
-<a class="sourceLine" id="cb2-42" title="42">FROM   table_name</a>
-<a class="sourceLine" id="cb2-43" title="43">WHERE  CONDITION</a>
-<a class="sourceLine" id="cb2-44" title="44">GROUP BY column_name</a>
-<a class="sourceLine" id="cb2-45" title="45"><span class="kw">HAVING</span> (arithematic <span class="cf">function</span> condition);</a></code></pre></div>
+<div id="extraccion-sql-11-statements-1" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Extracción SQL (11 statements)</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">SELECT column1, column2....columnN</a>
+<a class="sourceLine" id="cb31-2" title="2">FROM   table_name;</a>
+<a class="sourceLine" id="cb31-3" title="3"></a>
+<a class="sourceLine" id="cb31-4" title="4">SELECT DISTINCT column1, column2....columnN</a>
+<a class="sourceLine" id="cb31-5" title="5">FROM   table_name;</a>
+<a class="sourceLine" id="cb31-6" title="6"></a>
+<a class="sourceLine" id="cb31-7" title="7">SELECT column1, column2....columnN</a>
+<a class="sourceLine" id="cb31-8" title="8">FROM   table_name</a>
+<a class="sourceLine" id="cb31-9" title="9">WHERE  CONDITION;</a>
+<a class="sourceLine" id="cb31-10" title="10"></a>
+<a class="sourceLine" id="cb31-11" title="11">SELECT column1, column2....columnN</a>
+<a class="sourceLine" id="cb31-12" title="12">FROM   table_name</a>
+<a class="sourceLine" id="cb31-13" title="13">WHERE  CONDITION<span class="dv">-1</span> {AND<span class="op">|</span>OR} CONDITION<span class="dv">-2</span>;</a>
+<a class="sourceLine" id="cb31-14" title="14"></a>
+<a class="sourceLine" id="cb31-15" title="15">SELECT column1, column2....columnN</a>
+<a class="sourceLine" id="cb31-16" title="16">FROM   table_name</a>
+<a class="sourceLine" id="cb31-17" title="17">WHERE  column_name <span class="kw">IN</span> (val<span class="dv">-1</span>, val<span class="dv">-2</span>,...val<span class="op">-</span>N);</a>
+<a class="sourceLine" id="cb31-18" title="18"></a>
+<a class="sourceLine" id="cb31-19" title="19">SELECT column1, column2....columnN</a>
+<a class="sourceLine" id="cb31-20" title="20">FROM   table_name</a>
+<a class="sourceLine" id="cb31-21" title="21">WHERE  column_name BETWEEN val<span class="dv">-1</span> AND val<span class="dv">-2</span>;</a>
+<a class="sourceLine" id="cb31-22" title="22"></a>
+<a class="sourceLine" id="cb31-23" title="23">SELECT column1, column2....columnN</a>
+<a class="sourceLine" id="cb31-24" title="24">FROM   table_name</a>
+<a class="sourceLine" id="cb31-25" title="25">WHERE  column_name LIKE { PATTERN };</a>
+<a class="sourceLine" id="cb31-26" title="26"></a>
+<a class="sourceLine" id="cb31-27" title="27">SELECT column1, column2....columnN</a>
+<a class="sourceLine" id="cb31-28" title="28">FROM   table_name</a>
+<a class="sourceLine" id="cb31-29" title="29">WHERE  CONDITION</a>
+<a class="sourceLine" id="cb31-30" title="30">ORDER BY column_name {ASC<span class="op">|</span>DESC};</a>
+<a class="sourceLine" id="cb31-31" title="31"></a>
+<a class="sourceLine" id="cb31-32" title="32">SELECT <span class="kw">SUM</span>(column_name)</a>
+<a class="sourceLine" id="cb31-33" title="33">FROM   table_name</a>
+<a class="sourceLine" id="cb31-34" title="34">WHERE  CONDITION</a>
+<a class="sourceLine" id="cb31-35" title="35">GROUP BY column_name;</a>
+<a class="sourceLine" id="cb31-36" title="36"></a>
+<a class="sourceLine" id="cb31-37" title="37">SELECT <span class="kw">COUNT</span>(column_name)</a>
+<a class="sourceLine" id="cb31-38" title="38">FROM   table_name</a>
+<a class="sourceLine" id="cb31-39" title="39">WHERE  CONDITION;</a>
+<a class="sourceLine" id="cb31-40" title="40"></a>
+<a class="sourceLine" id="cb31-41" title="41">SELECT <span class="kw">SUM</span>(column_name)</a>
+<a class="sourceLine" id="cb31-42" title="42">FROM   table_name</a>
+<a class="sourceLine" id="cb31-43" title="43">WHERE  CONDITION</a>
+<a class="sourceLine" id="cb31-44" title="44">GROUP BY column_name</a>
+<a class="sourceLine" id="cb31-45" title="45"><span class="kw">HAVING</span> (arithematic <span class="cf">function</span> condition);</a></code></pre></div>
 </div>
-<div id="crearactualizarborrar-tablas-sql-8-statements" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Crear/Actualizar/Borrar tablas SQL (8 statements)</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">CREATE TABLE <span class="kw">table_name</span>(</a>
-<a class="sourceLine" id="cb3-2" title="2">column1 datatype,</a>
-<a class="sourceLine" id="cb3-3" title="3">column2 datatype,</a>
-<a class="sourceLine" id="cb3-4" title="4">column3 datatype,</a>
-<a class="sourceLine" id="cb3-5" title="5">.....</a>
-<a class="sourceLine" id="cb3-6" title="6">columnN datatype,</a>
-<a class="sourceLine" id="cb3-7" title="7">PRIMARY <span class="kw">KEY</span>( one or more columns )</a>
-<a class="sourceLine" id="cb3-8" title="8">);</a>
-<a class="sourceLine" id="cb3-9" title="9"></a>
-<a class="sourceLine" id="cb3-10" title="10">DROP TABLE table_name;</a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12">CREATE UNIQUE INDEX index_name</a>
-<a class="sourceLine" id="cb3-13" title="13">ON <span class="kw">table_name</span> ( column1, column2,...columnN);</a>
-<a class="sourceLine" id="cb3-14" title="14"></a>
-<a class="sourceLine" id="cb3-15" title="15">ALTER TABLE table_name</a>
-<a class="sourceLine" id="cb3-16" title="16">DROP INDEX index_name;</a>
-<a class="sourceLine" id="cb3-17" title="17"></a>
-<a class="sourceLine" id="cb3-18" title="18">DESC table_name;</a>
-<a class="sourceLine" id="cb3-19" title="19"></a>
-<a class="sourceLine" id="cb3-20" title="20">TRUNCATE TABLE table_name;</a>
-<a class="sourceLine" id="cb3-21" title="21"></a>
-<a class="sourceLine" id="cb3-22" title="22">ALTER TABLE table_name {ADD<span class="op">|</span>DROP<span class="op">|</span>MODIFY} column_name {data_ype};</a>
-<a class="sourceLine" id="cb3-23" title="23"></a>
-<a class="sourceLine" id="cb3-24" title="24">ALTER TABLE table_name RENAME TO new_table_name;</a></code></pre></div>
+<div id="crearactualizarborrar-tablas-sql-8-statements-1" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Crear/Actualizar/Borrar tablas SQL (8 statements)</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">CREATE TABLE <span class="kw">table_name</span>(</a>
+<a class="sourceLine" id="cb32-2" title="2">column1 datatype,</a>
+<a class="sourceLine" id="cb32-3" title="3">column2 datatype,</a>
+<a class="sourceLine" id="cb32-4" title="4">column3 datatype,</a>
+<a class="sourceLine" id="cb32-5" title="5">.....</a>
+<a class="sourceLine" id="cb32-6" title="6">columnN datatype,</a>
+<a class="sourceLine" id="cb32-7" title="7">PRIMARY <span class="kw">KEY</span>( one or more columns )</a>
+<a class="sourceLine" id="cb32-8" title="8">);</a>
+<a class="sourceLine" id="cb32-9" title="9"></a>
+<a class="sourceLine" id="cb32-10" title="10">DROP TABLE table_name;</a>
+<a class="sourceLine" id="cb32-11" title="11"></a>
+<a class="sourceLine" id="cb32-12" title="12">CREATE UNIQUE INDEX index_name</a>
+<a class="sourceLine" id="cb32-13" title="13">ON <span class="kw">table_name</span> ( column1, column2,...columnN);</a>
+<a class="sourceLine" id="cb32-14" title="14"></a>
+<a class="sourceLine" id="cb32-15" title="15">ALTER TABLE table_name</a>
+<a class="sourceLine" id="cb32-16" title="16">DROP INDEX index_name;</a>
+<a class="sourceLine" id="cb32-17" title="17"></a>
+<a class="sourceLine" id="cb32-18" title="18">DESC table_name;</a>
+<a class="sourceLine" id="cb32-19" title="19"></a>
+<a class="sourceLine" id="cb32-20" title="20">TRUNCATE TABLE table_name;</a>
+<a class="sourceLine" id="cb32-21" title="21"></a>
+<a class="sourceLine" id="cb32-22" title="22">ALTER TABLE table_name {ADD<span class="op">|</span>DROP<span class="op">|</span>MODIFY} column_name {data_ype};</a>
+<a class="sourceLine" id="cb32-23" title="23"></a>
+<a class="sourceLine" id="cb32-24" title="24">ALTER TABLE table_name RENAME TO new_table_name;</a></code></pre></div>
 </div>
-<div id="anadiractualizarborrar-tuplas-en-sql-3-statements" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> Añadir/Actualizar/Borrar tuplas en SQL (3 statements)</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">INSERT INTO <span class="kw">table_name</span>( column1, column2....columnN)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">VALUES</span> ( value1, value2....valueN);</a>
-<a class="sourceLine" id="cb4-3" title="3"></a>
-<a class="sourceLine" id="cb4-4" title="4">UPDATE table_name</a>
-<a class="sourceLine" id="cb4-5" title="5">SET column1 =<span class="st"> </span>value1, column2 =<span class="st"> </span>value2....columnN=valueN</a>
-<a class="sourceLine" id="cb4-6" title="6">[ WHERE  CONDITION ];</a>
-<a class="sourceLine" id="cb4-7" title="7"></a>
-<a class="sourceLine" id="cb4-8" title="8">DELETE FROM table_name</a>
-<a class="sourceLine" id="cb4-9" title="9">WHERE  {CONDITION};</a></code></pre></div>
+<div id="anadiractualizarborrar-tuplas-en-sql-3-statements-1" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Añadir/Actualizar/Borrar tuplas en SQL (3 statements)</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">INSERT INTO <span class="kw">table_name</span>( column1, column2....columnN)</a>
+<a class="sourceLine" id="cb33-2" title="2"><span class="kw">VALUES</span> ( value1, value2....valueN);</a>
+<a class="sourceLine" id="cb33-3" title="3"></a>
+<a class="sourceLine" id="cb33-4" title="4">UPDATE table_name</a>
+<a class="sourceLine" id="cb33-5" title="5">SET column1 =<span class="st"> </span>value1, column2 =<span class="st"> </span>value2....columnN=valueN</a>
+<a class="sourceLine" id="cb33-6" title="6">[ WHERE  CONDITION ];</a>
+<a class="sourceLine" id="cb33-7" title="7"></a>
+<a class="sourceLine" id="cb33-8" title="8">DELETE FROM table_name</a>
+<a class="sourceLine" id="cb33-9" title="9">WHERE  {CONDITION};</a></code></pre></div>
 </div>
-<div id="gestion-bases-de-datos-5-statements" class="section level3">
-<h3><span class="header-section-number">2.2.4</span> Gestión Bases de Datos (5 statements)</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">CREATE DATABASE database_name;</a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3">DROP DATABASE database_name;</a>
-<a class="sourceLine" id="cb5-4" title="4"></a>
-<a class="sourceLine" id="cb5-5" title="5">USE database_name;</a>
-<a class="sourceLine" id="cb5-6" title="6"></a>
-<a class="sourceLine" id="cb5-7" title="7">COMMIT;</a>
-<a class="sourceLine" id="cb5-8" title="8"></a>
-<a class="sourceLine" id="cb5-9" title="9">ROLLBACK;</a></code></pre></div>
+<div id="gestion-bases-de-datos-5-statements-1" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Gestión Bases de Datos (5 statements)</h3>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">CREATE DATABASE database_name;</a>
+<a class="sourceLine" id="cb34-2" title="2"></a>
+<a class="sourceLine" id="cb34-3" title="3">DROP DATABASE database_name;</a>
+<a class="sourceLine" id="cb34-4" title="4"></a>
+<a class="sourceLine" id="cb34-5" title="5">USE database_name;</a>
+<a class="sourceLine" id="cb34-6" title="6"></a>
+<a class="sourceLine" id="cb34-7" title="7">COMMIT;</a>
+<a class="sourceLine" id="cb34-8" title="8"></a>
+<a class="sourceLine" id="cb34-9" title="9">ROLLBACK;</a></code></pre></div>
 </div>
-<div id="ejemplos-de-consultas-sql" class="section level3">
-<h3><span class="header-section-number">2.2.5</span> Ejemplos de consultas SQL</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">SELECT Nombre, Apellido1, Apellido2, Municipio, Provincia </a>
-<a class="sourceLine" id="cb6-2" title="2">FROM Cliente</a>
-<a class="sourceLine" id="cb6-3" title="3">WHERE Municipio =<span class="st"> &#39;Lugo&#39;</span></a>
-<a class="sourceLine" id="cb6-4" title="4">ORDER BY Apellido1</a>
-<a class="sourceLine" id="cb6-5" title="5"></a>
-<a class="sourceLine" id="cb6-6" title="6">INSERT <span class="kw">Proveedor</span>(Nombre, PersonaContacto, Ciudad, País)</a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="kw">VALUES</span> (<span class="st">&#39;Café Candelas&#39;</span>, <span class="st">&#39;Ivana Candelas&#39;</span>, <span class="st">&#39;Lugo&#39;</span>, <span class="st">&#39;España&#39;</span>)</a>
-<a class="sourceLine" id="cb6-8" title="8"></a>
-<a class="sourceLine" id="cb6-9" title="9">UPDATE Pedidos</a>
-<a class="sourceLine" id="cb6-10" title="10">SET Cantidad =<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb6-11" title="11">WHERE IdProducto =<span class="st"> </span><span class="dv">963</span></a>
-<a class="sourceLine" id="cb6-12" title="12"></a>
-<a class="sourceLine" id="cb6-13" title="13">DELETE Cliente</a>
-<a class="sourceLine" id="cb6-14" title="14">WHERE Email =<span class="st"> &#39;alexandregb@gmail.com&#39;</span></a></code></pre></div>
+<div id="ejemplos-de-consultas-sql-1" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Ejemplos de consultas SQL</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">SELECT Nombre, Apellido1, Apellido2, Municipio, Provincia </a>
+<a class="sourceLine" id="cb35-2" title="2">FROM Cliente</a>
+<a class="sourceLine" id="cb35-3" title="3">WHERE Municipio =<span class="st"> &#39;Lugo&#39;</span></a>
+<a class="sourceLine" id="cb35-4" title="4">ORDER BY Apellido1</a>
+<a class="sourceLine" id="cb35-5" title="5"></a>
+<a class="sourceLine" id="cb35-6" title="6">INSERT <span class="kw">Proveedor</span>(Nombre, PersonaContacto, Ciudad, País)</a>
+<a class="sourceLine" id="cb35-7" title="7"><span class="kw">VALUES</span> (<span class="st">&#39;Café Candelas&#39;</span>, <span class="st">&#39;Ivana Candelas&#39;</span>, <span class="st">&#39;Lugo&#39;</span>, <span class="st">&#39;España&#39;</span>)</a>
+<a class="sourceLine" id="cb35-8" title="8"></a>
+<a class="sourceLine" id="cb35-9" title="9">UPDATE Pedidos</a>
+<a class="sourceLine" id="cb35-10" title="10">SET Cantidad =<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb35-11" title="11">WHERE IdProducto =<span class="st"> </span><span class="dv">963</span></a>
+<a class="sourceLine" id="cb35-12" title="12"></a>
+<a class="sourceLine" id="cb35-13" title="13">DELETE Cliente</a>
+<a class="sourceLine" id="cb35-14" title="14">WHERE Email =<span class="st"> &#39;alexandregb@gmail.com&#39;</span></a></code></pre></div>
 </div>
 </div>
-<div id="conexion-con-bases-de-datos-desde-r" class="section level2">
-<h2><span class="header-section-number">2.3</span> Conexión con bases de datos desde R</h2>
-<div id="introduccion-a-sql-en-r" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Introducción a SQL en R</h3>
+<div id="conexion-con-bases-de-datos-desde-r-1" class="section level2">
+<h2><span class="header-section-number">3.3</span> Conexión con bases de datos desde R</h2>
+<div id="introduccion-a-sql-en-r-1" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Introducción a SQL en R</h3>
 <p>SQL se usa para manipular datos dentro de una base de datos. Si la base de datos no es muy grande se puede cargar toda en un data.frame.
 No obstante, por escalabilidad y offloading de la carga de trabajo al servidor SGBD utilizaremos SQL.</p>
 <p>Existen varios SGBD (SQLite, Microsoft SQL Server, PostgreSQL, etc) los cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada gestor extiende SQL
@@ -453,12 +453,12 @@ aunque tras aplicar ligeras modificaciones ya funcionará. Asimismo el mecanismo
 <li><a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL</a></li>
 </ul>
 </div>
-<div id="el-paquete-sqldf" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> El paquete sqldf</h3>
+<div id="el-paquete-sqldf-1" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> El paquete sqldf</h3>
 <p>A continuación se presenta una serie de ejercicios con la sintaxis de SQL operando sobre un data.frame con el paquete sqldf. Esto inicialmente no incluye los detalles de conectarse a un SGBD, ni modificar los
 datos, solamente el uso de SQL para extraer datos con el objetivo de ser analizados en R.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">library</span>(sqldf)</a></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">library</span>(sqldf)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC&#39;</span>)</a></code></pre></div>
 <pre><code>##    age circumference
 ## 1  118            30
 ## 2  484            58
@@ -468,24 +468,24 @@ datos, solamente el uso de SQL para extraer datos con el objetivo de ser analiza
 ## 6 1372           142
 ## 7 1582           145</code></pre>
 </div>
-<div id="sql-queries" class="section level3">
-<h3><span class="header-section-number">2.3.3</span> SQL Queries</h3>
+<div id="sql-queries-1" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> SQL Queries</h3>
 <p>El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM iris&quot;</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">sqldf</span>(<span class="st">&quot;select * from iris&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM iris&quot;</span>)</a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="kw">sqldf</span>(<span class="st">&quot;select * from iris&quot;</span>)</a></code></pre></div>
 <p>pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM IRIS&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM IRIS&quot;</span>)</a></code></pre></div>
 <p>La sintaxis básica de SELECT es:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">SELECT variable1, variable2 FROM data</a></code></pre></div>
-<div id="asteriscowildcard" class="section level4">
-<h4><span class="header-section-number">2.3.3.1</span> Asterisco/Wildcard</h4>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">SELECT variable1, variable2 FROM data</a></code></pre></div>
+<div id="asteriscowildcard-1" class="section level4">
+<h4><span class="header-section-number">3.3.3.1</span> Asterisco/Wildcard</h4>
 <p>Lo extrae todo</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">bod2 &lt;-<span class="st"> </span><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">bod2 &lt;-<span class="st"> </span><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD&#39;</span>)</a></code></pre></div>
 </div>
-<div id="limit" class="section level4">
-<h4><span class="header-section-number">2.3.3.2</span> Limit</h4>
+<div id="limit-1" class="section level4">
+<h4><span class="header-section-number">3.3.3.2</span> Limit</h4>
 <p>Limita el número de resultados</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM iris LIMIT 5&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM iris LIMIT 5&#39;</span>)</a></code></pre></div>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
 ## 2          4.9         3.0          1.4         0.2  setosa
@@ -493,11 +493,11 @@ datos, solamente el uso de SQL para extraer datos con el objetivo de ser analiza
 ## 4          4.6         3.1          1.5         0.2  setosa
 ## 5          5.0         3.6          1.4         0.2  setosa</code></pre>
 </div>
-<div id="order-by" class="section level4">
-<h4><span class="header-section-number">2.3.3.3</span> Order By</h4>
+<div id="order-by-1" class="section level4">
+<h4><span class="header-section-number">3.3.3.3</span> Order By</h4>
 <p>Ordena las variables</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">ORDER BY var1 {ASC<span class="op">/</span>DESC}, var2 {ASC<span class="op">/</span>DESC}</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">ORDER BY var1 {ASC<span class="op">/</span>DESC}, var2 {ASC<span class="op">/</span>DESC}</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5&quot;</span>)</a></code></pre></div>
 <pre><code>##   Tree age circumference
 ## 1    2 118            33
 ## 2    4 118            32
@@ -505,38 +505,38 @@ datos, solamente el uso de SQL para extraer datos con el objetivo de ser analiza
 ## 4    3 118            30
 ## 5    5 118            30</code></pre>
 </div>
-<div id="where" class="section level4">
-<h4><span class="header-section-number">2.3.3.4</span> Where</h4>
+<div id="where-1" class="section level4">
+<h4><span class="header-section-number">3.3.3.4</span> Where</h4>
 <p>Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT demand FROM BOD WHERE Time &lt; 3&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT demand FROM BOD WHERE Time &lt; 3&#39;</span>)</a></code></pre></div>
 <pre><code>##   demand
 ## 1    8.3
 ## 2   10.3</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM rock WHERE (peri &gt; 5000 AND shape &lt; .05) OR perm &gt; 1000&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM rock WHERE (peri &gt; 5000 AND shape &lt; .05) OR perm &gt; 1000&#39;</span>)</a></code></pre></div>
 <pre><code>##   area     peri    shape perm
 ## 1 5048  941.543 0.328641 1300
 ## 2 1016  308.642 0.230081 1300
 ## 3 5605 1145.690 0.464125 1300
 ## 4 8793 2280.490 0.420477 1300</code></pre>
 <p>Y extendiendo su uso con IN o LIKE (es último sólo con %), pudiendo aplicárseles el NOT:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time IN (1,7)&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time IN (1,7)&#39;</span>)</a></code></pre></div>
 <pre><code>##   Time demand
 ## 1    1    8.3
 ## 2    7   19.8</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time NOT IN (1,7)&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time NOT IN (1,7)&#39;</span>)</a></code></pre></div>
 <pre><code>##   Time demand
 ## 1    2   10.3
 ## 2    3   19.0
 ## 3    4   16.0
 ## 4    5   15.6</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a></code></pre></div>
 <pre><code>##   weight      feed
 ## 1    179 horsebean
 ## 2    160 horsebean
 ## 3    136 horsebean
 ## 4    227 horsebean
 ## 5    217 horsebean</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed NOT LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed NOT LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a></code></pre></div>
 <pre><code>##   weight    feed
 ## 1    309 linseed
 ## 2    229 linseed
@@ -553,8 +553,8 @@ datos, solamente el uso de SQL para extraer datos con el objetivo de ser analiza
           </div>
         </div>
       </div>
-<a href="introduccion-a-las-tecnologias-de-gestion-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduccion-al-lenguaje-sql-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduccion-al-lenguaje-sql.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduccion-al-lenguaje-sql-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -584,7 +584,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/gltaboada/tgdbook/edit/master/02-R-ManipulacionDatos.Rmd",
+"link": "https://github.com/gltaboada/tgdbook/edit/master/03-SQL.Rmd",
 "text": "Edit"
 },
 "history": {
