@@ -1,5 +1,9 @@
-Introducción a las Tecnologías de Gestión de Datos
-==================================================
+Introducción a las Tecnologías de Gestión y Manipulación de Datos
+=================================================================
+
+
+
+
 
 <!-- ## Introducción -->
 
@@ -31,13 +35,18 @@ En particular, los resultados de aprendizaje son:
 
 ## Planificación
 
-- Clase 1 (12/9): Seminario R: Manipulación de datos con el paquete básico de R
+*Working draft...*
+
+La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los 
+conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/9HR5iFHXoLowrCHLA
+
+- Clase 1 (12/9-R): Seminario R (Manipulación de datos con el paquete base de R)
 
 - Clase 2 (19/9): Tema 1: Conceptos de bases de datos
 
 - Clase 3 (26/9): Tema 1: Introducción a SQL
 
-- Clase 4 (3/10): Seminario dplyr
+- Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
 
 - Clase 5 (10/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
 
@@ -57,9 +66,9 @@ En particular, los resultados de aprendizaje son:
 
 - Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos 
 
-- Clase 14 (12/12): Seminario conceptos avanzados de R
+- Clase 14 (12/12-R): Seminario Aprendizaje Estadístico/Automático, Data Mining
 
-- Clase 15 (19/12): Seminario aplicaciones Big Data en investigación e industria
+- Clase 15 (19/12-opcional): Seminario aplicaciones Big Data en investigación e industria
 
 
 ### Evaluación
@@ -88,9 +97,21 @@ Asimilación práctica de materia: Asimilación y comprensión de los conocimien
 ### Básica
 
 * Daroczi, G. (2015). Mastering Data Analysis with R. Packt Publishing
+
 * Grolemund, G. y Wickham, H. (2016). R for Data Science. https://r4ds.had.co.nz/ & O'Reilly
+
 * Silberschatz, A., Korth, H. y Sudarshan, S. (2014). Fundamentos de Bases de Datos. Mc Graw Hill
-* Rubén Fernández Casal (2019). Ayuda y Recursos para el Aprendizaje de R. https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r/
+
+* Rubén Fernández Casal ([R Machinery](https://rubenfcasal.github.io)):
+
+    - [Ayuda y Recursos para el Aprendizaje de R ](https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r)
+    
+    - [Escritura de libros con el paquete bookdown ](https://rubenfcasal.github.io/bookdown_intro)
+    
+    - [Apéndice introducción a Rmarkdown ](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html) 
+    
+    -[Pesentación análisis de datos con R ](https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf)
+    
 
 ### Complementaria:
 

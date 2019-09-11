@@ -1,6 +1,8 @@
 Introducción a Tecnologías NoSQL
 ================================
 
+Working draft...
+
 ```{r , child = '_global_options.Rmd'}
 ```
 
@@ -71,6 +73,7 @@ Razones para NO escoger NoSQL:
 * En general, cuando el modelo ACID encaja mejor
 
 ### Tipos de Bases de Datos NoSQL
+
 
 ![](images/TiposBBDDNoSQL.png)
 

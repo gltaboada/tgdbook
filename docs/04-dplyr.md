@@ -1,5 +1,7 @@
-# Manipulación de datos con `dplyr`
+Manipulación de datos con `dplyr`
+=================================
 
+Working draft...
 
 El paquete **dplyr**
 --------------------
@@ -9,9 +11,7 @@ El paquete **dplyr**
 library(dplyr)
 ```
 
-**dplyr**^[`dplyr` es una mejora del paquete `plyr`, 
-para una comparación ver p.e. <https://blog.rstudio.com/2014/01/17/introducing-dplyr>] 
-permite sustituir funciones base de R (como `split()`, `subset()`, 
+**dplyr** Permite sustituir funciones base de R (como `split()`, `subset()`, 
 `apply()`, `sapply()`, `lapply()`, `tapply()` y `aggregate()`)
 mediante una "gramática" más sencilla para la manipulación de datos:
 
@@ -30,24 +30,7 @@ Puede trabajar con conjuntos de datos en distintos formatos:
 * bases de datos *Hadoop* (paquete `plyrmr`).
 
 En lugar de operar sobre vectores como las funciones base,
-opera sobre objetos de este tipo (en este capítulo nos centraremos en `data.frame`).
-
-El tipo de objeto que emplea por defecto `dplyr` para almacenar datos es el [`tibble`](https://tibble.tidyverse.org),
-una modificación del `data.frame` para facilitar su manejo.
-Para más detalles se puede ver el [Capítulo 10](https://r4ds.had.co.nz/tibbles.html) del
-libro [R for Data Science](https://r4ds.had.co.nz/).
-
-
-
-<!--
-
-tidyverse
-
-vignette("introduction", package = "dplyr") to learn how the main verbs of dplyr work with data frames.
-
-vignette("databases", package = "dplyr") to learn how to work with databases from dplyr. 
--->
-
+opera sobre objetos de este tipo (solo nos centraremos en `data.frame`).
 
 ### Datos de ejemplo
 
@@ -284,7 +267,7 @@ empleados %>% select(sexo, catlab, salario) %>%
 abline(h = 0, lty = 2)
 ```
 
-![](04-R-dplyr_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
+![](04-dplyr_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
 
 --------------
 

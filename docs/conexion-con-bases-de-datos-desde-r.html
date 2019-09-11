@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.3 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.3 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  <meta name="github-repo" content="gltaboada/tgdbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.3 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  
+  <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  
+
+<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
+
+
+<meta name="date" content="2019-09-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sintaxis-sql.html"/>
+<link rel="next" href="manipulacion-de-datos-con-dplyr.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Prácticas de TGD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos.html"><a href="introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos.html"><i class="fa fa-check"></i><b>1</b> Introducción a las Tecnologías de Gestión y Manipulación de Datos</a><ul>
+<li class="chapter" data-level="1.1" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i><b>1.1</b> Contenidos</a></li>
+<li class="chapter" data-level="1.2" data-path="planificacion.html"><a href="planificacion.html"><i class="fa fa-check"></i><b>1.2</b> Planificación</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="planificacion.html"><a href="planificacion.html#evaluacion"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="fuentes-de-informacion.html"><a href="fuentes-de-informacion.html"><i class="fa fa-check"></i><b>1.3</b> Fuentes de información:</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="fuentes-de-informacion.html"><a href="fuentes-de-informacion.html#basica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
+<li class="chapter" data-level="1.3.2" data-path="fuentes-de-informacion.html"><a href="fuentes-de-informacion.html#complementaria"><i class="fa fa-check"></i><b>1.3.2</b> Complementaria:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="manipulacion-de-datos-con-r.html"><a href="manipulacion-de-datos-con-r.html"><i class="fa fa-check"></i><b>2</b> Manipulación de datos con R</a><ul>
+<li class="chapter" data-level="2.1" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html"><i class="fa fa-check"></i><b>2.1</b> Lectura, importación y exportación de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#formato-de-datos-de-r"><i class="fa fa-check"></i><b>2.1.1</b> Formato de datos de R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#acceso-a-datos-en-paquetes"><i class="fa fa-check"></i><b>2.1.2</b> Acceso a datos en paquetes</a></li>
+<li class="chapter" data-level="2.1.3" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#cap2-texto"><i class="fa fa-check"></i><b>2.1.3</b> Lectura de archivos de texto</a></li>
+<li class="chapter" data-level="2.1.4" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#alternativa-tidyverse"><i class="fa fa-check"></i><b>2.1.4</b> Alternativa <code>tidyverse</code></a></li>
+<li class="chapter" data-level="2.1.5" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#importacion-desde-spss"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="2.1.6" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#importacion-desde-excel"><i class="fa fa-check"></i><b>2.1.6</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="2.1.7" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#exportacion-de-datos"><i class="fa fa-check"></i><b>2.1.7</b> Exportación de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.3</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.4</b> Operaciones con tablas de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduccion-al-lenguaje-sql.html"><a href="introduccion-al-lenguaje-sql.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a><ul>
+<li class="chapter" data-level="3.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>3.1</b> Bases de Datos Relacionales</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html#definiciones"><i class="fa fa-check"></i><b>3.1.1</b> Definiciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis SQL</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#extraccion-sql-11-statements"><i class="fa fa-check"></i><b>3.2.1</b> Extracción SQL (11 statements)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#crearactualizarborrar-tablas-sql-8-statements"><i class="fa fa-check"></i><b>3.2.2</b> Crear/Actualizar/Borrar tablas SQL (8 statements)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#anadiractualizarborrar-tuplas-en-sql-3-statements"><i class="fa fa-check"></i><b>3.2.3</b> Añadir/Actualizar/Borrar tuplas en SQL (3 statements)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#gestion-bases-de-datos-5-statements"><i class="fa fa-check"></i><b>3.2.4</b> Gestión Bases de Datos (5 statements)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#ejemplos-de-consultas-sql"><i class="fa fa-check"></i><b>3.2.5</b> Ejemplos de consultas SQL</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="conexion-con-bases-de-datos-desde-r.html"><a href="conexion-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.3</b> Conexión con bases de datos desde R</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="conexion-con-bases-de-datos-desde-r.html"><a href="conexion-con-bases-de-datos-desde-r.html#introduccion-a-sql-en-r"><i class="fa fa-check"></i><b>3.3.1</b> Introducción a SQL en R</a></li>
+<li class="chapter" data-level="3.3.2" data-path="conexion-con-bases-de-datos-desde-r.html"><a href="conexion-con-bases-de-datos-desde-r.html#el-paquete-sqldf"><i class="fa fa-check"></i><b>3.3.2</b> El paquete sqldf</a></li>
+<li class="chapter" data-level="3.3.3" data-path="conexion-con-bases-de-datos-desde-r.html"><a href="conexion-con-bases-de-datos-desde-r.html#sql-queries"><i class="fa fa-check"></i><b>3.3.3</b> SQL Queries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con <code>dplyr</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="el-paquete-dplyr.html"><a href="el-paquete-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> El paquete <strong>dplyr</strong></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="el-paquete-dplyr.html"><a href="el-paquete-dplyr.html#datos-de-ejemplo"><i class="fa fa-check"></i><b>4.1.1</b> Datos de ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html#seleccionar-variables-con-select"><i class="fa fa-check"></i><b>4.2.1</b> Seleccionar variables con <strong>select()</strong></a></li>
+<li class="chapter" data-level="4.2.2" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html#generar-nuevas-variables-con-mutate"><i class="fa fa-check"></i><b>4.2.2</b> Generar nuevas variables con <strong>mutate()</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html#seleccionar-casos-con-filter"><i class="fa fa-check"></i><b>4.3.1</b> Seleccionar casos con <strong>filter()</strong></a></li>
+<li class="chapter" data-level="4.3.2" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html#organizar-casos-con-arrange"><i class="fa fa-check"></i><b>4.3.2</b> Organizar casos con <strong>arrange()</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="resumir-valores-con-summarise.html"><a href="resumir-valores-con-summarise.html"><i class="fa fa-check"></i><b>4.4</b> Resumir valores con <strong>summarise()</strong></a></li>
+<li class="chapter" data-level="4.5" data-path="agrupar-casos-con-group-by.html"><a href="agrupar-casos-con-group-by.html"><i class="fa fa-check"></i><b>4.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
+<li class="chapter" data-level="4.6" data-path="operador-pipe-tuberia-redireccion.html"><a href="operador-pipe-tuberia-redireccion.html"><i class="fa fa-check"></i><b>4.6</b> Operador <em>pipe</em> <strong>%&gt;% </strong>(tubería, redirección)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduccion-a-tecnologias-nosql.html"><a href="introduccion-a-tecnologias-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a><ul>
+<li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#caracteristicas-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.1</b> Características de las bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.1.2" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#tipos-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.2</b> Tipos de Bases de Datos NoSQL</a></li>
+<li class="chapter" data-level="5.1.3" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#mongodb-nosql-documental"><i class="fa fa-check"></i><b>5.1.3</b> MongoDB: NoSQL documental</a></li>
+<li class="chapter" data-level="5.1.4" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#redis-nosql-key-value"><i class="fa fa-check"></i><b>5.1.4</b> Redis: NoSQL key-value</a></li>
+<li class="chapter" data-level="5.1.5" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#cassandra-nosql-columnar"><i class="fa fa-check"></i><b>5.1.5</b> Cassandra: NoSQL columnar</a></li>
+<li class="chapter" data-level="5.1.6" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#neo4j-nosql-grafos"><i class="fa fa-check"></i><b>5.1.6</b> Neo4j: NoSQL grafos</a></li>
+<li class="chapter" data-level="5.1.7" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#otros-search-engines"><i class="fa fa-check"></i><b>5.1.7</b> Otros: search engines</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="conexion-de-r-a-nosql.html"><a href="conexion-de-r-a-nosql.html"><i class="fa fa-check"></i><b>5.2</b> Conexión de R a NoSQL</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tecnologias-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologias-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>6</b> Tecnologías para el Tratamiendo de Datos Masivos</a><ul>
+<li class="chapter" data-level="6.1" data-path="tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a></li>
+<li class="chapter" data-level="6.2" data-path="visualizacion-y-generacion-de-cuadros-de-mando.html"><a href="visualizacion-y-generacion-de-cuadros-de-mando.html"><i class="fa fa-check"></i><b>6.2</b> Visualización y Generación de Cuadros de Mando</a></li>
+<li class="chapter" data-level="6.3" data-path="introduccion-al-analisis-de-datos-masivos.html"><a href="introduccion-al-analisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apendices</b></span></li>
+<li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a><ul>
+<li class="chapter" data-level="A.1" data-path="rstudio-links.html"><a href="rstudio-links.html"><i class="fa fa-check"></i><b>A.1</b> RStudio</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prácticas de Tecnologías de Gestión y Manipulación de Datos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conexion-con-bases-de-datos-desde-r" class="section level2">
+<h2><span class="header-section-number">3.3</span> Conexión con bases de datos desde R</h2>
+<div id="introduccion-a-sql-en-r" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Introducción a SQL en R</h3>
+<p>SQL se usa para manipular datos dentro de una base de datos. Si la base de datos no es muy grande se puede cargar toda en un data.frame.
+No obstante, por escalabilidad y offloading de la carga de trabajo al servidor SGBD utilizaremos SQL.</p>
+<p>Existen varios SGBD (SQLite, Microsoft SQL Server, PostgreSQL, etc) los cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada gestor extiende SQL
+de formas sutiles buscando minar cierta portabilidad de código (<em>vendor-locking</em>). En efecto, un código SQL desarrollado para SQLite es probable que falle con MySQL
+aunque tras aplicar ligeras modificaciones ya funcionará. Asimismo el mecanismo de conexión, configuración, rendimiento y operación suele diferir entre SGBD.</p>
+<p>A continuación se lista una serie de paquetes utilizados en el acceso a los datos, lo que suele ser el principal esfuerzo a realizar cuando se trabaja con SGBD:</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/DBI/index.html">DBI</a></li>
+<li><a href="https://cran.r-project.org/web/packages/RODBC/index.html">RODBC</a></li>
+<li><a href="https://cran.r-project.org/web/packages/dbConnect/index.html">dbConnect</a></li>
+<li><a href="https://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a></li>
+<li><a href="https://cran.r-project.org/web/packages/RMySQL/index.html">RMySQL</a></li>
+<li><a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL</a></li>
+</ul>
+</div>
+<div id="el-paquete-sqldf" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> El paquete sqldf</h3>
+<p>A continuación se presenta una serie de ejercicios con la sintaxis de SQL operando sobre un data.frame con el paquete sqldf. Esto inicialmente no incluye los detalles de conectarse a un SGBD, ni modificar los
+datos, solamente el uso de SQL para extraer datos con el objetivo de ser analizados en R.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="kw">library</span>(sqldf)</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC&#39;</span>)</a></code></pre></div>
+<pre><code>##    age circumference
+## 1  118            30
+## 2  484            58
+## 3  664            87
+## 4 1004           115
+## 5 1231           120
+## 6 1372           142
+## 7 1582           145</code></pre>
+</div>
+<div id="sql-queries" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> SQL Queries</h3>
+<p>El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM iris&quot;</span>)</a>
+<a class="sourceLine" id="cb102-2" title="2"><span class="kw">sqldf</span>(<span class="st">&quot;select * from iris&quot;</span>)</a></code></pre></div>
+<p>pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM IRIS&quot;</span>)</a></code></pre></div>
+<p>La sintaxis básica de SELECT es:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">SELECT variable1, variable2 FROM data</a></code></pre></div>
+<div id="asteriscowildcard" class="section level4">
+<h4><span class="header-section-number">3.3.3.1</span> Asterisco/Wildcard</h4>
+<p>Lo extrae todo</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1">bod2 &lt;-<span class="st"> </span><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD&#39;</span>)</a></code></pre></div>
+</div>
+<div id="limit" class="section level4">
+<h4><span class="header-section-number">3.3.3.2</span> Limit</h4>
+<p>Limita el número de resultados</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM iris LIMIT 5&#39;</span>)</a></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa</code></pre>
+</div>
+<div id="order-by" class="section level4">
+<h4><span class="header-section-number">3.3.3.3</span> Order By</h4>
+<p>Ordena las variables</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">ORDER BY var1 {ASC<span class="op">/</span>DESC}, var2 {ASC<span class="op">/</span>DESC}</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5&quot;</span>)</a></code></pre></div>
+<pre><code>##   Tree age circumference
+## 1    2 118            33
+## 2    4 118            32
+## 3    1 118            30
+## 4    3 118            30
+## 5    5 118            30</code></pre>
+</div>
+<div id="where" class="section level4">
+<h4><span class="header-section-number">3.3.3.4</span> Where</h4>
+<p>Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT demand FROM BOD WHERE Time &lt; 3&#39;</span>)</a></code></pre></div>
+<pre><code>##   demand
+## 1    8.3
+## 2   10.3</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM rock WHERE (peri &gt; 5000 AND shape &lt; .05) OR perm &gt; 1000&#39;</span>)</a></code></pre></div>
+<pre><code>##   area     peri    shape perm
+## 1 5048  941.543 0.328641 1300
+## 2 1016  308.642 0.230081 1300
+## 3 5605 1145.690 0.464125 1300
+## 4 8793 2280.490 0.420477 1300</code></pre>
+<p>Y extendiendo su uso con IN o LIKE (es último sólo con %), pudiendo aplicárseles el NOT:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time IN (1,7)&#39;</span>)</a></code></pre></div>
+<pre><code>##   Time demand
+## 1    1    8.3
+## 2    7   19.8</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time NOT IN (1,7)&#39;</span>)</a></code></pre></div>
+<pre><code>##   Time demand
+## 1    2   10.3
+## 2    3   19.0
+## 3    4   16.0
+## 4    5   15.6</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a></code></pre></div>
+<pre><code>##   weight      feed
+## 1    179 horsebean
+## 2    160 horsebean
+## 3    136 horsebean
+## 4    227 horsebean
+## 5    217 horsebean</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed NOT LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a></code></pre></div>
+<pre><code>##   weight    feed
+## 1    309 linseed
+## 2    229 linseed
+## 3    181 linseed
+## 4    141 linseed
+## 5    260 linseed</code></pre>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sintaxis-sql.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulacion-de-datos-con-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/gltaboada/tgdbook/edit/master/03-SQL.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Practicas_de_TGD.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

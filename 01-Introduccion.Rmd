@@ -1,9 +1,12 @@
-Introducción a las Tecnologías de Gestión de Datos
-==================================================
+Introducción a las Tecnologías de Gestión y Manipulación de Datos
+=================================================================
 
 
 ```{r , child = '_global_options.Rmd'}
 ```
+
+<!-- ## Introducción -->
+
 
 La información relevante de la materia está disponible en la guía docente y la ficha de la asignatura
 
@@ -14,7 +17,6 @@ En particular, los resultados de aprendizaje son:
 * Saber gestionar conjuntos de datos masivos en un entorno multidisciplinar que permita la participación en proyectos profesionales complejos que requieran el uso de técnicas estadísticas.	
 
 * Saber relacionar el software de diseño y gestión de bases de datos con el específicamente implementado para el análisis de datos.
-
 
 ## Contenidos
 
@@ -33,19 +35,18 @@ En particular, los resultados de aprendizaje son:
 
 ## Planificación
 
-La planificación es susceptible de ser modificada en función de necesidades docentes/organizativas. En particular algunos apartados pueden ser ampliados o reducidos en función de 
-conocimientos previos y el grado de avance demostrado en las clases.
+*Working draft...*
 
-El inicio de la materia es un seminario de homogeneización de conceptos y conocimientos de R así como cumplimentar un cuestionario para conocer el grado de conceptos previos relacionados 
-con las tecnologías de Gestión de Datos, a cumplimentar durante la primera sesión de clase: https://forms.gle/R98siniMrKweEbMr5
+La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los 
+conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/9HR5iFHXoLowrCHLA
 
-- Clase 1 (12/9): Seminario R: Manipulación de datos con el paquete básico de R
+- Clase 1 (12/9-R): Seminario R (Manipulación de datos con el paquete base de R)
 
 - Clase 2 (19/9): Tema 1: Conceptos de bases de datos
 
 - Clase 3 (26/9): Tema 1: Introducción a SQL
 
-- Clase 4 (3/10): Seminario dplyr
+- Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
 
 - Clase 5 (10/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
 
@@ -61,13 +62,13 @@ con las tecnologías de Gestión de Datos, a cumplimentar durante la primera ses
 
 - Clase 11 (21/11): Seminario visualización con power BI 
 
-- Clase 12 (28/11): Seminario machine learning con CESGA y/o Rapidminer
+- Clase 12 (28/11): Seminario machine learning CESGA/localhost
 
 - Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos 
 
-- Clase 14 (12/12): Seminario conceptos avanzados de R
+- Clase 14 (12/12-R): Seminario Aprendizaje Estadístico/Automático, Data Mining
 
-- Clase 15 (19/12): Seminario aplicaciones Big Data en investigación e industria
+- Clase 15 (19/12-opcional): Seminario aplicaciones Big Data en investigación e industria
 
 
 ### Evaluación
@@ -78,16 +79,12 @@ Asimilación práctica de materia: Asimilación y comprensión de los conocimien
 
 -   **Prácticas de laboratorio** (30%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.
 
--   **Trabajos tutelados** (10%): Evaluación de los trabajos tutelados desarrollados por los estudiantes. 
+-   **Trabajos tutelados** (10%): Evaluación de los trabajos tutelados desarrollados por los estudiantes.
 
 
 #### Observaciones sobre la evaluación:
 
-* Las prácticas de laboratorio se realizarán en grupos de al menos 2 estudiantes. Una vez enunciada una práctica se dispone de 14 días para su entrega.
-
-* Los trabajos tutelados son trabajos individuales a propuesta de los estudiantes, propuesta que han de comentar con el coordinador via email y que ha de aceptar expresamente. 
-El plazo de entrega del trabajo tutelado es el último día de clase del cuadrimestre. 
-La no realización del trabajo tutelado implica que la nota del examen pasa a ser el 67% de la nota final y la de prácticas el 33%. 
+* Las prácticas de laboratorio se realizarán en grupos de 2.
 
 * Para poder aprobar la asignatura en la primera oportunidad será necesario obtener como mínimo el 30% de la nota máxima de la suma de las prácticas de laboratorio y trabajos tutelados e, igualmente, el 30% de la nota máxima final de la Prueba mixta (examen), y tener una nota total (prácticas más trabajos tutelados más prueba mixta) igual o superior al 50% de la nota máxima.
 
@@ -100,9 +97,21 @@ La no realización del trabajo tutelado implica que la nota del examen pasa a se
 ### Básica
 
 * Daroczi, G. (2015). Mastering Data Analysis with R. Packt Publishing
+
 * Grolemund, G. y Wickham, H. (2016). R for Data Science. https://r4ds.had.co.nz/ & O'Reilly
+
 * Silberschatz, A., Korth, H. y Sudarshan, S. (2014). Fundamentos de Bases de Datos. Mc Graw Hill
-* Rubén Fernández Casal (2019). Ayuda y Recursos para el Aprendizaje de R. https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r/
+
+* Rubén Fernández Casal ([R Machinery](https://rubenfcasal.github.io)):
+
+    - [Ayuda y Recursos para el Aprendizaje de R ](https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r)
+    
+    - [Escritura de libros con el paquete bookdown ](https://rubenfcasal.github.io/bookdown_intro)
+    
+    - [Apéndice introducción a Rmarkdown ](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html) 
+    
+    -[Pesentación análisis de datos con R ](https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf)
+    
 
 ### Complementaria:
 

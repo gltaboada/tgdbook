@@ -1,5 +1,7 @@
 # (APPENDIX) Apendices {-} 
 
+Working draft...
+
 ```{r , child = '_global_options.Rmd'}
 ```
 
@@ -77,13 +79,13 @@ Ver: [Cursos MOOC relacionados con R](http://r-es.org/2016/02/12/cursos-masivos-
     
 * ***Avanzados***:
     
-    - 2008 - Software for Data Analysis: Programming with R - Chambers
-      ([Springer](http://www.springer.com/la/book/9780387759357))
-    
     - Advanced R by Hadley Wickham
       (online: [1ª ed](http://adv-r.had.co.nz/), 
       [2ª ed](https://adv-r.hadley.nz/), 
       [Chapman & Hall](https://www.amazon.com/dp/1466586966))
+    
+    - 2008 - Software for Data Analysis: Programming with R - Chambers
+      ([Springer](http://www.springer.com/la/book/9780387759357))
     
     - R packages by Hadley Wickham
       ([online](http://r-pkgs.had.co.nz/),
@@ -149,26 +151,42 @@ en la web se puede encontrar mucho material adicional, por ejemplo:
 
 ## RStudio {#rstudio-links}
 
-[RStudio](https://www.rstudio.com): 
+[***RStudio***](https://www.rstudio.com): 
   
-* [Online learning](https://www.rstudio.com/online-learning), 
+* [Online learning](https://www.rstudio.com/online-learning) 
   
-* [Webinars](https://resources.rstudio.com/webinars),
-  
-* [tidyverse](https://www.tidyverse.org/),
-  
-* [Databases using R](https://db.rstudio.com),
-  [dplyr as a database interface](https://db.rstudio.com/overview),
+* [Webinars](https://resources.rstudio.com/webinars)
 
-* [sparklyr](https://spark.rstudio.com/),
+* [sparklyr](https://spark.rstudio.com/)
 
-* [shiny](http://shiny.rstudio.com),
-  
-* [CheatSheets](https://resources.rstudio.com/rstudio-cheatsheets):
-  [rmarkdown](https://resources.rstudio.com/rstudio-cheatsheets/rmarkdown-2-0-cheat-sheet),
-  [shiny](https://resources.rstudio.com/rstudio-cheatsheets/shiny-cheat-sheet),
-  [dplyr](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf),
-  [tidyr](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf),
-  [stringr](https://resources.rstudio.com/rstudio-cheatsheets/stringr-cheat-sheet).
+* [shiny](http://shiny.rstudio.com)
+
+
+[***tidyverse***](https://www.tidyverse.org/):
+
+- [dplyr](https://dplyr.tidyverse.org)
+
+- [tibble](https://tibble.tidyverse.org)
+
+- [tidyr](https://tidyr.tidyverse.org)
+
+- [stringr](https://stringr.tidyverse.org)
+
+- [readr](https://readr.tidyverse.org)
+
+- [Databases using R](https://db.rstudio.com),
+[dplyr as a database interface](https://db.rstudio.com/overview)
+
+[***CheatSheets***](https://resources.rstudio.com/rstudio-cheatsheets):
+
+- [rmarkdown](https://resources.rstudio.com/rstudio-cheatsheets/rmarkdown-2-0-cheat-sheet)
+
+- [shiny](https://resources.rstudio.com/rstudio-cheatsheets/shiny-cheat-sheet)
+
+- [dplyr](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)
+
+- [tidyr](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf)
+
+- [stringr](https://resources.rstudio.com/rstudio-cheatsheets/stringr-cheat-sheet)
   
  

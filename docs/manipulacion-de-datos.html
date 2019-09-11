@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.2 Manipulación de datos | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.2 Manipulación de datos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  <meta name="github-repo" content="gltaboada/tgdbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.2 Manipulación de datos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  
+  <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  
+
+<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
+
+
+<meta name="date" content="2019-09-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lectura-importacion-y-exportacion-de-datos.html"/>
+<link rel="next" href="ejemplo-wos-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Prácticas de TGD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos.html"><a href="introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos.html"><i class="fa fa-check"></i><b>1</b> Introducción a las Tecnologías de Gestión y Manipulación de Datos</a><ul>
+<li class="chapter" data-level="1.1" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i><b>1.1</b> Contenidos</a></li>
+<li class="chapter" data-level="1.2" data-path="planificacion.html"><a href="planificacion.html"><i class="fa fa-check"></i><b>1.2</b> Planificación</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="planificacion.html"><a href="planificacion.html#evaluacion"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="fuentes-de-informacion.html"><a href="fuentes-de-informacion.html"><i class="fa fa-check"></i><b>1.3</b> Fuentes de información:</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="fuentes-de-informacion.html"><a href="fuentes-de-informacion.html#basica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
+<li class="chapter" data-level="1.3.2" data-path="fuentes-de-informacion.html"><a href="fuentes-de-informacion.html#complementaria"><i class="fa fa-check"></i><b>1.3.2</b> Complementaria:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="manipulacion-de-datos-con-r.html"><a href="manipulacion-de-datos-con-r.html"><i class="fa fa-check"></i><b>2</b> Manipulación de datos con R</a><ul>
+<li class="chapter" data-level="2.1" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html"><i class="fa fa-check"></i><b>2.1</b> Lectura, importación y exportación de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#formato-de-datos-de-r"><i class="fa fa-check"></i><b>2.1.1</b> Formato de datos de R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#acceso-a-datos-en-paquetes"><i class="fa fa-check"></i><b>2.1.2</b> Acceso a datos en paquetes</a></li>
+<li class="chapter" data-level="2.1.3" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#cap2-texto"><i class="fa fa-check"></i><b>2.1.3</b> Lectura de archivos de texto</a></li>
+<li class="chapter" data-level="2.1.4" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#alternativa-tidyverse"><i class="fa fa-check"></i><b>2.1.4</b> Alternativa <code>tidyverse</code></a></li>
+<li class="chapter" data-level="2.1.5" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#importacion-desde-spss"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="2.1.6" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#importacion-desde-excel"><i class="fa fa-check"></i><b>2.1.6</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="2.1.7" data-path="lectura-importacion-y-exportacion-de-datos.html"><a href="lectura-importacion-y-exportacion-de-datos.html#exportacion-de-datos"><i class="fa fa-check"></i><b>2.1.7</b> Exportación de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.3</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.4</b> Operaciones con tablas de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduccion-al-lenguaje-sql.html"><a href="introduccion-al-lenguaje-sql.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a><ul>
+<li class="chapter" data-level="3.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>3.1</b> Bases de Datos Relacionales</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html#definiciones"><i class="fa fa-check"></i><b>3.1.1</b> Definiciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis SQL</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#extraccion-sql-11-statements"><i class="fa fa-check"></i><b>3.2.1</b> Extracción SQL (11 statements)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#crearactualizarborrar-tablas-sql-8-statements"><i class="fa fa-check"></i><b>3.2.2</b> Crear/Actualizar/Borrar tablas SQL (8 statements)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#anadiractualizarborrar-tuplas-en-sql-3-statements"><i class="fa fa-check"></i><b>3.2.3</b> Añadir/Actualizar/Borrar tuplas en SQL (3 statements)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#gestion-bases-de-datos-5-statements"><i class="fa fa-check"></i><b>3.2.4</b> Gestión Bases de Datos (5 statements)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#ejemplos-de-consultas-sql"><i class="fa fa-check"></i><b>3.2.5</b> Ejemplos de consultas SQL</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="conexion-con-bases-de-datos-desde-r.html"><a href="conexion-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.3</b> Conexión con bases de datos desde R</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="conexion-con-bases-de-datos-desde-r.html"><a href="conexion-con-bases-de-datos-desde-r.html#introduccion-a-sql-en-r"><i class="fa fa-check"></i><b>3.3.1</b> Introducción a SQL en R</a></li>
+<li class="chapter" data-level="3.3.2" data-path="conexion-con-bases-de-datos-desde-r.html"><a href="conexion-con-bases-de-datos-desde-r.html#el-paquete-sqldf"><i class="fa fa-check"></i><b>3.3.2</b> El paquete sqldf</a></li>
+<li class="chapter" data-level="3.3.3" data-path="conexion-con-bases-de-datos-desde-r.html"><a href="conexion-con-bases-de-datos-desde-r.html#sql-queries"><i class="fa fa-check"></i><b>3.3.3</b> SQL Queries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con <code>dplyr</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="el-paquete-dplyr.html"><a href="el-paquete-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> El paquete <strong>dplyr</strong></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="el-paquete-dplyr.html"><a href="el-paquete-dplyr.html#datos-de-ejemplo"><i class="fa fa-check"></i><b>4.1.1</b> Datos de ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html#seleccionar-variables-con-select"><i class="fa fa-check"></i><b>4.2.1</b> Seleccionar variables con <strong>select()</strong></a></li>
+<li class="chapter" data-level="4.2.2" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html#generar-nuevas-variables-con-mutate"><i class="fa fa-check"></i><b>4.2.2</b> Generar nuevas variables con <strong>mutate()</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html#seleccionar-casos-con-filter"><i class="fa fa-check"></i><b>4.3.1</b> Seleccionar casos con <strong>filter()</strong></a></li>
+<li class="chapter" data-level="4.3.2" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html#organizar-casos-con-arrange"><i class="fa fa-check"></i><b>4.3.2</b> Organizar casos con <strong>arrange()</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="resumir-valores-con-summarise.html"><a href="resumir-valores-con-summarise.html"><i class="fa fa-check"></i><b>4.4</b> Resumir valores con <strong>summarise()</strong></a></li>
+<li class="chapter" data-level="4.5" data-path="agrupar-casos-con-group-by.html"><a href="agrupar-casos-con-group-by.html"><i class="fa fa-check"></i><b>4.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
+<li class="chapter" data-level="4.6" data-path="operador-pipe-tuberia-redireccion.html"><a href="operador-pipe-tuberia-redireccion.html"><i class="fa fa-check"></i><b>4.6</b> Operador <em>pipe</em> <strong>%&gt;% </strong>(tubería, redirección)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduccion-a-tecnologias-nosql.html"><a href="introduccion-a-tecnologias-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a><ul>
+<li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#caracteristicas-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.1</b> Características de las bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.1.2" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#tipos-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.2</b> Tipos de Bases de Datos NoSQL</a></li>
+<li class="chapter" data-level="5.1.3" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#mongodb-nosql-documental"><i class="fa fa-check"></i><b>5.1.3</b> MongoDB: NoSQL documental</a></li>
+<li class="chapter" data-level="5.1.4" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#redis-nosql-key-value"><i class="fa fa-check"></i><b>5.1.4</b> Redis: NoSQL key-value</a></li>
+<li class="chapter" data-level="5.1.5" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#cassandra-nosql-columnar"><i class="fa fa-check"></i><b>5.1.5</b> Cassandra: NoSQL columnar</a></li>
+<li class="chapter" data-level="5.1.6" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#neo4j-nosql-grafos"><i class="fa fa-check"></i><b>5.1.6</b> Neo4j: NoSQL grafos</a></li>
+<li class="chapter" data-level="5.1.7" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#otros-search-engines"><i class="fa fa-check"></i><b>5.1.7</b> Otros: search engines</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="conexion-de-r-a-nosql.html"><a href="conexion-de-r-a-nosql.html"><i class="fa fa-check"></i><b>5.2</b> Conexión de R a NoSQL</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tecnologias-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologias-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>6</b> Tecnologías para el Tratamiendo de Datos Masivos</a><ul>
+<li class="chapter" data-level="6.1" data-path="tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a></li>
+<li class="chapter" data-level="6.2" data-path="visualizacion-y-generacion-de-cuadros-de-mando.html"><a href="visualizacion-y-generacion-de-cuadros-de-mando.html"><i class="fa fa-check"></i><b>6.2</b> Visualización y Generación de Cuadros de Mando</a></li>
+<li class="chapter" data-level="6.3" data-path="introduccion-al-analisis-de-datos-masivos.html"><a href="introduccion-al-analisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apendices</b></span></li>
+<li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a><ul>
+<li class="chapter" data-level="A.1" data-path="rstudio-links.html"><a href="rstudio-links.html"><i class="fa fa-check"></i><b>A.1</b> RStudio</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prácticas de Tecnologías de Gestión y Manipulación de Datos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulacion-de-datos" class="section level2">
+<h2><span class="header-section-number">2.2</span> Manipulación de datos</h2>
+<p>Una vez cargada una (o varias) bases
+de datos hay una series de operaciones que serán de interés para el
+tratamiento de datos:</p>
+<ul>
+<li>Operaciones con variables:
+<ul>
+<li>crear</li>
+<li>recodificar (e.g. categorizar)</li>
+<li>…</li>
+</ul></li>
+<li>Operaciones con casos:
+<ul>
+<li>ordenar</li>
+<li>filtrar</li>
+<li>…</li>
+</ul></li>
+<li>Operaciones con tablas de datos:
+<ul>
+<li>unir</li>
+<li>combinar</li>
+<li>consultar</li>
+<li>…</li>
+</ul></li>
+</ul>
+<p>A continuación se tratan algunas operaciones <em>básicas</em>.</p>
+<div id="operaciones-con-variables" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Operaciones con variables</h3>
+<div id="creacion-y-eliminacion-de-variables" class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> Creación (y eliminación) de variables</h4>
+<p>Consideremos de nuevo la
+base de datos <code>cars</code> incluida en el paquete <code>datasets</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">data</span>(cars)</a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="co"># str(cars)</span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="kw">head</span>(cars)</a></code></pre></div>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10</code></pre>
+<p>Utilizando el comando <code>help(cars)</code>
+se obtiene que <code>cars</code> es un data.frame con 50 observaciones y dos
+variables:</p>
+<ul>
+<li><p><code>speed</code>: Velocidad (millas por hora)</p></li>
+<li><p><code>dist</code>: tiempo hasta detenerse (pies)</p></li>
+</ul>
+<p>Recordemos que, para acceder a la variable <code>speed</code> se puede
+hacer directamente con su nombre o bien utilizando notación
+“matricial”.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">cars<span class="op">$</span>speed</a></code></pre></div>
+<pre><code>##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
+## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
+## [47] 24 24 24 25</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">cars[, <span class="dv">1</span>]  <span class="co"># Equivalente</span></a></code></pre></div>
+<pre><code>##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
+## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
+## [47] 24 24 24 25</code></pre>
+<p>Supongamos ahora que queremos transformar la variable original <code>speed</code>
+(millas por hora) en una nueva variable <code>velocidad</code> (kilómetros por
+hora) y añadir esta nueva variable al data.frame <code>cars</code>.
+La transformación que permite pasar millas a kilómetros es
+<code>kilómetros=millas/0.62137</code> que en R se hace directamente con:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">cars<span class="op">$</span>speed<span class="op">/</span><span class="fl">0.62137</span></a></code></pre></div>
+<p>Finalmente, incluimos la nueva variable que llamaremos
+<code>velocidad</code> en <code>cars</code>:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">cars<span class="op">$</span>velocidad &lt;-<span class="st"> </span>cars<span class="op">$</span>speed <span class="op">/</span><span class="st"> </span><span class="fl">0.62137</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="kw">head</span>(cars)</a></code></pre></div>
+<pre><code>##   speed dist velocidad
+## 1     4    2  6.437388
+## 2     4   10  6.437388
+## 3     7    4 11.265430
+## 4     7   22 11.265430
+## 5     8   16 12.874777
+## 6     9   10 14.484124</code></pre>
+<p>También transformaremos la variable <code>dist</code> (en pies) en una nueva
+variable <code>distancia</code> (en metros). Ahora la transformación deseada es
+<code>metros=pies/3.2808</code>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">cars<span class="op">$</span>distancia &lt;-<span class="st"> </span>cars<span class="op">$</span>dis <span class="op">/</span><span class="st"> </span><span class="fl">3.2808</span></a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="kw">head</span>(cars)</a></code></pre></div>
+<pre><code>##   speed dist velocidad distancia
+## 1     4    2  6.437388 0.6096074
+## 2     4   10  6.437388 3.0480371
+## 3     7    4 11.265430 1.2192148
+## 4     7   22 11.265430 6.7056815
+## 5     8   16 12.874777 4.8768593
+## 6     9   10 14.484124 3.0480371</code></pre>
+<p>Ahora, eliminaremos las variables originales <code>speed</code> y
+<code>dist</code>, y guardaremos el data.frame resultante con el nombre <code>coches</code>.
+En primer lugar, veamos varias formas de acceder a las variables de
+interés:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">cars[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]</a>
+<a class="sourceLine" id="cb34-2" title="2">cars[, <span class="kw">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]</a>
+<a class="sourceLine" id="cb34-3" title="3">cars[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</a></code></pre></div>
+<p>Utilizando alguna de las opciones anteriores se obtiene el <code>data.frame</code>
+deseado:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">coches &lt;-<span class="st"> </span>cars[, <span class="kw">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]</a>
+<a class="sourceLine" id="cb35-2" title="2"><span class="co"># head(coches)</span></a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="kw">str</span>(coches)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    50 obs. of  2 variables:
+##  $ velocidad: num  6.44 6.44 11.27 11.27 12.87 ...
+##  $ distancia: num  0.61 3.05 1.22 6.71 4.88 ...</code></pre>
+<p>Finalmente los datos anteriores podrían ser guardados en un fichero
+exportable a Excel con el siguiente comando:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">write.csv2</span>(coches, <span class="dt">file =</span> <span class="st">&quot;coches.csv&quot;</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="operaciones-con-casos" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Operaciones con casos</h3>
+<div id="ordenacion" class="section level4">
+<h4><span class="header-section-number">2.2.2.1</span> Ordenación</h4>
+<p>Continuemos con el data.frame <code>cars</code>.
+Se puede comprobar que los datos disponibles están ordenados por
+los valores de <code>speed</code>. A continuación haremos la ordenación utilizando
+los valores de <code>dist</code>. Para ello utilizaremos el conocido como vector de
+índices de ordenación.
+Este vector establece el orden en que tienen que ser elegidos los
+elementos para obtener la ordenación deseada.
+Veamos un ejemplo sencillo:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.5</span>, <span class="fl">4.3</span>, <span class="fl">1.2</span>, <span class="fl">3.1</span>, <span class="fl">5.0</span>) <span class="co"># valores originales</span></a>
+<a class="sourceLine" id="cb38-2" title="2">ii &lt;-<span class="st"> </span><span class="kw">order</span>(x)</a>
+<a class="sourceLine" id="cb38-3" title="3">ii    <span class="co"># vector de ordenación</span></a></code></pre></div>
+<pre><code>## [1] 3 1 4 2 5</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">x[ii] <span class="co"># valores ordenados</span></a></code></pre></div>
+<pre><code>## [1] 1.2 2.5 3.1 4.3 5.0</code></pre>
+<p>En el caso de vectores, el procedimiento anterior se podría
+hacer directamente con:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">sort</span>(x)</a></code></pre></div>
+<p>Sin embargo, para ordenar data.frames será necesario la utilización del
+vector de índices de ordenación. A continuación, los datos de <code>cars</code>
+ordenados por <code>dist</code>:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">ii &lt;-<span class="st"> </span><span class="kw">order</span>(cars<span class="op">$</span>dist) <span class="co"># Vector de índices de ordenación</span></a>
+<a class="sourceLine" id="cb43-2" title="2">cars2 &lt;-<span class="st"> </span>cars[ii, ]    <span class="co"># Datos ordenados por dist</span></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="kw">head</span>(cars2)</a></code></pre></div>
+<pre><code>##    speed dist velocidad distancia
+## 1      4    2  6.437388 0.6096074
+## 3      7    4 11.265430 1.2192148
+## 2      4   10  6.437388 3.0480371
+## 6      9   10 14.484124 3.0480371
+## 12    12   14 19.312165 4.2672519
+## 5      8   16 12.874777 4.8768593</code></pre>
+</div>
+<div id="filtrado" class="section level4">
+<h4><span class="header-section-number">2.2.2.2</span> Filtrado</h4>
+<p>El filtrado de datos consiste en
+elegir una submuestra que cumpla determinadas condiciones. Para ello se
+puede utilizar la función <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset"><code>subset()</code></a>
+(que además permite seleccionar variables).</p>
+<p>A continuación se muestran un par de ejemplos:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">subset</span>(cars, dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">85</span>) <span class="co"># datos con dis&gt;85</span></a></code></pre></div>
+<pre><code>##    speed dist velocidad distancia
+## 47    24   92  38.62433  28.04194
+## 48    24   93  38.62433  28.34674
+## 49    24  120  38.62433  36.57644</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">subset</span>(cars, speed <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>speed <span class="op">&lt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span>) <span class="co"># speed en (10,15) y dist&gt;45</span></a></code></pre></div>
+<pre><code>##    speed dist velocidad distancia
+## 19    13   46  20.92151  14.02097
+## 22    14   60  22.53086  18.28822
+## 23    14   80  22.53086  24.38430</code></pre>
+<p>También se pueden hacer el filtrado empleando directamente los
+correspondientes vectores de índices:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">ii &lt;-<span class="st"> </span>cars<span class="op">$</span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">85</span></a>
+<a class="sourceLine" id="cb49-2" title="2">cars[ii, ]   <span class="co"># dis&gt;85</span></a></code></pre></div>
+<pre><code>##    speed dist velocidad distancia
+## 47    24   92  38.62433  28.04194
+## 48    24   93  38.62433  28.34674
+## 49    24  120  38.62433  36.57644</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">ii &lt;-<span class="st"> </span>cars<span class="op">$</span>speed <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>cars<span class="op">$</span>speed <span class="op">&lt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>cars<span class="op">$</span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span></a>
+<a class="sourceLine" id="cb51-2" title="2">cars[ii, ]  <span class="co"># speed en (10,15) y dist&gt;45</span></a></code></pre></div>
+<pre><code>##    speed dist velocidad distancia
+## 19    13   46  20.92151  14.02097
+## 22    14   60  22.53086  18.28822
+## 23    14   80  22.53086  24.38430</code></pre>
+<p>En este caso puede ser de utilidad la función <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which"><code>which()</code></a>:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">it &lt;-<span class="st"> </span><span class="kw">which</span>(ii)</a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="kw">str</span>(it)</a></code></pre></div>
+<pre><code>##  int [1:3] 19 22 23</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">cars[it, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<pre><code>##    speed dist
+## 19    13   46
+## 22    14   60
+## 23    14   80</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># rownames(cars[it, 1:2])</span></a>
+<a class="sourceLine" id="cb57-2" title="2"></a>
+<a class="sourceLine" id="cb57-3" title="3">id &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span>ii)</a>
+<a class="sourceLine" id="cb57-4" title="4"><span class="kw">str</span>(cars[id, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    47 obs. of  2 variables:
+##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed</span></a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="co"># ?which.min</span></a></code></pre></div>
+</div>
+</div>
+<div id="funciones-apply" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Funciones <code>apply</code></h3>
+<div id="la-funcion-apply" class="section level4">
+<h4><span class="header-section-number">2.2.3.1</span> La función <code>apply</code></h4>
+<p>Una forma de evitar la
+utilización de bucles es utilizando la sentencia <code>apply</code> que permite
+evaluar una misma función en todas las filas, columnas, etc. de un array
+de forma simultánea.</p>
+<p>La sintaxis de esta función es:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw">apply</span>(X, MARGIN, FUN, ...)</a></code></pre></div>
+<ul>
+<li><code>X</code>: matriz (o array)</li>
+<li><code>MARGIN</code>: Un vector indicando las dimensiones donde se aplicará
+la función. 1 indica filas, 2 indica columnas, y <code>c(1,2)</code> indica
+filas y columnas.</li>
+<li><code>FUN</code>: función que será aplicada.</li>
+<li><code>...</code>: argumentos opcionales que serán usados por <code>FUN</code>.</li>
+</ul>
+<p>Veamos la utilización de la función <code>apply</code> con un ejemplo:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb61-2" title="2">x</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">apply</span>(x, <span class="dv">1</span>, sum)    <span class="co"># Suma por filas</span></a></code></pre></div>
+<pre><code>## [1] 12 15 18</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">apply</span>(x, <span class="dv">2</span>, sum)    <span class="co"># Suma por columnas</span></a></code></pre></div>
+<pre><code>## [1]  6 15 24</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">apply</span>(x, <span class="dv">2</span>, min)    <span class="co"># Mínimo de las columnas</span></a></code></pre></div>
+<pre><code>## [1] 1 4 7</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">apply</span>(x, <span class="dv">2</span>, range)  <span class="co"># Rango (mínimo y máximo) de las columnas</span></a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    3    6    9</code></pre>
+</div>
+<div id="variantes-de-la-funcion-apply" class="section level4">
+<h4><span class="header-section-number">2.2.3.2</span> Variantes de la función <code>apply</code></h4>
+<p><a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/lapply"><code>lapply()</code></a>:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># lista con las medianas de las variables</span></a>
+<a class="sourceLine" id="cb71-2" title="2">list &lt;-<span class="st"> </span><span class="kw">lapply</span>(cars, median)</a>
+<a class="sourceLine" id="cb71-3" title="3"><span class="kw">str</span>(list)</a></code></pre></div>
+<pre><code>## List of 4
+##  $ speed    : num 15
+##  $ dist     : num 36
+##  $ velocidad: num 24.1
+##  $ distancia: num 11</code></pre>
+<p><a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/sapply"><code>sapply()</code></a>:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># matriz con las medias, medianas y desv. de las variables</span></a>
+<a class="sourceLine" id="cb73-2" title="2">res &lt;-<span class="st"> </span><span class="kw">sapply</span>(cars, </a>
+<a class="sourceLine" id="cb73-3" title="3">          <span class="cf">function</span>(x) <span class="kw">c</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(x), <span class="dt">median =</span> <span class="kw">median</span>(x), <span class="dt">sd =</span> <span class="kw">sd</span>(x)))</a>
+<a class="sourceLine" id="cb73-4" title="4"><span class="co"># str(res)</span></a>
+<a class="sourceLine" id="cb73-5" title="5">res</a></code></pre></div>
+<pre><code>##            speed     dist velocidad distancia
+## mean   15.400000 42.98000 24.783945 13.100463
+## median 15.000000 36.00000 24.140206 10.972933
+## sd      5.287644 25.76938  8.509655  7.854602</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">t</span>(res), <span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">mean</th>
+<th align="right">median</th>
+<th align="right">sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>speed</td>
+<td align="right">15.4</td>
+<td align="right">15.0</td>
+<td align="right">5.3</td>
+</tr>
+<tr class="even">
+<td>dist</td>
+<td align="right">43.0</td>
+<td align="right">36.0</td>
+<td align="right">25.8</td>
+</tr>
+<tr class="odd">
+<td>velocidad</td>
+<td align="right">24.8</td>
+<td align="right">24.1</td>
+<td align="right">8.5</td>
+</tr>
+<tr class="even">
+<td>distancia</td>
+<td align="right">13.1</td>
+<td align="right">11.0</td>
+<td align="right">7.9</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">cfuns &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">funs =</span> <span class="kw">c</span>(mean, median, sd))</a>
+<a class="sourceLine" id="cb76-2" title="2">            <span class="kw">sapply</span>(funs, <span class="cf">function</span>(f) <span class="kw">f</span>(x))</a>
+<a class="sourceLine" id="cb76-3" title="3">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb76-4" title="4"><span class="kw">cfuns</span>(x)</a></code></pre></div>
+<pre><code>## [1] 5.50000 5.50000 3.02765</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw">sapply</span>(cars, cfuns)</a></code></pre></div>
+<pre><code>##          speed     dist velocidad distancia
+## [1,] 15.400000 42.98000 24.783945 13.100463
+## [2,] 15.000000 36.00000 24.140206 10.972933
+## [3,]  5.287644 25.76938  8.509655  7.854602</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">nfuns &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;sd&quot;</span>)</a>
+<a class="sourceLine" id="cb80-2" title="2"><span class="kw">sapply</span>(nfuns, <span class="cf">function</span>(f) <span class="kw">eval</span>(<span class="kw">parse</span>(<span class="dt">text =</span> <span class="kw">paste0</span>(f, <span class="st">&quot;(x)&quot;</span>))))</a></code></pre></div>
+<pre><code>##    mean  median      sd 
+## 5.50000 5.50000 3.02765</code></pre>
+<!-- 
+añadir nombres a cfuns 
+cfuns <- function(x, funs = c(mean, median, sd)){
+  # nfuns <- deparse(substitute(funs))
+  res <- sapply(funs, function(f) f(x))
+  names(res) <- nfuns
+  return(res)
+}
+
+-->
+</div>
+<div id="la-funcion-tapply" class="section level4">
+<h4><span class="header-section-number">2.2.3.3</span> La función <code>tapply</code></h4>
+<p>La function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/tapply"><code>tapply()</code></a> es
+similar a la función <code>apply()</code> y permite aplicar una función a los datos desagregados,
+utilizando como criterio los distintos niveles de una variable factor.
+La sintaxis de esta función es como sigue:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1">    <span class="kw">tapply</span>(X, INDEX, FUN, ...,)</a></code></pre></div>
+<ul>
+<li><code>X</code>: matriz (o array).</li>
+<li><code>INDEX</code>: factor indicando los grupos (niveles).</li>
+<li><code>FUN</code>: función que será aplicada.</li>
+<li><code>...</code>: argumentos opcionales .</li>
+</ul>
+<p>Consideremos, por ejemplo, el data.frame <code>ChickWeight</code> con datos de un
+experimento relacionado con la repercusión de varias dietas en el peso
+de pollos.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="kw">data</span>(ChickWeight)</a>
+<a class="sourceLine" id="cb83-2" title="2"><span class="co"># str(ChickWeight)</span></a>
+<a class="sourceLine" id="cb83-3" title="3"><span class="kw">head</span>(ChickWeight)</a></code></pre></div>
+<pre><code>##   weight Time Chick Diet
+## 1     42    0     1    1
+## 2     51    2     1    1
+## 3     59    4     1    1
+## 4     64    6     1    1
+## 5     76    8     1    1
+## 6     93   10     1    1</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1">peso &lt;-<span class="st"> </span>ChickWeight<span class="op">$</span>weight</a>
+<a class="sourceLine" id="cb85-2" title="2">dieta &lt;-<span class="st"> </span>ChickWeight<span class="op">$</span>Diet</a>
+<a class="sourceLine" id="cb85-3" title="3"><span class="kw">levels</span>(dieta) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Dieta 1&quot;</span>, <span class="st">&quot;Dieta 2&quot;</span>, <span class="st">&quot;Dieta 3&quot;</span>, <span class="st">&quot;Dieta 4&quot;</span>)</a>
+<a class="sourceLine" id="cb85-4" title="4"><span class="kw">tapply</span>(peso, dieta, mean)  <span class="co"># Peso medio por dieta</span></a></code></pre></div>
+<pre><code>##  Dieta 1  Dieta 2  Dieta 3  Dieta 4 
+## 102.6455 122.6167 142.9500 135.2627</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="kw">tapply</span>(peso, dieta, summary)</a></code></pre></div>
+<pre><code>## $`Dieta 1`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   35.00   57.75   88.00  102.65  136.50  305.00 
+## 
+## $`Dieta 2`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    39.0    65.5   104.5   122.6   163.0   331.0 
+## 
+## $`Dieta 3`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    39.0    67.5   125.5   142.9   198.8   373.0 
+## 
+## $`Dieta 4`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   39.00   71.25  129.50  135.26  184.75  322.00</code></pre>
+<p>Otro ejemplo:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">provincia &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb89-2" title="2"><span class="kw">levels</span>(provincia) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A Coruña&quot;</span>, <span class="st">&quot;Lugo&quot;</span>, <span class="st">&quot;Orense&quot;</span>, <span class="st">&quot;Pontevedra&quot;</span>)</a>
+<a class="sourceLine" id="cb89-3" title="3">hijos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb89-4" title="4"><span class="kw">data.frame</span>(provincia, hijos)</a></code></pre></div>
+<pre><code>##     provincia hijos
+## 1    A Coruña     1
+## 2      Orense     2
+## 3  Pontevedra     0
+## 4        Lugo     3
+## 5  Pontevedra     4
+## 6      Orense     1
+## 7        Lugo     0
+## 8    A Coruña     0
+## 9  Pontevedra     2
+## 10     Orense     3
+## 11       Lugo     1</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="kw">tapply</span>(hijos, provincia, mean) <span class="co"># Número medio de hijos por provincia</span></a></code></pre></div>
+<pre><code>##   A Coruña       Lugo     Orense Pontevedra 
+##   0.500000   1.333333   2.000000   2.000000</code></pre>
+</div>
+</div>
+<div id="operaciones-con-tablas-de-datos" class="section level3">
+<h3><span class="header-section-number">2.2.4</span> Operaciones con tablas de datos</h3>
+<p>Ver ejemplo <a href="data/wosdata.zip"><em>wosdata.R</em></a></p>
+<p><strong><em>Unir tablas</em></strong>:</p>
+<p><a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind"><code>rbind()</code></a></p>
+<p><a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind"><code>cbind()</code></a></p>
+<p><strong><em>Combinar tablas</em></strong>:</p>
+<p><a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match"><code>match()</code></a></p>
+<p><a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match"><code>pmatch()</code></a></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lectura-importacion-y-exportacion-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejemplo-wos-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/gltaboada/tgdbook/edit/master/02-ManipulacionDatosR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Practicas_de_TGD.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

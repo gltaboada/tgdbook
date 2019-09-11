@@ -1,6 +1,7 @@
 Introducción al lenguaje SQL
 ============================
 
+Working draft...
 
 ```{r , child = '_global_options.Rmd'}
 ```
