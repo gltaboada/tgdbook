@@ -46,17 +46,13 @@ Una fila de la tabla (relación) es una tupla y una columna un atributo (ver Fig
 
 (ver Figura \@ref(fig:relacion))
 
-(ver Figura \@ref(fig:relacion))
 
 
-\begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{images/Relacion} 
-
-}
-
-\caption{Esquema de una relación.}(\#fig:relacion)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/Relacion.png" alt="Esquema de una relación." width="70%" />
+<p class="caption">(\#fig:relacion)Esquema de una relación.</p>
+</div>
 
 Una base de datos es un conjunto de tablas (al menos una).
 

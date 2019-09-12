@@ -740,20 +740,12 @@ res
 knitr::kable(t(res), digits = 1)
 ```
 
-
-\begin{tabular}{l|r|r|r}
-\hline
-  & mean & median & sd\\
-\hline
-speed & 15.4 & 15.0 & 5.3\\
-\hline
-dist & 43.0 & 36.0 & 25.8\\
-\hline
-velocidad & 24.8 & 24.1 & 8.5\\
-\hline
-distancia & 13.1 & 11.0 & 7.9\\
-\hline
-\end{tabular}
+             mean   median     sd
+----------  -----  -------  -----
+speed        15.4     15.0    5.3
+dist         43.0     36.0   25.8
+velocidad    24.8     24.1    8.5
+distancia    13.1     11.0    7.9
 
 
 

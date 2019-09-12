@@ -21,6 +21,7 @@
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={Prácticas de Tecnologías de Gestión y Manipulación de Datos},
@@ -39,37 +40,37 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
@@ -119,7 +120,10 @@
   \title{Prácticas de Tecnologías de Gestión y Manipulación de Datos}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-    \author{Guillermo López Taboada (\href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}}) y Rubén F. Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}})}
+    \author{Guillermo López Taboada
+(\href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}})
+y Rubén F. Casal
+(\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}})}
     \preauthor{\centering\large\emph}
   \postauthor{\par}
       \predate{\centering\large\emph}
@@ -153,32 +157,42 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{prologo}{%
-\chapter*{Prólogo}\label{prologo}}
+\chapter*{Prólogo}\label{prologo}
 \addcontentsline{toc}{chapter}{Prólogo}
 
-Este libro contiene algunas de las prácticas de la asignatura de \href{http://eamo.usc.es/pub/mte/index.php/es/?option=com_content\&view=article\&id=2202\&idm=38\&a\%C3\%B1o=2019}{Tecnologías de Gestión de Datos} del \href{http://eio.usc.es/pub/mte}{Máster interuniversitario en Técnicas Estadísticas}).
+Este libro contiene algunas de las prácticas de la asignatura de
+\href{http://eamo.usc.es/pub/mte/index.php/es/?option=com_content\&view=article\&id=2202\&idm=38\&a\%C3\%B1o=2019}{Tecnologías
+de Gestión de Datos} del \href{http://eio.usc.es/pub/mte}{Máster
+interuniversitario en Técnicas Estadísticas}).
 
-Este libro ha sido escrito en \href{http://rmarkdown.rstudio.com}{R-Markdown} empleando el paquete \href{https://bookdown.org/yihui/bookdown/}{\texttt{bookdown}} y está disponible en el repositorio Github: \href{https://github.com/gltaboada/tgdbook}{gltaboada/tgdbook}.
-Se puede acceder a la versión en línea a través del siguiente enlace:
+Este libro ha sido escrito en
+\href{http://rmarkdown.rstudio.com}{R-Markdown} empleando el paquete
+\href{https://bookdown.org/yihui/bookdown/}{\texttt{bookdown}} y está
+disponible en el repositorio Github:
+\href{https://github.com/gltaboada/tgdbook}{gltaboada/tgdbook}. Se puede
+acceder a la versión en línea a través del siguiente enlace:
 
 \url{https://gltaboada.github.io/tgdbook}.
 
-donde puede descargarse en formato \href{https://gltaboada.github.io/tgdbook/Practicas_de_TGD.pdf}{pdf}.
+donde puede descargarse en formato
+\href{https://gltaboada.github.io/tgdbook/Practicas_de_TGD.pdf}{pdf}.
 
-Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
-\href{https://dplyr.tidyverse.org}{\texttt{dplyr}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}),
+Para ejecutar los ejemplos mostrados en el libro será necesario tener
+instalados los siguientes paquetes:
+\href{https://dplyr.tidyverse.org}{\texttt{dplyr}} (colección
+\href{https://www.tidyverse.org/}{\texttt{tidyverse}}),
 \href{https://tidyr.tidyverse.org}{\texttt{tidyr}},
 \href{https://stringr.tidyverse.org}{\texttt{stringr}},
 \href{https://readxl.tidyverse.org}{\texttt{readxl}} ,
-\href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}},
+\href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}},
+\href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}},
 \href{https://cran.r-project.org/web/packages/sqldf/index.html}{\texttt{sqldf}},
 \href{https://r-dbi.github.io/RSQLite}{\texttt{RSQLite}},
 \href{https://cran.r-project.org/web/packages/foreign/index.html}{\texttt{foreign}},
 \href{https://cran.r-project.org/web/packages/SparkR/index.html}{\texttt{SparkR}},
 \href{https://cran.r-project.org/web/packages/magrittr/index.html}{\texttt{magrittr}},
-\href{https://yihui.name/knitr}{\texttt{knitr}}
-Por ejemplo mediante los comandos:
+\href{https://yihui.name/knitr}{\texttt{knitr}} Por ejemplo mediante los
+comandos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -189,31 +203,40 @@ Por ejemplo mediante los comandos:
 \end{Highlighting}
 \end{Shaded}
 
-Para generar el libro (compilar) se recomendaría consultar el libro de \href{https://rubenfcasal.github.io/bookdown_intro}{``Escritura de libros con bookdown''} en castellano.
+Para generar el libro (compilar) se recomendaría consultar el libro de
+\href{https://rubenfcasal.github.io/bookdown_intro}{``Escritura de
+libros con bookdown''} en castellano.
 
-\includegraphics{images/by-nc-nd-88x31.png}
+\includegraphics[width=1.22in]{images/by-nc-nd-88x31}
 
-Este obra está bajo una licencia de \href{https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES}{Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional}
-(esperamos poder liberarlo bajo una licencia menos restrictiva más adelante\ldots{}).
+Este obra está bajo una licencia de
+\href{https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES}{Creative
+Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional}
+(esperamos poder liberarlo bajo una licencia menos restrictiva más
+adelante\ldots{}).
 
-\hypertarget{introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos}{%
-\chapter{Introducción a las Tecnologías de Gestión y Manipulación de Datos}\label{introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos}}
+\chapter{Introducción a las Tecnologías de Gestión y Manipulación de
+Datos}\label{introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos}
 
-La información relevante de la materia está disponible en la guía docente y la ficha de la asignatura
+La información relevante de la materia está disponible en la guía
+docente y la ficha de la asignatura
 
 En particular, los resultados de aprendizaje son:
 
 \begin{itemize}
 \item
-  Manejar de forma autónoma y solvente el software necesario para acceder a conjuntos de datos en entornos profesionales y/o en la nube.
+  Manejar de forma autónoma y solvente el software necesario para
+  acceder a conjuntos de datos en entornos profesionales y/o en la nube.
 \item
-  Saber gestionar conjuntos de datos masivos en un entorno multidisciplinar que permita la participación en proyectos profesionales complejos que requieran el uso de técnicas estadísticas.
+  Saber gestionar conjuntos de datos masivos en un entorno
+  multidisciplinar que permita la participación en proyectos
+  profesionales complejos que requieran el uso de técnicas estadísticas.
 \item
-  Saber relacionar el software de diseño y gestión de bases de datos con el específicamente implementado para el análisis de datos.
+  Saber relacionar el software de diseño y gestión de bases de datos con
+  el específicamente implementado para el análisis de datos.
 \end{itemize}
 
-\hypertarget{contenidos}{%
-\section{Contenidos}\label{contenidos}}
+\section{Contenidos}\label{contenidos}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -236,7 +259,8 @@ En particular, los resultados de aprendizaje son:
   \begin{itemize}
   \tightlist
   \item
-    Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)
+    Conceptos y tipos de bases de datos NoSQL (documental, columnar,
+    clave/valor y de grafos)
   \item
     Conexión de R a NoSQL
   \end{itemize}
@@ -254,25 +278,30 @@ En particular, los resultados de aprendizaje son:
   \end{itemize}
 \end{enumerate}
 
-\hypertarget{planificacion}{%
-\section{Planificación}\label{planificacion}}
+\section{Planificación}\label{planificacion}
 
 \emph{Working draft\ldots{}}
 
-La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los
-conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: \url{https://forms.gle/9HR5iFHXoLowrCHLA}
+La impartición de los contenidos durante el curso dependerá de los
+conocimientos de partida y la asimilación de los conceptos. Para
+completar nuestra visión de los conocimientos previos os requerimos
+completar este formulario en la primera sesión de clase:
+\url{https://forms.gle/9HR5iFHXoLowrCHLA}
 
 \begin{itemize}
 \item
-  Clase 1 (12/9-R): Seminario R (Manipulación de datos con el paquete base de R)
+  Clase 1 (12/9-R): Seminario R (Manipulación de datos con el paquete
+  base de R)
 \item
   Clase 2 (19/9): Tema 1: Conceptos de bases de datos
 \item
   Clase 3 (26/9): Tema 1: Introducción a SQL
 \item
-  Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
+  Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el
+  paquete dplyr)
 \item
-  Clase 5 (10/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
+  Clase 5 (10/10): Tema 1: Ejercicios prácticos de Entidad-relación y
+  SQL
 \item
   Clase 6 (17/10): Tema 1: Continuación de ejercicios prácticos SQL
 \item
@@ -290,95 +319,127 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 \item
   Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos
 \item
-  Clase 14 (12/12-R): Seminario Aprendizaje Estadístico/Automático, Data Mining
+  Clase 14 (12/12-R): Seminario Aprendizaje Estadístico/Automático, Data
+  Mining
 \item
-  Clase 15 (19/12-opcional): Seminario aplicaciones Big Data en investigación e industria
+  Clase 15 (19/12-opcional): Seminario aplicaciones Big Data en
+  investigación e industria
 \end{itemize}
 
-\hypertarget{evaluacion}{%
-\subsection{Evaluación}\label{evaluacion}}
+\subsection{Evaluación}\label{evaluacion}
 
 \begin{itemize}
 \item
-  \textbf{Examen} (60\%): El examen de la materia evaluará los siguientes aspectos:
-  Conceptos de la materia: Dominio de los conocimientos teóricos y operativos de la materia.
-  Asimilación práctica de materia: Asimilación y comprensión de los conocimientos teóricos y operativos de la materia.
+  \textbf{Examen} (60\%): El examen de la materia evaluará los
+  siguientes aspectos: Conceptos de la materia: Dominio de los
+  conocimientos teóricos y operativos de la materia. Asimilación
+  práctica de materia: Asimilación y comprensión de los conocimientos
+  teóricos y operativos de la materia.
 \item
-  \textbf{Prácticas de laboratorio} (30\%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.
+  \textbf{Prácticas de laboratorio} (30\%): Evaluación de las prácticas
+  de laboratorio desarrolladas por los estudiantes.
 \item
-  \textbf{Trabajos tutelados} (10\%): Evaluación de los trabajos tutelados desarrollados por los estudiantes.
+  \textbf{Trabajos tutelados} (10\%): Evaluación de los trabajos
+  tutelados desarrollados por los estudiantes.
 \end{itemize}
 
-\hypertarget{observaciones-sobre-la-evaluacion}{%
-\subsubsection{Observaciones sobre la evaluación:}\label{observaciones-sobre-la-evaluacion}}
+\subsubsection{Observaciones sobre la
+evaluación:}\label{observaciones-sobre-la-evaluacion}
 
 \begin{itemize}
 \item
-  Las prácticas de laboratorio se realizarán en grupos de 2 estudiantes, salvo el trabajo tutelado que es individual y opcional. En caso de no realizar el trabajo tutelado los estudiantes tendrán un 67\% de nota del examen y un 33\% de prácticas de laboratorio. El plazo para realizar las 3 prácticas será de 2 semanas desde la presentación de la práctica. El plazo para la entrega de los trabajos tutelados es el último día de clase de la asignatura.
+  Las prácticas de laboratorio se realizarán en grupos de 2 estudiantes,
+  salvo el trabajo tutelado que es individual y opcional. En caso de no
+  realizar el trabajo tutelado los estudiantes tendrán un 67\% de nota
+  del examen y un 33\% de prácticas de laboratorio. El plazo para
+  realizar las 3 prácticas será de 2 semanas desde la presentación de la
+  práctica. El plazo para la entrega de los trabajos tutelados es el
+  último día de clase de la asignatura.
 \item
-  El estudiante que quiera realizar un trabajo tutelado ha de hablar (o mediante correo electrónico) con los profesores para validar y confirmar el tema y alcance del trabajo tutelado.
+  El estudiante que quiera realizar un trabajo tutelado ha de hablar (o
+  mediante correo electrónico) con los profesores para validar y
+  confirmar el tema y alcance del trabajo tutelado.
 \item
-  Para poder aprobar la asignatura en la primera oportunidad será necesario obtener como mínimo el 30\% de la nota máxima de la suma de las prácticas de laboratorio y trabajos tutelados e, igualmente, el 30\% de la nota máxima final de la Prueba mixta (examen), y tener una nota total (prácticas más trabajos tutelados más prueba mixta) igual o superior al 50\% de la nota máxima.
+  Para poder aprobar la asignatura en la primera oportunidad será
+  necesario obtener como mínimo el 30\% de la nota máxima de la suma de
+  las prácticas de laboratorio y trabajos tutelados e, igualmente, el
+  30\% de la nota máxima final de la Prueba mixta (examen), y tener una
+  nota total (prácticas más trabajos tutelados más prueba mixta) igual o
+  superior al 50\% de la nota máxima.
 \item
-  En la segunda oportunidad solamente se podrá recuperar la nota del examen. Las notas de prácticas y de trabajos tutelados serán las obtenidas durante el curso. Para los alumnos que utilicen la oportunidad adelantada de diciembre se utilizarán las notas de prácticas y trabajos tutelados que obtuvieran en su último curso. En esta oportunidad solo será necesario para aprobar obtener una nota total igual o superior al 50\% de la nota máxima.
+  En la segunda oportunidad solamente se podrá recuperar la nota del
+  examen. Las notas de prácticas y de trabajos tutelados serán las
+  obtenidas durante el curso. Para los alumnos que utilicen la
+  oportunidad adelantada de diciembre se utilizarán las notas de
+  prácticas y trabajos tutelados que obtuvieran en su último curso. En
+  esta oportunidad solo será necesario para aprobar obtener una nota
+  total igual o superior al 50\% de la nota máxima.
 \item
-  Una vez que un estudiante es evaluado en una práctica de laboratorio o en un trabajo tutelado implica que será calificado. Por tanto, la calificación ``No Presentado'' no es posible una vez que una práctica/trabajo ha sido evaluada.
+  Una vez que un estudiante es evaluado en una práctica de laboratorio o
+  en un trabajo tutelado implica que será calificado. Por tanto, la
+  calificación ``No Presentado'' no es posible una vez que una
+  práctica/trabajo ha sido evaluada.
 \end{itemize}
 
-\hypertarget{fuentes-de-informacion}{%
-\section{Fuentes de información:}\label{fuentes-de-informacion}}
+\section{Fuentes de información:}\label{fuentes-de-informacion}
 
-\hypertarget{basica}{%
-\subsection{Básica}\label{basica}}
+\subsection{Básica}\label{basica}
 
 \begin{itemize}
 \item
   Daroczi, G. (2015). Mastering Data Analysis with R. Packt Publishing
 \item
-  Grolemund, G. y Wickham, H. (2016). R for Data Science. \url{https://r4ds.had.co.nz/} \& O'Reilly
+  Grolemund, G. y Wickham, H. (2016). R for Data Science.
+  \url{https://r4ds.had.co.nz/} \& O'Reilly
 \item
-  Silberschatz, A., Korth, H. y Sudarshan, S. (2014). Fundamentos de Bases de Datos. Mc Graw Hill
+  Silberschatz, A., Korth, H. y Sudarshan, S. (2014). Fundamentos de
+  Bases de Datos. Mc Graw Hill
 \item
-  Rubén Fernández Casal (\href{https://rubenfcasal.github.io}{R Machinery}):
+  Rubén Fernández Casal (\href{https://rubenfcasal.github.io}{R
+  Machinery}):
 
   \begin{itemize}
   \item
-    \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{Ayuda y Recursos para el Aprendizaje de R}
+    \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{Ayuda
+    y Recursos para el Aprendizaje de R}
   \item
-    \href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con el paquete bookdown}
+    \href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de
+    libros con el paquete bookdown}
   \item
-    \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Apéndice introducción a Rmarkdown}
+    \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Apéndice
+    introducción a Rmarkdown}
+  \item
+    \href{https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf}{Pesentación
+    análisis de datos con R}
   \end{itemize}
-
-  -\href{https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf}{Pesentación análisis de datos con R}
 \end{itemize}
 
-\hypertarget{complementaria}{%
-\subsection{Complementaria:}\label{complementaria}}
+\subsection{Complementaria:}\label{complementaria}
 
 \begin{itemize}
 \tightlist
 \item
-  Wes McKinney (2017). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython. O'Reilly (2ª ed.)
+  Wes McKinney (2017). Python for Data Analysis: Data Wrangling with
+  Pandas, NumPy, and IPython. O'Reilly (2ª ed.)
 \item
   Tom White (2015). Hadoop: The Definitive Guide. O'Reilly (4ª ed.)
 \item
   Alex Holmes (2014). Hadoop in practice. Manning (2ª ed.)
 \item
-  Centro de Supercomputación de Galicia (2019). Servicio de Big Data del CESGA. \url{https://bigdata.cesga.es/}
+  Centro de Supercomputación de Galicia (2019). Servicio de Big Data del
+  CESGA. \url{https://bigdata.cesga.es/}
 \end{itemize}
 
-\hypertarget{manipulacion-de-datos-con-r}{%
-\chapter{Manipulación de datos con R}\label{manipulacion-de-datos-con-r}}
+\chapter{Manipulación de datos con R}\label{manipulacion-de-datos-con-r}
 
-La mayoría de los estudios estadísticos
-requieren disponer de un conjunto de datos.
+La mayoría de los estudios estadísticos requieren disponer de un
+conjunto de datos.
 
-\hypertarget{lectura-importacion-y-exportacion-de-datos}{%
-\section{Lectura, importación y exportación de datos}\label{lectura-importacion-y-exportacion-de-datos}}
+\section{Lectura, importación y exportación de
+datos}\label{lectura-importacion-y-exportacion-de-datos}
 
-Además de la introducción directa, R es capaz de
-importar datos externos en múltiples formatos:
+Además de la introducción directa, R es capaz de importar datos externos
+en múltiples formatos:
 
 \begin{itemize}
 \item
@@ -395,12 +456,12 @@ importar datos externos en múltiples formatos:
   \ldots{}.
 \end{itemize}
 
-\hypertarget{formato-de-datos-de-r}{%
-\subsection{Formato de datos de R}\label{formato-de-datos-de-r}}
+\subsection{Formato de datos de R}\label{formato-de-datos-de-r}
 
-El formato de archivo en el que habitualmente se almacena objetos (datos)
-R es binario y está comprimido (en formato \texttt{"gzip"} por defecto).
-Para cargar un fichero de datos se emplea normalmente \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load}{\texttt{load()}}:
+El formato de archivo en el que habitualmente se almacena objetos
+(datos) R es binario y está comprimido (en formato \texttt{"gzip"} por
+defecto). Para cargar un fichero de datos se emplea normalmente
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load}{\texttt{load()}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -425,7 +486,8 @@ Para cargar un fichero de datos se emplea normalmente \href{https://www.rdocumen
 ## [11] "res"
 \end{verbatim}
 
-y para guardar \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save}{\texttt{save()}}:
+y para guardar
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save}{\texttt{save()}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -437,41 +499,46 @@ y para guardar \href{https://www.rdocumentation.org/packages/base/versions/3.6.1
 Aunque, como indica este comando en la ayuda (\texttt{?save}):
 
 \begin{quote}
-For saving single R objects, \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/saveRDS}{\texttt{saveRDS()}}
-is mostly preferable to save(),
-notably because of the functional nature of readRDS(), as opposed to load().
+For saving single R objects,
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/saveRDS}{\texttt{saveRDS()}}
+is mostly preferable to save(), notably because of the functional nature
+of readRDS(), as opposed to load().
 \end{quote}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{saveRDS}\NormalTok{(empleados, }\DataTypeTok{file =} \StringTok{"data/empleados_new.rds"}\NormalTok{)}
-\CommentTok{## restore it under a different name}
+\NormalTok{## restore it under a different name}
 \NormalTok{empleados2 <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/empleados_new.rds"}\NormalTok{)}
 \CommentTok{# identical(empleados, empleados2)}
 \end{Highlighting}
 \end{Shaded}
 
-El objeto empleado normalmente en R para almacenar datos en memoria
-es el \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame}{\texttt{data.frame}}.
+El objeto empleado normalmente en R para almacenar datos en memoria es
+el
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame}{\texttt{data.frame}}.
 
-\hypertarget{acceso-a-datos-en-paquetes}{%
-\subsection{Acceso a datos en paquetes}\label{acceso-a-datos-en-paquetes}}
+\subsection{Acceso a datos en
+paquetes}\label{acceso-a-datos-en-paquetes}
 
-R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete \texttt{datasets}
-que se carga por defecto al abrir R.
-Con el comando \texttt{data()} podemos obtener un listado de las bases de datos disponibles.
+R dispone de múltiples conjuntos de datos en distintos paquetes,
+especialmente en el paquete \texttt{datasets} que se carga por defecto
+al abrir R. Con el comando \texttt{data()} podemos obtener un listado de
+las bases de datos disponibles.
 
 Para cargar una base de datos concreta se utiliza el comando
-\texttt{data(nombre)} (aunque en algunos casos se cargan automáticamente al emplearlos).
-Por ejemplo, \texttt{data(cars)} carga la base de datos llamada \texttt{cars} en el entorno de trabajo (\texttt{".GlobalEnv"})
-y \texttt{?cars} muestra la ayuda correspondiente con la descripición de la base de datos.
+\texttt{data(nombre)} (aunque en algunos casos se cargan automáticamente
+al emplearlos). Por ejemplo, \texttt{data(cars)} carga la base de datos
+llamada \texttt{cars} en el entorno de trabajo (\texttt{".GlobalEnv"}) y
+\texttt{?cars} muestra la ayuda correspondiente con la descripición de
+la base de datos.
 
-\hypertarget{cap2-texto}{%
-\subsection{Lectura de archivos de texto}\label{cap2-texto}}
+\subsection{Lectura de archivos de texto}\label{cap2-texto}
 
-En R para leer archivos de texto se suele utilizar la función \texttt{read.table()}.
-Supóngase, por ejemplo, que en el directorio actual está el fichero
-\emph{empleados.txt}. La lectura de este fichero vendría dada por el código:
+En R para leer archivos de texto se suele utilizar la función
+\texttt{read.table()}. Supóngase, por ejemplo, que en el directorio
+actual está el fichero \emph{empleados.txt}. La lectura de este fichero
+vendría dada por el código:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -496,26 +563,28 @@ Supóngase, por ejemplo, que en el directorio actual está el fichero
 ##  $ minoria : Factor w/ 2 levels "No","Sí": 1 1 1 1 1 1 1 1 1 1 ...
 \end{verbatim}
 
-Si el fichero estuviese en el directorio \emph{c:\textbackslash{}datos} bastaría con especificar
-\texttt{file\ =\ "c:/datos/empleados.txt"}.
+Si el fichero estuviese en el directorio \emph{c:\textbackslash{}datos}
+bastaría con especificar \texttt{file\ =\ "c:/datos/empleados.txt"}.
 Nótese también que para la lectura del fichero anterior se ha
-establecido el argumento \texttt{header=TRUE} para indicar que la primera línea del
-fichero contiene los nombres de las variables.
+establecido el argumento \texttt{header=TRUE} para indicar que la
+primera línea del fichero contiene los nombres de las variables.
 
 Los argumentos utilizados habitualmente para esta función son:
 
 \begin{itemize}
 \item
-  \texttt{header}: indica si el fichero tiene cabecera (\texttt{header=TRUE}) o no
-  (\texttt{header=FALSE}). Por defecto toma el valor \texttt{header=FALSE}.
+  \texttt{header}: indica si el fichero tiene cabecera
+  (\texttt{header=TRUE}) o no (\texttt{header=FALSE}). Por defecto toma
+  el valor \texttt{header=FALSE}.
 \item
-  \texttt{sep}: carácter separador de columnas que por defecto es un espacio
-  en blanco (\texttt{sep=""}). Otras opciones serían: \texttt{sep=","} si el separador es
-  un ``;'', \texttt{sep="*"} si el separador es un ``*'', etc.
+  \texttt{sep}: carácter separador de columnas que por defecto es un
+  espacio en blanco (\texttt{sep=""}). Otras opciones serían:
+  \texttt{sep=","} si el separador es un ``;'', \texttt{sep="*"} si el
+  separador es un ``*'', etc.
 \item
-  \texttt{dec}: carácter utilizado en el fichero para los números decimales.
-  Por defecto se establece \texttt{dec\ =\ "."}. Si los decimales vienen dados
-  por ``,'' se utiliza \texttt{dec\ =\ ","}
+  \texttt{dec}: carácter utilizado en el fichero para los números
+  decimales. Por defecto se establece \texttt{dec\ =\ "."}. Si los
+  decimales vienen dados por ``,'' se utiliza \texttt{dec\ =\ ","}
 \end{itemize}
 
 Resumiendo, los (principales) argumentos por defecto de la función
@@ -527,12 +596,12 @@ Resumiendo, los (principales) argumentos por defecto de la función
 \end{Highlighting}
 \end{Shaded}
 
-Para más detalles sobre esta función véase
-\texttt{help(read.table)}.
+Para más detalles sobre esta función véase \texttt{help(read.table)}.
 
-Estan disponibles otras funciones con valores por defecto de los parámetros
-adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores
-se puede utilizar \texttt{read.delim()} o \texttt{read.delim2()}:
+Estan disponibles otras funciones con valores por defecto de los
+parámetros adecuados para otras situaciones. Por ejemplo, para ficheros
+separados por tabuladores se puede utilizar \texttt{read.delim()} o
+\texttt{read.delim2()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -541,20 +610,21 @@ se puede utilizar \texttt{read.delim()} o \texttt{read.delim2()}:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{alternativa-tidyverse}{%
-\subsection{\texorpdfstring{Alternativa \texttt{tidyverse}}{Alternativa tidyverse}}\label{alternativa-tidyverse}}
+\subsection{\texorpdfstring{Alternativa
+\texttt{tidyverse}}{Alternativa tidyverse}}\label{alternativa-tidyverse}
 
-Para leer archivos de texto en distintos formatos también se puede emplear el paquete \href{https://readr.tidyverse.org}{\texttt{readr}}
-(colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), para lo que se recomienda
-consultar el \href{https://r4ds.had.co.nz/data-import.html}{Capítulo 11} del libro \href{http://r4ds.had.co.nz}{R for Data Science}.
+Para leer archivos de texto en distintos formatos también se puede
+emplear el paquete \href{https://readr.tidyverse.org}{\texttt{readr}}
+(colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), para
+lo que se recomienda consultar el
+\href{https://r4ds.had.co.nz/data-import.html}{Capítulo 11} del libro
+\href{http://r4ds.had.co.nz}{R for Data Science}.
 
-\hypertarget{importacion-desde-spss}{%
-\subsection{Importación desde SPSS}\label{importacion-desde-spss}}
+\subsection{Importación desde SPSS}\label{importacion-desde-spss}
 
-El programa R permite
-lectura de ficheros de datos en formato SPSS (extensión \emph{.sav}) sin
-necesidad de tener instalado dicho programa en el ordenador. Para ello
-se necesita:
+El programa R permite lectura de ficheros de datos en formato SPSS
+(extensión \emph{.sav}) sin necesidad de tener instalado dicho programa
+en el ordenador. Para ello se necesita:
 
 \begin{itemize}
 \item
@@ -591,18 +661,23 @@ Por ejemplo:
 ##  - attr(*, "codepage")= int 1252
 \end{verbatim}
 
-\textbf{Nota}: Si hay fechas, puede ser recomendable emplear la función \texttt{spss.get()} del paquete \texttt{Hmisc}.
+\textbf{Nota}: Si hay fechas, puede ser recomendable emplear la función
+\texttt{spss.get()} del paquete \texttt{Hmisc}.
 
-\hypertarget{importacion-desde-excel}{%
-\subsection{Importación desde Excel}\label{importacion-desde-excel}}
+\subsection{Importación desde Excel}\label{importacion-desde-excel}
 
-Se pueden leer fichero de
-Excel (con extensión \emph{.xlsx}) utilizando por ejemplo los paquetes \href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), \texttt{XLConnect} o
-\href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}} (este paquete se empleará más adelante para acceder a bases de datos),
+Se pueden leer fichero de Excel (con extensión \emph{.xlsx}) utilizando
+por ejemplo los paquetes
+\href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}},
+\href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección
+\href{https://www.tidyverse.org/}{\texttt{tidyverse}}),
+\texttt{XLConnect} o
+\href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}}
+(este paquete se empleará más adelante para acceder a bases de datos),
 entre otros.
 
-Por ejemplo el siguiente código implementa una función que permite leer todos
-los archivos en formato \emph{.xlsx} en un directorio:
+Por ejemplo el siguiente código implementa una función que permite leer
+todos los archivos en formato \emph{.xlsx} en un directorio:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -621,8 +696,11 @@ los archivos en formato \emph{.xlsx} en un directorio:
 \end{Highlighting}
 \end{Shaded}
 
-Para combinar los archivos (suponiendo que tienen las mismas columnas), podríamos ejecutar una llamada a \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind}{\texttt{rbind()}}
-o emplear la función \href{https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/bind}{\texttt{bind\_rows()}}
+Para combinar los archivos (suponiendo que tienen las mismas columnas),
+podríamos ejecutar una llamada a
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind}{\texttt{rbind()}}
+o emplear la función
+\href{https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/bind}{\texttt{bind\_rows()}}
 del paquete \href{https://dplyr.tidyverse.org}{\texttt{dplyr}}:
 
 \begin{Shaded}
@@ -633,16 +711,17 @@ del paquete \href{https://dplyr.tidyverse.org}{\texttt{dplyr}}:
 \end{Highlighting}
 \end{Shaded}
 
-Sin embargo, un procedimiento sencillo consiste en exportar los datos desde Excel a un archivo
-de texto separado por tabuladores (extensión \emph{.csv}).
-Por ejemplo, supongamos que queremos leer el fichero \emph{coches.xls}:
+Sin embargo, un procedimiento sencillo consiste en exportar los datos
+desde Excel a un archivo de texto separado por tabuladores (extensión
+\emph{.csv}). Por ejemplo, supongamos que queremos leer el fichero
+\emph{coches.xls}:
 
 \begin{itemize}
 \item
   Desde Excel se selecciona el menú
-  \texttt{Archivo\ -\textgreater{}\ Guardar\ como\ -\textgreater{}\ Guardar\ como} y en \texttt{Tipo} se escoge la opción de
-  archivo CSV. De esta forma se guardarán los datos en el archivo
-  \emph{coches.csv}.
+  \texttt{Archivo\ -\textgreater{}\ Guardar\ como\ -\textgreater{}\ Guardar\ como}
+  y en \texttt{Tipo} se escoge la opción de archivo CSV. De esta forma
+  se guardarán los datos en el archivo \emph{coches.csv}.
 \item
   El fichero \emph{coches.csv} es un fichero de texto plano (se puede
   editar con Notepad), con cabecera, las columnas separadas por ``;'', y
@@ -657,8 +736,8 @@ Por ejemplo, supongamos que queremos leer el fichero \emph{coches.xls}:
 \end{Shaded}
 \end{itemize}
 
-Otra posibilidad es utilizar la función \texttt{read.csv2}, que es
-una adaptación de la función general \texttt{read.table} con las siguientes
+Otra posibilidad es utilizar la función \texttt{read.csv2}, que es una
+adaptación de la función general \texttt{read.table} con las siguientes
 opciones:
 
 \begin{Shaded}
@@ -667,8 +746,8 @@ opciones:
 \end{Highlighting}
 \end{Shaded}
 
-Por lo tanto, la lectura del fichero \emph{coches.csv} se puede hacer de modo
-más directo con:
+Por lo tanto, la lectura del fichero \emph{coches.csv} se puede hacer de
+modo más directo con:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -676,14 +755,12 @@ más directo con:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exportacion-de-datos}{%
-\subsection{Exportación de datos}\label{exportacion-de-datos}}
+\subsection{Exportación de datos}\label{exportacion-de-datos}
 
-Puede ser de interés la
-exportación de datos para que puedan leídos con otros programas. Para
-ello, se puede emplear la función \texttt{write.table()}. Esta función es
-similar, pero funcionando en sentido inverso, a \texttt{read.table()}
-(Sección \ref{cap2-texto}).
+Puede ser de interés la exportación de datos para que puedan leídos con
+otros programas. Para ello, se puede emplear la función
+\texttt{write.table()}. Esta función es similar, pero funcionando en
+sentido inverso, a \texttt{read.table()} (Sección \ref{cap2-texto}).
 
 Veamos un ejemplo:
 
@@ -720,14 +797,13 @@ Otra posibilidad es utilizar la función:
 \end{Highlighting}
 \end{Shaded}
 
-que dará lugar al fichero \emph{datos.csv} importable directamente desde Excel.
+que dará lugar al fichero \emph{datos.csv} importable directamente desde
+Excel.
 
-\hypertarget{manipulacion-de-datos}{%
-\section{Manipulación de datos}\label{manipulacion-de-datos}}
+\section{Manipulación de datos}\label{manipulacion-de-datos}
 
-Una vez cargada una (o varias) bases
-de datos hay una series de operaciones que serán de interés para el
-tratamiento de datos:
+Una vez cargada una (o varias) bases de datos hay una series de
+operaciones que serán de interés para el tratamiento de datos:
 
 \begin{itemize}
 \tightlist
@@ -773,14 +849,13 @@ tratamiento de datos:
 
 A continuación se tratan algunas operaciones \emph{básicas}.
 
-\hypertarget{operaciones-con-variables}{%
-\subsection{Operaciones con variables}\label{operaciones-con-variables}}
+\subsection{Operaciones con variables}\label{operaciones-con-variables}
 
-\hypertarget{creacion-y-eliminacion-de-variables}{%
-\subsubsection{Creación (y eliminación) de variables}\label{creacion-y-eliminacion-de-variables}}
+\subsubsection{Creación (y eliminación) de
+variables}\label{creacion-y-eliminacion-de-variables}
 
-Consideremos de nuevo la
-base de datos \texttt{cars} incluida en el paquete \texttt{datasets}:
+Consideremos de nuevo la base de datos \texttt{cars} incluida en el
+paquete \texttt{datasets}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -800,9 +875,8 @@ base de datos \texttt{cars} incluida en el paquete \texttt{datasets}:
 ## 6     9   10
 \end{verbatim}
 
-Utilizando el comando \texttt{help(cars)}
-se obtiene que \texttt{cars} es un data.frame con 50 observaciones y dos
-variables:
+Utilizando el comando \texttt{help(cars)} se obtiene que \texttt{cars}
+es un data.frame con 50 observaciones y dos variables:
 
 \begin{itemize}
 \item
@@ -811,9 +885,8 @@ variables:
   \texttt{dist}: tiempo hasta detenerse (pies)
 \end{itemize}
 
-Recordemos que, para acceder a la variable \texttt{speed} se puede
-hacer directamente con su nombre o bien utilizando notación
-``matricial''.
+Recordemos que, para acceder a la variable \texttt{speed} se puede hacer
+directamente con su nombre o bien utilizando notación ``matricial''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -839,11 +912,12 @@ hacer directamente con su nombre o bien utilizando notación
 ## [47] 24 24 24 25
 \end{verbatim}
 
-Supongamos ahora que queremos transformar la variable original \texttt{speed}
-(millas por hora) en una nueva variable \texttt{velocidad} (kilómetros por
-hora) y añadir esta nueva variable al data.frame \texttt{cars}.
-La transformación que permite pasar millas a kilómetros es
-\texttt{kilómetros=millas/0.62137} que en R se hace directamente con:
+Supongamos ahora que queremos transformar la variable original
+\texttt{speed} (millas por hora) en una nueva variable
+\texttt{velocidad} (kilómetros por hora) y añadir esta nueva variable al
+data.frame \texttt{cars}. La transformación que permite pasar millas a
+kilómetros es \texttt{kilómetros=millas/0.62137} que en R se hace
+directamente con:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -872,8 +946,8 @@ Finalmente, incluimos la nueva variable que llamaremos
 \end{verbatim}
 
 También transformaremos la variable \texttt{dist} (en pies) en una nueva
-variable \texttt{distancia} (en metros). Ahora la transformación deseada es
-\texttt{metros=pies/3.2808}:
+variable \texttt{distancia} (en metros). Ahora la transformación deseada
+es \texttt{metros=pies/3.2808}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -893,9 +967,9 @@ variable \texttt{distancia} (en metros). Ahora la transformación deseada es
 \end{verbatim}
 
 Ahora, eliminaremos las variables originales \texttt{speed} y
-\texttt{dist}, y guardaremos el data.frame resultante con el nombre \texttt{coches}.
-En primer lugar, veamos varias formas de acceder a las variables de
-interés:
+\texttt{dist}, y guardaremos el data.frame resultante con el nombre
+\texttt{coches}. En primer lugar, veamos varias formas de acceder a las
+variables de interés:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -905,8 +979,8 @@ interés:
 \end{Highlighting}
 \end{Shaded}
 
-Utilizando alguna de las opciones anteriores se obtiene el \texttt{data.frame}
-deseado:
+Utilizando alguna de las opciones anteriores se obtiene el
+\texttt{data.frame} deseado:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -931,20 +1005,17 @@ exportable a Excel con el siguiente comando:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{operaciones-con-casos}{%
-\subsection{Operaciones con casos}\label{operaciones-con-casos}}
+\subsection{Operaciones con casos}\label{operaciones-con-casos}
 
-\hypertarget{ordenacion}{%
-\subsubsection{Ordenación}\label{ordenacion}}
+\subsubsection{Ordenación}\label{ordenacion}
 
-Continuemos con el data.frame \texttt{cars}.
-Se puede comprobar que los datos disponibles están ordenados por
-los valores de \texttt{speed}. A continuación haremos la ordenación utilizando
-los valores de \texttt{dist}. Para ello utilizaremos el conocido como vector de
-índices de ordenación.
-Este vector establece el orden en que tienen que ser elegidos los
-elementos para obtener la ordenación deseada.
-Veamos un ejemplo sencillo:
+Continuemos con el data.frame \texttt{cars}. Se puede comprobar que los
+datos disponibles están ordenados por los valores de \texttt{speed}. A
+continuación haremos la ordenación utilizando los valores de
+\texttt{dist}. Para ello utilizaremos el conocido como vector de índices
+de ordenación. Este vector establece el orden en que tienen que ser
+elegidos los elementos para obtener la ordenación deseada. Veamos un
+ejemplo sencillo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -968,8 +1039,8 @@ Veamos un ejemplo sencillo:
 ## [1] 1.2 2.5 3.1 4.3 5.0
 \end{verbatim}
 
-En el caso de vectores, el procedimiento anterior se podría
-hacer directamente con:
+En el caso de vectores, el procedimiento anterior se podría hacer
+directamente con:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -978,8 +1049,8 @@ hacer directamente con:
 \end{Shaded}
 
 Sin embargo, para ordenar data.frames será necesario la utilización del
-vector de índices de ordenación. A continuación, los datos de \texttt{cars}
-ordenados por \texttt{dist}:
+vector de índices de ordenación. A continuación, los datos de
+\texttt{cars} ordenados por \texttt{dist}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -999,12 +1070,11 @@ ordenados por \texttt{dist}:
 ## 5      8   16 12.874777 4.8768593
 \end{verbatim}
 
-\hypertarget{filtrado}{%
-\subsubsection{Filtrado}\label{filtrado}}
+\subsubsection{Filtrado}\label{filtrado}
 
-El filtrado de datos consiste en
-elegir una submuestra que cumpla determinadas condiciones. Para ello se
-puede utilizar la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset}{\texttt{subset()}}
+El filtrado de datos consiste en elegir una submuestra que cumpla
+determinadas condiciones. Para ello se puede utilizar la función
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset}{\texttt{subset()}}
 (que además permite seleccionar variables).
 
 A continuación se muestran un par de ejemplos:
@@ -1066,7 +1136,8 @@ correspondientes vectores de índices:
 ## 23    14   80  22.53086  24.38430
 \end{verbatim}
 
-En este caso puede ser de utilidad la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which}{\texttt{which()}}:
+En este caso puede ser de utilidad la función
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which}{\texttt{which()}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1114,16 +1185,15 @@ En este caso puede ser de utilidad la función \href{https://www.rdocumentation.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{funciones-apply}{%
-\subsection{\texorpdfstring{Funciones \texttt{apply}}{Funciones apply}}\label{funciones-apply}}
+\subsection{\texorpdfstring{Funciones
+\texttt{apply}}{Funciones apply}}\label{funciones-apply}
 
-\hypertarget{la-funcion-apply}{%
-\subsubsection{\texorpdfstring{La función \texttt{apply}}{La función apply}}\label{la-funcion-apply}}
+\subsubsection{\texorpdfstring{La función
+\texttt{apply}}{La función apply}}\label{la-funcion-apply}
 
-Una forma de evitar la
-utilización de bucles es utilizando la sentencia \texttt{apply} que permite
-evaluar una misma función en todas las filas, columnas, etc. de un array
-de forma simultánea.
+Una forma de evitar la utilización de bucles es utilizando la sentencia
+\texttt{apply} que permite evaluar una misma función en todas las filas,
+columnas, etc. de un array de forma simultánea.
 
 La sintaxis de esta función es:
 
@@ -1139,8 +1209,8 @@ La sintaxis de esta función es:
   \texttt{X}: matriz (o array)
 \item
   \texttt{MARGIN}: Un vector indicando las dimensiones donde se aplicará
-  la función. 1 indica filas, 2 indica columnas, y \texttt{c(1,2)} indica
-  filas y columnas.
+  la función. 1 indica filas, 2 indica columnas, y \texttt{c(1,2)}
+  indica filas y columnas.
 \item
   \texttt{FUN}: función que será aplicada.
 \item
@@ -1205,8 +1275,8 @@ Veamos la utilización de la función \texttt{apply} con un ejemplo:
 ## [2,]    3    6    9
 \end{verbatim}
 
-\hypertarget{variantes-de-la-funcion-apply}{%
-\subsubsection{\texorpdfstring{Variantes de la función \texttt{apply}}{Variantes de la función apply}}\label{variantes-de-la-funcion-apply}}
+\subsubsection{\texorpdfstring{Variantes de la función
+\texttt{apply}}{Variantes de la función apply}}\label{variantes-de-la-funcion-apply}
 
 \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/lapply}{\texttt{lapply()}}:
 
@@ -1303,13 +1373,14 @@ distancia & 13.1 & 11.0 & 7.9\\
 ## 5.50000 5.50000 3.02765
 \end{verbatim}
 
-\hypertarget{la-funcion-tapply}{%
-\subsubsection{\texorpdfstring{La función \texttt{tapply}}{La función tapply}}\label{la-funcion-tapply}}
+\subsubsection{\texorpdfstring{La función
+\texttt{tapply}}{La función tapply}}\label{la-funcion-tapply}
 
-La function \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/tapply}{\texttt{tapply()}} es
-similar a la función \texttt{apply()} y permite aplicar una función a los datos desagregados,
-utilizando como criterio los distintos niveles de una variable factor.
-La sintaxis de esta función es como sigue:
+La function
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/tapply}{\texttt{tapply()}}
+es similar a la función \texttt{apply()} y permite aplicar una función a
+los datos desagregados, utilizando como criterio los distintos niveles
+de una variable factor. La sintaxis de esta función es como sigue:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1329,9 +1400,9 @@ La sintaxis de esta función es como sigue:
   \texttt{...}: argumentos opcionales .
 \end{itemize}
 
-Consideremos, por ejemplo, el data.frame \texttt{ChickWeight} con datos de un
-experimento relacionado con la repercusión de varias dietas en el peso
-de pollos.
+Consideremos, por ejemplo, el data.frame \texttt{ChickWeight} con datos
+de un experimento relacionado con la repercusión de varias dietas en el
+peso de pollos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1426,8 +1497,8 @@ Otro ejemplo:
 ##   0.500000   1.333333   2.000000   2.000000
 \end{verbatim}
 
-\hypertarget{operaciones-con-tablas-de-datos}{%
-\subsection{Operaciones con tablas de datos}\label{operaciones-con-tablas-de-datos}}
+\subsection{Operaciones con tablas de
+datos}\label{operaciones-con-tablas-de-datos}
 
 Ver ejemplo \href{data/wosdata.zip}{\emph{wosdata.R}}
 
@@ -1443,8 +1514,7 @@ Ver ejemplo \href{data/wosdata.zip}{\emph{wosdata.R}}
 
 \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match}{\texttt{pmatch()}}
 
-\hypertarget{ejemplo-wos-data}{%
-\section{Ejemplo WoS data}\label{ejemplo-wos-data}}
+\section{Ejemplo WoS data}\label{ejemplo-wos-data}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1457,29 +1527,36 @@ Ver ejemplo \href{data/wosdata.zip}{\emph{wosdata.R}}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{introduccion-al-lenguaje-sql}{%
-\chapter{Introducción al lenguaje SQL}\label{introduccion-al-lenguaje-sql}}
+\chapter{Introducción al lenguaje
+SQL}\label{introduccion-al-lenguaje-sql}
 
 Working draft\ldots{}
 
-Los sistemas de información gestionan repositorios de información en múltiples formatos,
-siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured Query Language)
+Los sistemas de información gestionan repositorios de información en
+múltiples formatos, siendo el más popular las bases de datos
+relacionales a las que se accede mediante SQL (Structured Query
+Language)
 
-\hypertarget{bases-de-datos-relacionales}{%
-\section{Bases de Datos Relacionales}\label{bases-de-datos-relacionales}}
+\section{Bases de Datos Relacionales}\label{bases-de-datos-relacionales}
 
-\hypertarget{definiciones}{%
-\subsection{Definiciones}\label{definiciones}}
+\subsection{Definiciones}\label{definiciones}
 
 \begin{itemize}
 \item
-  \textbf{Dominio}: contexto (organización, empresa, evento\ldots{}) objeto de gestión de la información.
+  \textbf{Dominio}: contexto (organización, empresa, evento\ldots{})
+  objeto de gestión de la información.
 \item
-  \textbf{Dato}: hecho con significado implícito, registable, relevante en un determinado dominio.
+  \textbf{Dato}: hecho con significado implícito, registable, relevante
+  en un determinado dominio.
 \item
-  \textbf{Base de datos}: colección de datos de un determinado dominio relacionados entre sí, organizados de forma que sea posible manipularlos y recuperarlos de forma eficiente.
+  \textbf{Base de datos}: colección de datos de un determinado dominio
+  relacionados entre sí, organizados de forma que sea posible
+  manipularlos y recuperarlos de forma eficiente.
 \item
-  Sistema de Gestión de Bases de Datos (\textbf{SGBD}) (en inglés \textbf{RDBMS}, Relational Database Management System): software que permite a los usuarios crear y manipular bases de datos mediante operaciones CRUD:
+  Sistema de Gestión de Bases de Datos (\textbf{SGBD}) (en inglés
+  \textbf{RDBMS}, Relational Database Management System): software que
+  permite a los usuarios crear y manipular bases de datos mediante
+  operaciones CRUD:
 
   \begin{itemize}
   \tightlist
@@ -1498,7 +1575,8 @@ siendo el más popular las bases de datos relacionales a las que se accede media
 
 \begin{itemize}
 \item
-  \textbf{Modelo de datos}: abstracción conceptual que propone una manera de organizar y manipular los datos. Definido mediante:
+  \textbf{Modelo de datos}: abstracción conceptual que propone una
+  manera de organizar y manipular los datos. Definido mediante:
 
   \begin{itemize}
   \tightlist
@@ -1507,12 +1585,15 @@ siendo el más popular las bases de datos relacionales a las que se accede media
   \item
     Integridad: reglas para relaciones los elementos
   \item
-    Manipulación: operaciones sobre los datos adaptadas a la estructura y reglas
+    Manipulación: operaciones sobre los datos adaptadas a la estructura
+    y reglas
   \end{itemize}
 \item
-  Modelo de datos conceptual \textbf{Entidad Relación} (entidades, relaciones, atributos)
+  Modelo de datos conceptual \textbf{Entidad Relación} (entidades,
+  relaciones, atributos)
 \item
-  Modelo de datos lógico o de representación (\textbf{modelo relacional} de Codd)
+  Modelo de datos lógico o de representación (\textbf{modelo relacional}
+  de Codd)
 
   \begin{itemize}
   \tightlist
@@ -1527,7 +1608,8 @@ siendo el más popular las bases de datos relacionales a las que se accede media
   Modelo de datos físico (tal y como se almacenan los datos)
 \end{itemize}
 
-Una fila de la tabla (relación) es una tupla y una columna un atributo (ver Figura \ref{fig:relacion}).
+Una fila de la tabla (relación) es una tupla y una columna un atributo
+(ver Figura \ref{fig:relacion}).
 
 (ver Figura \ref{fig:relacion})
 
@@ -1544,9 +1626,14 @@ Una fila de la tabla (relación) es una tupla y una columna un atributo (ver Fig
 
 Una base de datos es un conjunto de tablas (al menos una).
 
-\includegraphics[width=6.25in,height=\textheight]{images/BBDD.png}
+\begin{figure}
+\centering
+\includegraphics[width=6.25000in]{images/BBDD.png}
+\caption{}
+\end{figure}
 
-La tabla no es una relación porque la relación es un conjunto sin orden y una tabla puede tener filas repetidas y tiene orden.
+La tabla no es una relación porque la relación es un conjunto sin orden
+y una tabla puede tener filas repetidas y tiene orden.
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1556,28 +1643,38 @@ La tabla no es una relación porque la relación es un conjunto sin orden y una 
 \item
   \textbf{Estado}: contenido de la base de datos
 \item
-  Restricción de \textbf{integridad}: regla que debe cumplir la información registrada en la base de datos para garantizar la integridad de la información.
+  Restricción de \textbf{integridad}: regla que debe cumplir la
+  información registrada en la base de datos para garantizar la
+  integridad de la información.
 \end{itemize}
 
-Cualquier Base de Datos basada en el modelo relacional ha de cumplir como mínimo estas restricciones (además de las propias del dominio):
+Cualquier Base de Datos basada en el modelo relacional ha de cumplir
+como mínimo estas restricciones (además de las propias del dominio):
 
 \begin{itemize}
 \item
-  Restricción de dominio: el valor de cada atributo debe de ser único (teléfono, no valor único), no descomponible (nombre completo descomponible en nombre y apellidos, domicilio en calle, CP, localidad, etc\ldots{})
+  Restricción de dominio: el valor de cada atributo debe de ser único
+  (teléfono, no valor único), no descomponible (nombre completo
+  descomponible en nombre y apellidos, domicilio en calle, CP,
+  localidad, etc\ldots{})
 \item
-  Una relación es un conjunto de tuplas, por tanto todas las tuplas son distintas.
+  Una relación es un conjunto de tuplas, por tanto todas las tuplas son
+  distintas.
 \item
-  Una \textbf{superclave} es un subconjunto de atributos tal que no existen dos tuplas con la misma superclave.
+  Una \textbf{superclave} es un subconjunto de atributos tal que no
+  existen dos tuplas con la misma superclave.
 \end{itemize}
 
 \begin{quote}
-Ejercicio. En la relación Empleado(dni, nombre, apellidos, email) ¿cuántas superclaves existen?
+Ejercicio. En la relación Empleado(dni, nombre, apellidos, email)
+¿cuántas superclaves existen?
 \end{quote}
 
 \begin{itemize}
 \tightlist
 \item
-  Una \textbf{clave candidata} es una superclave mínima (superclave mínima es la clave a la que no se le puede eliminar un atributo).
+  Una \textbf{clave candidata} es una superclave mínima (superclave
+  mínima es la clave a la que no se le puede eliminar un atributo).
 \end{itemize}
 
 \begin{quote}
@@ -1586,17 +1683,34 @@ Ejercicio. En la relación Empleado(dni, nombre, apellidos, email) ¿cuántas su
 
 \begin{itemize}
 \item
-  \textbf{Clave primaria} es la clave candidata que elegimos que identificar de forma unívoca las tuplas de una relación. Restricción de integridad de entidad: Ningún valor de la clave primaria puede ser un valor nulo.
+  \textbf{Clave primaria} es la clave candidata que elegimos que
+  identificar de forma unívoca las tuplas de una relación. Restricción
+  de integridad de entidad: Ningún valor de la clave primaria puede ser
+  un valor nulo.
 \item
-  \textbf{Clave foránea} es un conjunto de atributos de una relación R\_1 que, para cada tupla, identifican a otra tupla de una relación R\_2 con la que está relacionada.
-  La Restricción de integridad referencial nos dice que la clave foránea ha de corresponderse con la clave primaria de R\_2, y si la clave foránea no es nula ha de refir a una tupla en R\_2.
+  \textbf{Clave foránea} es un conjunto de atributos de una relación
+  R\_1 que, para cada tupla, identifican a otra tupla de una relación
+  R\_2 con la que está relacionada. La Restricción de integridad
+  referencial nos dice que la clave foránea ha de corresponderse con la
+  clave primaria de R\_2, y si la clave foránea no es nula ha de refir a
+  una tupla en R\_2.
 \end{itemize}
 
-\includegraphics[width=6.25in,height=\textheight]{images/ClaveForanea.png}
+\begin{figure}
+\centering
+\includegraphics[width=6.25000in]{images/ClaveForanea.png}
+\caption{}
+\end{figure}
 
-\includegraphics[width=6.25in,height=\textheight]{images/IntegridadReferencial.png}
+\begin{figure}
+\centering
+\includegraphics[width=6.25000in]{images/IntegridadReferencial.png}
+\caption{}
+\end{figure}
 
-Si borramos/actualizamos un valor de clave foránea podemos: (a) prohibir el cambio, o (b) poner a nulo la clave foránea (borrado) o propogar el cambio (modificación).
+Si borramos/actualizamos un valor de clave foránea podemos: (a) prohibir
+el cambio, o (b) poner a nulo la clave foránea (borrado) o propogar el
+cambio (modificación).
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1608,13 +1722,17 @@ Si borramos/actualizamos un valor de clave foránea podemos: (a) prohibir el cam
   \begin{itemize}
   \tightlist
   \item
-    Administración centralizada de los datos (por un administrador en un servidor/plataforma central que evita la información en silos -redundante/inconsistente)
+    Administración centralizada de los datos (por un administrador en un
+    servidor/plataforma central que evita la información en silos
+    -redundante/inconsistente)
   \item
-    Desacoplado del almacenamiento físico de los datos (no es necesario conocerlo)
+    Desacoplado del almacenamiento físico de los datos (no es necesario
+    conocerlo)
   \item
     Simplicidad de acceso (ODBC + SQL, lenguaje declarativo)
   \item
-    Control de integridad (restricciones genéricas, integridad de entidad y referencial, de dominio, y las del dominio en software)
+    Control de integridad (restricciones genéricas, integridad de
+    entidad y referencial, de dominio, y las del dominio en software)
   \item
     Control de acceso concurrente (evita inconsistencia)
   \item
@@ -1624,13 +1742,12 @@ Si borramos/actualizamos un valor de clave foránea podemos: (a) prohibir el cam
   \end{itemize}
 \end{itemize}
 
-\hypertarget{sintaxis-sql}{%
-\section{Sintaxis SQL}\label{sintaxis-sql}}
+\section{Sintaxis SQL}\label{sintaxis-sql}
 
 A continuación 27 clásulas SQL básicas
 
-\hypertarget{extraccion-sql-11-statements}{%
-\subsection{Extracción SQL (11 statements)}\label{extraccion-sql-11-statements}}
+\subsection{Extracción SQL (11
+statements)}\label{extraccion-sql-11-statements}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1646,15 +1763,15 @@ A continuación 27 clásulas SQL básicas
 
 \NormalTok{SELECT column1, column2....columnN}
 \NormalTok{FROM   table_name}
-\NormalTok{WHERE  CONDITION}\DecValTok{-1}\NormalTok{ \{AND}\OperatorTok{|}\NormalTok{OR\} CONDITION}\DecValTok{-2}\NormalTok{;}
+\NormalTok{WHERE  CONDITION}\OperatorTok{-}\DecValTok{1}\NormalTok{ \{AND}\OperatorTok{|}\NormalTok{OR\} CONDITION}\OperatorTok{-}\DecValTok{2}\NormalTok{;}
 
 \NormalTok{SELECT column1, column2....columnN}
 \NormalTok{FROM   table_name}
-\NormalTok{WHERE  column_name }\KeywordTok{IN}\NormalTok{ (val}\DecValTok{-1}\NormalTok{, val}\DecValTok{-2}\NormalTok{,...val}\OperatorTok{-}\NormalTok{N);}
+\NormalTok{WHERE  column_name }\KeywordTok{IN}\NormalTok{ (val}\OperatorTok{-}\DecValTok{1}\NormalTok{, val}\OperatorTok{-}\DecValTok{2}\NormalTok{,...val}\OperatorTok{-}\NormalTok{N);}
 
 \NormalTok{SELECT column1, column2....columnN}
 \NormalTok{FROM   table_name}
-\NormalTok{WHERE  column_name BETWEEN val}\DecValTok{-1}\NormalTok{ AND val}\DecValTok{-2}\NormalTok{;}
+\NormalTok{WHERE  column_name BETWEEN val}\OperatorTok{-}\DecValTok{1}\NormalTok{ AND val}\OperatorTok{-}\DecValTok{2}\NormalTok{;}
 
 \NormalTok{SELECT column1, column2....columnN}
 \NormalTok{FROM   table_name}
@@ -1682,8 +1799,8 @@ A continuación 27 clásulas SQL básicas
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{crearactualizarborrar-tablas-sql-8-statements}{%
-\subsection{Crear/Actualizar/Borrar tablas SQL (8 statements)}\label{crearactualizarborrar-tablas-sql-8-statements}}
+\subsection{Crear/Actualizar/Borrar tablas SQL (8
+statements)}\label{crearactualizarborrar-tablas-sql-8-statements}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1714,8 +1831,8 @@ A continuación 27 clásulas SQL básicas
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{anadiractualizarborrar-tuplas-en-sql-3-statements}{%
-\subsection{Añadir/Actualizar/Borrar tuplas en SQL (3 statements)}\label{anadiractualizarborrar-tuplas-en-sql-3-statements}}
+\subsection{Añadir/Actualizar/Borrar tuplas en SQL (3
+statements)}\label{anadiractualizarborrar-tuplas-en-sql-3-statements}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1731,8 +1848,8 @@ A continuación 27 clásulas SQL básicas
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{gestion-bases-de-datos-5-statements}{%
-\subsection{Gestión Bases de Datos (5 statements)}\label{gestion-bases-de-datos-5-statements}}
+\subsection{Gestión Bases de Datos (5
+statements)}\label{gestion-bases-de-datos-5-statements}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1748,8 +1865,7 @@ A continuación 27 clásulas SQL básicas
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{ejemplos-de-consultas-sql}{%
-\subsection{Ejemplos de consultas SQL}\label{ejemplos-de-consultas-sql}}
+\subsection{Ejemplos de consultas SQL}\label{ejemplos-de-consultas-sql}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1770,20 +1886,27 @@ A continuación 27 clásulas SQL básicas
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{conexion-con-bases-de-datos-desde-r}{%
-\section{Conexión con bases de datos desde R}\label{conexion-con-bases-de-datos-desde-r}}
+\section{Conexión con bases de datos desde
+R}\label{conexion-con-bases-de-datos-desde-r}
 
-\hypertarget{introduccion-a-sql-en-r}{%
-\subsection{Introducción a SQL en R}\label{introduccion-a-sql-en-r}}
+\subsection{Introducción a SQL en R}\label{introduccion-a-sql-en-r}
 
-SQL se usa para manipular datos dentro de una base de datos. Si la base de datos no es muy grande se puede cargar toda en un data.frame.
-No obstante, por escalabilidad y offloading de la carga de trabajo al servidor SGBD utilizaremos SQL.
+SQL se usa para manipular datos dentro de una base de datos. Si la base
+de datos no es muy grande se puede cargar toda en un data.frame. No
+obstante, por escalabilidad y offloading de la carga de trabajo al
+servidor SGBD utilizaremos SQL.
 
-Existen varios SGBD (SQLite, Microsoft SQL Server, PostgreSQL, etc) los cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada gestor extiende SQL
-de formas sutiles buscando minar cierta portabilidad de código (\emph{vendor-locking}). En efecto, un código SQL desarrollado para SQLite es probable que falle con MySQL
-aunque tras aplicar ligeras modificaciones ya funcionará. Asimismo el mecanismo de conexión, configuración, rendimiento y operación suele diferir entre SGBD.
+Existen varios SGBD (SQLite, Microsoft SQL Server, PostgreSQL, etc) los
+cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada
+gestor extiende SQL de formas sutiles buscando minar cierta portabilidad
+de código (\emph{vendor-locking}). En efecto, un código SQL desarrollado
+para SQLite es probable que falle con MySQL aunque tras aplicar ligeras
+modificaciones ya funcionará. Asimismo el mecanismo de conexión,
+configuración, rendimiento y operación suele diferir entre SGBD.
 
-A continuación se lista una serie de paquetes utilizados en el acceso a los datos, lo que suele ser el principal esfuerzo a realizar cuando se trabaja con SGBD:
+A continuación se lista una serie de paquetes utilizados en el acceso a
+los datos, lo que suele ser el principal esfuerzo a realizar cuando se
+trabaja con SGBD:
 
 \begin{itemize}
 \tightlist
@@ -1801,11 +1924,13 @@ A continuación se lista una serie de paquetes utilizados en el acceso a los dat
   \href{https://cran.r-project.org/web/packages/RPostgreSQL/index.html}{RPostgreSQL}
 \end{itemize}
 
-\hypertarget{el-paquete-sqldf}{%
-\subsection{El paquete sqldf}\label{el-paquete-sqldf}}
+\subsection{El paquete sqldf}\label{el-paquete-sqldf}
 
-A continuación se presenta una serie de ejercicios con la sintaxis de SQL operando sobre un data.frame con el paquete sqldf. Esto inicialmente no incluye los detalles de conectarse a un SGBD, ni modificar los
-datos, solamente el uso de SQL para extraer datos con el objetivo de ser analizados en R.
+A continuación se presenta una serie de ejercicios con la sintaxis de
+SQL operando sobre un data.frame con el paquete sqldf. Esto inicialmente
+no incluye los detalles de conectarse a un SGBD, ni modificar los datos,
+solamente el uso de SQL para extraer datos con el objetivo de ser
+analizados en R.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1830,10 +1955,10 @@ datos, solamente el uso de SQL para extraer datos con el objetivo de ser analiza
 ## 7 1582           145
 \end{verbatim}
 
-\hypertarget{sql-queries}{%
-\subsection{SQL Queries}\label{sql-queries}}
+\subsection{SQL Queries}\label{sql-queries}
 
-El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:
+El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto
+va a funcionar:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1842,7 +1967,8 @@ El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a fun
 \end{Highlighting}
 \end{Shaded}
 
-pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:
+pero lo siguiente no va a funcionar (a menos que tengamos un objeto
+IRIS:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1858,8 +1984,7 @@ La sintaxis básica de SELECT es:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{asteriscowildcard}{%
-\subsubsection{Asterisco/Wildcard}\label{asteriscowildcard}}
+\subsubsection{Asterisco/Wildcard}\label{asteriscowildcard}
 
 Lo extrae todo
 
@@ -1869,8 +1994,7 @@ Lo extrae todo
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{limit}{%
-\subsubsection{Limit}\label{limit}}
+\subsubsection{Limit}\label{limit}
 
 Limita el número de resultados
 
@@ -1889,8 +2013,7 @@ Limita el número de resultados
 ## 5          5.0         3.6          1.4         0.2  setosa
 \end{verbatim}
 
-\hypertarget{order-by}{%
-\subsubsection{Order By}\label{order-by}}
+\subsubsection{Order By}\label{order-by}
 
 Ordena las variables
 
@@ -1915,10 +2038,11 @@ Ordena las variables
 ## 5    5 118            30
 \end{verbatim}
 
-\hypertarget{where}{%
-\subsubsection{Where}\label{where}}
+\subsubsection{Where}\label{where}
 
-Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.
+Sentencias condicionales, donde se puede incorporar operadores lógicos
+AND y OR, expresando el orden de evaluación con paréntesis en caso de
+ser necesario.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1946,7 +2070,8 @@ Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR
 ## 4 8793 2280.490 0.420477 1300
 \end{verbatim}
 
-Y extendiendo su uso con IN o LIKE (es último sólo con \%), pudiendo aplicárseles el NOT:
+Y extendiendo su uso con IN o LIKE (es último sólo con \%), pudiendo
+aplicárseles el NOT:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2004,13 +2129,13 @@ Y extendiendo su uso con IN o LIKE (es último sólo con \%), pudiendo aplicárs
 ## 5    260 linseed
 \end{verbatim}
 
-\hypertarget{manipulacion-de-datos-con-dplyr}{%
-\chapter{\texorpdfstring{Manipulación de datos con \texttt{dplyr}}{Manipulación de datos con dplyr}}\label{manipulacion-de-datos-con-dplyr}}
+\chapter{\texorpdfstring{Manipulación de datos con
+\texttt{dplyr}}{Manipulación de datos con dplyr}}\label{manipulacion-de-datos-con-dplyr}
 
 Working draft\ldots{}
 
-\hypertarget{el-paquete-dplyr}{%
-\section{\texorpdfstring{El paquete \textbf{dplyr}}{El paquete dplyr}}\label{el-paquete-dplyr}}
+\section{\texorpdfstring{El paquete
+\textbf{dplyr}}{El paquete dplyr}}\label{el-paquete-dplyr}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2018,16 +2143,20 @@ Working draft\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{dplyr} Permite sustituir funciones base de R (como \texttt{split()}, \texttt{subset()},
-\texttt{apply()}, \texttt{sapply()}, \texttt{lapply()}, \texttt{tapply()} y \texttt{aggregate()})
-mediante una ``gramática'' más sencilla para la manipulación de datos:
+\textbf{dplyr} Permite sustituir funciones base de R (como
+\texttt{split()}, \texttt{subset()}, \texttt{apply()},
+\texttt{sapply()}, \texttt{lapply()}, \texttt{tapply()} y
+\texttt{aggregate()}) mediante una ``gramática'' más sencilla para la
+manipulación de datos:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{select()} seleccionar variables/columnas (también \texttt{rename()}).
+  \texttt{select()} seleccionar variables/columnas (también
+  \texttt{rename()}).
 \item
-  \texttt{mutate()} crear variables/columnas (también \texttt{transmute()}).
+  \texttt{mutate()} crear variables/columnas (también
+  \texttt{transmute()}).
 \item
   \texttt{filter()} seleccionar casos/filas (también \texttt{slice()}).
 \item
@@ -2035,8 +2164,9 @@ mediante una ``gramática'' más sencilla para la manipulación de datos:
 \item
   \texttt{summarise()} resumir valores.
 \item
-  \texttt{group\_by()} permite operaciones por grupo empleando el concepto
-  ``dividir-aplicar-combinar'' (\texttt{ungroup()} elimina el agrupamiento).
+  \texttt{group\_by()} permite operaciones por grupo empleando el
+  concepto ``dividir-aplicar-combinar'' (\texttt{ungroup()} elimina el
+  agrupamiento).
 \end{itemize}
 
 Puede trabajar con conjuntos de datos en distintos formatos:
@@ -2051,21 +2181,20 @@ Puede trabajar con conjuntos de datos en distintos formatos:
   bases de datos \emph{Hadoop} (paquete \texttt{plyrmr}).
 \end{itemize}
 
-En lugar de operar sobre vectores como las funciones base,
-opera sobre objetos de este tipo (solo nos centraremos en \texttt{data.frame}).
+En lugar de operar sobre vectores como las funciones base, opera sobre
+objetos de este tipo (solo nos centraremos en \texttt{data.frame}).
 
-\hypertarget{datos-de-ejemplo}{%
-\subsection{Datos de ejemplo}\label{datos-de-ejemplo}}
+\subsection{Datos de ejemplo}\label{datos-de-ejemplo}
 
-El fichero \emph{empleados.RData} contiene datos de empleados de un banco.
-Supongamos por ejemplo que estamos interesados en estudiar si hay
+El fichero \emph{empleados.RData} contiene datos de empleados de un
+banco. Supongamos por ejemplo que estamos interesados en estudiar si hay
 discriminación por cuestión de sexo o raza.
 
-\hypertarget{operaciones-con-variables-columnas}{%
-\section{Operaciones con variables (columnas)}\label{operaciones-con-variables-columnas}}
+\section{Operaciones con variables
+(columnas)}\label{operaciones-con-variables-columnas}
 
-\hypertarget{seleccionar-variables-con-select}{%
-\subsection{\texorpdfstring{Seleccionar variables con \textbf{select()}}{Seleccionar variables con select()}}\label{seleccionar-variables-con-select}}
+\subsection{\texorpdfstring{Seleccionar variables con
+\textbf{select()}}{Seleccionar variables con select()}}\label{seleccionar-variables-con-select}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2136,8 +2265,9 @@ Se pueden emplear los nombres de variables como índices:
 ## 6  6  13500       98      67      No Blanca varón
 \end{verbatim}
 
-Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \texttt{ends\_with()},
-\texttt{contains()}, \texttt{matches()}, \texttt{one\_of()} (ver \emph{?select}).
+Hay opciones para considerar distintos criterios:
+\texttt{starts\_with()}, \texttt{ends\_with()}, \texttt{contains()},
+\texttt{matches()}, \texttt{one\_of()} (ver \emph{?select}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2155,8 +2285,8 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 ## 6 Hombre   32100  13500 Blanca varón
 \end{verbatim}
 
-\hypertarget{generar-nuevas-variables-con-mutate}{%
-\subsection{\texorpdfstring{Generar nuevas variables con \textbf{mutate()}}{Generar nuevas variables con mutate()}}\label{generar-nuevas-variables-con-mutate}}
+\subsection{\texorpdfstring{Generar nuevas variables con
+\textbf{mutate()}}{Generar nuevas variables con mutate()}}\label{generar-nuevas-variables-con-mutate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2174,11 +2304,11 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 ## 6  6 Hombre      No       98  13500   32100  18600 189.79592
 \end{verbatim}
 
-\hypertarget{operaciones-con-casos-filas}{%
-\section{Operaciones con casos (filas)}\label{operaciones-con-casos-filas}}
+\section{Operaciones con casos
+(filas)}\label{operaciones-con-casos-filas}
 
-\hypertarget{seleccionar-casos-con-filter}{%
-\subsection{\texorpdfstring{Seleccionar casos con \textbf{filter()}}{Seleccionar casos con filter()}}\label{seleccionar-casos-con-filter}}
+\subsection{\texorpdfstring{Seleccionar casos con
+\textbf{filter()}}{Seleccionar casos con filter()}}\label{seleccionar-casos-con-filter}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2196,8 +2326,8 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 ## 6 41 Mujer      Sí       96  11550   23550
 \end{verbatim}
 
-\hypertarget{organizar-casos-con-arrange}{%
-\subsection{\texorpdfstring{Organizar casos con \textbf{arrange()}}{Organizar casos con arrange()}}\label{organizar-casos-con-arrange}}
+\subsection{\texorpdfstring{Organizar casos con
+\textbf{arrange()}}{Organizar casos con arrange()}}\label{organizar-casos-con-arrange}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2231,8 +2361,8 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 ## 6  32 Hombre      No       96  45000  110625
 \end{verbatim}
 
-\hypertarget{resumir-valores-con-summarise}{%
-\section{\texorpdfstring{Resumir valores con \textbf{summarise()}}{Resumir valores con summarise()}}\label{resumir-valores-con-summarise}}
+\section{\texorpdfstring{Resumir valores con
+\textbf{summarise()}}{Resumir valores con summarise()}}\label{resumir-valores-con-summarise}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2245,8 +2375,8 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 ## 1 34419.57 474
 \end{verbatim}
 
-\hypertarget{agrupar-casos-con-group_by}{%
-\section{\texorpdfstring{Agrupar casos con \textbf{group\_by()}}{Agrupar casos con group\_by()}}\label{agrupar-casos-con-group_by}}
+\section{\texorpdfstring{Agrupar casos con
+\textbf{group\_by()}}{Agrupar casos con group\_by()}}\label{agrupar-casos-con-group_by}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2265,11 +2395,13 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 ## 4 Mujer  Sí       23062.    40
 \end{verbatim}
 
-\hypertarget{operador-pipe-tuberia-redireccion}{%
-\section{\texorpdfstring{Operador \emph{pipe} \textbf{\%\textgreater{}\% }(tubería, redirección)}{Operador pipe \%\textgreater{}\% (tubería, redirección)}}\label{operador-pipe-tuberia-redireccion}}
+\section{\texorpdfstring{Operador \emph{pipe} \textbf{\%\textgreater{}\%
+}(tubería,
+redirección)}{Operador pipe \%\textgreater{}\% (tubería, redirección)}}\label{operador-pipe-tuberia-redireccion}
 
-Este operador le permite canalizar la salida de una función a la entrada de otra función.
-\texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}
+Este operador le permite canalizar la salida de una función a la entrada
+de otra función. \texttt{segundo(primero(datos))} se traduce en
+\texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}
 (lectura de funciones de izquierda a derecha).
 
 Ejemplos:
@@ -2308,18 +2440,22 @@ Ejemplos:
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-Para mas información sobre \emph{dplyr} ver por ejemplo la `vignette' del paquete:\\
-\href{https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html}{Introduction to dplyr}.
+Para mas información sobre \emph{dplyr} ver por ejemplo la `vignette'
+del paquete:\\
+\href{https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html}{Introduction
+to dplyr}.
 
-\hypertarget{introduccion-a-tecnologias-nosql}{%
-\chapter{Introducción a Tecnologías NoSQL}\label{introduccion-a-tecnologias-nosql}}
+\chapter{Introducción a Tecnologías
+NoSQL}\label{introduccion-a-tecnologias-nosql}
 
 Working draft\ldots{}
 
-\hypertarget{conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos}{%
-\section{Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)}\label{conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos}}
+\section{Conceptos y tipos de bases de datos NoSQL (documental,
+columnar, clave/valor y de
+grafos)}\label{conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos}
 
-NoSQL - ``Not Only SQL'' - es una nueva categoría de bases de datos no-relacionales y altamente distribuidas.
+NoSQL - ``Not Only SQL'' - es una nueva categoría de bases de datos
+no-relacionales y altamente distribuidas.
 
 Las bases de datos NoSQL nacen de la necesidad de:
 
@@ -2332,15 +2468,17 @@ Las bases de datos NoSQL nacen de la necesidad de:
   Mayor control en la disponibilidad
 \end{itemize}
 
-Pero cuidado, en muchos escenarios las BBDD relacionales siguen siendo la mejor opción.
+Pero cuidado, en muchos escenarios las BBDD relacionales siguen siendo
+la mejor opción.
 
-\hypertarget{caracteristicas-de-las-bases-de-datos-nosql}{%
-\subsection{Características de las bases de datos NoSQL}\label{caracteristicas-de-las-bases-de-datos-nosql}}
+\subsection{Características de las bases de datos
+NoSQL}\label{caracteristicas-de-las-bases-de-datos-nosql}
 
 \begin{itemize}
 \tightlist
 \item
-  Libre de esquemas -- no se diseñan las tablas y relaciones por adelantado, además de permitir la migración del esquema.
+  Libre de esquemas -- no se diseñan las tablas y relaciones por
+  adelantado, además de permitir la migración del esquema.
 \item
   Proporcionan replicación a través de escalado horizontal.
 \item
@@ -2348,11 +2486,14 @@ Pero cuidado, en muchos escenarios las BBDD relacionales siguen siendo la mejor 
 \item
   Generalmente ofrecen consistencia débil
 \item
-  Hacen uso de estructuras de datos sencillas, normalmente pares clave/valor a bajo nivel
+  Hacen uso de estructuras de datos sencillas, normalmente pares
+  clave/valor a bajo nivel
 \item
   Suelen tener un sistema de consultas propio (o SQL-like)
 \item
-  Siguen el modelo BASE (\emph{B}asic Availability, Soft state, Eventual consistency) en lugar de ACID (\emph{A}tomicity, \emph{C}onsistency, \emph{I}solation, \emph{D}urability)
+  Siguen el modelo BASE (\emph{B}asic Availability, Soft state, Eventual
+  consistency) en lugar de ACID (\emph{A}tomicity, \emph{C}onsistency,
+  \emph{I}solation, \emph{D}urability)
 \end{itemize}
 
 El modelo BASE consiste en:
@@ -2360,29 +2501,39 @@ El modelo BASE consiste en:
 \begin{itemize}
 \tightlist
 \item
-  Basic Availability -- el sistema garantiza disponibilidad, en términos del teorema CAP.
+  Basic Availability -- el sistema garantiza disponibilidad, en términos
+  del teorema CAP.
 \item
-  Soft state -- el estado del sistema puede cambiar a lo largo del tiempo, incluso sin entrada. Esto es provocado por el modelo de consistencia eventual.
+  Soft state -- el estado del sistema puede cambiar a lo largo del
+  tiempo, incluso sin entrada. Esto es provocado por el modelo de
+  consistencia eventual.
 \item
-  Eventual consistency -- el sistema alcanzará un estado consistente con el tiempo, siempre y cuando no reciba entrada durante ese tiempo.
+  Eventual consistency -- el sistema alcanzará un estado consistente con
+  el tiempo, siempre y cuando no reciba entrada durante ese tiempo.
 \end{itemize}
 
-\hypertarget{teorema-cap}{%
-\subsubsection{Teorema CAP}\label{teorema-cap}}
+\subsubsection{Teorema CAP}\label{teorema-cap}
 
-Es imposible para un sistema de cómputo distribuido garantizar simultáneamente:
+Es imposible para un sistema de cómputo distribuido garantizar
+simultáneamente:
 
 \begin{itemize}
 \tightlist
 \item
   Consistency -- Todos los nodos ven los mismos datos al mismo tiempo
 \item
-  Availability -- Toda petición obtiene una respuesta en caso tanto de éxito como fallo
+  Availability -- Toda petición obtiene una respuesta en caso tanto de
+  éxito como fallo
 \item
-  Partition Tolerance -- El sistema seguirá funcionando ante pérdidas arbitrarias de información o fallos parciales
+  Partition Tolerance -- El sistema seguirá funcionando ante pérdidas
+  arbitrarias de información o fallos parciales
 \end{itemize}
 
+\begin{figure}
+\centering
 \includegraphics{images/TeoremaCAP.jpg}
+\caption{}
+\end{figure}
 
 Las razones para escoger NoSQL son:
 
@@ -2403,13 +2554,15 @@ Las razones para escoger NoSQL son:
 \item
   Rápido desarrollo
 \item
-  Al ser schema-less o schema on-read son más flexibles que schema on-write
+  Al ser schema-less o schema on-read son más flexibles que schema
+  on-write
 \item
   Flexibilidad en el almacenamiento de datos
 \item
   Almacenan todo tipo de datos: texto, imágenes, BLOBs
 \item
-  Gran rendimiento en consultas sobre datos que no implican relaciones jerárquicas
+  Gran rendimiento en consultas sobre datos que no implican relaciones
+  jerárquicas
 \item
   Gran rendimiento sobre BBDD desnormalizadas
 \item
@@ -2420,34 +2573,57 @@ Las razones para escoger NoSQL son:
   Muchos datos temporales fuera de almacén principal
 \end{itemize}
 
-Razones para NO escoger NoSQL:
-* Consistencia y Disponibilidad de los datos son críticas
-* Relaciones entre datos son importantes
-+ E.g. joins numerosos y/o importantes
-* En general, cuando el modelo ACID encaja mejor
+Razones para NO escoger NoSQL: * Consistencia y Disponibilidad de los
+datos son críticas * Relaciones entre datos son importantes + E.g. joins
+numerosos y/o importantes * En general, cuando el modelo ACID encaja
+mejor
 
-\hypertarget{tipos-de-bases-de-datos-nosql}{%
-\subsection{Tipos de Bases de Datos NoSQL}\label{tipos-de-bases-de-datos-nosql}}
+\subsection{Tipos de Bases de Datos
+NoSQL}\label{tipos-de-bases-de-datos-nosql}
 
+\begin{figure}
+\centering
 \includegraphics{images/TiposBBDDNoSQL.png}
+\caption{}
+\end{figure}
 
+\begin{figure}
+\centering
 \includegraphics{images/TiposBBDDNoSQL2.png}
+\caption{}
+\end{figure}
 
+\begin{figure}
+\centering
 \includegraphics{images/451ResearchMap.png}
+\caption{}
+\end{figure}
 
+\begin{figure}
+\centering
 \includegraphics{images/DBEnginesRanking.png}
+\caption{}
+\end{figure}
 
+\begin{figure}
+\centering
 \includegraphics{images/451ResearchSkills.png}
+\caption{}
+\end{figure}
 
-\hypertarget{mongodb-nosql-documental}{%
-\subsection{MongoDB: NoSQL documental}\label{mongodb-nosql-documental}}
+\subsection{MongoDB: NoSQL documental}\label{mongodb-nosql-documental}
 
+\begin{figure}
+\centering
 \includegraphics{images/MongoDB.jpg}
+\caption{}
+\end{figure}
 
-\hypertarget{redis-nosql-key-value}{%
-\subsection{Redis: NoSQL key-value}\label{redis-nosql-key-value}}
+\subsection{Redis: NoSQL key-value}\label{redis-nosql-key-value}
 
-In-memory data structure store, útil para base de datos de login-password, sensor-valor, URL-respuesta, con una sintaxis muy sencilla:
+In-memory data structure store, útil para base de datos de
+login-password, sensor-valor, URL-respuesta, con una sintaxis muy
+sencilla:
 
 \begin{itemize}
 \tightlist
@@ -2473,35 +2649,52 @@ In-memory data structure store, útil para base de datos de login-password, sens
   EXPIRE promocion 60
 \end{itemize}
 
-\hypertarget{cassandra-nosql-columnar}{%
-\subsection{Cassandra: NoSQL columnar}\label{cassandra-nosql-columnar}}
+\subsection{Cassandra: NoSQL columnar}\label{cassandra-nosql-columnar}
 
+\begin{figure}
+\centering
 \includegraphics{images/BlogRDMS.png}
+\caption{}
+\end{figure}
 
+\begin{figure}
+\centering
 \includegraphics{images/BlogNoSQL.png}
+\caption{}
+\end{figure}
 
-\hypertarget{neo4j-nosql-grafos}{%
-\subsection{Neo4j: NoSQL grafos}\label{neo4j-nosql-grafos}}
+\subsection{Neo4j: NoSQL grafos}\label{neo4j-nosql-grafos}
 
+\begin{figure}
+\centering
 \includegraphics{images/Neo4jlogo.png}
+\caption{}
+\end{figure}
 
+\begin{figure}
+\centering
 \includegraphics{images/CypherQuery.png}
+\caption{}
+\end{figure}
 
+\begin{figure}
+\centering
 \includegraphics{images/CypherResult.png}
+\caption{}
+\end{figure}
 
-\hypertarget{otros-search-engines}{%
-\subsection{Otros: search engines}\label{otros-search-engines}}
+\subsection{Otros: search engines}\label{otros-search-engines}
 
-Son sistemas especializados en búsquedas, procesamiento de lenguaje natural como ElasticSearch, Solr, Splunk (logs de aplicaciones), etc\ldots{}
+Son sistemas especializados en búsquedas, procesamiento de lenguaje
+natural como ElasticSearch, Solr, Splunk (logs de aplicaciones),
+etc\ldots{}
 
-\hypertarget{conexion-de-r-a-nosql}{%
-\section{Conexión de R a NoSQL}\label{conexion-de-r-a-nosql}}
+\section{Conexión de R a NoSQL}\label{conexion-de-r-a-nosql}
 
-Step1: Install Packages plyr,XML
-Step2: Take xml file url
-Step3: create XML Internal Document type object in R using xmlParse()
-Step4 :Convert xml object to list by using xmlToList()
-Step5: convert list object to data frame by using ldply(xl, data.frame)
+Step1: Install Packages plyr,XML Step2: Take xml file url Step3: create
+XML Internal Document type object in R using xmlParse() Step4 :Convert
+xml object to list by using xmlToList() Step5: convert list object to
+data frame by using ldply(xl, data.frame)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2515,18 +2708,18 @@ Step5: convert list object to data frame by using ldply(xl, data.frame)
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{tecnologias-para-el-tratamiendo-de-datos-masivos}{%
-\chapter{Tecnologías para el Tratamiendo de Datos Masivos}\label{tecnologias-para-el-tratamiendo-de-datos-masivos}}
+\chapter{Tecnologías para el Tratamiendo de Datos
+Masivos}\label{tecnologias-para-el-tratamiendo-de-datos-masivos}
 
 Working draft\ldots{}
 
-\hypertarget{tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr}{%
-\section{Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)}\label{tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr}}
+\section{Tecnologías Big Data (Hadoop, Spark, Hive, Rspark,
+Sparklyr)}\label{tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr}
 
 Introducción a los conceptos básicos del ecosistema Hadoop
 
-Descargar Spark de \url{https://spark.apache.org/downloads.html}
-y disponer al menos de Java 7
+Descargar Spark de \url{https://spark.apache.org/downloads.html} y
+disponer al menos de Java 7
 
 \begin{verbatim}
 tar -xzf spark-1.5.2-bin-hadoop2.6.tgz
@@ -2535,7 +2728,8 @@ export SPARK_HOME=/opt/spark
 export PATH=$SPARK_HOME/bin:$PATH
 \end{verbatim}
 
-Ejecutar pyspark o sparkshell para saber si está correctamente instalado.
+Ejecutar pyspark o sparkshell para saber si está correctamente
+instalado.
 
 \begin{verbatim}
 spark-submit --class org.apache.spark.examples.SparkPi --master local $SPARK_HOME/examples/jars/spark-examples*.jar 10
@@ -2562,37 +2756,37 @@ Initialize Spark context and SQL context
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{visualizacion-y-generacion-de-cuadros-de-mando}{%
-\section{Visualización y Generación de Cuadros de Mando}\label{visualizacion-y-generacion-de-cuadros-de-mando}}
+\section{Visualización y Generación de Cuadros de
+Mando}\label{visualizacion-y-generacion-de-cuadros-de-mando}
 
-\hypertarget{introduccion-al-analisis-de-datos-masivos}{%
-\section{Introducción al Análisis de Datos Masivos}\label{introduccion-al-analisis-de-datos-masivos}}
+\section{Introducción al Análisis de Datos
+Masivos}\label{introduccion-al-analisis-de-datos-masivos}
 
-\hypertarget{appendix-apendices}{%
-\appendix}
+\appendix
 
 
 Working draft\ldots{}
 
-\hypertarget{links}{%
-\chapter{Enlaces}\label{links}}
+\chapter{Enlaces}\label{links}
 
-\textbf{Recursos para el aprendizaje de R} ( \url{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}
-): A continuación se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda\ldots{}
+\textbf{Recursos para el aprendizaje de R} (
+\url{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}
+): A continuación se muestran algunos recursos que pueden ser útiles
+para el aprendizaje de R y la obtención de ayuda\ldots{}
 
 \textbf{\emph{Ayuda online}}:
 
 \begin{itemize}
 \item
-  Ayuda en línea sobre funciones o paquetes: \href{https://www.rdocumentation.org/}{RDocumentation}
+  Ayuda en línea sobre funciones o paquetes:
+  \href{https://www.rdocumentation.org/}{RDocumentation}
 \item
   Buscador \href{http://rseek.org/}{RSeek}
 \item
   \href{http://stackoverflow.com/questions/tagged/r}{StackOverflow}
 \end{itemize}
 
-\textbf{\emph{Cursos}}:
-algunos cursos gratuitos:
+\textbf{\emph{Cursos}}: algunos cursos gratuitos:
 
 \begin{itemize}
 \item
@@ -2600,9 +2794,11 @@ algunos cursos gratuitos:
 
   \begin{itemize}
   \item
-    \href{https://www.coursera.org/learn/intro-data-science-programacion-estadistica-r}{Introducción a Data Science: Programación Estadística con R}
+    \href{https://www.coursera.org/learn/intro-data-science-programacion-estadistica-r}{Introducción
+    a Data Science: Programación Estadística con R}
   \item
-    \href{https://www.coursera.org/specializations/r}{Mastering Software Development in R}
+    \href{https://www.coursera.org/specializations/r}{Mastering Software
+    Development in R}
   \end{itemize}
 \end{itemize}
 
@@ -2613,7 +2809,8 @@ algunos cursos gratuitos:
   \begin{itemize}
   \tightlist
   \item
-    \href{https://www.datacamp.com/courses/introduccion-a-r/}{Introducción a R}
+    \href{https://www.datacamp.com/courses/introduccion-a-r/}{Introducción
+    a R}
   \end{itemize}
 \end{itemize}
 
@@ -2624,32 +2821,41 @@ algunos cursos gratuitos:
   \begin{itemize}
   \tightlist
   \item
-    \href{http://online.stanford.edu/course/statistical-learning}{Statistical Learning}
+    \href{http://online.stanford.edu/course/statistical-learning}{Statistical
+    Learning}
   \end{itemize}
 \end{itemize}
 
 \begin{itemize}
 \tightlist
 \item
-  Curso UCA: \href{http://knuth.uca.es/moodle/course/view.php?id=51}{Introducción a R, R-commander y shiny}
+  Curso UCA:
+  \href{http://knuth.uca.es/moodle/course/view.php?id=51}{Introducción a
+  R, R-commander y shiny}
 \end{itemize}
 
 \begin{itemize}
 \tightlist
 \item
-  Udacity: \href{https://eu.udacity.com/course/data-analysis-with-r--ud651}{Data Analysis with R}
+  Udacity:
+  \href{https://eu.udacity.com/course/data-analysis-with-r--ud651}{Data
+  Analysis with R}
 \end{itemize}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://swirlstats.com/scn/title.html}{Swirl Courses}:
-  se pueden hacer cursos desde el propio R con el paquete
+  \href{https://swirlstats.com/scn/title.html}{Swirl Courses}: se pueden
+  hacer cursos desde el propio R con el paquete
   \href{https://swirlstats.com}{swirl}.
 \end{itemize}
 
-Para información sobre cursos en castellano se puede recurrir a la web de \href{http://r-es.org/}{R-Hispano} en el apartado \href{http://r-es.org/category/formacion}{formación}. Algunos de los cursos que aparecen en entradas antiguas son gratuitos.
-Ver: \href{http://r-es.org/2016/02/12/cursos-masivos-y-otra-formacion-on-line-sobre-r/}{Cursos MOOC relacionados con R}.
+Para información sobre cursos en castellano se puede recurrir a la web
+de \href{http://r-es.org/}{R-Hispano} en el apartado
+\href{http://r-es.org/category/formacion}{formación}. Algunos de los
+cursos que aparecen en entradas antiguas son gratuitos. Ver:
+\href{http://r-es.org/2016/02/12/cursos-masivos-y-otra-formacion-on-line-sobre-r/}{Cursos
+MOOC relacionados con R}.
 
 \textbf{\emph{Libros}}
 
@@ -2659,14 +2865,15 @@ Ver: \href{http://r-es.org/2016/02/12/cursos-masivos-y-otra-formacion-on-line-so
 
   \begin{itemize}
   \item
-    R for Data Science
-    (\href{http://r4ds.had.co.nz/}{online}, \href{http://shop.oreilly.com/product/0636920034407.do}{O'Reilly})
+    R for Data Science (\href{http://r4ds.had.co.nz/}{online},
+    \href{http://shop.oreilly.com/product/0636920034407.do}{O'Reilly})
   \item
-    2011 - The Art of R Programming. A Tour of Statistical Software Design,
-    (\href{https://www.nostarch.com/artofr.htm}{No Starch Press})
+    2011 - The Art of R Programming. A Tour of Statistical Software
+    Design, (\href{https://www.nostarch.com/artofr.htm}{No Starch
+    Press})
   \item
-    Hands-On Programming with R: Write Your Own Functions and Simulations,
-    by Garrett Grolemund
+    Hands-On Programming with R: Write Your Own Functions and
+    Simulations, by Garrett Grolemund
     (\href{http://shop.oreilly.com/product/0636920028574.do}{O'Reilly})
   \end{itemize}
 \item
@@ -2674,8 +2881,8 @@ Ver: \href{http://r-es.org/2016/02/12/cursos-masivos-y-otra-formacion-on-line-so
 
   \begin{itemize}
   \item
-    Advanced R by Hadley Wickham
-    (online: \href{http://adv-r.had.co.nz/}{1ª ed},
+    Advanced R by Hadley Wickham (online:
+    \href{http://adv-r.had.co.nz/}{1ª ed},
     \href{https://adv-r.hadley.nz/}{2ª ed},
     \href{https://www.amazon.com/dp/1466586966}{Chapman \& Hall})
   \item
@@ -2687,35 +2894,39 @@ Ver: \href{http://r-es.org/2016/02/12/cursos-masivos-y-otra-formacion-on-line-so
     \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly})
   \end{itemize}
 \item
-  \textbf{\emph{Bookdown}}:
-  el paquete \href{https://bookdown.org}{\texttt{bookdown}} de R permite escribir libros empleando
-  \href{http://rmarkdown.rstudio.com}{R Markdown} y compartirlos.
-  En \url{https://bookdown.org} está disponible una selección de libros escritos con este paquete
-  (un listado más completo está disponible \href{https://bookdown.org/home/archive/}{aquí}).
+  \textbf{\emph{Bookdown}}: el paquete
+  \href{https://bookdown.org}{\texttt{bookdown}} de R permite escribir
+  libros empleando \href{http://rmarkdown.rstudio.com}{R Markdown} y
+  compartirlos. En \url{https://bookdown.org} está disponible una
+  selección de libros escritos con este paquete (un listado más completo
+  está disponible \href{https://bookdown.org/home/archive/}{aquí}).
   Algunos libros en este formato en castellano son:
 
   \begin{itemize}
   \item
-    \href{https://rubenfcasal.github.io/simbook}{Prácticas de Simulación}
-    (disponible en el repositorio de GitHub
+    \href{https://rubenfcasal.github.io/simbook}{Prácticas de
+    Simulación} (disponible en el repositorio de GitHub
     \href{https://github.com/rubenfcasal/simbook}{rubenfcasal/simbook}).
   \item
-    \href{https://rubenfcasal.github.io/bookdown_intro/}{Escritura de libros con bookdown}
-    (disponible en el repositorio de GitHub
+    \href{https://rubenfcasal.github.io/bookdown_intro/}{Escritura de
+    libros con bookdown} (disponible en el repositorio de GitHub
     \href{https://github.com/rubenfcasal/bookdown_intro}{rubenfcasal/bookdown\_intro}).
   \item
-    \href{https://www.datanalytics.com/libro_r/index.html}{R para profesionales de los datos: una introducción}.
+    \href{https://www.datanalytics.com/libro_r/index.html}{R para
+    profesionales de los datos: una introducción}.
   \item
-    \href{https://bookdown.org/aquintela/EBE}{Estadística Básica Edulcorada}.
+    \href{https://bookdown.org/aquintela/EBE}{Estadística Básica
+    Edulcorada}.
   \end{itemize}
 \end{itemize}
 
-\textbf{\emph{Material online}}:
-en la web se puede encontrar mucho material adicional, por ejemplo:
+\textbf{\emph{Material online}}: en la web se puede encontrar mucho
+material adicional, por ejemplo:
 
 \begin{itemize}
 \item
-  \href{https://www.r-project.org/other-docs.html}{CRAN: Other R documentation}
+  \href{https://www.r-project.org/other-docs.html}{CRAN: Other R
+  documentation}
 \item
   Blogs en inglés:
 
@@ -2745,20 +2956,22 @@ en la web se puede encontrar mucho material adicional, por ejemplo:
 
   \begin{itemize}
   \item
-    Listas de distribución de r-project.org: \url{https://stat.ethz.ch/mailman/listinfo}
+    Listas de distribución de r-project.org:
+    \url{https://stat.ethz.ch/mailman/listinfo}
   \item
-    Búsqueda en R-help: \url{http://r.789695.n4.nabble.com/R-help-f789696.html}
+    Búsqueda en R-help:
+    \url{http://r.789695.n4.nabble.com/R-help-f789696.html}
   \item
     Búsqueda en R-help-es: \url{https://r-help-es.r-project.narkive.com}
 
     \url{https://grokbase.com/g/r/r-help-es}
   \item
-    Archivos de R-help-es: \url{https://stat.ethz.ch/pipermail/r-help-es}
+    Archivos de R-help-es:
+    \url{https://stat.ethz.ch/pipermail/r-help-es}
   \end{itemize}
 \end{itemize}
 
-\hypertarget{rstudio-links}{%
-\section{RStudio}\label{rstudio-links}}
+\section{RStudio}\label{rstudio-links}
 
 \href{https://www.rstudio.com}{\textbf{\emph{RStudio}}}:
 

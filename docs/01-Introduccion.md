@@ -112,7 +112,7 @@ Asimilación práctica de materia: Asimilación y comprensión de los conocimien
     
     - [Apéndice introducción a Rmarkdown ](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html) 
     
-    -[Pesentación análisis de datos con R ](https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf)
+    - [Pesentación análisis de datos con R ](https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf)
     
 
 ### Complementaria:

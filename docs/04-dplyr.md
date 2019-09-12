@@ -267,7 +267,7 @@ empleados %>% select(sexo, catlab, salario) %>%
 abline(h = 0, lty = 2)
 ```
 
-![](04-dplyr_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
+<img src="04-dplyr_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 --------------
 
