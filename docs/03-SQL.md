@@ -46,13 +46,17 @@ Una fila de la tabla (relación) es una tupla y una columna un atributo (ver Fig
 
 (ver Figura \@ref(fig:relacion))
 
+(ver Figura \@ref(fig:relacion))
 
 
+\begin{figure}[!htb]
 
-<div class="figure" style="text-align: center">
-<img src="images/Relacion.png" alt="Esquema de una relación." width="70%" />
-<p class="caption">(\#fig:relacion)Esquema de una relación.</p>
-</div>
+{\centering \includegraphics[width=0.7\linewidth]{images/Relacion} 
+
+}
+
+\caption{Esquema de una relación.}(\#fig:relacion)
+\end{figure}
 
 Una base de datos es un conjunto de tablas (al menos una).
 
@@ -448,6 +452,15 @@ sqldf('SELECT * FROM chickwts WHERE feed NOT LIKE "%bean" LIMIT 5')
 ```
 
 
+## Ejemplo Scopus data
+
+Ver ejemplo [*citan.zip*](data/citan.zip) y Apéndice \@ref(citan).
+
+> “If your data fits in memory 
+  there is no advantage to putting it in a database: 
+  it will only be slower and more frustrating”
+>
+> --- Hadley Wickham – https://dbplyr.tidyverse.org/articles/dbplyr.html
 
 
 

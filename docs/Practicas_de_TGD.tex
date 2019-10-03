@@ -128,7 +128,7 @@ y Rubén F. Casal
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-09-12}
+    \date{2019-10-03}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -207,7 +207,7 @@ Para generar el libro (compilar) se recomendaría consultar el libro de
 \href{https://rubenfcasal.github.io/bookdown_intro}{``Escritura de
 libros con bookdown''} en castellano.
 
-\includegraphics[width=1.22in]{images/by-nc-nd-88x31}
+\includegraphics{images/by-nc-nd-88x31.png}
 
 Este obra está bajo una licencia de
 \href{https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES}{Creative
@@ -400,11 +400,14 @@ evaluación:}\label{observaciones-sobre-la-evaluacion}
 
   \begin{itemize}
   \item
+    \href{https://rubenfcasal.github.io/intror}{Introducción al Análisis
+    de Datos con R} (con Javier Roca y Julián Costa)
+  \item
     \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{Ayuda
     y Recursos para el Aprendizaje de R}
   \item
     \href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de
-    libros con el paquete bookdown}
+    libros con el paquete bookdown} (con Tomás Cotos)
   \item
     \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Apéndice
     introducción a Rmarkdown}
@@ -1512,20 +1515,310 @@ Ver ejemplo \href{data/wosdata.zip}{\emph{wosdata.R}}
 
 \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match}{\texttt{match()}}
 
+\texttt{match(x,\ table)} devuelve un vector (de la misma longitud que
+\texttt{x}) con las (primeras) posiciones de coincidencia de \texttt{x}
+en \texttt{table} (o \texttt{NA}, por defecto, si no hay coincidencia).
+Para combinar tablas puede ser más cómodo el operador \texttt{\%in\%}
+(\texttt{?\textquotesingle{}\%in\%\textquotesingle{}}).
+
 \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match}{\texttt{pmatch()}}
 
 \section{Ejemplo WoS data}\label{ejemplo-wos-data}
+
+Ver Apéndice \ref{scimetr}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# library(dplyr)}
 \CommentTok{# library(stringr)}
-\CommentTok{# Session > Set Working Directory > To Source...}
-\CommentTok{# source("data/wosdata/rwos.R")}
+\CommentTok{# https://rubenfcasal.github.io/scimetr/articles/scimetr.html}
+\KeywordTok{library}\NormalTok{(scimetr)}
 
 \NormalTok{db <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/wosdata/db_udc_2015.rds"}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(db, }\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## List of 11
+##  $ Docs      :'data.frame':  856 obs. of  26 variables:
+##  $ Authors   :'data.frame':  4051 obs. of  4 variables:
+##  $ AutDoc    :'data.frame':  5511 obs. of  2 variables:
+##  $ Categories:'data.frame':  189 obs. of  2 variables:
+##  $ CatDoc    :'data.frame':  1495 obs. of  2 variables:
+##  $ Areas     :'data.frame':  121 obs. of  2 variables:
+##  $ AreaDoc   :'data.frame':  1364 obs. of  2 variables:
+##  $ Addresses :'data.frame':  3655 obs. of  5 variables:
+##  $ AddAutDoc :'data.frame':  7751 obs. of  3 variables:
+##  $ Journals  :'data.frame':  520 obs. of  12 variables:
+##  $ label     : chr ""
+##  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
+##   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
+##  - attr(*, "class")= chr "wos.db"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{variable.labels <-}\StringTok{ }\KeywordTok{attr}\NormalTok{(db, }\StringTok{"variable.labels"}\NormalTok{)}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{as.data.frame}\NormalTok{(variable.labels)) }\CommentTok{# caption = "Variable labels"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l}
+\hline
+  & variable.labels\\
+\hline
+PT & Publication type\\
+\hline
+AU & Author\\
+\hline
+BA & Book authors\\
+\hline
+BE & Editor\\
+\hline
+GP & Group author\\
+\hline
+AF & Author full\\
+\hline
+BF & Book authors fullname\\
+\hline
+CA & Corporate author\\
+\hline
+TI & Title\\
+\hline
+SO & Publication name\\
+\hline
+SE & Series title\\
+\hline
+BS & Book series\\
+\hline
+LA & Language\\
+\hline
+DT & Document type\\
+\hline
+CT & Conference title\\
+\hline
+CY & Conference year\\
+\hline
+CL & Conference place\\
+\hline
+SP & Conference sponsors\\
+\hline
+HO & Conference host\\
+\hline
+DE & Keywords\\
+\hline
+ID & Keywords Plus\\
+\hline
+AB & Abstract\\
+\hline
+C1 & Addresses\\
+\hline
+RP & Reprint author\\
+\hline
+EM & Author email\\
+\hline
+RI & Researcher id numbers\\
+\hline
+OI & Orcid numbers\\
+\hline
+FU & Funding agency and grant number\\
+\hline
+FX & Funding text\\
+\hline
+CR & Cited references\\
+\hline
+NR & Number of cited references\\
+\hline
+TC & Times cited\\
+\hline
+Z9 & Total times cited count\\
+\hline
+U1 & Usage Count (Last 180 Days)\\
+\hline
+U2 & Usage Count (Since 2013)\\
+\hline
+PU & Publisher\\
+\hline
+PI & Publisher city\\
+\hline
+PA & Publisher address\\
+\hline
+SN & ISSN\\
+\hline
+EI & eISSN\\
+\hline
+BN & ISBN\\
+\hline
+J9 & Journal.ISI\\
+\hline
+JI & Journal.ISO\\
+\hline
+PD & Publication date\\
+\hline
+PY & Year published\\
+\hline
+VL & Volume\\
+\hline
+IS & Issue\\
+\hline
+PN & Part number\\
+\hline
+SU & Supplement\\
+\hline
+SI & Special issue\\
+\hline
+MA & Meeting abstract\\
+\hline
+BP & Beginning page\\
+\hline
+EP & Ending page\\
+\hline
+AR & Article number\\
+\hline
+DI & DOI\\
+\hline
+D2 & Book DOI\\
+\hline
+PG & Page count\\
+\hline
+WC & WOS category\\
+\hline
+SC & Research areas\\
+\hline
+GA & Document delivery number\\
+\hline
+UT & Access number\\
+\hline
+PM & Pub Med ID\\
+\hline
+\end{tabular}
+
+Documentos correspondientes a revistas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# View(db$Journals)}
+\NormalTok{iidj <-}\StringTok{ }\KeywordTok{with}\NormalTok{(db}\OperatorTok{$}\NormalTok{Journals, idj[}\KeywordTok{grepl}\NormalTok{(}\StringTok{'Chem'}\NormalTok{, JI)])}
+\NormalTok{db}\OperatorTok{$}\NormalTok{Journals}\OperatorTok{$}\NormalTok{JI[iidj]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "J. Am. Chem. Soc."                 
+##  [2] "Inorg. Chem."                      
+##  [3] "J. Chem. Phys."                    
+##  [4] "J. Chem. Thermodyn."               
+##  [5] "J. Solid State Chem."              
+##  [6] "Chemosphere"                       
+##  [7] "Antimicrob. Agents Chemother."     
+##  [8] "Trac-Trends Anal. Chem."           
+##  [9] "Eur. J. Med. Chem."                
+## [10] "J. Chem. Technol. Biotechnol."     
+## [11] "J. Antimicrob. Chemother."         
+## [12] "Food Chem."                        
+## [13] "Cancer Chemother. Pharmacol."      
+## [14] "Int. J. Chem. Kinet."              
+## [15] "Chem.-Eur. J."                     
+## [16] "J. Phys. Chem. A"                  
+## [17] "New J. Chem."                      
+## [18] "Chem. Commun."                     
+## [19] "Chem. Eng. J."                     
+## [20] "Comb. Chem. High Throughput Screen"
+## [21] "Mini-Rev. Med. Chem."              
+## [22] "Phys. Chem. Chem. Phys."           
+## [23] "Org. Biomol. Chem."                
+## [24] "J. Chem Inf. Model."               
+## [25] "ACS Chem. Biol."                   
+## [26] "Environ. Chem. Lett."              
+## [27] "Anal. Bioanal. Chem."              
+## [28] "J. Cheminformatics"                
+## [29] "J. Mat. Chem. B"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{idd <-}\StringTok{ }\KeywordTok{with}\NormalTok{(db}\OperatorTok{$}\NormalTok{Docs, idj }\OperatorTok{%in%}\StringTok{ }\NormalTok{iidj)}
+\KeywordTok{which}\NormalTok{(idd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]   2   4  16  23  43  69 119 126 138 175 188 190 203 208 226 240 272
+## [18] 337 338 341 342 357 382 385 386 387 388 394 411 412 428 460 483 518
+## [35] 525 584 600 604 605 616 620 665 697 751 753 775 784 796 806 808 847
+## [52] 848
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# View(db$Docs[idd, ])}
+\KeywordTok{head}\NormalTok{(db}\OperatorTok{$}\NormalTok{Docs[idd, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    idd idj
+## 2    2  37
+## 4    4 272
+## 16  16 195
+## 23  23 436
+## 43  43 455
+## 69  69  37
+##                                                                                                                                                                                                                                 TI
+## 2                                                                                      Role of Temperature and Pressure on the Multisensitive Multiferroic Dicyanamide Framework [TPrA][Mn(dca)(3)] with Perovskite-like Structure
+## 4                                                                                                                    Exceptionally Inert Lanthanide(III) PARACEST MRI Contrast Agents Based on an 18-Membered Macrocyclic Platform
+## 16 Reduced susceptibility to biocides in Acinetobacter baumannii: association with resistance to antimicrobials, epidemiological behaviour, biological cost and effect on the expression of genes encoding porins and efflux pumps
+## 23                                                       Two Catechol Siderophores, Acinetobactin and Amonabactin, Are Simultaneously Produced by Aeromonas salmonicida subsp salmonicida Sharing Part of the Biosynthetic Pathway
+## 43                                                                                                                                                                        Conservation of stony materials in the built environment
+## 69                                                                                                                                                         Gd3+-Based Magnetic Resonance Imaging Contrast Agent Responsive to Zn2+
+\end{verbatim}
+
+Documentos correspondientes a autores:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# View(db$Authors)}
+\NormalTok{iida <-}\StringTok{ }\KeywordTok{with}\NormalTok{(db}\OperatorTok{$}\NormalTok{Authors, ida[}\KeywordTok{grepl}\NormalTok{(}\StringTok{'Abad'}\NormalTok{, AF)])}
+\NormalTok{db}\OperatorTok{$}\NormalTok{Authors}\OperatorTok{$}\NormalTok{AF[iida]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Mato Abad, Virginia" "Abad, Maria-Jose"    "Abad Vicente, J."   
+## [4] "Abada, Sabah"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{idd <-}\StringTok{ }\KeywordTok{with}\NormalTok{(db}\OperatorTok{$}\NormalTok{AutDoc, idd[ida }\OperatorTok{%in%}\StringTok{ }\NormalTok{iida])}
+\NormalTok{idd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 273 291 518 586
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# View(db$Docs[idd, ])}
+\KeywordTok{head}\NormalTok{(db}\OperatorTok{$}\NormalTok{Docs[idd, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     idd idj
+## 273 273 282
+## 291 291 141
+## 518 518 272
+## 586 586 311
+##                                                                                                                                                                                      TI
+## 273                                 Classification of mild cognitive impairment and Alzheimer's Disease with machine-learning techniques using H-1 Magnetic Resonance Spectroscopy data
+## 291 Identifying a population of patients suitable for the implantation of a subcutaneous defibrillator (S-ICD) among patients implanted with a conventional transvenous device (TV-ICD)
+## 518           Importance of Outer-Sphere and Aggregation Phenomena in the Relaxation Properties of Phosphonated Gadolinium Complexes with Potential Applications as MRI Contrast Agents
+## 586                                                                      Enhanced thermal conductivity of rheologically percolated carbon nanofiber reinforced polypropylene composites
+\end{verbatim}
 
 \chapter{Introducción al lenguaje
 SQL}\label{introduccion-al-lenguaje-sql}
@@ -2129,10 +2422,35 @@ aplicárseles el NOT:
 ## 5    260 linseed
 \end{verbatim}
 
+\section{Ejemplo Scopus data}\label{ejemplo-scopus-data}
+
+Ver ejemplo \href{data/citan.zip}{\emph{citan.zip}} y Apéndice
+\ref{citan}.
+
+\begin{quote}
+``If your data fits in memory there is no advantage to putting it in a
+database: it will only be slower and more frustrating''
+
+--- Hadley Wickham --
+\url{https://dbplyr.tidyverse.org/articles/dbplyr.html}
+\end{quote}
+
 \chapter{\texorpdfstring{Manipulación de datos con
 \texttt{dplyr}}{Manipulación de datos con dplyr}}\label{manipulacion-de-datos-con-dplyr}
 
 Working draft\ldots{}
+
+En este capítulo se realiza una breve introducción al paquete
+\href{https://dplyr.tidyverse.org/index.html}{\texttt{dplyr}}. Para mas
+información, ver por ejemplo la `vignette' del paquete:
+
+\href{https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html}{Introduction
+to dplyr},
+
+o el Capítulo \href{http://r4ds.had.co.nz/transform.html}{5 Data
+transformation} del libro:
+
+\href{http://r4ds.had.co.nz}{R for Data Science}.
 
 \section{\texorpdfstring{El paquete
 \textbf{dplyr}}{El paquete dplyr}}\label{el-paquete-dplyr}
@@ -2142,6 +2460,10 @@ Working draft\ldots{}
 \KeywordTok{library}\NormalTok{(dplyr)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 3.5.3
+\end{verbatim}
 
 \textbf{dplyr} Permite sustituir funciones base de R (como
 \texttt{split()}, \texttt{subset()}, \texttt{apply()},
@@ -2395,8 +2717,8 @@ Hay opciones para considerar distintos criterios:
 ## 4 Mujer  Sí       23062.    40
 \end{verbatim}
 
-\section{\texorpdfstring{Operador \emph{pipe} \textbf{\%\textgreater{}\%
-}(tubería,
+\section{\texorpdfstring{Operador \emph{pipe}
+\textbf{\%\textgreater{}\%} (tubería,
 redirección)}{Operador pipe \%\textgreater{}\% (tubería, redirección)}}\label{operador-pipe-tuberia-redireccion}
 
 Este operador le permite canalizar la salida de una función a la entrada
@@ -2438,12 +2760,38 @@ Ejemplos:
 
 \includegraphics{04-dplyr_files/figure-latex/unnamed-chunk-12-1.pdf}
 
+\section{Operaciones con tablas de
+datos}\label{operaciones-con-tablas-de-datos-1}
+
+\href{https://dplyr.tidyverse.org/reference/join.html}{Join two tbls
+together}
+
+\href{https://dplyr.tidyverse.org/articles/two-table.html}{Two-table
+verbs}
+
+\section{Bases de datos con dplyr}\label{bases-de-datos-con-dplyr}
+
+\href{https://db.rstudio.com}{Databases using R}
+
+\href{https://db.rstudio.com/overview}{dplyr as a database interface}
+
+\href{https://db.rstudio.com/dplyr}{Databases using dplyr}
+
+\href{https://dbplyr.tidyverse.org/articles/dbplyr.html}{Introduction to
+dbplyr}
+
+\href{https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html}{SQL
+databases and R},
+\href{https://datacarpentry.org/R-ecology-lesson/index.html}{Data
+Carpentry}
+
+\href{https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases}{R
+and Data -- When Should we Use Relational Databases?}
+
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-Para mas información sobre \emph{dplyr} ver por ejemplo la `vignette'
-del paquete:\\
-\href{https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html}{Introduction
-to dplyr}.
+Una alternativa (más rápida) es emplear
+\href{https://rdatatable.gitlab.io/data.table}{data.table}.
 
 \chapter{Introducción a Tecnologías
 NoSQL}\label{introduccion-a-tecnologias-nosql}
@@ -3001,7 +3349,8 @@ material adicional, por ejemplo:
   \href{https://readr.tidyverse.org}{readr}
 \item
   \href{https://db.rstudio.com}{Databases using R},
-  \href{https://db.rstudio.com/overview}{dplyr as a database interface}
+  \href{https://db.rstudio.com/overview}{dplyr as a database interface},
+  \href{https://db.rstudio.com/dplyr}{Databases using dplyr}
 \end{itemize}
 
 \href{https://resources.rstudio.com/rstudio-cheatsheets}{\textbf{\emph{CheatSheets}}}:
@@ -3018,6 +3367,1300 @@ material adicional, por ejemplo:
 \item
   \href{https://resources.rstudio.com/rstudio-cheatsheets/stringr-cheat-sheet}{stringr}
 \end{itemize}
+
+\section{Bibliometría}\label{bibliom-links}
+
+\begin{itemize}
+\item
+  \href{https://cran.r-project.org/web/packages/CITAN/index.html}{CITAN}
+\item
+  \href{https://rubenfcasal.github.io/scimetr/index.html}{scimetr}
+\item
+  \href{http://www.bibliometrix.org}{bibliometrix}
+\item
+  \href{https://vt-arc.github.io/wosr/index.html}{wosr}
+\item
+  \href{https://github.com/juba/rwos}{rwos}
+\item
+  \href{https://docs.ropensci.org/rcrossref}{rcrossref}
+\item
+  \href{https://ropensci.org/packages/}{ropensci}: Literature
+\item
+  \href{https://cran.r-project.org/web/packages/Diderot/index.html}{Diderot}
+\item
+  \ldots{}
+\end{itemize}
+
+\chapter{El paquete scimetr}\label{scimetr}
+
+Package \texttt{scimetr} implements tools for quantitative research in
+scientometrics and bibliometrics. It provides routines for importing
+bibliographic data from Thomson Reuters' Web of Science
+(\url{http://www.webofknowledge.com}) and performing bibliometric
+analysis. For more information visit
+\url{https://rubenfcasal.github.io/scimetr/articles/scimetr.html}.
+
+\section{Instalación}\label{instalacion}
+
+Para instalar el paquete sería recomendable en primer lugar instalar las
+dependencias:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{'dplyr'}\NormalTok{, }\StringTok{'lazyeval'}\NormalTok{, }\StringTok{'stringr'}\NormalTok{, }\StringTok{'ggplot2'}\NormalTok{, }\StringTok{'openxlsx'}\NormalTok{, }\StringTok{'tidyr'}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Como de momento no está disponible en CRAN, habría que instalar la
+versión de desarrollo en GitHub. En Windows bastaría con instalar la
+versión binaria del paquete \emph{scimetr\_X.Y.Z.zip} (disponible
+\href{https://github.com/rubenfcasal/scimetr/tree/master/docs}{aqui}),
+alternativamente se puede instalar directamente de GitHub:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install.packages("devtools")}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"rubenfcasal/scimetr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Una vez instalado ya podríamos cargar el paquete:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(scimetr)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Carga de datos}\label{carga-de-datos}
+
+\subsection{Datos de ejemplo}\label{datos-de-ejemplo-1}
+
+En el paquete se incluyen dos conjuntos de datos de ejemplo
+correspondientes a la búsqueda en WoS por el campo Organización-Nombre
+preferido de la UDC (Organization-Enhaced: OG = Universidade da Coruna):
+
+\begin{itemize}
+\item
+  \texttt{wosdf}: año 2015.
+\item
+  \texttt{wosdf2}: área de investigación `Mathematics', años 2008-2017.
+\end{itemize}
+
+Variables WoS:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# View(wosdf2) # En RStudio...}
+\NormalTok{variable.labels <-}\StringTok{ }\KeywordTok{attr}\NormalTok{(wosdf, }\StringTok{"variable.labels"}\NormalTok{)}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{as.data.frame}\NormalTok{(variable.labels)) }\CommentTok{# caption = "Variable labels"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l}
+\hline
+  & variable.labels\\
+\hline
+PT & Publication type\\
+\hline
+AU & Author\\
+\hline
+BA & Book authors\\
+\hline
+BE & Editor\\
+\hline
+GP & Group author\\
+\hline
+AF & Author full\\
+\hline
+BF & Book authors fullname\\
+\hline
+CA & Corporate author\\
+\hline
+TI & Title\\
+\hline
+SO & Publication name\\
+\hline
+SE & Series title\\
+\hline
+BS & Book series\\
+\hline
+LA & Language\\
+\hline
+DT & Document type\\
+\hline
+CT & Conference title\\
+\hline
+CY & Conference year\\
+\hline
+CL & Conference place\\
+\hline
+SP & Conference sponsors\\
+\hline
+HO & Conference host\\
+\hline
+DE & Keywords\\
+\hline
+ID & Keywords Plus\\
+\hline
+AB & Abstract\\
+\hline
+C1 & Addresses\\
+\hline
+RP & Reprint author\\
+\hline
+EM & Author email\\
+\hline
+RI & Researcher id numbers\\
+\hline
+OI & Orcid numbers\\
+\hline
+FU & Funding agency and grant number\\
+\hline
+FX & Funding text\\
+\hline
+CR & Cited references\\
+\hline
+NR & Number of cited references\\
+\hline
+TC & Times cited\\
+\hline
+Z9 & Total times cited count\\
+\hline
+U1 & Usage Count (Last 180 Days)\\
+\hline
+U2 & Usage Count (Since 2013)\\
+\hline
+PU & Publisher\\
+\hline
+PI & Publisher city\\
+\hline
+PA & Publisher address\\
+\hline
+SN & ISSN\\
+\hline
+EI & eISSN\\
+\hline
+BN & ISBN\\
+\hline
+J9 & Journal.ISI\\
+\hline
+JI & Journal.ISO\\
+\hline
+PD & Publication date\\
+\hline
+PY & Year published\\
+\hline
+VL & Volume\\
+\hline
+IS & Issue\\
+\hline
+PN & Part number\\
+\hline
+SU & Supplement\\
+\hline
+SI & Special issue\\
+\hline
+MA & Meeting abstract\\
+\hline
+BP & Beginning page\\
+\hline
+EP & Ending page\\
+\hline
+AR & Article number\\
+\hline
+DI & DOI\\
+\hline
+D2 & Book DOI\\
+\hline
+PG & Page count\\
+\hline
+WC & WOS category\\
+\hline
+SC & Research areas\\
+\hline
+GA & Document delivery number\\
+\hline
+UT & Access number\\
+\hline
+PM & Pub Med ID\\
+\hline
+\end{tabular}
+
+Se puede crear una base de datos con la función \texttt{CreateDB.wos()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{db <-}\StringTok{ }\KeywordTok{CreateDB.wos}\NormalTok{(wosdf2, }\DataTypeTok{label =} \StringTok{"Mathematics_UDC_2008-2017 (01-02-2019)"}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(db, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 11
+##  $ Docs      :'data.frame':  389 obs. of  26 variables:
+##  $ Authors   :'data.frame':  611 obs. of  4 variables:
+##  $ AutDoc    :'data.frame':  1260 obs. of  2 variables:
+##  $ Categories:'data.frame':  46 obs. of  2 variables:
+##  $ CatDoc    :'data.frame':  866 obs. of  2 variables:
+##  $ Areas     :'data.frame':  26 obs. of  2 variables:
+##  $ AreaDoc   :'data.frame':  771 obs. of  2 variables:
+##  $ Addresses :'data.frame':  896 obs. of  5 variables:
+##  $ AddAutDoc :'data.frame':  1328 obs. of  3 variables:
+##  $ Journals  :'data.frame':  150 obs. of  12 variables:
+##  $ label     : chr "Mathematics_UDC_2008-2017 (01-02-2019)"
+##  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
+##   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
+##  - attr(*, "class")= chr "wos.db"
+\end{verbatim}
+
+\subsection{Cargar datos de
+directorio}\label{cargar-datos-de-directorio}
+
+Se pueden cargar automáticamente los archivos wos (tienen una limitación
+de 500 registros) de un subdirectorio:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir}\NormalTok{(}\StringTok{"UDC_2008-2017 (01-02-2019)"}\NormalTok{, }\DataTypeTok{pattern=}\StringTok{'*.txt'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "savedrecs01.txt" "savedrecs02.txt" "savedrecs03.txt"
+##  [4] "savedrecs04.txt" "savedrecs05.txt" "savedrecs06.txt"
+##  [7] "savedrecs07.txt" "savedrecs08.txt" "savedrecs09.txt"
+## [10] "savedrecs10.txt" "savedrecs11.txt" "savedrecs12.txt"
+## [13] "savedrecs13.txt" "savedrecs14.txt" "savedrecs15.txt"
+\end{verbatim}
+
+Se pueden combinar los ficheros y crear la correspondiente base de datos
+con los siguientes comandos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wos.txt <-}\StringTok{ }\KeywordTok{ImportSources.wos}\NormalTok{(}\StringTok{"UDC_2008-2017 (01-02-2019)"}\NormalTok{, }\DataTypeTok{other =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{db.txt <-}\StringTok{ }\KeywordTok{CreateDB.wos}\NormalTok{(wos.txt)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Sumarios}\label{sumarios}
+
+\subsection{\texorpdfstring{Sumario
+\texttt{summary.wos.db()}}{Sumario summary.wos.db()}}\label{sumario-summary.wos.db}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res1 <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(db)}
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{digits =} \DecValTok{5}\NormalTok{)}
+\NormalTok{res1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Number of documents: 389 
+## Authors: 611 
+## Period: 2008 - 2017 
+## 
+## Document types:
+##                    Documents
+## Article                  360
+## Correction                 1
+## Editorial Material         5
+## Proceedings Paper         16
+## Review                     7
+## 
+## Number of authors per document:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.00    2.00    3.00    3.24    4.00    8.00 
+## 
+## Number of documents per author:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.00    1.00    1.00    2.06    2.00   29.00 
+## 
+## Number of times cited:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0     1.0     3.0    10.9     9.0  1139.0 
+## 
+## Indexes:
+##  H  G 
+## 24 54 
+## 
+## Top Categories:
+##                                                  Documents
+## Mathematics, Interdisciplinary Applications            134
+## Mathematics, Applied                                   130
+## Statistics & Probability                               121
+## Mathematics                                             77
+## Engineering, Multidisciplinary                          64
+## Mechanics                                               59
+## Computer Science, Interdisciplinary Applications        45
+## Computer Science, Artificial Intelligence               20
+## Social Sciences, Mathematical Methods                   17
+## Automation & Control Systems                            16
+## Others                                                 183
+## 
+## Top Areas:
+##                                         Documents
+## Mathematics                                   389
+## Computer Science                               69
+## Engineering                                    69
+## Mechanics                                      59
+## Physics                                        22
+## Chemistry                                      17
+## Mathematical Methods In Social Sciences        17
+## Automation & Control Systems                   16
+## Instruments & Instrumentation                  16
+## Business & Economics                           15
+## Others                                         82
+## 
+## Top Journals:
+##                                     Documents
+## Comput. Meth. Appl. Mech. Eng.             29
+## J. Math. Anal. Appl.                       11
+## Chemometrics Intell. Lab. Syst.            11
+## Rev. Int. Metod. Numer. Calc. Dise.        11
+## J. Comput. Appl. Math.                     10
+## Comput. Stat. Data Anal.                    9
+## Appl. Numer. Math.                          9
+## Int. J. Numer. Methods Fluids               9
+## Int. J. Numer. Methods Eng.                 8
+## J. Nonparametr. Stat.                       8
+## Others                                    274
+## 
+## Top Countries:
+##         Documents
+## Spain         389
+## USA            49
+## France         32
+## Italy          13
+## Mexico         11
+## UK             11
+## Germany        10
+## Canada          8
+## China           8
+## Belgium         7
+## Others         52
+\end{verbatim}
+
+\subsection{\texorpdfstring{Sumario por años
+\texttt{summary\_year()}}{Sumario por años summary\_year()}}\label{sumario-por-anos-summary_year}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res2 <-}\StringTok{ }\KeywordTok{summary_year}\NormalTok{(db)}
+\NormalTok{res2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Annual Scientific Production:
+## 
+##      Documents
+## 2008        42
+## 2009        28
+## 2010        40
+## 2011        37
+## 2012        44
+## 2013        40
+## 2014        38
+## 2015        39
+## 2016        47
+## 2017        34
+## 
+## Annual Authors per Document:
+## 
+##          Avg Median
+##  2008 2.8810    3.0
+##  2009 3.3214    3.0
+##  2010 3.3500    3.0
+##  2011 3.3784    3.0
+##  2012 2.8182    2.5
+##  2013 3.3750    3.0
+##  2014 3.2368    3.0
+##  2015 3.0513    3.0
+##  2016 3.5745    3.0
+##  2017 3.4706    3.0
+## 
+## Annual Times Cited:
+## 
+##       Cites     Avg Median
+##  2008   755 17.9762    5.0
+##  2009   265  9.4643    6.0
+##  2010   410 10.2500    5.0
+##  2011  1422 38.4324    5.0
+##  2012   335  7.6136    3.5
+##  2013   271  6.7750    4.0
+##  2014   336  8.8421    3.5
+##  2015   215  5.5128    2.0
+##  2016   192  4.0851    2.0
+##  2017    55  1.6176    1.0
+\end{verbatim}
+
+\section{Gráficos}\label{graficos}
+
+Se emplea la librería
+\href{https://ggplot2.tidyverse.org}{\texttt{ggplot2}}\ldots{}
+
+\subsection{\texorpdfstring{Gráficos de la base de datos
+\texttt{plot.wos.db()}}{Gráficos de la base de datos plot.wos.db()}}\label{graficos-de-la-base-de-datos-plot.wos.db}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(db)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/plotdb-1} \end{center}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/plotdb-2} \end{center}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/plotdb-3} \end{center}
+
+\subsection{\texorpdfstring{Gráficos sumario
+\texttt{plot.summary.wos.db()}}{Gráficos sumario plot.summary.wos.db()}}\label{graficos-sumario-plot.summary.wos.db}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(res1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-1} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-2} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-3} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-4} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-5} \end{flushleft}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(res1, }\DataTypeTok{pie =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-6} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-7} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-8} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-9} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-9-10} \end{flushleft}
+
+\subsection{\texorpdfstring{Gráficos sumario por años
+\texttt{plot.summary.year()}}{Gráficos sumario por años plot.summary.year()}}\label{graficos-sumario-por-anos-plot.summary.year}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(res2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-10-1} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-10-2} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-10-3} \end{flushleft}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(res2, }\DataTypeTok{boxplot =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-10-4} \end{flushleft}
+
+\begin{flushleft}\includegraphics[width=0.7\linewidth]{21-scimetr_files/figure-latex/unnamed-chunk-10-5} \end{flushleft}
+
+\section{Filtrado}\label{filtrado-1}
+
+Se combinan las funciones
+\texttt{get.id\textless{}Tabla\textgreater{}()} (se puede emplear
+cualquier variable de la correspondiente tabla; multiple conditions are
+combined with \texttt{\&}, see e.g. \texttt{dplyr::filter()}) con la
+función \texttt{get.idDocs()}.
+
+\subsection{Funciones get}\label{funciones-get}
+
+\begin{itemize}
+\item
+  \texttt{get.idAuthors()}: buscar id (códigos) de autores
+
+  Buscar un autor concreto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{idAuthor <-}\StringTok{ }\KeywordTok{get.idAuthors}\NormalTok{(db, AF }\OperatorTok{==}\StringTok{ "Cao, Ricardo"}\NormalTok{)}
+\NormalTok{idAuthor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cao, Ricardo 
+##           16
+\end{verbatim}
+
+  Buscar en nombres de autores:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{idAuthors <-}\StringTok{ }\KeywordTok{get.idAuthors}\NormalTok{(db, }\KeywordTok{grepl}\NormalTok{(}\StringTok{'Cao'}\NormalTok{, AF))}
+\NormalTok{idAuthors}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Cao, Ricardo Cao-Rial, Maria Teresa 
+##                     16                     69
+\end{verbatim}
+\item
+  \texttt{get.idAreas()}: Devuelve códigos de las áreas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get.idAreas}\NormalTok{(db, SC }\OperatorTok{==}\StringTok{ 'Mathematics'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mathematics 
+##          16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get.idAreas}\NormalTok{(db, SC }\OperatorTok{==}\StringTok{ 'Mathematics'} \OperatorTok{|}\StringTok{ }\NormalTok{SC }\OperatorTok{==}\StringTok{ 'Computer Science'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Computer Science      Mathematics 
+##                7               16
+\end{verbatim}
+\item
+  \texttt{get.idCategories()}: códigos de las categorías
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get.idCategories}\NormalTok{(db, }\KeywordTok{grepl}\NormalTok{(}\StringTok{'Mathematics'}\NormalTok{, WC))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                 Mathematics 
+##                                          28 
+##                        Mathematics, Applied 
+##                                          29 
+## Mathematics, Interdisciplinary Applications 
+##                                          30
+\end{verbatim}
+\item
+  \texttt{get.idJournals()} códigos de las revistas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ijss <-}\StringTok{ }\KeywordTok{get.idJournals}\NormalTok{(db, SO }\OperatorTok{==}\StringTok{ 'JOURNAL OF STATISTICAL SOFTWARE'}\NormalTok{)}
+\NormalTok{ijss}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## JOURNAL OF STATISTICAL SOFTWARE 
+##                             134
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(db}\OperatorTok{$}\NormalTok{Journals[ijss, ], }\DataTypeTok{caption =} \StringTok{"JSS"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{table}[t]
+
+  \caption{\label{tab:unnamed-chunk-15}JSS}
+  \centering
+  \begin{tabular}{l|r|l|l|l|l|l|l|l|l|l|l|l}
+  \hline
+    & idj & SO & SE & BS & LA & PU & PI & PA & SN & EI & J9 & JI\\
+  \hline
+  2796 & 134 & JOURNAL OF STATISTICAL SOFTWARE &  &  & English & JOURNAL STATISTICAL SOFTWARE & LOS ANGELES & UCLA DEPT STATISTICS, 8130 MATH SCIENCES BLDG, BOX 951554, LOS ANGELES, CA 90095-1554 USA & 1548-7660 &  & J STAT SOFTW & J. Stat. Softw.\\
+  \hline
+  \end{tabular}
+  \end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get.idJournals}\NormalTok{(db, JI }\OperatorTok{==}\StringTok{ 'J. Stat. Softw.'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## JOURNAL OF STATISTICAL SOFTWARE 
+##                             134
+\end{verbatim}
+\end{itemize}
+
+\subsection{Obtener documentos (de autores, revistas,
+\ldots{})}\label{obtener-documentos-de-autores-revistas}
+
+Los indices anteriores se pueden combinar en \texttt{get.idDocs()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{idocs <-}\StringTok{ }\KeywordTok{get.idDocs}\NormalTok{(db, }\DataTypeTok{idAuthors =}\NormalTok{ idAuthor)}
+\NormalTok{idocs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315
+## [18] 332 340 346 347 350 359 362 372 375 384 385
+\end{verbatim}
+
+Los índices de documentos se pueden utilizar como filtro p.e. en
+\texttt{summary.wos.db()}.
+
+\subsection{Sumarios filtrados}\label{sumarios-filtrados}
+
+Obtener sumario de autores:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(db, idocs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Number of documents: 28 
+## Authors: 40 
+## Period: 2008 - 2017 
+## 
+## Document types:
+##                    Documents
+## Article                   26
+## Editorial Material         1
+## Proceedings Paper          1
+## 
+## Number of authors per document:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2.00    2.00    3.00    3.14    4.00    6.00 
+## 
+## Number of documents per author:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     1.0     1.0     1.0     2.2     2.0    28.0 
+## 
+## Number of times cited:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.00    1.00    2.00    3.25    4.25   14.00 
+## 
+## Indexes:
+## H G 
+## 5 7 
+## 
+## Top Categories:
+##                                                  Documents
+## Statistics & Probability                                26
+## Mathematics, Interdisciplinary Applications              4
+## Computer Science, Interdisciplinary Applications         3
+## Economics                                                2
+## Mathematical & Computational Biology                     2
+## Social Sciences, Mathematical Methods                    2
+## Automation & Control Systems                             1
+## Biochemistry & Molecular Biology                         1
+## Biology                                                  1
+## Business, Finance                                        1
+## Others                                                   4
+## 
+## Top Areas:
+##                                            Documents
+## Mathematics                                       28
+## Computer Science                                   4
+## Business & Economics                               2
+## Mathematical & Computational Biology               2
+## Mathematical Methods In Social Sciences            2
+## Automation & Control Systems                       1
+## Biochemistry & Molecular Biology                   1
+## Chemistry                                          1
+## Instruments & Instrumentation                      1
+## Life Sciences & Biomedicine - Other Topics         1
+## Others                                             1
+## 
+## Top Journals:
+##                          Documents
+## J. Nonparametr. Stat.            4
+## Comput. Stat. Data Anal.         3
+## Comput. Stat.                    3
+## Ann. Inst. Stat. Math.           2
+## Test                             2
+## Stat. Neerl.                     1
+## J. Multivar. Anal.               1
+## J. Time Ser. Anal.               1
+## Stat. Probab. Lett.              1
+## J. Appl. Stat.                   1
+## Others                           9
+## 
+## Top Countries:
+##           Documents
+## Spain            28
+## Belgium           6
+## France            2
+## Germany           2
+## Argentina         1
+## Canada            1
+## India             1
+## Mexico            1
+## Norway            1
+\end{verbatim}
+
+Obtener sumario de autores por años:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary_year}\NormalTok{(db, idocs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Annual Scientific Production:
+## 
+##      Documents
+## 2008         7
+## 2009         4
+## 2010         4
+## 2011         1
+## 2012         2
+## 2013         3
+## 2014         1
+## 2016         2
+## 2017         4
+## 
+## Annual Authors per Document:
+## 
+##          Avg Median
+##  2008 2.4286    2.0
+##  2009 3.7500    3.5
+##  2010 3.5000    3.5
+##  2011 4.0000    4.0
+##  2012 3.0000    3.0
+##  2013 3.6667    4.0
+##  2014 2.0000    2.0
+##  2016 2.5000    2.5
+##  2017 3.5000    3.5
+## 
+## Annual Times Cited:
+## 
+##       Cites    Avg Median
+##  2008    42 6.0000    6.0
+##  2009    20 5.0000    3.0
+##  2010     9 2.2500    2.0
+##  2011     1 1.0000    1.0
+##  2012     1 0.5000    0.5
+##  2013     8 2.6667    2.0
+##  2014     4 4.0000    4.0
+##  2016     3 1.5000    1.5
+##  2017     3 0.7500    0.5
+\end{verbatim}
+
+\section{Indices de autores}\label{indices-de-autores}
+
+Obtener índices de múltiples autores
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{TC.authors}\NormalTok{(db, idAuthors)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                        H G
+## Cao, Ricardo           5 7
+## Cao-Rial, Maria Teresa 1 1
+\end{verbatim}
+
+\chapter{El paquete CITAN}\label{citan}
+
+The practical usability of the CITation ANalysis package for R
+statistical computing environment, is shown. The main aim of the
+software is to support bibliometricians with a tool for preprocessing
+and cleaning bibliographic data retrieved from SciVerse Scopus and for
+calculating the most popular indices of scientific impact.
+
+\url{https://cran.r-project.org/web/packages/CITAN/index.html}
+
+\url{https://cran.r-project.org/web/packages/CITAN/CITAN.pdf}
+
+\url{https://github.com/gagolews/CITAN}
+
+\url{https://www.gagolewski.com/publications/2011citan.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(CITAN)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: agop
+## Loading required package: RSQLite
+## Loading required package: RGtk2
+\end{verbatim}
+
+Emplea el paquete
+\href{https://r-dbi.github.io/RSQLite}{\texttt{RSQLite}}.
+
+Sin embargo, la función \texttt{Scopus\_ReadCSV()} produce un error en
+Windows. Para corregirlo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Session > Set Working Directory > To Source...}
+\KeywordTok{source}\NormalTok{(}\StringTok{"datos/citan/Scopus_ReadCSV2.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Creación de la base de
+datos}\label{creacion-de-la-base-de-datos}
+
+Se generará el archivo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dbfilename <-}\StringTok{ "data/citan/UDC2015.db"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Primera ejecución: Creación del modelo de
+DB}\label{primera-ejecucion-creacion-del-modelo-de-db}
+
+Creación del archivo de BD vacío:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conn <-}\StringTok{ }\KeywordTok{lbsConnect}\NormalTok{(dbfilename)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in lbsConnect(dbfilename): Your Local Bibliometric Storage is
+## empty. Use lbsCreate(...) to establish one.
+\end{verbatim}
+
+Creación del esquema con
+\href{https://www.rdocumentation.org/packages/CITAN/versions/2015.12-2/topics/lbsCreate}{\texttt{lbsCreate()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lbsCreate}\NormalTok{(conn) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: RSQLite::dbGetInfo() is deprecated: please use individual metadata
+## functions instead
+
+## Creating table 'Biblio_Categories'... Done.
+## Creating table 'Biblio_Sources'... Done.
+## Creating index for 'Biblio_Sources'... Done.
+## Creating table 'Biblio_SourcesCategories'... Done.
+## Creating table 'Biblio_Documents'... Done.
+## Creating table 'Biblio_Citations'... Done.
+## Creating table 'Biblio_Surveys'... Done.
+## Creating table 'Biblio_DocumentsSurveys'... Done.
+## Creating table 'Biblio_Authors'... Done.
+## Creating table 'Biblio_AuthorsDocuments'... Done.
+## Creating view 'ViewBiblio_DocumentsSurveys'... Done.
+## Creating view 'ViewBiblio_DocumentsCategories'... Done.
+## Your Local Bibliometric Storage has been created.
+##    Perhaps now you may wish to use Scopus_ImportSources(...) to import source information.
+
+## [1] TRUE
+\end{verbatim}
+
+Importar información de Scopus (descargada previamente\ldots{}) con la
+función
+\href{https://www.rdocumentation.org/packages/CITAN/versions/2015.12-2/topics/Scopus_ImportSources}{\texttt{Scopus\_ImportSources()}}
+(\href{https://github.com/gagolews/CITAN/blob/master/R/scopus.importsources.R}{código}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Scopus_ImportSources}\NormalTok{(conn) }\CommentTok{# Cuidado con el tiempo de CPU...}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importing Scopus ASJC codes... Done, 334 records added.
+## Importing Scopus source list...
+
+## Warning in doTryCatch(return(expr), name, parentenv, handler): No ASJC @
+## row=510.
+
+## Warnings... __TRUNCATED__
+
+## Done, 30787 of 30794 records added; 55297 ASJC codes processed.
+## Note: 7 records omitted @ rows=13847,15526,16606,17371,19418,24419,29365.
+
+## [1] TRUE
+\end{verbatim}
+
+\subsection{Incorporar nuevos datos}\label{incorporar-nuevos-datos}
+
+Con la función \texttt{Scopus\_ReadCSV()} se produce un error en
+Windows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{  }\KeywordTok{Scopus_ReadCSV}\NormalTok{(}\StringTok{"udc_2015.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in Scopus_ReadCSV("udc_2015.csv") : Column not found: `Source'.
+\end{verbatim}
+
+Empleando la versión modificada:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{  }\KeywordTok{Scopus_ReadCSV2}\NormalTok{(}\StringTok{"udc_2015.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Añadir los documentos a la base de datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lbsImportDocuments}\NormalTok{(conn, data) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importing documents and their authors... Importing 1324 authors... 1324 new authors added.
+
+## Warning in .lbsImportDocuments_Add_Get_idSource(conn, record$SourceTitle, :
+## no source with sourceTitle=''Quaternary Science Reviews'' found for record
+## 10. Setting IdSource=NA.
+
+## Warnings... __TRUNCATED__
+
+## Done, 363 of 363 new records added to Default survey/udc_2015.csv.
+
+## [1] TRUE
+\end{verbatim}
+
+Se podría añadir una descripción para trabajar con distintos grupos de
+documentos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lbsImportDocuments}\NormalTok{(conn, data, }\StringTok{"udc_2015"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\section{Extraer información de la
+BD}\label{extraer-informacion-de-la-bd}
+
+En siguientes ejecuciones bastará con conectar con la BD
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conn <-}\StringTok{ }\KeywordTok{lbsConnect}\NormalTok{(dbfilename)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Estadísticos descriptivos}\label{estadisticos-descriptivos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lbsDescriptiveStats}\NormalTok{(conn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: RSQLite::dbGetInfo() is deprecated: please use individual metadata
+## functions instead
+\end{verbatim}
+
+\begin{verbatim}
+## Number of sources in your LBS:           30787
+## Number of documents in your LBS:         363
+## Number of author records in your LBS:    1324
+## Number of author groups in your LBS:     1
+## Number of ungrouped authors in your LBS: 1324
+## 
+## You have chosen the following data restrictions:
+##  Survey:         <ALL>.
+##  Document types: <ALL>.
+## 
+## Surveys:
+##   surveyDescription DocumentCount
+## 1    Default survey           363
+##   * Note that a document may belong to many surveys/files.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{22-CITAN_files/figure-latex/unnamed-chunk-13-1} \end{center}
+
+\begin{verbatim}
+## Document types:
+## 
+##  ar  cp  ip  re  le  no  sh  er 
+## 256  52  24  15   6   2   2   1
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{22-CITAN_files/figure-latex/unnamed-chunk-13-2} \end{center}
+
+\begin{verbatim}
+## Publication years:
+## 
+## 2014 2015 2016 
+##    1  354    8
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{22-CITAN_files/figure-latex/unnamed-chunk-13-3} \end{center}
+
+\begin{verbatim}
+## Citations per document:
+## 
+##   0   1   2   3   4   5   6   7   9  10  11  12  15 
+## 223  73  25  17  14   2   1   2   1   2   1   1   1
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{22-CITAN_files/figure-latex/unnamed-chunk-13-4} \end{center}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{22-CITAN_files/figure-latex/unnamed-chunk-13-5} \end{center}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{22-CITAN_files/figure-latex/unnamed-chunk-13-6} \end{center}
+
+\begin{verbatim}
+## Categories of documents:
+##          Economics, Econometrics and Finance(all) 
+##                                                 8 
+##                                  Engineering(all) 
+##                                                45 
+##                          Arts and Humanities(all) 
+##                                                 9 
+##                                     Medicine(all) 
+##                                                43 
+##                         Chemical Engineering(all) 
+##                                                10 
+##                             Computer Science(all) 
+##                                                35 
+##   Pharmacology, Toxicology and Pharmaceutics(all) 
+##                                                10 
+##                                             Other 
+##                                                33 
+##                            Materials Science(all) 
+##                                                22 
+##         Agricultural and Biological Sciences(all) 
+##                                                27 
+##                                  Mathematics(all) 
+##                                                30 
+## Biochemistry, Genetics and Molecular Biology(all) 
+##                                                32 
+##                        Environmental Science(all) 
+##                                                32 
+##                              Social Sciences(all) 
+##                                                32 
+##                        Physics and Astronomy(all) 
+##                                                19 
+##                                       Energy(all) 
+##                                                10 
+##          Business, Management and Accounting(all) 
+##                                                10 
+##                                   Psychology(all) 
+##                                                 8 
+##                                    Chemistry(all) 
+##                                                51
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{22-CITAN_files/figure-latex/unnamed-chunk-13-7} \end{center}
+
+\begin{verbatim}
+## Documents per author:
+## 
+##    1    2    3    4    5    6    7    8    9   10   11   13   16 
+## 1000  224   46   18   12    8    6    1    1    2    2    1    1
+\end{verbatim}
+
+\subsection{Otra información}\label{otra-informacion}
+
+Se puede obtener información acerca de los documentos producidos y las
+citas recibidas correspondientes a cada autor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{citseq <-}\StringTok{ }\KeywordTok{lbsGetCitations}\NormalTok{(conn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Data set restrictions:
+##  Survey:         <ALL>.
+##  Document types: <ALL>.
+## 
+## Creating citation sequences... OK, 1322 of 1322 records read.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# citseq <- lbsGetCitations(conn, surveyDescription="udc_2015")}
+\end{Highlighting}
+\end{Shaded}
+
+Número de autores
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(citseq) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1322
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{names}\NormalTok{(citseq))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "LÓPEZ-GARCÍA X."   "MARWAH S."         "OTERO T.P."       
+## [4] "IGLESIAS M.P."     "GONZÁLEZ-RIVAS D." "BARROS CASTRO J."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{citseq[[}\DecValTok{4}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 229  11 
+##   1   0 
+## attr(,"IdAuthor")
+## [1] 4
+\end{verbatim}
+
+Se pueden seleccionar autores:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{id <-}\StringTok{ }\KeywordTok{lbsSearchAuthors}\NormalTok{(conn, }\KeywordTok{c}\NormalTok{(}\StringTok{"Cao R."}\NormalTok{, }\StringTok{"Naya S."}\NormalTok{, }\StringTok{"Naya-Fernandez S."}\NormalTok{))}
+\NormalTok{id}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   46 1193
+\end{verbatim}
+
+Obtener las citas de los trabajos de los autores seleccionados:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{citseq2 <-}\StringTok{ }\KeywordTok{lbsGetCitations}\NormalTok{(conn, }\DataTypeTok{idAuthors=}\NormalTok{id)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Data set restrictions:
+##  Survey:         <ALL>.
+##  Document types: <ALL>.
+## 
+## Creating citation sequences... OK, 2 of 2 records read.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(citseq2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+Obtener los documentos relativos a los autores seleccionados:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{id_re  <-}\StringTok{  }\KeywordTok{lbsSearchDocuments}\NormalTok{(conn, }\DataTypeTok{idAuthors=}\NormalTok{id)}
+\end{Highlighting}
+\end{Shaded}
+
+Obtener información acerca de los documentos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{info_re <-}\StringTok{ }\KeywordTok{lbsGetInfoDocuments}\NormalTok{(conn, id_re)}
+\NormalTok{info_re}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## IdDocument:    16
+## AlternativeId: 2-s2.0-84947552209
+## Title:         Lifetime estimation applying a kinetic model based on the generalized logistic function to biopolymers
+## BibEntry:      Journal of Thermal Analysis and Calorimetry,2015,122,3,,1203,1212
+## Year:          2015
+## Type:          Article
+## Citations:     0
+## Authors:       NAYA S./46/NA, ÁLVAREZ A./518/NA, LÓPEZ-BECEIRO J./565/NA, GARCÍA-PARDO S./624/NA, TARRÍO-SAAVEDRA J./631/NA, QUINTANA-PITA S./709/NA, GARCÍA-SABÁN F.J./978/NA
+## 
+## [[2]]
+## IdDocument:    98
+## AlternativeId: 2-s2.0-84928890357
+## Title:         Bootstrap testing for cross-correlation under low firing activity
+## BibEntry:      Journal of Computational Neuroscience,2015,38,3,,577,587
+## Year:          2015
+## Type:          Article
+## Citations:     1
+## Authors:       ESPINOSA N./779/NA, MARIÑO J./832/NA, CUDEIRO J./1096/NA, CAO R./1193/NA, GONZÁLEZ-MONTORO A.M./1294/NA
+## 
+## [[3]]
+## IdDocument:    127
+## AlternativeId: 2-s2.0-84939982743
+## Title:         Classification of wood using differential thermogravimetric analysis
+## BibEntry:      Journal of Thermal Analysis and Calorimetry,2015,120,1,,541,551
+## Year:          2015
+## Type:          Article
+## Citations:     0
+## Authors:       NAYA S./46/NA, LÓPEZ-BECEIRO J./565/NA, TARRÍO-SAAVEDRA J./631/NA, FRANCISCO-FERNÁNDEZ M./766/NA, ARTIAGA R./1112/NA
+\end{verbatim}
+
+Obtener las citas de cada documento:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cit_re  <-}\StringTok{  }\KeywordTok{sapply}\NormalTok{(info_re,  }\ControlFlowTok{function}\NormalTok{(x)  x}\OperatorTok{$}\NormalTok{Citations)}
+\NormalTok{cit_re}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0 1 0
+\end{verbatim}
+
+etc\ldots{}
+
+El último paso será desconectar la BD\ldots{}
+
+\section{Cerrar conexión}\label{cerrar-conexion}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lbsDisconnect}\NormalTok{(conn)}
+\end{Highlighting}
+\end{Shaded}
 
 \bibliography{book.bib,packages.bib}
 

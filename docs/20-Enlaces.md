@@ -175,7 +175,8 @@ en la web se puede encontrar mucho material adicional, por ejemplo:
 - [readr](https://readr.tidyverse.org)
 
 - [Databases using R](https://db.rstudio.com),
-[dplyr as a database interface](https://db.rstudio.com/overview)
+  [dplyr as a database interface](https://db.rstudio.com/overview),
+  [Databases using dplyr](https://db.rstudio.com/dplyr)
 
 [***CheatSheets***](https://resources.rstudio.com/rstudio-cheatsheets):
 
@@ -189,4 +190,26 @@ en la web se puede encontrar mucho material adicional, por ejemplo:
 
 - [stringr](https://resources.rstudio.com/rstudio-cheatsheets/stringr-cheat-sheet)
   
+
+## Bibliometría {#bibliom-links}
+
+- [CITAN](https://cran.r-project.org/web/packages/CITAN/index.html)
+
+- [scimetr](https://rubenfcasal.github.io/scimetr/index.html)
+
+- [bibliometrix](http://www.bibliometrix.org)
+
+- [wosr](https://vt-arc.github.io/wosr/index.html)
+
+- [rwos](https://github.com/juba/rwos)
+
+- [rcrossref](https://docs.ropensci.org/rcrossref)
+
+- [ropensci](https://ropensci.org/packages/): Literature
+
+- [Diderot](https://cran.r-project.org/web/packages/Diderot/index.html)
+
+- ...
+
+
  

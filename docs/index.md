@@ -1,7 +1,7 @@
 --- 
 title: "Prácticas de Tecnologías de Gestión y Manipulación de Datos"
 author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)"
-date: "2019-09-12"
+date: "2019-10-03"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -47,7 +47,7 @@ install.packages(setdiff(pkgs, installed.packages()[,'Package']), dependencies =
 
 Para generar el libro (compilar) se recomendaría consultar el libro de ["Escritura de libros con bookdown" ](https://rubenfcasal.github.io/bookdown_intro) en castellano.
 
-<img src="images/by-nc-nd-88x31.png" width="44" />
+![](images/by-nc-nd-88x31.png)<!-- --> 
 
 Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES) 
 (esperamos poder liberarlo bajo una licencia menos restrictiva más adelante...).
