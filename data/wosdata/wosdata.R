@@ -2,15 +2,17 @@
 # Ejemplo WoS data
 # ----------------
 
-library(dplyr)
-library(stringr)
-# Session > Set Working Directory > To Source...
-source("rwos.R")
+# library(dplyr)
+# library(stringr)
+# https://rubenfcasal.github.io/scimetr/articles/scimetr.html
+library(scimetr)
 
+# Session > Set Working Directory > To Source...
 # Importar datos en archivos de texto
 dir(pattern='*.txt')
 # Se combinan los ficheros:
-wosdf <- wos_ImportSources(other = FALSE) # 976 registros sin filtrar ("OG = UDC")
+wosdf <- ImportSources.wos(other = FALSE) # 976 registros sin filtrar ("OG = UDC")
+str(wosdf, vec.len = 2, nchar.max = 64)
 
 # Abrir datos filtrados
 load("wosdf.RData") # 856 registros filtrados
@@ -18,7 +20,7 @@ as.data.frame(attr(wosdf, "variable.labels"))
 
 # Generar tablas (lista de data.frames)
 # Se crea la base de datos:
-db <- wos_CreateDB(wosdf)
+db <- CreateDB.wos(wosdf)
 
 # Guardar
 save(db, file = "db_udc_2015.RData")
@@ -30,6 +32,4 @@ saveRDS(db, file = "db_udc_2015.rds")
 ## restore it under a different name
 db2 <- readRDS("db_udc_2015.rds")
 identical(db, db2)
-
-# Listar artículos de autores
 

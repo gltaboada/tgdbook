@@ -497,7 +497,7 @@ tapply(hijos, provincia, mean) # Número medio de hijos por provincia
 #'
 #' ### Operaciones con tablas de datos
 #'
-#' Ver ejemplo [*wosdata.R*](data/wosdata.zip)
+#' Ver ejemplo [*wosdata.zip*](data/wosdata.zip)
 #'
 #' ***Unir tablas***:
 #'
@@ -521,3 +521,27 @@ tapply(hijos, provincia, mean) # Número medio de hijos por provincia
 
 db <- readRDS("data/wosdata/db_udc_2015.rds")
 
+#' Documentos correspondientes a revistas:
+
+# View(db$Journals)
+iidj <- with(db$Journals, idj[grepl('Chem', JI)])
+db$Journals$JI[iidj]
+
+idd <- with(db$Docs, idj %in% iidj)
+which(idd)
+
+# View(db$Docs[idd, ])
+head(db$Docs[idd, 1:3])
+
+
+#' Documentos correspondientes a autores:
+
+# View(db$Authors)
+iida <- with(db$Authors, ida[grepl('Abad', AF)])
+db$Authors$AF[iida]
+
+idd <- with(db$AutDoc, idd[ida %in% iida])
+idd
+
+# View(db$Docs[idd, ])
+head(db$Docs[idd, 1:3])
