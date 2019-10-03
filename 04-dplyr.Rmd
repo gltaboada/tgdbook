@@ -3,6 +3,16 @@ Manipulación de datos con `dplyr`
 
 Working draft...
 
+En este capítulo se realiza una breve introducción al paquete  [`dplyr`](https://dplyr.tidyverse.org/index.html). 
+Para mas información, ver por ejemplo la 'vignette' del paquete:  
+
+[Introduction to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html),
+
+o el Capítulo [5 Data transformation](http://r4ds.had.co.nz/transform.html) del libro:
+
+[R for Data Science](http://r4ds.had.co.nz).
+
+
 El paquete **dplyr**
 --------------------
 
@@ -116,7 +126,7 @@ summarise(group_by(empleados, sexo, minoria), sal.med = mean(salario), n = n())
 ```
 
 
-Operador *pipe* **%>% **(tubería, redirección)
+Operador *pipe* **%>%** (tubería, redirección)
 -----------------------------
 Este operador le permite canalizar la salida de una función a la entrada de otra función. 
 `segundo(primero(datos))` se traduce en `datos %>% primero %>% segundo`
@@ -138,7 +148,30 @@ empleados %>% select(sexo, catlab, salario) %>%
 abline(h = 0, lty = 2)
 ```
 
+Operaciones con tablas de datos
+-------------------------------
+
+[Join two tbls together](https://dplyr.tidyverse.org/reference/join.html)
+
+[Two-table verbs](https://dplyr.tidyverse.org/articles/two-table.html)
+
+Bases de datos con dplyr
+------------------------
+
+[Databases using R](https://db.rstudio.com)
+
+[dplyr as a database interface](https://db.rstudio.com/overview)
+
+[Databases using dplyr](https://db.rstudio.com/dplyr)
+
+[Introduction to dbplyr](https://dbplyr.tidyverse.org/articles/dbplyr.html)
+
+[SQL databases and R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html), [Data Carpentry](https://datacarpentry.org/R-ecology-lesson/index.html)
+
+[R and Data – When Should we Use Relational Databases? ](https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases)
+
+
 --------------
 
-Para mas información sobre *dplyr* ver por ejemplo la 'vignette' del paquete:  
-[Introduction to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html).
+Una alternativa (más rápida) es emplear
+[data.table](https://rdatatable.gitlab.io/data.table).
