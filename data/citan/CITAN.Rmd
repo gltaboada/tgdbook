@@ -1,0 +1,238 @@
+---
+title: "Bibliometric impact assessment with the CITAN package"
+author: "MTE: Tecnologías de Gestión de Datos"
+date: '`r paste("CITAN", packageVersion("CITAN"),":", Sys.Date())`'
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 2
+    # keep_md: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.height=4, fig.width=7, fig.align = 'center', out.width = '100%')
+# knitr::spin("CITAN.R", knit = FALSE)
+# knitr::purl("CITAN.Rmd", documentation = 2)
+# options(digits = 5)
+```
+
+The practical usability of the CITation ANalysis package 
+for R statistical computing environment, is shown.
+The main aim of the software is to support bibliometricians
+with a tool for preprocessing and cleaning bibliographic
+data retrieved from SciVerse Scopus and for calculating 
+the most popular indices of scientific impact.
+
+https://cran.r-project.org/web/packages/CITAN/index.html
+
+https://cran.r-project.org/web/packages/CITAN/CITAN.pdf
+
+https://github.com/gagolews/CITAN
+
+https://www.gagolewski.com/publications/2011citan.pdf
+
+```{r }
+library(CITAN)
+```
+
+Sin embargo, la función `Scopus_ReadCSV()` produce un error en Windows. Para corregirlo:
+
+```{r eval=FALSE}
+# Session > Set Working Directory > To Source...
+source("Scopus_ReadCSV2.R")
+```
+
+
+## Creación de la base de datos
+
+Se generará el archivo:
+
+```{r }
+dbfilename <- "UDC2015.db"
+```
+
+
+### Primera ejecución: Creación del modelo de DB
+
+Creación del archivo de BD vacío:
+
+```{r eval=FALSE}
+conn <- lbsConnect(dbfilename)
+```
+
+```
+## Warning in lbsConnect(dbfilename): Your Local Bibliometric Storage is
+## empty. Use lbsCreate(...) to establish one.
+```
+Creación del esquema con [`lbsCreate()`](https://www.rdocumentation.org/packages/CITAN/versions/2015.12-2/topics/lbsCreate):
+
+```{r eval=FALSE}
+lbsCreate(conn) 
+```
+
+```
+## Warning: RSQLite::dbGetInfo() is deprecated: please use individual metadata
+## functions instead
+
+## Creating table 'Biblio_Categories'... Done.
+## Creating table 'Biblio_Sources'... Done.
+## Creating index for 'Biblio_Sources'... Done.
+## Creating table 'Biblio_SourcesCategories'... Done.
+## Creating table 'Biblio_Documents'... Done.
+## Creating table 'Biblio_Citations'... Done.
+## Creating table 'Biblio_Surveys'... Done.
+## Creating table 'Biblio_DocumentsSurveys'... Done.
+## Creating table 'Biblio_Authors'... Done.
+## Creating table 'Biblio_AuthorsDocuments'... Done.
+## Creating view 'ViewBiblio_DocumentsSurveys'... Done.
+## Creating view 'ViewBiblio_DocumentsCategories'... Done.
+## Your Local Bibliometric Storage has been created.
+##    Perhaps now you may wish to use Scopus_ImportSources(...) to import source information.
+
+## [1] TRUE
+```
+
+Importar información de Scopus (descargada previamente...)
+con la función [`Scopus_ImportSources()`](https://www.rdocumentation.org/packages/CITAN/versions/2015.12-2/topics/Scopus_ImportSources) ([código](https://github.com/gagolews/CITAN/blob/master/R/scopus.importsources.R)):
+
+```{r eval=FALSE}
+Scopus_ImportSources(conn) # Cuidado con el tiempo de CPU...
+```
+
+```
+## Importing Scopus ASJC codes... Done, 334 records added.
+## Importing Scopus source list...
+
+## Warning in doTryCatch(return(expr), name, parentenv, handler): No ASJC @
+## row=510.
+
+## Warnings... __TRUNCATED__
+
+## Done, 30787 of 30794 records added; 55297 ASJC codes processed.
+## Note: 7 records omitted @ rows=13847,15526,16606,17371,19418,24419,29365.
+
+## [1] TRUE
+```
+
+### Incorporar nuevos datos 
+
+Con la función `Scopus_ReadCSV()` se produce un error en Windows:
+
+```{r eval=FALSE}
+data <-  Scopus_ReadCSV("udc_2015.csv")
+```
+
+```
+## Error in Scopus_ReadCSV("udc_2015.csv") : Column not found: `Source'.
+```
+
+Empleando la versión modificada:
+
+```{r eval=FALSE}
+data <-  Scopus_ReadCSV2("udc_2015.csv")
+```
+
+Añadir los documentos a la base de datos:
+
+```{r eval=FALSE}
+lbsImportDocuments(conn, data) 
+```
+
+```
+## Importing documents and their authors... Importing 1324 authors... 1324 new authors added.
+
+## Warning in .lbsImportDocuments_Add_Get_idSource(conn, record$SourceTitle, :
+## no source with sourceTitle=''Quaternary Science Reviews'' found for record
+## 10. Setting IdSource=NA.
+
+## Warnings... __TRUNCATED__
+
+## Done, 363 of 363 new records added to Default survey/udc_2015.csv.
+
+## [1] TRUE
+```
+
+Se podría añadir una descripción para trabajar con distintos grupos de documentos:
+
+```{r eval=FALSE}
+lbsImportDocuments(conn, data, "udc_2015") 
+```
+
+
+## Extraer información de la BD
+
+En siguientes ejecuciones bastará con conectar con la BD 
+
+```{r }
+conn <- lbsConnect(dbfilename)
+```
+
+
+### Estadísticos descriptivos
+
+
+```{r }
+lbsDescriptiveStats(conn)
+```
+
+
+### Otra información
+
+Se puede obtener información acerca de los documentos producidos y las citas
+recibidas correspondientes a cada autor: 
+
+```{r }
+citseq <- lbsGetCitations(conn)
+# citseq <- lbsGetCitations(conn, surveyDescription="udc_2015")
+```
+
+Número de autores
+
+```{r }
+length(citseq) 
+
+head(names(citseq))
+citseq[[4]]
+```
+
+Se pueden seleccionar autores:
+
+```{r }
+id <- lbsSearchAuthors(conn, c("Cao R.", "Naya S.", "Naya-Fernandez S."))
+id
+```
+
+Obtener las citas de los trabajos de los autores seleccionados:
+
+```{r }
+citseq2 <- lbsGetCitations(conn, idAuthors=id)
+length(citseq2)
+```
+
+Obtener los documentos relativos a los autores seleccionados:
+
+```{r }
+id_re  <-  lbsSearchDocuments(conn, idAuthors=id)
+```
+
+Obtener información acerca de los documentos:
+
+```{r }
+info_re <- lbsGetInfoDocuments(conn, id_re)
+info_re
+```
+
+Obtener las citas de cada documento:
+
+```{r }
+cit_re  <-  sapply(info_re,  function(x)  x$Citations)
+cit_re
+```
+
+
+## Cerrar conexión
+
+```{r }
+lbsDisconnect(conn)
+```
+

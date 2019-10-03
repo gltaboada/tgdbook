@@ -355,6 +355,15 @@ sqldf('SELECT * FROM chickwts WHERE feed NOT LIKE "%bean" LIMIT 5')
 ```
 
 
+## Ejemplo Scopus data
+
+Ver ejemplo [*citan.zip*](data/citan.zip) y Apéndice \@ref(citan).
+
+> “If your data fits in memory 
+  there is no advantage to putting it in a database: 
+  it will only be slower and more frustrating”
+>
+> --- Hadley Wickham – https://dbplyr.tidyverse.org/articles/dbplyr.html
 
 
 
