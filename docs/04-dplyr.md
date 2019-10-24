@@ -21,10 +21,6 @@ El paquete **dplyr**
 library(dplyr)
 ```
 
-```
-## Warning: package 'dplyr' was built under R version 3.5.3
-```
-
 **dplyr** Permite sustituir funciones base de R (como `split()`, `subset()`, 
 `apply()`, `sapply()`, `lapply()`, `tapply()` y `aggregate()`)
 mediante una "gramática" más sencilla para la manipulación de datos:

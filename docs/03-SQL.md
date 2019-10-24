@@ -463,18 +463,170 @@ Ver ejemplo [*citan.zip*](data/citan.zip) y Apéndice \@ref(citan).
 > --- Hadley Wickham – https://dbplyr.tidyverse.org/articles/dbplyr.html
 
 
+## Ejercicios SQL con RSQLite
+
+### Setup de RSQLite
+
+Vamos a utilizar [RSQLite](https://cran.r-project.org/web/packages/RSQLite/index.html). La información para su instalación está [en el siguiente enlace](https://db.rstudio.com/databases/sqlite/).
+
+
+
+```r
+library(DBI)
+
+# Create an ephemeral in-memory RSQLite database
+con <- dbConnect(RSQLite::SQLite(), ":memory:")
+dbListTables(con)
+```
+
+```
+## character(0)
+```
 
 
 
 
+```r
+dbWriteTable(con, "mtcars", mtcars)
+dbListTables(con)
+```
+
+```
+## [1] "mtcars"
+```
+
+```r
+dbListFields(con, "mtcars")
+```
+
+```
+##  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+## [11] "carb"
+```
+
+```r
+dbReadTable(con, "mtcars")
+```
+
+```
+##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+```
+
+```r
+# You can fetch all results:
+res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
+dbFetch(res)
+```
+
+```
+##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## 1  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## 2  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## 3  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## 4  32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## 5  30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## 6  33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## 7  21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## 8  27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## 9  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## 10 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## 11 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+```
+
+```r
+dbClearResult(res)
+
+# Or a chunk at a time
+res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
+while(!dbHasCompleted(res)){
+  chunk <- dbFetch(res, n = 5)
+  print(nrow(chunk))
+}
+```
+
+```
+## [1] 5
+## [1] 5
+## [1] 1
+```
+
+```r
+# Clear the result
+dbClearResult(res)
+
+# Disconnect from the database
+dbDisconnect(con)
+```
 
 
+## Práctica 1: SQL
 
+Vamos a utilizar la base de datos [Chinook](https://www.sqlitetutorial.net/wp-content/uploads/2018/03/chinook.zip) del [tutorial de SQLite](https://www.sqlitetutorial.net/sqlite-sample-database/)
 
+![](images/sqlite-sample-database-color.jpg){width=600px}
 
+Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd **antes** del 6 de Noviembre.
 
+### Ejercicios de Análisis Exploratorio
 
+La puntuación de esta práctica será -3 más el número de respuestas correctas (puntuación máxima 10). Se valorará especialmente encontrar la solución más sencilla en una única query SQL. 
 
+1. Conocer el importe mínimo, máximo y la media de las facturas.
 
+2. Conocer el total de las facturas de cada uno de los países.
+
+3. Obtener el listado de países junto con su facturación media, ordenado (a) alfabéticamente por país y (b) decrecientemente por importe de facturación media
+
+4. Obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID)
+
+5. ¿Qué porcentaje de las canciones son video?
+
+6. Listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación.
+
+7. Listar los géneros musicales por orden decreciente de popularidad (definida la popularidad como el número de canciones de ese género), indicando el porcentaje de las canciones de ese género.
+
+8. Listar los 10 artistas con mayor número de canciones de forma descendente según el número de canciones.
+
+9. Listar Nombre y Apellidos de los "Sales Support Agent" así como la facturación de los clientes que tienen asignados, además de mostrar el porcentaje de la facturación total y del número total de empleados. 
+
+10. Listar los géneros musicales que más importe facturan y el porcentaje de su facturación.
+
+11. Listas los géneros musicales ordenados de forma decreciente según el número de canciones por las que no están facturando.
+
+12. Conocer la facturación de los clientes agrupados por su servidor de correo electrónico (e.g., la facturación de los clientes de gmail.com, los de hotmail.com, por orden decreciente de facturación).
+
+13. Ordenar las playlists por la facturación obtenida por sus canciones.
 
 

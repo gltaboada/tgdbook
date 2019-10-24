@@ -366,18 +366,85 @@ Ver ejemplo [*citan.zip*](data/citan.zip) y Apéndice \@ref(citan).
 > --- Hadley Wickham – https://dbplyr.tidyverse.org/articles/dbplyr.html
 
 
+## Ejercicios SQL con RSQLite
+
+### Setup de RSQLite
+
+Vamos a utilizar [RSQLite](https://cran.r-project.org/web/packages/RSQLite/index.html). La información para su instalación está [en el siguiente enlace](https://db.rstudio.com/databases/sqlite/).
+
+
+```{r}
+library(DBI)
+
+# Create an ephemeral in-memory RSQLite database
+con <- dbConnect(RSQLite::SQLite(), ":memory:")
+dbListTables(con)
+```
 
 
 
+```{r}
+dbWriteTable(con, "mtcars", mtcars)
+dbListTables(con)
+dbListFields(con, "mtcars")
+dbReadTable(con, "mtcars")
+# You can fetch all results:
+res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
+dbFetch(res)
+dbClearResult(res)
+
+# Or a chunk at a time
+res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
+while(!dbHasCompleted(res)){
+  chunk <- dbFetch(res, n = 5)
+  print(nrow(chunk))
+}
+
+# Clear the result
+dbClearResult(res)
+
+# Disconnect from the database
+dbDisconnect(con)
+
+```
 
 
+## Práctica 1: SQL
 
+Vamos a utilizar la base de datos [Chinook](https://www.sqlitetutorial.net/wp-content/uploads/2018/03/chinook.zip) del [tutorial de SQLite](https://www.sqlitetutorial.net/sqlite-sample-database/)
 
+![](images/sqlite-sample-database-color.jpg){width=600px}
 
+Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd **antes** del 6 de Noviembre.
 
+### Ejercicios de Análisis Exploratorio
 
+La puntuación de esta práctica será -3 más el número de respuestas correctas (puntuación máxima 10). Se valorará especialmente encontrar la solución más sencilla en una única query SQL. 
 
+1. Conocer el importe mínimo, máximo y la media de las facturas.
 
+2. Conocer el total de las facturas de cada uno de los países.
 
+3. Obtener el listado de países junto con su facturación media, ordenado (a) alfabéticamente por país y (b) decrecientemente por importe de facturación media
+
+4. Obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID)
+
+5. ¿Qué porcentaje de las canciones son video?
+
+6. Listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación.
+
+7. Listar los géneros musicales por orden decreciente de popularidad (definida la popularidad como el número de canciones de ese género), indicando el porcentaje de las canciones de ese género.
+
+8. Listar los 10 artistas con mayor número de canciones de forma descendente según el número de canciones.
+
+9. Listar Nombre y Apellidos de los "Sales Support Agent" así como la facturación de los clientes que tienen asignados, además de mostrar el porcentaje de la facturación total y del número total de empleados. 
+
+10. Listar los géneros musicales que más importe facturan y el porcentaje de su facturación.
+
+11. Listas los géneros musicales ordenados de forma decreciente según el número de canciones por las que no están facturando.
+
+12. Conocer la facturación de los clientes agrupados por su servidor de correo electrónico (e.g., la facturación de los clientes de gmail.com, los de hotmail.com, por orden decreciente de facturación).
+
+13. Ordenar las playlists por la facturación obtenida por sus canciones.
 
 
