@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7140 64-bit) (preloaded format=xelatex 2019.9.10)  24 OCT 2019 11:28
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7140 64-bit) (preloaded format=xelatex 2019.9.10)  7 NOV 2019 11:38
 entering extended mode
 **./Practicas_de_TGD.tex
 (Practicas_de_TGD.tex
@@ -667,7 +667,7 @@ Package: makecmds 2009/09/03 v1.0a extra command making commands
 File: gloss-spanish.ldf polyglossia: module for spanish
 )
 Package polyglossia Info: Default language is spanish.
-(Practicas_de_TGD.aux)
+No file Practicas_de_TGD.aux.
 \openout1 = `Practicas_de_TGD.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
@@ -717,9 +717,11 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 149.
 LaTeX Info: Redefining \pageref on input line 149.
 LaTeX Info: Redefining \nameref on input line 149.
-(Practicas_de_TGD.out) (Practicas_de_TGD.out)
 \@outlinefile=\write4
 \openout4 = `Practicas_de_TGD.out'.
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 150.
 
@@ -767,25 +769,24 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 ] [2
 
-] (Practicas_de_TGD.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 4.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 4.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 4.
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 53.
-[3])
+]
 \tf@toc=\write5
 \openout5 = `Practicas_de_TGD.toc'.
 
-[4]
+[3] [4
+
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 165.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 165.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 165.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 185.
 File: images/by-nc-nd-88x31.png Graphic file (type bmp)
 <images/by-nc-nd-88x31.png>
-[5
-
-] [6
+[5] [6
 
 ]
 Capítulo 1.
@@ -915,6 +916,9 @@ Underfull \hbox (badness 3199) in paragraph at lines 646--651
 uardar como ->
  []
 
+
+LaTeX Warning: Reference `cap2-texto' on page 15 undefined on input line 690.
+
 [15] [16]
 Overfull \hbox (54.0pt too wide) in paragraph at lines 832--832
 []\TU/lmtt/m/n/10 ##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13
@@ -959,6 +963,18 @@ Capítulo 3.
 [25
 
 ]
+
+LaTeX Warning: Reference `fig:relacion' on page 26 undefined on input line 1525
+.
+
+
+LaTeX Warning: Reference `fig:relacion' on page 26 undefined on input line 1527
+.
+
+
+LaTeX Warning: Reference `fig:relacion' on page 26 undefined on input line 1529
+.
+
 File: images/Relacion.png Graphic file (type bmp)
 <images/Relacion.png>
 File: images/BBDD.png Graphic file (type bmp)
@@ -1123,54 +1139,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [52]
 File: images/CypherResult.png Graphic file (type bmp)
 <images/CypherResult.png>
-[53] [54]
-Capítulo 6.
-
-Overfull \hbox (274.5pt too wide) in paragraph at lines 2765--2765
-[]\TU/lmtt/m/n/10 spark-submit --class org.apache.spark.examples.SparkPi --mast
-er local $SPARK_HOME/examples/jars/spark-examples*.jar 10[] 
+[53]
+Underfull \hbox (badness 1137) in paragraph at lines 2753--2754
+[][][] [] [][]$[] \TU/lmr/m/n/10 en formato R MarkDown con el nombre de archivo
+ P1-Nombre-
  []
 
-[55
-
-]
-Overfull \hbox (38.06343pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 56 \TU/lmr/m/sl/10 CAPÍTULO 6.  TECNOLOGÍAS PARA EL TRATAMIENDO 
-DE DATOS MASIVOS
- []
-
-[56]
-Apéndice A.
-[57
-
-] [58]
-Underfull \hbox (badness 10000) in paragraph at lines 2969--2971
-[]\TU/lmr/m/n/10 Listas de distribución de r-project.org: []$[][][][][] [] [] [
-] [][][][] [] [][][][] [] [][] []
- []
-
-[59]
-No file Practicas_de_TGD.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3058.
-[60]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3058.
-(Practicas_de_TGD.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3058.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3058.
-
-Package rerunfilecheck Info: File `Practicas_de_TGD.out' has not changed.
-(rerunfilecheck)             Checksum: A37255F0D9CB362E07B9D96925C98FCC.
-
-LaTeX Warning: There were undefined references.
-
- ) 
+! Undefined control sequence.
+l.2759 .\mongoimport
+                    .exe --db=Restaurants --file=D:\DATA\opendata\restaurant...
+ 
 Here is how much of TeX's memory you used:
- 24966 strings out of 427669
- 464158 string characters out of 3150230
- 609607 words of memory out of 3000000
- 28764 multiletter control sequences out of 15000+200000
+ 24864 strings out of 427669
+ 461655 string characters out of 3150230
+ 602409 words of memory out of 3000000
+ 28673 multiletter control sequences out of 15000+200000
  557165 words of font info for 78 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
  45i,6n,56p,815b,458s stack positions out of 5000i,500n,10000p,200000b,50000s
-
-Output written on Practicas_de_TGD.pdf (60 pages).
+Output written on Practicas_de_TGD.pdf (53 pages).

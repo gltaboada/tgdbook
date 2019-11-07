@@ -128,21 +128,75 @@ In-memory data structure store, útil para base de datos de login-password, sens
 Son sistemas especializados en búsquedas, procesamiento de lenguaje natural como ElasticSearch, Solr, Splunk (logs de aplicaciones), etc...
 
 
-## Conexión de R a NoSQL
+## Conexión de R a MongoDB
 
-Step1: Install Packages plyr,XML
-Step2: Take xml file url
-Step3: create XML Internal Document type object in R using xmlParse()
-Step4 :Convert xml object to list by using xmlToList()
-Step5: convert list object to data frame by using ldply(xl, data.frame)
+A través del paquete [mongolite](https://cran.rstudio.com/web/packages/mongolite/mongolite.pdf), aquí tenéis un [Tutorial](https://datascienceplus.com/using-mongodb-with-r/)
 
 
 ```r
-install.packages("XML")
+install.packages("mongolite")
 ```
+
+
 
 
 ```r
-install.packages("plyr")
+library(mongolite)
+
+# Connect to a local MongoDB
+
+my_collection = mongo(collection = "restaurants", db = "Restaurants") # create connection, database and collection
+my_collection$count
 ```
+
+```
+## function (query = "{}") 
+## {
+##     check_col()
+##     mongo_collection_count(col, query)
+## }
+## <bytecode: 0x00000000270e1b28>
+## <environment: 0x00000000270ebd40>
+```
+
+
+
+## Práctica 2: NoSQL
+
+
+Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) **antes** del 20 de Noviembre.
+
+### Ejercicios con RMongoDB
+
+Realizaremos una serie de ejercicios con la collección [Restaurants] (https://www.w3resource.com/mongodb-exercises/restaurants.zip) importados mediante:
+.\mongoimport.exe --db=Restaurants --file=D:\DATA\opendata\restaurants.json
+
+La puntuación de esta práctica será el número de respuestas correctas:
+
+1. Mostrar todos los documentos de la colección restaurants (que no se ejecute en el .rmd, sólo la query)
+
+2. Mostrar nombre de restaurante, barrio y cocina de la colección restaurants (que no se ejecute en el .rmd, sólo la query)
+
+3. Mostrar los primeros 5 restaurantes del barrio Bronx.
+
+4. Mostrar los restaurantes con una longitud menor que -75.7541
+
+5. Mostrar los restaurantes con una puntuación superior a 90
+
+6. Mostrar los restaurantes de comida American o Chineese del barrio Queens.
+
+7. Mostrar los restaurantes con un grado "A" y puntuación 9 obtenida en fecha 2014-08-11T00:00:00Z
+
+8. Con valor de 3 puntos, propón un JSON para descargar, indícame la URL, si has de hacer algún proceso antes de importarlo en MongoDB, cómo lo importas, dame un pantallazo del análisis exploratorio de ese JSON y una query que harías contra ese JSON (la query en MongoDB, Compass o RmongoDB)
+
+
+
+
+
+
+
+
+
+
+
 

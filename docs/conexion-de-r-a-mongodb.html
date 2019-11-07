@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 3 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>5.2 Conexión de R a MongoDB | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 3 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="5.2 Conexión de R a MongoDB | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 3 Introducción al lenguaje SQL | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="5.2 Conexión de R a MongoDB | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="manipulacion-de-datos.html"/>
-<link rel="next" href="bases-de-datos-relacionales.html"/>
+<link rel="prev" href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"/>
+<link rel="next" href="practica-2-nosql.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -243,19 +243,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduccion-al-lenguaje-sql" class="section level1">
-<h1><span class="header-section-number">Capítulo 3</span> Introducción al lenguaje SQL</h1>
-<p>Working draft…</p>
-<p>Los sistemas de información gestionan repositorios de información en múltiples formatos,
-siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured Query Language)</p> 
+<div id="conexion-de-r-a-mongodb" class="section level2">
+<h2><span class="header-section-number">5.2</span> Conexión de R a MongoDB</h2>
+<p>A través del paquete <a href="https://cran.rstudio.com/web/packages/mongolite/mongolite.pdf">mongolite</a>, aquí tenéis un <a href="https://datascienceplus.com/using-mongodb-with-r/">Tutorial</a></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;mongolite&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="kw">library</span>(mongolite)</a>
+<a class="sourceLine" id="cb162-2" title="2"></a>
+<a class="sourceLine" id="cb162-3" title="3"><span class="co"># Connect to a local MongoDB</span></a>
+<a class="sourceLine" id="cb162-4" title="4"></a>
+<a class="sourceLine" id="cb162-5" title="5">my_collection =<span class="st"> </span><span class="kw">mongo</span>(<span class="dt">collection =</span> <span class="st">&quot;restaurants&quot;</span>, <span class="dt">db =</span> <span class="st">&quot;Restaurants&quot;</span>) <span class="co"># create connection, database and collection</span></a>
+<a class="sourceLine" id="cb162-6" title="6">my_collection<span class="op">$</span>count</a></code></pre></div>
+<pre><code>## function (query = &quot;{}&quot;) 
+## {
+##     check_col()
+##     mongo_collection_count(col, query)
+## }
+## &lt;bytecode: 0x0000000027035f88&gt;
+## &lt;environment: 0x000000002703dc08&gt;</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="manipulacion-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bases-de-datos-relacionales.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="practica-2-nosql.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -285,7 +297,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/gltaboada/tgdbook/edit/master/03-SQL.Rmd",
+"link": "https://github.com/gltaboada/tgdbook/edit/master/05-NoSQL.Rmd",
 "text": "Edit"
 },
 "history": {

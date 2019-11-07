@@ -1,0 +1,3102 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Prácticas de Tecnologías de Gestión y Manipulación de Datos},
+            pdfauthor={Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Prácticas de Tecnologías de Gestión y Manipulación de Datos}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Guillermo López Taboada (\href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}}) y Rubén F. Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}})}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2019-11-07}
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+%\usepackage{animate}
+\ifxetex
+  \usepackage{polyglossia}
+  \setmainlanguage{spanish}
+  % Tabla en lugar de cuadro
+  \gappto\captionsspanish{\renewcommand{\tablename}{Tabla}
+          \renewcommand{\listtablename}{Índice de tablas}}
+
+\else
+  \usepackage[spanish,es-tabla]{babel}
+\fi
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{prologo}{%
+\chapter*{Prólogo}\label{prologo}}
+\addcontentsline{toc}{chapter}{Prólogo}
+
+Este libro contiene algunas de las prácticas de la asignatura de \href{http://eamo.usc.es/pub/mte/index.php/es/?option=com_content\&view=article\&id=2202\&idm=38\&a\%C3\%B1o=2019}{Tecnologías de Gestión de Datos} del \href{http://eio.usc.es/pub/mte}{Máster interuniversitario en Técnicas Estadísticas}).
+
+Este libro ha sido escrito en \href{http://rmarkdown.rstudio.com}{R-Markdown} empleando el paquete \href{https://bookdown.org/yihui/bookdown/}{\texttt{bookdown}} y está disponible en el repositorio Github: \href{https://github.com/gltaboada/tgdbook}{gltaboada/tgdbook}.
+Se puede acceder a la versión en línea a través del siguiente enlace:
+
+\url{https://gltaboada.github.io/tgdbook}.
+
+donde puede descargarse en formato \href{https://gltaboada.github.io/tgdbook/Practicas_de_TGD.pdf}{pdf}.
+
+Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
+\href{https://dplyr.tidyverse.org}{\texttt{dplyr}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}),
+\href{https://tidyr.tidyverse.org}{\texttt{tidyr}},
+\href{https://stringr.tidyverse.org}{\texttt{stringr}},
+\href{https://readxl.tidyverse.org}{\texttt{readxl}} ,
+\href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}},
+\href{https://cran.r-project.org/web/packages/sqldf/index.html}{\texttt{sqldf}},
+\href{https://r-dbi.github.io/RSQLite}{\texttt{RSQLite}},
+\href{https://cran.r-project.org/web/packages/foreign/index.html}{\texttt{foreign}},
+\href{https://cran.r-project.org/web/packages/SparkR/index.html}{\texttt{SparkR}},
+\href{https://cran.r-project.org/web/packages/magrittr/index.html}{\texttt{magrittr}},
+\href{https://yihui.name/knitr}{\texttt{knitr}}
+Por ejemplo mediante los comandos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pkgs <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'dplyr'}\NormalTok{, }\StringTok{'tidyr'}\NormalTok{, }\StringTok{'stringr'}\NormalTok{, }\StringTok{'readxl'}\NormalTok{, }\StringTok{'openxlsx'}\NormalTok{, }\StringTok{'magrittr'}\NormalTok{, }
+          \StringTok{'RODBC'}\NormalTok{, }\StringTok{'sqldf'}\NormalTok{, }\StringTok{'RSQLite'}\NormalTok{, }\StringTok{'foreign'}\NormalTok{, }\StringTok{'SparkR'}\NormalTok{, }\StringTok{'knitr'}\NormalTok{)}
+\CommentTok{# install.packages(pkgs, dependencies=TRUE)}
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{setdiff}\NormalTok{(pkgs, }\KeywordTok{installed.packages}\NormalTok{()[,}\StringTok{'Package'}\NormalTok{]), }\DataTypeTok{dependencies =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Para generar el libro (compilar) se recomendaría consultar el libro de \href{https://rubenfcasal.github.io/bookdown_intro}{``Escritura de libros con bookdown''} en castellano.
+
+\includegraphics{images/by-nc-nd-88x31.png}
+
+Este obra está bajo una licencia de \href{https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES}{Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional}
+(esperamos poder liberarlo bajo una licencia menos restrictiva más adelante\ldots{}).
+
+\hypertarget{introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos}{%
+\chapter{Introducción a las Tecnologías de Gestión y Manipulación de Datos}\label{introduccion-a-las-tecnologias-de-gestion-y-manipulacion-de-datos}}
+
+La información relevante de la materia está disponible en la guía docente y la ficha de la asignatura
+
+En particular, los resultados de aprendizaje son:
+
+\begin{itemize}
+\item
+  Manejar de forma autónoma y solvente el software necesario para acceder a conjuntos de datos en entornos profesionales y/o en la nube.
+\item
+  Saber gestionar conjuntos de datos masivos en un entorno multidisciplinar que permita la participación en proyectos profesionales complejos que requieran el uso de técnicas estadísticas.
+\item
+  Saber relacionar el software de diseño y gestión de bases de datos con el específicamente implementado para el análisis de datos.
+\end{itemize}
+
+\hypertarget{contenidos}{%
+\section{Contenidos}\label{contenidos}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Introducción al lenguaje SQL
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Bases de datos relacionales
+  \item
+    Sintaxis SQL
+  \item
+    Conexión con bases de datos desde R
+  \end{itemize}
+\item
+  Introducción a tecnologías NoSQL
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)
+  \item
+    Conexión de R a NoSQL
+  \end{itemize}
+\item
+  Tecnologías para el tratamiento de datos masivos
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)
+  \item
+    Visualización y generación de cuadros de mando
+  \item
+    Introducción al análisis de datos masivos.
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{planificacion}{%
+\section{Planificación}\label{planificacion}}
+
+\emph{Working draft\ldots{}}
+
+La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los
+conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: \url{https://forms.gle/9HR5iFHXoLowrCHLA}
+
+\begin{itemize}
+\item
+  Clase 1 (12/9-R): Seminario R (Manipulación de datos con el paquete base de R)
+\item
+  Clase 2 (19/9): Tema 1: Conceptos de bases de datos
+\item
+  Clase 3 (26/9): Tema 1: Introducción a SQL
+\item
+  Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
+\item
+  Clase 5 (10/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
+\item
+  Clase 6 (17/10): Tema 1: Continuación de ejercicios prácticos SQL
+\item
+  Clase 7 (24/10): Tema 2: Introducción a NoSQL
+\item
+  Clase 8 (31/10): Tema 2: Ejercicios prácticos de NoSQL
+\item
+  Clase 9 (7/11): Tema 3: Ecosistema Big Data (Hadoop, Spark)
+\item
+  Clase 10 (14/11): Tema 3: Tecnologías Big Data (Rspark/sparklyr)
+\item
+  Clase 11 (21/11): Seminario visualización con power BI
+\item
+  Clase 12 (28/11): Seminario machine learning CESGA/localhost
+\item
+  Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos
+\item
+  Clase 14 (12/12-R): Seminario Aprendizaje Estadístico/Automático, Data Mining
+\item
+  Clase 15 (19/12-opcional): Seminario aplicaciones Big Data en investigación e industria
+\end{itemize}
+
+\hypertarget{evaluacion}{%
+\subsection{Evaluación}\label{evaluacion}}
+
+\begin{itemize}
+\item
+  \textbf{Examen} (60\%): El examen de la materia evaluará los siguientes aspectos:
+  Conceptos de la materia: Dominio de los conocimientos teóricos y operativos de la materia.
+  Asimilación práctica de materia: Asimilación y comprensión de los conocimientos teóricos y operativos de la materia.
+\item
+  \textbf{Prácticas de laboratorio} (30\%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.
+\item
+  \textbf{Trabajos tutelados} (10\%): Evaluación de los trabajos tutelados desarrollados por los estudiantes.
+\end{itemize}
+
+\hypertarget{observaciones-sobre-la-evaluacion}{%
+\subsubsection{Observaciones sobre la evaluación:}\label{observaciones-sobre-la-evaluacion}}
+
+\begin{itemize}
+\item
+  Las prácticas de laboratorio se realizarán en grupos de 2 estudiantes, salvo el trabajo tutelado que es individual y opcional. En caso de no realizar el trabajo tutelado los estudiantes tendrán un 67\% de nota del examen y un 33\% de prácticas de laboratorio. El plazo para realizar las 3 prácticas será de 2 semanas desde la presentación de la práctica. El plazo para la entrega de los trabajos tutelados es el último día de clase de la asignatura.
+\item
+  El estudiante que quiera realizar un trabajo tutelado ha de hablar (o mediante correo electrónico) con los profesores para validar y confirmar el tema y alcance del trabajo tutelado.
+\item
+  Para poder aprobar la asignatura en la primera oportunidad será necesario obtener como mínimo el 30\% de la nota máxima de la suma de las prácticas de laboratorio y trabajos tutelados e, igualmente, el 30\% de la nota máxima final de la Prueba mixta (examen), y tener una nota total (prácticas más trabajos tutelados más prueba mixta) igual o superior al 50\% de la nota máxima.
+\item
+  En la segunda oportunidad solamente se podrá recuperar la nota del examen. Las notas de prácticas y de trabajos tutelados serán las obtenidas durante el curso. Para los alumnos que utilicen la oportunidad adelantada de diciembre se utilizarán las notas de prácticas y trabajos tutelados que obtuvieran en su último curso. En esta oportunidad solo será necesario para aprobar obtener una nota total igual o superior al 50\% de la nota máxima.
+\item
+  Una vez que un estudiante es evaluado en una práctica de laboratorio o en un trabajo tutelado implica que será calificado. Por tanto, la calificación ``No Presentado'' no es posible una vez que una práctica/trabajo ha sido evaluada.
+\end{itemize}
+
+\hypertarget{fuentes-de-informacion}{%
+\section{Fuentes de información:}\label{fuentes-de-informacion}}
+
+\hypertarget{basica}{%
+\subsection{Básica}\label{basica}}
+
+\begin{itemize}
+\item
+  Daroczi, G. (2015). Mastering Data Analysis with R. Packt Publishing
+\item
+  Grolemund, G. y Wickham, H. (2016). R for Data Science. \url{https://r4ds.had.co.nz/} \& O'Reilly
+\item
+  Silberschatz, A., Korth, H. y Sudarshan, S. (2014). Fundamentos de Bases de Datos. Mc Graw Hill
+\item
+  Rubén Fernández Casal (\href{https://rubenfcasal.github.io}{R Machinery}):
+
+  \begin{itemize}
+  \item
+    \href{https://rubenfcasal.github.io/intror}{Introducción al Análisis de Datos con R}
+    (con Javier Roca y Julián Costa)
+  \item
+    \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{Ayuda y Recursos para el Aprendizaje de R}
+  \item
+    \href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con el paquete bookdown}
+    (con Tomás Cotos)
+  \item
+    \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Apéndice introducción a Rmarkdown}
+  \item
+    \href{https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf}{Pesentación análisis de datos con R}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{complementaria}{%
+\subsection{Complementaria:}\label{complementaria}}
+
+\begin{itemize}
+\tightlist
+\item
+  Wes McKinney (2017). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython. O'Reilly (2ª ed.)
+\item
+  Tom White (2015). Hadoop: The Definitive Guide. O'Reilly (4ª ed.)
+\item
+  Alex Holmes (2014). Hadoop in practice. Manning (2ª ed.)
+\item
+  Centro de Supercomputación de Galicia (2019). Servicio de Big Data del CESGA. \url{https://bigdata.cesga.es/}
+\end{itemize}
+
+\hypertarget{manipulacion-de-datos-con-r}{%
+\chapter{Manipulación de datos con R}\label{manipulacion-de-datos-con-r}}
+
+La mayoría de los estudios estadísticos
+requieren disponer de un conjunto de datos.
+
+\hypertarget{lectura-importacion-y-exportacion-de-datos}{%
+\section{Lectura, importación y exportación de datos}\label{lectura-importacion-y-exportacion-de-datos}}
+
+Además de la introducción directa, R es capaz de
+importar datos externos en múltiples formatos:
+
+\begin{itemize}
+\item
+  bases de datos disponibles en librerías de R
+\item
+  archivos de texto en formato ASCII
+\item
+  archivos en otros formatos: Excel, SPSS, \ldots{}
+\item
+  bases de datos relacionales: MySQL, Oracle, \ldots{}
+\item
+  formatos web: HTML, XML, JSON, \ldots{}
+\item
+  \ldots{}.
+\end{itemize}
+
+\hypertarget{formato-de-datos-de-r}{%
+\subsection{Formato de datos de R}\label{formato-de-datos-de-r}}
+
+El formato de archivo en el que habitualmente se almacena objetos (datos)
+R es binario y está comprimido (en formato \texttt{"gzip"} por defecto).
+Para cargar un fichero de datos se emplea normalmente \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load}{\texttt{load()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res <-}\StringTok{ }\KeywordTok{load}\NormalTok{(}\StringTok{"data/empleados.RData"}\NormalTok{)}
+\NormalTok{res}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "empleados"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ls}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "citefig"   "citefig2"  "empleados" "fig.path"  "inline"   
+##  [6] "inline2"   "is_html"   "is_latex"  "latexfig"  "latexfig2"
+## [11] "res"
+\end{verbatim}
+
+y para guardar \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save}{\texttt{save()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Guardar}
+\KeywordTok{save}\NormalTok{(empleados, }\DataTypeTok{file =} \StringTok{"data/empleados_new.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Aunque, como indica este comando en la ayuda (\texttt{?save}):
+
+\begin{quote}
+For saving single R objects, \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/saveRDS}{\texttt{saveRDS()}}
+is mostly preferable to save(),
+notably because of the functional nature of readRDS(), as opposed to load().
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{saveRDS}\NormalTok{(empleados, }\DataTypeTok{file =} \StringTok{"data/empleados_new.rds"}\NormalTok{)}
+\CommentTok{## restore it under a different name}
+\NormalTok{empleados2 <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"data/empleados_new.rds"}\NormalTok{)}
+\CommentTok{# identical(empleados, empleados2)}
+\end{Highlighting}
+\end{Shaded}
+
+El objeto empleado normalmente en R para almacenar datos en memoria
+es el \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame}{\texttt{data.frame}}.
+
+\hypertarget{acceso-a-datos-en-paquetes}{%
+\subsection{Acceso a datos en paquetes}\label{acceso-a-datos-en-paquetes}}
+
+R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete \texttt{datasets}
+que se carga por defecto al abrir R.
+Con el comando \texttt{data()} podemos obtener un listado de las bases de datos disponibles.
+
+Para cargar una base de datos concreta se utiliza el comando
+\texttt{data(nombre)} (aunque en algunos casos se cargan automáticamente al emplearlos).
+Por ejemplo, \texttt{data(cars)} carga la base de datos llamada \texttt{cars} en el entorno de trabajo (\texttt{".GlobalEnv"})
+y \texttt{?cars} muestra la ayuda correspondiente con la descripición de la base de datos.
+
+\hypertarget{cap2-texto}{%
+\subsection{Lectura de archivos de texto}\label{cap2-texto}}
+
+En R para leer archivos de texto se suele utilizar la función \texttt{read.table()}.
+Supóngase, por ejemplo, que en el directorio actual está el fichero
+\emph{empleados.txt}. La lectura de este fichero vendría dada por el código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Session > Set Working Directory > To Source...?}
+\NormalTok{datos <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{file =} \StringTok{"data/empleados.txt"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{# head(datos)}
+\KeywordTok{str}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    474 obs. of  10 variables:
+##  $ id      : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ sexo    : Factor w/ 2 levels "Hombre","Mujer": 1 1 2 2 1 1 1 2 2 2 ...
+##  $ fechnac : Factor w/ 462 levels " ","1/10/1964",..: 166 275 362 228 176 397 240 290 36 143 ...
+##  $ educ    : int  15 16 12 8 15 15 15 12 15 12 ...
+##  $ catlab  : Factor w/ 3 levels "Administrativo",..: 2 1 1 1 1 1 1 1 1 1 ...
+##  $ salario : num  57000 40200 21450 21900 45000 ...
+##  $ salini  : int  27000 18750 12000 13200 21000 13500 18750 9750 12750 13500 ...
+##  $ tiempemp: int  98 98 98 98 98 98 98 98 98 98 ...
+##  $ expprev : int  144 36 381 190 138 67 114 0 115 244 ...
+##  $ minoria : Factor w/ 2 levels "No","Sí": 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+Si el fichero estuviese en el directorio \emph{c:\textbackslash{}datos} bastaría con especificar
+\texttt{file\ =\ "c:/datos/empleados.txt"}.
+Nótese también que para la lectura del fichero anterior se ha
+establecido el argumento \texttt{header=TRUE} para indicar que la primera línea del
+fichero contiene los nombres de las variables.
+
+Los argumentos utilizados habitualmente para esta función son:
+
+\begin{itemize}
+\item
+  \texttt{header}: indica si el fichero tiene cabecera (\texttt{header=TRUE}) o no
+  (\texttt{header=FALSE}). Por defecto toma el valor \texttt{header=FALSE}.
+\item
+  \texttt{sep}: carácter separador de columnas que por defecto es un espacio
+  en blanco (\texttt{sep=""}). Otras opciones serían: \texttt{sep=","} si el separador es
+  un ``;'', \texttt{sep="*"} si el separador es un ``*'', etc.
+\item
+  \texttt{dec}: carácter utilizado en el fichero para los números decimales.
+  Por defecto se establece \texttt{dec\ =\ "."}. Si los decimales vienen dados
+  por ``,'' se utiliza \texttt{dec\ =\ ","}
+\end{itemize}
+
+Resumiendo, los (principales) argumentos por defecto de la función
+\texttt{read.table} son los que se muestran en la siguiente línea:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{read.table}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{, }\DataTypeTok{dec =} \StringTok{"."}\NormalTok{)  }
+\end{Highlighting}
+\end{Shaded}
+
+Para más detalles sobre esta función véase
+\texttt{help(read.table)}.
+
+Estan disponibles otras funciones con valores por defecto de los parámetros
+adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores
+se puede utilizar \texttt{read.delim()} o \texttt{read.delim2()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{read.delim}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{"."}\NormalTok{)}
+\KeywordTok{read.delim2}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{alternativa-tidyverse}{%
+\subsection{\texorpdfstring{Alternativa \texttt{tidyverse}}{Alternativa tidyverse}}\label{alternativa-tidyverse}}
+
+Para leer archivos de texto en distintos formatos también se puede emplear el paquete \href{https://readr.tidyverse.org}{\texttt{readr}}
+(colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), para lo que se recomienda
+consultar el \href{https://r4ds.had.co.nz/data-import.html}{Capítulo 11} del libro \href{http://r4ds.had.co.nz}{R for Data Science}.
+
+\hypertarget{importacion-desde-spss}{%
+\subsection{Importación desde SPSS}\label{importacion-desde-spss}}
+
+El programa R permite
+lectura de ficheros de datos en formato SPSS (extensión \emph{.sav}) sin
+necesidad de tener instalado dicho programa en el ordenador. Para ello
+se necesita:
+
+\begin{itemize}
+\item
+  cargar la librería \texttt{foreign}
+\item
+  utilizar la función \texttt{read.spss}
+\end{itemize}
+
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(foreign)}
+\NormalTok{datos <-}\StringTok{ }\KeywordTok{read.spss}\NormalTok{(}\DataTypeTok{file =} \StringTok{"data/Employee data.sav"}\NormalTok{, }\DataTypeTok{to.data.frame =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{# head(datos)}
+\KeywordTok{str}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    474 obs. of  10 variables:
+##  $ id      : num  1 2 3 4 5 6 7 8 9 10 ...
+##  $ sexo    : Factor w/ 2 levels "Hombre","Mujer": 1 1 2 2 1 1 1 2 2 2 ...
+##  $ fechnac : num  1.17e+10 1.19e+10 1.09e+10 1.15e+10 1.17e+10 ...
+##  $ educ    : Factor w/ 10 levels "8","12","14",..: 4 5 2 1 4 4 4 2 4 2 ...
+##  $ catlab  : Factor w/ 3 levels "Administrativo",..: 3 1 1 1 1 1 1 1 1 1 ...
+##  $ salario : Factor w/ 221 levels "15750","15900",..: 179 137 28 31 150 101 121 31 71 45 ...
+##  $ salini  : Factor w/ 90 levels "9000","9750",..: 60 42 13 21 48 23 42 2 18 23 ...
+##  $ tiempemp: Factor w/ 36 levels "63","64","65",..: 36 36 36 36 36 36 36 36 36 36 ...
+##  $ expprev : Factor w/ 208 levels "Ausente","10",..: 38 131 139 64 34 181 13 1 14 91 ...
+##  $ minoria : Factor w/ 2 levels "No","Sí": 1 1 1 1 1 1 1 1 1 1 ...
+##  - attr(*, "variable.labels")= Named chr  "Código de empleado" "Sexo" "Fecha de nacimiento" "Nivel educativo" ...
+##   ..- attr(*, "names")= chr  "id" "sexo" "fechnac" "educ" ...
+##  - attr(*, "codepage")= int 1252
+\end{verbatim}
+
+\textbf{Nota}: Si hay fechas, puede ser recomendable emplear la función \texttt{spss.get()} del paquete \texttt{Hmisc}.
+
+\hypertarget{importacion-desde-excel}{%
+\subsection{Importación desde Excel}\label{importacion-desde-excel}}
+
+Se pueden leer fichero de
+Excel (con extensión \emph{.xlsx}) utilizando por ejemplo los paquetes \href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), \texttt{XLConnect} o
+\href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}} (este paquete se empleará más adelante para acceder a bases de datos),
+entre otros.
+
+Por ejemplo el siguiente código implementa una función que permite leer todos
+los archivos en formato \emph{.xlsx} en un directorio:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(openxlsx)}
+
+\NormalTok{read_xlsx <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{path =} \StringTok{'.'}\NormalTok{) \{}
+\NormalTok{  files <-}\StringTok{ }\KeywordTok{dir}\NormalTok{(path, }\DataTypeTok{pattern =} \StringTok{'*.xlsx'}\NormalTok{) }\CommentTok{# list.files}
+  \CommentTok{# file.list <- lapply(files, readWorkbook)}
+\NormalTok{  file.list <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\KeywordTok{length}\NormalTok{(files), }\DataTypeTok{mode =} \StringTok{'list'}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{seq_along}\NormalTok{(files)) }
+\NormalTok{      file.list[[i]] <-}\StringTok{ }\KeywordTok{readWorkbook}\NormalTok{(files[i])}
+\NormalTok{  file.names <-}\StringTok{ }\KeywordTok{sub}\NormalTok{(}\StringTok{'}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{.xlsx$'}\NormalTok{, }\StringTok{''}\NormalTok{, }\KeywordTok{basename}\NormalTok{(files)) }
+  \KeywordTok{names}\NormalTok{(file.list) <-}\StringTok{ }\NormalTok{file.names}
+\NormalTok{  file.list}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Para combinar los archivos (suponiendo que tienen las mismas columnas), podríamos ejecutar una llamada a \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind}{\texttt{rbind()}}
+o emplear la función \href{https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/bind}{\texttt{bind\_rows()}}
+del paquete \href{https://dplyr.tidyverse.org}{\texttt{dplyr}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(}\StringTok{'rbind'}\NormalTok{, file.list)}
+
+\NormalTok{df <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{bind_rows}\NormalTok{(file.list)}
+\end{Highlighting}
+\end{Shaded}
+
+Sin embargo, un procedimiento sencillo consiste en exportar los datos desde Excel a un archivo
+de texto separado por tabuladores (extensión \emph{.csv}).
+Por ejemplo, supongamos que queremos leer el fichero \emph{coches.xls}:
+
+\begin{itemize}
+\item
+  Desde Excel se selecciona el menú
+  \texttt{Archivo\ -\textgreater{}\ Guardar\ como\ -\textgreater{}\ Guardar\ como} y en \texttt{Tipo} se escoge la opción de
+  archivo CSV. De esta forma se guardarán los datos en el archivo
+  \emph{coches.csv}.
+\item
+  El fichero \emph{coches.csv} es un fichero de texto plano (se puede
+  editar con Notepad), con cabecera, las columnas separadas por ``;'', y
+  siendo ``,'' el carácter decimal.
+\item
+  Por lo tanto, la lectura de este fichero se puede hacer con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"coches.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{itemize}
+
+Otra posibilidad es utilizar la función \texttt{read.csv2}, que es
+una adaptación de la función general \texttt{read.table} con las siguientes
+opciones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{read.csv2}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Por lo tanto, la lectura del fichero \emph{coches.csv} se puede hacer de modo
+más directo con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"coches.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exportacion-de-datos}{%
+\subsection{Exportación de datos}\label{exportacion-de-datos}}
+
+Puede ser de interés la
+exportación de datos para que puedan leídos con otros programas. Para
+ello, se puede emplear la función \texttt{write.table()}. Esta función es
+similar, pero funcionando en sentido inverso, a \texttt{read.table()}
+(Sección \ref{cap2-texto}).
+
+Veamos un ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tipo <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{)}
+\NormalTok{longitud <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{120.34}\NormalTok{, }\FloatTok{99.45}\NormalTok{, }\FloatTok{115.67}\NormalTok{)}
+\NormalTok{datos <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(tipo, longitud)}
+\NormalTok{datos}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   tipo longitud
+## 1    A   120.34
+## 2    B    99.45
+## 3    C   115.67
+\end{verbatim}
+
+Para guardar el data.frame \texttt{datos} en un fichero de texto se
+puede utilizar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.table}\NormalTok{(datos, }\DataTypeTok{file =} \StringTok{"datos.txt"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Otra posibilidad es utilizar la función:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.csv2}\NormalTok{(datos, }\DataTypeTok{file =} \StringTok{"datos.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+que dará lugar al fichero \emph{datos.csv} importable directamente desde Excel.
+
+\hypertarget{manipulacion-de-datos}{%
+\section{Manipulación de datos}\label{manipulacion-de-datos}}
+
+Una vez cargada una (o varias) bases
+de datos hay una series de operaciones que serán de interés para el
+tratamiento de datos:
+
+\begin{itemize}
+\tightlist
+\item
+  Operaciones con variables:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    crear
+  \item
+    recodificar (e.g.~categorizar)
+  \item
+    \ldots{}
+  \end{itemize}
+\item
+  Operaciones con casos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ordenar
+  \item
+    filtrar
+  \item
+    \ldots{}
+  \end{itemize}
+\item
+  Operaciones con tablas de datos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    unir
+  \item
+    combinar
+  \item
+    consultar
+  \item
+    \ldots{}
+  \end{itemize}
+\end{itemize}
+
+A continuación se tratan algunas operaciones \emph{básicas}.
+
+\hypertarget{operaciones-con-variables}{%
+\subsection{Operaciones con variables}\label{operaciones-con-variables}}
+
+\hypertarget{creacion-y-eliminacion-de-variables}{%
+\subsubsection{Creación (y eliminación) de variables}\label{creacion-y-eliminacion-de-variables}}
+
+Consideremos de nuevo la
+base de datos \texttt{cars} incluida en el paquete \texttt{datasets}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(cars)}
+\CommentTok{# str(cars)}
+\KeywordTok{head}\NormalTok{(cars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10
+\end{verbatim}
+
+Utilizando el comando \texttt{help(cars)}
+se obtiene que \texttt{cars} es un data.frame con 50 observaciones y dos
+variables:
+
+\begin{itemize}
+\item
+  \texttt{speed}: Velocidad (millas por hora)
+\item
+  \texttt{dist}: tiempo hasta detenerse (pies)
+\end{itemize}
+
+Recordemos que, para acceder a la variable \texttt{speed} se puede
+hacer directamente con su nombre o bien utilizando notación
+``matricial''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars}\OperatorTok{$}\NormalTok{speed}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
+## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
+## [47] 24 24 24 25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars[, }\DecValTok{1}\NormalTok{]  }\CommentTok{# Equivalente}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
+## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
+## [47] 24 24 24 25
+\end{verbatim}
+
+Supongamos ahora que queremos transformar la variable original \texttt{speed}
+(millas por hora) en una nueva variable \texttt{velocidad} (kilómetros por
+hora) y añadir esta nueva variable al data.frame \texttt{cars}.
+La transformación que permite pasar millas a kilómetros es
+\texttt{kilómetros=millas/0.62137} que en R se hace directamente con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars}\OperatorTok{$}\NormalTok{speed}\OperatorTok{/}\FloatTok{0.62137}
+\end{Highlighting}
+\end{Shaded}
+
+Finalmente, incluimos la nueva variable que llamaremos
+\texttt{velocidad} en \texttt{cars}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars}\OperatorTok{$}\NormalTok{velocidad <-}\StringTok{ }\NormalTok{cars}\OperatorTok{$}\NormalTok{speed }\OperatorTok{/}\StringTok{ }\FloatTok{0.62137}
+\KeywordTok{head}\NormalTok{(cars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   speed dist velocidad
+## 1     4    2  6.437388
+## 2     4   10  6.437388
+## 3     7    4 11.265430
+## 4     7   22 11.265430
+## 5     8   16 12.874777
+## 6     9   10 14.484124
+\end{verbatim}
+
+También transformaremos la variable \texttt{dist} (en pies) en una nueva
+variable \texttt{distancia} (en metros). Ahora la transformación deseada es
+\texttt{metros=pies/3.2808}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars}\OperatorTok{$}\NormalTok{distancia <-}\StringTok{ }\NormalTok{cars}\OperatorTok{$}\NormalTok{dis }\OperatorTok{/}\StringTok{ }\FloatTok{3.2808}
+\KeywordTok{head}\NormalTok{(cars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   speed dist velocidad distancia
+## 1     4    2  6.437388 0.6096074
+## 2     4   10  6.437388 3.0480371
+## 3     7    4 11.265430 1.2192148
+## 4     7   22 11.265430 6.7056815
+## 5     8   16 12.874777 4.8768593
+## 6     9   10 14.484124 3.0480371
+\end{verbatim}
+
+Ahora, eliminaremos las variables originales \texttt{speed} y
+\texttt{dist}, y guardaremos el data.frame resultante con el nombre \texttt{coches}.
+En primer lugar, veamos varias formas de acceder a las variables de
+interés:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars[, }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)]}
+\NormalTok{cars[, }\KeywordTok{c}\NormalTok{(}\StringTok{"velocidad"}\NormalTok{, }\StringTok{"distancia"}\NormalTok{)]}
+\NormalTok{cars[, }\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+Utilizando alguna de las opciones anteriores se obtiene el \texttt{data.frame}
+deseado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coches <-}\StringTok{ }\NormalTok{cars[, }\KeywordTok{c}\NormalTok{(}\StringTok{"velocidad"}\NormalTok{, }\StringTok{"distancia"}\NormalTok{)]}
+\CommentTok{# head(coches)}
+\KeywordTok{str}\NormalTok{(coches)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    50 obs. of  2 variables:
+##  $ velocidad: num  6.44 6.44 11.27 11.27 12.87 ...
+##  $ distancia: num  0.61 3.05 1.22 6.71 4.88 ...
+\end{verbatim}
+
+Finalmente los datos anteriores podrían ser guardados en un fichero
+exportable a Excel con el siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.csv2}\NormalTok{(coches, }\DataTypeTok{file =} \StringTok{"coches.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{operaciones-con-casos}{%
+\subsection{Operaciones con casos}\label{operaciones-con-casos}}
+
+\hypertarget{ordenacion}{%
+\subsubsection{Ordenación}\label{ordenacion}}
+
+Continuemos con el data.frame \texttt{cars}.
+Se puede comprobar que los datos disponibles están ordenados por
+los valores de \texttt{speed}. A continuación haremos la ordenación utilizando
+los valores de \texttt{dist}. Para ello utilizaremos el conocido como vector de
+índices de ordenación.
+Este vector establece el orden en que tienen que ser elegidos los
+elementos para obtener la ordenación deseada.
+Veamos un ejemplo sencillo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{2.5}\NormalTok{, }\FloatTok{4.3}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{5.0}\NormalTok{) }\CommentTok{# valores originales}
+\NormalTok{ii <-}\StringTok{ }\KeywordTok{order}\NormalTok{(x)}
+\NormalTok{ii    }\CommentTok{# vector de ordenación}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 1 4 2 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[ii] }\CommentTok{# valores ordenados}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.2 2.5 3.1 4.3 5.0
+\end{verbatim}
+
+En el caso de vectores, el procedimiento anterior se podría
+hacer directamente con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+Sin embargo, para ordenar data.frames será necesario la utilización del
+vector de índices de ordenación. A continuación, los datos de \texttt{cars}
+ordenados por \texttt{dist}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ii <-}\StringTok{ }\KeywordTok{order}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist) }\CommentTok{# Vector de índices de ordenación}
+\NormalTok{cars2 <-}\StringTok{ }\NormalTok{cars[ii, ]    }\CommentTok{# Datos ordenados por dist}
+\KeywordTok{head}\NormalTok{(cars2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    speed dist velocidad distancia
+## 1      4    2  6.437388 0.6096074
+## 3      7    4 11.265430 1.2192148
+## 2      4   10  6.437388 3.0480371
+## 6      9   10 14.484124 3.0480371
+## 12    12   14 19.312165 4.2672519
+## 5      8   16 12.874777 4.8768593
+\end{verbatim}
+
+\hypertarget{filtrado}{%
+\subsubsection{Filtrado}\label{filtrado}}
+
+El filtrado de datos consiste en
+elegir una submuestra que cumpla determinadas condiciones. Para ello se
+puede utilizar la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset}{\texttt{subset()}}
+(que además permite seleccionar variables).
+
+A continuación se muestran un par de ejemplos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{subset}\NormalTok{(cars, dist }\OperatorTok{>}\StringTok{ }\DecValTok{85}\NormalTok{) }\CommentTok{# datos con dis>85}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    speed dist velocidad distancia
+## 47    24   92  38.62433  28.04194
+## 48    24   93  38.62433  28.34674
+## 49    24  120  38.62433  36.57644
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{subset}\NormalTok{(cars, speed }\OperatorTok{>}\StringTok{ }\DecValTok{10} \OperatorTok{&}\StringTok{ }\NormalTok{speed }\OperatorTok{<}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{dist }\OperatorTok{>}\StringTok{ }\DecValTok{45}\NormalTok{) }\CommentTok{# speed en (10,15) y dist>45}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    speed dist velocidad distancia
+## 19    13   46  20.92151  14.02097
+## 22    14   60  22.53086  18.28822
+## 23    14   80  22.53086  24.38430
+\end{verbatim}
+
+También se pueden hacer el filtrado empleando directamente los
+correspondientes vectores de índices:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ii <-}\StringTok{ }\NormalTok{cars}\OperatorTok{$}\NormalTok{dist }\OperatorTok{>}\StringTok{ }\DecValTok{85}
+\NormalTok{cars[ii, ]   }\CommentTok{# dis>85}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    speed dist velocidad distancia
+## 47    24   92  38.62433  28.04194
+## 48    24   93  38.62433  28.34674
+## 49    24  120  38.62433  36.57644
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ii <-}\StringTok{ }\NormalTok{cars}\OperatorTok{$}\NormalTok{speed }\OperatorTok{>}\StringTok{ }\DecValTok{10} \OperatorTok{&}\StringTok{ }\NormalTok{cars}\OperatorTok{$}\NormalTok{speed }\OperatorTok{<}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{cars}\OperatorTok{$}\NormalTok{dist }\OperatorTok{>}\StringTok{ }\DecValTok{45}
+\NormalTok{cars[ii, ]  }\CommentTok{# speed en (10,15) y dist>45}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    speed dist velocidad distancia
+## 19    13   46  20.92151  14.02097
+## 22    14   60  22.53086  18.28822
+## 23    14   80  22.53086  24.38430
+\end{verbatim}
+
+En este caso puede ser de utilidad la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which}{\texttt{which()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{it <-}\StringTok{ }\KeywordTok{which}\NormalTok{(ii)}
+\KeywordTok{str}\NormalTok{(it)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  int [1:3] 19 22 23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars[it, }\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    speed dist
+## 19    13   46
+## 22    14   60
+## 23    14   80
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# rownames(cars[it, 1:2])}
+
+\NormalTok{id <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\OperatorTok{!}\NormalTok{ii)}
+\KeywordTok{str}\NormalTok{(cars[id, }\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    47 obs. of  2 variables:
+##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed}
+\CommentTok{# ?which.min}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{funciones-apply}{%
+\subsection{\texorpdfstring{Funciones \texttt{apply}}{Funciones apply}}\label{funciones-apply}}
+
+\hypertarget{la-funcion-apply}{%
+\subsubsection{\texorpdfstring{La función \texttt{apply}}{La función apply}}\label{la-funcion-apply}}
+
+Una forma de evitar la
+utilización de bucles es utilizando la sentencia \texttt{apply} que permite
+evaluar una misma función en todas las filas, columnas, etc. de un array
+de forma simultánea.
+
+La sintaxis de esta función es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(X, MARGIN, FUN, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: matriz (o array)
+\item
+  \texttt{MARGIN}: Un vector indicando las dimensiones donde se aplicará
+  la función. 1 indica filas, 2 indica columnas, y \texttt{c(1,2)} indica
+  filas y columnas.
+\item
+  \texttt{FUN}: función que será aplicada.
+\item
+  \texttt{...}: argumentos opcionales que serán usados por \texttt{FUN}.
+\end{itemize}
+
+Veamos la utilización de la función \texttt{apply} con un ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(x, }\DecValTok{1}\NormalTok{, sum)    }\CommentTok{# Suma por filas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12 15 18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(x, }\DecValTok{2}\NormalTok{, sum)    }\CommentTok{# Suma por columnas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  6 15 24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(x, }\DecValTok{2}\NormalTok{, min)    }\CommentTok{# Mínimo de las columnas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 4 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(x, }\DecValTok{2}\NormalTok{, range)  }\CommentTok{# Rango (mínimo y máximo) de las columnas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    3    6    9
+\end{verbatim}
+
+\hypertarget{variantes-de-la-funcion-apply}{%
+\subsubsection{\texorpdfstring{Variantes de la función \texttt{apply}}{Variantes de la función apply}}\label{variantes-de-la-funcion-apply}}
+
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/lapply}{\texttt{lapply()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# lista con las medianas de las variables}
+\NormalTok{list <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(cars, median)}
+\KeywordTok{str}\NormalTok{(list)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 4
+##  $ speed    : num 15
+##  $ dist     : num 36
+##  $ velocidad: num 24.1
+##  $ distancia: num 11
+\end{verbatim}
+
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/sapply}{\texttt{sapply()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# matriz con las medias, medianas y desv. de las variables}
+\NormalTok{res <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(cars, }
+          \ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{c}\NormalTok{(}\DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(x), }\DataTypeTok{median =} \KeywordTok{median}\NormalTok{(x), }\DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(x)))}
+\CommentTok{# str(res)}
+\NormalTok{res}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            speed     dist velocidad distancia
+## mean   15.400000 42.98000 24.783945 13.100463
+## median 15.000000 36.00000 24.140206 10.972933
+## sd      5.287644 25.76938  8.509655  7.854602
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{t}\NormalTok{(res), }\DataTypeTok{digits =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r|r|r}
+\hline
+  & mean & median & sd\\
+\hline
+speed & 15.4 & 15.0 & 5.3\\
+\hline
+dist & 43.0 & 36.0 & 25.8\\
+\hline
+velocidad & 24.8 & 24.1 & 8.5\\
+\hline
+distancia & 13.1 & 11.0 & 7.9\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cfuns <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, }\DataTypeTok{funs =} \KeywordTok{c}\NormalTok{(mean, median, sd))}
+            \KeywordTok{sapply}\NormalTok{(funs, }\ControlFlowTok{function}\NormalTok{(f) }\KeywordTok{f}\NormalTok{(x))}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\KeywordTok{cfuns}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.50000 5.50000 3.02765
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(cars, cfuns)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          speed     dist velocidad distancia
+## [1,] 15.400000 42.98000 24.783945 13.100463
+## [2,] 15.000000 36.00000 24.140206 10.972933
+## [3,]  5.287644 25.76938  8.509655  7.854602
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfuns <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"mean"}\NormalTok{, }\StringTok{"median"}\NormalTok{, }\StringTok{"sd"}\NormalTok{)}
+\KeywordTok{sapply}\NormalTok{(nfuns, }\ControlFlowTok{function}\NormalTok{(f) }\KeywordTok{eval}\NormalTok{(}\KeywordTok{parse}\NormalTok{(}\DataTypeTok{text =} \KeywordTok{paste0}\NormalTok{(f, }\StringTok{"(x)"}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    mean  median      sd 
+## 5.50000 5.50000 3.02765
+\end{verbatim}
+
+\hypertarget{la-funcion-tapply}{%
+\subsubsection{\texorpdfstring{La función \texttt{tapply}}{La función tapply}}\label{la-funcion-tapply}}
+
+La function \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/tapply}{\texttt{tapply()}} es
+similar a la función \texttt{apply()} y permite aplicar una función a los datos desagregados,
+utilizando como criterio los distintos niveles de una variable factor.
+La sintaxis de esta función es como sigue:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \KeywordTok{tapply}\NormalTok{(X, INDEX, FUN, ...,)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: matriz (o array).
+\item
+  \texttt{INDEX}: factor indicando los grupos (niveles).
+\item
+  \texttt{FUN}: función que será aplicada.
+\item
+  \texttt{...}: argumentos opcionales .
+\end{itemize}
+
+Consideremos, por ejemplo, el data.frame \texttt{ChickWeight} con datos de un
+experimento relacionado con la repercusión de varias dietas en el peso
+de pollos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(ChickWeight)}
+\CommentTok{# str(ChickWeight)}
+\KeywordTok{head}\NormalTok{(ChickWeight)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   weight Time Chick Diet
+## 1     42    0     1    1
+## 2     51    2     1    1
+## 3     59    4     1    1
+## 4     64    6     1    1
+## 5     76    8     1    1
+## 6     93   10     1    1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{peso <-}\StringTok{ }\NormalTok{ChickWeight}\OperatorTok{$}\NormalTok{weight}
+\NormalTok{dieta <-}\StringTok{ }\NormalTok{ChickWeight}\OperatorTok{$}\NormalTok{Diet}
+\KeywordTok{levels}\NormalTok{(dieta) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Dieta 1"}\NormalTok{, }\StringTok{"Dieta 2"}\NormalTok{, }\StringTok{"Dieta 3"}\NormalTok{, }\StringTok{"Dieta 4"}\NormalTok{)}
+\KeywordTok{tapply}\NormalTok{(peso, dieta, mean)  }\CommentTok{# Peso medio por dieta}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Dieta 1  Dieta 2  Dieta 3  Dieta 4 
+## 102.6455 122.6167 142.9500 135.2627
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(peso, dieta, summary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`Dieta 1`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   35.00   57.75   88.00  102.65  136.50  305.00 
+## 
+## $`Dieta 2`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    39.0    65.5   104.5   122.6   163.0   331.0 
+## 
+## $`Dieta 3`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    39.0    67.5   125.5   142.9   198.8   373.0 
+## 
+## $`Dieta 4`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   39.00   71.25  129.50  135.26  184.75  322.00
+\end{verbatim}
+
+Otro ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{provincia <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{levels}\NormalTok{(provincia) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"A Coruña"}\NormalTok{, }\StringTok{"Lugo"}\NormalTok{, }\StringTok{"Orense"}\NormalTok{, }\StringTok{"Pontevedra"}\NormalTok{)}
+\NormalTok{hijos <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\KeywordTok{data.frame}\NormalTok{(provincia, hijos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     provincia hijos
+## 1    A Coruña     1
+## 2      Orense     2
+## 3  Pontevedra     0
+## 4        Lugo     3
+## 5  Pontevedra     4
+## 6      Orense     1
+## 7        Lugo     0
+## 8    A Coruña     0
+## 9  Pontevedra     2
+## 10     Orense     3
+## 11       Lugo     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(hijos, provincia, mean) }\CommentTok{# Número medio de hijos por provincia}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   A Coruña       Lugo     Orense Pontevedra 
+##   0.500000   1.333333   2.000000   2.000000
+\end{verbatim}
+
+\hypertarget{operaciones-con-tablas-de-datos}{%
+\subsection{Operaciones con tablas de datos}\label{operaciones-con-tablas-de-datos}}
+
+Ver ejemplo \href{data/wosdata.zip}{\emph{wosdata.R}}
+
+\textbf{\emph{Unir tablas}}:
+
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind}{\texttt{rbind()}}
+
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind}{\texttt{cbind()}}
+
+\textbf{\emph{Combinar tablas}}:
+
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match}{\texttt{match()}}
+
+\texttt{match(x,\ table)} devuelve un vector (de la misma longitud que \texttt{x})
+con las (primeras) posiciones de coincidencia de \texttt{x} en \texttt{table}
+(o \texttt{NA}, por defecto, si no hay coincidencia).
+Para combinar tablas puede ser más cómodo el operador \texttt{\%in\%} (\texttt{?\textquotesingle{}\%in\%\textquotesingle{}}).
+
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match}{\texttt{pmatch()}}
+
+\hypertarget{introduccion-al-lenguaje-sql}{%
+\chapter{Introducción al lenguaje SQL}\label{introduccion-al-lenguaje-sql}}
+
+Working draft\ldots{}
+
+Los sistemas de información gestionan repositorios de información en múltiples formatos,
+siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured Query Language)
+
+\hypertarget{bases-de-datos-relacionales}{%
+\section{Bases de Datos Relacionales}\label{bases-de-datos-relacionales}}
+
+\hypertarget{definiciones}{%
+\subsection{Definiciones}\label{definiciones}}
+
+\begin{itemize}
+\item
+  \textbf{Dominio}: contexto (organización, empresa, evento\ldots{}) objeto de gestión de la información.
+\item
+  \textbf{Dato}: hecho con significado implícito, registable, relevante en un determinado dominio.
+\item
+  \textbf{Base de datos}: colección de datos de un determinado dominio relacionados entre sí, organizados de forma que sea posible manipularlos y recuperarlos de forma eficiente.
+\item
+  Sistema de Gestión de Bases de Datos (\textbf{SGBD}) (en inglés \textbf{RDBMS}, Relational Database Management System): software que permite a los usuarios crear y manipular bases de datos mediante operaciones CRUD:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Crear / Insertar Datos (Create)
+  \item
+    Consultar / Leer (Read)
+  \item
+    Actualizar / Modificar (Update)
+  \item
+    Eliminar (Delete)
+  \end{itemize}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{itemize}
+\item
+  \textbf{Modelo de datos}: abstracción conceptual que propone una manera de organizar y manipular los datos. Definido mediante:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Estructura: elementos para organizar datos
+  \item
+    Integridad: reglas para relaciones los elementos
+  \item
+    Manipulación: operaciones sobre los datos adaptadas a la estructura y reglas
+  \end{itemize}
+\item
+  Modelo de datos conceptual \textbf{Entidad Relación} (entidades, relaciones, atributos)
+\item
+  Modelo de datos lógico o de representación (\textbf{modelo relacional} de Codd)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Datos en relaciones (tablas)
+  \item
+    Base matemática formal
+  \item
+    Flexible
+  \end{itemize}
+\item
+  Modelo de datos físico (tal y como se almacenan los datos)
+\end{itemize}
+
+Una fila de la tabla (relación) es una tupla y una columna un atributo (ver Figura \ref{fig:relacion}).
+
+(ver Figura \ref{fig:relacion})
+
+(ver Figura \ref{fig:relacion})
+
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{images/Relacion} 
+
+}
+
+\caption{Esquema de una relación.}\label{fig:relacion}
+\end{figure}
+
+Una base de datos es un conjunto de tablas (al menos una).
+
+\includegraphics[width=6.25in,height=\textheight]{images/BBDD.png}
+
+La tabla no es una relación porque la relación es un conjunto sin orden y una tabla puede tener filas repetidas y tiene orden.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{itemize}
+\item
+  \textbf{Esquema}: estructura de la base de datos
+\item
+  \textbf{Estado}: contenido de la base de datos
+\item
+  Restricción de \textbf{integridad}: regla que debe cumplir la información registrada en la base de datos para garantizar la integridad de la información.
+\end{itemize}
+
+Cualquier Base de Datos basada en el modelo relacional ha de cumplir como mínimo estas restricciones (además de las propias del dominio):
+
+\begin{itemize}
+\item
+  Restricción de dominio: el valor de cada atributo debe de ser único (teléfono, no valor único), no descomponible (nombre completo descomponible en nombre y apellidos, domicilio en calle, CP, localidad, etc\ldots{})
+\item
+  Una relación es un conjunto de tuplas, por tanto todas las tuplas son distintas.
+\item
+  Una \textbf{superclave} es un subconjunto de atributos tal que no existen dos tuplas con la misma superclave.
+\end{itemize}
+
+\begin{quote}
+Ejercicio. En la relación Empleado(dni, nombre, apellidos, email) ¿cuántas superclaves existen?
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Una \textbf{clave candidata} es una superclave mínima (superclave mínima es la clave a la que no se le puede eliminar un atributo).
+\end{itemize}
+
+\begin{quote}
+¿Cuántas claves candidatas hay en el ejemplo anterior?
+\end{quote}
+
+\begin{itemize}
+\item
+  \textbf{Clave primaria} es la clave candidata que elegimos que identificar de forma unívoca las tuplas de una relación. Restricción de integridad de entidad: Ningún valor de la clave primaria puede ser un valor nulo.
+\item
+  \textbf{Clave foránea} es un conjunto de atributos de una relación R\_1 que, para cada tupla, identifican a otra tupla de una relación R\_2 con la que está relacionada.
+  La Restricción de integridad referencial nos dice que la clave foránea ha de corresponderse con la clave primaria de R\_2, y si la clave foránea no es nula ha de refir a una tupla en R\_2.
+\end{itemize}
+
+\includegraphics[width=6.25in,height=\textheight]{images/ClaveForanea.png}
+
+\includegraphics[width=6.25in,height=\textheight]{images/IntegridadReferencial.png}
+
+Si borramos/actualizamos un valor de clave foránea podemos: (a) prohibir el cambio, o (b) poner a nulo la clave foránea (borrado) o propogar el cambio (modificación).
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Ventajas de SGBD:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Administración centralizada de los datos (por un administrador en un servidor/plataforma central que evita la información en silos -redundante/inconsistente)
+  \item
+    Desacoplado del almacenamiento físico de los datos (no es necesario conocerlo)
+  \item
+    Simplicidad de acceso (ODBC + SQL, lenguaje declarativo)
+  \item
+    Control de integridad (restricciones genéricas, integridad de entidad y referencial, de dominio, y las del dominio en software)
+  \item
+    Control de acceso concurrente (evita inconsistencia)
+  \item
+    Seguridad (autenticación, roles de acceso)
+  \item
+    Recuperación ante fallos (backup, logs y transacciones -rollback-)
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{sintaxis-sql}{%
+\section{Sintaxis SQL}\label{sintaxis-sql}}
+
+A continuación 27 clásulas SQL básicas
+
+\hypertarget{extraccion-sql-11-statements}{%
+\subsection{Extracción SQL (11 statements)}\label{extraccion-sql-11-statements}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SELECT column1, column2....columnN}
+\NormalTok{FROM   table_name;}
+
+\NormalTok{SELECT DISTINCT column1, column2....columnN}
+\NormalTok{FROM   table_name;}
+
+\NormalTok{SELECT column1, column2....columnN}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  CONDITION;}
+
+\NormalTok{SELECT column1, column2....columnN}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  CONDITION}\DecValTok{-1}\NormalTok{ \{AND}\OperatorTok{|}\NormalTok{OR\} CONDITION}\DecValTok{-2}\NormalTok{;}
+
+\NormalTok{SELECT column1, column2....columnN}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  column_name }\KeywordTok{IN}\NormalTok{ (val}\DecValTok{-1}\NormalTok{, val}\DecValTok{-2}\NormalTok{,...val}\OperatorTok{-}\NormalTok{N);}
+
+\NormalTok{SELECT column1, column2....columnN}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  column_name BETWEEN val}\DecValTok{-1}\NormalTok{ AND val}\DecValTok{-2}\NormalTok{;}
+
+\NormalTok{SELECT column1, column2....columnN}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  column_name LIKE \{ PATTERN \};}
+
+\NormalTok{SELECT column1, column2....columnN}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  CONDITION}
+\NormalTok{ORDER BY column_name \{ASC}\OperatorTok{|}\NormalTok{DESC\};}
+
+\NormalTok{SELECT }\KeywordTok{SUM}\NormalTok{(column_name)}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  CONDITION}
+\NormalTok{GROUP BY column_name;}
+
+\NormalTok{SELECT }\KeywordTok{COUNT}\NormalTok{(column_name)}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  CONDITION;}
+
+\NormalTok{SELECT }\KeywordTok{SUM}\NormalTok{(column_name)}
+\NormalTok{FROM   table_name}
+\NormalTok{WHERE  CONDITION}
+\NormalTok{GROUP BY column_name}
+\KeywordTok{HAVING}\NormalTok{ (arithematic }\ControlFlowTok{function}\NormalTok{ condition);}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{crearactualizarborrar-tablas-sql-8-statements}{%
+\subsection{Crear/Actualizar/Borrar tablas SQL (8 statements)}\label{crearactualizarborrar-tablas-sql-8-statements}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CREATE TABLE }\KeywordTok{table_name}\NormalTok{(}
+\NormalTok{column1 datatype,}
+\NormalTok{column2 datatype,}
+\NormalTok{column3 datatype,}
+\NormalTok{.....}
+\NormalTok{columnN datatype,}
+\NormalTok{PRIMARY }\KeywordTok{KEY}\NormalTok{( one or more columns )}
+\NormalTok{);}
+
+\NormalTok{DROP TABLE table_name;}
+
+\NormalTok{CREATE UNIQUE INDEX index_name}
+\NormalTok{ON }\KeywordTok{table_name}\NormalTok{ ( column1, column2,...columnN);}
+
+\NormalTok{ALTER TABLE table_name}
+\NormalTok{DROP INDEX index_name;}
+
+\NormalTok{DESC table_name;}
+
+\NormalTok{TRUNCATE TABLE table_name;}
+
+\NormalTok{ALTER TABLE table_name \{ADD}\OperatorTok{|}\NormalTok{DROP}\OperatorTok{|}\NormalTok{MODIFY\} column_name \{data_ype\};}
+
+\NormalTok{ALTER TABLE table_name RENAME TO new_table_name;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{anadiractualizarborrar-tuplas-en-sql-3-statements}{%
+\subsection{Añadir/Actualizar/Borrar tuplas en SQL (3 statements)}\label{anadiractualizarborrar-tuplas-en-sql-3-statements}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{INSERT INTO }\KeywordTok{table_name}\NormalTok{( column1, column2....columnN)}
+\KeywordTok{VALUES}\NormalTok{ ( value1, value2....valueN);}
+
+\NormalTok{UPDATE table_name}
+\NormalTok{SET column1 =}\StringTok{ }\NormalTok{value1, column2 =}\StringTok{ }\NormalTok{value2....columnN=valueN}
+\NormalTok{[ WHERE  CONDITION ];}
+
+\NormalTok{DELETE FROM table_name}
+\NormalTok{WHERE  \{CONDITION\};}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{gestion-bases-de-datos-5-statements}{%
+\subsection{Gestión Bases de Datos (5 statements)}\label{gestion-bases-de-datos-5-statements}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CREATE DATABASE database_name;}
+
+\NormalTok{DROP DATABASE database_name;}
+
+\NormalTok{USE database_name;}
+
+\NormalTok{COMMIT;}
+
+\NormalTok{ROLLBACK;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ejemplos-de-consultas-sql}{%
+\subsection{Ejemplos de consultas SQL}\label{ejemplos-de-consultas-sql}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SELECT Nombre, Apellido1, Apellido2, Municipio, Provincia }
+\NormalTok{FROM Cliente}
+\NormalTok{WHERE Municipio =}\StringTok{ 'Lugo'}
+\NormalTok{ORDER BY Apellido1}
+
+\NormalTok{INSERT }\KeywordTok{Proveedor}\NormalTok{(Nombre, PersonaContacto, Ciudad, País)}
+\KeywordTok{VALUES}\NormalTok{ (}\StringTok{'Café Candelas'}\NormalTok{, }\StringTok{'Ivana Candelas'}\NormalTok{, }\StringTok{'Lugo'}\NormalTok{, }\StringTok{'España'}\NormalTok{)}
+
+\NormalTok{UPDATE Pedidos}
+\NormalTok{SET Cantidad =}\StringTok{ }\DecValTok{2}
+\NormalTok{WHERE IdProducto =}\StringTok{ }\DecValTok{963}
+
+\NormalTok{DELETE Cliente}
+\NormalTok{WHERE Email =}\StringTok{ 'alexandregb@gmail.com'}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{conexion-con-bases-de-datos-desde-r}{%
+\section{Conexión con bases de datos desde R}\label{conexion-con-bases-de-datos-desde-r}}
+
+\hypertarget{introduccion-a-sql-en-r}{%
+\subsection{Introducción a SQL en R}\label{introduccion-a-sql-en-r}}
+
+SQL se usa para manipular datos dentro de una base de datos. Si la base de datos no es muy grande se puede cargar toda en un data.frame.
+No obstante, por escalabilidad y offloading de la carga de trabajo al servidor SGBD utilizaremos SQL.
+
+Existen varios SGBD (SQLite, Microsoft SQL Server, PostgreSQL, etc) los cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada gestor extiende SQL
+de formas sutiles buscando minar cierta portabilidad de código (\emph{vendor-locking}). En efecto, un código SQL desarrollado para SQLite es probable que falle con MySQL
+aunque tras aplicar ligeras modificaciones ya funcionará. Asimismo el mecanismo de conexión, configuración, rendimiento y operación suele diferir entre SGBD.
+
+A continuación se lista una serie de paquetes utilizados en el acceso a los datos, lo que suele ser el principal esfuerzo a realizar cuando se trabaja con SGBD:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://cran.r-project.org/web/packages/DBI/index.html}{DBI}
+\item
+  \href{https://cran.r-project.org/web/packages/RODBC/index.html}{RODBC}
+\item
+  \href{https://cran.r-project.org/web/packages/dbConnect/index.html}{dbConnect}
+\item
+  \href{https://cran.r-project.org/web/packages/RSQLite/index.html}{RSQLite}
+\item
+  \href{https://cran.r-project.org/web/packages/RMySQL/index.html}{RMySQL}
+\item
+  \href{https://cran.r-project.org/web/packages/RPostgreSQL/index.html}{RPostgreSQL}
+\end{itemize}
+
+\hypertarget{el-paquete-sqldf}{%
+\subsection{El paquete sqldf}\label{el-paquete-sqldf}}
+
+A continuación se presenta una serie de ejercicios con la sintaxis de SQL operando sobre un data.frame con el paquete sqldf. Esto inicialmente no incluye los detalles de conectarse a un SGBD, ni modificar los
+datos, solamente el uso de SQL para extraer datos con el objetivo de ser analizados en R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(sqldf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    age circumference
+## 1  118            30
+## 2  484            58
+## 3  664            87
+## 4 1004           115
+## 5 1231           120
+## 6 1372           142
+## 7 1582           145
+\end{verbatim}
+
+\hypertarget{sql-queries}{%
+\subsection{SQL Queries}\label{sql-queries}}
+
+El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{"SELECT * FROM iris"}\NormalTok{)}
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{"select * from iris"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{"SELECT * FROM IRIS"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+La sintaxis básica de SELECT es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SELECT variable1, variable2 FROM data}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{asteriscowildcard}{%
+\subsubsection{Asterisco/Wildcard}\label{asteriscowildcard}}
+
+Lo extrae todo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bod2 <-}\StringTok{ }\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT * FROM BOD'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{limit}{%
+\subsubsection{Limit}\label{limit}}
+
+Limita el número de resultados
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT * FROM iris LIMIT 5'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+\end{verbatim}
+
+\hypertarget{order-by}{%
+\subsubsection{Order By}\label{order-by}}
+
+Ordena las variables
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ORDER BY var1 \{ASC}\OperatorTok{/}\NormalTok{DESC\}, var2 \{ASC}\OperatorTok{/}\NormalTok{DESC\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{"SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tree age circumference
+## 1    2 118            33
+## 2    4 118            32
+## 3    1 118            30
+## 4    3 118            30
+## 5    5 118            30
+\end{verbatim}
+
+\hypertarget{where}{%
+\subsubsection{Where}\label{where}}
+
+Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT demand FROM BOD WHERE Time < 3'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   demand
+## 1    8.3
+## 2   10.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT * FROM rock WHERE (peri > 5000 AND shape < .05) OR perm > 1000'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   area     peri    shape perm
+## 1 5048  941.543 0.328641 1300
+## 2 1016  308.642 0.230081 1300
+## 3 5605 1145.690 0.464125 1300
+## 4 8793 2280.490 0.420477 1300
+\end{verbatim}
+
+Y extendiendo su uso con IN o LIKE (es último sólo con \%), pudiendo aplicárseles el NOT:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT * FROM BOD WHERE Time IN (1,7)'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Time demand
+## 1    1    8.3
+## 2    7   19.8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT * FROM BOD WHERE Time NOT IN (1,7)'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Time demand
+## 1    2   10.3
+## 2    3   19.0
+## 3    4   16.0
+## 4    5   15.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT * FROM chickwts WHERE feed LIKE "%bean" LIMIT 5'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   weight      feed
+## 1    179 horsebean
+## 2    160 horsebean
+## 3    136 horsebean
+## 4    227 horsebean
+## 5    217 horsebean
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqldf}\NormalTok{(}\StringTok{'SELECT * FROM chickwts WHERE feed NOT LIKE "%bean" LIMIT 5'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   weight    feed
+## 1    309 linseed
+## 2    229 linseed
+## 3    181 linseed
+## 4    141 linseed
+## 5    260 linseed
+\end{verbatim}
+
+\hypertarget{ejemplo-scopus-data}{%
+\section{Ejemplo Scopus data}\label{ejemplo-scopus-data}}
+
+Ver ejemplo \href{data/citan.zip}{\emph{citan.zip}} y Apéndice \ref{citan}.
+
+\begin{quote}
+``If your data fits in memory
+there is no advantage to putting it in a database:
+it will only be slower and more frustrating''
+
+--- Hadley Wickham -- \url{https://dbplyr.tidyverse.org/articles/dbplyr.html}
+\end{quote}
+
+\hypertarget{ejercicios-sql-con-rsqlite}{%
+\section{Ejercicios SQL con RSQLite}\label{ejercicios-sql-con-rsqlite}}
+
+\hypertarget{setup-de-rsqlite}{%
+\subsection{Setup de RSQLite}\label{setup-de-rsqlite}}
+
+Vamos a utilizar \href{https://cran.r-project.org/web/packages/RSQLite/index.html}{RSQLite}. La información para su instalación está \href{https://db.rstudio.com/databases/sqlite/}{en el siguiente enlace}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(DBI)}
+
+\CommentTok{# Create an ephemeral in-memory RSQLite database}
+\NormalTok{con <-}\StringTok{ }\KeywordTok{dbConnect}\NormalTok{(RSQLite}\OperatorTok{::}\KeywordTok{SQLite}\NormalTok{(), }\StringTok{":memory:"}\NormalTok{)}
+\KeywordTok{dbListTables}\NormalTok{(con)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## character(0)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbWriteTable}\NormalTok{(con, }\StringTok{"mtcars"}\NormalTok{, mtcars)}
+\KeywordTok{dbListTables}\NormalTok{(con)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mtcars"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbListFields}\NormalTok{(con, }\StringTok{"mtcars"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+## [11] "carb"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbReadTable}\NormalTok{(con, }\StringTok{"mtcars"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# You can fetch all results:}
+\NormalTok{res <-}\StringTok{ }\KeywordTok{dbSendQuery}\NormalTok{(con, }\StringTok{"SELECT * FROM mtcars WHERE cyl = 4"}\NormalTok{)}
+\KeywordTok{dbFetch}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## 1  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## 2  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## 3  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## 4  32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## 5  30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## 6  33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## 7  21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## 8  27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## 9  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## 10 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## 11 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbClearResult}\NormalTok{(res)}
+
+\CommentTok{# Or a chunk at a time}
+\NormalTok{res <-}\StringTok{ }\KeywordTok{dbSendQuery}\NormalTok{(con, }\StringTok{"SELECT * FROM mtcars WHERE cyl = 4"}\NormalTok{)}
+\ControlFlowTok{while}\NormalTok{(}\OperatorTok{!}\KeywordTok{dbHasCompleted}\NormalTok{(res))\{}
+\NormalTok{  chunk <-}\StringTok{ }\KeywordTok{dbFetch}\NormalTok{(res, }\DataTypeTok{n =} \DecValTok{5}\NormalTok{)}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{nrow}\NormalTok{(chunk))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+## [1] 5
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Clear the result}
+\KeywordTok{dbClearResult}\NormalTok{(res)}
+
+\CommentTok{# Disconnect from the database}
+\KeywordTok{dbDisconnect}\NormalTok{(con)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{practica-1-sql}{%
+\section{Práctica 1: SQL}\label{practica-1-sql}}
+
+Vamos a utilizar la base de datos \href{https://www.sqlitetutorial.net/wp-content/uploads/2018/03/chinook.zip}{Chinook} del \href{https://www.sqlitetutorial.net/sqlite-sample-database/}{tutorial de SQLite}
+
+\includegraphics[width=6.25in,height=\textheight]{images/sqlite-sample-database-color.jpg}
+
+Los ejercicios se entregarán por correo electrónico a \href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}} en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd \textbf{antes} del 6 de Noviembre.
+
+\hypertarget{ejercicios-de-analisis-exploratorio}{%
+\subsection{Ejercicios de Análisis Exploratorio}\label{ejercicios-de-analisis-exploratorio}}
+
+La puntuación de esta práctica será -3 más el número de respuestas correctas (puntuación máxima 10). Se valorará especialmente encontrar la solución más sencilla en una única query SQL.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Conocer el importe mínimo, máximo y la media de las facturas.
+\item
+  Conocer el total de las facturas de cada uno de los países.
+\item
+  Obtener el listado de países junto con su facturación media, ordenado (a) alfabéticamente por país y (b) decrecientemente por importe de facturación media
+\item
+  Obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID)
+\item
+  ¿Qué porcentaje de las canciones son video?
+\item
+  Listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación.
+\item
+  Listar los géneros musicales por orden decreciente de popularidad (definida la popularidad como el número de canciones de ese género), indicando el porcentaje de las canciones de ese género.
+\item
+  Listar los 10 artistas con mayor número de canciones de forma descendente según el número de canciones.
+\item
+  Listar Nombre y Apellidos de los ``Sales Support Agent'' así como la facturación de los clientes que tienen asignados, además de mostrar el porcentaje de la facturación total y del número total de empleados.
+\item
+  Listar los géneros musicales que más importe facturan y el porcentaje de su facturación.
+\item
+  Listas los géneros musicales ordenados de forma decreciente según el número de canciones por las que no están facturando.
+\item
+  Conocer la facturación de los clientes agrupados por su servidor de correo electrónico (e.g., la facturación de los clientes de gmail.com, los de hotmail.com, por orden decreciente de facturación).
+\item
+  Ordenar las playlists por la facturación obtenida por sus canciones.
+\end{enumerate}
+
+\hypertarget{manipulacion-de-datos-con-dplyr}{%
+\chapter{\texorpdfstring{Manipulación de datos con \texttt{dplyr}}{Manipulación de datos con dplyr}}\label{manipulacion-de-datos-con-dplyr}}
+
+Working draft\ldots{}
+
+En este capítulo se realiza una breve introducción al paquete \href{https://dplyr.tidyverse.org/index.html}{\texttt{dplyr}}.
+Para mas información, ver por ejemplo la `vignette' del paquete:
+
+\href{https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html}{Introduction to dplyr},
+
+o el Capítulo \href{http://r4ds.had.co.nz/transform.html}{5 Data transformation} del libro:
+
+\href{http://r4ds.had.co.nz}{R for Data Science}.
+
+\hypertarget{el-paquete-dplyr}{%
+\section{\texorpdfstring{El paquete \textbf{dplyr}}{El paquete dplyr}}\label{el-paquete-dplyr}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{dplyr} Permite sustituir funciones base de R (como \texttt{split()}, \texttt{subset()},
+\texttt{apply()}, \texttt{sapply()}, \texttt{lapply()}, \texttt{tapply()} y \texttt{aggregate()})
+mediante una ``gramática'' más sencilla para la manipulación de datos:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{select()} seleccionar variables/columnas (también \texttt{rename()}).
+\item
+  \texttt{mutate()} crear variables/columnas (también \texttt{transmute()}).
+\item
+  \texttt{filter()} seleccionar casos/filas (también \texttt{slice()}).
+\item
+  \texttt{arrange()} ordenar o organizar casos/filas.
+\item
+  \texttt{summarise()} resumir valores.
+\item
+  \texttt{group\_by()} permite operaciones por grupo empleando el concepto
+  ``dividir-aplicar-combinar'' (\texttt{ungroup()} elimina el agrupamiento).
+\end{itemize}
+
+Puede trabajar con conjuntos de datos en distintos formatos:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{data.frame}, \texttt{data.table}, \texttt{tibble}, \ldots{}
+\item
+  bases de datos relacionales (lenguaje SQL), \ldots{}
+\item
+  bases de datos \emph{Hadoop} (paquete \texttt{plyrmr}).
+\end{itemize}
+
+En lugar de operar sobre vectores como las funciones base,
+opera sobre objetos de este tipo (solo nos centraremos en \texttt{data.frame}).
+
+\hypertarget{datos-de-ejemplo}{%
+\subsection{Datos de ejemplo}\label{datos-de-ejemplo}}
+
+El fichero \emph{empleados.RData} contiene datos de empleados de un banco.
+Supongamos por ejemplo que estamos interesados en estudiar si hay
+discriminación por cuestión de sexo o raza.
+
+\hypertarget{operaciones-con-variables-columnas}{%
+\section{Operaciones con variables (columnas)}\label{operaciones-con-variables-columnas}}
+
+\hypertarget{seleccionar-variables-con-select}{%
+\subsection{\texorpdfstring{Seleccionar variables con \textbf{select()}}{Seleccionar variables con select()}}\label{seleccionar-variables-con-select}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emplea2 <-}\StringTok{ }\KeywordTok{select}\NormalTok{(empleados, id, sexo, minoria, tiempemp, salini, salario)}
+\KeywordTok{head}\NormalTok{(emplea2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id   sexo minoria tiempemp salini salario
+## 1  1 Hombre      No       98  27000   57000
+## 2  2 Hombre      No       98  18750   40200
+## 3  3  Mujer      No       98  12000   21450
+## 4  4  Mujer      No       98  13200   21900
+## 5  5 Hombre      No       98  21000   45000
+## 6  6 Hombre      No       98  13500   32100
+\end{verbatim}
+
+Se puede cambiar el nombre (ver también \emph{?rename()})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{select}\NormalTok{(empleados, sexo, }\DataTypeTok{noblanca =}\NormalTok{ minoria, salario))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     sexo noblanca salario
+## 1 Hombre       No   57000
+## 2 Hombre       No   40200
+## 3  Mujer       No   21450
+## 4  Mujer       No   21900
+## 5 Hombre       No   45000
+## 6 Hombre       No   32100
+\end{verbatim}
+
+Se pueden emplear los nombres de variables como índices:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{select}\NormalTok{(empleados, sexo}\OperatorTok{:}\NormalTok{salario))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     sexo    fechnac educ         catlab salario
+## 1 Hombre 1952-02-03   15      Directivo   57000
+## 2 Hombre 1958-05-23   16 Administrativo   40200
+## 3  Mujer 1929-07-26   12 Administrativo   21450
+## 4  Mujer 1947-04-15    8 Administrativo   21900
+## 5 Hombre 1955-02-09   15 Administrativo   45000
+## 6 Hombre 1958-08-22   15 Administrativo   32100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{select}\NormalTok{(empleados, }\OperatorTok{-}\NormalTok{(sexo}\OperatorTok{:}\NormalTok{salario)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id salini tiempemp expprev minoria     sexoraza
+## 1  1  27000       98     144      No Blanca varón
+## 2  2  18750       98      36      No Blanca varón
+## 3  3  12000       98     381      No Blanca mujer
+## 4  4  13200       98     190      No Blanca mujer
+## 5  5  21000       98     138      No Blanca varón
+## 6  6  13500       98      67      No Blanca varón
+\end{verbatim}
+
+Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \texttt{ends\_with()},
+\texttt{contains()}, \texttt{matches()}, \texttt{one\_of()} (ver \emph{?select}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{select}\NormalTok{(empleados, }\KeywordTok{starts_with}\NormalTok{(}\StringTok{"s"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     sexo salario salini     sexoraza
+## 1 Hombre   57000  27000 Blanca varón
+## 2 Hombre   40200  18750 Blanca varón
+## 3  Mujer   21450  12000 Blanca mujer
+## 4  Mujer   21900  13200 Blanca mujer
+## 5 Hombre   45000  21000 Blanca varón
+## 6 Hombre   32100  13500 Blanca varón
+\end{verbatim}
+
+\hypertarget{generar-nuevas-variables-con-mutate}{%
+\subsection{\texorpdfstring{Generar nuevas variables con \textbf{mutate()}}{Generar nuevas variables con mutate()}}\label{generar-nuevas-variables-con-mutate}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{mutate}\NormalTok{(emplea2, }\DataTypeTok{incsal =}\NormalTok{ salario }\OperatorTok{-}\StringTok{ }\NormalTok{salini, }\DataTypeTok{tsal =}\NormalTok{ incsal}\OperatorTok{/}\NormalTok{tiempemp ))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id   sexo minoria tiempemp salini salario incsal      tsal
+## 1  1 Hombre      No       98  27000   57000  30000 306.12245
+## 2  2 Hombre      No       98  18750   40200  21450 218.87755
+## 3  3  Mujer      No       98  12000   21450   9450  96.42857
+## 4  4  Mujer      No       98  13200   21900   8700  88.77551
+## 5  5 Hombre      No       98  21000   45000  24000 244.89796
+## 6  6 Hombre      No       98  13500   32100  18600 189.79592
+\end{verbatim}
+
+\hypertarget{operaciones-con-casos-filas}{%
+\section{Operaciones con casos (filas)}\label{operaciones-con-casos-filas}}
+
+\hypertarget{seleccionar-casos-con-filter}{%
+\subsection{\texorpdfstring{Seleccionar casos con \textbf{filter()}}{Seleccionar casos con filter()}}\label{seleccionar-casos-con-filter}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{filter}\NormalTok{(emplea2, sexo }\OperatorTok{==}\StringTok{ "Mujer"}\NormalTok{, minoria }\OperatorTok{==}\StringTok{ "Sí"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id  sexo minoria tiempemp salini salario
+## 1 14 Mujer      Sí       98  16800   35100
+## 2 23 Mujer      Sí       97  11100   24000
+## 3 24 Mujer      Sí       97   9000   16950
+## 4 25 Mujer      Sí       97   9000   21150
+## 5 40 Mujer      Sí       96   9000   19200
+## 6 41 Mujer      Sí       96  11550   23550
+\end{verbatim}
+
+\hypertarget{organizar-casos-con-arrange}{%
+\subsection{\texorpdfstring{Organizar casos con \textbf{arrange()}}{Organizar casos con arrange()}}\label{organizar-casos-con-arrange}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{arrange}\NormalTok{(emplea2, salario))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    id  sexo minoria tiempemp salini salario
+## 1 378 Mujer      No       70  10200   15750
+## 2 338 Mujer      No       74  10200   15900
+## 3  90 Mujer      No       92   9750   16200
+## 4 224 Mujer      No       82  10200   16200
+## 5 411 Mujer      No       68  10200   16200
+## 6 448 Mujer      Sí       66  10200   16350
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{arrange}\NormalTok{(emplea2, }\KeywordTok{desc}\NormalTok{(salini), salario))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    id   sexo minoria tiempemp salini salario
+## 1  29 Hombre      No       96  79980  135000
+## 2 343 Hombre      No       73  60000  103500
+## 3 205 Hombre      No       83  52500   66750
+## 4 160 Hombre      No       86  47490   66000
+## 5 431 Hombre      No       66  45000   86250
+## 6  32 Hombre      No       96  45000  110625
+\end{verbatim}
+
+\hypertarget{resumir-valores-con-summarise}{%
+\section{\texorpdfstring{Resumir valores con \textbf{summarise()}}{Resumir valores con summarise()}}\label{resumir-valores-con-summarise}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summarise}\NormalTok{(empleados, }\DataTypeTok{sal.med =} \KeywordTok{mean}\NormalTok{(salario), }\DataTypeTok{n =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    sal.med   n
+## 1 34419.57 474
+\end{verbatim}
+
+\hypertarget{agrupar-casos-con-group_by}{%
+\section{\texorpdfstring{Agrupar casos con \textbf{group\_by()}}{Agrupar casos con group\_by()}}\label{agrupar-casos-con-group_by}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summarise}\NormalTok{(}\KeywordTok{group_by}\NormalTok{(empleados, sexo, minoria), }\DataTypeTok{sal.med =} \KeywordTok{mean}\NormalTok{(salario), }\DataTypeTok{n =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 4
+## # Groups:   sexo [2]
+##   sexo   minoria sal.med     n
+##   <fct>  <fct>     <dbl> <int>
+## 1 Hombre No       44475.   194
+## 2 Hombre Sí       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  Sí       23062.    40
+\end{verbatim}
+
+\hypertarget{operador-pipe-tuberia-redireccion}{%
+\section{\texorpdfstring{Operador \emph{pipe} \textbf{\%\textgreater{}\%} (tubería, redirección)}{Operador pipe \%\textgreater{}\% (tubería, redirección)}}\label{operador-pipe-tuberia-redireccion}}
+
+Este operador le permite canalizar la salida de una función a la entrada de otra función.
+\texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}
+(lectura de funciones de izquierda a derecha).
+
+Ejemplos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\OperatorTok{%>%}\StringTok{  }\KeywordTok{filter}\NormalTok{(catlab }\OperatorTok{==}\StringTok{ "Directivo"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{          }\KeywordTok{group_by}\NormalTok{(sexo, minoria) }\OperatorTok{%>%}
+\StringTok{          }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{sal.med =} \KeywordTok{mean}\NormalTok{(salario), }\DataTypeTok{n =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 4
+## # Groups:   sexo [2]
+##   sexo   minoria sal.med     n
+##   <fct>  <fct>     <dbl> <int>
+## 1 Hombre No       65684.    70
+## 2 Hombre Sí       76038.     4
+## 3 Mujer  No       47214.    10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(sexo, catlab, salario) }\OperatorTok{%>%}
+\StringTok{          }\KeywordTok{filter}\NormalTok{(catlab }\OperatorTok{!=}\StringTok{ "Seguridad"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{          }\KeywordTok{group_by}\NormalTok{(catlab) }\OperatorTok{%>%}
+\StringTok{          }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{saldif =}\NormalTok{ salario }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(salario)) }\OperatorTok{%>%}
+\StringTok{          }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{          }\KeywordTok{boxplot}\NormalTok{(saldif }\OperatorTok{~}\StringTok{ }\NormalTok{sexo}\OperatorTok{*}\KeywordTok{droplevels}\NormalTok{(catlab), }\DataTypeTok{data =}\NormalTok{ .)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{04-dplyr_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\hypertarget{operaciones-con-tablas-de-datos-1}{%
+\section{Operaciones con tablas de datos}\label{operaciones-con-tablas-de-datos-1}}
+
+\href{https://dplyr.tidyverse.org/reference/join.html}{Join two tbls together}
+
+\href{https://dplyr.tidyverse.org/articles/two-table.html}{Two-table verbs}
+
+\hypertarget{bases-de-datos-con-dplyr}{%
+\section{Bases de datos con dplyr}\label{bases-de-datos-con-dplyr}}
+
+\href{https://db.rstudio.com}{Databases using R}
+
+\href{https://db.rstudio.com/overview}{dplyr as a database interface}
+
+\href{https://db.rstudio.com/dplyr}{Databases using dplyr}
+
+\href{https://dbplyr.tidyverse.org/articles/dbplyr.html}{Introduction to dbplyr}
+
+\href{https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html}{SQL databases and R}, \href{https://datacarpentry.org/R-ecology-lesson/index.html}{Data Carpentry}
+
+\href{https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases}{R and Data -- When Should we Use Relational Databases?}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Una alternativa (más rápida) es emplear
+\href{https://rdatatable.gitlab.io/data.table}{data.table}.
+
+\hypertarget{introduccion-a-tecnologias-nosql}{%
+\chapter{Introducción a Tecnologías NoSQL}\label{introduccion-a-tecnologias-nosql}}
+
+Working draft\ldots{}
+
+\hypertarget{conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos}{%
+\section{Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)}\label{conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos}}
+
+NoSQL - ``Not Only SQL'' - es una nueva categoría de bases de datos no-relacionales y altamente distribuidas.
+
+Las bases de datos NoSQL nacen de la necesidad de:
+
+\begin{itemize}
+\item
+  Simplicidad en los diseños
+\item
+  Escalado horizontal
+\item
+  Mayor control en la disponibilidad
+\end{itemize}
+
+Pero cuidado, en muchos escenarios las BBDD relacionales siguen siendo la mejor opción.
+
+\hypertarget{caracteristicas-de-las-bases-de-datos-nosql}{%
+\subsection{Características de las bases de datos NoSQL}\label{caracteristicas-de-las-bases-de-datos-nosql}}
+
+\begin{itemize}
+\tightlist
+\item
+  Libre de esquemas -- no se diseñan las tablas y relaciones por adelantado, además de permitir la migración del esquema.
+\item
+  Proporcionan replicación a través de escalado horizontal.
+\item
+  Este escalado horizontal se traduce en arquitectura distribuida
+\item
+  Generalmente ofrecen consistencia débil
+\item
+  Hacen uso de estructuras de datos sencillas, normalmente pares clave/valor a bajo nivel
+\item
+  Suelen tener un sistema de consultas propio (o SQL-like)
+\item
+  Siguen el modelo BASE (\emph{B}asic Availability, Soft state, Eventual consistency) en lugar de ACID (\emph{A}tomicity, \emph{C}onsistency, \emph{I}solation, \emph{D}urability)
+\end{itemize}
+
+El modelo BASE consiste en:
+
+\begin{itemize}
+\tightlist
+\item
+  Basic Availability -- el sistema garantiza disponibilidad, en términos del teorema CAP.
+\item
+  Soft state -- el estado del sistema puede cambiar a lo largo del tiempo, incluso sin entrada. Esto es provocado por el modelo de consistencia eventual.
+\item
+  Eventual consistency -- el sistema alcanzará un estado consistente con el tiempo, siempre y cuando no reciba entrada durante ese tiempo.
+\end{itemize}
+
+\hypertarget{teorema-cap}{%
+\subsubsection{Teorema CAP}\label{teorema-cap}}
+
+Es imposible para un sistema de cómputo distribuido garantizar simultáneamente:
+
+\begin{itemize}
+\tightlist
+\item
+  Consistency -- Todos los nodos ven los mismos datos al mismo tiempo
+\item
+  Availability -- Toda petición obtiene una respuesta en caso tanto de éxito como fallo
+\item
+  Partition Tolerance -- El sistema seguirá funcionando ante pérdidas arbitrarias de información o fallos parciales
+\end{itemize}
+
+\includegraphics{images/TeoremaCAP.jpg}
+
+Las razones para escoger NoSQL son:
+
+\begin{itemize}
+\tightlist
+\item
+  Analítica
+\item
+  Gran cantidad de escrituras, análisis en bloque
+\item
+  Escalabilidad
+\item
+  Tan fácil como añadir un nuevo nodo a la red, bajo coste.
+\item
+  Redundancia
+\item
+  Están diseñadas teniendo en cuenta la redundancia
+\item
+  Rápido desarrollo
+\item
+  Al ser schema-less o schema on-read son más flexibles que schema on-write
+\item
+  Flexibilidad en el almacenamiento de datos
+\item
+  Almacenan todo tipo de datos: texto, imágenes, BLOBs
+\item
+  Gran rendimiento en consultas sobre datos que no implican relaciones jerárquicas
+\item
+  Gran rendimiento sobre BBDD desnormalizadas
+\item
+  Tamaño
+\item
+  El tamaño del esquema de datos es demasiado grande
+\item
+  Muchos datos temporales fuera de almacén principal
+\end{itemize}
+
+Razones para NO escoger NoSQL:
+* Consistencia y Disponibilidad de los datos son críticas
+* Relaciones entre datos son importantes
++ E.g. joins numerosos y/o importantes
+* En general, cuando el modelo ACID encaja mejor
+
+\hypertarget{tipos-de-bases-de-datos-nosql}{%
+\subsection{Tipos de Bases de Datos NoSQL}\label{tipos-de-bases-de-datos-nosql}}
+
+\includegraphics{images/TiposBBDDNoSQL.png}
+
+\includegraphics{images/TiposBBDDNoSQL2.png}
+
+\includegraphics{images/451ResearchMap.png}
+
+\includegraphics{images/DBEnginesRanking.png}
+
+\includegraphics{images/451ResearchSkills.png}
+
+\hypertarget{mongodb-nosql-documental}{%
+\subsection{MongoDB: NoSQL documental}\label{mongodb-nosql-documental}}
+
+\includegraphics{images/MongoDB.jpg}
+
+\hypertarget{redis-nosql-key-value}{%
+\subsection{Redis: NoSQL key-value}\label{redis-nosql-key-value}}
+
+In-memory data structure store, útil para base de datos de login-password, sensor-valor, URL-respuesta, con una sintaxis muy sencilla:
+
+\begin{itemize}
+\tightlist
+\item
+  El comando SET almacena valores
+\item
+  SET server:name ``luna''
+\item
+  Recuperamos esos valores con GET
+\item
+  GET server:name
+\item
+  INCR incrementa atómicamente un valor
+\item
+  INCR clients
+\item
+  DEL elimina claves y sus valores asociados
+\item
+  DEL clients
+\item
+  TTL (Time To Live) útil para cachés
+\item
+  EXPIRE promocion 60
+\end{itemize}
+
+\hypertarget{cassandra-nosql-columnar}{%
+\subsection{Cassandra: NoSQL columnar}\label{cassandra-nosql-columnar}}
+
+\includegraphics{images/BlogRDMS.png}
+
+\includegraphics{images/BlogNoSQL.png}
+
+\hypertarget{neo4j-nosql-grafos}{%
+\subsection{Neo4j: NoSQL grafos}\label{neo4j-nosql-grafos}}
+
+\includegraphics{images/Neo4jlogo.png}
+
+\includegraphics{images/CypherQuery.png}
+
+\includegraphics{images/CypherResult.png}
+
+\hypertarget{otros-search-engines}{%
+\subsection{Otros: search engines}\label{otros-search-engines}}
+
+Son sistemas especializados en búsquedas, procesamiento de lenguaje natural como ElasticSearch, Solr, Splunk (logs de aplicaciones), etc\ldots{}
+
+\hypertarget{conexion-de-r-a-mongodb}{%
+\section{Conexión de R a MongoDB}\label{conexion-de-r-a-mongodb}}
+
+A través del paquete \href{https://cran.rstudio.com/web/packages/mongolite/mongolite.pdf}{mongolite}, aquí tenéis un \href{https://datascienceplus.com/using-mongodb-with-r/}{Tutorial}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"mongolite"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(mongolite)}
+
+\CommentTok{# Connect to a local MongoDB}
+
+\NormalTok{my_collection =}\StringTok{ }\KeywordTok{mongo}\NormalTok{(}\DataTypeTok{collection =} \StringTok{"restaurants"}\NormalTok{, }\DataTypeTok{db =} \StringTok{"Restaurants"}\NormalTok{) }\CommentTok{# create connection, database and collection}
+\NormalTok{my_collection}\OperatorTok{$}\NormalTok{count}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (query = "{}") 
+## {
+##     check_col()
+##     mongo_collection_count(col, query)
+## }
+## <bytecode: 0x00000000270e1b28>
+## <environment: 0x00000000270ebd40>
+\end{verbatim}
+
+\hypertarget{practica-2-nosql}{%
+\section{Práctica 2: NoSQL}\label{practica-2-nosql}}
+
+Los ejercicios se entregarán por correo electrónico a \href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}} en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) \textbf{antes} del 20 de Noviembre.
+
+\hypertarget{ejercicios-con-rmongodb}{%
+\subsection{Ejercicios con RMongoDB}\label{ejercicios-con-rmongodb}}
+
+Realizaremos una serie de ejercicios con la collección {[}Restaurants{]} (\url{https://www.w3resource.com/mongodb-exercises/restaurants.zip}) importados mediante:
+.\mongoimport.exe --db=Restaurants --file=D:\DATA\opendata\restaurants.json
+
+La puntuación de esta práctica será el número de respuestas correctas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Mostrar todos los documentos de la colección restaurants (que no se ejecute en el .rmd, sólo la query)
+\item
+  Mostrar nombre de restaurante, barrio y cocina de la colección restaurants (que no se ejecute en el .rmd, sólo la query)
+\item
+  Mostrar los primeros 5 restaurantes del barrio Bronx.
+\item
+  Mostrar los restaurantes con una longitud menor que -75.7541
+\item
+  Mostrar los restaurantes con una puntuación superior a 90
+\item
+  Mostrar los restaurantes de comida American o Chineese del barrio Queens.
+\item
+  Mostrar los restaurantes con un grado ``A'' y puntuación 9 obtenida en fecha 2014-08-11T00:00:00Z
+\item
+  Con valor de 3 puntos, propón un JSON para descargar, indícame la URL, si has de hacer algún proceso antes de importarlo en MongoDB, cómo lo importas, dame un pantallazo del análisis exploratorio de ese JSON y una query que harías contra ese JSON (la query en MongoDB, Compass o RmongoDB)
+\end{enumerate}
+
+\hypertarget{tecnologias-para-el-tratamiendo-de-datos-masivos}{%
+\chapter{Tecnologías para el Tratamiendo de Datos Masivos}\label{tecnologias-para-el-tratamiendo-de-datos-masivos}}
+
+Working draft\ldots{}
+
+\hypertarget{tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr}{%
+\section{Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)}\label{tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr}}
+
+Introducción a los conceptos básicos del ecosistema Hadoop
+
+Descargar Spark de \url{https://spark.apache.org/downloads.html}
+y disponer al menos de Java 7
+
+\begin{verbatim}
+tar -xzf spark-1.5.2-bin-hadoop2.6.tgz
+sudo mv spark-1.5.2-bin-hadoop2.6 /opt/spark
+export SPARK_HOME=/opt/spark
+export PATH=$SPARK_HOME/bin:$PATH
+\end{verbatim}
+
+Ejecutar pyspark o sparkshell para saber si está correctamente instalado.
+
+\begin{verbatim}
+spark-submit --class org.apache.spark.examples.SparkPi --master local $SPARK_HOME/examples/jars/spark-examples*.jar 10
+
+Pi is roughly 3.140576
+\end{verbatim}
+
+Set system environment by pointing R session to the installed SparkR.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Sys.setenv}\NormalTok{(}\DataTypeTok{SPARK_HOME =} \StringTok{"/home/gltaboada/spark/"}\NormalTok{)}
+\KeywordTok{.libPaths}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\KeywordTok{file.path}\NormalTok{(}\KeywordTok{Sys.getenv}\NormalTok{(}\StringTok{"SPARK_HOME"}\NormalTok{), }\StringTok{"R"}\NormalTok{, }\StringTok{"lib"}\NormalTok{), }\KeywordTok{.libPaths}\NormalTok{()))}
+\KeywordTok{library}\NormalTok{(SparkR)}
+\end{Highlighting}
+\end{Shaded}
+
+Initialize Spark context and SQL context
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sc <-}\StringTok{ }\KeywordTok{sparkR.session}\NormalTok{(}\DataTypeTok{master =} \StringTok{"local"}\NormalTok{,}\DataTypeTok{sparkEnvir =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{spark.driver.memory=}\StringTok{"2g"}\NormalTok{))}
+\NormalTok{sqlContext <-}\StringTok{ }\KeywordTok{sparkR.session}\NormalTok{(sc)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{visualizacion-y-generacion-de-cuadros-de-mando}{%
+\section{Visualización y Generación de Cuadros de Mando}\label{visualizacion-y-generacion-de-cuadros-de-mando}}
+
+\hypertarget{introduccion-al-analisis-de-datos-masivos}{%
+\section{Introducción al Análisis de Datos Masivos}\label{introduccion-al-analisis-de-datos-masivos}}
+
+\hypertarget{appendix-apendices}{%
+\appendix}
+
+
+Working draft\ldots{}
+
+\hypertarget{links}{%
+\chapter{Enlaces}\label{links}}
+
+\textbf{Recursos para el aprendizaje de R} ( \url{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}
+): A continuación se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda\ldots{}
+
+\textbf{\emph{Ayuda online}}:
+
+\begin{itemize}
+\item
+  Ayuda en línea sobre funciones o paquetes: \href{https://www.rdocumentation.org/}{RDocumentation}
+\item
+  Buscador \href{http://rseek.org/}{RSeek}
+\item
+  \href{http://stackoverflow.com/questions/tagged/r}{StackOverflow}
+\end{itemize}
+
+\textbf{\emph{Cursos}}:
+algunos cursos gratuitos:
+
+\begin{itemize}
+\item
+  \href{https://www.coursera.org/}{Coursera}:
+
+  \begin{itemize}
+  \item
+    \href{https://www.coursera.org/learn/intro-data-science-programacion-estadistica-r}{Introducción a Data Science: Programación Estadística con R}
+  \item
+    \href{https://www.coursera.org/specializations/r}{Mastering Software Development in R}
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item
+  \href{https://www.datacamp.com/courses}{DataCamp}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://www.datacamp.com/courses/introduccion-a-r/}{Introducción a R}
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item
+  \href{http://online.stanford.edu/courses}{Stanford online}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{http://online.stanford.edu/course/statistical-learning}{Statistical Learning}
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Curso UCA: \href{http://knuth.uca.es/moodle/course/view.php?id=51}{Introducción a R, R-commander y shiny}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Udacity: \href{https://eu.udacity.com/course/data-analysis-with-r--ud651}{Data Analysis with R}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://swirlstats.com/scn/title.html}{Swirl Courses}:
+  se pueden hacer cursos desde el propio R con el paquete
+  \href{https://swirlstats.com}{swirl}.
+\end{itemize}
+
+Para información sobre cursos en castellano se puede recurrir a la web de \href{http://r-es.org/}{R-Hispano} en el apartado \href{http://r-es.org/category/formacion}{formación}. Algunos de los cursos que aparecen en entradas antiguas son gratuitos.
+Ver: \href{http://r-es.org/2016/02/12/cursos-masivos-y-otra-formacion-on-line-sobre-r/}{Cursos MOOC relacionados con R}.
+
+\textbf{\emph{Libros}}
+
+\begin{itemize}
+\item
+  \textbf{\emph{Iniciación}}:
+
+  \begin{itemize}
+  \item
+    R for Data Science
+    (\href{http://r4ds.had.co.nz/}{online}, \href{http://shop.oreilly.com/product/0636920034407.do}{O'Reilly})
+  \item
+    2011 - The Art of R Programming. A Tour of Statistical Software Design,
+    (\href{https://www.nostarch.com/artofr.htm}{No Starch Press})
+  \item
+    Hands-On Programming with R: Write Your Own Functions and Simulations,
+    by Garrett Grolemund
+    (\href{http://shop.oreilly.com/product/0636920028574.do}{O'Reilly})
+  \end{itemize}
+\item
+  \textbf{\emph{Avanzados}}:
+
+  \begin{itemize}
+  \item
+    Advanced R by Hadley Wickham
+    (online: \href{http://adv-r.had.co.nz/}{1ª ed},
+    \href{https://adv-r.hadley.nz/}{2ª ed},
+    \href{https://www.amazon.com/dp/1466586966}{Chapman \& Hall})
+  \item
+    2008 - Software for Data Analysis: Programming with R - Chambers
+    (\href{http://www.springer.com/la/book/9780387759357}{Springer})
+  \item
+    R packages by Hadley Wickham
+    (\href{http://r-pkgs.had.co.nz/}{online},
+    \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly})
+  \end{itemize}
+\item
+  \textbf{\emph{Bookdown}}:
+  el paquete \href{https://bookdown.org}{\texttt{bookdown}} de R permite escribir libros empleando
+  \href{http://rmarkdown.rstudio.com}{R Markdown} y compartirlos.
+  En \url{https://bookdown.org} está disponible una selección de libros escritos con este paquete
+  (un listado más completo está disponible \href{https://bookdown.org/home/archive/}{aquí}).
+  Algunos libros en este formato en castellano son:
+
+  \begin{itemize}
+  \item
+    \href{https://rubenfcasal.github.io/simbook}{Prácticas de Simulación}
+    (disponible en el repositorio de GitHub
+    \href{https://github.com/rubenfcasal/simbook}{rubenfcasal/simbook}).
+  \item
+    \href{https://rubenfcasal.github.io/bookdown_intro/}{Escritura de libros con bookdown}
+    (disponible en el repositorio de GitHub
+    \href{https://github.com/rubenfcasal/bookdown_intro}{rubenfcasal/bookdown\_intro}).
+  \item
+    \href{https://www.datanalytics.com/libro_r/index.html}{R para profesionales de los datos: una introducción}.
+  \item
+    \href{https://bookdown.org/aquintela/EBE}{Estadística Básica Edulcorada}.
+  \end{itemize}
+\end{itemize}
+
+\textbf{\emph{Material online}}:
+en la web se puede encontrar mucho material adicional, por ejemplo:
+
+\begin{itemize}
+\item
+  \href{https://www.r-project.org/other-docs.html}{CRAN: Other R documentation}
+\item
+  Blogs en inglés:
+
+  \begin{itemize}
+  \item
+    \url{https://www.r-bloggers.com/}
+  \item
+    \url{https://www.littlemissdata.com/blog/rstudioconf2019}
+  \item
+    RStudio: \url{https://blog.rstudio.com}
+  \item
+    Microsoft Revolutions: \url{https://blog.revolutionanalytics.com}
+  \end{itemize}
+\item
+  Blogs en castellano:
+
+  \begin{itemize}
+  \item
+    \url{https://www.datanalytics.com}
+  \item
+    \url{http://oscarperpinan.github.io/R}
+  \item
+    \url{http://rubenfcasal.github.io}
+  \end{itemize}
+\item
+  Listas de correo:
+
+  \begin{itemize}
+  \item
+    Listas de distribución de r-project.org: \url{https://stat.ethz.ch/mailman/listinfo}
+  \item
+    Búsqueda en R-help: \url{http://r.789695.n4.nabble.com/R-help-f789696.html}
+  \item
+    Búsqueda en R-help-es: \url{https://r-help-es.r-project.narkive.com}
+
+    \url{https://grokbase.com/g/r/r-help-es}
+  \item
+    Archivos de R-help-es: \url{https://stat.ethz.ch/pipermail/r-help-es}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{rstudio-links}{%
+\section{RStudio}\label{rstudio-links}}
+
+\href{https://www.rstudio.com}{\textbf{\emph{RStudio}}}:
+
+\begin{itemize}
+\item
+  \href{https://www.rstudio.com/online-learning}{Online learning}
+\item
+  \href{https://resources.rstudio.com/webinars}{Webinars}
+\item
+  \href{https://spark.rstudio.com/}{sparklyr}
+\item
+  \href{http://shiny.rstudio.com}{shiny}
+\end{itemize}
+
+\href{https://www.tidyverse.org/}{\textbf{\emph{tidyverse}}}:
+
+\begin{itemize}
+\item
+  \href{https://dplyr.tidyverse.org}{dplyr}
+\item
+  \href{https://tibble.tidyverse.org}{tibble}
+\item
+  \href{https://tidyr.tidyverse.org}{tidyr}
+\item
+  \href{https://stringr.tidyverse.org}{stringr}
+\item
+  \href{https://readr.tidyverse.org}{readr}
+\item
+  \href{https://db.rstudio.com}{Databases using R},
+  \href{https://db.rstudio.com/overview}{dplyr as a database interface},
+  \href{https://db.rstudio.com/dplyr}{Databases using dplyr}
+\end{itemize}
+
+\href{https://resources.rstudio.com/rstudio-cheatsheets}{\textbf{\emph{CheatSheets}}}:
+
+\begin{itemize}
+\item
+  \href{https://resources.rstudio.com/rstudio-cheatsheets/rmarkdown-2-0-cheat-sheet}{rmarkdown}
+\item
+  \href{https://resources.rstudio.com/rstudio-cheatsheets/shiny-cheat-sheet}{shiny}
+\item
+  \href{https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf}{dplyr}
+\item
+  \href{https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf}{tidyr}
+\item
+  \href{https://resources.rstudio.com/rstudio-cheatsheets/stringr-cheat-sheet}{stringr}
+\end{itemize}
+
+\hypertarget{bibliom-links}{%
+\section{Bibliometría}\label{bibliom-links}}
+
+\begin{itemize}
+\item
+  \href{https://cran.r-project.org/web/packages/CITAN/index.html}{CITAN}
+\item
+  \href{https://rubenfcasal.github.io/scimetr/index.html}{scimetr}
+\item
+  \href{http://www.bibliometrix.org}{bibliometrix}
+\item
+  \href{https://vt-arc.github.io/wosr/index.html}{wosr}
+\item
+  \href{https://github.com/juba/rwos}{rwos}
+\item
+  \href{https://docs.ropensci.org/rcrossref}{rcrossref}
+\item
+  \href{https://ropensci.org/packages/}{ropensci}: Literature
+\item
+  \href{https://cran.r-project.org/web/packages/Diderot/index.html}{Diderot}
+\item
+  \ldots{}
+\end{itemize}
+
+\bibliography{book.bib,packages.bib}
+
+
+\end{document}

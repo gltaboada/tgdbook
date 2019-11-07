@@ -24,7 +24,7 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-10-24" />
+<meta name="date" content="2019-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -208,7 +208,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.6" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#neo4j-nosql-grafos"><i class="fa fa-check"></i><b>5.1.6</b> Neo4j: NoSQL grafos</a></li>
 <li class="chapter" data-level="5.1.7" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#otros-search-engines"><i class="fa fa-check"></i><b>5.1.7</b> Otros: search engines</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="conexion-de-r-a-nosql.html"><a href="conexion-de-r-a-nosql.html"><i class="fa fa-check"></i><b>5.2</b> Conexión de R a NoSQL</a></li>
+<li class="chapter" data-level="5.2" data-path="conexion-de-r-a-mongodb.html"><a href="conexion-de-r-a-mongodb.html"><i class="fa fa-check"></i><b>5.2</b> Conexión de R a MongoDB</a></li>
+<li class="chapter" data-level="5.3" data-path="practica-2-nosql.html"><a href="practica-2-nosql.html"><i class="fa fa-check"></i><b>5.3</b> Práctica 2: NoSQL</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="practica-2-nosql.html"><a href="practica-2-nosql.html#ejercicios-con-rmongodb"><i class="fa fa-check"></i><b>5.3.1</b> Ejercicios con RMongoDB</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="tecnologias-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologias-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>6</b> Tecnologías para el Tratamiendo de Datos Masivos</a><ul>
 <li class="chapter" data-level="6.1" data-path="tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a></li>
@@ -256,12 +259,12 @@ Pi is roughly 3.140576
 </code></pre>
 <!-- https://rpubs.com/wendyu/sparkr -->
 <p>Set system environment by pointing R session to the installed SparkR.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1"><span class="kw">Sys.setenv</span>(<span class="dt">SPARK_HOME =</span> <span class="st">&quot;/home/gltaboada/spark/&quot;</span>)</a>
-<a class="sourceLine" id="cb165-2" title="2"><span class="kw">.libPaths</span>(<span class="kw">c</span>(<span class="kw">file.path</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;SPARK_HOME&quot;</span>), <span class="st">&quot;R&quot;</span>, <span class="st">&quot;lib&quot;</span>), <span class="kw">.libPaths</span>()))</a>
-<a class="sourceLine" id="cb165-3" title="3"><span class="kw">library</span>(SparkR)</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">Sys.setenv</span>(<span class="dt">SPARK_HOME =</span> <span class="st">&quot;/home/gltaboada/spark/&quot;</span>)</a>
+<a class="sourceLine" id="cb166-2" title="2"><span class="kw">.libPaths</span>(<span class="kw">c</span>(<span class="kw">file.path</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;SPARK_HOME&quot;</span>), <span class="st">&quot;R&quot;</span>, <span class="st">&quot;lib&quot;</span>), <span class="kw">.libPaths</span>()))</a>
+<a class="sourceLine" id="cb166-3" title="3"><span class="kw">library</span>(SparkR)</a></code></pre></div>
 <p>Initialize Spark context and SQL context</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1">sc &lt;-<span class="st"> </span><span class="kw">sparkR.session</span>(<span class="dt">master =</span> <span class="st">&quot;local&quot;</span>,<span class="dt">sparkEnvir =</span> <span class="kw">list</span>(<span class="dt">spark.driver.memory=</span><span class="st">&quot;2g&quot;</span>))</a>
-<a class="sourceLine" id="cb166-2" title="2">sqlContext &lt;-<span class="st"> </span><span class="kw">sparkR.session</span>(sc)</a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1">sc &lt;-<span class="st"> </span><span class="kw">sparkR.session</span>(<span class="dt">master =</span> <span class="st">&quot;local&quot;</span>,<span class="dt">sparkEnvir =</span> <span class="kw">list</span>(<span class="dt">spark.driver.memory=</span><span class="st">&quot;2g&quot;</span>))</a>
+<a class="sourceLine" id="cb167-2" title="2">sqlContext &lt;-<span class="st"> </span><span class="kw">sparkR.session</span>(sc)</a></code></pre></div>
 </div>
             </section>
 
