@@ -156,7 +156,8 @@ my_collection$count
 ##     mongo_collection_count(col, query)
 ## }
 ## <bytecode: 0x00000000270e1b28>
-## <environment: 0x00000000270ebd40>
+## <bytecode: 0x0000000025f0d500>
+## <environment: 0x0000000025f131f0>
 ```
 
 
@@ -169,7 +170,12 @@ Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@
 ### Ejercicios con RMongoDB
 
 Realizaremos una serie de ejercicios con la collección [Restaurants] (https://www.w3resource.com/mongodb-exercises/restaurants.zip) importados mediante:
-.\mongoimport.exe --db=Restaurants --file=D:\DATA\opendata\restaurants.json
+
+
+```r
+# En Windows
+mongoimport.exe --db=Restaurants --file=D:\DATA\opendata\restaurants.json
+```
 
 La puntuación de esta práctica será el número de respuestas correctas:
 
