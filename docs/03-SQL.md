@@ -1,3 +1,11 @@
+---
+title: "T1 SQL"
+author: "Guillermo Lopez Taboada"
+date: "15/09/2019"
+output: pdf_document
+notes: "https://dbeaver.io/ for 2020 labs"
+---
+
 Introducción al lenguaje SQL
 ============================
 

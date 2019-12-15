@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-12-12}
+    \date{2019-12-15}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -272,27 +272,27 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 \item
   Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
 \item
-  Clase 5 (10/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
+  Clase 5 (10/10): Jornada usuarios R Galicia (cubre objetivos de Seminario aplicaciones Big Data en investigación e industria)
 \item
-  Clase 6 (17/10): Tema 1: Continuación de ejercicios prácticos SQL
+  Clase 6 (17/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
 \item
   Clase 7 (24/10): Tema 2: Introducción a NoSQL
 \item
-  Clase 8 (31/10): Tema 2: Ejercicios prácticos de NoSQL
+  Clase 8 (31/10): Tema 1: Continuación de ejercicios prácticos SQL
 \item
-  Clase 9 (7/11): Tema 3: Ecosistema Big Data (Hadoop, Spark)
+  Clase 9 (7/11): Tema 2: Ejercicios prácticos de NoSQL
 \item
-  Clase 10 (14/11): Tema 3: Tecnologías Big Data (Rspark/sparklyr)
+  Clase 10 (14/11): Seminario visualización con power BI
 \item
-  Clase 11 (21/11): Seminario visualización con power BI
+  Clase 11 (21/11): Tema 3: Ecosistema Big Data (Hadoop, Spark)
 \item
-  Clase 12 (28/11): Seminario machine learning CESGA/localhost
+  Clase 12 (28/11): Tecnologías Big Data (Rspark/sparklyr) + Seminario machine learning CESGA/localhost
 \item
-  Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos
+  Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos son sparklyr
 \item
-  Clase 14 (12/12-R): Seminario Aprendizaje Estadístico/Automático, Data Mining
+  Clase 14 (12/12): Tema 3: Prácticas de Aprendizaje Estadístico/Automático, Data Mining con rattle
 \item
-  Clase 15 (19/12-opcional): Seminario aplicaciones Big Data en investigación e industria
+  Clase 15 (19/12-R): Seminario conectividad dplyr a BBDD
 \end{itemize}
 
 \hypertarget{evaluacion}{%
@@ -3041,8 +3041,8 @@ A través del paquete \href{https://cran.rstudio.com/web/packages/mongolite/mong
 ##     check_col()
 ##     mongo_collection_count(col, query)
 ## }
-## <bytecode: 0x0000000025f0d500>
-## <environment: 0x0000000025f131f0>
+## <bytecode: 0x00000000266ecb40>
+## <environment: 0x00000000266f2830>
 \end{verbatim}
 
 \hypertarget{practica-2-nosql}{%
@@ -3050,8 +3050,8 @@ A través del paquete \href{https://cran.rstudio.com/web/packages/mongolite/mong
 
 Los ejercicios se entregarán por correo electrónico a \href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}} en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) \textbf{antes} del 20 de Noviembre.
 
-\hypertarget{ejercicios-con-rmongodb}{%
-\subsection{Ejercicios con RMongoDB}\label{ejercicios-con-rmongodb}}
+\hypertarget{ejercicios-con-rmongolite}{%
+\subsection{Ejercicios con RMongolite}\label{ejercicios-con-rmongolite}}
 
 Realizaremos una serie de ejercicios con la collección {[}Restaurants{]} (\url{https://www.w3resource.com/mongodb-exercises/restaurants.zip}) importados mediante:
 
@@ -3087,55 +3087,398 @@ La puntuación de esta práctica será el número de respuestas correctas:
 \hypertarget{tecnologias-para-el-tratamiendo-de-datos-masivos}{%
 \chapter{Tecnologías para el Tratamiendo de Datos Masivos}\label{tecnologias-para-el-tratamiendo-de-datos-masivos}}
 
-Working draft\ldots{}
+En este tema vamos a ver las tecnologías más relevantes para el tratamiento de datos masivos dentro de R, como son Spark (con sparklyr) dentro del ecosistema Hadoop. Los ejercicios prácticos se realizarán sobre la \href{http://bigdata.cesga.es/}{plataforma Big Data} del \href{http://www.cesga.es}{Centro de Supercomputación de Galicia (CESGA)}
+
+\includegraphics{images/T3-bigdatacesga.png}
 
 \hypertarget{tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr}{%
 \section{Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)}\label{tecnologias-big-data-hadoop-spark-hive-rspark-sparklyr}}
 
-Introducción a los conceptos básicos del ecosistema Hadoop
+A continuación se introducen los conceptos básicos de las tecnologías Big Data:
 
-Descargar Spark de \url{https://spark.apache.org/downloads.html}
-y disponer al menos de Java 7
+\begin{itemize}
+\item
+  Hadoop: framework open-source desarrollado en Java principalmente que soporta aplicaciones distribuidas sobre miles de nodos y a escala Petabyte. Está inspierado en el diseño de las operaciones de MapReduce de Google y el Google File System (GFS). Entre sus principales componentes destaca HDFS Hadoop Distributed File System, sistema de ficheros distribuido sobre múltiples nodos y accesible a nivel de aplicación. También destaca YARN como gestor de recursos, para ejecutar aplicaciones. Destacar que la versión original, Hadoop 1, estaba basada extensivamente en Map Reduce, Hadoop 2 colocó en su core a YARN y Hadoop 3 está orientado a la provisión de Plataforma como servicio y ejecución simultánea de múltiples cargas de trabajo distribuidas sobre recursos solicitados bajo demanda.
+\item
+  Hive: es un sistema de almancenamiento y explotación de datos del estilo de un data warehouse open source diseñado para ser ejecutado en entornos Hadoop. Permite agrupar, consultar y analizar datos almacenados en Hadoop File System y en Amazon S3 (almacenamiento de objetos en general) en esquema en estrella. Su lenguaje de consulta de datos, Hive Query Language o (HQL).
+\item
+  Spark: framework de computación distribuida open-source para el procesamiento de datos masivos sobre Hadoop con un paralelismo implícito sobre su estructura de datos (Resilient Distributed Dataset o RDD), permite operar en paralelo sobre una colección de datos sin saber en qué servidores están disponibles dichos datos y de una forma tolerante a fallos. Es uno de los principales frameworks de programación de entornos Hadoop al estar optimizado su procesamiento sobre memoria (en lugar de sobre archivos en disco) para obtener velocidad, tanto en sus vertientes Spark streaming y Spark SQL, como Spark Machile Learning MLlib. Dispone de interfaces en Java, Scala, Python y R, siendo las interfaces de R Rspark y Sparklyr.
+\item
+  SparkR: es un paquete, el primero que apareció, para conectar R con Spark. Intenta ser lo más parecida a la interfaz estándard de R de manipulación de datos.
+\item
+  Sparklyr: es una librería para conectar R con Spark posterior a SparkR. Intenta ser lo más parecida a dplyr y embeber SQL en las consultas, soportando una mayor cantidad de paquetes. Por este motivo es el proyecto más activo actualmente, sustituyendo a SparkR.
+\end{itemize}
 
-\begin{verbatim}
-tar -xzf spark-1.5.2-bin-hadoop2.6.tgz
-sudo mv spark-1.5.2-bin-hadoop2.6 /opt/spark
-export SPARK_HOME=/opt/spark
-export PATH=$SPARK_HOME/bin:$PATH
-\end{verbatim}
+\includegraphics{images/T3-ecosistema.png}
 
-Ejecutar pyspark o sparkshell para saber si está correctamente instalado.
+\hypertarget{uso-de-hadoop-con-dos-ejemplos}{%
+\subsection{Uso de Hadoop con dos ejemplos:}\label{uso-de-hadoop-con-dos-ejemplos}}
 
-\begin{verbatim}
-spark-submit --class org.apache.spark.examples.SparkPi --master local $SPARK_HOME/examples/jars/spark-examples*.jar 10
-
-Pi is roughly 3.140576
-\end{verbatim}
-
-Set system environment by pointing R session to the installed SparkR.
+Conexión vía SSH a CESGA (siempre con VPN activada!) y ejemplo \#1:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{Sys.setenv}\NormalTok{(}\DataTypeTok{SPARK_HOME =} \StringTok{"/home/gltaboada/spark/"}\NormalTok{)}
-\KeywordTok{.libPaths}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\KeywordTok{file.path}\NormalTok{(}\KeywordTok{Sys.getenv}\NormalTok{(}\StringTok{"SPARK_HOME"}\NormalTok{), }\StringTok{"R"}\NormalTok{, }\StringTok{"lib"}\NormalTok{), }\KeywordTok{.libPaths}\NormalTok{()))}
-\KeywordTok{library}\NormalTok{(SparkR)}
+\NormalTok{wget  https}\OperatorTok{:}\ErrorTok{//}\NormalTok{packages.revolutionanalytics.com}\OperatorTok{/}\NormalTok{datasets}\OperatorTok{/}\NormalTok{claims2.csv }
+
+\CommentTok{# [3 minutos – 1GB/minuto en CESGA]  [recomendada la descarga desde servidor dtn.srv.cesga.es] [copia temp /tmp]}
+
+\NormalTok{hadoop fs –mkdir p1}\OperatorTok{/}
+\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{mkdir p1}\OperatorTok{/}\NormalTok{claims}\OperatorTok{/}
+\NormalTok{hadoop fs –put claims2.csv p1}\OperatorTok{/}\NormalTok{claims}\OperatorTok{/}\StringTok{   }\NormalTok{[}\DecValTok{3}\NormalTok{ segundos]}
+\NormalTok{hadoop fs –ls p1}\OperatorTok{/}\NormalTok{claims}\OperatorTok{/}
+
+\ErrorTok{$}\StringTok{ }\NormalTok{myquota}
+\CommentTok{# [1TB en $HOMEBD y 18TB en Hadoop]}
+
+\OperatorTok{$}\StringTok{ }\NormalTok{spark}\OperatorTok{-}\NormalTok{shell }\OperatorTok{--}\NormalTok{packages com.databricks}\OperatorTok{:}\NormalTok{spark}\OperatorTok{-}\NormalTok{csv_}\FloatTok{2.10}\OperatorTok{:}\DecValTok{1}\NormalTok{.}\FloatTok{4.0}
+\OperatorTok{>}\StringTok{ }\NormalTok{val sqlContext =}\StringTok{ }\NormalTok{new }\KeywordTok{org.apache.spark.sql.SQLContext}\NormalTok{(sc); }
+\OperatorTok{>}\StringTok{ }\NormalTok{val df =}\StringTok{ }\KeywordTok{sqlContext.read.format}\NormalTok{(csv)}\KeywordTok{.option}\NormalTok{(header, true)}\KeywordTok{.load}\NormalTok{(p1}\OperatorTok{/}\NormalTok{claims}\OperatorTok{/}\NormalTok{claims2.csv)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{df.count}\NormalTok{();  }\KeywordTok{df.first}\NormalTok{();  }\KeywordTok{df.take}\NormalTok{(}\DecValTok{5}\NormalTok{);  }\KeywordTok{df.printSchema}\NormalTok{();}
+\OperatorTok{>}\StringTok{ }\KeywordTok{df.registerTempTable}\NormalTok{(TblName)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{sqlContext.sql}\NormalTok{(select }\OperatorTok{*}\StringTok{ }\NormalTok{from TblName limit }\DecValTok{100}\NormalTok{)}\KeywordTok{.take}\NormalTok{(}\DecValTok{100}\NormalTok{)}\KeywordTok{.foreach}\NormalTok{(println)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{sqlContext.sql}\NormalTok{(select }\OperatorTok{*}\StringTok{ }\NormalTok{from TblName where }\DataTypeTok{Calendar_year=}\DecValTok{2005}\NormalTok{)}\KeywordTok{.count}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-Initialize Spark context and SQL context
+Usando Spark-shell pero también podemos realizar ciertos análisis con hive:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sc <-}\StringTok{ }\KeywordTok{sparkR.session}\NormalTok{(}\DataTypeTok{master =} \StringTok{"local"}\NormalTok{,}\DataTypeTok{sparkEnvir =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{spark.driver.memory=}\StringTok{"2g"}\NormalTok{))}
-\NormalTok{sqlContext <-}\StringTok{ }\KeywordTok{sparkR.session}\NormalTok{(sc)}
+\OperatorTok{$}\StringTok{ }\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{mkdir bdp}
+\OperatorTok{$}\StringTok{ }\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{mkdir bdp}\OperatorTok{/}\NormalTok{hv_csv_table}
+\OperatorTok{$}\StringTok{ }\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{mkdir bdp}\OperatorTok{/}\NormalTok{hv_csv_table}\OperatorTok{/}\NormalTok{ip}
+\OperatorTok{$}\StringTok{ }\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{put claims2.csv bdp}\OperatorTok{/}\NormalTok{hv_csv_table}\OperatorTok{/}\NormalTok{ip}
+
+\OperatorTok{$}\StringTok{ }\NormalTok{hive      OR   }\OperatorTok{$}\StringTok{ }\KeywordTok{beeline}\NormalTok{ (recomendado este último por seguridad pero por simplicidad usamos hive en CESGA)}
+
+\NormalTok{CREATE SCHEMA IF NOT EXISTS bdp;}
+\NormalTok{CREATE EXTERNAL TABLE IF NOT EXISTS }\KeywordTok{bdp.hv_csv_table}\NormalTok{ (Row_ID STRING, Household_ID STRING, Vehicle STRING, Calendar_Year STRING, Model_Year STRING, Blind_Make STRING, Blind_Model STRING, Blind_Submodel STRING, Cat1 STRING, Cat2 STRING, Cat3 STRING, Cat4 STRING, Cat5 STRING, Cat6 STRING, Cat7 STRING, Cat8 STRING, Cat9 STRING, Cat10 STRING, Cat11 STRING, Cat12 STRING, OrdCat STRING, Var1 STRING, Var2 STRING, Var3 STRING, Var4 STRING, Var5 STRING, Var6 STRING, Var7 STRING, Var8 STRING, NVCat STRING, NVVar1 STRING, NVVar2 STRING, NVVar3 STRING, NVVar4 STRING, Claim_Amount STRING, veh_age STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY }\StringTok{','}\NormalTok{ STORED AS TEXTFILE LOCATION }\StringTok{'hdfs://nameservice1/user/cursoXXX/p1/claims/'}\NormalTok{;}
+
+\NormalTok{SELECT }\OperatorTok{*}\StringTok{ }\NormalTok{FROM bdp.hv_csv_table LIMIT }\DecValTok{10}\NormalTok{;}
+\NormalTok{SELECT }\OperatorTok{*}\StringTok{ }\NormalTok{FROM bdp.hv_csv_table where Calendar_Year=}\DecValTok{2005}\NormalTok{ limit }\DecValTok{10}\NormalTok{;}
+\NormalTok{SELECT }\OperatorTok{*}\StringTok{ }\NormalTok{FROM bdp.hv_csv_table where Calendar_Year}\OperatorTok{>}\DecValTok{2005}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Y ejemplo \#2:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Generación de un archivo spanishTexts-ALL y 120-million-word-spanish-corpus.zip  }
+\CommentTok{# Origen: https://www.kaggle.com/rtatman/120-million-word-spanish-corpus}
+\NormalTok{hadoop fs –mkdir p2}
+\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{put }\DecValTok{120}\OperatorTok{-}\NormalTok{million}\OperatorTok{-}\NormalTok{word}\OperatorTok{-}\NormalTok{spanish}\OperatorTok{-}\NormalTok{corpus.zip p2}
+
+\OperatorTok{$}\StringTok{ }\NormalTok{spark}\OperatorTok{-}\NormalTok{shell}
+\CommentTok{# map}
+\NormalTok{var map =}\StringTok{ }\KeywordTok{sc.textFile}\NormalTok{(p2}\OperatorTok{/}\NormalTok{spanishTest}\OperatorTok{-}\NormalTok{ALL)}\KeywordTok{.flatMap}\NormalTok{(}\DataTypeTok{line =}\OperatorTok{>}\StringTok{ }\KeywordTok{line.split}\NormalTok{( ))}\KeywordTok{.map}\NormalTok{(}\DataTypeTok{word =}\OperatorTok{>}\StringTok{ }\NormalTok{(word,}\DecValTok{1}\NormalTok{));}
+\CommentTok{# reduce}
+\NormalTok{var counts =}\StringTok{ }\KeywordTok{map.reduceByKey}\NormalTok{(_ }\OperatorTok{+}\StringTok{ }\NormalTok{_);}
+\CommentTok{# save the output to file, every time a different directory!!!}
+\KeywordTok{counts.saveAsTextFile}\NormalTok{(p2}\OperatorTok{/}\NormalTok{output)}
+\KeywordTok{counts.count}\NormalTok{() }\KeywordTok{counts.first}\NormalTok{() }\KeywordTok{counts.take}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\CommentTok{# from word -> num to num -> word}
+\CommentTok{# then sortBy num of occurrence in descending order }
+\NormalTok{val mostCommon =}\StringTok{ }\KeywordTok{counts.map}\NormalTok{(}\DataTypeTok{p =}\OperatorTok{>}\StringTok{ }\NormalTok{(p._}\DecValTok{2}\NormalTok{, p._}\DecValTok{1}\NormalTok{))}\KeywordTok{.sortByKey}\NormalTok{(false, }\DecValTok{1}\NormalTok{)}
+\KeywordTok{mostCommon.take}\NormalTok{(}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{uso-de-sparklyr}{%
+\subsection{Uso de Sparklyr}\label{uso-de-sparklyr}}
+
+Conexión vía SSH a CESGA (siempre con VPN activada!) y una vez dentro ``module load sparklyr'' y arrancar R:
+
+\includegraphics{images/T3-sparklyr1.png}
+
+O alternativamente mediante jupyterlab. Para ello hacemos los dos primeros pasos del apartado anterior, conexión vía SSH a CESGA (siempre con VPN activada!) y una vez dentro ``module load sparklyr''. Y a continuación escribimos ``start-jupyter-lab'' y nos conectamos a la URL indicada, desde la cual tendremos acceso a los notebooks Python/R:
+
+\includegraphics{images/T3-sparklyr2.png}
+
+Y dentro del notebook R ya se puede probar el funcionamiento de Sparklyr con los siguientes pasos, cuyo resultado debería ser el que se aprecia a continuación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(sparklyr)}
+\NormalTok{sc <-}\StringTok{ }\KeywordTok{spark_connect}\NormalTok{(}\DataTypeTok{master =} \StringTok{"yarn-client"}\NormalTok{, }\DataTypeTok{spark_home =} \KeywordTok{Sys.getenv}\NormalTok{(}\StringTok{'SPARK_HOME'}\NormalTok{)) }
+\NormalTok{iris_tbl <-}\StringTok{ }\KeywordTok{copy_to}\NormalTok{(sc, iris, }\StringTok{"iris"}\NormalTok{, }\DataTypeTok{overwrite =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{iris_tbl}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{images/T3-sparklyr3.png}
+
+NOTA: en ausencia de clúster Hadoop con YARN, o para debugging, también se puede conectar usando las siguientes instrucciones, y obtener elm mismo resultado que en presencia de YARN.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(sparklyr)}
+\NormalTok{sc <-}\StringTok{ }\KeywordTok{spark_connect}\NormalTok{(}\DataTypeTok{master =} \StringTok{"local"}\NormalTok{)}
+\NormalTok{iris_tbl <-}\StringTok{ }\KeywordTok{copy_to}\NormalTok{(sc, iris, }\StringTok{"iris"}\NormalTok{, }\DataTypeTok{overwrite =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{iris_tbl}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{visualizacion-y-generacion-de-cuadros-de-mando}{%
 \section{Visualización y Generación de Cuadros de Mando}\label{visualizacion-y-generacion-de-cuadros-de-mando}}
 
+Se sigue un tutorial de la herramienta \href{https://docs.microsoft.com/es-es/power-bi/desktop-tutorial-analyzing-sales-data-from-excel-and-an-odata-feed}{PowerBI, con datos de Excel y OData Feed}
+
+Como documentación de se soporte se cuenta con la web de \href{https://docs.microsoft.com/es-es/power-bi/}{PowerBI} y \href{https://ccance.net/manuales/powerbi/capitulo_01_introduccion.pdf}{un tutorial adicional}
+
 \hypertarget{introduccion-al-analisis-de-datos-masivos}{%
 \section{Introducción al Análisis de Datos Masivos}\label{introduccion-al-analisis-de-datos-masivos}}
+
+En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía Sparklyr, como hemos visto, o para un análisis más visual, Rattle, que se presenta a continuación:
+
+\hypertarget{rattle}{%
+\subsection{Rattle}\label{rattle}}
+
+Es un paquete para R, con interfaz gráfica desarrollada en GTK, que permite generar código R para minería de datos. Se instala según los pasos indicados a continuación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"cairoDevice"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"RGtk2"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(}\StringTok{"RGtk2"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rattle"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(rattle)}
+\KeywordTok{rattle}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Un tutorial adecuado para introducirse en Rattle es \href{https://www.dummies.com/programming/using-rattle-iris-r-programming/}{éste}
+
+\includegraphics{images/T3-rattle1.png}
+
+Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.
+
+\includegraphics{images/T3-rattle2.png}
+
+\includegraphics{images/T3-rattle3.png}
+
+\hypertarget{combinando-los-distintos-elementos}{%
+\subsection{Combinando los distintos elementos}\label{combinando-los-distintos-elementos}}
+
+Vamos a seguir \href{http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-intro.html}{un tutorial de análisis de datos de vuelos}, adaptándolo al entorno del CESGA.
+
+En primer lugar, tras conectarnos por ssh al CESGA, y en el mismo directorio en que hemos hecho la conexión, nos descargamos los datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make download directory}
+\NormalTok{mkdir flights}
+
+\CommentTok{# Download flight data by year}
+\ControlFlowTok{for}\NormalTok{ i }\ControlFlowTok{in}\NormalTok{ \{}\DecValTok{1987}\NormalTok{..}\DecValTok{2008}\NormalTok{\}}
+\NormalTok{  do}
+\NormalTok{    echo }\StringTok{"$(date) $i Download"}
+\NormalTok{    fnam=}\ErrorTok{$}\NormalTok{i.csv.bz2}
+\NormalTok{    wget }\OperatorTok{-}\NormalTok{O flights}\OperatorTok{/}\ErrorTok{$}\NormalTok{fnam http}\OperatorTok{:}\ErrorTok{//}\NormalTok{stat}\OperatorTok{-}\NormalTok{computing.org}\OperatorTok{/}\NormalTok{dataexpo}\OperatorTok{/}\DecValTok{2009}\OperatorTok{/}\ErrorTok{$}\NormalTok{fnam}
+\NormalTok{    echo }\StringTok{"$(date) $i Unzip"}
+\NormalTok{    bunzip2 flights}\OperatorTok{/}\ErrorTok{$}\NormalTok{fnam}
+\NormalTok{  done}
+
+\CommentTok{# Download airline carrier data}
+\NormalTok{wget }\OperatorTok{-}\NormalTok{O airlines.csv http}\OperatorTok{:}\ErrorTok{//}\NormalTok{www.transtats.bts.gov}\OperatorTok{/}\NormalTok{Download_Lookup.asp?Lookup=L_UNIQUE_CARRIERS}
+
+\CommentTok{# Download airports data}
+\NormalTok{wget }\OperatorTok{-}\NormalTok{O airports.csv https}\OperatorTok{:}\ErrorTok{//}\NormalTok{raw.githubusercontent.com}\OperatorTok{/}\NormalTok{jpatokal}\OperatorTok{/}\NormalTok{openflights}\OperatorTok{/}\NormalTok{master}\OperatorTok{/}\NormalTok{data}\OperatorTok{/}\NormalTok{airports.dat}
+\end{Highlighting}
+\end{Shaded}
+
+Comprobamos que los datos están correctos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{head flights}\OperatorTok{/}\FloatTok{1987.}\NormalTok{csv }
+\NormalTok{head airlines.csv}
+\NormalTok{head airports.csv}
+\end{Highlighting}
+\end{Shaded}
+
+Y los copiamos al HDFS a través del comando fs de Hadoop:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Copy flight data to HDFS}
+\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{put flights }
+
+\CommentTok{# Copy airline data to HDFS}
+\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{mkdir airlines}\OperatorTok{/}
+\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{put airlines.csv airlines}
+
+\CommentTok{# Copy airport data to HDFS}
+\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{mkdir airports}\OperatorTok{/}
+\NormalTok{hadoop fs }\OperatorTok{-}\NormalTok{put airports.csv airports}
+\end{Highlighting}
+\end{Shaded}
+
+A continuación lanzamos la ejecución de `hive':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{$}\StringTok{ }\NormalTok{hive}
+\end{Highlighting}
+\end{Shaded}
+
+Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los datos en la tabla Hive:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Create metadata for flights}
+\NormalTok{CREATE EXTERNAL TABLE IF NOT EXISTS flights}
+\NormalTok{(}
+\NormalTok{year int,}
+\NormalTok{month int,}
+\NormalTok{dayofmonth int,}
+\NormalTok{dayofweek int,}
+\NormalTok{deptime int,}
+\NormalTok{crsdeptime int,}
+\NormalTok{arrtime int, }
+\NormalTok{crsarrtime int,}
+\NormalTok{uniquecarrier string,}
+\NormalTok{flightnum int,}
+\NormalTok{tailnum string, }
+\NormalTok{actualelapsedtime int,}
+\NormalTok{crselapsedtime int,}
+\NormalTok{airtime string,}
+\NormalTok{arrdelay int,}
+\NormalTok{depdelay int, }
+\NormalTok{origin string,}
+\NormalTok{dest string,}
+\NormalTok{distance int,}
+\NormalTok{taxiin string,}
+\NormalTok{taxiout string,}
+\NormalTok{cancelled int,}
+\NormalTok{cancellationcode string,}
+\NormalTok{diverted int,}
+\NormalTok{carrierdelay string,}
+\NormalTok{weatherdelay string,}
+\NormalTok{nasdelay string,}
+\NormalTok{securitydelay string,}
+\NormalTok{lateaircraftdelay string}
+\NormalTok{)}
+\NormalTok{ROW FORMAT DELIMITED}
+\NormalTok{FIELDS TERMINATED BY }\StringTok{','}
+\NormalTok{LINES TERMINATED BY }\StringTok{'}\CharTok{\textbackslash{}n}\StringTok{'}
+\KeywordTok{TBLPROPERTIES}\NormalTok{(}\StringTok{"skip.header.line.count"}\NormalTok{=}\StringTok{"1"}\NormalTok{);}
+
+\CommentTok{# Load data into table}
+\NormalTok{LOAD DATA INPATH }\StringTok{'flights'}\NormalTok{ INTO TABLE flights;}
+\end{Highlighting}
+\end{Shaded}
+
+Ídem para la tabla de aerolíneas, creamos los metadatos y cargamos los datos en la tabla HIVE:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Create metadata for airlines}
+\NormalTok{CREATE EXTERNAL TABLE IF NOT EXISTS airlines}
+\NormalTok{(}
+\NormalTok{Code string,}
+\NormalTok{Description string}
+\NormalTok{)}
+\NormalTok{ROW FORMAT SERDE }\StringTok{'org.apache.hadoop.hive.serde2.OpenCSVSerde'}
+\NormalTok{WITH SERDEPROPERTIES}
+\NormalTok{(}
+\StringTok{"separatorChar"}\NormalTok{ =}\StringTok{ '\textbackslash{},'}\NormalTok{,}
+\StringTok{"quoteChar"}\NormalTok{     =}\StringTok{ '}\CharTok{\textbackslash{}"}\StringTok{'}
+\NormalTok{)}
+\NormalTok{STORED AS TEXTFILE}
+\KeywordTok{tblproperties}\NormalTok{(}\StringTok{"skip.header.line.count"}\NormalTok{=}\StringTok{"1"}\NormalTok{);}
+
+\CommentTok{# Load data into table}
+\NormalTok{LOAD DATA INPATH }\StringTok{'airlines'}\NormalTok{ INTO TABLE airlines;}
+\end{Highlighting}
+\end{Shaded}
+
+Ídem para la tabla de aeropuertos, creamos los metadatos y cargamos los datos en la tabla HIVE:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Create metadata for airports}
+\NormalTok{CREATE EXTERNAL TABLE IF NOT EXISTS airports}
+\NormalTok{(}
+\NormalTok{id string,}
+\NormalTok{name string,}
+\NormalTok{city string,}
+\NormalTok{country string,}
+\NormalTok{faa string,}
+\NormalTok{icao string,}
+\NormalTok{lat double,}
+\NormalTok{lon double,}
+\NormalTok{alt int,}
+\NormalTok{tz_offset double,}
+\NormalTok{dst string,}
+\NormalTok{tz_name string}
+\NormalTok{)}
+\NormalTok{ROW FORMAT SERDE }\StringTok{'org.apache.hadoop.hive.serde2.OpenCSVSerde'}
+\NormalTok{WITH SERDEPROPERTIES}
+\NormalTok{(}
+\StringTok{"separatorChar"}\NormalTok{ =}\StringTok{ '\textbackslash{},'}\NormalTok{,}
+\StringTok{"quoteChar"}\NormalTok{     =}\StringTok{ '}\CharTok{\textbackslash{}"}\StringTok{'}
+\NormalTok{)}
+\NormalTok{STORED AS TEXTFILE;}
+
+\CommentTok{# Load data into table}
+\NormalTok{LOAD DATA INPATH }\StringTok{'airports'}\NormalTok{ INTO TABLE airports;}
+\end{Highlighting}
+\end{Shaded}
+
+Nos conectamos a Spark (desde jupyter-lab o R):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Connect to Spark}
+\KeywordTok{library}\NormalTok{(sparklyr)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{sc <-}\StringTok{ }\KeywordTok{spark_connect}\NormalTok{(}\DataTypeTok{master =} \StringTok{"yarn-client"}\NormalTok{, }\DataTypeTok{spark_home =} \KeywordTok{Sys.getenv}\NormalTok{(}\StringTok{'SPARK_HOME'}\NormalTok{)) }
+\NormalTok{sc}
+\end{Highlighting}
+\end{Shaded}
+
+Si tenemos problemas para conectar podemos gestionar con YARN los recursos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Ver trabajos en YARN}
+\NormalTok{yarn top}
+
+\CommentTok{# Trabajos YARN en ejecución, en espera y aceptados}
+\NormalTok{yarn application }\OperatorTok{-}\NormalTok{list }\OperatorTok{|}\StringTok{ }\NormalTok{grep RUNNING}
+\NormalTok{yarn application }\OperatorTok{-}\NormalTok{list }\OperatorTok{|}\StringTok{ }\NormalTok{grep ACCEPTED}
+\NormalTok{yarn application }\OperatorTok{-}\NormalTok{list }\OperatorTok{|}\StringTok{ }\NormalTok{grep SUBMITTED}
+
+\CommentTok{# Cómo matar un trabajo YARN (si es de nuestro usuario). Indicar el ID de aplicación}
+\NormalTok{yarn application }\OperatorTok{-}\NormalTok{kill application_}\DecValTok{1575999528886}\NormalTok{_}\DecValTok{0161}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{practica-3-big-data}{%
+\section{Práctica 3: Big Data}\label{practica-3-big-data}}
+
+Los ejercicios se entregarán por correo electrónico a \href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}} en formato PDF o R MarkDown con el nombre de archivo P3X-Apellidos-Nombre.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) \textbf{antes} del miércoles 18 de Diciembre.
+
+\hypertarget{ejercicio-a-con-sparklyr}{%
+\subsection{Ejercicio A con sparklyr}\label{ejercicio-a-con-sparklyr}}
+
+(3 puntos) Replicación del siguiente ejercicio con sparklyr y el dataset iris (\url{https://spark.rstudio.com/mlib/}) en modo local o modo YARN. Puede ser dentro de jupyterlab (así me entregáis archivo ``Apellidos-Nombre.ipynb'') o en R remoto o en Rstudio (vía Desktop de visualización) (en estos dos últimos casos entregáis P3A-Apellidos-Nombre.R).
+
+\hypertarget{ejercicio-b-con-rattle}{%
+\subsection{Ejercicio B con rattle}\label{ejercicio-b-con-rattle}}
+
+(4 puntos) Informe (en PDF) sobre uno de los 4 datasets (audit, weather, weatherAUS, wine) que se describen a continuación \url{https://cran.r-project.org/web/packages/rattle.data/rattle.data.pdf}
+Se busca que realicéis un análisis con Rattle, mínimo con las pestañas Explore, Cluster y Model.
+
+\hypertarget{ejercicio-a-con-sparklyr-y-hadoop}{%
+\subsection{Ejercicio A con sparklyr y Hadoop}\label{ejercicio-a-con-sparklyr-y-hadoop}}
+
+(3 puntos) Replicación del siguiente ejercicio con sparklyr en el CESGA, en análisis de los datos del dataset de vuelos:
+\url{http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-flights.html}\\
+se valorarán análisis adicionales y detalles sobre tiempos de ejecución de los análisis, espera en colas yarn, listado de trabajos spark, etc\ldots{}
 
 \hypertarget{appendix-apendices}{%
 \appendix}

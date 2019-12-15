@@ -1,3 +1,10 @@
+---
+title: "T0 INTRO"
+author: "Guillermo Lopez Taboada"
+date: "15/09/2019"
+output: pdf_document
+---
+
 Introducción a las Tecnologías de Gestión y Manipulación de Datos
 =================================================================
 
@@ -48,27 +55,28 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 
 - Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
 
-- Clase 5 (10/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
+- Clase 5 (10/10): Jornada usuarios R Galicia (cubre objetivos de Seminario aplicaciones Big Data en investigación e industria)
 
-- Clase 6 (17/10): Tema 1: Continuación de ejercicios prácticos SQL
+- Clase 6 (17/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
 
 - Clase 7 (24/10): Tema 2: Introducción a NoSQL
 
-- Clase 8 (31/10): Tema 2: Ejercicios prácticos de NoSQL
+- Clase 8 (31/10):  Tema 1: Continuación de ejercicios prácticos SQL
 
-- Clase 9 (7/11): Tema 3: Ecosistema Big Data (Hadoop, Spark)
+- Clase 9 (7/11):  Tema 2: Ejercicios prácticos de NoSQL
 
-- Clase 10 (14/11): Tema 3: Tecnologías Big Data (Rspark/sparklyr)
+- Clase 10 (14/11):   Seminario visualización con power BI
 
-- Clase 11 (21/11): Seminario visualización con power BI 
+- Clase 11 (21/11):  Tema 3: Ecosistema Big Data (Hadoop, Spark)
 
-- Clase 12 (28/11): Seminario machine learning CESGA/localhost
+- Clase 12 (28/11):  Tecnologías Big Data (Rspark/sparklyr) + Seminario machine learning CESGA/localhost
 
-- Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos 
+- Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos son sparklyr
 
-- Clase 14 (12/12-R): Seminario Aprendizaje Estadístico/Automático, Data Mining
+- Clase 14 (12/12): Tema 3: Prácticas de Aprendizaje Estadístico/Automático, Data Mining con rattle
 
-- Clase 15 (19/12-opcional): Seminario aplicaciones Big Data en investigación e industria
+- Clase 15 (19/12-R): Seminario conectividad dplyr a BBDD
+
 
 
 ### Evaluación

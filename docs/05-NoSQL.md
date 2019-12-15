@@ -155,8 +155,8 @@ my_collection$count
 ##     check_col()
 ##     mongo_collection_count(col, query)
 ## }
-## <bytecode: 0x0000000025f0d500>
-## <environment: 0x0000000025f131f0>
+## <bytecode: 0x00000000266ecb40>
+## <environment: 0x00000000266f2830>
 ```
 
 
@@ -166,7 +166,7 @@ my_collection$count
 
 Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) **antes** del 20 de Noviembre.
 
-### Ejercicios con RMongoDB
+### Ejercicios con RMongolite
 
 Realizaremos una serie de ejercicios con la collección [Restaurants] (https://www.w3resource.com/mongodb-exercises/restaurants.zip) importados mediante:
 
@@ -193,13 +193,6 @@ La puntuación de esta práctica será el número de respuestas correctas:
 7. Mostrar los restaurantes con un grado "A" y puntuación 9 obtenida en fecha 2014-08-11T00:00:00Z
 
 8. Con valor de 3 puntos, propón un JSON para descargar, indícame la URL, si has de hacer algún proceso antes de importarlo en MongoDB, cómo lo importas, dame un pantallazo del análisis exploratorio de ese JSON y una query que harías contra ese JSON (la query en MongoDB, Compass o RmongoDB)
-
-
-
-
-
-
-
 
 
 
