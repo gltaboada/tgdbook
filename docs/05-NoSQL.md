@@ -155,8 +155,8 @@ my_collection$count
 ##     check_col()
 ##     mongo_collection_count(col, query)
 ## }
-## <bytecode: 0x00000000266ecb40>
-## <environment: 0x00000000266f2830>
+## <bytecode: 0x0000000025f1c290>
+## <environment: 0x0000000025f21f80>
 ```
 
 

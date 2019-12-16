@@ -24,7 +24,7 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-12-15" />
+<meta name="date" content="2019-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -227,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html"><i class="fa fa-check"></i><b>6.4</b> Práctica 3: Big Data</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-a-con-sparklyr"><i class="fa fa-check"></i><b>6.4.1</b> Ejercicio A con sparklyr</a></li>
 <li class="chapter" data-level="6.4.2" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-b-con-rattle"><i class="fa fa-check"></i><b>6.4.2</b> Ejercicio B con rattle</a></li>
-<li class="chapter" data-level="6.4.3" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-a-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio A con sparklyr y Hadoop</a></li>
+<li class="chapter" data-level="6.4.3" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-c-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio C con sparklyr y Hadoop</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apendices</b></span></li>
@@ -348,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1"><span class="op">$</span><span class="st"> </span>hive</a></code></pre></div>
 <p>Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los datos en la tabla Hive:</p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="co"># Create metadata for flights</span></a>
-<a class="sourceLine" id="cb190-2" title="2">CREATE EXTERNAL TABLE IF NOT EXISTS flights</a>
+<a class="sourceLine" id="cb190-2" title="2">CREATE EXTERNAL TABLE IF NOT EXISTS flights230</a>
 <a class="sourceLine" id="cb190-3" title="3">(</a>
 <a class="sourceLine" id="cb190-4" title="4">year int,</a>
 <a class="sourceLine" id="cb190-5" title="5">month int,</a>
@@ -386,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb190-37" title="37"><span class="kw">TBLPROPERTIES</span>(<span class="st">&quot;skip.header.line.count&quot;</span>=<span class="st">&quot;1&quot;</span>);</a>
 <a class="sourceLine" id="cb190-38" title="38"></a>
 <a class="sourceLine" id="cb190-39" title="39"><span class="co"># Load data into table</span></a>
-<a class="sourceLine" id="cb190-40" title="40">LOAD DATA INPATH <span class="st">&#39;flights&#39;</span> INTO TABLE flights;</a></code></pre></div>
+<a class="sourceLine" id="cb190-40" title="40">LOAD DATA INPATH <span class="st">&#39;flights&#39;</span> INTO TABLE flights230;</a></code></pre></div>
 <p>Ídem para la tabla de aerolíneas, creamos los metadatos y cargamos los datos en la tabla HIVE:</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="co"># Create metadata for airlines</span></a>
 <a class="sourceLine" id="cb191-2" title="2">CREATE EXTERNAL TABLE IF NOT EXISTS airlines</a>
@@ -432,7 +432,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb192-24" title="24"></a>
 <a class="sourceLine" id="cb192-25" title="25"><span class="co"># Load data into table</span></a>
 <a class="sourceLine" id="cb192-26" title="26">LOAD DATA INPATH <span class="st">&#39;airports&#39;</span> INTO TABLE airports;</a></code></pre></div>
-<p>Nos conectamos a Spark (desde jupyter-lab o R):</p>
+<p>Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con ‘sc &lt;- spark_connect(master = “local”)’ )</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="co"># Connect to Spark</span></a>
 <a class="sourceLine" id="cb193-2" title="2"><span class="kw">library</span>(sparklyr)</a>
 <a class="sourceLine" id="cb193-3" title="3"><span class="kw">library</span>(dplyr)</a>
@@ -450,6 +450,137 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb194-8" title="8"></a>
 <a class="sourceLine" id="cb194-9" title="9"><span class="co"># Cómo matar un trabajo YARN (si es de nuestro usuario). Indicar el ID de aplicación</span></a>
 <a class="sourceLine" id="cb194-10" title="10">yarn application <span class="op">-</span>kill application_<span class="dv">1575999528886</span>_<span class="dv">0161</span></a></code></pre></div>
+<p>Crear tablas dplyr a tablas HIVE:</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="co"># Cache flights Hive table into Spark</span></a>
+<a class="sourceLine" id="cb195-2" title="2"><span class="co">#tbl_cache(sc, &#39;flights&#39;)</span></a>
+<a class="sourceLine" id="cb195-3" title="3">flights_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;flights230&#39;</span>)</a>
+<a class="sourceLine" id="cb195-4" title="4">flights_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="co"># Cache airlines Hive table into Spark</span></a>
+<a class="sourceLine" id="cb196-2" title="2"><span class="co">#tbl_cache(sc, &#39;airlines&#39;)</span></a>
+<a class="sourceLine" id="cb196-3" title="3">airlines_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;airlines&#39;</span>)</a>
+<a class="sourceLine" id="cb196-4" title="4">airlines_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="co"># Cache airports Hive table into Spark</span></a>
+<a class="sourceLine" id="cb197-2" title="2"><span class="co">#tbl_cache(sc, &#39;airports&#39;)</span></a>
+<a class="sourceLine" id="cb197-3" title="3">airports_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;airports&#39;</span>)</a>
+<a class="sourceLine" id="cb197-4" title="4">airports_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</a></code></pre></div>
+<p>Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">system.time</span>({</a>
+<a class="sourceLine" id="cb198-2" title="2">out &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb198-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb198-4" title="4"><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb198-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb198-6" title="6"><span class="st">  </span><span class="kw">collect</span>()</a>
+<a class="sourceLine" id="cb198-7" title="7">})</a>
+<a class="sourceLine" id="cb198-8" title="8">out</a>
+<a class="sourceLine" id="cb198-9" title="9">out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</a></code></pre></div>
+<p>Vuelos con origen LAX (Los Angeles) por año:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">system.time</span>({</a>
+<a class="sourceLine" id="cb199-2" title="2">out &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb199-3" title="3"><span class="st">  </span><span class="kw">filter</span>(origin <span class="op">==</span><span class="st"> &quot;LAX&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb199-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb199-5" title="5"><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb199-6" title="6"><span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb199-7" title="7"><span class="st">  </span><span class="kw">collect</span>()</a>
+<a class="sourceLine" id="cb199-8" title="8">})</a>
+<a class="sourceLine" id="cb199-9" title="9">out</a>
+<a class="sourceLine" id="cb199-10" title="10">out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb199-11" title="11"><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-12" title="12"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Number of flights from LAX&quot;</span>)</a></code></pre></div>
+<p>Y listado de países y número de aeropuertos:</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">system.time</span>({</a>
+<a class="sourceLine" id="cb200-2" title="2">out &lt;-<span class="st"> </span>airports_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb200-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(<span class="st">&quot;country&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb200-4" title="4"><span class="st">  </span><span class="kw">count</span>()</a>
+<a class="sourceLine" id="cb200-5" title="5">})</a>
+<a class="sourceLine" id="cb200-6" title="6">out</a></code></pre></div>
+<p>Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para ello buscaremos modelar como una regresión lineal la ganancia de un vuelo (gain) como (depdelay - arrdelay) basándose en la distancia, el retraso de la salida y la aerolínea usando datos del período 2003-2007:</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="co"># Filter records and create target variable &#39;gain&#39;</span></a>
+<a class="sourceLine" id="cb201-2" title="2"><span class="kw">system.time</span>(</a>
+<a class="sourceLine" id="cb201-3" title="3">  model_data &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-4" title="4"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(arrdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(depdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(distance)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-5" title="5"><span class="st">    </span><span class="kw">filter</span>(depdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>depdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">240</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-6" title="6"><span class="st">    </span><span class="kw">filter</span>(arrdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">-60</span> <span class="op">&amp;</span><span class="st"> </span>arrdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">360</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-7" title="7"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2003</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-8" title="8"><span class="st">    </span><span class="kw">left_join</span>(airlines_tbl, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;uniquecarrier&quot;</span> =<span class="st"> &quot;code&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-9" title="9"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">gain =</span> depdelay <span class="op">-</span><span class="st"> </span>arrdelay) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-10" title="10"><span class="st">    </span><span class="kw">select</span>(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain)</a>
+<a class="sourceLine" id="cb201-11" title="11">)</a>
+<a class="sourceLine" id="cb201-12" title="12">model_data</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="co"># Summarize data by carrier</span></a>
+<a class="sourceLine" id="cb202-2" title="2">model_data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb202-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(uniquecarrier) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb202-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">description =</span> <span class="kw">min</span>(description), <span class="dt">gain =</span> <span class="kw">mean</span>(gain), </a>
+<a class="sourceLine" id="cb202-5" title="5">            <span class="dt">distance =</span> <span class="kw">mean</span>(distance), <span class="dt">depdelay =</span> <span class="kw">mean</span>(depdelay)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb202-6" title="6"><span class="st">  </span><span class="kw">select</span>(description, gain, distance, depdelay) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb202-7" title="7"><span class="st">  </span><span class="kw">arrange</span>(gain)</a></code></pre></div>
+<p>Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un vuelo en función de la distancia, retraso en la salida y aerolínea procedemos de este modo:</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="co"># Partition the data into training and validation sets</span></a>
+<a class="sourceLine" id="cb203-2" title="2">model_partition &lt;-<span class="st"> </span>model_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb203-3" title="3"><span class="st">  </span><span class="kw">sdf_partition</span>(<span class="dt">train =</span> <span class="fl">0.8</span>, <span class="dt">valid =</span> <span class="fl">0.2</span>, <span class="dt">seed =</span> <span class="dv">5555</span>)</a>
+<a class="sourceLine" id="cb203-4" title="4"></a>
+<a class="sourceLine" id="cb203-5" title="5"><span class="co"># Fit a linear model</span></a>
+<a class="sourceLine" id="cb203-6" title="6"><span class="kw">system.time</span>(</a>
+<a class="sourceLine" id="cb203-7" title="7">  ml1 &lt;-<span class="st"> </span>model_partition<span class="op">$</span>train <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb203-8" title="8"><span class="st">    </span><span class="kw">ml_linear_regression</span>(gain <span class="op">~</span><span class="st"> </span>distance <span class="op">+</span><span class="st"> </span>depdelay <span class="op">+</span><span class="st"> </span>uniquecarrier)</a>
+<a class="sourceLine" id="cb203-9" title="9">)</a>
+<a class="sourceLine" id="cb203-10" title="10"></a>
+<a class="sourceLine" id="cb203-11" title="11"><span class="co"># Summarize the linear model</span></a>
+<a class="sourceLine" id="cb203-12" title="12"><span class="kw">summary</span>(ml1)</a></code></pre></div>
+<p>A continuación se compara la bondad del modelo con el subconjunto de validación</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="co"># Calculate average gains by predicted decile</span></a>
+<a class="sourceLine" id="cb204-2" title="2"><span class="kw">system.time</span>(</a>
+<a class="sourceLine" id="cb204-3" title="3">  model_deciles &lt;-<span class="st"> </span><span class="kw">lapply</span>(model_partition, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb204-4" title="4">    <span class="kw">ml_predict</span>(ml1, x) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb204-5" title="5"><span class="st">      </span><span class="kw">mutate</span>(<span class="dt">decile =</span> <span class="kw">ntile</span>(<span class="kw">desc</span>(prediction), <span class="dv">10</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb204-6" title="6"><span class="st">      </span><span class="kw">group_by</span>(decile) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb204-7" title="7"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">gain =</span> <span class="kw">mean</span>(gain)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb204-8" title="8"><span class="st">      </span><span class="kw">select</span>(decile, gain) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb204-9" title="9"><span class="st">      </span><span class="kw">collect</span>()</a>
+<a class="sourceLine" id="cb204-10" title="10">  })</a>
+<a class="sourceLine" id="cb204-11" title="11">)</a>
+<a class="sourceLine" id="cb204-12" title="12">model_deciles</a>
+<a class="sourceLine" id="cb204-13" title="13"></a>
+<a class="sourceLine" id="cb204-14" title="14"><span class="co"># Create a summary dataset for plotting</span></a>
+<a class="sourceLine" id="cb204-15" title="15">deciles &lt;-<span class="st"> </span><span class="kw">rbind</span>(</a>
+<a class="sourceLine" id="cb204-16" title="16">  <span class="kw">data.frame</span>(<span class="dt">data =</span> <span class="st">&#39;train&#39;</span>, model_deciles<span class="op">$</span>train),</a>
+<a class="sourceLine" id="cb204-17" title="17">  <span class="kw">data.frame</span>(<span class="dt">data =</span> <span class="st">&#39;valid&#39;</span>, model_deciles<span class="op">$</span>valid),</a>
+<a class="sourceLine" id="cb204-18" title="18">  <span class="dt">make.row.names =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb204-19" title="19">)</a>
+<a class="sourceLine" id="cb204-20" title="20">deciles</a>
+<a class="sourceLine" id="cb204-21" title="21"></a>
+<a class="sourceLine" id="cb204-22" title="22"><span class="co"># Plot average gains by predicted decile</span></a>
+<a class="sourceLine" id="cb204-23" title="23">deciles <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb204-24" title="24"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">factor</span>(decile), gain, <span class="dt">fill =</span> data)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb204-25" title="25"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb204-26" title="26"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average gain by predicted decile&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Decile&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Minutes&#39;</span>)</a></code></pre></div>
+<p>Visualizar predicciones usando el año 2008 (no usado en el entrenamiento):</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="co"># Select data from an out of time sample</span></a>
+<a class="sourceLine" id="cb205-2" title="2">data_<span class="dv">2008</span> &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-3" title="3"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(arrdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(depdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(distance)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-4" title="4"><span class="st">  </span><span class="kw">filter</span>(depdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>depdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">240</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-5" title="5"><span class="st">  </span><span class="kw">filter</span>(arrdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">-60</span> <span class="op">&amp;</span><span class="st"> </span>arrdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">360</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-6" title="6"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-7" title="7"><span class="st">  </span><span class="kw">left_join</span>(airlines_tbl, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;uniquecarrier&quot;</span> =<span class="st"> &quot;code&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-8" title="8"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gain =</span> depdelay <span class="op">-</span><span class="st"> </span>arrdelay) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-9" title="9"><span class="st">  </span><span class="kw">select</span>(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain, origin, dest)</a>
+<a class="sourceLine" id="cb205-10" title="10">data_<span class="dv">2008</span></a>
+<a class="sourceLine" id="cb205-11" title="11"></a>
+<a class="sourceLine" id="cb205-12" title="12"><span class="co"># Summarize data by carrier</span></a>
+<a class="sourceLine" id="cb205-13" title="13">carrier &lt;-<span class="st"> </span><span class="kw">ml_predict</span>(ml1, data_<span class="dv">2008</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-14" title="14"><span class="st">  </span><span class="kw">group_by</span>(description) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-15" title="15"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">gain =</span> <span class="kw">mean</span>(gain), <span class="dt">prediction =</span> <span class="kw">mean</span>(prediction), <span class="dt">freq =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-16" title="16"><span class="st">  </span><span class="kw">filter</span>(freq <span class="op">&gt;</span><span class="st"> </span><span class="dv">10000</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-17" title="17"><span class="st">  </span><span class="kw">collect</span>()</a>
+<a class="sourceLine" id="cb205-18" title="18">carrier</a>
+<a class="sourceLine" id="cb205-19" title="19"></a>
+<a class="sourceLine" id="cb205-20" title="20"><span class="co"># Plot actual gains and predicted gains by airline carrier</span></a>
+<a class="sourceLine" id="cb205-21" title="21"><span class="kw">ggplot</span>(carrier, <span class="kw">aes</span>(gain, prediction)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb205-22" title="22"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">shape =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb205-23" title="23"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.15</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb205-24" title="24"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">substr</span>(description, <span class="dv">1</span>, <span class="dv">20</span>)), <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">vjust =</span> <span class="dv">-1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb205-25" title="25"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&#39;Average Gains Forecast&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Actual&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Predicted&#39;</span>)</a></code></pre></div>
+<p>Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">spark_disconnect_all</span>()</a></code></pre></div>
 </div>
 </div>
             </section>

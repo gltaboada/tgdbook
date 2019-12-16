@@ -24,7 +24,7 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-12-15" />
+<meta name="date" content="2019-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -227,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html"><i class="fa fa-check"></i><b>6.4</b> Práctica 3: Big Data</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-a-con-sparklyr"><i class="fa fa-check"></i><b>6.4.1</b> Ejercicio A con sparklyr</a></li>
 <li class="chapter" data-level="6.4.2" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-b-con-rattle"><i class="fa fa-check"></i><b>6.4.2</b> Ejercicio B con rattle</a></li>
-<li class="chapter" data-level="6.4.3" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-a-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio A con sparklyr y Hadoop</a></li>
+<li class="chapter" data-level="6.4.3" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-c-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio C con sparklyr y Hadoop</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apendices</b></span></li>
@@ -291,15 +291,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="creacion-de-la-base-de-datos" class="section level2">
 <h2><span class="header-section-number">C.1</span> Creación de la base de datos</h2>
 <p>Se generará el archivo:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1">dbfilename &lt;-<span class="st"> &quot;data/citan/UDC2015.db&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1">dbfilename &lt;-<span class="st"> &quot;data/citan/UDC2015.db&quot;</span></a></code></pre></div>
 <div id="primera-ejecucion-creacion-del-modelo-de-db" class="section level3">
 <h3><span class="header-section-number">C.1.1</span> Primera ejecución: Creación del modelo de DB</h3>
 <p>Creación del archivo de BD vacío:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1">conn &lt;-<span class="st"> </span><span class="kw">lbsConnect</span>(dbfilename)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1">conn &lt;-<span class="st"> </span><span class="kw">lbsConnect</span>(dbfilename)</a></code></pre></div>
 <pre><code>## Warning in lbsConnect(dbfilename): Your Local Bibliometric Storage is
 ## empty. Use lbsCreate(...) to establish one.</code></pre>
 <p>Creación del esquema con <a href="https://www.rdocumentation.org/packages/CITAN/versions/2015.12-2/topics/lbsCreate"><code>lbsCreate()</code></a>:</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">lbsCreate</span>(conn) </a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="kw">lbsCreate</span>(conn) </a></code></pre></div>
 <pre><code>## Warning: RSQLite::dbGetInfo() is deprecated: please use individual metadata
 ## functions instead
 
@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] TRUE</code></pre>
 <p>Importar información de Scopus (descargada previamente…)
 con la función <a href="https://www.rdocumentation.org/packages/CITAN/versions/2015.12-2/topics/Scopus_ImportSources"><code>Scopus_ImportSources()</code></a> (<a href="https://github.com/gagolews/CITAN/blob/master/R/scopus.importsources.R">código</a>):</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">Scopus_ImportSources</span>(conn) <span class="co"># Cuidado con el tiempo de CPU...</span></a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="kw">Scopus_ImportSources</span>(conn) <span class="co"># Cuidado con el tiempo de CPU...</span></a></code></pre></div>
 <pre><code>## Importing Scopus ASJC codes... Done, 334 records added.
 ## Importing Scopus source list...
 
@@ -338,12 +338,12 @@ con la función <a href="https://www.rdocumentation.org/packages/CITAN/versions/
 <div id="incorporar-nuevos-datos" class="section level3">
 <h3><span class="header-section-number">C.1.2</span> Incorporar nuevos datos</h3>
 <p>Con la función <code>Scopus_ReadCSV()</code> se produce un error en Windows:</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1">data &lt;-<span class="st">  </span><span class="kw">Scopus_ReadCSV</span>(<span class="st">&quot;udc_2015.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1">data &lt;-<span class="st">  </span><span class="kw">Scopus_ReadCSV</span>(<span class="st">&quot;udc_2015.csv&quot;</span>)</a></code></pre></div>
 <pre><code>## Error in Scopus_ReadCSV(&quot;udc_2015.csv&quot;) : Column not found: `Source&#39;.</code></pre>
 <p>Empleando la versión modificada:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1">data &lt;-<span class="st">  </span><span class="kw">Scopus_ReadCSV2</span>(<span class="st">&quot;udc_2015.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1">data &lt;-<span class="st">  </span><span class="kw">Scopus_ReadCSV2</span>(<span class="st">&quot;udc_2015.csv&quot;</span>)</a></code></pre></div>
 <p>Añadir los documentos a la base de datos:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">lbsImportDocuments</span>(conn, data) </a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1"><span class="kw">lbsImportDocuments</span>(conn, data) </a></code></pre></div>
 <pre><code>## Importing documents and their authors... Importing 1324 authors... 1324 new authors added.
 
 ## Warning in .lbsImportDocuments_Add_Get_idSource(conn, record$SourceTitle, :
@@ -356,7 +356,7 @@ con la función <a href="https://www.rdocumentation.org/packages/CITAN/versions/
 
 ## [1] TRUE</code></pre>
 <p>Se podría añadir una descripción para trabajar con distintos grupos de documentos:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="kw">lbsImportDocuments</span>(conn, data, <span class="st">&quot;udc_2015&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1"><span class="kw">lbsImportDocuments</span>(conn, data, <span class="st">&quot;udc_2015&quot;</span>) </a></code></pre></div>
 </div>
 </div>
             </section>

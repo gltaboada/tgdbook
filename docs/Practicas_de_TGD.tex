@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-12-15}
+    \date{2019-12-16}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -3041,8 +3041,8 @@ A través del paquete \href{https://cran.rstudio.com/web/packages/mongolite/mong
 ##     check_col()
 ##     mongo_collection_count(col, query)
 ## }
-## <bytecode: 0x00000000266ecb40>
-## <environment: 0x00000000266f2830>
+## <bytecode: 0x0000000025f1c290>
+## <environment: 0x0000000025f21f80>
 \end{verbatim}
 
 \hypertarget{practica-2-nosql}{%
@@ -3328,7 +3328,7 @@ Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los dat
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Create metadata for flights}
-\NormalTok{CREATE EXTERNAL TABLE IF NOT EXISTS flights}
+\NormalTok{CREATE EXTERNAL TABLE IF NOT EXISTS flights230}
 \NormalTok{(}
 \NormalTok{year int,}
 \NormalTok{month int,}
@@ -3366,7 +3366,7 @@ Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los dat
 \KeywordTok{TBLPROPERTIES}\NormalTok{(}\StringTok{"skip.header.line.count"}\NormalTok{=}\StringTok{"1"}\NormalTok{);}
 
 \CommentTok{# Load data into table}
-\NormalTok{LOAD DATA INPATH }\StringTok{'flights'}\NormalTok{ INTO TABLE flights;}
+\NormalTok{LOAD DATA INPATH }\StringTok{'flights'}\NormalTok{ INTO TABLE flights230;}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3427,7 +3427,7 @@ Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los dat
 \end{Highlighting}
 \end{Shaded}
 
-Nos conectamos a Spark (desde jupyter-lab o R):
+Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con `sc \textless{}- spark\_connect(master = ``local'')' )
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3457,6 +3457,206 @@ Si tenemos problemas para conectar podemos gestionar con YARN los recursos
 \end{Highlighting}
 \end{Shaded}
 
+Crear tablas dplyr a tablas HIVE:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Cache flights Hive table into Spark}
+\CommentTok{#tbl_cache(sc, 'flights')}
+\NormalTok{flights_tbl <-}\StringTok{ }\KeywordTok{tbl}\NormalTok{(sc, }\StringTok{'flights230'}\NormalTok{)}
+\NormalTok{flights_tbl }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{(}\DataTypeTok{width =} \OtherTok{Inf}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Cache airlines Hive table into Spark}
+\CommentTok{#tbl_cache(sc, 'airlines')}
+\NormalTok{airlines_tbl <-}\StringTok{ }\KeywordTok{tbl}\NormalTok{(sc, }\StringTok{'airlines'}\NormalTok{)}
+\NormalTok{airlines_tbl }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{(}\DataTypeTok{width =} \OtherTok{Inf}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Cache airports Hive table into Spark}
+\CommentTok{#tbl_cache(sc, 'airports')}
+\NormalTok{airports_tbl <-}\StringTok{ }\KeywordTok{tbl}\NormalTok{(sc, }\StringTok{'airports'}\NormalTok{)}
+\NormalTok{airports_tbl }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{(}\DataTypeTok{width =} \OtherTok{Inf}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{system.time}\NormalTok{(\{}
+\NormalTok{out <-}\StringTok{ }\NormalTok{flights_tbl }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{collect}\NormalTok{()}
+\NormalTok{\})}
+\NormalTok{out}
+\NormalTok{out }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ n)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Vuelos con origen LAX (Los Angeles) por año:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{system.time}\NormalTok{(\{}
+\NormalTok{out <-}\StringTok{ }\NormalTok{flights_tbl }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(origin }\OperatorTok{==}\StringTok{ "LAX"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{collect}\NormalTok{()}
+\NormalTok{\})}
+\NormalTok{out}
+\NormalTok{out }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ n)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Number of flights from LAX"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Y listado de países y número de aeropuertos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{system.time}\NormalTok{(\{}
+\NormalTok{out <-}\StringTok{ }\NormalTok{airports_tbl }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(}\StringTok{"country"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{()}
+\NormalTok{\})}
+\NormalTok{out}
+\end{Highlighting}
+\end{Shaded}
+
+Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para ello buscaremos modelar como una regresión lineal la ganancia de un vuelo (gain) como (depdelay - arrdelay) basándose en la distancia, el retraso de la salida y la aerolínea usando datos del período 2003-2007:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Filter records and create target variable 'gain'}
+\KeywordTok{system.time}\NormalTok{(}
+\NormalTok{  model_data <-}\StringTok{ }\NormalTok{flights_tbl }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(arrdelay) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(depdelay) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(distance)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(depdelay }\OperatorTok{>}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{depdelay }\OperatorTok{<}\StringTok{ }\DecValTok{240}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(arrdelay }\OperatorTok{>}\StringTok{ }\DecValTok{-60} \OperatorTok{&}\StringTok{ }\NormalTok{arrdelay }\OperatorTok{<}\StringTok{ }\DecValTok{360}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{>=}\StringTok{ }\DecValTok{2003} \OperatorTok{&}\StringTok{ }\NormalTok{year }\OperatorTok{<=}\StringTok{ }\DecValTok{2007}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{left_join}\NormalTok{(airlines_tbl, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"uniquecarrier"}\NormalTok{ =}\StringTok{ "code"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{gain =}\NormalTok{ depdelay }\OperatorTok{-}\StringTok{ }\NormalTok{arrdelay) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{select}\NormalTok{(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain)}
+\NormalTok{)}
+\NormalTok{model_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Summarize data by carrier}
+\NormalTok{model_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(uniquecarrier) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{description =} \KeywordTok{min}\NormalTok{(description), }\DataTypeTok{gain =} \KeywordTok{mean}\NormalTok{(gain), }
+            \DataTypeTok{distance =} \KeywordTok{mean}\NormalTok{(distance), }\DataTypeTok{depdelay =} \KeywordTok{mean}\NormalTok{(depdelay)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(description, gain, distance, depdelay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(gain)}
+\end{Highlighting}
+\end{Shaded}
+
+Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un vuelo en función de la distancia, retraso en la salida y aerolínea procedemos de este modo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Partition the data into training and validation sets}
+\NormalTok{model_partition <-}\StringTok{ }\NormalTok{model_data }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{sdf_partition}\NormalTok{(}\DataTypeTok{train =} \FloatTok{0.8}\NormalTok{, }\DataTypeTok{valid =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{seed =} \DecValTok{5555}\NormalTok{)}
+
+\CommentTok{# Fit a linear model}
+\KeywordTok{system.time}\NormalTok{(}
+\NormalTok{  ml1 <-}\StringTok{ }\NormalTok{model_partition}\OperatorTok{$}\NormalTok{train }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{ml_linear_regression}\NormalTok{(gain }\OperatorTok{~}\StringTok{ }\NormalTok{distance }\OperatorTok{+}\StringTok{ }\NormalTok{depdelay }\OperatorTok{+}\StringTok{ }\NormalTok{uniquecarrier)}
+\NormalTok{)}
+
+\CommentTok{# Summarize the linear model}
+\KeywordTok{summary}\NormalTok{(ml1)}
+\end{Highlighting}
+\end{Shaded}
+
+A continuación se compara la bondad del modelo con el subconjunto de validación
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate average gains by predicted decile}
+\KeywordTok{system.time}\NormalTok{(}
+\NormalTok{  model_deciles <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(model_partition, }\ControlFlowTok{function}\NormalTok{(x) \{}
+    \KeywordTok{ml_predict}\NormalTok{(ml1, x) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{decile =} \KeywordTok{ntile}\NormalTok{(}\KeywordTok{desc}\NormalTok{(prediction), }\DecValTok{10}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{group_by}\NormalTok{(decile) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{gain =} \KeywordTok{mean}\NormalTok{(gain)) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{select}\NormalTok{(decile, gain) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{collect}\NormalTok{()}
+\NormalTok{  \})}
+\NormalTok{)}
+\NormalTok{model_deciles}
+
+\CommentTok{# Create a summary dataset for plotting}
+\NormalTok{deciles <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(}
+  \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{data =} \StringTok{'train'}\NormalTok{, model_deciles}\OperatorTok{$}\NormalTok{train),}
+  \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{data =} \StringTok{'valid'}\NormalTok{, model_deciles}\OperatorTok{$}\NormalTok{valid),}
+  \DataTypeTok{make.row.names =} \OtherTok{FALSE}
+\NormalTok{)}
+\NormalTok{deciles}
+
+\CommentTok{# Plot average gains by predicted decile}
+\NormalTok{deciles }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{factor}\NormalTok{(decile), gain, }\DataTypeTok{fill =}\NormalTok{ data)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{'identity'}\NormalTok{, }\DataTypeTok{position =} \StringTok{'dodge'}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{'Average gain by predicted decile'}\NormalTok{, }\DataTypeTok{x =} \StringTok{'Decile'}\NormalTok{, }\DataTypeTok{y =} \StringTok{'Minutes'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Visualizar predicciones usando el año 2008 (no usado en el entrenamiento):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Select data from an out of time sample}
+\NormalTok{data_}\DecValTok{2008}\NormalTok{ <-}\StringTok{ }\NormalTok{flights_tbl }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(arrdelay) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(depdelay) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(distance)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(depdelay }\OperatorTok{>}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{depdelay }\OperatorTok{<}\StringTok{ }\DecValTok{240}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(arrdelay }\OperatorTok{>}\StringTok{ }\DecValTok{-60} \OperatorTok{&}\StringTok{ }\NormalTok{arrdelay }\OperatorTok{<}\StringTok{ }\DecValTok{360}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{==}\StringTok{ }\DecValTok{2008}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(airlines_tbl, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"uniquecarrier"}\NormalTok{ =}\StringTok{ "code"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{gain =}\NormalTok{ depdelay }\OperatorTok{-}\StringTok{ }\NormalTok{arrdelay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain, origin, dest)}
+\NormalTok{data_}\DecValTok{2008}
+
+\CommentTok{# Summarize data by carrier}
+\NormalTok{carrier <-}\StringTok{ }\KeywordTok{ml_predict}\NormalTok{(ml1, data_}\DecValTok{2008}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(description) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{gain =} \KeywordTok{mean}\NormalTok{(gain), }\DataTypeTok{prediction =} \KeywordTok{mean}\NormalTok{(prediction), }\DataTypeTok{freq =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(freq }\OperatorTok{>}\StringTok{ }\DecValTok{10000}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{collect}\NormalTok{()}
+\NormalTok{carrier}
+
+\CommentTok{# Plot actual gains and predicted gains by airline carrier}
+\KeywordTok{ggplot}\NormalTok{(carrier, }\KeywordTok{aes}\NormalTok{(gain, prediction)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.75}\NormalTok{, }\DataTypeTok{color =} \StringTok{'red'}\NormalTok{, }\DataTypeTok{shape =} \DecValTok{3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_abline}\NormalTok{(}\DataTypeTok{intercept =} \DecValTok{0}\NormalTok{, }\DataTypeTok{slope =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.15}\NormalTok{, }\DataTypeTok{color =} \StringTok{'blue'}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{substr}\NormalTok{(description, }\DecValTok{1}\NormalTok{, }\DecValTok{20}\NormalTok{)), }\DataTypeTok{size =} \DecValTok{3}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.75}\NormalTok{, }\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{'Average Gains Forecast'}\NormalTok{, }\DataTypeTok{x =} \StringTok{'Actual'}\NormalTok{, }\DataTypeTok{y =} \StringTok{'Predicted'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{spark_disconnect_all}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{practica-3-big-data}{%
 \section{Práctica 3: Big Data}\label{practica-3-big-data}}
 
@@ -3473,8 +3673,8 @@ Los ejercicios se entregarán por correo electrónico a \href{mailto:guillermo.l
 (4 puntos) Informe (en PDF) sobre uno de los 4 datasets (audit, weather, weatherAUS, wine) que se describen a continuación \url{https://cran.r-project.org/web/packages/rattle.data/rattle.data.pdf}
 Se busca que realicéis un análisis con Rattle, mínimo con las pestañas Explore, Cluster y Model.
 
-\hypertarget{ejercicio-a-con-sparklyr-y-hadoop}{%
-\subsection{Ejercicio A con sparklyr y Hadoop}\label{ejercicio-a-con-sparklyr-y-hadoop}}
+\hypertarget{ejercicio-c-con-sparklyr-y-hadoop}{%
+\subsection{Ejercicio C con sparklyr y Hadoop}\label{ejercicio-c-con-sparklyr-y-hadoop}}
 
 (3 puntos) Replicación del siguiente ejercicio con sparklyr en el CESGA, en análisis de los datos del dataset de vuelos:
 \url{http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-flights.html}\\

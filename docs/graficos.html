@@ -24,7 +24,7 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-12-15" />
+<meta name="date" content="2019-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -227,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html"><i class="fa fa-check"></i><b>6.4</b> Práctica 3: Big Data</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-a-con-sparklyr"><i class="fa fa-check"></i><b>6.4.1</b> Ejercicio A con sparklyr</a></li>
 <li class="chapter" data-level="6.4.2" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-b-con-rattle"><i class="fa fa-check"></i><b>6.4.2</b> Ejercicio B con rattle</a></li>
-<li class="chapter" data-level="6.4.3" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-a-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio A con sparklyr y Hadoop</a></li>
+<li class="chapter" data-level="6.4.3" data-path="practica-3-big-data.html"><a href="practica-3-big-data.html#ejercicio-c-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio C con sparklyr y Hadoop</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apendices</b></span></li>
@@ -293,21 +293,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Se emplea la librería <a href="https://ggplot2.tidyverse.org"><code>ggplot2</code></a>…</p>
 <div id="graficos-de-la-base-de-datos-plot.wos.db" class="section level3">
 <h3><span class="header-section-number">B.4.1</span> Gráficos de la base de datos <code>plot.wos.db()</code></h3>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">plot</span>(db)</a></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">plot</span>(db)</a></code></pre></div>
 <p><img src="21-scimetr_files/figure-html/plotdb-1.png" width="70%" style="display: block; margin: auto;" /><img src="21-scimetr_files/figure-html/plotdb-2.png" width="70%" style="display: block; margin: auto;" /><img src="21-scimetr_files/figure-html/plotdb-3.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="graficos-sumario-plot.summary.wos.db" class="section level3">
 <h3><span class="header-section-number">B.4.2</span> Gráficos sumario <code>plot.summary.wos.db()</code></h3>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1"><span class="kw">plot</span>(res1)</a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1"><span class="kw">plot</span>(res1)</a></code></pre></div>
 <p><img src="21-scimetr_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-9-2.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-9-3.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-9-4.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-9-5.png" width="70%" style="display: block; margin: auto auto auto 0;" /></p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">plot</span>(res1, <span class="dt">pie =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="kw">plot</span>(res1, <span class="dt">pie =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="21-scimetr_files/figure-html/unnamed-chunk-9-6.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-9-7.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-9-8.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-9-9.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-9-10.png" width="70%" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
 <div id="graficos-sumario-por-anos-plot.summary.year" class="section level3">
 <h3><span class="header-section-number">B.4.3</span> Gráficos sumario por años <code>plot.summary.year()</code></h3>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="kw">plot</span>(res2)</a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1"><span class="kw">plot</span>(res2)</a></code></pre></div>
 <p><img src="21-scimetr_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-10-2.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-10-3.png" width="70%" style="display: block; margin: auto auto auto 0;" /></p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="kw">plot</span>(res2, <span class="dt">boxplot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">plot</span>(res2, <span class="dt">boxplot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="21-scimetr_files/figure-html/unnamed-chunk-10-4.png" width="70%" style="display: block; margin: auto auto auto 0;" /><img src="21-scimetr_files/figure-html/unnamed-chunk-10-5.png" width="70%" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
 </div>

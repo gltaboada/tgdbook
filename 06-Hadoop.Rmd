@@ -242,7 +242,7 @@ Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los dat
 
 ```{r, eval=FALSE}
 # Create metadata for flights
-CREATE EXTERNAL TABLE IF NOT EXISTS flights
+CREATE EXTERNAL TABLE IF NOT EXISTS flights230
 (
 year int,
 month int,
@@ -280,7 +280,7 @@ LINES TERMINATED BY '\n'
 TBLPROPERTIES("skip.header.line.count"="1");
 
 # Load data into table
-LOAD DATA INPATH 'flights' INTO TABLE flights;
+LOAD DATA INPATH 'flights' INTO TABLE flights230;
 ```
 
 
@@ -340,7 +340,7 @@ LOAD DATA INPATH 'airports' INTO TABLE airports;
 ```
 
 
-Nos conectamos a Spark (desde jupyter-lab o R):
+Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con 'sc <- spark_connect(master = "local")' )
 
 ```{r, eval=FALSE}
 # Connect to Spark
@@ -369,17 +369,191 @@ yarn application -kill application_1575999528886_0161
 ```
 
 
+Crear tablas dplyr a tablas HIVE: 
+
+
+```{r, eval=FALSE}
+# Cache flights Hive table into Spark
+#tbl_cache(sc, 'flights')
+flights_tbl <- tbl(sc, 'flights230')
+flights_tbl %>% print(width = Inf)
+```
+
+
+```{r, eval=FALSE}
+# Cache airlines Hive table into Spark
+#tbl_cache(sc, 'airlines')
+airlines_tbl <- tbl(sc, 'airlines')
+airlines_tbl %>% print(width = Inf)
+```
+
+
+```{r, eval=FALSE}
+# Cache airports Hive table into Spark
+#tbl_cache(sc, 'airports')
+airports_tbl <- tbl(sc, 'airports')
+airports_tbl %>% print(width = Inf)
+```
 
 
 
+Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:
+
+```{r, eval=FALSE}
+system.time({
+out <- flights_tbl %>%
+  group_by(year) %>%
+  count() %>%
+  arrange(year) %>%
+  collect()
+})
+out
+out %>% ggplot(aes(x = year, y = n)) + geom_col()
+```
 
 
+Vuelos con origen LAX (Los Angeles) por año:
+
+```{r, eval=FALSE}
+system.time({
+out <- flights_tbl %>%
+  filter(origin == "LAX") %>%
+  group_by(year) %>%
+  count() %>%
+  arrange(year) %>%
+  collect()
+})
+out
+out %>% ggplot(aes(x = year, y = n)) + 
+    geom_col() +
+    labs(title = "Number of flights from LAX")
+```
+
+Y listado de países y número de aeropuertos:
+
+```{r, eval=FALSE}
+system.time({
+out <- airports_tbl %>%
+  group_by("country") %>%
+  count()
+})
+out
+```
+
+Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para ello buscaremos modelar como una regresión lineal la ganancia de un vuelo (gain) como (depdelay - arrdelay) basándose en la distancia, el retraso de la salida y la aerolínea usando datos del período 2003-2007:
 
 
+```{r, eval=FALSE}
+# Filter records and create target variable 'gain'
+system.time(
+  model_data <- flights_tbl %>%
+    filter(!is.na(arrdelay) & !is.na(depdelay) & !is.na(distance)) %>%
+    filter(depdelay > 15 & depdelay < 240) %>%
+    filter(arrdelay > -60 & arrdelay < 360) %>%
+    filter(year >= 2003 & year <= 2007) %>%
+    left_join(airlines_tbl, by = c("uniquecarrier" = "code")) %>%
+    mutate(gain = depdelay - arrdelay) %>%
+    select(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain)
+)
+model_data
+```
+
+```{r, eval=FALSE}
+# Summarize data by carrier
+model_data %>%
+  group_by(uniquecarrier) %>%
+  summarize(description = min(description), gain = mean(gain), 
+            distance = mean(distance), depdelay = mean(depdelay)) %>%
+  select(description, gain, distance, depdelay) %>%
+  arrange(gain)
+```
 
 
+Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un vuelo en función de la distancia, retraso en la salida y aerolínea procedemos de este modo:
 
 
+```{r, eval=FALSE}
+# Partition the data into training and validation sets
+model_partition <- model_data %>% 
+  sdf_partition(train = 0.8, valid = 0.2, seed = 5555)
+
+# Fit a linear model
+system.time(
+  ml1 <- model_partition$train %>%
+    ml_linear_regression(gain ~ distance + depdelay + uniquecarrier)
+)
+
+# Summarize the linear model
+summary(ml1)
+```
+
+A continuación se compara la bondad del modelo con el subconjunto de validación
+
+```{r, eval=FALSE}
+# Calculate average gains by predicted decile
+system.time(
+  model_deciles <- lapply(model_partition, function(x) {
+    ml_predict(ml1, x) %>%
+      mutate(decile = ntile(desc(prediction), 10)) %>%
+      group_by(decile) %>%
+      summarize(gain = mean(gain)) %>%
+      select(decile, gain) %>%
+      collect()
+  })
+)
+model_deciles
+
+# Create a summary dataset for plotting
+deciles <- rbind(
+  data.frame(data = 'train', model_deciles$train),
+  data.frame(data = 'valid', model_deciles$valid),
+  make.row.names = FALSE
+)
+deciles
+
+# Plot average gains by predicted decile
+deciles %>%
+  ggplot(aes(factor(decile), gain, fill = data)) +
+  geom_bar(stat = 'identity', position = 'dodge') +
+  labs(title = 'Average gain by predicted decile', x = 'Decile', y = 'Minutes')
+```
+
+Visualizar predicciones usando el año 2008 (no usado en el entrenamiento):
+
+```{r, eval=FALSE}
+# Select data from an out of time sample
+data_2008 <- flights_tbl %>%
+  filter(!is.na(arrdelay) & !is.na(depdelay) & !is.na(distance)) %>%
+  filter(depdelay > 15 & depdelay < 240) %>%
+  filter(arrdelay > -60 & arrdelay < 360) %>%
+  filter(year == 2008) %>%
+  left_join(airlines_tbl, by = c("uniquecarrier" = "code")) %>%
+  mutate(gain = depdelay - arrdelay) %>%
+  select(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain, origin, dest)
+data_2008
+
+# Summarize data by carrier
+carrier <- ml_predict(ml1, data_2008) %>%
+  group_by(description) %>%
+  summarize(gain = mean(gain), prediction = mean(prediction), freq = n()) %>%
+  filter(freq > 10000) %>%
+  collect()
+carrier
+
+# Plot actual gains and predicted gains by airline carrier
+ggplot(carrier, aes(gain, prediction)) + 
+  geom_point(alpha = 0.75, color = 'red', shape = 3) +
+  geom_abline(intercept = 0, slope = 1, alpha = 0.15, color = 'blue') +
+  geom_text(aes(label = substr(description, 1, 20)), size = 3, alpha = 0.75, vjust = -1) +
+  labs(title='Average Gains Forecast', x = 'Actual', y = 'Predicted')
+```
+
+
+Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:
+
+```{r, eval=FALSE}
+spark_disconnect_all()
+```
 
 
 ## Práctica 3: Big Data
@@ -397,7 +571,7 @@ Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@
 (4 puntos) Informe (en PDF) sobre uno de los 4 datasets (audit, weather, weatherAUS, wine) que se describen a continuación   https://cran.r-project.org/web/packages/rattle.data/rattle.data.pdf
 Se busca que realicéis un análisis con Rattle, mínimo con las pestañas Explore, Cluster y Model.
 
-### Ejercicio A con sparklyr y Hadoop
+### Ejercicio C con sparklyr y Hadoop
 
 (3 puntos) Replicación del siguiente ejercicio con sparklyr en el CESGA, en análisis de los datos del dataset de vuelos:
 http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-flights.html  
