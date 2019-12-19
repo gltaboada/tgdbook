@@ -587,8 +587,15 @@ Son modelos hiperparametrizados de difícil interpretación.
     
 ## Bibliografía
 
--   James, G., Witten, D., Hastie, T. y Tibshirani, R. (2013). An
-    Introduction to Statistical Learning: with Aplications in R.
+-   Efron, B. y Hastie, T. (2016). [Computer age statistical inference](http://web.stanford.edu/~hastie/CASI/). 
+    Cambridge University Press.
+
+-   Hastie, T., Tibshirani, R. y Friedman, J. (2017).
+    [The Elements of Statistical Learning: Data Mining, Inference, and Prediction](https://web.stanford.edu/~hastie/ElemStatLearn).
+    Springer.
+
+-   James, G., Witten, D., Hastie, T. y Tibshirani, R. (2017). 
+    [An Introduction to Statistical Learning: with Aplications in R](http://faculty.marshall.usc.edu/gareth-james/ISL).
     Springer.
 
 -   Torgo, L. (2011). Data Mining with R: Learning with Case
