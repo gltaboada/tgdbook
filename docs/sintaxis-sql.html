@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Sintaxis SQL | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Sintaxis SQL | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-12-16" />
+<meta name="date" content="2019-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bases-de-datos-relacionales.html"/>
-<link rel="next" href="conexion-con-bases-de-datos-desde-r.html"/>
+<link rel="prev" href="bases-de-datos-relacionales.html">
+<link rel="next" href="conexion-con-bases-de-datos-desde-r.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,66 +50,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -197,7 +172,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="agrupar-casos-con-group-by.html"><a href="agrupar-casos-con-group-by.html"><i class="fa fa-check"></i><b>4.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
 <li class="chapter" data-level="4.6" data-path="operador-pipe-tuberia-redireccion.html"><a href="operador-pipe-tuberia-redireccion.html"><i class="fa fa-check"></i><b>4.6</b> Operador <em>pipe</em> <strong>%&gt;%</strong> (tubería, redirección)</a></li>
 <li class="chapter" data-level="4.7" data-path="operaciones-con-tablas-de-datos-1.html"><a href="operaciones-con-tablas-de-datos-1.html"><i class="fa fa-check"></i><b>4.7</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a></li>
+<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html#ejemplos-practica-1"><i class="fa fa-check"></i><b>4.8.1</b> Ejemplos (Práctica 1)</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="introduccion-a-tecnologias-nosql.html"><a href="introduccion-a-tecnologias-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a><ul>
 <li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a><ul>
@@ -268,6 +245,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="C.3" data-path="cerrar-conexion.html"><a href="cerrar-conexion.html"><i class="fa fa-check"></i><b>C.3</b> Cerrar conexión</a></li>
 </ul></li>
+<li class="chapter" data-level="D" data-path="introduccion-al-aprendizaje-estadistico.html"><a href="introduccion-al-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D</b> Introducción al Aprendizaje Estadístico</a><ul>
+<li class="chapter" data-level="D.1" data-path="data-science.html"><a href="data-science.html"><i class="fa fa-check"></i><b>D.1</b> Data Science</a><ul>
+<li class="chapter" data-level="D.1.1" data-path="data-science.html"><a href="data-science.html#ventajas-e-inconvenientes"><i class="fa fa-check"></i><b>D.1.1</b> Ventajas e inconvenientes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D.2</b> Métodos de aprendizaje estadístico</a><ul>
+<li class="chapter" data-level="D.2.1" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#metodos-de-aprendizaje-supervisado"><i class="fa fa-check"></i><b>D.2.1</b> Métodos (de aprendizaje supervisado):</a></li>
+<li class="chapter" data-level="D.2.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#construccion-y-evaluacion-de-los-modelos"><i class="fa fa-check"></i><b>D.2.2</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="D.2.3" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#matriz-de-confusion"><i class="fa fa-check"></i><b>D.2.3</b> Matriz de confusión</a></li>
+<li class="chapter" data-level="D.2.4" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#predicciones-frente-a-observado"><i class="fa fa-check"></i><b>D.2.4</b> Predicciones frente a observado</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="arboles-de-decision.html"><a href="arboles-de-decision.html"><i class="fa fa-check"></i><b>D.3</b> Arboles de decisión</a></li>
+<li class="chapter" data-level="D.4" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html"><i class="fa fa-check"></i><b>D.4</b> Bagging y Boosting</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bagging-o-agregacion-bootstrap"><i class="fa fa-check"></i><b>D.4.1</b> Bagging o agregación Bootstrap</a></li>
+<li class="chapter" data-level="D.4.2" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bosques-aleatorios"><i class="fa fa-check"></i><b>D.4.2</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="D.4.3" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#boosting"><i class="fa fa-check"></i><b>D.4.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="D.5" data-path="support-vector-machines-svm.html"><a href="support-vector-machines-svm.html"><i class="fa fa-check"></i><b>D.5</b> Support vector machines (SVM)</a></li>
+<li class="chapter" data-level="D.6" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>D.6</b> Modelos lineales (generalizados)</a></li>
+<li class="chapter" data-level="D.7" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html"><i class="fa fa-check"></i><b>D.7</b> Métodos de regularización</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#ridge-regression"><i class="fa fa-check"></i><b>D.7.1</b> Ridge Regression</a></li>
+<li class="chapter" data-level="D.7.2" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#lasso"><i class="fa fa-check"></i><b>D.7.2</b> Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html"><i class="fa fa-check"></i><b>D.8</b> Regresión no paramétrica</a><ul>
+<li class="chapter" data-level="D.8.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#modelos-aditivos"><i class="fa fa-check"></i><b>D.8.1</b> Modelos aditivos</a></li>
+</ul></li>
+<li class="chapter" data-level="D.9" data-path="redes-neuronales.html"><a href="redes-neuronales.html"><i class="fa fa-check"></i><b>D.9</b> Redes neuronales</a></li>
+<li class="chapter" data-level="D.10" data-path="bibliografia.html"><a href="bibliografia.html"><i class="fa fa-check"></i><b>D.10</b> Bibliografía</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
@@ -293,119 +298,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A continuación 27 clásulas SQL básicas</p>
 <div id="extraccion-sql-11-statements" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Extracción SQL (11 statements)</h3>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb108-2" title="2">FROM   table_name;</a>
-<a class="sourceLine" id="cb108-3" title="3"></a>
-<a class="sourceLine" id="cb108-4" title="4">SELECT DISTINCT column1, column2....columnN</a>
-<a class="sourceLine" id="cb108-5" title="5">FROM   table_name;</a>
-<a class="sourceLine" id="cb108-6" title="6"></a>
-<a class="sourceLine" id="cb108-7" title="7">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb108-8" title="8">FROM   table_name</a>
-<a class="sourceLine" id="cb108-9" title="9">WHERE  CONDITION;</a>
-<a class="sourceLine" id="cb108-10" title="10"></a>
-<a class="sourceLine" id="cb108-11" title="11">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb108-12" title="12">FROM   table_name</a>
-<a class="sourceLine" id="cb108-13" title="13">WHERE  CONDITION<span class="dv">-1</span> {AND<span class="op">|</span>OR} CONDITION<span class="dv">-2</span>;</a>
-<a class="sourceLine" id="cb108-14" title="14"></a>
-<a class="sourceLine" id="cb108-15" title="15">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb108-16" title="16">FROM   table_name</a>
-<a class="sourceLine" id="cb108-17" title="17">WHERE  column_name <span class="kw">IN</span> (val<span class="dv">-1</span>, val<span class="dv">-2</span>,...val<span class="op">-</span>N);</a>
-<a class="sourceLine" id="cb108-18" title="18"></a>
-<a class="sourceLine" id="cb108-19" title="19">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb108-20" title="20">FROM   table_name</a>
-<a class="sourceLine" id="cb108-21" title="21">WHERE  column_name BETWEEN val<span class="dv">-1</span> AND val<span class="dv">-2</span>;</a>
-<a class="sourceLine" id="cb108-22" title="22"></a>
-<a class="sourceLine" id="cb108-23" title="23">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb108-24" title="24">FROM   table_name</a>
-<a class="sourceLine" id="cb108-25" title="25">WHERE  column_name LIKE { PATTERN };</a>
-<a class="sourceLine" id="cb108-26" title="26"></a>
-<a class="sourceLine" id="cb108-27" title="27">SELECT column1, column2....columnN</a>
-<a class="sourceLine" id="cb108-28" title="28">FROM   table_name</a>
-<a class="sourceLine" id="cb108-29" title="29">WHERE  CONDITION</a>
-<a class="sourceLine" id="cb108-30" title="30">ORDER BY column_name {ASC<span class="op">|</span>DESC};</a>
-<a class="sourceLine" id="cb108-31" title="31"></a>
-<a class="sourceLine" id="cb108-32" title="32">SELECT <span class="kw">SUM</span>(column_name)</a>
-<a class="sourceLine" id="cb108-33" title="33">FROM   table_name</a>
-<a class="sourceLine" id="cb108-34" title="34">WHERE  CONDITION</a>
-<a class="sourceLine" id="cb108-35" title="35">GROUP BY column_name;</a>
-<a class="sourceLine" id="cb108-36" title="36"></a>
-<a class="sourceLine" id="cb108-37" title="37">SELECT <span class="kw">COUNT</span>(column_name)</a>
-<a class="sourceLine" id="cb108-38" title="38">FROM   table_name</a>
-<a class="sourceLine" id="cb108-39" title="39">WHERE  CONDITION;</a>
-<a class="sourceLine" id="cb108-40" title="40"></a>
-<a class="sourceLine" id="cb108-41" title="41">SELECT <span class="kw">SUM</span>(column_name)</a>
-<a class="sourceLine" id="cb108-42" title="42">FROM   table_name</a>
-<a class="sourceLine" id="cb108-43" title="43">WHERE  CONDITION</a>
-<a class="sourceLine" id="cb108-44" title="44">GROUP BY column_name</a>
-<a class="sourceLine" id="cb108-45" title="45"><span class="kw">HAVING</span> (arithematic <span class="cf">function</span> condition);</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SELECT column1, column2....columnN
+FROM   table_name;
+
+SELECT DISTINCT column1, column2....columnN
+FROM   table_name;
+
+SELECT column1, column2....columnN
+FROM   table_name
+WHERE  CONDITION;
+
+SELECT column1, column2....columnN
+FROM   table_name
+WHERE  CONDITION<span class="op">-</span><span class="dv">1</span> {AND<span class="op">|</span>OR} CONDITION<span class="op">-</span><span class="dv">2</span>;
+
+SELECT column1, column2....columnN
+FROM   table_name
+WHERE  column_name <span class="kw">IN</span> (val<span class="op">-</span><span class="dv">1</span>, val<span class="op">-</span><span class="dv">2</span>,...val<span class="op">-</span>N);
+
+SELECT column1, column2....columnN
+FROM   table_name
+WHERE  column_name BETWEEN val<span class="op">-</span><span class="dv">1</span> AND val<span class="op">-</span><span class="dv">2</span>;
+
+SELECT column1, column2....columnN
+FROM   table_name
+WHERE  column_name LIKE { PATTERN };
+
+SELECT column1, column2....columnN
+FROM   table_name
+WHERE  CONDITION
+ORDER BY column_name {ASC<span class="op">|</span>DESC};
+
+SELECT <span class="kw">SUM</span>(column_name)
+FROM   table_name
+WHERE  CONDITION
+GROUP BY column_name;
+
+SELECT <span class="kw">COUNT</span>(column_name)
+FROM   table_name
+WHERE  CONDITION;
+
+SELECT <span class="kw">SUM</span>(column_name)
+FROM   table_name
+WHERE  CONDITION
+GROUP BY column_name
+<span class="kw">HAVING</span> (arithematic <span class="cf">function</span> condition);</code></pre></div>
 </div>
 <div id="crearactualizarborrar-tablas-sql-8-statements" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Crear/Actualizar/Borrar tablas SQL (8 statements)</h3>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">CREATE TABLE <span class="kw">table_name</span>(</a>
-<a class="sourceLine" id="cb109-2" title="2">column1 datatype,</a>
-<a class="sourceLine" id="cb109-3" title="3">column2 datatype,</a>
-<a class="sourceLine" id="cb109-4" title="4">column3 datatype,</a>
-<a class="sourceLine" id="cb109-5" title="5">.....</a>
-<a class="sourceLine" id="cb109-6" title="6">columnN datatype,</a>
-<a class="sourceLine" id="cb109-7" title="7">PRIMARY <span class="kw">KEY</span>( one or more columns )</a>
-<a class="sourceLine" id="cb109-8" title="8">);</a>
-<a class="sourceLine" id="cb109-9" title="9"></a>
-<a class="sourceLine" id="cb109-10" title="10">DROP TABLE table_name;</a>
-<a class="sourceLine" id="cb109-11" title="11"></a>
-<a class="sourceLine" id="cb109-12" title="12">CREATE UNIQUE INDEX index_name</a>
-<a class="sourceLine" id="cb109-13" title="13">ON <span class="kw">table_name</span> ( column1, column2,...columnN);</a>
-<a class="sourceLine" id="cb109-14" title="14"></a>
-<a class="sourceLine" id="cb109-15" title="15">ALTER TABLE table_name</a>
-<a class="sourceLine" id="cb109-16" title="16">DROP INDEX index_name;</a>
-<a class="sourceLine" id="cb109-17" title="17"></a>
-<a class="sourceLine" id="cb109-18" title="18">DESC table_name;</a>
-<a class="sourceLine" id="cb109-19" title="19"></a>
-<a class="sourceLine" id="cb109-20" title="20">TRUNCATE TABLE table_name;</a>
-<a class="sourceLine" id="cb109-21" title="21"></a>
-<a class="sourceLine" id="cb109-22" title="22">ALTER TABLE table_name {ADD<span class="op">|</span>DROP<span class="op">|</span>MODIFY} column_name {data_ype};</a>
-<a class="sourceLine" id="cb109-23" title="23"></a>
-<a class="sourceLine" id="cb109-24" title="24">ALTER TABLE table_name RENAME TO new_table_name;</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CREATE TABLE <span class="kw">table_name</span>(
+column1 datatype,
+column2 datatype,
+column3 datatype,
+.....
+columnN datatype,
+PRIMARY <span class="kw">KEY</span>( one or more columns )
+);
+
+DROP TABLE table_name;
+
+CREATE UNIQUE INDEX index_name
+ON <span class="kw">table_name</span> ( column1, column2,...columnN);
+
+ALTER TABLE table_name
+DROP INDEX index_name;
+
+DESC table_name;
+
+TRUNCATE TABLE table_name;
+
+ALTER TABLE table_name {ADD<span class="op">|</span>DROP<span class="op">|</span>MODIFY} column_name {data_ype};
+
+ALTER TABLE table_name RENAME TO new_table_name;</code></pre></div>
 </div>
 <div id="anadiractualizarborrar-tuplas-en-sql-3-statements" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Añadir/Actualizar/Borrar tuplas en SQL (3 statements)</h3>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">INSERT INTO <span class="kw">table_name</span>( column1, column2....columnN)</a>
-<a class="sourceLine" id="cb110-2" title="2"><span class="kw">VALUES</span> ( value1, value2....valueN);</a>
-<a class="sourceLine" id="cb110-3" title="3"></a>
-<a class="sourceLine" id="cb110-4" title="4">UPDATE table_name</a>
-<a class="sourceLine" id="cb110-5" title="5">SET column1 =<span class="st"> </span>value1, column2 =<span class="st"> </span>value2....columnN=valueN</a>
-<a class="sourceLine" id="cb110-6" title="6">[ WHERE  CONDITION ];</a>
-<a class="sourceLine" id="cb110-7" title="7"></a>
-<a class="sourceLine" id="cb110-8" title="8">DELETE FROM table_name</a>
-<a class="sourceLine" id="cb110-9" title="9">WHERE  {CONDITION};</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">INSERT INTO <span class="kw">table_name</span>( column1, column2....columnN)
+<span class="kw">VALUES</span> ( value1, value2....valueN);
+
+UPDATE table_name
+SET column1 =<span class="st"> </span>value1, column2 =<span class="st"> </span>value2....columnN=valueN
+[ WHERE  CONDITION ];
+
+DELETE FROM table_name
+WHERE  {CONDITION};</code></pre></div>
 </div>
 <div id="gestion-bases-de-datos-5-statements" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Gestión Bases de Datos (5 statements)</h3>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1">CREATE DATABASE database_name;</a>
-<a class="sourceLine" id="cb111-2" title="2"></a>
-<a class="sourceLine" id="cb111-3" title="3">DROP DATABASE database_name;</a>
-<a class="sourceLine" id="cb111-4" title="4"></a>
-<a class="sourceLine" id="cb111-5" title="5">USE database_name;</a>
-<a class="sourceLine" id="cb111-6" title="6"></a>
-<a class="sourceLine" id="cb111-7" title="7">COMMIT;</a>
-<a class="sourceLine" id="cb111-8" title="8"></a>
-<a class="sourceLine" id="cb111-9" title="9">ROLLBACK;</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CREATE DATABASE database_name;
+
+DROP DATABASE database_name;
+
+USE database_name;
+
+COMMIT;
+
+ROLLBACK;</code></pre></div>
 </div>
 <div id="ejemplos-de-consultas-sql" class="section level3">
 <h3><span class="header-section-number">3.2.5</span> Ejemplos de consultas SQL</h3>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">SELECT Nombre, Apellido1, Apellido2, Municipio, Provincia </a>
-<a class="sourceLine" id="cb112-2" title="2">FROM Cliente</a>
-<a class="sourceLine" id="cb112-3" title="3">WHERE Municipio =<span class="st"> &#39;Lugo&#39;</span></a>
-<a class="sourceLine" id="cb112-4" title="4">ORDER BY Apellido1</a>
-<a class="sourceLine" id="cb112-5" title="5"></a>
-<a class="sourceLine" id="cb112-6" title="6">INSERT <span class="kw">Proveedor</span>(Nombre, PersonaContacto, Ciudad, País)</a>
-<a class="sourceLine" id="cb112-7" title="7"><span class="kw">VALUES</span> (<span class="st">&#39;Café Candelas&#39;</span>, <span class="st">&#39;Ivana Candelas&#39;</span>, <span class="st">&#39;Lugo&#39;</span>, <span class="st">&#39;España&#39;</span>)</a>
-<a class="sourceLine" id="cb112-8" title="8"></a>
-<a class="sourceLine" id="cb112-9" title="9">UPDATE Pedidos</a>
-<a class="sourceLine" id="cb112-10" title="10">SET Cantidad =<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb112-11" title="11">WHERE IdProducto =<span class="st"> </span><span class="dv">963</span></a>
-<a class="sourceLine" id="cb112-12" title="12"></a>
-<a class="sourceLine" id="cb112-13" title="13">DELETE Cliente</a>
-<a class="sourceLine" id="cb112-14" title="14">WHERE Email =<span class="st"> &#39;alexandregb@gmail.com&#39;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SELECT Nombre, Apellido1, Apellido2, Municipio, Provincia 
+FROM Cliente
+WHERE Municipio =<span class="st"> &#39;Lugo&#39;</span>
+ORDER BY Apellido1
+
+INSERT <span class="kw">Proveedor</span>(Nombre, PersonaContacto, Ciudad, País)
+<span class="kw">VALUES</span> (<span class="st">&#39;Café Candelas&#39;</span>, <span class="st">&#39;Ivana Candelas&#39;</span>, <span class="st">&#39;Lugo&#39;</span>, <span class="st">&#39;España&#39;</span>)
+
+UPDATE Pedidos
+SET Cantidad =<span class="st"> </span><span class="dv">2</span>
+WHERE IdProducto =<span class="st"> </span><span class="dv">963</span>
+
+DELETE Cliente
+WHERE Email =<span class="st"> &#39;alexandregb@gmail.com&#39;</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -459,6 +464,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

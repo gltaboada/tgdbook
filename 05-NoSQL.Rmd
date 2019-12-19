@@ -138,7 +138,7 @@ install.packages("mongolite")
 
 
 
-```{r}
+```{r eval=FALSE}
 library(mongolite)
 
 # Connect to a local MongoDB

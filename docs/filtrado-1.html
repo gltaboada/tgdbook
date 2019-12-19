@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-12-16" />
+<meta name="date" content="2019-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="graficos.html"/>
-<link rel="next" href="indices-de-autores.html"/>
+<link rel="prev" href="graficos.html">
+<link rel="next" href="indices-de-autores.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,66 +50,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -197,7 +172,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="agrupar-casos-con-group-by.html"><a href="agrupar-casos-con-group-by.html"><i class="fa fa-check"></i><b>4.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
 <li class="chapter" data-level="4.6" data-path="operador-pipe-tuberia-redireccion.html"><a href="operador-pipe-tuberia-redireccion.html"><i class="fa fa-check"></i><b>4.6</b> Operador <em>pipe</em> <strong>%&gt;%</strong> (tubería, redirección)</a></li>
 <li class="chapter" data-level="4.7" data-path="operaciones-con-tablas-de-datos-1.html"><a href="operaciones-con-tablas-de-datos-1.html"><i class="fa fa-check"></i><b>4.7</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a></li>
+<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html#ejemplos-practica-1"><i class="fa fa-check"></i><b>4.8.1</b> Ejemplos (Práctica 1)</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="introduccion-a-tecnologias-nosql.html"><a href="introduccion-a-tecnologias-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a><ul>
 <li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a><ul>
@@ -268,6 +245,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="C.3" data-path="cerrar-conexion.html"><a href="cerrar-conexion.html"><i class="fa fa-check"></i><b>C.3</b> Cerrar conexión</a></li>
 </ul></li>
+<li class="chapter" data-level="D" data-path="introduccion-al-aprendizaje-estadistico.html"><a href="introduccion-al-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D</b> Introducción al Aprendizaje Estadístico</a><ul>
+<li class="chapter" data-level="D.1" data-path="data-science.html"><a href="data-science.html"><i class="fa fa-check"></i><b>D.1</b> Data Science</a><ul>
+<li class="chapter" data-level="D.1.1" data-path="data-science.html"><a href="data-science.html#ventajas-e-inconvenientes"><i class="fa fa-check"></i><b>D.1.1</b> Ventajas e inconvenientes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D.2</b> Métodos de aprendizaje estadístico</a><ul>
+<li class="chapter" data-level="D.2.1" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#metodos-de-aprendizaje-supervisado"><i class="fa fa-check"></i><b>D.2.1</b> Métodos (de aprendizaje supervisado):</a></li>
+<li class="chapter" data-level="D.2.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#construccion-y-evaluacion-de-los-modelos"><i class="fa fa-check"></i><b>D.2.2</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="D.2.3" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#matriz-de-confusion"><i class="fa fa-check"></i><b>D.2.3</b> Matriz de confusión</a></li>
+<li class="chapter" data-level="D.2.4" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#predicciones-frente-a-observado"><i class="fa fa-check"></i><b>D.2.4</b> Predicciones frente a observado</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="arboles-de-decision.html"><a href="arboles-de-decision.html"><i class="fa fa-check"></i><b>D.3</b> Arboles de decisión</a></li>
+<li class="chapter" data-level="D.4" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html"><i class="fa fa-check"></i><b>D.4</b> Bagging y Boosting</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bagging-o-agregacion-bootstrap"><i class="fa fa-check"></i><b>D.4.1</b> Bagging o agregación Bootstrap</a></li>
+<li class="chapter" data-level="D.4.2" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bosques-aleatorios"><i class="fa fa-check"></i><b>D.4.2</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="D.4.3" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#boosting"><i class="fa fa-check"></i><b>D.4.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="D.5" data-path="support-vector-machines-svm.html"><a href="support-vector-machines-svm.html"><i class="fa fa-check"></i><b>D.5</b> Support vector machines (SVM)</a></li>
+<li class="chapter" data-level="D.6" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>D.6</b> Modelos lineales (generalizados)</a></li>
+<li class="chapter" data-level="D.7" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html"><i class="fa fa-check"></i><b>D.7</b> Métodos de regularización</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#ridge-regression"><i class="fa fa-check"></i><b>D.7.1</b> Ridge Regression</a></li>
+<li class="chapter" data-level="D.7.2" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#lasso"><i class="fa fa-check"></i><b>D.7.2</b> Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html"><i class="fa fa-check"></i><b>D.8</b> Regresión no paramétrica</a><ul>
+<li class="chapter" data-level="D.8.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#modelos-aditivos"><i class="fa fa-check"></i><b>D.8.1</b> Modelos aditivos</a></li>
+</ul></li>
+<li class="chapter" data-level="D.9" data-path="redes-neuronales.html"><a href="redes-neuronales.html"><i class="fa fa-check"></i><b>D.9</b> Redes neuronales</a></li>
+<li class="chapter" data-level="D.10" data-path="bibliografia.html"><a href="bibliografia.html"><i class="fa fa-check"></i><b>D.10</b> Bibliografía</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
@@ -290,33 +295,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="filtrado-1" class="section level2">
 <h2><span class="header-section-number">B.5</span> Filtrado</h2>
-<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code>
-(se puede emplear cualquier variable de la correspondiente tabla;
-multiple conditions are combined with <code>&amp;</code>, see e.g. <code>dplyr::filter()</code>)
-con la función <code>get.idDocs()</code>.</p>
+<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code> (se puede emplear cualquier variable de la correspondiente tabla; multiple conditions are combined with <code>&amp;</code>, see e.g. <code>dplyr::filter()</code>) con la función <code>get.idDocs()</code>.</p>
 <div id="funciones-get" class="section level3">
 <h3><span class="header-section-number">B.5.1</span> Funciones get</h3>
 <ul>
 <li><p><code>get.idAuthors()</code>: buscar id (códigos) de autores</p>
 <p>Buscar un autor concreto:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1">idAuthor &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, AF <span class="op">==</span><span class="st"> &quot;Cao, Ricardo&quot;</span>)</a>
-<a class="sourceLine" id="cb225-2" title="2">idAuthor</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">idAuthor &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, AF <span class="op">==</span><span class="st"> &quot;Cao, Ricardo&quot;</span>)
+idAuthor</code></pre></div>
 <pre><code>## Cao, Ricardo 
 ##           16</code></pre>
 <p>Buscar en nombres de autores:</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1">idAuthors &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Cao&#39;</span>, AF))</a>
-<a class="sourceLine" id="cb227-2" title="2">idAuthors</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">idAuthors &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Cao&#39;</span>, AF))
+idAuthors</code></pre></div>
 <pre><code>##           Cao, Ricardo Cao-Rial, Maria Teresa 
 ##                     16                     69</code></pre></li>
 <li><p><code>get.idAreas()</code>: Devuelve códigos de las áreas</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span>)</code></pre></div>
 <pre><code>## Mathematics 
 ##          16</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1"><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span> <span class="op">|</span><span class="st"> </span>SC <span class="op">==</span><span class="st"> &#39;Computer Science&#39;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span> <span class="op">|</span><span class="st"> </span>SC <span class="op">==</span><span class="st"> &#39;Computer Science&#39;</span>)</code></pre></div>
 <pre><code>## Computer Science      Mathematics 
 ##                7               16</code></pre></li>
 <li><p><code>get.idCategories()</code>: códigos de las categorías</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1"><span class="kw">get.idCategories</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Mathematics&#39;</span>, WC))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get.idCategories</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Mathematics&#39;</span>, WC))</code></pre></div>
 <pre><code>##                                 Mathematics 
 ##                                          28 
 ##                        Mathematics, Applied 
@@ -324,11 +326,11 @@ con la función <code>get.idDocs()</code>.</p>
 ## Mathematics, Interdisciplinary Applications 
 ##                                          30</code></pre></li>
 <li><p><code>get.idJournals()</code> códigos de las revistas</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1">ijss &lt;-<span class="st"> </span><span class="kw">get.idJournals</span>(db, SO <span class="op">==</span><span class="st"> &#39;JOURNAL OF STATISTICAL SOFTWARE&#39;</span>)</a>
-<a class="sourceLine" id="cb235-2" title="2">ijss</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ijss &lt;-<span class="st"> </span><span class="kw">get.idJournals</span>(db, SO <span class="op">==</span><span class="st"> &#39;JOURNAL OF STATISTICAL SOFTWARE&#39;</span>)
+ijss</code></pre></div>
 <pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
 ##                             134</code></pre>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1">knitr<span class="op">::</span><span class="kw">kable</span>(db<span class="op">$</span>Journals[ijss, ], <span class="dt">caption =</span> <span class="st">&quot;JSS&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">kable</span>(db<span class="op">$</span>Journals[ijss, ], <span class="dt">caption =</span> <span class="st">&quot;JSS&quot;</span>)</code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-15">Tabla B.1: </span>JSS</caption>
 <thead>
@@ -366,7 +368,7 @@ con la función <code>get.idDocs()</code>.</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1"><span class="kw">get.idJournals</span>(db, JI <span class="op">==</span><span class="st"> &#39;J. Stat. Softw.&#39;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get.idJournals</span>(db, JI <span class="op">==</span><span class="st"> &#39;J. Stat. Softw.&#39;</span>)</code></pre></div>
 <pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
 ##                             134</code></pre></li>
 </ul>
@@ -374,8 +376,8 @@ con la función <code>get.idDocs()</code>.</p>
 <div id="obtener-documentos-de-autores-revistas" class="section level3">
 <h3><span class="header-section-number">B.5.2</span> Obtener documentos (de autores, revistas, …)</h3>
 <p>Los indices anteriores se pueden combinar en <code>get.idDocs()</code></p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1">idocs &lt;-<span class="st"> </span><span class="kw">get.idDocs</span>(db, <span class="dt">idAuthors =</span> idAuthor)</a>
-<a class="sourceLine" id="cb240-2" title="2">idocs</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">idocs &lt;-<span class="st"> </span><span class="kw">get.idDocs</span>(db, <span class="dt">idAuthors =</span> idAuthor)
+idocs</code></pre></div>
 <pre><code>##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315
 ## [18] 332 340 346 347 350 359 362 372 375 384 385</code></pre>
 <p>Los índices de documentos se pueden utilizar como filtro p.e. en <code>summary.wos.db()</code>.</p>
@@ -383,7 +385,7 @@ con la función <code>get.idDocs()</code>.</p>
 <div id="sumarios-filtrados" class="section level3">
 <h3><span class="header-section-number">B.5.3</span> Sumarios filtrados</h3>
 <p>Obtener sumario de autores:</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">summary</span>(db, idocs)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(db, idocs)</code></pre></div>
 <pre><code>## Number of documents: 28 
 ## Authors: 40 
 ## Period: 2008 - 2017 
@@ -464,7 +466,7 @@ con la función <code>get.idDocs()</code>.</p>
 ## Mexico            1
 ## Norway            1</code></pre>
 <p>Obtener sumario de autores por años:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">summary_year</span>(db, idocs)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary_year</span>(db, idocs)</code></pre></div>
 <pre><code>## 
 ## Annual Scientific Production:
 ## 
@@ -557,6 +559,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -149,16 +149,6 @@ my_collection = mongo(collection = "restaurants", db = "Restaurants") # create c
 my_collection$count
 ```
 
-```
-## function (query = "{}") 
-## {
-##     check_col()
-##     mongo_collection_count(col, query)
-## }
-## <bytecode: 0x0000000025f1c290>
-## <environment: 0x0000000025f21f80>
-```
-
 
 
 ## Práctica 2: NoSQL

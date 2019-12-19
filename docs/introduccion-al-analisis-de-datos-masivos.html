@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.3 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.3 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-12-16" />
+<meta name="date" content="2019-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="visualizacion-y-generacion-de-cuadros-de-mando.html"/>
-<link rel="next" href="practica-3-big-data.html"/>
+<link rel="prev" href="visualizacion-y-generacion-de-cuadros-de-mando.html">
+<link rel="next" href="practica-3-big-data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,66 +50,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -197,7 +172,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="agrupar-casos-con-group-by.html"><a href="agrupar-casos-con-group-by.html"><i class="fa fa-check"></i><b>4.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
 <li class="chapter" data-level="4.6" data-path="operador-pipe-tuberia-redireccion.html"><a href="operador-pipe-tuberia-redireccion.html"><i class="fa fa-check"></i><b>4.6</b> Operador <em>pipe</em> <strong>%&gt;%</strong> (tubería, redirección)</a></li>
 <li class="chapter" data-level="4.7" data-path="operaciones-con-tablas-de-datos-1.html"><a href="operaciones-con-tablas-de-datos-1.html"><i class="fa fa-check"></i><b>4.7</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a></li>
+<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html#ejemplos-practica-1"><i class="fa fa-check"></i><b>4.8.1</b> Ejemplos (Práctica 1)</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="introduccion-a-tecnologias-nosql.html"><a href="introduccion-a-tecnologias-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a><ul>
 <li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a><ul>
@@ -268,6 +245,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="C.3" data-path="cerrar-conexion.html"><a href="cerrar-conexion.html"><i class="fa fa-check"></i><b>C.3</b> Cerrar conexión</a></li>
 </ul></li>
+<li class="chapter" data-level="D" data-path="introduccion-al-aprendizaje-estadistico.html"><a href="introduccion-al-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D</b> Introducción al Aprendizaje Estadístico</a><ul>
+<li class="chapter" data-level="D.1" data-path="data-science.html"><a href="data-science.html"><i class="fa fa-check"></i><b>D.1</b> Data Science</a><ul>
+<li class="chapter" data-level="D.1.1" data-path="data-science.html"><a href="data-science.html#ventajas-e-inconvenientes"><i class="fa fa-check"></i><b>D.1.1</b> Ventajas e inconvenientes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D.2</b> Métodos de aprendizaje estadístico</a><ul>
+<li class="chapter" data-level="D.2.1" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#metodos-de-aprendizaje-supervisado"><i class="fa fa-check"></i><b>D.2.1</b> Métodos (de aprendizaje supervisado):</a></li>
+<li class="chapter" data-level="D.2.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#construccion-y-evaluacion-de-los-modelos"><i class="fa fa-check"></i><b>D.2.2</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="D.2.3" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#matriz-de-confusion"><i class="fa fa-check"></i><b>D.2.3</b> Matriz de confusión</a></li>
+<li class="chapter" data-level="D.2.4" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#predicciones-frente-a-observado"><i class="fa fa-check"></i><b>D.2.4</b> Predicciones frente a observado</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="arboles-de-decision.html"><a href="arboles-de-decision.html"><i class="fa fa-check"></i><b>D.3</b> Arboles de decisión</a></li>
+<li class="chapter" data-level="D.4" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html"><i class="fa fa-check"></i><b>D.4</b> Bagging y Boosting</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bagging-o-agregacion-bootstrap"><i class="fa fa-check"></i><b>D.4.1</b> Bagging o agregación Bootstrap</a></li>
+<li class="chapter" data-level="D.4.2" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bosques-aleatorios"><i class="fa fa-check"></i><b>D.4.2</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="D.4.3" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#boosting"><i class="fa fa-check"></i><b>D.4.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="D.5" data-path="support-vector-machines-svm.html"><a href="support-vector-machines-svm.html"><i class="fa fa-check"></i><b>D.5</b> Support vector machines (SVM)</a></li>
+<li class="chapter" data-level="D.6" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>D.6</b> Modelos lineales (generalizados)</a></li>
+<li class="chapter" data-level="D.7" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html"><i class="fa fa-check"></i><b>D.7</b> Métodos de regularización</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#ridge-regression"><i class="fa fa-check"></i><b>D.7.1</b> Ridge Regression</a></li>
+<li class="chapter" data-level="D.7.2" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#lasso"><i class="fa fa-check"></i><b>D.7.2</b> Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html"><i class="fa fa-check"></i><b>D.8</b> Regresión no paramétrica</a><ul>
+<li class="chapter" data-level="D.8.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#modelos-aditivos"><i class="fa fa-check"></i><b>D.8.1</b> Modelos aditivos</a></li>
+</ul></li>
+<li class="chapter" data-level="D.9" data-path="redes-neuronales.html"><a href="redes-neuronales.html"><i class="fa fa-check"></i><b>D.9</b> Redes neuronales</a></li>
+<li class="chapter" data-level="D.10" data-path="bibliografia.html"><a href="bibliografia.html"><i class="fa fa-check"></i><b>D.10</b> Bibliografía</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
@@ -294,293 +299,302 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="rattle" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> Rattle</h3>
 <p>Es un paquete para R, con interfaz gráfica desarrollada en GTK, que permite generar código R para minería de datos. Se instala según los pasos indicados a continuación:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
-<a class="sourceLine" id="cb185-2" title="2"><span class="kw">install.packages</span>(<span class="st">&quot;cairoDevice&quot;</span>)</a>
-<a class="sourceLine" id="cb185-3" title="3"><span class="kw">install.packages</span>(<span class="st">&quot;RGtk2&quot;</span>)</a>
-<a class="sourceLine" id="cb185-4" title="4"><span class="kw">library</span>(<span class="st">&quot;RGtk2&quot;</span>)</a>
-<a class="sourceLine" id="cb185-5" title="5"><span class="kw">install.packages</span>(<span class="st">&quot;rattle&quot;</span>)</a>
-<a class="sourceLine" id="cb185-6" title="6"><span class="kw">library</span>(rattle)</a>
-<a class="sourceLine" id="cb185-7" title="7"><span class="kw">rattle</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;cairoDevice&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;RGtk2&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;RGtk2&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;rattle&quot;</span>)
+<span class="kw">library</span>(rattle)
+<span class="kw">rattle</span>()</code></pre></div>
 <p>Un tutorial adecuado para introducirse en Rattle es <a href="https://www.dummies.com/programming/using-rattle-iris-r-programming/">éste</a></p>
-<p><img src="images/T3-rattle1.png" /></p>
+<div class="figure">
+<img src="images/T3-rattle1.png" />
+
+</div>
 <p>Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.</p>
-<p><img src="images/T3-rattle2.png" /></p>
-<p><img src="images/T3-rattle3.png" /></p>
+<div class="figure">
+<img src="images/T3-rattle2.png" />
+
+</div>
+<div class="figure">
+<img src="images/T3-rattle3.png" />
+
+</div>
 </div>
 <div id="combinando-los-distintos-elementos" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Combinando los distintos elementos</h3>
 <p>Vamos a seguir <a href="http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-intro.html">un tutorial de análisis de datos de vuelos</a>, adaptándolo al entorno del CESGA.</p>
 <p>En primer lugar, tras conectarnos por ssh al CESGA, y en el mismo directorio en que hemos hecho la conexión, nos descargamos los datos:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="co"># Make download directory</span></a>
-<a class="sourceLine" id="cb186-2" title="2">mkdir flights</a>
-<a class="sourceLine" id="cb186-3" title="3"></a>
-<a class="sourceLine" id="cb186-4" title="4"><span class="co"># Download flight data by year</span></a>
-<a class="sourceLine" id="cb186-5" title="5"><span class="cf">for</span> i <span class="cf">in</span> {<span class="dv">1987</span>..<span class="dv">2008</span>}</a>
-<a class="sourceLine" id="cb186-6" title="6">  do</a>
-<a class="sourceLine" id="cb186-7" title="7">    echo <span class="st">&quot;$(date) $i Download&quot;</span></a>
-<a class="sourceLine" id="cb186-8" title="8">    fnam=<span class="er">$</span>i.csv.bz2</a>
-<a class="sourceLine" id="cb186-9" title="9">    wget <span class="op">-</span>O flights<span class="op">/</span><span class="er">$</span>fnam http<span class="op">:</span><span class="er">//</span>stat<span class="op">-</span>computing.org<span class="op">/</span>dataexpo<span class="op">/</span><span class="dv">2009</span><span class="op">/</span><span class="er">$</span>fnam</a>
-<a class="sourceLine" id="cb186-10" title="10">    echo <span class="st">&quot;$(date) $i Unzip&quot;</span></a>
-<a class="sourceLine" id="cb186-11" title="11">    bunzip2 flights<span class="op">/</span><span class="er">$</span>fnam</a>
-<a class="sourceLine" id="cb186-12" title="12">  done</a>
-<a class="sourceLine" id="cb186-13" title="13"></a>
-<a class="sourceLine" id="cb186-14" title="14"><span class="co"># Download airline carrier data</span></a>
-<a class="sourceLine" id="cb186-15" title="15">wget <span class="op">-</span>O airlines.csv http<span class="op">:</span><span class="er">//</span>www.transtats.bts.gov<span class="op">/</span>Download_Lookup.asp?Lookup=L_UNIQUE_CARRIERS</a>
-<a class="sourceLine" id="cb186-16" title="16"></a>
-<a class="sourceLine" id="cb186-17" title="17"><span class="co"># Download airports data</span></a>
-<a class="sourceLine" id="cb186-18" title="18">wget <span class="op">-</span>O airports.csv https<span class="op">:</span><span class="er">//</span>raw.githubusercontent.com<span class="op">/</span>jpatokal<span class="op">/</span>openflights<span class="op">/</span>master<span class="op">/</span>data<span class="op">/</span>airports.dat</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make download directory</span>
+mkdir flights
+
+<span class="co"># Download flight data by year</span>
+<span class="cf">for</span> i <span class="cf">in</span> {<span class="dv">1987</span>..<span class="dv">2008</span>}
+  do
+    echo <span class="st">&quot;$(date) $i Download&quot;</span>
+    fnam=<span class="er">$</span>i.csv.bz2
+    wget <span class="op">-</span>O flights<span class="op">/</span><span class="er">$</span>fnam http<span class="op">:</span><span class="er">//</span>stat<span class="op">-</span>computing.org<span class="op">/</span>dataexpo<span class="op">/</span><span class="dv">2009</span><span class="op">/</span><span class="er">$</span>fnam
+    echo <span class="st">&quot;$(date) $i Unzip&quot;</span>
+    bunzip2 flights<span class="op">/</span><span class="er">$</span>fnam
+  done
+
+<span class="co"># Download airline carrier data</span>
+wget <span class="op">-</span>O airlines.csv http<span class="op">:</span><span class="er">//</span>www.transtats.bts.gov<span class="op">/</span>Download_Lookup.asp?Lookup=L_UNIQUE_CARRIERS
+
+<span class="co"># Download airports data</span>
+wget <span class="op">-</span>O airports.csv https<span class="op">:</span><span class="er">//</span>raw.githubusercontent.com<span class="op">/</span>jpatokal<span class="op">/</span>openflights<span class="op">/</span>master<span class="op">/</span>data<span class="op">/</span>airports.dat</code></pre></div>
 <p>Comprobamos que los datos están correctos:</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1">head flights<span class="op">/</span><span class="fl">1987.</span>csv </a>
-<a class="sourceLine" id="cb187-2" title="2">head airlines.csv</a>
-<a class="sourceLine" id="cb187-3" title="3">head airports.csv</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">head flights<span class="op">/</span><span class="fl">1987.</span>csv 
+head airlines.csv
+head airports.csv</code></pre></div>
 <p>Y los copiamos al HDFS a través del comando fs de Hadoop:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="co"># Copy flight data to HDFS</span></a>
-<a class="sourceLine" id="cb188-2" title="2">hadoop fs <span class="op">-</span>put flights </a>
-<a class="sourceLine" id="cb188-3" title="3"></a>
-<a class="sourceLine" id="cb188-4" title="4"><span class="co"># Copy airline data to HDFS</span></a>
-<a class="sourceLine" id="cb188-5" title="5">hadoop fs <span class="op">-</span>mkdir airlines<span class="op">/</span></a>
-<a class="sourceLine" id="cb188-6" title="6">hadoop fs <span class="op">-</span>put airlines.csv airlines</a>
-<a class="sourceLine" id="cb188-7" title="7"></a>
-<a class="sourceLine" id="cb188-8" title="8"><span class="co"># Copy airport data to HDFS</span></a>
-<a class="sourceLine" id="cb188-9" title="9">hadoop fs <span class="op">-</span>mkdir airports<span class="op">/</span></a>
-<a class="sourceLine" id="cb188-10" title="10">hadoop fs <span class="op">-</span>put airports.csv airports</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Copy flight data to HDFS</span>
+hadoop fs <span class="op">-</span>put flights 
+
+<span class="co"># Copy airline data to HDFS</span>
+hadoop fs <span class="op">-</span>mkdir airlines<span class="op">/</span>
+hadoop fs <span class="op">-</span>put airlines.csv airlines
+
+<span class="co"># Copy airport data to HDFS</span>
+hadoop fs <span class="op">-</span>mkdir airports<span class="op">/</span>
+hadoop fs <span class="op">-</span>put airports.csv airports</code></pre></div>
 <p>A continuación lanzamos la ejecución de ‘hive’:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1"><span class="op">$</span><span class="st"> </span>hive</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">$</span><span class="st"> </span>hive</code></pre></div>
 <p>Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los datos en la tabla Hive:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="co"># Create metadata for flights</span></a>
-<a class="sourceLine" id="cb190-2" title="2">CREATE EXTERNAL TABLE IF NOT EXISTS flights230</a>
-<a class="sourceLine" id="cb190-3" title="3">(</a>
-<a class="sourceLine" id="cb190-4" title="4">year int,</a>
-<a class="sourceLine" id="cb190-5" title="5">month int,</a>
-<a class="sourceLine" id="cb190-6" title="6">dayofmonth int,</a>
-<a class="sourceLine" id="cb190-7" title="7">dayofweek int,</a>
-<a class="sourceLine" id="cb190-8" title="8">deptime int,</a>
-<a class="sourceLine" id="cb190-9" title="9">crsdeptime int,</a>
-<a class="sourceLine" id="cb190-10" title="10">arrtime int, </a>
-<a class="sourceLine" id="cb190-11" title="11">crsarrtime int,</a>
-<a class="sourceLine" id="cb190-12" title="12">uniquecarrier string,</a>
-<a class="sourceLine" id="cb190-13" title="13">flightnum int,</a>
-<a class="sourceLine" id="cb190-14" title="14">tailnum string, </a>
-<a class="sourceLine" id="cb190-15" title="15">actualelapsedtime int,</a>
-<a class="sourceLine" id="cb190-16" title="16">crselapsedtime int,</a>
-<a class="sourceLine" id="cb190-17" title="17">airtime string,</a>
-<a class="sourceLine" id="cb190-18" title="18">arrdelay int,</a>
-<a class="sourceLine" id="cb190-19" title="19">depdelay int, </a>
-<a class="sourceLine" id="cb190-20" title="20">origin string,</a>
-<a class="sourceLine" id="cb190-21" title="21">dest string,</a>
-<a class="sourceLine" id="cb190-22" title="22">distance int,</a>
-<a class="sourceLine" id="cb190-23" title="23">taxiin string,</a>
-<a class="sourceLine" id="cb190-24" title="24">taxiout string,</a>
-<a class="sourceLine" id="cb190-25" title="25">cancelled int,</a>
-<a class="sourceLine" id="cb190-26" title="26">cancellationcode string,</a>
-<a class="sourceLine" id="cb190-27" title="27">diverted int,</a>
-<a class="sourceLine" id="cb190-28" title="28">carrierdelay string,</a>
-<a class="sourceLine" id="cb190-29" title="29">weatherdelay string,</a>
-<a class="sourceLine" id="cb190-30" title="30">nasdelay string,</a>
-<a class="sourceLine" id="cb190-31" title="31">securitydelay string,</a>
-<a class="sourceLine" id="cb190-32" title="32">lateaircraftdelay string</a>
-<a class="sourceLine" id="cb190-33" title="33">)</a>
-<a class="sourceLine" id="cb190-34" title="34">ROW FORMAT DELIMITED</a>
-<a class="sourceLine" id="cb190-35" title="35">FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span></a>
-<a class="sourceLine" id="cb190-36" title="36">LINES TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span></a>
-<a class="sourceLine" id="cb190-37" title="37"><span class="kw">TBLPROPERTIES</span>(<span class="st">&quot;skip.header.line.count&quot;</span>=<span class="st">&quot;1&quot;</span>);</a>
-<a class="sourceLine" id="cb190-38" title="38"></a>
-<a class="sourceLine" id="cb190-39" title="39"><span class="co"># Load data into table</span></a>
-<a class="sourceLine" id="cb190-40" title="40">LOAD DATA INPATH <span class="st">&#39;flights&#39;</span> INTO TABLE flights230;</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create metadata for flights</span>
+CREATE EXTERNAL TABLE IF NOT EXISTS flights230
+(
+year int,
+month int,
+dayofmonth int,
+dayofweek int,
+deptime int,
+crsdeptime int,
+arrtime int, 
+crsarrtime int,
+uniquecarrier string,
+flightnum int,
+tailnum string, 
+actualelapsedtime int,
+crselapsedtime int,
+airtime string,
+arrdelay int,
+depdelay int, 
+origin string,
+dest string,
+distance int,
+taxiin string,
+taxiout string,
+cancelled int,
+cancellationcode string,
+diverted int,
+carrierdelay string,
+weatherdelay string,
+nasdelay string,
+securitydelay string,
+lateaircraftdelay string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span>
+LINES TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>
+<span class="kw">TBLPROPERTIES</span>(<span class="st">&quot;skip.header.line.count&quot;</span>=<span class="st">&quot;1&quot;</span>);
+
+<span class="co"># Load data into table</span>
+LOAD DATA INPATH <span class="st">&#39;flights&#39;</span> INTO TABLE flights230;</code></pre></div>
 <p>Ídem para la tabla de aerolíneas, creamos los metadatos y cargamos los datos en la tabla HIVE:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="co"># Create metadata for airlines</span></a>
-<a class="sourceLine" id="cb191-2" title="2">CREATE EXTERNAL TABLE IF NOT EXISTS airlines</a>
-<a class="sourceLine" id="cb191-3" title="3">(</a>
-<a class="sourceLine" id="cb191-4" title="4">Code string,</a>
-<a class="sourceLine" id="cb191-5" title="5">Description string</a>
-<a class="sourceLine" id="cb191-6" title="6">)</a>
-<a class="sourceLine" id="cb191-7" title="7">ROW FORMAT SERDE <span class="st">&#39;org.apache.hadoop.hive.serde2.OpenCSVSerde&#39;</span></a>
-<a class="sourceLine" id="cb191-8" title="8">WITH SERDEPROPERTIES</a>
-<a class="sourceLine" id="cb191-9" title="9">(</a>
-<a class="sourceLine" id="cb191-10" title="10"><span class="st">&quot;separatorChar&quot;</span> =<span class="st"> &#39;\,&#39;</span>,</a>
-<a class="sourceLine" id="cb191-11" title="11"><span class="st">&quot;quoteChar&quot;</span>     =<span class="st"> &#39;</span><span class="ch">\&quot;</span><span class="st">&#39;</span></a>
-<a class="sourceLine" id="cb191-12" title="12">)</a>
-<a class="sourceLine" id="cb191-13" title="13">STORED AS TEXTFILE</a>
-<a class="sourceLine" id="cb191-14" title="14"><span class="kw">tblproperties</span>(<span class="st">&quot;skip.header.line.count&quot;</span>=<span class="st">&quot;1&quot;</span>);</a>
-<a class="sourceLine" id="cb191-15" title="15"></a>
-<a class="sourceLine" id="cb191-16" title="16"><span class="co"># Load data into table</span></a>
-<a class="sourceLine" id="cb191-17" title="17">LOAD DATA INPATH <span class="st">&#39;airlines&#39;</span> INTO TABLE airlines;</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create metadata for airlines</span>
+CREATE EXTERNAL TABLE IF NOT EXISTS airlines
+(
+Code string,
+Description string
+)
+ROW FORMAT SERDE <span class="st">&#39;org.apache.hadoop.hive.serde2.OpenCSVSerde&#39;</span>
+WITH SERDEPROPERTIES
+(
+<span class="st">&quot;separatorChar&quot;</span> =<span class="st"> &#39;\,&#39;</span>,
+<span class="st">&quot;quoteChar&quot;</span>     =<span class="st"> &#39;</span><span class="ch">\&quot;</span><span class="st">&#39;</span>
+)
+STORED AS TEXTFILE
+<span class="kw">tblproperties</span>(<span class="st">&quot;skip.header.line.count&quot;</span>=<span class="st">&quot;1&quot;</span>);
+
+<span class="co"># Load data into table</span>
+LOAD DATA INPATH <span class="st">&#39;airlines&#39;</span> INTO TABLE airlines;</code></pre></div>
 <p>Ídem para la tabla de aeropuertos, creamos los metadatos y cargamos los datos en la tabla HIVE:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="co"># Create metadata for airports</span></a>
-<a class="sourceLine" id="cb192-2" title="2">CREATE EXTERNAL TABLE IF NOT EXISTS airports</a>
-<a class="sourceLine" id="cb192-3" title="3">(</a>
-<a class="sourceLine" id="cb192-4" title="4">id string,</a>
-<a class="sourceLine" id="cb192-5" title="5">name string,</a>
-<a class="sourceLine" id="cb192-6" title="6">city string,</a>
-<a class="sourceLine" id="cb192-7" title="7">country string,</a>
-<a class="sourceLine" id="cb192-8" title="8">faa string,</a>
-<a class="sourceLine" id="cb192-9" title="9">icao string,</a>
-<a class="sourceLine" id="cb192-10" title="10">lat double,</a>
-<a class="sourceLine" id="cb192-11" title="11">lon double,</a>
-<a class="sourceLine" id="cb192-12" title="12">alt int,</a>
-<a class="sourceLine" id="cb192-13" title="13">tz_offset double,</a>
-<a class="sourceLine" id="cb192-14" title="14">dst string,</a>
-<a class="sourceLine" id="cb192-15" title="15">tz_name string</a>
-<a class="sourceLine" id="cb192-16" title="16">)</a>
-<a class="sourceLine" id="cb192-17" title="17">ROW FORMAT SERDE <span class="st">&#39;org.apache.hadoop.hive.serde2.OpenCSVSerde&#39;</span></a>
-<a class="sourceLine" id="cb192-18" title="18">WITH SERDEPROPERTIES</a>
-<a class="sourceLine" id="cb192-19" title="19">(</a>
-<a class="sourceLine" id="cb192-20" title="20"><span class="st">&quot;separatorChar&quot;</span> =<span class="st"> &#39;\,&#39;</span>,</a>
-<a class="sourceLine" id="cb192-21" title="21"><span class="st">&quot;quoteChar&quot;</span>     =<span class="st"> &#39;</span><span class="ch">\&quot;</span><span class="st">&#39;</span></a>
-<a class="sourceLine" id="cb192-22" title="22">)</a>
-<a class="sourceLine" id="cb192-23" title="23">STORED AS TEXTFILE;</a>
-<a class="sourceLine" id="cb192-24" title="24"></a>
-<a class="sourceLine" id="cb192-25" title="25"><span class="co"># Load data into table</span></a>
-<a class="sourceLine" id="cb192-26" title="26">LOAD DATA INPATH <span class="st">&#39;airports&#39;</span> INTO TABLE airports;</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create metadata for airports</span>
+CREATE EXTERNAL TABLE IF NOT EXISTS airports
+(
+id string,
+name string,
+city string,
+country string,
+faa string,
+icao string,
+lat double,
+lon double,
+alt int,
+tz_offset double,
+dst string,
+tz_name string
+)
+ROW FORMAT SERDE <span class="st">&#39;org.apache.hadoop.hive.serde2.OpenCSVSerde&#39;</span>
+WITH SERDEPROPERTIES
+(
+<span class="st">&quot;separatorChar&quot;</span> =<span class="st"> &#39;\,&#39;</span>,
+<span class="st">&quot;quoteChar&quot;</span>     =<span class="st"> &#39;</span><span class="ch">\&quot;</span><span class="st">&#39;</span>
+)
+STORED AS TEXTFILE;
+
+<span class="co"># Load data into table</span>
+LOAD DATA INPATH <span class="st">&#39;airports&#39;</span> INTO TABLE airports;</code></pre></div>
 <p>Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con ‘sc &lt;- spark_connect(master = “local”)’ )</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="co"># Connect to Spark</span></a>
-<a class="sourceLine" id="cb193-2" title="2"><span class="kw">library</span>(sparklyr)</a>
-<a class="sourceLine" id="cb193-3" title="3"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb193-4" title="4"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb193-5" title="5">sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="dt">master =</span> <span class="st">&quot;yarn-client&quot;</span>, <span class="dt">spark_home =</span> <span class="kw">Sys.getenv</span>(<span class="st">&#39;SPARK_HOME&#39;</span>)) </a>
-<a class="sourceLine" id="cb193-6" title="6">sc</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Connect to Spark</span>
+<span class="kw">library</span>(sparklyr)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="dt">master =</span> <span class="st">&quot;yarn-client&quot;</span>, <span class="dt">spark_home =</span> <span class="kw">Sys.getenv</span>(<span class="st">&#39;SPARK_HOME&#39;</span>)) 
+sc</code></pre></div>
 <p>Si tenemos problemas para conectar podemos gestionar con YARN los recursos</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="co"># Ver trabajos en YARN</span></a>
-<a class="sourceLine" id="cb194-2" title="2">yarn top</a>
-<a class="sourceLine" id="cb194-3" title="3"></a>
-<a class="sourceLine" id="cb194-4" title="4"><span class="co"># Trabajos YARN en ejecución, en espera y aceptados</span></a>
-<a class="sourceLine" id="cb194-5" title="5">yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep RUNNING</a>
-<a class="sourceLine" id="cb194-6" title="6">yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep ACCEPTED</a>
-<a class="sourceLine" id="cb194-7" title="7">yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep SUBMITTED</a>
-<a class="sourceLine" id="cb194-8" title="8"></a>
-<a class="sourceLine" id="cb194-9" title="9"><span class="co"># Cómo matar un trabajo YARN (si es de nuestro usuario). Indicar el ID de aplicación</span></a>
-<a class="sourceLine" id="cb194-10" title="10">yarn application <span class="op">-</span>kill application_<span class="dv">1575999528886</span>_<span class="dv">0161</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ver trabajos en YARN</span>
+yarn top
+
+<span class="co"># Trabajos YARN en ejecución, en espera y aceptados</span>
+yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep RUNNING
+yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep ACCEPTED
+yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep SUBMITTED
+
+<span class="co"># Cómo matar un trabajo YARN (si es de nuestro usuario). Indicar el ID de aplicación</span>
+yarn application <span class="op">-</span>kill application_1575999528886_<span class="dv">0161</span></code></pre></div>
 <p>Crear tablas dplyr a tablas HIVE:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="co"># Cache flights Hive table into Spark</span></a>
-<a class="sourceLine" id="cb195-2" title="2"><span class="co">#tbl_cache(sc, &#39;flights&#39;)</span></a>
-<a class="sourceLine" id="cb195-3" title="3">flights_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;flights230&#39;</span>)</a>
-<a class="sourceLine" id="cb195-4" title="4">flights_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="co"># Cache airlines Hive table into Spark</span></a>
-<a class="sourceLine" id="cb196-2" title="2"><span class="co">#tbl_cache(sc, &#39;airlines&#39;)</span></a>
-<a class="sourceLine" id="cb196-3" title="3">airlines_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;airlines&#39;</span>)</a>
-<a class="sourceLine" id="cb196-4" title="4">airlines_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="co"># Cache airports Hive table into Spark</span></a>
-<a class="sourceLine" id="cb197-2" title="2"><span class="co">#tbl_cache(sc, &#39;airports&#39;)</span></a>
-<a class="sourceLine" id="cb197-3" title="3">airports_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;airports&#39;</span>)</a>
-<a class="sourceLine" id="cb197-4" title="4">airports_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cache flights Hive table into Spark</span>
+<span class="co">#tbl_cache(sc, &#39;flights&#39;)</span>
+flights_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;flights230&#39;</span>)
+flights_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cache airlines Hive table into Spark</span>
+<span class="co">#tbl_cache(sc, &#39;airlines&#39;)</span>
+airlines_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;airlines&#39;</span>)
+airlines_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cache airports Hive table into Spark</span>
+<span class="co">#tbl_cache(sc, &#39;airports&#39;)</span>
+airports_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;airports&#39;</span>)
+airports_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
 <p>Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">system.time</span>({</a>
-<a class="sourceLine" id="cb198-2" title="2">out &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb198-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb198-4" title="4"><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb198-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb198-6" title="6"><span class="st">  </span><span class="kw">collect</span>()</a>
-<a class="sourceLine" id="cb198-7" title="7">})</a>
-<a class="sourceLine" id="cb198-8" title="8">out</a>
-<a class="sourceLine" id="cb198-9" title="9">out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
+out &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">collect</span>()
+})
+out
+out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</code></pre></div>
 <p>Vuelos con origen LAX (Los Angeles) por año:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">system.time</span>({</a>
-<a class="sourceLine" id="cb199-2" title="2">out &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb199-3" title="3"><span class="st">  </span><span class="kw">filter</span>(origin <span class="op">==</span><span class="st"> &quot;LAX&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb199-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb199-5" title="5"><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb199-6" title="6"><span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb199-7" title="7"><span class="st">  </span><span class="kw">collect</span>()</a>
-<a class="sourceLine" id="cb199-8" title="8">})</a>
-<a class="sourceLine" id="cb199-9" title="9">out</a>
-<a class="sourceLine" id="cb199-10" title="10">out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb199-11" title="11"><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb199-12" title="12"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Number of flights from LAX&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
+out &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(origin <span class="op">==</span><span class="st"> &quot;LAX&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">collect</span>()
+})
+out
+out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Number of flights from LAX&quot;</span>)</code></pre></div>
 <p>Y listado de países y número de aeropuertos:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">system.time</span>({</a>
-<a class="sourceLine" id="cb200-2" title="2">out &lt;-<span class="st"> </span>airports_tbl <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb200-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(<span class="st">&quot;country&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb200-4" title="4"><span class="st">  </span><span class="kw">count</span>()</a>
-<a class="sourceLine" id="cb200-5" title="5">})</a>
-<a class="sourceLine" id="cb200-6" title="6">out</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
+out &lt;-<span class="st"> </span>airports_tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="st">&quot;country&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">count</span>()
+})
+out</code></pre></div>
 <p>Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para ello buscaremos modelar como una regresión lineal la ganancia de un vuelo (gain) como (depdelay - arrdelay) basándose en la distancia, el retraso de la salida y la aerolínea usando datos del período 2003-2007:</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="co"># Filter records and create target variable &#39;gain&#39;</span></a>
-<a class="sourceLine" id="cb201-2" title="2"><span class="kw">system.time</span>(</a>
-<a class="sourceLine" id="cb201-3" title="3">  model_data &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb201-4" title="4"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(arrdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(depdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(distance)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb201-5" title="5"><span class="st">    </span><span class="kw">filter</span>(depdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>depdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">240</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb201-6" title="6"><span class="st">    </span><span class="kw">filter</span>(arrdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">-60</span> <span class="op">&amp;</span><span class="st"> </span>arrdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">360</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb201-7" title="7"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2003</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb201-8" title="8"><span class="st">    </span><span class="kw">left_join</span>(airlines_tbl, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;uniquecarrier&quot;</span> =<span class="st"> &quot;code&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb201-9" title="9"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">gain =</span> depdelay <span class="op">-</span><span class="st"> </span>arrdelay) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb201-10" title="10"><span class="st">    </span><span class="kw">select</span>(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain)</a>
-<a class="sourceLine" id="cb201-11" title="11">)</a>
-<a class="sourceLine" id="cb201-12" title="12">model_data</a></code></pre></div>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="co"># Summarize data by carrier</span></a>
-<a class="sourceLine" id="cb202-2" title="2">model_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb202-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(uniquecarrier) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb202-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">description =</span> <span class="kw">min</span>(description), <span class="dt">gain =</span> <span class="kw">mean</span>(gain), </a>
-<a class="sourceLine" id="cb202-5" title="5">            <span class="dt">distance =</span> <span class="kw">mean</span>(distance), <span class="dt">depdelay =</span> <span class="kw">mean</span>(depdelay)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb202-6" title="6"><span class="st">  </span><span class="kw">select</span>(description, gain, distance, depdelay) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb202-7" title="7"><span class="st">  </span><span class="kw">arrange</span>(gain)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Filter records and create target variable &#39;gain&#39;</span>
+<span class="kw">system.time</span>(
+  model_data &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(arrdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(depdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(distance)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(depdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>depdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">240</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(arrdelay <span class="op">&gt;</span><span class="st"> </span><span class="op">-</span><span class="dv">60</span> <span class="op">&amp;</span><span class="st"> </span>arrdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">360</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2003</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(airlines_tbl, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;uniquecarrier&quot;</span> =<span class="st"> &quot;code&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">gain =</span> depdelay <span class="op">-</span><span class="st"> </span>arrdelay) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">select</span>(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain)
+)
+model_data</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Summarize data by carrier</span>
+model_data <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(uniquecarrier) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">description =</span> <span class="kw">min</span>(description), <span class="dt">gain =</span> <span class="kw">mean</span>(gain), 
+            <span class="dt">distance =</span> <span class="kw">mean</span>(distance), <span class="dt">depdelay =</span> <span class="kw">mean</span>(depdelay)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(description, gain, distance, depdelay) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(gain)</code></pre></div>
 <p>Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un vuelo en función de la distancia, retraso en la salida y aerolínea procedemos de este modo:</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="co"># Partition the data into training and validation sets</span></a>
-<a class="sourceLine" id="cb203-2" title="2">model_partition &lt;-<span class="st"> </span>model_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb203-3" title="3"><span class="st">  </span><span class="kw">sdf_partition</span>(<span class="dt">train =</span> <span class="fl">0.8</span>, <span class="dt">valid =</span> <span class="fl">0.2</span>, <span class="dt">seed =</span> <span class="dv">5555</span>)</a>
-<a class="sourceLine" id="cb203-4" title="4"></a>
-<a class="sourceLine" id="cb203-5" title="5"><span class="co"># Fit a linear model</span></a>
-<a class="sourceLine" id="cb203-6" title="6"><span class="kw">system.time</span>(</a>
-<a class="sourceLine" id="cb203-7" title="7">  ml1 &lt;-<span class="st"> </span>model_partition<span class="op">$</span>train <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb203-8" title="8"><span class="st">    </span><span class="kw">ml_linear_regression</span>(gain <span class="op">~</span><span class="st"> </span>distance <span class="op">+</span><span class="st"> </span>depdelay <span class="op">+</span><span class="st"> </span>uniquecarrier)</a>
-<a class="sourceLine" id="cb203-9" title="9">)</a>
-<a class="sourceLine" id="cb203-10" title="10"></a>
-<a class="sourceLine" id="cb203-11" title="11"><span class="co"># Summarize the linear model</span></a>
-<a class="sourceLine" id="cb203-12" title="12"><span class="kw">summary</span>(ml1)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Partition the data into training and validation sets</span>
+model_partition &lt;-<span class="st"> </span>model_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">sdf_partition</span>(<span class="dt">train =</span> <span class="fl">0.8</span>, <span class="dt">valid =</span> <span class="fl">0.2</span>, <span class="dt">seed =</span> <span class="dv">5555</span>)
+
+<span class="co"># Fit a linear model</span>
+<span class="kw">system.time</span>(
+  ml1 &lt;-<span class="st"> </span>model_partition<span class="op">$</span>train <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">ml_linear_regression</span>(gain <span class="op">~</span><span class="st"> </span>distance <span class="op">+</span><span class="st"> </span>depdelay <span class="op">+</span><span class="st"> </span>uniquecarrier)
+)
+
+<span class="co"># Summarize the linear model</span>
+<span class="kw">summary</span>(ml1)</code></pre></div>
 <p>A continuación se compara la bondad del modelo con el subconjunto de validación</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="co"># Calculate average gains by predicted decile</span></a>
-<a class="sourceLine" id="cb204-2" title="2"><span class="kw">system.time</span>(</a>
-<a class="sourceLine" id="cb204-3" title="3">  model_deciles &lt;-<span class="st"> </span><span class="kw">lapply</span>(model_partition, <span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb204-4" title="4">    <span class="kw">ml_predict</span>(ml1, x) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-5" title="5"><span class="st">      </span><span class="kw">mutate</span>(<span class="dt">decile =</span> <span class="kw">ntile</span>(<span class="kw">desc</span>(prediction), <span class="dv">10</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-6" title="6"><span class="st">      </span><span class="kw">group_by</span>(decile) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-7" title="7"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">gain =</span> <span class="kw">mean</span>(gain)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-8" title="8"><span class="st">      </span><span class="kw">select</span>(decile, gain) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-9" title="9"><span class="st">      </span><span class="kw">collect</span>()</a>
-<a class="sourceLine" id="cb204-10" title="10">  })</a>
-<a class="sourceLine" id="cb204-11" title="11">)</a>
-<a class="sourceLine" id="cb204-12" title="12">model_deciles</a>
-<a class="sourceLine" id="cb204-13" title="13"></a>
-<a class="sourceLine" id="cb204-14" title="14"><span class="co"># Create a summary dataset for plotting</span></a>
-<a class="sourceLine" id="cb204-15" title="15">deciles &lt;-<span class="st"> </span><span class="kw">rbind</span>(</a>
-<a class="sourceLine" id="cb204-16" title="16">  <span class="kw">data.frame</span>(<span class="dt">data =</span> <span class="st">&#39;train&#39;</span>, model_deciles<span class="op">$</span>train),</a>
-<a class="sourceLine" id="cb204-17" title="17">  <span class="kw">data.frame</span>(<span class="dt">data =</span> <span class="st">&#39;valid&#39;</span>, model_deciles<span class="op">$</span>valid),</a>
-<a class="sourceLine" id="cb204-18" title="18">  <span class="dt">make.row.names =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb204-19" title="19">)</a>
-<a class="sourceLine" id="cb204-20" title="20">deciles</a>
-<a class="sourceLine" id="cb204-21" title="21"></a>
-<a class="sourceLine" id="cb204-22" title="22"><span class="co"># Plot average gains by predicted decile</span></a>
-<a class="sourceLine" id="cb204-23" title="23">deciles <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-24" title="24"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">factor</span>(decile), gain, <span class="dt">fill =</span> data)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb204-25" title="25"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb204-26" title="26"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average gain by predicted decile&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Decile&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Minutes&#39;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate average gains by predicted decile</span>
+<span class="kw">system.time</span>(
+  model_deciles &lt;-<span class="st"> </span><span class="kw">lapply</span>(model_partition, <span class="cf">function</span>(x) {
+    <span class="kw">ml_predict</span>(ml1, x) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">mutate</span>(<span class="dt">decile =</span> <span class="kw">ntile</span>(<span class="kw">desc</span>(prediction), <span class="dv">10</span>)) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">group_by</span>(decile) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">summarize</span>(<span class="dt">gain =</span> <span class="kw">mean</span>(gain)) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">select</span>(decile, gain) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">collect</span>()
+  })
+)
+model_deciles
+
+<span class="co"># Create a summary dataset for plotting</span>
+deciles &lt;-<span class="st"> </span><span class="kw">rbind</span>(
+  <span class="kw">data.frame</span>(<span class="dt">data =</span> <span class="st">&#39;train&#39;</span>, model_deciles<span class="op">$</span>train),
+  <span class="kw">data.frame</span>(<span class="dt">data =</span> <span class="st">&#39;valid&#39;</span>, model_deciles<span class="op">$</span>valid),
+  <span class="dt">make.row.names =</span> <span class="ot">FALSE</span>
+)
+deciles
+
+<span class="co"># Plot average gains by predicted decile</span>
+deciles <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">factor</span>(decile), gain, <span class="dt">fill =</span> data)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average gain by predicted decile&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Decile&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Minutes&#39;</span>)</code></pre></div>
 <p>Visualizar predicciones usando el año 2008 (no usado en el entrenamiento):</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="co"># Select data from an out of time sample</span></a>
-<a class="sourceLine" id="cb205-2" title="2">data_<span class="dv">2008</span> &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-3" title="3"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(arrdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(depdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(distance)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-4" title="4"><span class="st">  </span><span class="kw">filter</span>(depdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>depdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">240</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-5" title="5"><span class="st">  </span><span class="kw">filter</span>(arrdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">-60</span> <span class="op">&amp;</span><span class="st"> </span>arrdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">360</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-6" title="6"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-7" title="7"><span class="st">  </span><span class="kw">left_join</span>(airlines_tbl, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;uniquecarrier&quot;</span> =<span class="st"> &quot;code&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-8" title="8"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gain =</span> depdelay <span class="op">-</span><span class="st"> </span>arrdelay) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-9" title="9"><span class="st">  </span><span class="kw">select</span>(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain, origin, dest)</a>
-<a class="sourceLine" id="cb205-10" title="10">data_<span class="dv">2008</span></a>
-<a class="sourceLine" id="cb205-11" title="11"></a>
-<a class="sourceLine" id="cb205-12" title="12"><span class="co"># Summarize data by carrier</span></a>
-<a class="sourceLine" id="cb205-13" title="13">carrier &lt;-<span class="st"> </span><span class="kw">ml_predict</span>(ml1, data_<span class="dv">2008</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-14" title="14"><span class="st">  </span><span class="kw">group_by</span>(description) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-15" title="15"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">gain =</span> <span class="kw">mean</span>(gain), <span class="dt">prediction =</span> <span class="kw">mean</span>(prediction), <span class="dt">freq =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-16" title="16"><span class="st">  </span><span class="kw">filter</span>(freq <span class="op">&gt;</span><span class="st"> </span><span class="dv">10000</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-17" title="17"><span class="st">  </span><span class="kw">collect</span>()</a>
-<a class="sourceLine" id="cb205-18" title="18">carrier</a>
-<a class="sourceLine" id="cb205-19" title="19"></a>
-<a class="sourceLine" id="cb205-20" title="20"><span class="co"># Plot actual gains and predicted gains by airline carrier</span></a>
-<a class="sourceLine" id="cb205-21" title="21"><span class="kw">ggplot</span>(carrier, <span class="kw">aes</span>(gain, prediction)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb205-22" title="22"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">shape =</span> <span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb205-23" title="23"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.15</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb205-24" title="24"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">substr</span>(description, <span class="dv">1</span>, <span class="dv">20</span>)), <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">vjust =</span> <span class="dv">-1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb205-25" title="25"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&#39;Average Gains Forecast&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Actual&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Predicted&#39;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select data from an out of time sample</span>
+data_<span class="dv">2008</span> &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(arrdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(depdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(distance)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(depdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>depdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">240</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(arrdelay <span class="op">&gt;</span><span class="st"> </span><span class="op">-</span><span class="dv">60</span> <span class="op">&amp;</span><span class="st"> </span>arrdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">360</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">left_join</span>(airlines_tbl, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;uniquecarrier&quot;</span> =<span class="st"> &quot;code&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gain =</span> depdelay <span class="op">-</span><span class="st"> </span>arrdelay) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain, origin, dest)
+data_<span class="dv">2008</span>
+
+<span class="co"># Summarize data by carrier</span>
+carrier &lt;-<span class="st"> </span><span class="kw">ml_predict</span>(ml1, data_<span class="dv">2008</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(description) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">gain =</span> <span class="kw">mean</span>(gain), <span class="dt">prediction =</span> <span class="kw">mean</span>(prediction), <span class="dt">freq =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(freq <span class="op">&gt;</span><span class="st"> </span><span class="dv">10000</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">collect</span>()
+carrier
+
+<span class="co"># Plot actual gains and predicted gains by airline carrier</span>
+<span class="kw">ggplot</span>(carrier, <span class="kw">aes</span>(gain, prediction)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">shape =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.15</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">substr</span>(description, <span class="dv">1</span>, <span class="dv">20</span>)), <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">vjust =</span> <span class="op">-</span><span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&#39;Average Gains Forecast&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Actual&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Predicted&#39;</span>)</code></pre></div>
 <p>Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">spark_disconnect_all</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spark_disconnect_all</span>()</code></pre></div>
 </div>
 </div>
             </section>
@@ -634,6 +648,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.8 Bases de datos con dplyr | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.8 Bases de datos con dplyr | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-12-16" />
+<meta name="date" content="2019-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="operaciones-con-tablas-de-datos-1.html"/>
-<link rel="next" href="introduccion-a-tecnologias-nosql.html"/>
+<link rel="prev" href="operaciones-con-tablas-de-datos-1.html">
+<link rel="next" href="introduccion-a-tecnologias-nosql.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,66 +50,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -197,7 +172,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="agrupar-casos-con-group-by.html"><a href="agrupar-casos-con-group-by.html"><i class="fa fa-check"></i><b>4.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
 <li class="chapter" data-level="4.6" data-path="operador-pipe-tuberia-redireccion.html"><a href="operador-pipe-tuberia-redireccion.html"><i class="fa fa-check"></i><b>4.6</b> Operador <em>pipe</em> <strong>%&gt;%</strong> (tubería, redirección)</a></li>
 <li class="chapter" data-level="4.7" data-path="operaciones-con-tablas-de-datos-1.html"><a href="operaciones-con-tablas-de-datos-1.html"><i class="fa fa-check"></i><b>4.7</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a></li>
+<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html#ejemplos-practica-1"><i class="fa fa-check"></i><b>4.8.1</b> Ejemplos (Práctica 1)</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="introduccion-a-tecnologias-nosql.html"><a href="introduccion-a-tecnologias-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a><ul>
 <li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a><ul>
@@ -268,6 +245,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="C.3" data-path="cerrar-conexion.html"><a href="cerrar-conexion.html"><i class="fa fa-check"></i><b>C.3</b> Cerrar conexión</a></li>
 </ul></li>
+<li class="chapter" data-level="D" data-path="introduccion-al-aprendizaje-estadistico.html"><a href="introduccion-al-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D</b> Introducción al Aprendizaje Estadístico</a><ul>
+<li class="chapter" data-level="D.1" data-path="data-science.html"><a href="data-science.html"><i class="fa fa-check"></i><b>D.1</b> Data Science</a><ul>
+<li class="chapter" data-level="D.1.1" data-path="data-science.html"><a href="data-science.html#ventajas-e-inconvenientes"><i class="fa fa-check"></i><b>D.1.1</b> Ventajas e inconvenientes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D.2</b> Métodos de aprendizaje estadístico</a><ul>
+<li class="chapter" data-level="D.2.1" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#metodos-de-aprendizaje-supervisado"><i class="fa fa-check"></i><b>D.2.1</b> Métodos (de aprendizaje supervisado):</a></li>
+<li class="chapter" data-level="D.2.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#construccion-y-evaluacion-de-los-modelos"><i class="fa fa-check"></i><b>D.2.2</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="D.2.3" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#matriz-de-confusion"><i class="fa fa-check"></i><b>D.2.3</b> Matriz de confusión</a></li>
+<li class="chapter" data-level="D.2.4" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#predicciones-frente-a-observado"><i class="fa fa-check"></i><b>D.2.4</b> Predicciones frente a observado</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="arboles-de-decision.html"><a href="arboles-de-decision.html"><i class="fa fa-check"></i><b>D.3</b> Arboles de decisión</a></li>
+<li class="chapter" data-level="D.4" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html"><i class="fa fa-check"></i><b>D.4</b> Bagging y Boosting</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bagging-o-agregacion-bootstrap"><i class="fa fa-check"></i><b>D.4.1</b> Bagging o agregación Bootstrap</a></li>
+<li class="chapter" data-level="D.4.2" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bosques-aleatorios"><i class="fa fa-check"></i><b>D.4.2</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="D.4.3" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#boosting"><i class="fa fa-check"></i><b>D.4.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="D.5" data-path="support-vector-machines-svm.html"><a href="support-vector-machines-svm.html"><i class="fa fa-check"></i><b>D.5</b> Support vector machines (SVM)</a></li>
+<li class="chapter" data-level="D.6" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>D.6</b> Modelos lineales (generalizados)</a></li>
+<li class="chapter" data-level="D.7" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html"><i class="fa fa-check"></i><b>D.7</b> Métodos de regularización</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#ridge-regression"><i class="fa fa-check"></i><b>D.7.1</b> Ridge Regression</a></li>
+<li class="chapter" data-level="D.7.2" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#lasso"><i class="fa fa-check"></i><b>D.7.2</b> Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html"><i class="fa fa-check"></i><b>D.8</b> Regresión no paramétrica</a><ul>
+<li class="chapter" data-level="D.8.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#modelos-aditivos"><i class="fa fa-check"></i><b>D.8.1</b> Modelos aditivos</a></li>
+</ul></li>
+<li class="chapter" data-level="D.9" data-path="redes-neuronales.html"><a href="redes-neuronales.html"><i class="fa fa-check"></i><b>D.9</b> Redes neuronales</a></li>
+<li class="chapter" data-level="D.10" data-path="bibliografia.html"><a href="bibliografia.html"><i class="fa fa-check"></i><b>D.10</b> Bibliografía</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
@@ -290,16 +295,324 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="bases-de-datos-con-dplyr" class="section level2">
 <h2><span class="header-section-number">4.8</span> Bases de datos con dplyr</h2>
-<p><a href="https://db.rstudio.com">Databases using R</a></p>
-<p><a href="https://db.rstudio.com/overview">dplyr as a database interface</a></p>
-<p><a href="https://db.rstudio.com/dplyr">Databases using dplyr</a></p>
-<p><a href="https://dbplyr.tidyverse.org/articles/dbplyr.html">Introduction to dbplyr</a></p>
-<p><a href="https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html">SQL databases and R</a>, <a href="https://datacarpentry.org/R-ecology-lesson/index.html">Data Carpentry</a></p>
-<p><a href="https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases">R and Data – When Should we Use Relational Databases?</a></p>
-<hr />
-<p>Una alternativa (más rápida) es emplear
-<a href="https://rdatatable.gitlab.io/data.table">data.table</a>.</p>
+<p>Algunos enlaces:</p>
+<ul>
+<li><p><a href="https://db.rstudio.com">Databases using R</a></p>
+<ul>
+<li><p><a href="https://db.rstudio.com/overview">dplyr as a database interface</a></p></li>
+<li><p><a href="https://db.rstudio.com/dplyr">Databases using dplyr</a></p></li>
+</ul></li>
+<li><p><a href="https://dbplyr.tidyverse.org/articles/dbplyr.html">Introduction to dbplyr</a></p></li>
+<li><a href="https://datacarpentry.org/R-ecology-lesson/index.html">Data Carpentry</a>
+<ul>
+<li><a href="https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html">SQL databases and R</a>,</li>
+</ul></li>
+<li><p><a href="https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases">R and Data – When Should we Use Relational Databases?</a></p></li>
+</ul>
+<div id="ejemplos-practica-1" class="section level3">
+<h3><span class="header-section-number">4.8.1</span> Ejemplos (Práctica 1)</h3>
+<p>Como ejemplo emplearemos los ejercicios de la Práctica 1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&#39;dbplyr&#39;)</span>
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(dbplyr)</code></pre></div>
+<p>Conectar la base de datos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chinook &lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbConnect</span>(RSQLite<span class="op">::</span><span class="kw">SQLite</span>(), <span class="st">&quot;data/chinook.db&quot;</span>)</code></pre></div>
+<p>Listar tablas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">src_dbi</span>(chinook)</code></pre></div>
+<pre><code>## src:  sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+## tbls: albums, artists, customers, employees, genres, invoice_items,
+##   invoices, media_types, playlist_track, playlists, sqlite_sequence,
+##   sqlite_stat1, tracks</code></pre>
+<p>Enlazar una tabla:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">invoices &lt;-<span class="st"> </span><span class="kw">tbl</span>(chinook, <span class="st">&quot;invoices&quot;</span>)
+invoices</code></pre></div>
+<pre><code>## # Source:   table&lt;invoices&gt; [?? x 9]
+## # Database: sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+##    InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
+##        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;       
+##  1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   &lt;NA&gt;        
+##  2         2          4 2009-01-02~ Ullevålsveien~ Oslo        &lt;NA&gt;        
+##  3         3          8 2009-01-03~ Grétrystraat ~ Brussels    &lt;NA&gt;        
+##  4         4         14 2009-01-06~ 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11~ 69 Salem Stre~ Boston      MA          
+##  6         6         37 2009-01-19~ Berger Straße~ Frankfurt   &lt;NA&gt;        
+##  7         7         38 2009-02-01~ Barbarossastr~ Berlin      &lt;NA&gt;        
+##  8         8         40 2009-02-01~ 8, Rue Hanovre Paris       &lt;NA&gt;        
+##  9         9         42 2009-02-02~ 9, Place Loui~ Bordeaux    &lt;NA&gt;        
+## 10        10         46 2009-02-03~ 3 Chatham Str~ Dublin      Dublin      
+## # ... with more rows, and 3 more variables: BillingCountry &lt;chr&gt;,
+## #   BillingPostalCode &lt;chr&gt;, Total &lt;dbl&gt;</code></pre>
+<p>Ojo <code>[?? x 9]</code>: de momento no conoce el número de filas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(invoices)</code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>Mostrar la consulta SQL:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_query</span>(<span class="kw">head</span>(invoices))</code></pre></div>
+<pre><code>## &lt;SQL&gt;
+## SELECT *
+## FROM `invoices`
+## LIMIT 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">head</span>(invoices))</code></pre></div>
+<pre><code>## List of 2
+##  $ src:List of 2
+##   ..$ con  :Formal class &#39;SQLiteConnection&#39; [package &quot;RSQLite&quot;] with 7 slots
+##   .. .. ..@ ptr                :&lt;externalptr&gt; 
+##   .. .. ..@ dbname             : chr &quot;D:\\GitHub\\tgdbook\\data\\chinook.db&quot;
+##   .. .. ..@ loadable.extensions: logi TRUE
+##   .. .. ..@ flags              : int 70
+##   .. .. ..@ vfs                : chr &quot;&quot;
+##   .. .. ..@ ref                :&lt;environment: 0x00000000149383a0&gt; 
+##   .. .. ..@ bigint             : chr &quot;integer64&quot;
+##   ..$ disco: NULL
+##   ..- attr(*, &quot;class&quot;)= chr [1:4] &quot;src_SQLiteConnection&quot; &quot;src_dbi&quot; &quot;src_sql&quot; &quot;src&quot;
+##  $ ops:List of 4
+##   ..$ name: chr &quot;head&quot;
+##   ..$ x   :List of 2
+##   .. ..$ x   : &#39;ident&#39; chr &quot;invoices&quot;
+##   .. ..$ vars: chr [1:9] &quot;InvoiceId&quot; &quot;CustomerId&quot; &quot;InvoiceDate&quot; &quot;BillingAddress&quot; ...
+##   .. ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;op_base_remote&quot; &quot;op_base&quot; &quot;op&quot;
+##   ..$ dots: list()
+##   ..$ args:List of 1
+##   .. ..$ n: int 6
+##   ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;op_head&quot; &quot;op_single&quot; &quot;op&quot;
+##  - attr(*, &quot;class&quot;)= chr [1:5] &quot;tbl_SQLiteConnection&quot; &quot;tbl_dbi&quot; &quot;tbl_sql&quot; &quot;tbl_lazy&quot; ...</code></pre>
+<p>Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:</p>
+<ul>
+<li><p>No exporta datos a R a menos que se pida explícitamente (<code>colect()</code>).</p></li>
+<li><p>Retrasa cualquier operación lo máximo posible: agrupa todo lo que se desea hacer y luego hace una única petición a la base de datos.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">invoices <span class="op">%&gt;%</span><span class="st"> </span>head <span class="op">%&gt;%</span><span class="st"> </span>collect</code></pre></div>
+<pre><code>## # A tibble: 6 x 9
+##   InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
+##       &lt;int&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;       
+## 1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   &lt;NA&gt;        
+## 2         2          4 2009-01-02~ Ullevålsveien~ Oslo        &lt;NA&gt;        
+## 3         3          8 2009-01-03~ Grétrystraat ~ Brussels    &lt;NA&gt;        
+## 4         4         14 2009-01-06~ 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11~ 69 Salem Stre~ Boston      MA          
+## 6         6         37 2009-01-19~ Berger Straße~ Frankfurt   &lt;NA&gt;        
+## # ... with 3 more variables: BillingCountry &lt;chr&gt;,
+## #   BillingPostalCode &lt;chr&gt;, Total &lt;dbl&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">invoices <span class="op">%&gt;%</span><span class="st"> </span>count <span class="co"># número de filas</span></code></pre></div>
+<pre><code>## # Source:   lazy query [?? x 1]
+## # Database: sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+##       n
+##   &lt;int&gt;
+## 1   412</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Conocer el importe mínimo, máximo y la media de las facturas</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span>invoices <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(Total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+                        <span class="dt">max =</span> <span class="kw">max</span>(Total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">med =</span> <span class="kw">mean</span>(Total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
+<span class="kw">show_query</span>(res)</code></pre></div>
+<pre><code>## &lt;SQL&gt;
+## SELECT MIN(`Total`) AS `min`, MAX(`Total`) AS `max`, AVG(`Total`) AS `med`
+## FROM `invoices`</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res  <span class="op">%&gt;%</span><span class="st"> </span>collect</code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##     min   max   med
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  0.99  25.9  5.65</code></pre></li>
+<li><p>Conocer el total de las facturas de cada uno de los países.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span>invoices <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(BillingCountry) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">          </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">total =</span> <span class="kw">sum</span>(Total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
+<span class="kw">show_query</span>(res)</code></pre></div>
+<pre><code>## &lt;SQL&gt;
+## SELECT `BillingCountry`, COUNT() AS `n`, SUM(`Total`) AS `total`
+## FROM `invoices`
+## GROUP BY `BillingCountry`</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res  <span class="op">%&gt;%</span><span class="st"> </span>collect</code></pre></div>
+<pre><code>## # A tibble: 24 x 3
+##    BillingCountry     n total
+##    &lt;chr&gt;          &lt;int&gt; &lt;dbl&gt;
+##  1 Argentina          7  37.6
+##  2 Australia          7  37.6
+##  3 Austria            7  42.6
+##  4 Belgium            7  37.6
+##  5 Brazil            35 190. 
+##  6 Canada            56 304. 
+##  7 Chile              7  46.6
+##  8 Czech Republic    14  90.2
+##  9 Denmark            7  37.6
+## 10 Finland            7  41.6
+## # ... with 14 more rows</code></pre></li>
+<li>Obtener el listado de países junto con su facturación media, ordenado
+<ol style="list-style-type: lower-alpha">
+<li>alfabéticamente por país</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span>invoices <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(BillingCountry) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">          </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">med =</span> <span class="kw">mean</span>(Total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">arrange</span>(BillingCountry)
+<span class="kw">show_query</span>(res)</code></pre></div>
+<pre><code>## &lt;SQL&gt;
+## SELECT `BillingCountry`, COUNT() AS `n`, AVG(`Total`) AS `med`
+## FROM `invoices`
+## GROUP BY `BillingCountry`
+## ORDER BY `BillingCountry`</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res  <span class="op">%&gt;%</span><span class="st"> </span>collect</code></pre></div>
+<pre><code>## # A tibble: 24 x 3
+##    BillingCountry     n   med
+##    &lt;chr&gt;          &lt;int&gt; &lt;dbl&gt;
+##  1 Argentina          7  5.37
+##  2 Australia          7  5.37
+##  3 Austria            7  6.09
+##  4 Belgium            7  5.37
+##  5 Brazil            35  5.43
+##  6 Canada            56  5.43
+##  7 Chile              7  6.66
+##  8 Czech Republic    14  6.45
+##  9 Denmark            7  5.37
+## 10 Finland            7  5.95
+## # ... with 14 more rows</code></pre></li>
+</ol>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>decrecientemente por importe de facturación media</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">invoices <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(BillingCountry) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">          </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">med =</span> <span class="kw">mean</span>(Total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">arrange</span>(<span class="kw">desc</span>(med)) <span class="op">%&gt;%</span><span class="st"> </span>collect</code></pre></div>
+<pre><code>## # A tibble: 24 x 3
+##    BillingCountry     n   med
+##    &lt;chr&gt;          &lt;int&gt; &lt;dbl&gt;
+##  1 Chile              7  6.66
+##  2 Hungary            7  6.52
+##  3 Ireland            7  6.52
+##  4 Czech Republic    14  6.45
+##  5 Austria            7  6.09
+##  6 Finland            7  5.95
+##  7 Netherlands        7  5.80
+##  8 India             13  5.79
+##  9 USA               91  5.75
+## 10 Norway             7  5.66
+## # ... with 14 more rows</code></pre></li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">customers &lt;-<span class="st"> </span><span class="kw">tbl</span>(chinook, <span class="st">&quot;customers&quot;</span>)
+<span class="kw">tbl_vars</span>(customers) </code></pre></div>
+<pre><code>##  [1] &quot;CustomerId&quot;   &quot;FirstName&quot;    &quot;LastName&quot;     &quot;Company&quot;     
+##  [5] &quot;Address&quot;      &quot;City&quot;         &quot;State&quot;        &quot;Country&quot;     
+##  [9] &quot;PostalCode&quot;   &quot;Phone&quot;        &quot;Fax&quot;          &quot;Email&quot;       
+## [13] &quot;SupportRepId&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span>customers <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(invoices, <span class="dt">by =</span> <span class="st">&quot;CustomerId&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(FirstName, LastName, Country, Total) 
+<span class="kw">show_query</span>(res)</code></pre></div>
+<pre><code>## &lt;SQL&gt;
+## SELECT `FirstName`, `LastName`, `Country`, `Total`
+## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `LHS`.`FirstName` AS `FirstName`, `LHS`.`LastName` AS `LastName`, `LHS`.`Company` AS `Company`, `LHS`.`Address` AS `Address`, `LHS`.`City` AS `City`, `LHS`.`State` AS `State`, `LHS`.`Country` AS `Country`, `LHS`.`PostalCode` AS `PostalCode`, `LHS`.`Phone` AS `Phone`, `LHS`.`Fax` AS `Fax`, `LHS`.`Email` AS `Email`, `LHS`.`SupportRepId` AS `SupportRepId`, `RHS`.`InvoiceId` AS `InvoiceId`, `RHS`.`InvoiceDate` AS `InvoiceDate`, `RHS`.`BillingAddress` AS `BillingAddress`, `RHS`.`BillingCity` AS `BillingCity`, `RHS`.`BillingState` AS `BillingState`, `RHS`.`BillingCountry` AS `BillingCountry`, `RHS`.`BillingPostalCode` AS `BillingPostalCode`, `RHS`.`Total` AS `Total`
+## FROM `customers` AS `LHS`
+## INNER JOIN `invoices` AS `RHS`
+## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
+## )</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res  <span class="op">%&gt;%</span><span class="st"> </span>collect</code></pre></div>
+<pre><code>## # A tibble: 412 x 4
+##    FirstName LastName  Country Total
+##    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;
+##  1 Luís      Gonçalves Brazil   3.98
+##  2 Luís      Gonçalves Brazil   3.96
+##  3 Luís      Gonçalves Brazil   5.94
+##  4 Luís      Gonçalves Brazil   0.99
+##  5 Luís      Gonçalves Brazil   1.98
+##  6 Luís      Gonçalves Brazil  13.9 
+##  7 Luís      Gonçalves Brazil   8.91
+##  8 Leonie    Köhler    Germany  1.98
+##  9 Leonie    Köhler    Germany 13.9 
+## 10 Leonie    Köhler    Germany  8.91
+## # ... with 402 more rows</code></pre></li>
+<li><p>¿Qué porcentaje de las canciones son video?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracks &lt;-<span class="st"> </span><span class="kw">tbl</span>(chinook, <span class="st">&quot;tracks&quot;</span>)
+<span class="kw">head</span>(tracks) </code></pre></div>
+<pre><code>## # Source:   lazy query [?? x 9]
+## # Database: sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+##   TrackId Name  AlbumId MediaTypeId GenreId Composer Milliseconds  Bytes
+##     &lt;int&gt; &lt;chr&gt;   &lt;int&gt;       &lt;int&gt;   &lt;int&gt; &lt;chr&gt;           &lt;int&gt;  &lt;int&gt;
+## 1       1 For ~       1           1       1 Angus Y~       343719 1.12e7
+## 2       2 Ball~       2           2       1 &lt;NA&gt;           342562 5.51e6
+## 3       3 Fast~       3           2       1 F. Balt~       230619 3.99e6
+## 4       4 Rest~       3           2       1 F. Balt~       252051 4.33e6
+## 5       5 Prin~       3           2       1 Deaffy ~       375418 6.29e6
+## 6       6 Put ~       1           1       1 Angus Y~       205662 6.71e6
+## # ... with 1 more variable: UnitPrice &lt;dbl&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracks <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(MediaTypeId) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>collect <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">freq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n))</code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   MediaTypeId     n    freq
+##         &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+## 1           1  3034 0.866  
+## 2           2   237 0.0677 
+## 3           3   214 0.0611 
+## 4           4     7 0.00200
+## 5           5    11 0.00314</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">media_types &lt;-<span class="st"> </span><span class="kw">tbl</span>(chinook, <span class="st">&quot;media_types&quot;</span>)
+<span class="kw">head</span>(media_types)</code></pre></div>
+<pre><code>## # Source:   lazy query [?? x 2]
+## # Database: sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+##   MediaTypeId Name                       
+##         &lt;int&gt; &lt;chr&gt;                      
+## 1           1 MPEG audio file            
+## 2           2 Protected AAC audio file   
+## 3           3 Protected MPEG-4 video file
+## 4           4 Purchased AAC audio file   
+## 5           5 AAC audio file</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracks <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(media_types, <span class="dt">by =</span> <span class="st">&quot;MediaTypeId&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(Name.y) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span>collect <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">freq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&#39;video&#39;</span>, Name.y))</code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   Name.y                          n   freq
+##   &lt;chr&gt;                       &lt;int&gt;  &lt;dbl&gt;
+## 1 Protected MPEG-4 video file   214 0.0611</code></pre></li>
+<li><p>Listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">customers <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(invoices, <span class="dt">by =</span> <span class="st">&quot;CustomerId&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(CustomerId) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(FirstName, LastName, country, <span class="dt">total =</span> <span class="kw">sum</span>(Total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(total)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span>collect</code></pre></div>
+<pre><code>## # A tibble: 10 x 5
+##    CustomerId FirstName LastName   Country        total
+##         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+##  1          6 Helena    Holý       Czech Republic  49.6
+##  2         26 Richard   Cunningham USA             47.6
+##  3         57 Luis      Rojas      Chile           46.6
+##  4         45 Ladislav  Kovács     Hungary         45.6
+##  5         46 Hugh      O&#39;Reilly   Ireland         45.6
+##  6         28 Julia     Barnett    USA             43.6
+##  7         24 Frank     Ralston    USA             43.6
+##  8         37 Fynn      Zimmermann Germany         43.6
+##  9          7 Astrid    Gruber     Austria         42.6
+## 10         25 Victor    Stevens    USA             42.6</code></pre></li>
+<li><p>Listar los géneros musicales por orden decreciente de popularidad (definida la popularidad como el número de canciones de ese género), indicando el porcentaje de las canciones de ese género.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracks <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(<span class="kw">tbl</span>(chinook, <span class="st">&quot;genres&quot;</span>), <span class="dt">by =</span> <span class="st">&quot;GenreId&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(Name.y) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span>collect <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">freq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n))</code></pre></div>
+<pre><code>## # A tibble: 25 x 3
+##    Name.y                 n   freq
+##    &lt;chr&gt;              &lt;int&gt;  &lt;dbl&gt;
+##  1 Rock                1297 0.370 
+##  2 Latin                579 0.165 
+##  3 Metal                374 0.107 
+##  4 Alternative &amp; Punk   332 0.0948
+##  5 Jazz                 130 0.0371
+##  6 TV Shows              93 0.0265
+##  7 Blues                 81 0.0231
+##  8 Classical             74 0.0211
+##  9 Drama                 64 0.0183
+## 10 R&amp;B/Soul              61 0.0174
+## # ... with 15 more rows</code></pre></li>
+<li><p>Listar los 10 artistas con mayor número de canciones de forma descendente según el número de canciones.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracks <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(<span class="kw">tbl</span>(chinook, <span class="st">&quot;albums&quot;</span>), <span class="dt">by =</span> <span class="st">&quot;AlbumId&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">inner_join</span>(<span class="kw">tbl</span>(chinook, <span class="st">&quot;artists&quot;</span>), <span class="dt">by =</span> <span class="st">&quot;ArtistId&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">count</span>(Name.y) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span>collect</code></pre></div>
+<pre><code>## # A tibble: 204 x 2
+##    Name.y              n
+##    &lt;chr&gt;           &lt;int&gt;
+##  1 Iron Maiden       213
+##  2 U2                135
+##  3 Led Zeppelin      114
+##  4 Metallica         112
+##  5 Deep Purple        92
+##  6 Lost               92
+##  7 Pearl Jam          67
+##  8 Lenny Kravitz      57
+##  9 Various Artists    56
+## 10 The Office         53
+## # ... with 194 more rows</code></pre></li>
+</ol>
+<p>Desconectar la base de datos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DBI<span class="op">::</span><span class="kw">dbDisconnect</span>(chinook)            </code></pre></div>
 
+</div>
 </div>
 <!-- </div> -->
             </section>
@@ -353,6 +666,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.1 Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr) | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.1 Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr) | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2019-12-16" />
+<meta name="date" content="2019-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tecnologias-para-el-tratamiendo-de-datos-masivos.html"/>
-<link rel="next" href="visualizacion-y-generacion-de-cuadros-de-mando.html"/>
+<link rel="prev" href="tecnologias-para-el-tratamiendo-de-datos-masivos.html">
+<link rel="next" href="visualizacion-y-generacion-de-cuadros-de-mando.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,66 +50,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -197,7 +172,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="agrupar-casos-con-group-by.html"><a href="agrupar-casos-con-group-by.html"><i class="fa fa-check"></i><b>4.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
 <li class="chapter" data-level="4.6" data-path="operador-pipe-tuberia-redireccion.html"><a href="operador-pipe-tuberia-redireccion.html"><i class="fa fa-check"></i><b>4.6</b> Operador <em>pipe</em> <strong>%&gt;%</strong> (tubería, redirección)</a></li>
 <li class="chapter" data-level="4.7" data-path="operaciones-con-tablas-de-datos-1.html"><a href="operaciones-con-tablas-de-datos-1.html"><i class="fa fa-check"></i><b>4.7</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a></li>
+<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html#ejemplos-practica-1"><i class="fa fa-check"></i><b>4.8.1</b> Ejemplos (Práctica 1)</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="introduccion-a-tecnologias-nosql.html"><a href="introduccion-a-tecnologias-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a><ul>
 <li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a><ul>
@@ -268,6 +245,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="C.3" data-path="cerrar-conexion.html"><a href="cerrar-conexion.html"><i class="fa fa-check"></i><b>C.3</b> Cerrar conexión</a></li>
 </ul></li>
+<li class="chapter" data-level="D" data-path="introduccion-al-aprendizaje-estadistico.html"><a href="introduccion-al-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D</b> Introducción al Aprendizaje Estadístico</a><ul>
+<li class="chapter" data-level="D.1" data-path="data-science.html"><a href="data-science.html"><i class="fa fa-check"></i><b>D.1</b> Data Science</a><ul>
+<li class="chapter" data-level="D.1.1" data-path="data-science.html"><a href="data-science.html#ventajas-e-inconvenientes"><i class="fa fa-check"></i><b>D.1.1</b> Ventajas e inconvenientes</a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html"><i class="fa fa-check"></i><b>D.2</b> Métodos de aprendizaje estadístico</a><ul>
+<li class="chapter" data-level="D.2.1" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#metodos-de-aprendizaje-supervisado"><i class="fa fa-check"></i><b>D.2.1</b> Métodos (de aprendizaje supervisado):</a></li>
+<li class="chapter" data-level="D.2.2" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#construccion-y-evaluacion-de-los-modelos"><i class="fa fa-check"></i><b>D.2.2</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="D.2.3" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#matriz-de-confusion"><i class="fa fa-check"></i><b>D.2.3</b> Matriz de confusión</a></li>
+<li class="chapter" data-level="D.2.4" data-path="metodos-de-aprendizaje-estadistico.html"><a href="metodos-de-aprendizaje-estadistico.html#predicciones-frente-a-observado"><i class="fa fa-check"></i><b>D.2.4</b> Predicciones frente a observado</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="arboles-de-decision.html"><a href="arboles-de-decision.html"><i class="fa fa-check"></i><b>D.3</b> Arboles de decisión</a></li>
+<li class="chapter" data-level="D.4" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html"><i class="fa fa-check"></i><b>D.4</b> Bagging y Boosting</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bagging-o-agregacion-bootstrap"><i class="fa fa-check"></i><b>D.4.1</b> Bagging o agregación Bootstrap</a></li>
+<li class="chapter" data-level="D.4.2" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#bosques-aleatorios"><i class="fa fa-check"></i><b>D.4.2</b> Bosques Aleatorios</a></li>
+<li class="chapter" data-level="D.4.3" data-path="bagging-y-boosting.html"><a href="bagging-y-boosting.html#boosting"><i class="fa fa-check"></i><b>D.4.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="D.5" data-path="support-vector-machines-svm.html"><a href="support-vector-machines-svm.html"><i class="fa fa-check"></i><b>D.5</b> Support vector machines (SVM)</a></li>
+<li class="chapter" data-level="D.6" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>D.6</b> Modelos lineales (generalizados)</a></li>
+<li class="chapter" data-level="D.7" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html"><i class="fa fa-check"></i><b>D.7</b> Métodos de regularización</a><ul>
+<li class="chapter" data-level="D.7.1" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#ridge-regression"><i class="fa fa-check"></i><b>D.7.1</b> Ridge Regression</a></li>
+<li class="chapter" data-level="D.7.2" data-path="metodos-de-regularizacion.html"><a href="metodos-de-regularizacion.html#lasso"><i class="fa fa-check"></i><b>D.7.2</b> Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="D.8" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html"><i class="fa fa-check"></i><b>D.8</b> Regresión no paramétrica</a><ul>
+<li class="chapter" data-level="D.8.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#modelos-aditivos"><i class="fa fa-check"></i><b>D.8.1</b> Modelos aditivos</a></li>
+</ul></li>
+<li class="chapter" data-level="D.9" data-path="redes-neuronales.html"><a href="redes-neuronales.html"><i class="fa fa-check"></i><b>D.9</b> Redes neuronales</a></li>
+<li class="chapter" data-level="D.10" data-path="bibliografia.html"><a href="bibliografia.html"><i class="fa fa-check"></i><b>D.10</b> Bibliografía</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
@@ -298,79 +303,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>SparkR: es un paquete, el primero que apareció, para conectar R con Spark. Intenta ser lo más parecida a la interfaz estándard de R de manipulación de datos.</p></li>
 <li><p>Sparklyr: es una librería para conectar R con Spark posterior a SparkR. Intenta ser lo más parecida a dplyr y embeber SQL en las consultas, soportando una mayor cantidad de paquetes. Por este motivo es el proyecto más activo actualmente, sustituyendo a SparkR.</p></li>
 </ul>
-<p><img src="images/T3-ecosistema.png" /></p>
+<div class="figure">
+<img src="images/T3-ecosistema.png" />
+
+</div>
 <div id="uso-de-hadoop-con-dos-ejemplos" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Uso de Hadoop con dos ejemplos:</h3>
 <p>Conexión vía SSH a CESGA (siempre con VPN activada!) y ejemplo #1:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">wget  https<span class="op">:</span><span class="er">//</span>packages.revolutionanalytics.com<span class="op">/</span>datasets<span class="op">/</span>claims2.csv </a>
-<a class="sourceLine" id="cb180-2" title="2"></a>
-<a class="sourceLine" id="cb180-3" title="3"><span class="co"># [3 minutos – 1GB/minuto en CESGA]  [recomendada la descarga desde servidor dtn.srv.cesga.es] [copia temp /tmp]</span></a>
-<a class="sourceLine" id="cb180-4" title="4"></a>
-<a class="sourceLine" id="cb180-5" title="5">hadoop fs –mkdir p1<span class="op">/</span></a>
-<a class="sourceLine" id="cb180-6" title="6">hadoop fs <span class="op">-</span>mkdir p1<span class="op">/</span>claims<span class="op">/</span></a>
-<a class="sourceLine" id="cb180-7" title="7">hadoop fs –put claims2.csv p1<span class="op">/</span>claims<span class="op">/</span><span class="st">   </span>[<span class="dv">3</span> segundos]</a>
-<a class="sourceLine" id="cb180-8" title="8">hadoop fs –ls p1<span class="op">/</span>claims<span class="op">/</span></a>
-<a class="sourceLine" id="cb180-9" title="9"></a>
-<a class="sourceLine" id="cb180-10" title="10"><span class="er">$</span><span class="st"> </span>myquota</a>
-<a class="sourceLine" id="cb180-11" title="11"><span class="co"># [1TB en $HOMEBD y 18TB en Hadoop]</span></a>
-<a class="sourceLine" id="cb180-12" title="12"></a>
-<a class="sourceLine" id="cb180-13" title="13"><span class="op">$</span><span class="st"> </span>spark<span class="op">-</span>shell <span class="op">--</span>packages com.databricks<span class="op">:</span>spark<span class="op">-</span>csv_<span class="fl">2.10</span><span class="op">:</span><span class="dv">1</span>.<span class="fl">4.0</span></a>
-<a class="sourceLine" id="cb180-14" title="14"><span class="op">&gt;</span><span class="st"> </span>val sqlContext =<span class="st"> </span>new <span class="kw">org.apache.spark.sql.SQLContext</span>(sc); </a>
-<a class="sourceLine" id="cb180-15" title="15"><span class="op">&gt;</span><span class="st"> </span>val df =<span class="st"> </span><span class="kw">sqlContext.read.format</span>(csv)<span class="kw">.option</span>(header, true)<span class="kw">.load</span>(p1<span class="op">/</span>claims<span class="op">/</span>claims2.csv)</a>
-<a class="sourceLine" id="cb180-16" title="16"><span class="op">&gt;</span><span class="st"> </span><span class="kw">df.count</span>();  <span class="kw">df.first</span>();  <span class="kw">df.take</span>(<span class="dv">5</span>);  <span class="kw">df.printSchema</span>();</a>
-<a class="sourceLine" id="cb180-17" title="17"><span class="op">&gt;</span><span class="st"> </span><span class="kw">df.registerTempTable</span>(TblName)</a>
-<a class="sourceLine" id="cb180-18" title="18"><span class="op">&gt;</span><span class="st"> </span><span class="kw">sqlContext.sql</span>(select <span class="op">*</span><span class="st"> </span>from TblName limit <span class="dv">100</span>)<span class="kw">.take</span>(<span class="dv">100</span>)<span class="kw">.foreach</span>(println)</a>
-<a class="sourceLine" id="cb180-19" title="19"><span class="op">&gt;</span><span class="st"> </span><span class="kw">sqlContext.sql</span>(select <span class="op">*</span><span class="st"> </span>from TblName where <span class="dt">Calendar_year=</span><span class="dv">2005</span>)<span class="kw">.count</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wget  https<span class="op">:</span><span class="er">//</span>packages.revolutionanalytics.com<span class="op">/</span>datasets<span class="op">/</span>claims2.csv 
+
+<span class="co"># [3 minutos – 1GB/minuto en CESGA]  [recomendada la descarga desde servidor dtn.srv.cesga.es] [copia temp /tmp]</span>
+
+hadoop fs –mkdir p1<span class="op">/</span>
+hadoop fs <span class="op">-</span>mkdir p1<span class="op">/</span>claims<span class="op">/</span>
+hadoop fs –put claims2.csv p1<span class="op">/</span>claims<span class="op">/</span><span class="st">   </span>[<span class="dv">3</span> segundos]
+hadoop fs –ls p1<span class="op">/</span>claims<span class="op">/</span>
+
+<span class="er">$</span><span class="st"> </span>myquota
+<span class="co"># [1TB en $HOMEBD y 18TB en Hadoop]</span>
+
+<span class="op">$</span><span class="st"> </span>spark<span class="op">-</span>shell <span class="op">--</span>packages com.databricks<span class="op">:</span>spark<span class="op">-</span>csv_<span class="fl">2.10</span><span class="op">:</span><span class="fl">1.4</span>.<span class="dv">0</span>
+<span class="op">&gt;</span><span class="st"> </span>val sqlContext =<span class="st"> </span>new <span class="kw">org.apache.spark.sql.SQLContext</span>(sc); 
+<span class="op">&gt;</span><span class="st"> </span>val df =<span class="st"> </span><span class="kw">sqlContext.read.format</span>(csv)<span class="kw">.option</span>(header, true)<span class="kw">.load</span>(p1<span class="op">/</span>claims<span class="op">/</span>claims2.csv)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">df.count</span>();  <span class="kw">df.first</span>();  <span class="kw">df.take</span>(<span class="dv">5</span>);  <span class="kw">df.printSchema</span>();
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">df.registerTempTable</span>(TblName)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">sqlContext.sql</span>(select <span class="op">*</span><span class="st"> </span>from TblName limit <span class="dv">100</span>)<span class="kw">.take</span>(<span class="dv">100</span>)<span class="kw">.foreach</span>(println)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">sqlContext.sql</span>(select <span class="op">*</span><span class="st"> </span>from TblName where <span class="dt">Calendar_year=</span><span class="dv">2005</span>)<span class="kw">.count</span>()</code></pre></div>
 <p>Usando Spark-shell pero también podemos realizar ciertos análisis con hive:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="op">$</span><span class="st"> </span>hadoop fs <span class="op">-</span>mkdir bdp</a>
-<a class="sourceLine" id="cb181-2" title="2"><span class="op">$</span><span class="st"> </span>hadoop fs <span class="op">-</span>mkdir bdp<span class="op">/</span>hv_csv_table</a>
-<a class="sourceLine" id="cb181-3" title="3"><span class="op">$</span><span class="st"> </span>hadoop fs <span class="op">-</span>mkdir bdp<span class="op">/</span>hv_csv_table<span class="op">/</span>ip</a>
-<a class="sourceLine" id="cb181-4" title="4"><span class="op">$</span><span class="st"> </span>hadoop fs <span class="op">-</span>put claims2.csv bdp<span class="op">/</span>hv_csv_table<span class="op">/</span>ip</a>
-<a class="sourceLine" id="cb181-5" title="5"></a>
-<a class="sourceLine" id="cb181-6" title="6"><span class="op">$</span><span class="st"> </span>hive      OR   <span class="op">$</span><span class="st"> </span><span class="kw">beeline</span> (recomendado este último por seguridad pero por simplicidad usamos hive en CESGA)</a>
-<a class="sourceLine" id="cb181-7" title="7"></a>
-<a class="sourceLine" id="cb181-8" title="8">CREATE SCHEMA IF NOT EXISTS bdp;</a>
-<a class="sourceLine" id="cb181-9" title="9">CREATE EXTERNAL TABLE IF NOT EXISTS <span class="kw">bdp.hv_csv_table</span> (Row_ID STRING, Household_ID STRING, Vehicle STRING, Calendar_Year STRING, Model_Year STRING, Blind_Make STRING, Blind_Model STRING, Blind_Submodel STRING, Cat1 STRING, Cat2 STRING, Cat3 STRING, Cat4 STRING, Cat5 STRING, Cat6 STRING, Cat7 STRING, Cat8 STRING, Cat9 STRING, Cat10 STRING, Cat11 STRING, Cat12 STRING, OrdCat STRING, Var1 STRING, Var2 STRING, Var3 STRING, Var4 STRING, Var5 STRING, Var6 STRING, Var7 STRING, Var8 STRING, NVCat STRING, NVVar1 STRING, NVVar2 STRING, NVVar3 STRING, NVVar4 STRING, Claim_Amount STRING, veh_age STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span> STORED AS TEXTFILE LOCATION <span class="st">&#39;hdfs://nameservice1/user/cursoXXX/p1/claims/&#39;</span>;</a>
-<a class="sourceLine" id="cb181-10" title="10"></a>
-<a class="sourceLine" id="cb181-11" title="11">SELECT <span class="op">*</span><span class="st"> </span>FROM bdp.hv_csv_table LIMIT <span class="dv">10</span>;</a>
-<a class="sourceLine" id="cb181-12" title="12">SELECT <span class="op">*</span><span class="st"> </span>FROM bdp.hv_csv_table where Calendar_Year=<span class="dv">2005</span> limit <span class="dv">10</span>;</a>
-<a class="sourceLine" id="cb181-13" title="13">SELECT <span class="op">*</span><span class="st"> </span>FROM bdp.hv_csv_table where Calendar_Year<span class="op">&gt;</span><span class="dv">2005</span>;</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">$</span><span class="st"> </span>hadoop fs <span class="op">-</span>mkdir bdp
+<span class="op">$</span><span class="st"> </span>hadoop fs <span class="op">-</span>mkdir bdp<span class="op">/</span>hv_csv_table
+<span class="op">$</span><span class="st"> </span>hadoop fs <span class="op">-</span>mkdir bdp<span class="op">/</span>hv_csv_table<span class="op">/</span>ip
+<span class="op">$</span><span class="st"> </span>hadoop fs <span class="op">-</span>put claims2.csv bdp<span class="op">/</span>hv_csv_table<span class="op">/</span>ip
+
+<span class="op">$</span><span class="st"> </span>hive      OR   <span class="op">$</span><span class="st"> </span><span class="kw">beeline</span> (recomendado este último por seguridad pero por simplicidad usamos hive en CESGA)
+
+CREATE SCHEMA IF NOT EXISTS bdp;
+CREATE EXTERNAL TABLE IF NOT EXISTS <span class="kw">bdp.hv_csv_table</span> (Row_ID STRING, Household_ID STRING, Vehicle STRING, Calendar_Year STRING, Model_Year STRING, Blind_Make STRING, Blind_Model STRING, Blind_Submodel STRING, Cat1 STRING, Cat2 STRING, Cat3 STRING, Cat4 STRING, Cat5 STRING, Cat6 STRING, Cat7 STRING, Cat8 STRING, Cat9 STRING, Cat10 STRING, Cat11 STRING, Cat12 STRING, OrdCat STRING, Var1 STRING, Var2 STRING, Var3 STRING, Var4 STRING, Var5 STRING, Var6 STRING, Var7 STRING, Var8 STRING, NVCat STRING, NVVar1 STRING, NVVar2 STRING, NVVar3 STRING, NVVar4 STRING, Claim_Amount STRING, veh_age STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span> STORED AS TEXTFILE LOCATION <span class="st">&#39;hdfs://nameservice1/user/cursoXXX/p1/claims/&#39;</span>;
+
+SELECT <span class="op">*</span><span class="st"> </span>FROM bdp.hv_csv_table LIMIT <span class="dv">10</span>;
+SELECT <span class="op">*</span><span class="st"> </span>FROM bdp.hv_csv_table where Calendar_Year=<span class="dv">2005</span> limit <span class="dv">10</span>;
+SELECT <span class="op">*</span><span class="st"> </span>FROM bdp.hv_csv_table where Calendar_Year<span class="op">&gt;</span><span class="dv">2005</span>;</code></pre></div>
 <p>Y ejemplo #2:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="co"># Generación de un archivo spanishTexts-ALL y 120-million-word-spanish-corpus.zip  </span></a>
-<a class="sourceLine" id="cb182-2" title="2"><span class="co"># Origen: https://www.kaggle.com/rtatman/120-million-word-spanish-corpus</span></a>
-<a class="sourceLine" id="cb182-3" title="3">hadoop fs –mkdir p2</a>
-<a class="sourceLine" id="cb182-4" title="4">hadoop fs <span class="op">-</span>put <span class="dv">120</span><span class="op">-</span>million<span class="op">-</span>word<span class="op">-</span>spanish<span class="op">-</span>corpus.zip p2</a>
-<a class="sourceLine" id="cb182-5" title="5"></a>
-<a class="sourceLine" id="cb182-6" title="6"><span class="op">$</span><span class="st"> </span>spark<span class="op">-</span>shell</a>
-<a class="sourceLine" id="cb182-7" title="7"><span class="co"># map</span></a>
-<a class="sourceLine" id="cb182-8" title="8">var map =<span class="st"> </span><span class="kw">sc.textFile</span>(p2<span class="op">/</span>spanishTest<span class="op">-</span>ALL)<span class="kw">.flatMap</span>(<span class="dt">line =</span><span class="op">&gt;</span><span class="st"> </span><span class="kw">line.split</span>( ))<span class="kw">.map</span>(<span class="dt">word =</span><span class="op">&gt;</span><span class="st"> </span>(word,<span class="dv">1</span>));</a>
-<a class="sourceLine" id="cb182-9" title="9"><span class="co"># reduce</span></a>
-<a class="sourceLine" id="cb182-10" title="10">var counts =<span class="st"> </span><span class="kw">map.reduceByKey</span>(_ <span class="op">+</span><span class="st"> </span>_);</a>
-<a class="sourceLine" id="cb182-11" title="11"><span class="co"># save the output to file, every time a different directory!!!</span></a>
-<a class="sourceLine" id="cb182-12" title="12"><span class="kw">counts.saveAsTextFile</span>(p2<span class="op">/</span>output)</a>
-<a class="sourceLine" id="cb182-13" title="13"><span class="kw">counts.count</span>() <span class="kw">counts.first</span>() <span class="kw">counts.take</span>(<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb182-14" title="14"><span class="co"># from word -&gt; num to num -&gt; word</span></a>
-<a class="sourceLine" id="cb182-15" title="15"><span class="co"># then sortBy num of occurrence in descending order </span></a>
-<a class="sourceLine" id="cb182-16" title="16">val mostCommon =<span class="st"> </span><span class="kw">counts.map</span>(<span class="dt">p =</span><span class="op">&gt;</span><span class="st"> </span>(p._<span class="dv">2</span>, p._<span class="dv">1</span>))<span class="kw">.sortByKey</span>(false, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb182-17" title="17"><span class="kw">mostCommon.take</span>(<span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generación de un archivo spanishTexts-ALL y 120-million-word-spanish-corpus.zip  </span>
+<span class="co"># Origen: https://www.kaggle.com/rtatman/120-million-word-spanish-corpus</span>
+hadoop fs –mkdir p2
+hadoop fs <span class="op">-</span>put <span class="dv">120</span><span class="op">-</span>million<span class="op">-</span>word<span class="op">-</span>spanish<span class="op">-</span>corpus.zip p2
+
+<span class="op">$</span><span class="st"> </span>spark<span class="op">-</span>shell
+<span class="co"># map</span>
+var map =<span class="st"> </span><span class="kw">sc.textFile</span>(p2<span class="op">/</span>spanishTest<span class="op">-</span>ALL)<span class="kw">.flatMap</span>(<span class="dt">line =</span><span class="op">&gt;</span><span class="st"> </span><span class="kw">line.split</span>( ))<span class="kw">.map</span>(<span class="dt">word =</span><span class="op">&gt;</span><span class="st"> </span>(word,<span class="dv">1</span>));
+<span class="co"># reduce</span>
+var counts =<span class="st"> </span><span class="kw">map.reduceByKey</span>(_ <span class="op">+</span><span class="st"> </span>_);
+<span class="co"># save the output to file, every time a different directory!!!</span>
+<span class="kw">counts.saveAsTextFile</span>(p2<span class="op">/</span>output)
+<span class="kw">counts.count</span>() <span class="kw">counts.first</span>() <span class="kw">counts.take</span>(<span class="dv">5</span>)
+<span class="co"># from word -&gt; num to num -&gt; word</span>
+<span class="co"># then sortBy num of occurrence in descending order </span>
+val mostCommon =<span class="st"> </span><span class="kw">counts.map</span>(<span class="dt">p =</span><span class="op">&gt;</span><span class="st"> </span>(p._<span class="dv">2</span>, p._<span class="dv">1</span>))<span class="kw">.sortByKey</span>(false, <span class="dv">1</span>)
+<span class="kw">mostCommon.take</span>(<span class="dv">50</span>)</code></pre></div>
 </div>
 <div id="uso-de-sparklyr" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Uso de Sparklyr</h3>
 <p>Conexión vía SSH a CESGA (siempre con VPN activada!) y una vez dentro “module load sparklyr” y arrancar R:</p>
-<p><img src="images/T3-sparklyr1.png" /></p>
+<div class="figure">
+<img src="images/T3-sparklyr1.png" />
+
+</div>
 <p>O alternativamente mediante jupyterlab. Para ello hacemos los dos primeros pasos del apartado anterior, conexión vía SSH a CESGA (siempre con VPN activada!) y una vez dentro “module load sparklyr”. Y a continuación escribimos “start-jupyter-lab” y nos conectamos a la URL indicada, desde la cual tendremos acceso a los notebooks Python/R:</p>
-<p><img src="images/T3-sparklyr2.png" /></p>
+<div class="figure">
+<img src="images/T3-sparklyr2.png" />
+
+</div>
 <p>Y dentro del notebook R ya se puede probar el funcionamiento de Sparklyr con los siguientes pasos, cuyo resultado debería ser el que se aprecia a continuación:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="kw">library</span>(sparklyr)</a>
-<a class="sourceLine" id="cb183-2" title="2">sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="dt">master =</span> <span class="st">&quot;yarn-client&quot;</span>, <span class="dt">spark_home =</span> <span class="kw">Sys.getenv</span>(<span class="st">&#39;SPARK_HOME&#39;</span>)) </a>
-<a class="sourceLine" id="cb183-3" title="3">iris_tbl &lt;-<span class="st"> </span><span class="kw">copy_to</span>(sc, iris, <span class="st">&quot;iris&quot;</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb183-4" title="4">iris_tbl</a></code></pre></div>
-<p><img src="images/T3-sparklyr3.png" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sparklyr)
+sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="dt">master =</span> <span class="st">&quot;yarn-client&quot;</span>, <span class="dt">spark_home =</span> <span class="kw">Sys.getenv</span>(<span class="st">&#39;SPARK_HOME&#39;</span>)) 
+iris_tbl &lt;-<span class="st"> </span><span class="kw">copy_to</span>(sc, iris, <span class="st">&quot;iris&quot;</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
+iris_tbl</code></pre></div>
+<div class="figure">
+<img src="images/T3-sparklyr3.png" />
+
+</div>
 <p>NOTA: en ausencia de clúster Hadoop con YARN, o para debugging, también se puede conectar usando las siguientes instrucciones, y obtener elm mismo resultado que en presencia de YARN.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">library</span>(sparklyr)</a>
-<a class="sourceLine" id="cb184-2" title="2">sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="dt">master =</span> <span class="st">&quot;local&quot;</span>)</a>
-<a class="sourceLine" id="cb184-3" title="3">iris_tbl &lt;-<span class="st"> </span><span class="kw">copy_to</span>(sc, iris, <span class="st">&quot;iris&quot;</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb184-4" title="4">iris_tbl</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sparklyr)
+sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="dt">master =</span> <span class="st">&quot;local&quot;</span>)
+iris_tbl &lt;-<span class="st"> </span><span class="kw">copy_to</span>(sc, iris, <span class="st">&quot;iris&quot;</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)
+iris_tbl</code></pre></div>
 </div>
 </div>
             </section>
@@ -424,6 +441,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
