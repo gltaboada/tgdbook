@@ -62,7 +62,7 @@ library(dplyr)
 #' discriminación por cuestión de sexo o raza.
 #' 
 
-load("data/empleados.RData")
+load("empleados.RData")
 
 # Listamos las etiquetas
 # data.frame(Etiquetas = attr(empleados, "variable.labels"))  
@@ -214,7 +214,7 @@ library(dbplyr)
 #' 
 #' Conectar la base de datos:
 
-chinook <- DBI::dbConnect(RSQLite::SQLite(), "data/chinook.db")
+chinook <- DBI::dbConnect(RSQLite::SQLite(), "chinook.db")
 
 #' 
 #' Listar tablas:
