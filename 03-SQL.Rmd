@@ -9,14 +9,14 @@ notes: "https://dbeaver.io/ for 2020 labs"
 Introducción al lenguaje SQL
 ============================
 
-Working draft...
 
 ```{r , child = '_global_options.Rmd'}
 ```
 
-
 Los sistemas de información gestionan repositorios de información en múltiples formatos, 
-siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured Query Language)
+siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured Query Language).
+
+El ejemplo que trabajaremos en este capítulo está disponible en Kaggle: [www.kaggle.com/gltaboada/sqlite-tutorial-in-r](https://www.kaggle.com/gltaboada/sqlite-tutorial-in-r)
 
 ## Bases de Datos Relacionales
 
@@ -100,7 +100,7 @@ La Restricción de integridad referencial nos dice que la clave foránea ha de c
 
 ![](images/IntegridadReferencial.png){width=600px}
 
-Si borramos/actualizamos un valor de clave foránea podemos: (a) prohibir el cambio, o (b) poner a nulo la clave foránea (borrado) o propogar el cambio (modificación).
+Si borramos/actualizamos un valor de clave foránea podemos: (a) prohibir el cambio, o (b) poner a nulo la clave foránea (borrado) o propagar el cambio (modificación).
 
 ***
 
@@ -256,7 +256,7 @@ WHERE Email = 'alexandregb@gmail.com'
 SQL se usa para manipular datos dentro de una base de datos. Si la base de datos no es muy grande se puede cargar toda en un data.frame. 
 No obstante, por escalabilidad y offloading de la carga de trabajo al servidor SGBD utilizaremos SQL.
 
-Existen varios SGBD (SQLite, Microsoft SQL Server, PostgreSQL, etc) los cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada gestor extiende SQL 
+Existen varios SGBD (SQLite, Microsoft SQL Server, MySQL, PostgreSQL, etc) los cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada gestor extiende SQL 
 de formas sutiles buscando minar cierta portabilidad de código (*vendor-locking*). En efecto, un código SQL desarrollado para SQLite es probable que falle con MySQL 
 aunque tras aplicar ligeras modificaciones ya funcionará. Asimismo el mecanismo de conexión, configuración, rendimiento y operación suele diferir entre SGBD.
 
@@ -378,7 +378,7 @@ Ver ejemplo [*citan.zip*](data/citan.zip) y Apéndice \@ref(citan).
 
 ### Setup de RSQLite
 
-Vamos a utilizar [RSQLite](https://cran.r-project.org/web/packages/RSQLite/index.html). La información para su instalación está [en el siguiente enlace](https://db.rstudio.com/databases/sqlite/).
+Vamos a utilizar [RSQLite](https://cran.r-project.org/web/packages/RSQLite/index.html) desde Kaggle. Pero si lo queréis instalar en local La información para su instalación está [en el siguiente enlace](https://db.rstudio.com/databases/sqlite/).
 
 
 ```{r}
@@ -423,8 +423,10 @@ Vamos a utilizar la base de datos [Chinook](https://www.sqlitetutorial.net/wp-co
 
 ![](images/sqlite-sample-database-color.jpg){width=600px}
 
-Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd **antes** del 6 de Noviembre.
+Los ejercicios pedidos en Kaggle [kaggle.com/gltaboada/sqlite-tutorial-in-r](https://www.kaggle.com/gltaboada/sqlite-tutorial-in-r) se entregarán preferentemente antes del **14/10** compartiendo un notebook con las soluciones (¡notebooke privado!) con el usuario **gltaboada**. Antes me tenéis que enviar un email comunicando qué usuario tenéis cada uno. En caso de incidencia me podéis mandar un notebook descargado (.ipynb), o el mecanismo que hayamos acordado previamente. 
 
+
+<!-- Exercises 19-20
 ### Ejercicios de Análisis Exploratorio
 
 La puntuación de esta práctica será -3 más el número de respuestas correctas (puntuación máxima 10). Se valorará especialmente encontrar la solución más sencilla en una única query SQL. 
@@ -454,5 +456,6 @@ La puntuación de esta práctica será -3 más el número de respuestas correcta
 12. Conocer la facturación de los clientes agrupados por su servidor de correo electrónico (e.g., la facturación de los clientes de gmail.com, los de hotmail.com, por orden decreciente de facturación).
 
 13. Ordenar las playlists por la facturación obtenida por sus canciones.
+-->
 
 

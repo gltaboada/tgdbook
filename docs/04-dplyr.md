@@ -371,7 +371,7 @@ src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+## src:  sqlite 3.29.0 [C:\Users\Guillermo LT\Documents\GitHub\tgdbook\data\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items,
 ##   invoices, media_types, playlist_track, playlists, sqlite_sequence,
 ##   sqlite_stat1, tracks
@@ -386,20 +386,21 @@ invoices
 
 ```
 ## # Source:   table<invoices> [?? x 9]
-## # Database: sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+## # Database: sqlite 3.29.0 [C:\Users\Guillermo
+## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
 ##    InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
 ##        <int>      <int> <chr>       <chr>          <chr>       <chr>       
-##  1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   <NA>        
-##  2         2          4 2009-01-02~ Ullevålsveien~ Oslo        <NA>        
-##  3         3          8 2009-01-03~ Grétrystraat ~ Brussels    <NA>        
-##  4         4         14 2009-01-06~ 8210 111 ST NW Edmonton    AB          
-##  5         5         23 2009-01-11~ 69 Salem Stre~ Boston      MA          
-##  6         6         37 2009-01-19~ Berger Straße~ Frankfurt   <NA>        
-##  7         7         38 2009-02-01~ Barbarossastr~ Berlin      <NA>        
-##  8         8         40 2009-02-01~ 8, Rue Hanovre Paris       <NA>        
-##  9         9         42 2009-02-02~ 9, Place Loui~ Bordeaux    <NA>        
-## 10        10         46 2009-02-03~ 3 Chatham Str~ Dublin      Dublin      
-## # ... with more rows, and 3 more variables: BillingCountry <chr>,
+##  1         1          2 2009-01-01… Theodor-Heuss… Stuttgart   <NA>        
+##  2         2          4 2009-01-02… Ullevålsveien… Oslo        <NA>        
+##  3         3          8 2009-01-03… Grétrystraat … Brussels    <NA>        
+##  4         4         14 2009-01-06… 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11… 69 Salem Stre… Boston      MA          
+##  6         6         37 2009-01-19… Berger Straße… Frankfurt   <NA>        
+##  7         7         38 2009-02-01… Barbarossastr… Berlin      <NA>        
+##  8         8         40 2009-02-01… 8, Rue Hanovre Paris       <NA>        
+##  9         9         42 2009-02-02… 9, Place Loui… Bordeaux    <NA>        
+## 10        10         46 2009-02-03… 3 Chatham Str… Dublin      Dublin      
+## # … with more rows, and 3 more variables: BillingCountry <chr>,
 ## #   BillingPostalCode <chr>, Total <dbl>
 ```
 
@@ -435,11 +436,11 @@ str(head(invoices))
 ##  $ src:List of 2
 ##   ..$ con  :Formal class 'SQLiteConnection' [package "RSQLite"] with 7 slots
 ##   .. .. ..@ ptr                :<externalptr> 
-##   .. .. ..@ dbname             : chr "D:\\GitHub\\tgdbook\\data\\chinook.db"
+##   .. .. ..@ dbname             : chr "C:\\Users\\Guillermo LT\\Documents\\GitHub\\tgdbook\\data\\chinook.db"
 ##   .. .. ..@ loadable.extensions: logi TRUE
 ##   .. .. ..@ flags              : int 70
 ##   .. .. ..@ vfs                : chr ""
-##   .. .. ..@ ref                :<environment: 0x0000000018aabe00> 
+##   .. .. ..@ ref                :<environment: 0x00000000130418d8> 
 ##   .. .. ..@ bigint             : chr "integer64"
 ##   ..$ disco: NULL
 ##   ..- attr(*, "class")= chr [1:4] "src_SQLiteConnection" "src_dbi" "src_sql" "src"
@@ -472,14 +473,14 @@ invoices %>% head %>% collect
 ## # A tibble: 6 x 9
 ##   InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
 ##       <int>      <int> <chr>       <chr>          <chr>       <chr>       
-## 1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   <NA>        
-## 2         2          4 2009-01-02~ Ullevålsveien~ Oslo        <NA>        
-## 3         3          8 2009-01-03~ Grétrystraat ~ Brussels    <NA>        
-## 4         4         14 2009-01-06~ 8210 111 ST NW Edmonton    AB          
-## 5         5         23 2009-01-11~ 69 Salem Stre~ Boston      MA          
-## 6         6         37 2009-01-19~ Berger Straße~ Frankfurt   <NA>        
-## # ... with 3 more variables: BillingCountry <chr>,
-## #   BillingPostalCode <chr>, Total <dbl>
+## 1         1          2 2009-01-01… Theodor-Heuss… Stuttgart   <NA>        
+## 2         2          4 2009-01-02… Ullevålsveien… Oslo        <NA>        
+## 3         3          8 2009-01-03… Grétrystraat … Brussels    <NA>        
+## 4         4         14 2009-01-06… 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11… 69 Salem Stre… Boston      MA          
+## 6         6         37 2009-01-19… Berger Straße… Frankfurt   <NA>        
+## # … with 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## #   Total <dbl>
 ```
 
 ```r
@@ -488,7 +489,8 @@ invoices %>% count # número de filas
 
 ```
 ## # Source:   lazy query [?? x 1]
-## # Database: sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+## # Database: sqlite 3.29.0 [C:\Users\Guillermo
+## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -554,7 +556,7 @@ invoices %>% count # número de filas
     ##  8 Czech Republic    14  90.2
     ##  9 Denmark            7  37.6
     ## 10 Finland            7  41.6
-    ## # ... with 14 more rows
+    ## # … with 14 more rows
     ```
 
 3.  Obtener el listado de países junto con su facturación media, ordenado 
@@ -594,7 +596,7 @@ invoices %>% count # número de filas
     ##  8 Czech Republic    14  6.45
     ##  9 Denmark            7  5.37
     ## 10 Finland            7  5.95
-    ## # ... with 14 more rows
+    ## # … with 14 more rows
     ```
 
 (b) decrecientemente por importe de facturación media
@@ -620,7 +622,7 @@ invoices %>% count # número de filas
     ##  8 India             13  5.79
     ##  9 USA               91  5.75
     ## 10 Norway             7  5.66
-    ## # ... with 14 more rows
+    ## # … with 14 more rows
     ```
 
 4.  Obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas 
@@ -633,6 +635,7 @@ invoices %>% count # número de filas
     ```
     
     ```
+    ## <dplyr:::vars>
     ##  [1] "CustomerId"   "FirstName"    "LastName"     "Company"     
     ##  [5] "Address"      "City"         "State"        "Country"     
     ##  [9] "PostalCode"   "Phone"        "Fax"          "Email"       
@@ -672,7 +675,7 @@ invoices %>% count # número de filas
     ##  8 Leonie    Köhler    Germany  1.98
     ##  9 Leonie    Köhler    Germany 13.9 
     ## 10 Leonie    Köhler    Germany  8.91
-    ## # ... with 402 more rows
+    ## # … with 402 more rows
     ```
 
 5.  ¿Qué porcentaje de las canciones son video?
@@ -685,16 +688,17 @@ invoices %>% count # número de filas
     
     ```
     ## # Source:   lazy query [?? x 9]
-    ## # Database: sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+    ## # Database: sqlite 3.29.0 [C:\Users\Guillermo
+    ## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
     ##   TrackId Name  AlbumId MediaTypeId GenreId Composer Milliseconds  Bytes
     ##     <int> <chr>   <int>       <int>   <int> <chr>           <int>  <int>
-    ## 1       1 For ~       1           1       1 Angus Y~       343719 1.12e7
-    ## 2       2 Ball~       2           2       1 <NA>           342562 5.51e6
-    ## 3       3 Fast~       3           2       1 F. Balt~       230619 3.99e6
-    ## 4       4 Rest~       3           2       1 F. Balt~       252051 4.33e6
-    ## 5       5 Prin~       3           2       1 Deaffy ~       375418 6.29e6
-    ## 6       6 Put ~       1           1       1 Angus Y~       205662 6.71e6
-    ## # ... with 1 more variable: UnitPrice <dbl>
+    ## 1       1 For …       1           1       1 Angus Y…       343719 1.12e7
+    ## 2       2 Ball…       2           2       1 <NA>           342562 5.51e6
+    ## 3       3 Fast…       3           2       1 F. Balt…       230619 3.99e6
+    ## 4       4 Rest…       3           2       1 F. Balt…       252051 4.33e6
+    ## 5       5 Prin…       3           2       1 Deaffy …       375418 6.29e6
+    ## 6       6 Put …       1           1       1 Angus Y…       205662 6.71e6
+    ## # … with 1 more variable: UnitPrice <dbl>
     ```
     
     ```r
@@ -720,7 +724,8 @@ invoices %>% count # número de filas
     
     ```
     ## # Source:   lazy query [?? x 2]
-    ## # Database: sqlite 3.29.0 [D:\GitHub\tgdbook\data\chinook.db]
+    ## # Database: sqlite 3.29.0 [C:\Users\Guillermo
+    ## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
     ##   MediaTypeId Name                       
     ##         <int> <chr>                      
     ## 1           1 MPEG audio file            
@@ -792,7 +797,7 @@ invoices %>% count # número de filas
     ##  8 Classical             74 0.0211
     ##  9 Drama                 64 0.0183
     ## 10 R&B/Soul              61 0.0174
-    ## # ... with 15 more rows
+    ## # … with 15 more rows
     ```
 
 8.  Listar los 10 artistas con mayor número de canciones 
@@ -819,7 +824,7 @@ invoices %>% count # número de filas
     ##  8 Lenny Kravitz      57
     ##  9 Various Artists    56
     ## 10 The Office         53
-    ## # ... with 194 more rows
+    ## # … with 194 more rows
     ```
 
 Desconectar la base de datos:

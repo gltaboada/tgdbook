@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="graficos.html"/>
-<link rel="next" href="indices-de-autores.html"/>
+<link rel="prev" href="contenidos.html"/>
+<link rel="next" href="fuentes-de-informacion.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -316,222 +316,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="filtrado-1" class="section level2">
-<h2><span class="header-section-number">B.5</span> Filtrado</h2>
-<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code>
-(se puede emplear cualquier variable de la correspondiente tabla;
-multiple conditions are combined with <code>&amp;</code>, see e.g. <code>dplyr::filter()</code>)
-con la función <code>get.idDocs()</code>.</p>
-<div id="funciones-get" class="section level3">
-<h3><span class="header-section-number">B.5.1</span> Funciones get</h3>
+<div id="planificacion-tentativa" class="section level2">
+<h2><span class="header-section-number">1.2</span> Planificación (tentativa)</h2>
+<p>La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los
+conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: <a href="https://forms.gle/9HR5iFHXoLowrCHLA" class="uri">https://forms.gle/9HR5iFHXoLowrCHLA</a></p>
 <ul>
-<li><p><code>get.idAuthors()</code>: buscar id (códigos) de autores</p>
-<p>Buscar un autor concreto:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1">idAuthor &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, AF <span class="op">==</span><span class="st"> &quot;Cao, Ricardo&quot;</span>)</a>
-<a class="sourceLine" id="cb275-2" title="2">idAuthor</a></code></pre></div>
-<pre><code>## Cao, Ricardo 
-##           16</code></pre>
-<p>Buscar en nombres de autores:</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1">idAuthors &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Cao&#39;</span>, AF))</a>
-<a class="sourceLine" id="cb277-2" title="2">idAuthors</a></code></pre></div>
-<pre><code>##           Cao, Ricardo Cao-Rial, Maria Teresa 
-##                     16                     69</code></pre></li>
-<li><p><code>get.idAreas()</code>: Devuelve códigos de las áreas</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1"><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span>)</a></code></pre></div>
-<pre><code>## Mathematics 
-##          16</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1"><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span> <span class="op">|</span><span class="st"> </span>SC <span class="op">==</span><span class="st"> &#39;Computer Science&#39;</span>)</a></code></pre></div>
-<pre><code>## Computer Science      Mathematics 
-##                7               16</code></pre></li>
-<li><p><code>get.idCategories()</code>: códigos de las categorías</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" title="1"><span class="kw">get.idCategories</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Mathematics&#39;</span>, WC))</a></code></pre></div>
-<pre><code>##                                 Mathematics 
-##                                          28 
-##                        Mathematics, Applied 
-##                                          29 
-## Mathematics, Interdisciplinary Applications 
-##                                          30</code></pre></li>
-<li><p><code>get.idJournals()</code> códigos de las revistas</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" title="1">ijss &lt;-<span class="st"> </span><span class="kw">get.idJournals</span>(db, SO <span class="op">==</span><span class="st"> &#39;JOURNAL OF STATISTICAL SOFTWARE&#39;</span>)</a>
-<a class="sourceLine" id="cb285-2" title="2">ijss</a></code></pre></div>
-<pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
-##                             134</code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" title="1">knitr<span class="op">::</span><span class="kw">kable</span>(db<span class="op">$</span>Journals[ijss, ], <span class="dt">caption =</span> <span class="st">&quot;JSS&quot;</span>)</a></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-15">Tabla B.1: </span>JSS</caption>
-<thead>
-<tr class="header">
-<th></th>
-<th align="right">idj</th>
-<th align="left">SO</th>
-<th align="left">SE</th>
-<th align="left">BS</th>
-<th align="left">LA</th>
-<th align="left">PU</th>
-<th align="left">PI</th>
-<th align="left">PA</th>
-<th align="left">SN</th>
-<th align="left">EI</th>
-<th align="left">J9</th>
-<th align="left">JI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>2796</td>
-<td align="right">134</td>
-<td align="left">JOURNAL OF STATISTICAL SOFTWARE</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">English</td>
-<td align="left">JOURNAL STATISTICAL SOFTWARE</td>
-<td align="left">LOS ANGELES</td>
-<td align="left">UCLA DEPT STATISTICS, 8130 MATH SCIENCES BLDG, BOX 951554, LOS ANGELES, CA 90095-1554 USA</td>
-<td align="left">1548-7660</td>
-<td align="left"></td>
-<td align="left">J STAT SOFTW</td>
-<td align="left">J. Stat. Softw.</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1"><span class="kw">get.idJournals</span>(db, JI <span class="op">==</span><span class="st"> &#39;J. Stat. Softw.&#39;</span>)</a></code></pre></div>
-<pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
-##                             134</code></pre></li>
+<li><p>Clase 1 (14/9): Presentación e introducción a Tema 1.</p></li>
+<li><p>Clase 2 (17/9): Tema 1: Introducción a SQL</p></li>
+<li><p>Clase 3 (21/9-RFC): Seminario Manipulación de datos con R (dplyr)</p></li>
+<li><p>Clase 4 (24/9-RFC): Seminario Manipulación de datos con R (dplyr)</p></li>
+<li><p>Clase 5 (28/9): Tema 1: Ejercicios SQL</p></li>
+<li><p>Clase 6 (1/10): Tema 1: Ejercicios SQL</p></li>
+<li><p>Clase 7 (5/10): Tema 2: Introducción a NoSQL</p></li>
+<li><p>Clase 8 (8/10): Tema 2: Ejercicios NoSQL</p></li>
+<li><p>Clase 9 (19/10): Tema 2: Ejercicios con formatos Open Data</p></li>
+<li><p>Clase 10 (26/10): Tema 3: Ecosistema Big Data</p></li>
+<li><p>Clase 11-20 (2/11 al 3/12): Tema 3: Ecosistema Big Data (teoría, práctica) + Seminario de aprendizaje estadístico (3 sesiones con RFC)</p></li>
+</ul>
+<p>No tendremos clase el 7 de Diciembre.</p>
+<ul>
+<li>Clases 21-23 (10, 14 y 17/12): Tema 3: Ejercicios Big Data</li>
+</ul>
+<!-- Curso 2019-2020
+
+- Clase 1 (12/9-R): Seminario R (Manipulación de datos con el paquete base de R)
+
+- Clase 2 (19/9): Tema 1: Conceptos de bases de datos
+
+- Clase 3 (26/9): Tema 1: Introducción a SQL
+
+- Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
+
+- Clase 5 (10/10): Jornada usuarios R Galicia (cubre objetivos de Seminario aplicaciones Big Data en investigación e industria)
+
+- Clase 6 (17/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
+
+- Clase 7 (24/10): Tema 2: Introducción a NoSQL
+
+- Clase 8 (31/10):  Tema 1: Continuación de ejercicios prácticos SQL
+
+- Clase 9 (7/11):  Tema 2: Ejercicios prácticos de NoSQL
+
+- Clase 10 (14/11):   Seminario visualización con power BI
+
+- Clase 11 (21/11):  Tema 3: Ecosistema Big Data (Hadoop, Spark)
+
+- Clase 12 (28/11):  Tecnologías Big Data (Rspark/sparklyr) + Seminario machine learning CESGA/localhost
+
+- Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos son sparklyr
+
+- Clase 14 (12/12): Tema 3: Prácticas de Aprendizaje Estadístico/Automático, Data Mining con rattle
+
+- Clase 15 (19/12-R): Seminario conectividad dplyr a BBDD
+
+-->
+<div id="evaluacion" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Evaluación</h3>
+<ul>
+<li><p><strong>Examen</strong> (60%): El examen de la materia evaluará los siguientes aspectos:
+Conceptos de la materia: Dominio de los conocimientos teóricos y operativos de la materia.
+Asimilación práctica de materia: Asimilación y comprensión de los conocimientos teóricos y operativos de la materia.</p></li>
+<li><p><strong>Prácticas de laboratorio</strong> (30%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.</p></li>
+<li><p><strong>Trabajos tutelados</strong> (10%): Evaluación de los trabajos tutelados desarrollados por los estudiantes.</p></li>
+</ul>
+<div id="observaciones-sobre-la-evaluacion" class="section level4">
+<h4><span class="header-section-number">1.2.1.1</span> Observaciones sobre la evaluación:</h4>
+<ul>
+<li><p>Las prácticas de laboratorio se realizarán de forma individual, así como el trabajo tutelado que es opcional. En caso de no realizar el trabajo tutelado los estudiantes tendrán un 67% de nota del examen y un 33% de prácticas de laboratorio. El plazo para realizar las 3 prácticas será indicado en la presentación de la práctica. El plazo para la entrega de los trabajos tutelados es el último día de clase de la asignatura.</p></li>
+<li><p>El estudiante que quiera realizar un trabajo tutelado ha de hablar (o mediante correo electrónico) con los profesores para validar y confirmar el tema y alcance del trabajo tutelado.</p></li>
+<li><p>Para poder aprobar la asignatura en la primera oportunidad será necesario obtener como mínimo el 30% de la nota máxima de la suma de las prácticas de laboratorio y trabajos tutelados e, igualmente, el 30% de la nota máxima final de la Prueba mixta (examen), y tener una nota total (prácticas más trabajos tutelados más prueba mixta) igual o superior al 50% de la nota máxima.</p></li>
+<li><p>En la segunda oportunidad solamente se podrá recuperar la nota del examen. Las notas de prácticas y de trabajos tutelados serán las obtenidas durante el curso. Para los alumnos que utilicen la oportunidad adelantada de diciembre se utilizarán las notas de prácticas y trabajos tutelados que obtuvieran en su último curso. En esta oportunidad solo será necesario para aprobar obtener una nota total igual o superior al 50% de la nota máxima.</p></li>
+<li><p>Una vez que un estudiante es evaluado en una práctica de laboratorio o en un trabajo tutelado implica que será calificado. Por tanto, la calificación “No Presentado” no es posible una vez que una práctica/trabajo ha sido evaluada.</p></li>
 </ul>
 </div>
-<div id="obtener-documentos-de-autores-revistas" class="section level3">
-<h3><span class="header-section-number">B.5.2</span> Obtener documentos (de autores, revistas, …)</h3>
-<p>Los indices anteriores se pueden combinar en <code>get.idDocs()</code></p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" title="1">idocs &lt;-<span class="st"> </span><span class="kw">get.idDocs</span>(db, <span class="dt">idAuthors =</span> idAuthor)</a>
-<a class="sourceLine" id="cb290-2" title="2">idocs</a></code></pre></div>
-<pre><code>##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315
-## [18] 332 340 346 347 350 359 362 372 375 384 385</code></pre>
-<p>Los índices de documentos se pueden utilizar como filtro p.e. en <code>summary.wos.db()</code>.</p>
-</div>
-<div id="sumarios-filtrados" class="section level3">
-<h3><span class="header-section-number">B.5.3</span> Sumarios filtrados</h3>
-<p>Obtener sumario de autores:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1"><span class="kw">summary</span>(db, idocs)</a></code></pre></div>
-<pre><code>## Number of documents: 28 
-## Authors: 40 
-## Period: 2008 - 2017 
-## 
-## Document types:
-##                    Documents
-## Article                   26
-## Editorial Material         1
-## Proceedings Paper          1
-## 
-## Number of authors per document:
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   2.000   2.000   3.000   3.143   4.000   6.000 
-## 
-## Number of documents per author:
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##     1.0     1.0     1.0     2.2     2.0    28.0 
-## 
-## Number of times cited:
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00    1.00    2.00    3.25    4.25   14.00 
-## 
-## Indexes:
-## H G 
-## 5 7 
-## 
-## Top Categories:
-##                                                  Documents
-## Statistics &amp; Probability                                26
-## Mathematics, Interdisciplinary Applications              4
-## Computer Science, Interdisciplinary Applications         3
-## Economics                                                2
-## Mathematical &amp; Computational Biology                     2
-## Social Sciences, Mathematical Methods                    2
-## Automation &amp; Control Systems                             1
-## Biochemistry &amp; Molecular Biology                         1
-## Biology                                                  1
-## Business, Finance                                        1
-## Others                                                   4
-## 
-## Top Areas:
-##                                            Documents
-## Mathematics                                       28
-## Computer Science                                   4
-## Business &amp; Economics                               2
-## Mathematical &amp; Computational Biology               2
-## Mathematical Methods In Social Sciences            2
-## Automation &amp; Control Systems                       1
-## Biochemistry &amp; Molecular Biology                   1
-## Chemistry                                          1
-## Instruments &amp; Instrumentation                      1
-## Life Sciences &amp; Biomedicine - Other Topics         1
-## Others                                             1
-## 
-## Top Journals:
-##                          Documents
-## J. Nonparametr. Stat.            4
-## Comput. Stat. Data Anal.         3
-## Comput. Stat.                    3
-## Ann. Inst. Stat. Math.           2
-## Test                             2
-## Stat. Neerl.                     1
-## J. Multivar. Anal.               1
-## J. Time Ser. Anal.               1
-## Stat. Probab. Lett.              1
-## J. Appl. Stat.                   1
-## Others                           9
-## 
-## Top Countries:
-##           Documents
-## Spain            28
-## Belgium           6
-## France            2
-## Germany           2
-## Argentina         1
-## Canada            1
-## India             1
-## Mexico            1
-## Norway            1</code></pre>
-<p>Obtener sumario de autores por años:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" title="1"><span class="kw">summary_year</span>(db, idocs)</a></code></pre></div>
-<pre><code>## 
-## Annual Scientific Production:
-## 
-##      Documents
-## 2008         7
-## 2009         4
-## 2010         4
-## 2011         1
-## 2012         2
-## 2013         3
-## 2014         1
-## 2016         2
-## 2017         4
-## 
-## Annual Authors per Document:
-## 
-##            Avg Median
-##  2008 2.428571    2.0
-##  2009 3.750000    3.5
-##  2010 3.500000    3.5
-##  2011 4.000000    4.0
-##  2012 3.000000    3.0
-##  2013 3.666667    4.0
-##  2014 2.000000    2.0
-##  2016 2.500000    2.5
-##  2017 3.500000    3.5
-## 
-## Annual Times Cited:
-## 
-##       Cites      Avg Median
-##  2008    42 6.000000    6.0
-##  2009    20 5.000000    3.0
-##  2010     9 2.250000    2.0
-##  2011     1 1.000000    1.0
-##  2012     1 0.500000    0.5
-##  2013     8 2.666667    2.0
-##  2014     4 4.000000    4.0
-##  2016     3 1.500000    1.5
-##  2017     3 0.750000    0.5</code></pre>
 </div>
 </div>
             </section>
@@ -539,8 +396,8 @@ con la función <code>get.idDocs()</code>.</p>
           </div>
         </div>
       </div>
-<a href="graficos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="indices-de-autores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="contenidos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fuentes-de-informacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -570,7 +427,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/gltaboada/tgdbook/edit/master/21-scimetr.Rmd",
+"link": "https://github.com/gltaboada/tgdbook/edit/master/01-Introduccion.Rmd",
 "text": "Edit"
 },
 "history": {

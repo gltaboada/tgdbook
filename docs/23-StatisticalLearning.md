@@ -471,7 +471,7 @@ library(glmnet)
 ```
 
 ```
-## Warning: package 'glmnet' was built under R version 3.5.3
+## Warning: package 'glmnet' was built under R version 3.6.3
 ```
 
 El paquete `glmnet` no emplea formulación de modelos, hay que establecer la respuesta
@@ -516,7 +516,7 @@ cv.ridge$lambda.1se
 ```
 
 ```
-## [1] 3.635163
+## [1] 3.017977
 ```
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -528,15 +528,15 @@ coef(cv.ridge)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                      1
-## (Intercept) 5.26333438
-## velocida    1.58051175
-## precio      0.70395775
-## flexprec    2.24798481
-## imgfabri    0.31897738
-## servconj    3.76988236
-## imgfvent    1.07304993
-## calidadp    0.06641356
+##                     1
+## (Intercept) 3.3722695
+## velocida    1.5991955
+## precio      0.7512946
+## flexprec    2.3818230
+## imgfabri    0.2960322
+## servconj    3.9127056
+## imgfvent    1.1068114
+## calidadp    0.1052501
 ```
 
 ### Lasso
@@ -570,14 +570,14 @@ coef(cv.lasso)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     1
-## (Intercept) 4.4757712
-## velocida    0.1020531
-## precio      .        
-## flexprec    2.7202485
-## imgfabri    .        
-## servconj    6.4044378
-## imgfvent    0.4651076
+##                      1
+## (Intercept) 3.49567686
+## velocida    0.09986511
+## precio      .         
+## flexprec    2.78200584
+## imgfabri    .         
+## servconj    6.48863850
+## imgfvent    0.56085667
 ## calidadp    .
 ```
 
@@ -686,8 +686,15 @@ Son modelos hiperparametrizados de difícil interpretación.
     
 ## Bibliografía
 
--   James, G., Witten, D., Hastie, T. y Tibshirani, R. (2013). An
-    Introduction to Statistical Learning: with Aplications in R.
+-   Efron, B. y Hastie, T. (2016). [Computer age statistical inference](http://web.stanford.edu/~hastie/CASI/). 
+    Cambridge University Press.
+
+-   Hastie, T., Tibshirani, R. y Friedman, J. (2017).
+    [The Elements of Statistical Learning: Data Mining, Inference, and Prediction](https://web.stanford.edu/~hastie/ElemStatLearn).
+    Springer.
+
+-   James, G., Witten, D., Hastie, T. y Tibshirani, R. (2017). 
+    [An Introduction to Statistical Learning: with Aplications in R](http://faculty.marshall.usc.edu/gareth-james/ISL).
     Springer.
 
 -   Torgo, L. (2011). Data Mining with R: Learning with Case

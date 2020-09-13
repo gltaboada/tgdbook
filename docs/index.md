@@ -1,7 +1,7 @@
 --- 
 title: "Prácticas de Tecnologías de Gestión y Manipulación de Datos"
 author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)"
-date: "2019-12-19"
+date: "2020-09-14"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -14,7 +14,7 @@ description: "Prácticas de la asignatura de Tecnologías de Gestión de Datos d
 
 # Prólogo {-}
 
-Este libro contiene algunas de las prácticas de la asignatura de [Tecnologías de Gestión de Datos](http://eamo.usc.es/pub/mte/index.php/es/?option=com_content&view=article&id=2202&idm=38&a%C3%B1o=2019) del [Máster interuniversitario en Técnicas Estadísticas](http://eio.usc.es/pub/mte)).
+Este libro contiene algunas de las prácticas de la asignatura de [Tecnologías de Gestión de Datos](http://eamo.usc.es/pub/mte/index.php/es/?option=com_content&view=article&id=2202&idm=38&a%C3%B1o=2020) del [Máster interuniversitario en Técnicas Estadísticas](http://eio.usc.es/pub/mte)).
 
 Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/) y está disponible en el repositorio Github: [gltaboada/tgdbook](https://github.com/gltaboada/tgdbook). 
 Se puede acceder a la versión en línea a través del siguiente enlace:
