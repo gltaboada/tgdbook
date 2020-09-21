@@ -227,10 +227,9 @@ dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt')
 ```
 
 ```
-##  [1] "savedrecs01.txt" "savedrecs02.txt" "savedrecs03.txt"
-##  [4] "savedrecs04.txt" "savedrecs05.txt" "savedrecs06.txt"
-##  [7] "savedrecs07.txt" "savedrecs08.txt" "savedrecs09.txt"
-## [10] "savedrecs10.txt" "savedrecs11.txt" "savedrecs12.txt"
+##  [1] "savedrecs01.txt" "savedrecs02.txt" "savedrecs03.txt" "savedrecs04.txt"
+##  [5] "savedrecs05.txt" "savedrecs06.txt" "savedrecs07.txt" "savedrecs08.txt"
+##  [9] "savedrecs09.txt" "savedrecs10.txt" "savedrecs11.txt" "savedrecs12.txt"
 ## [13] "savedrecs13.txt" "savedrecs14.txt" "savedrecs15.txt"
 ```
 
@@ -595,11 +594,11 @@ con la función `get.idDocs()`.
     knitr::kable(db$Journals[ijss, ], caption = "JSS")
     ```
     
-    \begin{table}[t]
+    \begin{table}
     
     \caption{(\#tab:unnamed-chunk-15)JSS}
     \centering
-    \begin{tabular}{l|r|l|l|l|l|l|l|l|l|l|l|l}
+    \begin{tabular}[t]{l|r|l|l|l|l|l|l|l|l|l|l|l}
     \hline
       & idj & SO & SE & BS & LA & PU & PI & PA & SN & EI & J9 & JI\\
     \hline
@@ -628,8 +627,8 @@ idocs
 ```
 
 ```
-##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315
-## [18] 332 340 346 347 350 359 362 372 375 384 385
+##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315 332 340
+## [20] 346 347 350 359 362 372 375 384 385
 ```
 
 Los índices de documentos se pueden utilizar como filtro p.e. en `summary.wos.db()`.

@@ -4,8 +4,20 @@ Manipulación de datos con R
 
 
 
-La mayoría de los estudios estadísticos
-requieren disponer de un conjunto de datos. 
+En el proceso de análisis de datos, al margen de su obtención y organización, una de las primeras etapas es el acceso y la manipulación de los datos (ver Figura \@ref(fig:esquema2)).
+En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para ello.
+Posteriormente en el Capítulo \@ref(dplyr) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html).
+
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.8\linewidth]{images/esquema2} 
+
+}
+
+\caption{Etapas del proceso}(\#fig:esquema2)
+\end{figure}
+
+
 
 Lectura, importación y exportación de datos
 -------------------------------------------
@@ -45,9 +57,8 @@ ls()
 ```
 
 ```
-##  [1] "citefig"   "citefig2"  "empleados" "fig.path"  "inline"   
-##  [6] "inline2"   "is_html"   "is_latex"  "latexfig"  "latexfig2"
-## [11] "res"
+##  [1] "citefig"   "citefig2"  "empleados" "fig.path"  "inline"    "inline2"  
+##  [7] "is_html"   "is_latex"  "latexfig"  "latexfig2" "res"
 ```
 y para guardar [`save()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save):
 
@@ -237,8 +248,7 @@ df <- do.call('rbind', file.list)
 df <- dplyr::bind_rows(file.list)
 ```
 
-Sin embargo, un procedimiento sencillo consiste en  exportar los datos desde Excel a un archivo
-de texto separado por tabuladores (extensión *.csv*).
+Como alternativa simple se pueden exportar los datos desde Excel a un archivo de texto *separado por comas* (extensión *.csv*).
 Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
 
 -   Desde Excel se selecciona el menú
@@ -271,6 +281,10 @@ más directo con:
 ```r
 datos <- read.csv2("coches.csv")
 ```
+
+Esta forma de proceder, exportando a formato CSV, se puede emplear con otras hojas de cálculo o fuentes de datos. 
+Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el separador de campos será `sep = ","` y el de decimales `dec = ","`, las opciones por defecto en la función `read.csv()`.
+
 
 ### Exportación de datos
 
@@ -376,9 +390,8 @@ cars$speed
 ```
 
 ```
-##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
-## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
-## [47] 24 24 24 25
+##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
+## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25
 ```
 
 ```r
@@ -386,9 +399,8 @@ cars[, 1]  # Equivalente
 ```
 
 ```
-##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
-## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
-## [47] 24 24 24 25
+##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
+## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25
 ```
 Supongamos ahora que queremos transformar la variable original `speed`
 (millas por hora) en una nueva variable `velocidad` (kilómetros por
@@ -471,6 +483,105 @@ exportable a Excel con el siguiente comando:
 ```r
 write.csv2(coches, file = "coches.csv")
 ```
+
+#### Recodificación de variables
+
+Con el comando `cut()` podemos crear variables categóricas a partir de variables numéricas.
+El parámetro `breaks` permite especificar los intervalos para la discretización, puede ser un vector con los extremos de los intervalos o un entero con el número de intervalos.
+Por ejemplo, para categorizar la variable `cars$speed` en tres intervalos equidistantes podemos emplear^[Aunque si el objetivo es obtener las frecuencias de cada intervalo puede ser más eficiente emplear `hist()` con `plot = FALSE`.]:
+
+
+```r
+fspeed <- cut(cars$speed, 3, labels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+##  Baja Media  Alta 
+##    11    24    15
+```
+
+Para categorizar esta variable en tres niveles con aproximadamente el mismo número de observaciones podríamos combinar esta función con `quantile()`:
+
+
+```r
+breaks <- quantile(cars$speed, probs = seq(0, 1, len = 4))
+fspeed <- cut(cars$speed, breaks, labels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+##  Baja Media  Alta 
+##    17    16    15
+```
+
+Para otro tipo de recodificaciones podríamos emplear la función `ifelse()` vectorial:
+
+
+```r
+fspeed <- ifelse(cars$speed < 15, "Baja", "Alta")
+fspeed <- factor(fspeed, levels = c("Baja", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+## Baja Alta 
+##   23   27
+```
+
+Alternativamente en el caso de dos niveles podríamos emplear directamente la función `factor()`:
+
+
+```r
+fspeed <- factor(cars$speed >= 15, labels = c("Baja", "Alta")) # levels = c("FALSE", "TRUE")
+table(fspeed)
+```
+
+```
+## fspeed
+## Baja Alta 
+##   23   27
+```
+
+En el caso de múltiples niveles se podría emplear `ifelse()` anidados:
+
+
+```r
+fspeed <- ifelse(cars$speed < 10, "Baja",
+                 ifelse(cars$speed < 20, "Media", "Alta"))
+fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+##  Baja Media  Alta 
+##     6    32    12
+```
+
+Otra alternativa sería emplear la función [`recode()`](https://www.rdocumentation.org/packages/car/versions/3.0-9/topics/recode) del paquete `car`.
+
+NOTA: Para acceder directamente a las variables de un data.frame podríamos emplear la función `attach()` para añadirlo a la ruta de búsqueda y `detach()` al finalizar.
+Sin embargo esta forma de proceder puede causar numerosos inconvenientes, especialmente al modificar la base de datos, por lo que la recomendación sería emplear `with()`.
+Por ejemplo, podríamos calcular el factor anterior empleando:
+
+
+```r
+fspeed <- with(cars, ifelse(speed < 10, "Baja",
+                 ifelse(speed < 20, "Media", "Alta")))
+fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+##  Baja Media  Alta 
+##     6    32    12
+```
+
 
 ### Operaciones con casos
 
@@ -625,9 +736,21 @@ str(cars[id, 1:2])
 ```
 
 ```r
+# Equivalentemente:
+str(cars[-it, 1:2])
+```
+
+```
+## 'data.frame':	47 obs. of  2 variables:
+##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...
+```
+
+```r
 # Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed
 # ?which.min
 ```
+
 
 ### Funciones `apply`
 
@@ -902,30 +1025,32 @@ tapply(hijos, provincia, mean) # Número medio de hijos por provincia
 ##   0.500000   1.333333   2.000000   2.000000
 ```
 
+Alternativamente se podría emplear la función `aggregate()` que tiene las ventajas de admitir fórmulas y disponer de un método para series de tiempo.
+
+
 ### Operaciones con tablas de datos
 
-Ver ejemplo [*wosdata.R*](data/wosdata.zip)
 
 ***Unir tablas***:
 
-[`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind)
+* [`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind): combina vectores, matrices, arrays o data.frames por filas.
 
-[`cbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind)
+* [`cbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind): Idem por columnas.
+
 
 ***Combinar tablas***:
 
-[`match()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match)
 
-`match(x, table)` devuelve un vector (de la misma longitud que `x`) 
-con las (primeras) posiciones de coincidencia de `x` en `table`
-(o `NA`, por defecto, si no hay coincidencia).
-Para combinar tablas puede ser más cómodo el operador `%in%` (`?'%in%'`).
+* [`match(x, table)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match) devuelve un vector (de la misma longitud que `x`)  con las (primeras) posiciones de coincidencia de `x` en `table` (o `NA`, por defecto, si no hay coincidencia).
 
-[`pmatch()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match)
+    Para realizar consultas combinando tablas puede ser más cómodo el operador `%in%` (`?'%in%'`).
+
+* [`pmatch(x, table, ...)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/pmatch): similar al anterior pero con coincidencias parciales de cadenas de texto. 
 
 
 ## Ejemplo WoS data
 
+Ejemplo [*wosdata.R*](data/wosdata.R) en [*wosdata.zip*](data/wosdata.zip).
 Ver Apéndice \@ref(scimetr).
 
 
@@ -933,7 +1058,7 @@ Ver Apéndice \@ref(scimetr).
 # library(dplyr)
 # library(stringr)
 # https://rubenfcasal.github.io/scimetr/articles/scimetr.html
-library(scimetr)
+# library(scimetr)
 
 db <- readRDS("data/wosdata/db_udc_2015.rds")
 str(db, 1)
@@ -1103,34 +1228,20 @@ db$Journals$JI[iidj]
 ```
 
 ```
-##  [1] "J. Am. Chem. Soc."                 
-##  [2] "Inorg. Chem."                      
-##  [3] "J. Chem. Phys."                    
-##  [4] "J. Chem. Thermodyn."               
-##  [5] "J. Solid State Chem."              
-##  [6] "Chemosphere"                       
-##  [7] "Antimicrob. Agents Chemother."     
-##  [8] "Trac-Trends Anal. Chem."           
-##  [9] "Eur. J. Med. Chem."                
-## [10] "J. Chem. Technol. Biotechnol."     
-## [11] "J. Antimicrob. Chemother."         
-## [12] "Food Chem."                        
-## [13] "Cancer Chemother. Pharmacol."      
-## [14] "Int. J. Chem. Kinet."              
-## [15] "Chem.-Eur. J."                     
-## [16] "J. Phys. Chem. A"                  
-## [17] "New J. Chem."                      
-## [18] "Chem. Commun."                     
-## [19] "Chem. Eng. J."                     
-## [20] "Comb. Chem. High Throughput Screen"
-## [21] "Mini-Rev. Med. Chem."              
-## [22] "Phys. Chem. Chem. Phys."           
-## [23] "Org. Biomol. Chem."                
-## [24] "J. Chem Inf. Model."               
-## [25] "ACS Chem. Biol."                   
-## [26] "Environ. Chem. Lett."              
-## [27] "Anal. Bioanal. Chem."              
-## [28] "J. Cheminformatics"                
+##  [1] "J. Am. Chem. Soc."                  "Inorg. Chem."                      
+##  [3] "J. Chem. Phys."                     "J. Chem. Thermodyn."               
+##  [5] "J. Solid State Chem."               "Chemosphere"                       
+##  [7] "Antimicrob. Agents Chemother."      "Trac-Trends Anal. Chem."           
+##  [9] "Eur. J. Med. Chem."                 "J. Chem. Technol. Biotechnol."     
+## [11] "J. Antimicrob. Chemother."          "Food Chem."                        
+## [13] "Cancer Chemother. Pharmacol."       "Int. J. Chem. Kinet."              
+## [15] "Chem.-Eur. J."                      "J. Phys. Chem. A"                  
+## [17] "New J. Chem."                       "Chem. Commun."                     
+## [19] "Chem. Eng. J."                      "Comb. Chem. High Throughput Screen"
+## [21] "Mini-Rev. Med. Chem."               "Phys. Chem. Chem. Phys."           
+## [23] "Org. Biomol. Chem."                 "J. Chem Inf. Model."               
+## [25] "ACS Chem. Biol."                    "Environ. Chem. Lett."              
+## [27] "Anal. Bioanal. Chem."               "J. Cheminformatics"                
 ## [29] "J. Mat. Chem. B"
 ```
 
@@ -1140,10 +1251,9 @@ which(idd)
 ```
 
 ```
-##  [1]   2   4  16  23  43  69 119 126 138 175 188 190 203 208 226 240 272
-## [18] 337 338 341 342 357 382 385 386 387 388 394 411 412 428 460 483 518
-## [35] 525 584 600 604 605 616 620 665 697 751 753 775 784 796 806 808 847
-## [52] 848
+##  [1]   2   4  16  23  43  69 119 126 138 175 188 190 203 208 226 240 272 337 338
+## [20] 341 342 357 382 385 386 387 388 394 411 412 428 460 483 518 525 584 600 604
+## [39] 605 616 620 665 697 751 753 775 784 796 806 808 847 848
 ```
 
 ```r

@@ -47,6 +47,10 @@ algunos cursos gratuitos:
 
 <!-- -->
 
+- Curso [R CODER](https://r-coder.com/curso-r)
+
+<!-- -->
+
 - Udacity: [Data Analysis with R](https://eu.udacity.com/course/data-analysis-with-r--ud651)
 
 <!-- -->
@@ -97,7 +101,11 @@ Ver: [Cursos MOOC relacionados con R](http://r-es.org/2016/02/12/cursos-masivos-
   En https://bookdown.org está disponible una selección de libros escritos con este paquete 
   (un listado más completo está disponible [aquí](https://bookdown.org/home/archive/)).
   Algunos libros en este formato en castellano son:
-    
+  
+    - [Introducción al Análisis de Datos con R](https://rubenfcasal.github.io/intror)
+      (disponible en el repositorio de GitHub
+      [rubenfcasal/intror](https://github.com/rubenfcasal/intror)). 
+      
     - [Prácticas de Simulación](https://rubenfcasal.github.io/simbook)
       (disponible en el repositorio de GitHub
       [rubenfcasal/simbook](https://github.com/rubenfcasal/simbook)).

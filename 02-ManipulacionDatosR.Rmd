@@ -4,8 +4,15 @@ Manipulación de datos con R
 ```{r , child = '_global_options.Rmd'}
 ```
 
-La mayoría de los estudios estadísticos
-requieren disponer de un conjunto de datos. 
+En el proceso de análisis de datos, al margen de su obtención y organización, una de las primeras etapas es el acceso y la manipulación de los datos (ver Figura \@ref(fig:esquema2)).
+En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para ello.
+Posteriormente en el Capítulo \@ref(dplyr) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html).
+
+```{r esquema2, echo=FALSE, out.width="80%", fig.cap="Etapas del proceso"}
+knitr::include_graphics("images/esquema2.png")
+```
+
+
 
 Lectura, importación y exportación de datos
 -------------------------------------------
@@ -184,8 +191,7 @@ df <- do.call('rbind', file.list)
 df <- dplyr::bind_rows(file.list)
 ```
 
-Sin embargo, un procedimiento sencillo consiste en  exportar los datos desde Excel a un archivo
-de texto separado por tabuladores (extensión *.csv*).
+Como alternativa simple se pueden exportar los datos desde Excel a un archivo de texto *separado por comas* (extensión *.csv*).
 Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
 
 -   Desde Excel se selecciona el menú
@@ -215,6 +221,10 @@ más directo con:
 ```{r, eval=FALSE}
 datos <- read.csv2("coches.csv")
 ```
+
+Esta forma de proceder, exportando a formato CSV, se puede emplear con otras hojas de cálculo o fuentes de datos. 
+Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el separador de campos será `sep = ","` y el de decimales `dec = ","`, las opciones por defecto en la función `read.csv()`.
+
 
 ### Exportación de datos
 
@@ -347,6 +357,63 @@ exportable a Excel con el siguiente comando:
 write.csv2(coches, file = "coches.csv")
 ```
 
+#### Recodificación de variables
+
+Con el comando `cut()` podemos crear variables categóricas a partir de variables numéricas.
+El parámetro `breaks` permite especificar los intervalos para la discretización, puede ser un vector con los extremos de los intervalos o un entero con el número de intervalos.
+Por ejemplo, para categorizar la variable `cars$speed` en tres intervalos equidistantes podemos emplear^[Aunque si el objetivo es obtener las frecuencias de cada intervalo puede ser más eficiente emplear `hist()` con `plot = FALSE`.]:
+
+```{r }
+fspeed <- cut(cars$speed, 3, labels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+Para categorizar esta variable en tres niveles con aproximadamente el mismo número de observaciones podríamos combinar esta función con `quantile()`:
+
+```{r }
+breaks <- quantile(cars$speed, probs = seq(0, 1, len = 4))
+fspeed <- cut(cars$speed, breaks, labels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+Para otro tipo de recodificaciones podríamos emplear la función `ifelse()` vectorial:
+
+```{r }
+fspeed <- ifelse(cars$speed < 15, "Baja", "Alta")
+fspeed <- factor(fspeed, levels = c("Baja", "Alta"))
+table(fspeed)
+```
+
+Alternativamente en el caso de dos niveles podríamos emplear directamente la función `factor()`:
+
+```{r }
+fspeed <- factor(cars$speed >= 15, labels = c("Baja", "Alta")) # levels = c("FALSE", "TRUE")
+table(fspeed)
+```
+
+En el caso de múltiples niveles se podría emplear `ifelse()` anidados:
+
+```{r }
+fspeed <- ifelse(cars$speed < 10, "Baja",
+                 ifelse(cars$speed < 20, "Media", "Alta"))
+fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+Otra alternativa sería emplear la función [`recode()`](https://www.rdocumentation.org/packages/car/versions/3.0-9/topics/recode) del paquete `car`.
+
+NOTA: Para acceder directamente a las variables de un data.frame podríamos emplear la función `attach()` para añadirlo a la ruta de búsqueda y `detach()` al finalizar.
+Sin embargo esta forma de proceder puede causar numerosos inconvenientes, especialmente al modificar la base de datos, por lo que la recomendación sería emplear `with()`.
+Por ejemplo, podríamos calcular el factor anterior empleando:
+
+```{r}
+fspeed <- with(cars, ifelse(speed < 10, "Baja",
+                 ifelse(speed < 20, "Media", "Alta")))
+fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+
 ### Operaciones con casos
 
 #### Ordenación
@@ -413,9 +480,12 @@ cars[it, 1:2]
 
 id <- which(!ii)
 str(cars[id, 1:2])
+# Equivalentemente:
+str(cars[-it, 1:2])
 # Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed
 # ?which.min
 ```
+
 
 ### Funciones `apply`
 
@@ -530,37 +600,39 @@ data.frame(provincia, hijos)
 tapply(hijos, provincia, mean) # Número medio de hijos por provincia
 ```
 
+Alternativamente se podría emplear la función `aggregate()` que tiene las ventajas de admitir fórmulas y disponer de un método para series de tiempo.
+
+
 ### Operaciones con tablas de datos
 
-Ver ejemplo [*wosdata.R*](data/wosdata.zip)
 
 ***Unir tablas***:
 
-[`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind)
+* [`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind): combina vectores, matrices, arrays o data.frames por filas.
 
-[`cbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind)
+* [`cbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind): Idem por columnas.
+
 
 ***Combinar tablas***:
 
-[`match()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match)
 
-`match(x, table)` devuelve un vector (de la misma longitud que `x`) 
-con las (primeras) posiciones de coincidencia de `x` en `table`
-(o `NA`, por defecto, si no hay coincidencia).
-Para combinar tablas puede ser más cómodo el operador `%in%` (`?'%in%'`).
+* [`match(x, table)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match) devuelve un vector (de la misma longitud que `x`)  con las (primeras) posiciones de coincidencia de `x` en `table` (o `NA`, por defecto, si no hay coincidencia).
 
-[`pmatch()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match)
+    Para realizar consultas combinando tablas puede ser más cómodo el operador `%in%` (`?'%in%'`).
+
+* [`pmatch(x, table, ...)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/pmatch): similar al anterior pero con coincidencias parciales de cadenas de texto. 
 
 
 ## Ejemplo WoS data
 
+Ejemplo [*wosdata.R*](data/wosdata.R) en [*wosdata.zip*](data/wosdata.zip).
 Ver Apéndice \@ref(scimetr).
 
 ```{r}
 # library(dplyr)
 # library(stringr)
 # https://rubenfcasal.github.io/scimetr/articles/scimetr.html
-library(scimetr)
+# library(scimetr)
 
 db <- readRDS("data/wosdata/db_udc_2015.rds")
 str(db, 1)

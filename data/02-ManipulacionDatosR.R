@@ -1,8 +1,8 @@
 #' Manipulación de datos con R
 #' ===========================
 #'
-#' La mayoría de los estudios estadísticos
-#' requieren disponer de un conjunto de datos.
+#' En el proceso de análisis de datos, al margen de su obtención y organización,
+#' una de las primeras etapas es el acceso y la manipulación de los datos.
 #'
 #' Lectura, importación y exportación de datos
 #' -------------------------------------------
@@ -175,8 +175,7 @@ read_xlsx <- function(path = '.') {
 
 # df <- dplyr::bind_rows(file.list)
 
-#' Sin embargo, un procedimiento sencillo consiste en  exportar los datos desde Excel a un archivo
-#' de texto separado por tabuladores (extensión *.csv*).
+#' Como alternativa simple se pueden exportar los datos desde Excel a un archivo de texto *separado por comas* (extensión *.csv*).
 #' Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
 #'
 #' -   Desde Excel se selecciona el menú
@@ -204,6 +203,9 @@ datos <- read.table("coches.csv", header = TRUE, sep = ";", dec = ",")
 #' más directo con:
 
 datos <- read.csv2("coches.csv")
+
+#' Esta forma de proceder, exportando a formato CSV, se puede emplear con otras hojas de cálculo o fuentes de datos.
+#' Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el separador de campos será `sep = ","` y el de decimales `dec = ","`, las opciones por defecto en la función `read.csv()`.
 
 #'
 #' ### Exportación de datos
@@ -329,6 +331,59 @@ str(coches)
 #' exportable a Excel con el siguiente comando:
 
 write.csv2(coches, file = "coches.csv")
+
+#'
+#' #### Recodificación de variables
+#'
+#' Con el comando `cut()` podemos crear variables categóricas a partir de variables numéricas.
+#' El parámetro `breaks` permite especificar los intervalos para la discretización, puede ser un vector con los extremos de los intervalos o un entero con el número de intervalos.
+#' Por ejemplo, para categorizar la variable `cars$speed` en tres intervalos equidistantes podemos emplear^[Aunque si el objetivo es obtener las frecuencias de cada intervalo puede ser más eficiente emplear `hist()` con `plot = FALSE`.]:
+#'
+
+fspeed <- cut(cars$speed, 3, labels = c("Baja", "Media", "Alta"))
+table(fspeed)
+
+#'
+#' Para categorizar esta variable en tres niveles con aproximadamente el mismo número de observaciones podríamos combinar esta función con `quantile()`:
+#'
+
+breaks <- quantile(cars$speed, probs = seq(0, 1, len = 4))
+fspeed <- cut(cars$speed, breaks, labels = c("Baja", "Media", "Alta"))
+table(fspeed)
+
+#'
+#' Para otro tipo de recodificaciones podríamos emplear la función `ifelse()` vectorial:
+
+fspeed <- ifelse(cars$speed < 15, "Baja", "Alta")
+fspeed <- factor(fspeed, levels = c("Baja", "Alta"))
+table(fspeed)
+
+#'
+#' Alternativamente en el caso de dos niveles podríamos emplear directamente la función `factor()`:
+
+fspeed <- factor(cars$speed >= 15, labels = c("Baja", "Alta")) # levels = c("FALSE", "TRUE")
+table(fspeed)
+
+#'
+#' En el caso de múltiples niveles se podría emplear `ifelse()` anidados:
+
+fspeed <- ifelse(cars$speed < 10, "Baja",
+                 ifelse(cars$speed < 20, "Media", "Alta"))
+fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+table(fspeed)
+
+#'
+#' Otra alternativa sería emplear la función [`recode()`](https://www.rdocumentation.org/packages/car/versions/3.0-9/topics/recode) del paquete `car`.
+#'
+#' NOTA: Para acceder directamente a las variables de un data.frame podríamos emplear la función `attach()` para añadirlo a la ruta de búsqueda y `detach()` al finalizar.
+#' Sin embargo esta forma de proceder puede causar numerosos inconvenientes, especialmente al modificar la base de datos, por lo que la recomendación sería emplear `with()`.
+#' Por ejemplo, podríamos calcular el factor anterior empleando:
+
+fspeed <- with(cars, ifelse(speed < 10, "Baja",
+                 ifelse(speed < 20, "Media", "Alta")))
+fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+table(fspeed)
+
 
 #'
 #' ### Operaciones con casos
@@ -497,7 +552,7 @@ tapply(hijos, provincia, mean) # Número medio de hijos por provincia
 #'
 #' ### Operaciones con tablas de datos
 #'
-#' Ver ejemplo [*wosdata.zip*](data/wosdata.zip)
+#' Ver ejemplo [*wosdata.R*](data/wosdata.zip)
 #'
 #' ***Unir tablas***:
 #'
@@ -510,6 +565,7 @@ tapply(hijos, provincia, mean) # Número medio de hijos por provincia
 #' [`match()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match)
 #'
 #' [`pmatch()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match)
+
 #'
 #' ## Ejemplo WoS data
 #'
@@ -521,7 +577,14 @@ tapply(hijos, provincia, mean) # Número medio de hijos por provincia
 
 db <- readRDS("data/wosdata/db_udc_2015.rds")
 
+str(db, 1)
+
+variable.labels <- attr(db, "variable.labels")
+knitr::kable(as.data.frame(variable.labels)) # caption = "Variable labels"
+
+#'
 #' Documentos correspondientes a revistas:
+#'
 
 # View(db$Journals)
 iidj <- with(db$Journals, idj[grepl('Chem', JI)])
@@ -533,8 +596,9 @@ which(idd)
 # View(db$Docs[idd, ])
 head(db$Docs[idd, 1:3])
 
-
+#'
 #' Documentos correspondientes a autores:
+#'
 
 # View(db$Authors)
 iida <- with(db$Authors, ida[grepl('Abad', AF)])

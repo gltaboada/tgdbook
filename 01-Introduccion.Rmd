@@ -49,9 +49,8 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 
 - Clase 2 (17/9): Tema 1: Introducción a SQL
 
-- Clase 3 (21/9-RFC): Seminario Manipulación de datos con R (dplyr)
-
-- Clase 4 (24/9-RFC): Seminario Manipulación de datos con R (dplyr)
+- Clase 3 (21/9-RFC): Seminario Manipulación de datos con R 
+- Clase 4 (24/9-RFC): Seminario Manipulación de datos con dplyr
 
 - Clase 5 (28/9): Tema 1: Ejercicios SQL
 

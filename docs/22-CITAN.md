@@ -184,11 +184,6 @@ lbsDescriptiveStats(conn)
 ```
 
 ```
-## Warning: RSQLite::dbGetInfo() is deprecated: please use individual metadata
-## functions instead
-```
-
-```
 ## Number of sources in your LBS:           30787
 ## Number of documents in your LBS:         363
 ## Number of author records in your LBS:    1324
