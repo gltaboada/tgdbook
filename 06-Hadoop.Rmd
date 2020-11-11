@@ -10,9 +10,12 @@ Tecnologías para el Tratamiendo de Datos Masivos
 ================================================
 
 En este apartado trataremos los siguientes epígrafes:
-	+ Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)
-	+ Visualización y generación de cuadros de mando 
-	+ Introducción al análisis de datos masivos.
+
+Tópicos tratados en este capítulo:
+
+1. Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)
+2. Visualización y generación de cuadros de mando 
+3. Introducción al análisis de datos masivos.
 
 
 ![](images/T3-CientificoDatos.png)
