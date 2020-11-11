@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2020-09-21" />
+<meta name="date" content="2020-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,44 +50,74 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -188,25 +218,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1.7" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#otros-search-engines"><i class="fa fa-check"></i><b>5.1.7</b> Otros: search engines</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="conexión-de-r-a-mongodb.html"><a href="conexión-de-r-a-mongodb.html"><i class="fa fa-check"></i><b>5.2</b> Conexión de R a MongoDB</a></li>
-<li class="chapter" data-level="5.3" data-path="práctica-2-nosql.html"><a href="práctica-2-nosql.html"><i class="fa fa-check"></i><b>5.3</b> Práctica 2: NoSQL</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="práctica-2-nosql.html"><a href="práctica-2-nosql.html#ejercicios-con-rmongolite"><i class="fa fa-check"></i><b>5.3.1</b> Ejercicios con RMongolite</a></li>
-</ul></li>
+<li class="chapter" data-level="5.3" data-path="ejercicios-prácticos-con-mongodb.html"><a href="ejercicios-prácticos-con-mongodb.html"><i class="fa fa-check"></i><b>5.3</b> Ejercicios prácticos con MongoDB</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>6</b> Tecnologías para el Tratamiendo de Datos Masivos</a><ul>
-<li class="chapter" data-level="6.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html#uso-de-hadoop-con-dos-ejemplos"><i class="fa fa-check"></i><b>6.1.1</b> Uso de Hadoop con dos ejemplos:</a></li>
-<li class="chapter" data-level="6.1.2" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html#uso-de-sparklyr"><i class="fa fa-check"></i><b>6.1.2</b> Uso de Sparklyr</a></li>
-</ul></li>
+<li class="chapter" data-level="6.0.1" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>6.0.1</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="6.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a></li>
 <li class="chapter" data-level="6.2" data-path="visualización-y-generación-de-cuadros-de-mando.html"><a href="visualización-y-generación-de-cuadros-de-mando.html"><i class="fa fa-check"></i><b>6.2</b> Visualización y Generación de Cuadros de Mando</a></li>
-<li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html#rattle"><i class="fa fa-check"></i><b>6.3.1</b> Rattle</a></li>
-<li class="chapter" data-level="6.3.2" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html#combinando-los-distintos-elementos"><i class="fa fa-check"></i><b>6.3.2</b> Combinando los distintos elementos</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html"><i class="fa fa-check"></i><b>6.4</b> Práctica 3: Big Data</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-a-con-sparklyr"><i class="fa fa-check"></i><b>6.4.1</b> Ejercicio A con sparklyr</a></li>
-<li class="chapter" data-level="6.4.2" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-b-con-rattle"><i class="fa fa-check"></i><b>6.4.2</b> Ejercicio B con rattle</a></li>
-<li class="chapter" data-level="6.4.3" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-c-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio C con sparklyr y Hadoop</a></li>
-</ul></li>
+<li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apendices</b></span></li>
 <li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a><ul>
@@ -296,30 +314,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="filtrado-1" class="section level2">
 <h2><span class="header-section-number">B.5</span> Filtrado</h2>
-<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code> (se puede emplear cualquier variable de la correspondiente tabla; multiple conditions are combined with <code>&amp;</code>, see e.g. <code>dplyr::filter()</code>) con la función <code>get.idDocs()</code>.</p>
+<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code>
+(se puede emplear cualquier variable de la correspondiente tabla;
+multiple conditions are combined with <code>&amp;</code>, see e.g. <code>dplyr::filter()</code>)
+con la función <code>get.idDocs()</code>.</p>
 <div id="funciones-get" class="section level3">
 <h3><span class="header-section-number">B.5.1</span> Funciones get</h3>
 <ul>
 <li><p><code>get.idAuthors()</code>: buscar id (códigos) de autores</p>
 <p>Buscar un autor concreto:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">idAuthor &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, AF <span class="op">==</span><span class="st"> &quot;Cao, Ricardo&quot;</span>)
-idAuthor</code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="filtrado-1.html#cb264-1"></a>idAuthor &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, AF <span class="op">==</span><span class="st"> &quot;Cao, Ricardo&quot;</span>)</span>
+<span id="cb264-2"><a href="filtrado-1.html#cb264-2"></a>idAuthor</span></code></pre></div>
 <pre><code>## Cao, Ricardo 
 ##           16</code></pre>
 <p>Buscar en nombres de autores:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">idAuthors &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Cao&#39;</span>, AF))
-idAuthors</code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="filtrado-1.html#cb266-1"></a>idAuthors &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Cao&#39;</span>, AF))</span>
+<span id="cb266-2"><a href="filtrado-1.html#cb266-2"></a>idAuthors</span></code></pre></div>
 <pre><code>##           Cao, Ricardo Cao-Rial, Maria Teresa 
 ##                     16                     69</code></pre></li>
 <li><p><code>get.idAreas()</code>: Devuelve códigos de las áreas</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="filtrado-1.html#cb268-1"></a><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span>)</span></code></pre></div>
 <pre><code>## Mathematics 
 ##          16</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span> <span class="op">|</span><span class="st"> </span>SC <span class="op">==</span><span class="st"> &#39;Computer Science&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="filtrado-1.html#cb270-1"></a><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span> <span class="op">|</span><span class="st"> </span>SC <span class="op">==</span><span class="st"> &#39;Computer Science&#39;</span>)</span></code></pre></div>
 <pre><code>## Computer Science      Mathematics 
 ##                7               16</code></pre></li>
 <li><p><code>get.idCategories()</code>: códigos de las categorías</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get.idCategories</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Mathematics&#39;</span>, WC))</code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="filtrado-1.html#cb272-1"></a><span class="kw">get.idCategories</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Mathematics&#39;</span>, WC))</span></code></pre></div>
 <pre><code>##                                 Mathematics 
 ##                                          28 
 ##                        Mathematics, Applied 
@@ -327,16 +348,31 @@ idAuthors</code></pre></div>
 ## Mathematics, Interdisciplinary Applications 
 ##                                          30</code></pre></li>
 <li><p><code>get.idJournals()</code> códigos de las revistas</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ijss &lt;-<span class="st"> </span><span class="kw">get.idJournals</span>(db, SO <span class="op">==</span><span class="st"> &#39;JOURNAL OF STATISTICAL SOFTWARE&#39;</span>)
-ijss</code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="filtrado-1.html#cb274-1"></a>ijss &lt;-<span class="st"> </span><span class="kw">get.idJournals</span>(db, SO <span class="op">==</span><span class="st"> &#39;JOURNAL OF STATISTICAL SOFTWARE&#39;</span>)</span>
+<span id="cb274-2"><a href="filtrado-1.html#cb274-2"></a>ijss</span></code></pre></div>
 <pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
 ##                             134</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">kable</span>(db<span class="op">$</span>Journals[ijss, ], <span class="dt">caption =</span> <span class="st">&quot;JSS&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="filtrado-1.html#cb276-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(db<span class="op">$</span>Journals[ijss, ], <span class="dt">caption =</span> <span class="st">&quot;JSS&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-15">Tabla B.1: </span>JSS</caption>
+<colgroup>
+<col width="2%" />
+<col width="1%" />
+<col width="14%" />
+<col width="1%" />
+<col width="1%" />
+<col width="3%" />
+<col width="12%" />
+<col width="5%" />
+<col width="39%" />
+<col width="4%" />
+<col width="1%" />
+<col width="5%" />
+<col width="7%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">idj</th>
 <th align="left">SO</th>
 <th align="left">SE</th>
@@ -353,7 +389,7 @@ ijss</code></pre></div>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2796</td>
+<td align="left">2796</td>
 <td align="right">134</td>
 <td align="left">JOURNAL OF STATISTICAL SOFTWARE</td>
 <td align="left"></td>
@@ -369,7 +405,7 @@ ijss</code></pre></div>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get.idJournals</span>(db, JI <span class="op">==</span><span class="st"> &#39;J. Stat. Softw.&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="filtrado-1.html#cb277-1"></a><span class="kw">get.idJournals</span>(db, JI <span class="op">==</span><span class="st"> &#39;J. Stat. Softw.&#39;</span>)</span></code></pre></div>
 <pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
 ##                             134</code></pre></li>
 </ul>
@@ -377,8 +413,8 @@ ijss</code></pre></div>
 <div id="obtener-documentos-de-autores-revistas" class="section level3">
 <h3><span class="header-section-number">B.5.2</span> Obtener documentos (de autores, revistas, …)</h3>
 <p>Los indices anteriores se pueden combinar en <code>get.idDocs()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">idocs &lt;-<span class="st"> </span><span class="kw">get.idDocs</span>(db, <span class="dt">idAuthors =</span> idAuthor)
-idocs</code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="filtrado-1.html#cb279-1"></a>idocs &lt;-<span class="st"> </span><span class="kw">get.idDocs</span>(db, <span class="dt">idAuthors =</span> idAuthor)</span>
+<span id="cb279-2"><a href="filtrado-1.html#cb279-2"></a>idocs</span></code></pre></div>
 <pre><code>##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315 332 340
 ## [20] 346 347 350 359 362 372 375 384 385</code></pre>
 <p>Los índices de documentos se pueden utilizar como filtro p.e. en <code>summary.wos.db()</code>.</p>
@@ -386,7 +422,7 @@ idocs</code></pre></div>
 <div id="sumarios-filtrados" class="section level3">
 <h3><span class="header-section-number">B.5.3</span> Sumarios filtrados</h3>
 <p>Obtener sumario de autores:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(db, idocs)</code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="filtrado-1.html#cb281-1"></a><span class="kw">summary</span>(db, idocs)</span></code></pre></div>
 <pre><code>## Number of documents: 28 
 ## Authors: 40 
 ## Period: 2008 - 2017 
@@ -467,7 +503,7 @@ idocs</code></pre></div>
 ## Mexico            1
 ## Norway            1</code></pre>
 <p>Obtener sumario de autores por años:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary_year</span>(db, idocs)</code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="filtrado-1.html#cb283-1"></a><span class="kw">summary_year</span>(db, idocs)</span></code></pre></div>
 <pre><code>## 
 ## Annual Scientific Production:
 ## 
@@ -570,7 +606,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

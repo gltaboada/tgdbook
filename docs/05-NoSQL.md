@@ -1,7 +1,7 @@
 Introducción a Tecnologías NoSQL
 ================================
 
-Working draft...
+Son tecnologías de almacenamiento de datos en servicios web altamente escalables.
 
 
 
@@ -139,7 +139,6 @@ install.packages("mongolite")
 
 
 
-
 ```r
 library(mongolite)
 
@@ -150,27 +149,13 @@ my_collection$count
 ```
 
 
+## Ejercicios prácticos con MongoDB
 
-## Práctica 2: NoSQL
+Estos ejercicios se pueden hacer en un notebook Kaggle accediendo a un clúster de MongoDB en el [cloud de MongoDB](https://cloud.mongodb.com). Se carga la base de datos de ejemplo y se puede hacer con la colección de restaurantes (o alternativamente con otras colleciones).
 
+1. Mostrar todos los documentos de la colección restaurants (u otra)
 
-Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato R MarkDown con el nombre de archivo P1-Nombre-Apellidos.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) **antes** del 20 de Noviembre.
-
-### Ejercicios con RMongolite
-
-Realizaremos una serie de ejercicios con la collección [Restaurants] (https://www.w3resource.com/mongodb-exercises/restaurants.zip) importados mediante:
-
-
-```r
-# En Windows
-mongoimport.exe --db=Restaurants --file=D:\DATA\opendata\restaurants.json
-```
-
-La puntuación de esta práctica será el número de respuestas correctas:
-
-1. Mostrar todos los documentos de la colección restaurants (que no se ejecute en el .rmd, sólo la query)
-
-2. Mostrar nombre de restaurante, barrio y cocina de la colección restaurants (que no se ejecute en el .rmd, sólo la query)
+2. Mostrar nombre de restaurante, barrio y cocina de la colección restaurants (o los campos de otra colección)
 
 3. Mostrar los primeros 5 restaurantes del barrio Bronx.
 
@@ -182,7 +167,7 @@ La puntuación de esta práctica será el número de respuestas correctas:
 
 7. Mostrar los restaurantes con un grado "A" y puntuación 9 obtenida en fecha 2014-08-11T00:00:00Z
 
-8. Con valor de 3 puntos, propón un JSON para descargar, indícame la URL, si has de hacer algún proceso antes de importarlo en MongoDB, cómo lo importas, dame un pantallazo del análisis exploratorio de ese JSON y una query que harías contra ese JSON (la query en MongoDB, Compass o RmongoDB)
+8. Propón un JSON para descargar (de algún repositorio OpenData o disponible en un API), indícame la URL, si has de hacer algún proceso antes de importarlo en MongoDB, cómo lo importas, dame un pantallazo del análisis exploratorio de ese JSON y una query que harías contra ese JSON (la query en MongoDB, Compass o RmongoDB)
 
 
 

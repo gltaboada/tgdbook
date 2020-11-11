@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.3 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.3 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2020-09-21" />
+<meta name="date" content="2020-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="visualización-y-generación-de-cuadros-de-mando.html"/>
-<link rel="next" href="práctica-3-big-data.html"/>
+<link rel="next" href="links.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,44 +50,74 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -188,25 +218,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1.7" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#otros-search-engines"><i class="fa fa-check"></i><b>5.1.7</b> Otros: search engines</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="conexión-de-r-a-mongodb.html"><a href="conexión-de-r-a-mongodb.html"><i class="fa fa-check"></i><b>5.2</b> Conexión de R a MongoDB</a></li>
-<li class="chapter" data-level="5.3" data-path="práctica-2-nosql.html"><a href="práctica-2-nosql.html"><i class="fa fa-check"></i><b>5.3</b> Práctica 2: NoSQL</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="práctica-2-nosql.html"><a href="práctica-2-nosql.html#ejercicios-con-rmongolite"><i class="fa fa-check"></i><b>5.3.1</b> Ejercicios con RMongolite</a></li>
-</ul></li>
+<li class="chapter" data-level="5.3" data-path="ejercicios-prácticos-con-mongodb.html"><a href="ejercicios-prácticos-con-mongodb.html"><i class="fa fa-check"></i><b>5.3</b> Ejercicios prácticos con MongoDB</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>6</b> Tecnologías para el Tratamiendo de Datos Masivos</a><ul>
-<li class="chapter" data-level="6.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html#uso-de-hadoop-con-dos-ejemplos"><i class="fa fa-check"></i><b>6.1.1</b> Uso de Hadoop con dos ejemplos:</a></li>
-<li class="chapter" data-level="6.1.2" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html#uso-de-sparklyr"><i class="fa fa-check"></i><b>6.1.2</b> Uso de Sparklyr</a></li>
-</ul></li>
+<li class="chapter" data-level="6.0.1" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>6.0.1</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="6.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a></li>
 <li class="chapter" data-level="6.2" data-path="visualización-y-generación-de-cuadros-de-mando.html"><a href="visualización-y-generación-de-cuadros-de-mando.html"><i class="fa fa-check"></i><b>6.2</b> Visualización y Generación de Cuadros de Mando</a></li>
-<li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html#rattle"><i class="fa fa-check"></i><b>6.3.1</b> Rattle</a></li>
-<li class="chapter" data-level="6.3.2" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html#combinando-los-distintos-elementos"><i class="fa fa-check"></i><b>6.3.2</b> Combinando los distintos elementos</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html"><i class="fa fa-check"></i><b>6.4</b> Práctica 3: Big Data</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-a-con-sparklyr"><i class="fa fa-check"></i><b>6.4.1</b> Ejercicio A con sparklyr</a></li>
-<li class="chapter" data-level="6.4.2" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-b-con-rattle"><i class="fa fa-check"></i><b>6.4.2</b> Ejercicio B con rattle</a></li>
-<li class="chapter" data-level="6.4.3" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-c-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio C con sparklyr y Hadoop</a></li>
-</ul></li>
+<li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apendices</b></span></li>
 <li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a><ul>
@@ -296,73 +314,99 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="introducción-al-análisis-de-datos-masivos" class="section level2">
 <h2><span class="header-section-number">6.3</span> Introducción al Análisis de Datos Masivos</h2>
-<p>En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía Sparklyr, como hemos visto, o para un análisis más visual, Rattle, que se presenta a continuación:</p>
-<div id="rattle" class="section level3">
-<h3><span class="header-section-number">6.3.1</span> Rattle</h3>
-<p>Es un paquete para R, con interfaz gráfica desarrollada en GTK, que permite generar código R para minería de datos. Se instala según los pasos indicados a continuación:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;cairoDevice&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;RGtk2&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;RGtk2&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rattle&quot;</span>)
-<span class="kw">library</span>(rattle)
-<span class="kw">rattle</span>()</code></pre></div>
-<p>Un tutorial adecuado para introducirse en Rattle es <a href="https://www.dummies.com/programming/using-rattle-iris-r-programming/">éste</a></p>
-<div class="figure">
-<img src="images/T3-rattle1.png" />
+<p>En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía sparklyr.</p>
+<!--
 
-</div>
-<p>Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.</p>
-<div class="figure">
-<img src="images/T3-rattle2.png" />
 
-</div>
-<div class="figure">
-<img src="images/T3-rattle3.png" />
+## Práctica 3: Big Data
 
-</div>
-</div>
-<div id="combinando-los-distintos-elementos" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> Combinando los distintos elementos</h3>
-<p>Vamos a seguir <a href="http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-intro.html">un tutorial de análisis de datos de vuelos</a>, adaptándolo al entorno del CESGA.</p>
-<p>En primer lugar, tras conectarnos por ssh al CESGA, y en el mismo directorio en que hemos hecho la conexión, nos descargamos los datos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make download directory</span>
+
+Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato PDF o R MarkDown con el nombre de archivo P3X-Apellidos-Nombre.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) **antes** del miércoles 18 de Diciembre.
+
+### Ejercicio A con sparklyr
+
+
+(3 puntos) Replicación del siguiente ejercicio con sparklyr y el dataset iris (https://spark.rstudio.com/mlib/) en modo local o modo YARN. Puede ser dentro de jupyterlab (así me entregáis archivo “Apellidos-Nombre.ipynb”) o en R remoto o en Rstudio (vía Desktop de visualización) (en estos dos últimos casos entregáis P3A-Apellidos-Nombre.R).
+
+### Ejercicio B con rattle
+
+(4 puntos) Informe (en PDF) sobre uno de los 4 datasets (audit, weather, weatherAUS, wine) que se describen a continuación   https://cran.r-project.org/web/packages/rattle.data/rattle.data.pdf
+Se busca que realicéis un análisis con Rattle, mínimo con las pestañas Explore, Cluster y Model.
+
+### Ejercicio C con sparklyr y Hadoop
+
+(3 puntos) Replicación del siguiente ejercicio con sparklyr en el CESGA, en análisis de los datos del dataset de vuelos:
+http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-flights.html  
+se valorarán análisis adicionales y detalles sobre tiempos de ejecución de los análisis, espera en colas yarn, listado de trabajos spark, etc… 
+
+
+### Combinando los distintos elementos
+
+Vamos a seguir [un tutorial de análisis de datos de vuelos](http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-intro.html), adaptándolo al entorno del CESGA. 
+
+En primer lugar, tras conectarnos por ssh al CESGA, y en el mismo directorio en que hemos hecho la conexión, nos descargamos los datos:
+
+
+```r
+# Make download directory
 mkdir flights
 
-<span class="co"># Download flight data by year</span>
-<span class="cf">for</span> i <span class="cf">in</span> {<span class="dv">1987</span>..<span class="dv">2008</span>}
+# Download flight data by year
+for i in {1987..2008}
   do
-    echo <span class="st">&quot;$(date) $i Download&quot;</span>
-    fnam=<span class="er">$</span>i.csv.bz2
-    wget <span class="op">-</span>O flights<span class="op">/</span><span class="er">$</span>fnam http<span class="op">:</span><span class="er">//</span>stat<span class="op">-</span>computing.org<span class="op">/</span>dataexpo<span class="op">/</span><span class="dv">2009</span><span class="op">/</span><span class="er">$</span>fnam
-    echo <span class="st">&quot;$(date) $i Unzip&quot;</span>
-    bunzip2 flights<span class="op">/</span><span class="er">$</span>fnam
+    echo "$(date) $i Download"
+    fnam=$i.csv.bz2
+    wget -O flights/$fnam http://stat-computing.org/dataexpo/2009/$fnam
+    echo "$(date) $i Unzip"
+    bunzip2 flights/$fnam
   done
 
-<span class="co"># Download airline carrier data</span>
-wget <span class="op">-</span>O airlines.csv http<span class="op">:</span><span class="er">//</span>www.transtats.bts.gov<span class="op">/</span>Download_Lookup.asp?Lookup=L_UNIQUE_CARRIERS
+# Download airline carrier data
+wget -O airlines.csv http://www.transtats.bts.gov/Download_Lookup.asp?Lookup=L_UNIQUE_CARRIERS
 
-<span class="co"># Download airports data</span>
-wget <span class="op">-</span>O airports.csv https<span class="op">:</span><span class="er">//</span>raw.githubusercontent.com<span class="op">/</span>jpatokal<span class="op">/</span>openflights<span class="op">/</span>master<span class="op">/</span>data<span class="op">/</span>airports.dat</code></pre></div>
-<p>Comprobamos que los datos están correctos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">head flights<span class="op">/</span><span class="fl">1987.</span>csv 
+# Download airports data
+wget -O airports.csv https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat
+```
+
+Comprobamos que los datos están correctos:
+
+
+```r
+head flights/1987.csv 
 head airlines.csv
-head airports.csv</code></pre></div>
-<p>Y los copiamos al HDFS a través del comando fs de Hadoop:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Copy flight data to HDFS</span>
-hadoop fs <span class="op">-</span>put flights 
+head airports.csv
+```
 
-<span class="co"># Copy airline data to HDFS</span>
-hadoop fs <span class="op">-</span>mkdir airlines<span class="op">/</span>
-hadoop fs <span class="op">-</span>put airlines.csv airlines
+Y los copiamos al HDFS a través del comando fs de Hadoop:
 
-<span class="co"># Copy airport data to HDFS</span>
-hadoop fs <span class="op">-</span>mkdir airports<span class="op">/</span>
-hadoop fs <span class="op">-</span>put airports.csv airports</code></pre></div>
-<p>A continuación lanzamos la ejecución de ‘hive’:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">$</span><span class="st"> </span>hive</code></pre></div>
-<p>Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los datos en la tabla Hive:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create metadata for flights</span>
+
+```r
+# Copy flight data to HDFS
+hadoop fs -put flights 
+
+# Copy airline data to HDFS
+hadoop fs -mkdir airlines/
+hadoop fs -put airlines.csv airlines
+
+# Copy airport data to HDFS
+hadoop fs -mkdir airports/
+hadoop fs -put airports.csv airports
+```
+
+
+A continuación lanzamos la ejecución de 'hive':
+
+
+```r
+$ hive
+```
+
+
+Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los datos en la tabla Hive:
+
+
+```r
+# Create metadata for flights
 CREATE EXTERNAL TABLE IF NOT EXISTS flights230
 (
 year int,
@@ -396,32 +440,45 @@ securitydelay string,
 lateaircraftdelay string
 )
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span>
-LINES TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>
-<span class="kw">TBLPROPERTIES</span>(<span class="st">&quot;skip.header.line.count&quot;</span>=<span class="st">&quot;1&quot;</span>);
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+TBLPROPERTIES("skip.header.line.count"="1");
 
-<span class="co"># Load data into table</span>
-LOAD DATA INPATH <span class="st">&#39;flights&#39;</span> INTO TABLE flights230;</code></pre></div>
-<p>Ídem para la tabla de aerolíneas, creamos los metadatos y cargamos los datos en la tabla HIVE:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create metadata for airlines</span>
+# Load data into table
+LOAD DATA INPATH 'flights' INTO TABLE flights230;
+```
+
+
+Ídem para la tabla de aerolíneas, creamos los metadatos y cargamos los datos en la tabla HIVE:
+
+
+
+```r
+# Create metadata for airlines
 CREATE EXTERNAL TABLE IF NOT EXISTS airlines
 (
 Code string,
 Description string
 )
-ROW FORMAT SERDE <span class="st">&#39;org.apache.hadoop.hive.serde2.OpenCSVSerde&#39;</span>
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES
 (
-<span class="st">&quot;separatorChar&quot;</span> =<span class="st"> &#39;\,&#39;</span>,
-<span class="st">&quot;quoteChar&quot;</span>     =<span class="st"> &#39;</span><span class="ch">\&quot;</span><span class="st">&#39;</span>
+"separatorChar" = '\,',
+"quoteChar"     = '\"'
 )
 STORED AS TEXTFILE
-<span class="kw">tblproperties</span>(<span class="st">&quot;skip.header.line.count&quot;</span>=<span class="st">&quot;1&quot;</span>);
+tblproperties("skip.header.line.count"="1");
 
-<span class="co"># Load data into table</span>
-LOAD DATA INPATH <span class="st">&#39;airlines&#39;</span> INTO TABLE airlines;</code></pre></div>
-<p>Ídem para la tabla de aeropuertos, creamos los metadatos y cargamos los datos en la tabla HIVE:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create metadata for airports</span>
+# Load data into table
+LOAD DATA INPATH 'airlines' INTO TABLE airlines;
+```
+
+Ídem para la tabla de aeropuertos, creamos los metadatos y cargamos los datos en la tabla HIVE:
+
+
+
+```r
+# Create metadata for airports
 CREATE EXTERNAL TABLE IF NOT EXISTS airports
 (
 id string,
@@ -437,166 +494,365 @@ tz_offset double,
 dst string,
 tz_name string
 )
-ROW FORMAT SERDE <span class="st">&#39;org.apache.hadoop.hive.serde2.OpenCSVSerde&#39;</span>
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES
 (
-<span class="st">&quot;separatorChar&quot;</span> =<span class="st"> &#39;\,&#39;</span>,
-<span class="st">&quot;quoteChar&quot;</span>     =<span class="st"> &#39;</span><span class="ch">\&quot;</span><span class="st">&#39;</span>
+"separatorChar" = '\,',
+"quoteChar"     = '\"'
 )
 STORED AS TEXTFILE;
 
-<span class="co"># Load data into table</span>
-LOAD DATA INPATH <span class="st">&#39;airports&#39;</span> INTO TABLE airports;</code></pre></div>
-<p>Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con ‘sc &lt;- spark_connect(master = “local”)’ )</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Connect to Spark</span>
-<span class="kw">library</span>(sparklyr)
-<span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(ggplot2)
-sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="dt">master =</span> <span class="st">&quot;yarn-client&quot;</span>, <span class="dt">spark_home =</span> <span class="kw">Sys.getenv</span>(<span class="st">&#39;SPARK_HOME&#39;</span>)) 
-sc</code></pre></div>
-<p>Si tenemos problemas para conectar podemos gestionar con YARN los recursos</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ver trabajos en YARN</span>
+# Load data into table
+LOAD DATA INPATH 'airports' INTO TABLE airports;
+```
+
+
+Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con 'sc <- spark_connect(master = "local")' )
+
+
+```r
+# Connect to Spark
+library(sparklyr)
+library(dplyr)
+library(ggplot2)
+sc <- spark_connect(master = "yarn-client", spark_home = Sys.getenv('SPARK_HOME')) 
+sc
+```
+
+
+Si tenemos problemas para conectar podemos gestionar con YARN los recursos
+
+
+```r
+# Ver trabajos en YARN
 yarn top
 
-<span class="co"># Trabajos YARN en ejecución, en espera y aceptados</span>
-yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep RUNNING
-yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep ACCEPTED
-yarn application <span class="op">-</span>list <span class="op">|</span><span class="st"> </span>grep SUBMITTED
+# Trabajos YARN en ejecución, en espera y aceptados
+yarn application -list | grep RUNNING
+yarn application -list | grep ACCEPTED
+yarn application -list | grep SUBMITTED
 
-<span class="co"># Cómo matar un trabajo YARN (si es de nuestro usuario). Indicar el ID de aplicación</span>
-yarn application <span class="op">-</span>kill application_1575999528886_<span class="dv">0161</span></code></pre></div>
-<p>Crear tablas dplyr a tablas HIVE:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cache flights Hive table into Spark</span>
-<span class="co">#tbl_cache(sc, &#39;flights&#39;)</span>
-flights_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;flights230&#39;</span>)
-flights_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cache airlines Hive table into Spark</span>
-<span class="co">#tbl_cache(sc, &#39;airlines&#39;)</span>
-airlines_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;airlines&#39;</span>)
-airlines_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cache airports Hive table into Spark</span>
-<span class="co">#tbl_cache(sc, &#39;airports&#39;)</span>
-airports_tbl &lt;-<span class="st"> </span><span class="kw">tbl</span>(sc, <span class="st">&#39;airports&#39;</span>)
-airports_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
-<p>Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
-out &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">collect</span>()
+# Cómo matar un trabajo YARN (si es de nuestro usuario). Indicar el ID de aplicación
+yarn application -kill application_1575999528886_0161
+```
+
+
+Crear tablas dplyr a tablas HIVE: 
+
+
+
+```r
+# Cache flights Hive table into Spark
+#tbl_cache(sc, 'flights')
+flights_tbl <- tbl(sc, 'flights230')
+flights_tbl %>% print(width = Inf)
+```
+
+
+
+```r
+# Cache airlines Hive table into Spark
+#tbl_cache(sc, 'airlines')
+airlines_tbl <- tbl(sc, 'airlines')
+airlines_tbl %>% print(width = Inf)
+```
+
+
+
+```r
+# Cache airports Hive table into Spark
+#tbl_cache(sc, 'airports')
+airports_tbl <- tbl(sc, 'airports')
+airports_tbl %>% print(width = Inf)
+```
+
+
+
+Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:
+
+
+```r
+system.time({
+out <- flights_tbl %>%
+  group_by(year) %>%
+  count() %>%
+  arrange(year) %>%
+  collect()
 })
 out
-out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</code></pre></div>
-<p>Vuelos con origen LAX (Los Angeles) por año:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
-out &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(origin <span class="op">==</span><span class="st"> &quot;LAX&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">collect</span>()
+out %>% ggplot(aes(x = year, y = n)) + geom_col()
+```
+
+
+Vuelos con origen LAX (Los Angeles) por año:
+
+
+```r
+system.time({
+out <- flights_tbl %>%
+  filter(origin == "LAX") %>%
+  group_by(year) %>%
+  count() %>%
+  arrange(year) %>%
+  collect()
 })
 out
-out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Number of flights from LAX&quot;</span>)</code></pre></div>
-<p>Y listado de países y número de aeropuertos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
-out &lt;-<span class="st"> </span>airports_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(<span class="st">&quot;country&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>()
+out %>% ggplot(aes(x = year, y = n)) + 
+    geom_col() +
+    labs(title = "Number of flights from LAX")
+```
+
+Y listado de países y número de aeropuertos:
+
+
+```r
+system.time({
+out <- airports_tbl %>%
+  group_by("country") %>%
+  count()
 })
-out</code></pre></div>
-<p>Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para ello buscaremos modelar como una regresión lineal la ganancia de un vuelo (gain) como (depdelay - arrdelay) basándose en la distancia, el retraso de la salida y la aerolínea usando datos del período 2003-2007:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Filter records and create target variable &#39;gain&#39;</span>
-<span class="kw">system.time</span>(
-  model_data &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(arrdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(depdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(distance)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">filter</span>(depdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>depdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">240</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">filter</span>(arrdelay <span class="op">&gt;</span><span class="st"> </span><span class="op">-</span><span class="dv">60</span> <span class="op">&amp;</span><span class="st"> </span>arrdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">360</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2003</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">left_join</span>(airlines_tbl, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;uniquecarrier&quot;</span> =<span class="st"> &quot;code&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">gain =</span> depdelay <span class="op">-</span><span class="st"> </span>arrdelay) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">select</span>(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain)
-)
-model_data</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Summarize data by carrier</span>
-model_data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(uniquecarrier) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">description =</span> <span class="kw">min</span>(description), <span class="dt">gain =</span> <span class="kw">mean</span>(gain), 
-            <span class="dt">distance =</span> <span class="kw">mean</span>(distance), <span class="dt">depdelay =</span> <span class="kw">mean</span>(depdelay)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(description, gain, distance, depdelay) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(gain)</code></pre></div>
-<p>Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un vuelo en función de la distancia, retraso en la salida y aerolínea procedemos de este modo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Partition the data into training and validation sets</span>
-model_partition &lt;-<span class="st"> </span>model_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">sdf_partition</span>(<span class="dt">train =</span> <span class="fl">0.8</span>, <span class="dt">valid =</span> <span class="fl">0.2</span>, <span class="dt">seed =</span> <span class="dv">5555</span>)
+out
+```
 
-<span class="co"># Fit a linear model</span>
-<span class="kw">system.time</span>(
-  ml1 &lt;-<span class="st"> </span>model_partition<span class="op">$</span>train <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ml_linear_regression</span>(gain <span class="op">~</span><span class="st"> </span>distance <span class="op">+</span><span class="st"> </span>depdelay <span class="op">+</span><span class="st"> </span>uniquecarrier)
+Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para ello buscaremos modelar como una regresión lineal la ganancia de un vuelo (gain) como (depdelay - arrdelay) basándose en la distancia, el retraso de la salida y la aerolínea usando datos del período 2003-2007:
+
+
+
+```r
+# Filter records and create target variable 'gain'
+system.time(
+  model_data <- flights_tbl %>%
+    filter(!is.na(arrdelay) & !is.na(depdelay) & !is.na(distance)) %>%
+    filter(depdelay > 15 & depdelay < 240) %>%
+    filter(arrdelay > -60 & arrdelay < 360) %>%
+    filter(year >= 2003 & year <= 2007) %>%
+    left_join(airlines_tbl, by = c("uniquecarrier" = "code")) %>%
+    mutate(gain = depdelay - arrdelay) %>%
+    select(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain)
+)
+model_data
+```
+
+
+```r
+# Summarize data by carrier
+model_data %>%
+  group_by(uniquecarrier) %>%
+  summarize(description = min(description), gain = mean(gain), 
+            distance = mean(distance), depdelay = mean(depdelay)) %>%
+  select(description, gain, distance, depdelay) %>%
+  arrange(gain)
+```
+
+
+Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un vuelo en función de la distancia, retraso en la salida y aerolínea procedemos de este modo:
+
+
+
+```r
+# Partition the data into training and validation sets
+model_partition <- model_data %>% 
+  sdf_partition(train = 0.8, valid = 0.2, seed = 5555)
+
+# Fit a linear model
+system.time(
+  ml1 <- model_partition$train %>%
+    ml_linear_regression(gain ~ distance + depdelay + uniquecarrier)
 )
 
-<span class="co"># Summarize the linear model</span>
-<span class="kw">summary</span>(ml1)</code></pre></div>
-<p>A continuación se compara la bondad del modelo con el subconjunto de validación</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate average gains by predicted decile</span>
-<span class="kw">system.time</span>(
-  model_deciles &lt;-<span class="st"> </span><span class="kw">lapply</span>(model_partition, <span class="cf">function</span>(x) {
-    <span class="kw">ml_predict</span>(ml1, x) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">mutate</span>(<span class="dt">decile =</span> <span class="kw">ntile</span>(<span class="kw">desc</span>(prediction), <span class="dv">10</span>)) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">group_by</span>(decile) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">summarize</span>(<span class="dt">gain =</span> <span class="kw">mean</span>(gain)) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">select</span>(decile, gain) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">collect</span>()
+# Summarize the linear model
+summary(ml1)
+```
+
+A continuación se compara la bondad del modelo con el subconjunto de validación
+
+
+```r
+# Calculate average gains by predicted decile
+system.time(
+  model_deciles <- lapply(model_partition, function(x) {
+    ml_predict(ml1, x) %>%
+      mutate(decile = ntile(desc(prediction), 10)) %>%
+      group_by(decile) %>%
+      summarize(gain = mean(gain)) %>%
+      select(decile, gain) %>%
+      collect()
   })
 )
 model_deciles
 
-<span class="co"># Create a summary dataset for plotting</span>
-deciles &lt;-<span class="st"> </span><span class="kw">rbind</span>(
-  <span class="kw">data.frame</span>(<span class="dt">data =</span> <span class="st">&#39;train&#39;</span>, model_deciles<span class="op">$</span>train),
-  <span class="kw">data.frame</span>(<span class="dt">data =</span> <span class="st">&#39;valid&#39;</span>, model_deciles<span class="op">$</span>valid),
-  <span class="dt">make.row.names =</span> <span class="ot">FALSE</span>
+# Create a summary dataset for plotting
+deciles <- rbind(
+  data.frame(data = 'train', model_deciles$train),
+  data.frame(data = 'valid', model_deciles$valid),
+  make.row.names = FALSE
 )
 deciles
 
-<span class="co"># Plot average gains by predicted decile</span>
-deciles <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">factor</span>(decile), gain, <span class="dt">fill =</span> data)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average gain by predicted decile&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Decile&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Minutes&#39;</span>)</code></pre></div>
-<p>Visualizar predicciones usando el año 2008 (no usado en el entrenamiento):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select data from an out of time sample</span>
-data_<span class="dv">2008</span> &lt;-<span class="st"> </span>flights_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(arrdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(depdelay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(distance)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(depdelay <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>depdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">240</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(arrdelay <span class="op">&gt;</span><span class="st"> </span><span class="op">-</span><span class="dv">60</span> <span class="op">&amp;</span><span class="st"> </span>arrdelay <span class="op">&lt;</span><span class="st"> </span><span class="dv">360</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">left_join</span>(airlines_tbl, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;uniquecarrier&quot;</span> =<span class="st"> &quot;code&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gain =</span> depdelay <span class="op">-</span><span class="st"> </span>arrdelay) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain, origin, dest)
-data_<span class="dv">2008</span>
+# Plot average gains by predicted decile
+deciles %>%
+  ggplot(aes(factor(decile), gain, fill = data)) +
+  geom_bar(stat = 'identity', position = 'dodge') +
+  labs(title = 'Average gain by predicted decile', x = 'Decile', y = 'Minutes')
+```
 
-<span class="co"># Summarize data by carrier</span>
-carrier &lt;-<span class="st"> </span><span class="kw">ml_predict</span>(ml1, data_<span class="dv">2008</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(description) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">gain =</span> <span class="kw">mean</span>(gain), <span class="dt">prediction =</span> <span class="kw">mean</span>(prediction), <span class="dt">freq =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(freq <span class="op">&gt;</span><span class="st"> </span><span class="dv">10000</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">collect</span>()
+Visualizar predicciones usando el año 2008 (no usado en el entrenamiento):
+
+
+```r
+# Select data from an out of time sample
+data_2008 <- flights_tbl %>%
+  filter(!is.na(arrdelay) & !is.na(depdelay) & !is.na(distance)) %>%
+  filter(depdelay > 15 & depdelay < 240) %>%
+  filter(arrdelay > -60 & arrdelay < 360) %>%
+  filter(year == 2008) %>%
+  left_join(airlines_tbl, by = c("uniquecarrier" = "code")) %>%
+  mutate(gain = depdelay - arrdelay) %>%
+  select(year, month, arrdelay, depdelay, distance, uniquecarrier, description, gain, origin, dest)
+data_2008
+
+# Summarize data by carrier
+carrier <- ml_predict(ml1, data_2008) %>%
+  group_by(description) %>%
+  summarize(gain = mean(gain), prediction = mean(prediction), freq = n()) %>%
+  filter(freq > 10000) %>%
+  collect()
 carrier
 
-<span class="co"># Plot actual gains and predicted gains by airline carrier</span>
-<span class="kw">ggplot</span>(carrier, <span class="kw">aes</span>(gain, prediction)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">shape =</span> <span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.15</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">substr</span>(description, <span class="dv">1</span>, <span class="dv">20</span>)), <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">vjust =</span> <span class="op">-</span><span class="dv">1</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&#39;Average Gains Forecast&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Actual&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Predicted&#39;</span>)</code></pre></div>
-<p>Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spark_disconnect_all</span>()</code></pre></div>
+# Plot actual gains and predicted gains by airline carrier
+ggplot(carrier, aes(gain, prediction)) + 
+  geom_point(alpha = 0.75, color = 'red', shape = 3) +
+  geom_abline(intercept = 0, slope = 1, alpha = 0.15, color = 'blue') +
+  geom_text(aes(label = substr(description, 1, 20)), size = 3, alpha = 0.75, vjust = -1) +
+  labs(title='Average Gains Forecast', x = 'Actual', y = 'Predicted')
+```
+
+
+Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:
+
+
+```r
+spark_disconnect_all()
+```
+
+
+
+
+
+
+En este tema vamos a ver las tecnologías más relevantes para el tratamiento de datos masivos dentro de R, como son Spark (con sparklyr) dentro del ecosistema Hadoop. Los ejercicios prácticos se realizarán sobre la [plataforma Big Data](http://bigdata.cesga.es/) del [Centro de Supercomputación de Galicia (CESGA)](http://www.cesga.es)
+
+![](images/T3-bigdatacesga.png)
+
+
+
+
+Conexión vía SSH a CESGA (siempre con VPN activada!) y ejemplo #1:
+
+
+
+```r
+wget  https://packages.revolutionanalytics.com/datasets/claims2.csv 
+
+# [3 minutos – 1GB/minuto en CESGA]  [recomendada la descarga desde servidor dtn.srv.cesga.es] [copia temp /tmp]
+
+hadoop fs –mkdir p1/
+hadoop fs -mkdir p1/claims/
+hadoop fs –put claims2.csv p1/claims/   [3 segundos]
+hadoop fs –ls p1/claims/
+
+$ myquota
+# [1TB en $HOMEBD y 18TB en Hadoop]
+
+$ spark-shell --packages com.databricks:spark-csv_2.10:1.4.0
+> val sqlContext = new org.apache.spark.sql.SQLContext(sc); 
+> val df = sqlContext.read.format(csv).option(header, true).load(p1/claims/claims2.csv)
+> df.count();  df.first();  df.take(5);  df.printSchema();
+> df.registerTempTable(TblName)
+> sqlContext.sql(select * from TblName limit 100).take(100).foreach(println)
+> sqlContext.sql(select * from TblName where Calendar_year=2005).count()
+```
+
+Usando Spark-shell pero también podemos realizar ciertos análisis con hive:
+
+
+```r
+$ hadoop fs -mkdir bdp
+$ hadoop fs -mkdir bdp/hv_csv_table
+$ hadoop fs -mkdir bdp/hv_csv_table/ip
+$ hadoop fs -put claims2.csv bdp/hv_csv_table/ip
+
+$ hive      OR   $ beeline (recomendado este último por seguridad pero por simplicidad usamos hive en CESGA)
+
+CREATE SCHEMA IF NOT EXISTS bdp;
+CREATE EXTERNAL TABLE IF NOT EXISTS bdp.hv_csv_table (Row_ID STRING, Household_ID STRING, Vehicle STRING, Calendar_Year STRING, Model_Year STRING, Blind_Make STRING, Blind_Model STRING, Blind_Submodel STRING, Cat1 STRING, Cat2 STRING, Cat3 STRING, Cat4 STRING, Cat5 STRING, Cat6 STRING, Cat7 STRING, Cat8 STRING, Cat9 STRING, Cat10 STRING, Cat11 STRING, Cat12 STRING, OrdCat STRING, Var1 STRING, Var2 STRING, Var3 STRING, Var4 STRING, Var5 STRING, Var6 STRING, Var7 STRING, Var8 STRING, NVCat STRING, NVVar1 STRING, NVVar2 STRING, NVVar3 STRING, NVVar4 STRING, Claim_Amount STRING, veh_age STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION 'hdfs://nameservice1/user/cursoXXX/p1/claims/';
+
+SELECT * FROM bdp.hv_csv_table LIMIT 10;
+SELECT * FROM bdp.hv_csv_table where Calendar_Year=2005 limit 10;
+SELECT * FROM bdp.hv_csv_table where Calendar_Year>2005;
+```
+
+
+
+Y ejemplo #2:
+ 
+
+```r
+# Generación de un archivo spanishTexts-ALL y 120-million-word-spanish-corpus.zip  
+# Origen: https://www.kaggle.com/rtatman/120-million-word-spanish-corpus
+hadoop fs –mkdir p2
+hadoop fs -put 120-million-word-spanish-corpus.zip p2
+
+$ spark-shell
+# map
+var map = sc.textFile(p2/spanishTest-ALL).flatMap(line => line.split( )).map(word => (word,1));
+# reduce
+var counts = map.reduceByKey(_ + _);
+# save the output to file, every time a different directory!!!
+counts.saveAsTextFile(p2/output)
+counts.count() counts.first() counts.take(5)
+# from word -> num to num -> word
+# then sortBy num of occurrence in descending order 
+val mostCommon = counts.map(p => (p._2, p._1)).sortByKey(false, 1)
+mostCommon.take(50)
+```
+
+### Uso de Sparklyr
+
+Conexión vía SSH a CESGA (siempre con VPN activada!) y una vez dentro "module load sparklyr" y arrancar R:
+
+![](images/T3-sparklyr1.png)
+
+Y dentro del notebook R ya se puede probar el funcionamiento de Sparklyr con los siguientes pasos, cuyo resultado debería ser el que se aprecia a continuación:
+
+
+```r
+library(sparklyr)
+sc <- spark_connect(master = "yarn-client", spark_home = Sys.getenv('SPARK_HOME')) 
+iris_tbl <- copy_to(sc, iris, "iris", overwrite = TRUE)
+iris_tbl
+```
+
+![](images/T3-sparklyr3.png)
+
+
+NOTA: en ausencia de clúster Hadoop con YARN, o para debugging, también se puede conectar usando las siguientes instrucciones, y obtener elm mismo resultado que en presencia de YARN.
+
+
+```r
+library(sparklyr)
+sc <- spark_connect(master = "local")
+iris_tbl <- copy_to(sc, iris, "iris", overwrite = TRUE)
+iris_tbl
+```
+
+-->
+
 </div>
+<!-- </div> -->
+
+
+
 </div>
             </section>
 
@@ -604,7 +860,7 @@ carrier
         </div>
       </div>
 <a href="visualización-y-generación-de-cuadros-de-mando.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="práctica-3-big-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="links.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -659,7 +915,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

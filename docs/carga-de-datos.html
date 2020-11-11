@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B.2 Carga de datos | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B.2 Carga de datos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2020-09-21" />
+<meta name="date" content="2020-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,44 +50,74 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -188,25 +218,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1.7" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#otros-search-engines"><i class="fa fa-check"></i><b>5.1.7</b> Otros: search engines</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="conexión-de-r-a-mongodb.html"><a href="conexión-de-r-a-mongodb.html"><i class="fa fa-check"></i><b>5.2</b> Conexión de R a MongoDB</a></li>
-<li class="chapter" data-level="5.3" data-path="práctica-2-nosql.html"><a href="práctica-2-nosql.html"><i class="fa fa-check"></i><b>5.3</b> Práctica 2: NoSQL</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="práctica-2-nosql.html"><a href="práctica-2-nosql.html#ejercicios-con-rmongolite"><i class="fa fa-check"></i><b>5.3.1</b> Ejercicios con RMongolite</a></li>
-</ul></li>
+<li class="chapter" data-level="5.3" data-path="ejercicios-prácticos-con-mongodb.html"><a href="ejercicios-prácticos-con-mongodb.html"><i class="fa fa-check"></i><b>5.3</b> Ejercicios prácticos con MongoDB</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>6</b> Tecnologías para el Tratamiendo de Datos Masivos</a><ul>
-<li class="chapter" data-level="6.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html#uso-de-hadoop-con-dos-ejemplos"><i class="fa fa-check"></i><b>6.1.1</b> Uso de Hadoop con dos ejemplos:</a></li>
-<li class="chapter" data-level="6.1.2" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html#uso-de-sparklyr"><i class="fa fa-check"></i><b>6.1.2</b> Uso de Sparklyr</a></li>
-</ul></li>
+<li class="chapter" data-level="6.0.1" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>6.0.1</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="6.1" data-path="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><a href="tecnologías-big-data-hadoop-spark-hive-rspark-sparklyr.html"><i class="fa fa-check"></i><b>6.1</b> Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)</a></li>
 <li class="chapter" data-level="6.2" data-path="visualización-y-generación-de-cuadros-de-mando.html"><a href="visualización-y-generación-de-cuadros-de-mando.html"><i class="fa fa-check"></i><b>6.2</b> Visualización y Generación de Cuadros de Mando</a></li>
-<li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html#rattle"><i class="fa fa-check"></i><b>6.3.1</b> Rattle</a></li>
-<li class="chapter" data-level="6.3.2" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html#combinando-los-distintos-elementos"><i class="fa fa-check"></i><b>6.3.2</b> Combinando los distintos elementos</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html"><i class="fa fa-check"></i><b>6.4</b> Práctica 3: Big Data</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-a-con-sparklyr"><i class="fa fa-check"></i><b>6.4.1</b> Ejercicio A con sparklyr</a></li>
-<li class="chapter" data-level="6.4.2" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-b-con-rattle"><i class="fa fa-check"></i><b>6.4.2</b> Ejercicio B con rattle</a></li>
-<li class="chapter" data-level="6.4.3" data-path="práctica-3-big-data.html"><a href="práctica-3-big-data.html#ejercicio-c-con-sparklyr-y-hadoop"><i class="fa fa-check"></i><b>6.4.3</b> Ejercicio C con sparklyr y Hadoop</a></li>
-</ul></li>
+<li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apendices</b></span></li>
 <li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a><ul>
@@ -298,276 +316,279 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">B.2</span> Carga de datos</h2>
 <div id="datos-de-ejemplo-1" class="section level3">
 <h3><span class="header-section-number">B.2.1</span> Datos de ejemplo</h3>
-<p>En el paquete se incluyen dos conjuntos de datos de ejemplo correspondientes a la búsqueda en WoS por el campo Organización-Nombre preferido de la UDC (Organization-Enhaced: OG = Universidade da Coruna):</p>
+<p>En el paquete se incluyen dos conjuntos de datos de ejemplo
+correspondientes a la búsqueda en WoS
+por el campo Organización-Nombre preferido de la UDC
+(Organization-Enhaced: OG = Universidade da Coruna):</p>
 <ul>
 <li><p><code>wosdf</code>: año 2015.</p></li>
 <li><p><code>wosdf2</code>: área de investigación ‘Mathematics’, años 2008-2017.</p></li>
 </ul>
 <p>Variables WoS:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># View(wosdf2) # En RStudio...</span>
-variable.labels &lt;-<span class="st"> </span><span class="kw">attr</span>(wosdf, <span class="st">&quot;variable.labels&quot;</span>)
-knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">as.data.frame</span>(variable.labels)) <span class="co"># caption = &quot;Variable labels&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="carga-de-datos.html#cb249-1"></a><span class="co"># View(wosdf2) # En RStudio...</span></span>
+<span id="cb249-2"><a href="carga-de-datos.html#cb249-2"></a>variable.labels &lt;-<span class="st"> </span><span class="kw">attr</span>(wosdf, <span class="st">&quot;variable.labels&quot;</span>)</span>
+<span id="cb249-3"><a href="carga-de-datos.html#cb249-3"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">as.data.frame</span>(variable.labels)) <span class="co"># caption = &quot;Variable labels&quot;</span></span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">variable.labels</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>PT</td>
+<td align="left">PT</td>
 <td align="left">Publication type</td>
 </tr>
 <tr class="even">
-<td>AU</td>
+<td align="left">AU</td>
 <td align="left">Author</td>
 </tr>
 <tr class="odd">
-<td>BA</td>
+<td align="left">BA</td>
 <td align="left">Book authors</td>
 </tr>
 <tr class="even">
-<td>BE</td>
+<td align="left">BE</td>
 <td align="left">Editor</td>
 </tr>
 <tr class="odd">
-<td>GP</td>
+<td align="left">GP</td>
 <td align="left">Group author</td>
 </tr>
 <tr class="even">
-<td>AF</td>
+<td align="left">AF</td>
 <td align="left">Author full</td>
 </tr>
 <tr class="odd">
-<td>BF</td>
+<td align="left">BF</td>
 <td align="left">Book authors fullname</td>
 </tr>
 <tr class="even">
-<td>CA</td>
+<td align="left">CA</td>
 <td align="left">Corporate author</td>
 </tr>
 <tr class="odd">
-<td>TI</td>
+<td align="left">TI</td>
 <td align="left">Title</td>
 </tr>
 <tr class="even">
-<td>SO</td>
+<td align="left">SO</td>
 <td align="left">Publication name</td>
 </tr>
 <tr class="odd">
-<td>SE</td>
+<td align="left">SE</td>
 <td align="left">Series title</td>
 </tr>
 <tr class="even">
-<td>BS</td>
+<td align="left">BS</td>
 <td align="left">Book series</td>
 </tr>
 <tr class="odd">
-<td>LA</td>
+<td align="left">LA</td>
 <td align="left">Language</td>
 </tr>
 <tr class="even">
-<td>DT</td>
+<td align="left">DT</td>
 <td align="left">Document type</td>
 </tr>
 <tr class="odd">
-<td>CT</td>
+<td align="left">CT</td>
 <td align="left">Conference title</td>
 </tr>
 <tr class="even">
-<td>CY</td>
+<td align="left">CY</td>
 <td align="left">Conference year</td>
 </tr>
 <tr class="odd">
-<td>CL</td>
+<td align="left">CL</td>
 <td align="left">Conference place</td>
 </tr>
 <tr class="even">
-<td>SP</td>
+<td align="left">SP</td>
 <td align="left">Conference sponsors</td>
 </tr>
 <tr class="odd">
-<td>HO</td>
+<td align="left">HO</td>
 <td align="left">Conference host</td>
 </tr>
 <tr class="even">
-<td>DE</td>
+<td align="left">DE</td>
 <td align="left">Keywords</td>
 </tr>
 <tr class="odd">
-<td>ID</td>
+<td align="left">ID</td>
 <td align="left">Keywords Plus</td>
 </tr>
 <tr class="even">
-<td>AB</td>
+<td align="left">AB</td>
 <td align="left">Abstract</td>
 </tr>
 <tr class="odd">
-<td>C1</td>
+<td align="left">C1</td>
 <td align="left">Addresses</td>
 </tr>
 <tr class="even">
-<td>RP</td>
+<td align="left">RP</td>
 <td align="left">Reprint author</td>
 </tr>
 <tr class="odd">
-<td>EM</td>
+<td align="left">EM</td>
 <td align="left">Author email</td>
 </tr>
 <tr class="even">
-<td>RI</td>
+<td align="left">RI</td>
 <td align="left">Researcher id numbers</td>
 </tr>
 <tr class="odd">
-<td>OI</td>
+<td align="left">OI</td>
 <td align="left">Orcid numbers</td>
 </tr>
 <tr class="even">
-<td>FU</td>
+<td align="left">FU</td>
 <td align="left">Funding agency and grant number</td>
 </tr>
 <tr class="odd">
-<td>FX</td>
+<td align="left">FX</td>
 <td align="left">Funding text</td>
 </tr>
 <tr class="even">
-<td>CR</td>
+<td align="left">CR</td>
 <td align="left">Cited references</td>
 </tr>
 <tr class="odd">
-<td>NR</td>
+<td align="left">NR</td>
 <td align="left">Number of cited references</td>
 </tr>
 <tr class="even">
-<td>TC</td>
+<td align="left">TC</td>
 <td align="left">Times cited</td>
 </tr>
 <tr class="odd">
-<td>Z9</td>
+<td align="left">Z9</td>
 <td align="left">Total times cited count</td>
 </tr>
 <tr class="even">
-<td>U1</td>
+<td align="left">U1</td>
 <td align="left">Usage Count (Last 180 Days)</td>
 </tr>
 <tr class="odd">
-<td>U2</td>
+<td align="left">U2</td>
 <td align="left">Usage Count (Since 2013)</td>
 </tr>
 <tr class="even">
-<td>PU</td>
+<td align="left">PU</td>
 <td align="left">Publisher</td>
 </tr>
 <tr class="odd">
-<td>PI</td>
+<td align="left">PI</td>
 <td align="left">Publisher city</td>
 </tr>
 <tr class="even">
-<td>PA</td>
+<td align="left">PA</td>
 <td align="left">Publisher address</td>
 </tr>
 <tr class="odd">
-<td>SN</td>
+<td align="left">SN</td>
 <td align="left">ISSN</td>
 </tr>
 <tr class="even">
-<td>EI</td>
+<td align="left">EI</td>
 <td align="left">eISSN</td>
 </tr>
 <tr class="odd">
-<td>BN</td>
+<td align="left">BN</td>
 <td align="left">ISBN</td>
 </tr>
 <tr class="even">
-<td>J9</td>
+<td align="left">J9</td>
 <td align="left">Journal.ISI</td>
 </tr>
 <tr class="odd">
-<td>JI</td>
+<td align="left">JI</td>
 <td align="left">Journal.ISO</td>
 </tr>
 <tr class="even">
-<td>PD</td>
+<td align="left">PD</td>
 <td align="left">Publication date</td>
 </tr>
 <tr class="odd">
-<td>PY</td>
+<td align="left">PY</td>
 <td align="left">Year published</td>
 </tr>
 <tr class="even">
-<td>VL</td>
+<td align="left">VL</td>
 <td align="left">Volume</td>
 </tr>
 <tr class="odd">
-<td>IS</td>
+<td align="left">IS</td>
 <td align="left">Issue</td>
 </tr>
 <tr class="even">
-<td>PN</td>
+<td align="left">PN</td>
 <td align="left">Part number</td>
 </tr>
 <tr class="odd">
-<td>SU</td>
+<td align="left">SU</td>
 <td align="left">Supplement</td>
 </tr>
 <tr class="even">
-<td>SI</td>
+<td align="left">SI</td>
 <td align="left">Special issue</td>
 </tr>
 <tr class="odd">
-<td>MA</td>
+<td align="left">MA</td>
 <td align="left">Meeting abstract</td>
 </tr>
 <tr class="even">
-<td>BP</td>
+<td align="left">BP</td>
 <td align="left">Beginning page</td>
 </tr>
 <tr class="odd">
-<td>EP</td>
+<td align="left">EP</td>
 <td align="left">Ending page</td>
 </tr>
 <tr class="even">
-<td>AR</td>
+<td align="left">AR</td>
 <td align="left">Article number</td>
 </tr>
 <tr class="odd">
-<td>DI</td>
+<td align="left">DI</td>
 <td align="left">DOI</td>
 </tr>
 <tr class="even">
-<td>D2</td>
+<td align="left">D2</td>
 <td align="left">Book DOI</td>
 </tr>
 <tr class="odd">
-<td>PG</td>
+<td align="left">PG</td>
 <td align="left">Page count</td>
 </tr>
 <tr class="even">
-<td>WC</td>
+<td align="left">WC</td>
 <td align="left">WOS category</td>
 </tr>
 <tr class="odd">
-<td>SC</td>
+<td align="left">SC</td>
 <td align="left">Research areas</td>
 </tr>
 <tr class="even">
-<td>GA</td>
+<td align="left">GA</td>
 <td align="left">Document delivery number</td>
 </tr>
 <tr class="odd">
-<td>UT</td>
+<td align="left">UT</td>
 <td align="left">Access number</td>
 </tr>
 <tr class="even">
-<td>PM</td>
+<td align="left">PM</td>
 <td align="left">Pub Med ID</td>
 </tr>
 </tbody>
 </table>
 <p>Se puede crear una base de datos con la función <code>CreateDB.wos()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">db &lt;-<span class="st"> </span><span class="kw">CreateDB.wos</span>(wosdf2, <span class="dt">label =</span> <span class="st">&quot;Mathematics_UDC_2008-2017 (01-02-2019)&quot;</span>)
-<span class="kw">str</span>(db, <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="carga-de-datos.html#cb250-1"></a>db &lt;-<span class="st"> </span><span class="kw">CreateDB.wos</span>(wosdf2, <span class="dt">label =</span> <span class="st">&quot;Mathematics_UDC_2008-2017 (01-02-2019)&quot;</span>)</span>
+<span id="cb250-2"><a href="carga-de-datos.html#cb250-2"></a><span class="kw">str</span>(db, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## List of 11
 ##  $ Docs      :&#39;data.frame&#39;:  389 obs. of  26 variables:
 ##  $ Authors   :&#39;data.frame&#39;:  611 obs. of  4 variables:
@@ -586,15 +607,16 @@ knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">as
 </div>
 <div id="cargar-datos-de-directorio" class="section level3">
 <h3><span class="header-section-number">B.2.2</span> Cargar datos de directorio</h3>
-<p>Se pueden cargar automáticamente los archivos wos (tienen una limitación de 500 registros) de un subdirectorio:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir</span>(<span class="st">&quot;UDC_2008-2017 (01-02-2019)&quot;</span>, <span class="dt">pattern=</span><span class="st">&#39;*.txt&#39;</span>)</code></pre></div>
+<p>Se pueden cargar automáticamente los archivos wos
+(tienen una limitación de 500 registros) de un subdirectorio:</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="carga-de-datos.html#cb252-1"></a><span class="kw">dir</span>(<span class="st">&quot;UDC_2008-2017 (01-02-2019)&quot;</span>, <span class="dt">pattern=</span><span class="st">&#39;*.txt&#39;</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;savedrecs01.txt&quot; &quot;savedrecs02.txt&quot; &quot;savedrecs03.txt&quot; &quot;savedrecs04.txt&quot;
 ##  [5] &quot;savedrecs05.txt&quot; &quot;savedrecs06.txt&quot; &quot;savedrecs07.txt&quot; &quot;savedrecs08.txt&quot;
 ##  [9] &quot;savedrecs09.txt&quot; &quot;savedrecs10.txt&quot; &quot;savedrecs11.txt&quot; &quot;savedrecs12.txt&quot;
 ## [13] &quot;savedrecs13.txt&quot; &quot;savedrecs14.txt&quot; &quot;savedrecs15.txt&quot;</code></pre>
 <p>Se pueden combinar los ficheros y crear la correspondiente base de datos con los siguientes comandos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wos.txt &lt;-<span class="st"> </span><span class="kw">ImportSources.wos</span>(<span class="st">&quot;UDC_2008-2017 (01-02-2019)&quot;</span>, <span class="dt">other =</span> <span class="ot">FALSE</span>)
-db.txt &lt;-<span class="st"> </span><span class="kw">CreateDB.wos</span>(wos.txt)</code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="carga-de-datos.html#cb254-1"></a>wos.txt &lt;-<span class="st"> </span><span class="kw">ImportSources.wos</span>(<span class="st">&quot;UDC_2008-2017 (01-02-2019)&quot;</span>, <span class="dt">other =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb254-2"><a href="carga-de-datos.html#cb254-2"></a>db.txt &lt;-<span class="st"> </span><span class="kw">CreateDB.wos</span>(wos.txt)</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -658,7 +680,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

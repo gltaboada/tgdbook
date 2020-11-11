@@ -244,6 +244,10 @@ summarise(group_by(empleados, sexo, minoria), sal.med = mean(salario), n = n())
 ```
 
 ```
+## `summarise()` regrouping output by 'sexo' (override with `.groups` argument)
+```
+
+```
 ## # A tibble: 4 x 4
 ## # Groups:   sexo [2]
 ##   sexo   minoria sal.med     n
@@ -268,6 +272,10 @@ Ejemplos:
 empleados %>%  filter(catlab == "Directivo") %>%
           group_by(sexo, minoria) %>%
           summarise(sal.med = mean(salario), n = n())
+```
+
+```
+## `summarise()` regrouping output by 'sexo' (override with `.groups` argument)
 ```
 
 ```
@@ -371,7 +379,7 @@ src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.30.1 [C:\Dropbox (GMODES)\__New\_MTE_TGD\tgdbook\data\chinook.db]
+## src:  sqlite 3.33.0 [C:\Users\Guillermo LT\Documents\GitHub\tgdbook\data\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
@@ -385,8 +393,8 @@ invoices
 
 ```
 ## # Source:   table<invoices> [?? x 9]
-## # Database: sqlite 3.30.1 [C:\Dropbox
-## #   (GMODES)\__New\_MTE_TGD\tgdbook\data\chinook.db]
+## # Database: sqlite 3.33.0 [C:\Users\Guillermo
+## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
 ##    InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
 ##        <int>      <int> <chr>       <chr>          <chr>       <chr>       
 ##  1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   <NA>        
@@ -435,11 +443,11 @@ str(head(invoices))
 ##  $ src:List of 2
 ##   ..$ con  :Formal class 'SQLiteConnection' [package "RSQLite"] with 7 slots
 ##   .. .. ..@ ptr                :<externalptr> 
-##   .. .. ..@ dbname             : chr "C:\\Dropbox (GMODES)\\__New\\_MTE_TGD\\tgdbook\\data\\chinook.db"
+##   .. .. ..@ dbname             : chr "C:\\Users\\Guillermo LT\\Documents\\GitHub\\tgdbook\\data\\chinook.db"
 ##   .. .. ..@ loadable.extensions: logi TRUE
 ##   .. .. ..@ flags              : int 70
 ##   .. .. ..@ vfs                : chr ""
-##   .. .. ..@ ref                :<environment: 0x00000000188c2c00> 
+##   .. .. ..@ ref                :<environment: 0x000000001deac7a8> 
 ##   .. .. ..@ bigint             : chr "integer64"
 ##   ..$ disco: NULL
 ##   ..- attr(*, "class")= chr [1:4] "src_SQLiteConnection" "src_dbi" "src_sql" "src"
@@ -487,16 +495,9 @@ invoices %>% count # número de filas
 ```
 
 ```
-## Warning: The `add` argument of `group_by()` is deprecated as of dplyr 1.0.0.
-## Please use the `.add` argument instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.
-```
-
-```
 ## # Source:   lazy query [?? x 1]
-## # Database: sqlite 3.30.1 [C:\Dropbox
-## #   (GMODES)\__New\_MTE_TGD\tgdbook\data\chinook.db]
+## # Database: sqlite 3.33.0 [C:\Users\Guillermo
+## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -539,7 +540,7 @@ invoices %>% count # número de filas
     
     ```
     ## <SQL>
-    ## SELECT `BillingCountry`, COUNT() AS `n`, SUM(`Total`) AS `total`
+    ## SELECT `BillingCountry`, COUNT(*) AS `n`, SUM(`Total`) AS `total`
     ## FROM `invoices`
     ## GROUP BY `BillingCountry`
     ```
@@ -578,7 +579,7 @@ invoices %>% count # número de filas
     
     ```
     ## <SQL>
-    ## SELECT `BillingCountry`, COUNT() AS `n`, AVG(`Total`) AS `med`
+    ## SELECT `BillingCountry`, COUNT(*) AS `n`, AVG(`Total`) AS `med`
     ## FROM `invoices`
     ## GROUP BY `BillingCountry`
     ## ORDER BY `BillingCountry`
@@ -655,7 +656,7 @@ invoices %>% count # número de filas
     ```
     ## <SQL>
     ## SELECT `FirstName`, `LastName`, `Country`, `Total`
-    ## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `LHS`.`FirstName` AS `FirstName`, `LHS`.`LastName` AS `LastName`, `LHS`.`Company` AS `Company`, `LHS`.`Address` AS `Address`, `LHS`.`City` AS `City`, `LHS`.`State` AS `State`, `LHS`.`Country` AS `Country`, `LHS`.`PostalCode` AS `PostalCode`, `LHS`.`Phone` AS `Phone`, `LHS`.`Fax` AS `Fax`, `LHS`.`Email` AS `Email`, `LHS`.`SupportRepId` AS `SupportRepId`, `RHS`.`InvoiceId` AS `InvoiceId`, `RHS`.`InvoiceDate` AS `InvoiceDate`, `RHS`.`BillingAddress` AS `BillingAddress`, `RHS`.`BillingCity` AS `BillingCity`, `RHS`.`BillingState` AS `BillingState`, `RHS`.`BillingCountry` AS `BillingCountry`, `RHS`.`BillingPostalCode` AS `BillingPostalCode`, `RHS`.`Total` AS `Total`
+    ## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
     ## FROM `customers` AS `LHS`
     ## INNER JOIN `invoices` AS `RHS`
     ## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
@@ -693,8 +694,8 @@ invoices %>% count # número de filas
     
     ```
     ## # Source:   lazy query [?? x 9]
-    ## # Database: sqlite 3.30.1 [C:\Dropbox
-    ## #   (GMODES)\__New\_MTE_TGD\tgdbook\data\chinook.db]
+    ## # Database: sqlite 3.33.0 [C:\Users\Guillermo
+    ## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
     ##   TrackId Name  AlbumId MediaTypeId GenreId Composer Milliseconds  Bytes
     ##     <int> <chr>   <int>       <int>   <int> <chr>           <int>  <int>
     ## 1       1 For ~       1           1       1 Angus Y~       343719 1.12e7
@@ -729,8 +730,8 @@ invoices %>% count # número de filas
     
     ```
     ## # Source:   lazy query [?? x 2]
-    ## # Database: sqlite 3.30.1 [C:\Dropbox
-    ## #   (GMODES)\__New\_MTE_TGD\tgdbook\data\chinook.db]
+    ## # Database: sqlite 3.33.0 [C:\Users\Guillermo
+    ## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
     ##   MediaTypeId Name                       
     ##         <int> <chr>                      
     ## 1           1 MPEG audio file            

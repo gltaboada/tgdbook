@@ -50,25 +50,30 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 - Clase 2 (17/9): Tema 1: Introducción a SQL
 
 - Clase 3 (21/9-RFC): Seminario Manipulación de datos con R 
+
 - Clase 4 (24/9-RFC): Seminario Manipulación de datos con dplyr
 
-- Clase 5 (28/9): Tema 1: Ejercicios SQL
+- Clase 5 (28/9-RFC): Seminario Manipulación de datos con dplyr (continuación)
 
 - Clase 6 (1/10): Tema 1: Ejercicios SQL 
 
-- Clase 7 (5/10): Tema 2: Introducción a NoSQL
+- Clase 7 (5/10): Tema 1: Ejercicios SQL 
 
-- Clase 8 (8/10): Tema 2: Ejercicios NoSQL
+- Clase 8 (8/10): Tema 1: Ejercicios SQL
 
-- Clase 9 (19/10): Tema 2:  Ejercicios con formatos Open Data 
+- Clase 9 (19/10): Tema 2: Seminario tratamiento de texto (CSV, excel, Json) y open data
 
-- Clase 10 (26/10): Tema 3: Ecosistema Big Data 
+- Clase 10 (26/10): Tema 2: Introducción a NoSQL 
 
-- Clase 11-20 (2/11 al 3/12): Tema 3: Ecosistema Big Data (teoría, práctica) + Seminario de aprendizaje estadístico (3 sesiones con RFC)
+- Clase 11 (2/11): Tema 2: Introducción a NoSQL (base de datos MongoDB y columnar) (sin clase el 5/11)
 
-No tendremos clase el 7 de Diciembre.
+- Clase 12 (9/11): Tema 2: Introducción a NoSQL (base de datos de grafos)
 
-- Clases 21-23 (10, 14 y 17/12): Tema 3: Ejercicios Big Data
+- Clase 13 (12/11): Tema 3: Seminario Rapidminer
+
+- Clase 14-21 (16/11 al 10/12): Tema 3: Ecosistema Big Data (teoría, práctica) + Seminario de aprendizaje estadístico (2 sesiones con RFC)
+
+- Clases 22-23 (14 y 17/12): Tema 3: Aplicaciones Big Data y Seminario Visualización
 
 
 <!-- Curso 2019-2020

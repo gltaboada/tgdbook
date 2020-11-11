@@ -512,7 +512,7 @@ cv.ridge$lambda.1se
 ```
 
 ```
-## [1] 2.749868
+## [1] 3.635163
 ```
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -524,15 +524,15 @@ coef(cv.ridge)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     1
-## (Intercept) 2.4799000
-## velocida    1.6053747
-## precio      0.7733925
-## flexprec    2.4462308
-## imgfabri    0.2837000
-## servconj    3.9801496
-## imgfvent    1.1232130
-## calidadp    0.1245096
+##                      1
+## (Intercept) 5.26333438
+## velocida    1.58051175
+## precio      0.70395775
+## flexprec    2.24798481
+## imgfabri    0.31897738
+## servconj    3.76988236
+## imgfvent    1.07304993
+## calidadp    0.06641356
 ```
 
 ### Lasso
@@ -640,9 +640,9 @@ summary(modelo)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Approximate significance of smooth terms:
-##                edf Ref.df     F  p-value    
-## s(income)    3.118  3.877 14.61 1.53e-09 ***
-## s(education) 3.177  3.952 38.78  < 2e-16 ***
+##                edf Ref.df     F p-value    
+## s(income)    3.118  3.877 14.61  <2e-16 ***
+## s(education) 3.177  3.952 38.78  <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
