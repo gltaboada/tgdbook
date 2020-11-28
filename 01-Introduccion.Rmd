@@ -35,10 +35,10 @@ En particular, los resultados de aprendizaje son:
 	+ Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)
 	+ Conexión de R a NoSQL
 3. Tecnologías para el tratamiento de datos masivos	
-	+ Tecnologías Big Data
-	+ Visualización y generación de cuadros de mando 
-	+ Introducción al análisis de datos masivos.
-
+	+ Introducción al Aprendizaje Estadístico
+	+ Tecnologías Big Data (Hadoop, Spark, Sparklyr)
+	+ Ejercicios de análisis de datos masivos.
+	
 
 ## Planificación (tentativa)
 
@@ -71,9 +71,20 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 
 - Clase 13 (12/11): Tema 3: Seminario Rapidminer
 
-- Clase 14-21 (16/11 al 10/12): Tema 3: Ecosistema Big Data (teoría, práctica) + Seminario de aprendizaje estadístico (2 sesiones con RFC)
+- Clase 14 (16/11): Tema 3: Tutorial de sparklyr
 
-- Clases 22-23 (14 y 17/12): Tema 3: Aplicaciones Big Data y Seminario Visualización
+- Clase 15 (19/11): Tema 3: Conceptos de Big Data
+
+- Clase 16 (23/11): Tema 3: sparklyr: regresión lineal
+
+- Clase 17 (26/11): Tema 3: sparklyr: naive bayes
+
+- Clases 18-19 (30/11-3/12-RFC): Tema 3: Introducción al Aprendizaje Estadístico
+
+- Clases 20-21 (7-10/12): Tema 3: Prácticas de sparklyr
+
+- Clases 22-23 (14-17/12): Tema 3: Aplicaciones Big Data y Seminario Visualización con PowerBI
+
 
 
 <!-- Curso 2019-2020
@@ -139,9 +150,13 @@ Asimilación práctica de materia: Asimilación y comprensión de los conocimien
 
 * Daroczi, G. (2015). Mastering Data Analysis with R. Packt Publishing
 
-* Grolemund, G. y Wickham, H. (2016). R for Data Science. https://r4ds.had.co.nz/ & O'Reilly
+* Grolemund, G. y Wickham, H. (2016). [R for Data Science](https://r4ds.had.co.nz/) O'Reilly
 
 * Silberschatz, A., Korth, H. y Sudarshan, S. (2014). Fundamentos de Bases de Datos. Mc Graw Hill
+
+* Rubén Fernández Casal y Julián Costa Bouza. [Apuntes de Aprendizaje Estadístico](https://rubenfcasal.github.io/aprendizaje_estadistico/)
+
+* Luraschi, J., Kuo, K., Ruiz, K. [Mastering Spark with R](https://therinspark.com/) O'Reilly
 
 * Rubén Fernández Casal ([R Machinery](https://rubenfcasal.github.io)):
 
@@ -156,13 +171,13 @@ Asimilación práctica de materia: Asimilación y comprensión de los conocimien
     - [Apéndice introducción a Rmarkdown ](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html) 
     
     - [Pesentación análisis de datos con R ](https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf)
-    
+
 
 ### Complementaria:
 
 * Wes McKinney (2017). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython. O'Reilly (2ª ed.)
 * Tom White (2015). Hadoop: The Definitive Guide. O'Reilly (4ª ed.)
 * Alex Holmes (2014). Hadoop in practice. Manning (2ª ed.)
-* Centro de Supercomputación de Galicia (2019). Servicio de Big Data del CESGA. https://bigdata.cesga.es/
+* Centro de Supercomputación de Galicia (2020). [Servicio de Big Data del CESGA] (https://bigdata.cesga.es/)
 
 

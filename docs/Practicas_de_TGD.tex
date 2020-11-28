@@ -131,7 +131,7 @@
 
 \title{Prácticas de Tecnologías de Gestión y Manipulación de Datos}
 \author{Guillermo López Taboada (\href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}}) y Rubén F. Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}})}
-\date{2020-11-11}
+\date{2020-11-28}
 
 \begin{document}
 \maketitle
@@ -162,7 +162,6 @@ Para ejecutar los ejemplos mostrados en el libro será necesario tener instalado
 \href{https://cran.r-project.org/web/packages/sqldf/index.html}{\texttt{sqldf}},
 \href{https://r-dbi.github.io/RSQLite}{\texttt{RSQLite}},
 \href{https://cran.r-project.org/web/packages/foreign/index.html}{\texttt{foreign}},
-\href{https://cran.r-project.org/web/packages/SparkR/index.html}{\texttt{SparkR}},
 \href{https://cran.r-project.org/web/packages/magrittr/index.html}{\texttt{magrittr}},
 \href{https://yihui.name/knitr}{\texttt{knitr}}
 Por ejemplo mediante los comandos:
@@ -170,7 +169,7 @@ Por ejemplo mediante los comandos:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{pkgs <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'dplyr'}\NormalTok{, }\StringTok{'tidyr'}\NormalTok{, }\StringTok{'stringr'}\NormalTok{, }\StringTok{'readxl'}\NormalTok{, }\StringTok{'openxlsx'}\NormalTok{, }\StringTok{'magrittr'}\NormalTok{, }
-          \StringTok{'RODBC'}\NormalTok{, }\StringTok{'sqldf'}\NormalTok{, }\StringTok{'RSQLite'}\NormalTok{, }\StringTok{'foreign'}\NormalTok{, }\StringTok{'SparkR'}\NormalTok{, }\StringTok{'knitr'}\NormalTok{)}
+          \StringTok{'RODBC'}\NormalTok{, }\StringTok{'sqldf'}\NormalTok{, }\StringTok{'RSQLite'}\NormalTok{, }\StringTok{'foreign'}\NormalTok{, }\StringTok{'knitr'}\NormalTok{)}
 \CommentTok{# install.packages(pkgs, dependencies=TRUE)}
 \KeywordTok{install.packages}\NormalTok{(}\KeywordTok{setdiff}\NormalTok{(pkgs, }\KeywordTok{installed.packages}\NormalTok{()[,}\StringTok{'Package'}\NormalTok{]), }\DataTypeTok{dependencies =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
@@ -233,11 +232,11 @@ En particular, los resultados de aprendizaje son:
   \begin{itemize}
   \tightlist
   \item
-    Tecnologías Big Data
+    Introducción al Aprendizaje Estadístico
   \item
-    Visualización y generación de cuadros de mando
+    Tecnologías Big Data (Hadoop, Spark, Sparklyr)
   \item
-    Introducción al análisis de datos masivos.
+    Ejercicios de análisis de datos masivos.
   \end{itemize}
 \end{enumerate}
 
@@ -275,9 +274,19 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 \item
   Clase 13 (12/11): Tema 3: Seminario Rapidminer
 \item
-  Clase 14-21 (16/11 al 10/12): Tema 3: Ecosistema Big Data (teoría, práctica) + Seminario de aprendizaje estadístico (2 sesiones con RFC)
+  Clase 14 (16/11): Tema 3: Tutorial de sparklyr
 \item
-  Clases 22-23 (14 y 17/12): Tema 3: Aplicaciones Big Data y Seminario Visualización
+  Clase 15 (19/11): Tema 3: Conceptos de Big Data
+\item
+  Clase 16 (23/11): Tema 3: sparklyr: regresión lineal
+\item
+  Clase 17 (26/11): Tema 3: sparklyr: naive bayes
+\item
+  Clases 18-19 (30/11-3/12-RFC): Tema 3: Introducción al Aprendizaje Estadístico
+\item
+  Clases 20-21 (7-10/12): Tema 3: Prácticas de sparklyr
+\item
+  Clases 22-23 (14-17/12): Tema 3: Aplicaciones Big Data y Seminario Visualización con PowerBI
 \end{itemize}
 
 \hypertarget{evaluaciuxf3n}{%
@@ -320,9 +329,13 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 \item
   Daroczi, G. (2015). Mastering Data Analysis with R. Packt Publishing
 \item
-  Grolemund, G. y Wickham, H. (2016). R for Data Science. \url{https://r4ds.had.co.nz/} \& O'Reilly
+  Grolemund, G. y Wickham, H. (2016). \href{https://r4ds.had.co.nz/}{R for Data Science} O'Reilly
 \item
   Silberschatz, A., Korth, H. y Sudarshan, S. (2014). Fundamentos de Bases de Datos. Mc Graw Hill
+\item
+  Rubén Fernández Casal y Julián Costa Bouza. \href{https://rubenfcasal.github.io/aprendizaje_estadistico/}{Apuntes de Aprendizaje Estadístico}
+\item
+  Luraschi, J., Kuo, K., Ruiz, K. \href{https://therinspark.com/}{Mastering Spark with R} O'Reilly
 \item
   Rubén Fernández Casal (\href{https://rubenfcasal.github.io}{R Machinery}):
 
@@ -354,7 +367,7 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 \item
   Alex Holmes (2014). Hadoop in practice. Manning (2ª ed.)
 \item
-  Centro de Supercomputación de Galicia (2019). Servicio de Big Data del CESGA. \url{https://bigdata.cesga.es/}
+  Centro de Supercomputación de Galicia (2020). {[}Servicio de Big Data del CESGA{]} (\url{https://bigdata.cesga.es/})
 \end{itemize}
 
 \hypertarget{manipulaciuxf3n-de-datos-con-r}{%
@@ -3060,7 +3073,7 @@ Mostrar la consulta SQL:
 ##   .. .. ..@ loadable.extensions: logi TRUE
 ##   .. .. ..@ flags              : int 70
 ##   .. .. ..@ vfs                : chr ""
-##   .. .. ..@ ref                :<environment: 0x000000001cd36c50> 
+##   .. .. ..@ ref                :<environment: 0x000000001cd57440> 
 ##   .. .. ..@ bigint             : chr "integer64"
 ##   ..$ disco: NULL
 ##   ..- attr(*, "class")= chr [1:4] "src_SQLiteConnection" "src_dbi" "src_sql" "src"
@@ -3740,66 +3753,33 @@ Estos ejercicios se pueden hacer en un notebook Kaggle accediendo a un clúster 
 
 En este apartado trataremos los siguientes epígrafes:
 
-Tópicos tratados en este capítulo:
-
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
-  Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)
+  Introducción al Aprendizaje Estadístico
 \item
-  Visualización y generación de cuadros de mando
+  Tecnologías Big Data (Hadoop, Spark, Sparklyr)
 \item
-  Introducción al análisis de datos masivos.
+  Ejercicios de análisis de datos masivos.
 \end{enumerate}
 
-\includegraphics{images/T3-CientificoDatos.png}
+\hypertarget{introducciuxf3n-al-aprendizaje-estaduxedstico}{%
+\section{Introducción al Aprendizaje Estadístico}\label{introducciuxf3n-al-aprendizaje-estaduxedstico}}
 
-\includegraphics{images/T3-DMvsBD.jpg}
+El material para este apartado está disponible en el
+\href{https://rubenfcasal.github.io/aprendizaje_estadistico/intro-AE.html}{Capítulo 1 del libro ``Aprendizaje Estadístico''} de Rubén Fernández Casal.
 
-\includegraphics{images/T3-AI-ML.png}
+Para seguir este capítulo es altamente recomendable tener instalado Rattle, para ello consultad el apéndice de instalación de R al final de este libro.
 
-\includegraphics{images/T3-MLvsDL.png}
+\includegraphics[width=0.6\textwidth,height=\textheight]{images/T3-CientificoDatos.png}
 
-\includegraphics{images/T3-machinelearning.png}
+\hypertarget{tecnologuxedas-big-data-hadoopspark-y-visualizaciuxf3n}{%
+\section{Tecnologías Big Data (Hadoop/Spark y Visualización)}\label{tecnologuxedas-big-data-hadoopspark-y-visualizaciuxf3n}}
 
-\includegraphics{images/T3-machinelearningalgorithms.png}
+\hypertarget{tecnologuxedas-hadoop-spark-y-sparklyr}{%
+\subsection{Tecnologías Hadoop, Spark, y Sparklyr}\label{tecnologuxedas-hadoop-spark-y-sparklyr}}
 
-Y un ejemplo de cómo se trabaja en machine learning:
-
-\includegraphics{images/T3-Supervised_ML.png}
-
-\hypertarget{rattle-como-alternativa-a-rapidminer-en-r}{%
-\subsection{Rattle como alternativa a RapidMiner en R}\label{rattle-como-alternativa-a-rapidminer-en-r}}
-
-Es un paquete para R, con interfaz gráfica desarrollada en GTK, que permite generar código R para minería de datos. Se instala según los pasos indicados a continuación:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"cairoDevice"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"RGtk2"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(}\StringTok{"RGtk2"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rattle"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(rattle)}
-\KeywordTok{rattle}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-Un tutorial adecuado para introducirse en Rattle es \href{https://www.dummies.com/programming/using-rattle-iris-r-programming/}{éste}
-
-\includegraphics{images/T3-rattle1.png}
-
-Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.
-
-\includegraphics{images/T3-rattle2.png}
-
-\includegraphics{images/T3-rattle3.png}
-
-\hypertarget{tecnologuxedas-big-data-hadoop-spark-hive-rspark-sparklyr}{%
-\section{Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)}\label{tecnologuxedas-big-data-hadoop-spark-hive-rspark-sparklyr}}
-
-A continuación se introducen los conceptos básicos de las tecnologías Big Data:
+A continuación se introducen los conceptos básicos de las tecnologías Hadoop, Spark y Sparklyr:
 
 \begin{itemize}
 \item
@@ -3816,8 +3796,42 @@ A continuación se introducen los conceptos básicos de las tecnologías Big Dat
 
 \includegraphics{images/T3-ecosistema.png}
 
+\includegraphics[width=0.6\textwidth,height=\textheight]{images/T3-DMvsBD.jpg}
+
+\hypertarget{big-data-y-machine-learning}{%
+\subsection{Big Data y Machine Learning}\label{big-data-y-machine-learning}}
+
+El Machine Learning o Aprendizaje Máquina es aquella parte de la inteligencia artificial con capacidad de aprender de los datos.
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{images/T3-AI-ML.png}
+
+\includegraphics{images/T3-MLvsDL.png}
+
+\includegraphics{images/T3-machinelearning.png}
+
+\includegraphics{images/T3-machinelearningalgorithms.png}
+
+Y un ejemplo de cómo se trabaja en machine learning:
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{images/T3-Supervised_ML.png}
+
+\hypertarget{rattle-como-alternativa-a-rapidminer-en-r}{%
+\subsection{Rattle como alternativa a RapidMiner en R}\label{rattle-como-alternativa-a-rapidminer-en-r}}
+
+Las instrucciones para instalar R está en el \href{https://gltaboada.github.io/tgdbook/instalaci\%C3\%B3n-de-r.html}{Apéndice 3 de este documento}
+
+Un tutorial adecuado para introducirse en Rattle es \href{https://www.dummies.com/programming/using-rattle-iris-r-programming/}{éste}
+
+\includegraphics{images/T3-rattle1.png}
+
+Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.
+
+\includegraphics{images/T3-rattle2.png}
+
+\includegraphics{images/T3-rattle3.png}
+
 \hypertarget{visualizaciuxf3n-y-generaciuxf3n-de-cuadros-de-mando}{%
-\section{Visualización y Generación de Cuadros de Mando}\label{visualizaciuxf3n-y-generaciuxf3n-de-cuadros-de-mando}}
+\subsection{Visualización y Generación de Cuadros de Mando}\label{visualizaciuxf3n-y-generaciuxf3n-de-cuadros-de-mando}}
 
 Se sigue un tutorial de la herramienta \href{https://docs.microsoft.com/es-es/power-bi/desktop-tutorial-analyzing-sales-data-from-excel-and-an-odata-feed}{PowerBI, con datos de Excel y OData Feed}
 
@@ -3827,6 +3841,8 @@ Como documentación de se soporte se cuenta con la web de \href{https://docs.mic
 \section{Introducción al Análisis de Datos Masivos}\label{introducciuxf3n-al-anuxe1lisis-de-datos-masivos}}
 
 En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía sparklyr.
+
+Este apartado, eminentemente práctico, lo trabajaremos a través de \href{https://www.kaggle.com/gltaboada/t3-practice3-flights}{la práctica 3 de TGD}.
 
 \hypertarget{appendix-apendices}{%
 \appendix}
@@ -5367,861 +5383,196 @@ El último paso será desconectar la BD\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{introducciuxf3n-al-aprendizaje-estaduxedstico}{%
-\chapter{Introducción al Aprendizaje Estadístico}\label{introducciuxf3n-al-aprendizaje-estaduxedstico}}
+\hypertarget{instalaciuxf3n-de-r}{%
+\chapter{Instalación de R}\label{instalaciuxf3n-de-r}}
 
-\hypertarget{data-science}{%
-\section{Data Science}\label{data-science}}
+En la web del proyecto R
+(\href{http://www.r-project.org}{www.r-project.org}) está disponible
+mucha información sobre este entorno estadístico.
 
-\textbf{\emph{Data Science}}: \emph{Data Mining}, \emph{Machine Learning}, \emph{Statistical Learning}, \emph{Knowlegde Discovery}, \emph{Business Intelligence}, \ldots{}
-
-\begin{itemize}
-\item
-  El conjunto de herramientas para entender y modelizar conjuntos
-  (complejos) de datos.
-\item
-  El proceso de construir modelos a partir de los datos para aprender
-  y predecir.
-\item
-  El proceso de descubrir patrones y obtener conocimiento a partir de
-  grandes conjuntos de datos (\emph{big data}).
-\item
-  El arte y la ciencia del análisis inteligente de los datos.
-\item
-  Multidisciplicar, con importantes aportaciones
-  estadísticas e informáticas.
-\end{itemize}
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{images/esquema2} \caption{Etapas del proceso}\label{fig:esquema}
-\end{figure}
-
-\hypertarget{ventajas-e-inconvenientes}{%
-\subsection{Ventajas e inconvenientes}\label{ventajas-e-inconvenientes}}
-
-Ventajas:
-
-\begin{itemize}
-\item
-  Flexibilidad (hay menos suposiciones sobre los datos).
-\item
-  Adecuado para big data.
-\end{itemize}
-
-Inconvenientes:
-
-\begin{itemize}
-\item
-  Algunos métodos son poco interpretables.
-\item
-  Pueden aparecer problemas de sobreajuste.
-\item
-  Mayores problemas al extrapolar e interpolar.
-\end{itemize}
-
-La idea es ``dejar hablar a los datos'' y no ``encorsetarlos'' a priori,
-dándoles mayor peso que a los modelos.
-
-\textbf{CUIDADO}: los datos no sustituyen a la población (pueden presentar grandes sesgos,
-la información disponible puede no ser representativa de la población).
-
-\begin{quote}
-``The sheer volume of data would obviate the need of theory and even
-scientific method''
---- Chris Anderson, físico y periodista, 2008
-\end{quote}
-
-\hypertarget{muxe9todos-de-aprendizaje-estaduxedstico}{%
-\section{Métodos de aprendizaje estadístico}\label{muxe9todos-de-aprendizaje-estaduxedstico}}
-
-\begin{itemize}
-\item
-  Aprendizaje no supervisado: Métodos exploratorios (sin variable respuesta).
-  El objetivo principal es entender las relaciones y estructura de los datos.
-
-  \begin{itemize}
-  \item
-    Análisis descriptivo
-  \item
-    Métodos de reducción de la dimensión (análisis de componentes
-    principales, análisis factorial,\ldots)
-  \item
-    Clúster
-  \item
-    Detección de datos atípicos
-  \end{itemize}
-\item
-  Aprendizaje supervisado: Métodos predictivos (con variable respuesta).
-  El objetivo principal es la construcción de modelos, principalmente para predecir.
-  Dependiendo del tipo de variable respuesta:
-
-  \begin{itemize}
-  \item
-    Clasificación: cualitativa
-  \item
-    Regresión: numérica
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{muxe9todos-de-aprendizaje-supervisado}{%
-\subsection{Métodos (de aprendizaje supervisado):}\label{muxe9todos-de-aprendizaje-supervisado}}
-
-Métodos de Clasificación:
-
-\begin{itemize}
-\item
-  Análisis discriminante (lineal, cuadrático), Regresión logística, multinomial, \ldots{}
-\item
-  Árboles de decisión, \emph{bagging}, \emph{random forest},
-  \emph{boosting}
-\item
-  \emph{Support vector machines} (SVM)
-\end{itemize}
-
-Métodos de regresión:
-
-\begin{itemize}
-\item
-  Modelos lineales:
-
-  \begin{itemize}
-  \item
-    Regresión lineal: \texttt{lm()}, \texttt{lme()}, \texttt{biglm}, \ldots{}
-  \item
-    Regresión lineal robusta: \texttt{MASS::rlm()}, \ldots{}
-  \item
-    Métodos de regularización (Ridge regression, Lasso):
-    \texttt{glmnet}, \ldots{}
-  \end{itemize}
-\item
-  Modelos lineales generalizados: \texttt{glm()}, \texttt{bigglm}, ..
-\item
-  Modelos paramétricos no lineales: \texttt{nls()}, \texttt{nlme}, \ldots{}
-\item
-  Regresión local (métodos de suavizado):
-  \texttt{loess()}, \texttt{KernSmooth}, \texttt{sm}, \texttt{np}, \ldots{}
-\item
-  Modelos aditivos generalizados (GAM): \texttt{mgcv}, \texttt{gam}, \ldots{}
-\item
-  Arboles de decisión, Random Forest, Boosting:
-  \texttt{rpart}, \texttt{randomForest}, \texttt{xgboost}, \ldots{}
-\item
-  Redes neuronales: \texttt{nnet}, \ldots{}
-\end{itemize}
-
-Paquetes con entornos gráficos (datos en memoria):
-
-\begin{itemize}
-\item
-  R-Commander + FactoMineR: \texttt{Rcmdr}, \texttt{RcmdrPlugin.FactoMineR}
-\item
-  Rattle: \texttt{rattle}
-\end{itemize}
-
-\hypertarget{construcciuxf3n-y-evaluaciuxf3n-de-los-modelos}{%
-\subsection{Construcción y evaluación de los modelos}\label{construcciuxf3n-y-evaluaciuxf3n-de-los-modelos}}
-
-El procedimiento habitual es particionar la base de datos en 2
-(o incluso en 3) conjuntos:
-
-\begin{itemize}
-\item
-  Conjunto de datos de aprendizaje para construir los modelos
-\item
-  Conjunto de datos de (test) validación para (afinar) evaluar el rendimiento
-  de los modelos
-\end{itemize}
-
-Alternativas: validación cruzada, bagging (bootstrap de las observaciones)
-
-En el caso de grandes conjuntos de datos las aproximaciones
-más empleadas son:
-
-\begin{itemize}
-\item
-  Submuestreo: la idea es que a partir de un cierto número de
-  observaciones el incremento en la precisión es relativamente
-  pequeño\footnote{El error de estimación suele ser de orden \(n^{-1/2}\) o superior,
-    incrementar cuatro veces el número de datos disminuye el error de\\
-    estimación a la mitad o menos}.
-\item
-  Computación paralela/distribuida:
-
-  \begin{itemize}
-  \item
-    Resumir (paralela/distribuida) -\textgreater{} Combinar -\textgreater{} Modelar
-  \item
-    Modelar (paralela/distribuida) -\textgreater{} Combinar
-  \item
-    Se puede implementar mediante un sistema \emph{MapReduce} (Hadoop):
-    los datos se procesan de forma distribuida mediante \emph{Mappers}
-    y los resultados se combinan mediante \emph{Reducers}.
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{matriz-de-confusiuxf3n}{%
-\subsection{Matriz de confusión}\label{matriz-de-confusiuxf3n}}
-
-Para estudiar la eficiencia de un método de clasificación
-supervisada se evalúa el modelo en el conjunto de datos de
-validación y se genera una tabla de contingencia con las
-predicciones (columnas) frente a los valores reales (filas).
-
-\begin{longtable}[]{@{}ccc@{}}
+\begin{longtable}[]{@{}cc@{}}
 \toprule
-Observado\textbackslash Predicción & Positivo & Negativo\tabularnewline
-\midrule
 \endhead
-Verdadero & Verdadero positivo & Falso negativo\tabularnewline
-Falso & Falso positivo & Verdadero negativo\tabularnewline
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/rproject.png} & \includegraphics[width=0.7\textwidth,height=\textheight]{images/cran.png}\tabularnewline
+\href{https://r-project.org}{R-project} & \href{https://cran.r-project.org}{CRAN}\tabularnewline
 \bottomrule
 \end{longtable}
 
-A partir de esta tabla se pueden estimar las tasas de falsos y
-verdaderos negativos y positivos (caso de dos categorías).
-
-\hypertarget{predicciones-frente-a-observado}{%
-\subsection{Predicciones frente a observado}\label{predicciones-frente-a-observado}}
-
-Para estudiar la eficiencia de un método de regresión se evalúa el
-modelo en el conjunto de datos de validación y se comparan las
-predicciones frente a los valores reales
-
-\includegraphics[width=6.38in]{images/predobs}
+Las descargas se realizan a través de la web del CRAN (The Comprehensive
+R Archive Network), con múltiples mirrors:
 
 \begin{itemize}
+\tightlist
 \item
-  Las predicciones deberían estar próximas a los valores reales
-  \(y=x\), en azul.
+  \emph{Oficina de software libre} (CIXUG) \href{http://ftp.cixug.es/CRAN/}{ftp.cixug.es/CRAN}.
 \item
-  El pseudo R-cuadrado (el cuadrado de la correlación entre las
-  predicciones y los valores observados, que se corresponde con la
-  línea discontinua) debería ser próximo a 1.
+  \emph{Spanish National Research Network (Madrid)} (RedIRIS) es
+  \href{http://cran.es.r-project.org/}{cran.es.r-project.org}.
 \end{itemize}
 
-\hypertarget{arboles-de-decisiuxf3n}{%
-\section{Arboles de decisión}\label{arboles-de-decisiuxf3n}}
+\hypertarget{instalaciuxf3n-de-r-en-windows}{%
+\section{Instalación de R en Windows}\label{instalaciuxf3n-de-r-en-windows}}
 
-Métodos simples y fácilmente interpretables.
+Seleccionando \href{http://ftp.cixug.es/CRAN/bin/windows/}{Download R for Windows} y posteriormente
+\href{http://ftp.cixug.es/CRAN/bin/windows/base/}{base} accedemos
+al enlace con el instalador de R para Windows.
 
-\begin{itemize}
-\item
-  Técnica clásica de apendizaje automático (computación).
-\item
-  Válidos también para regresión.
-\end{itemize}
+\includegraphics[width=0.4\textwidth,height=\textheight]{images/R351.png}
 
-Se segmentan los valores de las variables explicativas de forma
-recursiva.
+\hypertarget{asistente-de-instalaciuxf3n}{%
+\subsection{Asistente de instalación}\label{asistente-de-instalaciuxf3n}}
 
-\begin{itemize}
-\item
-  Se consideran particiones binarias.
-\item
-  El conjunto de reglas de partición se puede resumir en un árbol.
+Durante el proceso de instalación la recomendación (para evitar posibles problemas) es seleccionar ventanas simples SDI en lugar de múltiples ventanas MDI (hay que \emph{utilizar opciones de configuración}).
 
-  \includegraphics[width=4in]{images/arbol1}
-\end{itemize}
-
-La predicción será el valor más frecuente (la media en regresión) en
-el nodo terminal.
-
-\includegraphics[width=4.44in]{images/arbol2}
-\includegraphics[width=4.22in]{images/arbol3}
-
-Construcción del arbol:
-
-\begin{itemize}
-\item
-  De forma recursiva se realizan particiones binarias.
-
-  \begin{itemize}
-  \item
-    En cada partición se trata de mejorar la información sobre la
-    respuesta.
-
-    \begin{itemize}
-    \tightlist
-    \item
-      El indice de Gini es una medida de la varianza total en los
-      grupos (mide si hay mucha o poca igualdad dentro de los
-      grupos).
-    \end{itemize}
-  \item
-    Se crece el arbol hasta que cada nodo terminal tiene menos de un
-    número mínimo de observaciones.
-  \end{itemize}
-\item
-  Se poda el árbol considerando una funcion de costo basada en la
-  complejidad.
-
-  \begin{itemize}
-  \item
-    Evita problemas de sobreajuste, selección de variables
-    explicativas\ldots{}
-  \item
-    Se suele emplear \textbf{validación cruzada}.
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{bagging-y-boosting}{%
-\section{Bagging y Boosting}\label{bagging-y-boosting}}
-
-Bagging y Boosting son procedimientos generales para la reducción de
-la varianza de un método estadístico de aprendizaje.
-
-\begin{itemize}
-\item
-  Se trata de combinar métodos de clasificación sencillos para
-  obtener un método de clasificación muy potente (y robusto).
-\item
-  Muy empleados con árboles de decisión.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Se crecen muchos árboles que luego se combinan para producir
-    predicciones por consenso.
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{bagging-o-agregaciuxf3n-bootstrap}{%
-\subsection{Bagging o agregación Bootstrap}\label{bagging-o-agregaciuxf3n-bootstrap}}
-
-\begin{itemize}
-\item
-  Se remuestrea repetidamente el conjunto de datos de
-  entrenamiento.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Con cada conjunto de datos (bag) se entrena un modelo.
-  \end{itemize}
-\item
-  Las predicciones se obtienen promediando las predicciones de los
-  modelos (la decisión mayoritaria en el caso de clasificación).
-\item
-  Se puede estimar la precisión de las predicciones con el error
-  OOB (out-of-bag).
-\end{itemize}
-
-\hypertarget{bosques-aleatorios}{%
-\subsection{Bosques Aleatorios}\label{bosques-aleatorios}}
-
-Los Bosques Aleatorios son una ligera modificación del bagging para
-el caso de árboles de decisión.
-
-\begin{itemize}
-\item
-  Además de en las observaciones se induce aleatoriedad en las
-  variables.
-\item
-  Para evitar dependencias, los posibles predictores se
-  seleccionan al azar en cada partición (e.g.~\(m=\sqrt{p}\)).
-\item
-  No es necesario podar los árboles.
-\end{itemize}
-
-Estos métodos dificultan la interpretación.
-
-\begin{itemize}
-\item
-  Se puede medir la importancia de las variables (índices de
-  importancia).
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Por ejemplo, para cada árbol se suman las reducciones en el
-    índice de Gini correspondientes a las divisiones de un
-    predictor y posteriormente se promedian los valores de todos
-    los árboles.
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{boosting}{%
-\subsection{Boosting}\label{boosting}}
-
-\begin{itemize}
-\item
-  La idea es hacer un ``aprendizaje lento''.
-\item
-  Los arboles se crecen de forma secuencial, se trata de mejorar la
-  clasificación anterior.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Se utilizan arboles pequeños (en general clasificadores
-    débiles).
-  \end{itemize}
-\item
-  Se puede pensar que se ponderan las observaciones iterativamente, se
-  asigna más peso a las que resultaron más difíciles de clasificar.
-\item
-  El modelo final es un modelo aditivo (media ponderada de los
-  árboles).
-\end{itemize}
-
-\hypertarget{support-vector-machines-svm}{%
-\section{Support vector machines (SVM)}\label{support-vector-machines-svm}}
-
-Este método es una generalización del denominado \textbf{clasificador de
-máximo margen}.
-
-\begin{itemize}
-\item
-  Si las clases se pueden separar linealmente, se escoge el
-  hiperplano con el mayor margen entre las clases.
-
-  \includegraphics[width=4.17in]{images/svm1}
-\end{itemize}
-
-Los puntos que determinan el margen (y el hiperplano) se denominan
-vectores de soporte.
-
-En el caso de que las categorías no sean linealmente separables, se
-busca un clasificador de ``margen débil'', denominado \textbf{clasificador
-de soporte vectorial}.
-
-\begin{itemize}
-\item
-  Más robusto frente a observaciones individuales.
-\item
-  Mejor clasificación de la mayoría de las observaciones de
-  entrenamiento.
-\end{itemize}
-
-Se incluye un parámetro adicional \(C\) que permite la mala
-clasificación de algunas observaciones.
-
-\begin{longtable}[]{@{}cr@{}}
+\begin{longtable}[]{@{}cc@{}}
 \toprule
 \endhead
-\includegraphics{images/svm2.png} & \includegraphics{images/svm3.png}\tabularnewline
-\(C\) grande & \(C\) pequeño\tabularnewline
+\includegraphics[width=0.95\textwidth,height=\textheight]{images/image3.png} & \includegraphics[width=0.95\textwidth,height=\textheight]{images/image4.png}\tabularnewline
+\includegraphics[width=0.95\textwidth,height=\textheight]{images/image5.png} & \includegraphics[width=0.95\textwidth,height=\textheight]{images/image6.png}\tabularnewline
 \bottomrule
 \end{longtable}
 
-En ciertos casos una frontera lineal no es adecuada.
+Una vez terminada la instalación, al abrir R aparece la ventana de la consola (simula una ventana de comandos de Unix) que permite ejecutar comandos de R.
 
-\begin{itemize}
-\item
-  Se transforman las variables explicativas de forma que se puedan
-  separar las clases: \textbf{maquinas de soporte vectorial (SVM).}
-\item
-  Se consideran núcleos polinómicos, radiales, \ldots{}
+\hypertarget{instalaciuxf3n-de-paquetes}{%
+\subsection{Instalación de paquetes}\label{instalaciuxf3n-de-paquetes}}
 
-  \includegraphics[width=6.72in]{images/svm4}
-\end{itemize}
+Después de la instalación de R, puede ser necesario instalar paquetes adicionales (puede ser recomendable ejecutar R \emph{como Administrador} para evitar problemas de permiso de escritura en la carpeta \emph{library}\footnote{Alternativamente se podrían proporcionar a los usuarios del equipo el permiso \emph{control total} en la carpeta de instalación de R.}).
 
-\hypertarget{modelos-lineales-generalizados}{%
-\section{Modelos lineales (generalizados)}\label{modelos-lineales-generalizados}}
-
-Los modelos lineales suponen que la función de regresión es lineal:
-
-\[Y=\beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}+\varepsilon\]
-
-El efecto de las variables explicativas sobre la respuesta es simple
-(proporcional a su valor), por lo que son muy fáciles de interpretar.
-
-Los modelos lineales generalizados son una extensión de los modelos lineales
-para el caso de que la distribución condicional de la variable respuesta no
-sea normal (por ejemplo discreta: Bernouilli, Binomial, Poisson, \ldots).
-
-En los modelo lineales se supone que:
-\[E( Y | \mathbf{X} ) = \beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}\]
-En los modelos lineales generalizados se introduce una función invertible \emph{g}, denominada función enlace (o link):
-\[g\left(E(Y | \mathbf{X} )\right) = \beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}\]
-
-Cuando se dispone de un conjunto grande de posibles variables explicativas
-suele ser especialmente importante determinar cuales de estas deberían ser
-incluidas en el modelo de regresión. Si alguna de las variables no contiene
-información relevante sobre la respuesta no se debería incluir (se simplificaría
-la interpretación del modelo, aumentaría la precisión de la estimación y se
-evitarían problemas como la multicolinealidad). Se trataría entonces de conseguir
-un buen ajuste con el menor número de variables explicativas posible.
-
-Para obtener el modelo ``óptimo'' lo ideal sería evaluar todos los modelos posibles.
-Si el número de variables explicativas es grande, en lugar de emplear una
-búsqueda exhaustiva se puede emplear un criterio por pasos:
-
-\begin{itemize}
-\item
-  \textbf{Selección progresiva} (forward): Se parte de una situación en la
-  que no hay ninguna variable y en cada paso se incluye una aplicando
-  un \textbf{criterio de entrada} (hasta que ninguna de las restantes lo
-  verifican).
-\item
-  \textbf{Eliminación progresiva} (backward): Se parte del modelo con todas
-  las variables y en cada paso se elimina una aplicando un \textbf{criterio
-  de salida} (hasta que ninguna de las incluidas lo verifican).
-\item
-  \textbf{Regresión paso a paso} (stepwise): El más utilizado, se combina
-  un criterio de entrada y uno de salida. Normalmente se parte sin
-  ninguna variable y \textbf{en cada paso puede haber una inclusión y una
-  exclusión} (forward/backward).
-\end{itemize}
-
-Cuando el número de variables explicativas es muy grande (o si el tamaño de la
-muestra es pequeño en comparación) pueden aparecer problemas al emplear los
-métodos anteriores (incluso pueden no ser aplicables). Una alternativa son los
-métodos de regularización (Ridge regression, Lasso).
-
-\hypertarget{muxe9todos-de-regularizaciuxf3n}{%
-\section{Métodos de regularización}\label{muxe9todos-de-regularizaciuxf3n}}
-
-Estos métodos emplean también un modelo lineal generalizado,
-pero imponen restricciones adicionales a los parámetros que los
-``retraen'' (shrink) hacia cero:
-
-\begin{itemize}
-\item
-  Produce una reducción en la varianza de predicción (a
-  costa del sesgo).
-\item
-  En principio se consideran todas las variables explicativas.
-\end{itemize}
-
-Por ejemplo, en el caso del modelo lineal:
-\[Y=\beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}+\varepsilon\]
-
-En lugar de ajustarlo por mínimos cuadrados (estándar), minimizando:
-\[ RSS = \sum\limits_{i=1}^{n}\left(  y_{i} - \beta_0 - \beta_1 x_{1i} - \cdots - \beta_p x_{pi} \right)^{2}\]
-
-\textbf{Ridge regression}
-
-\begin{itemize}
-\tightlist
-\item
-  Penalización cuadrática: \(RSS+\lambda\sum_{j=1}^{p}\beta_{j}^{2}\).
-\end{itemize}
-
-\textbf{Lasso}
-
-\begin{itemize}
-\item
-  Penalización en valor absoluto: \(RSS+\lambda\sum_{j=1}^{p}|\beta_{j}|\).
-\item
-  Normalmente asigna peso nulo a algunas variables
-  (selección de variables).
-\end{itemize}
-
-El parámetro de penalización se selecciona por \textbf{validación cruzada}.
-
-\begin{itemize}
-\tightlist
-\item
-  Normalmente estandarizan las variables explicativas
-  (coeficientes en la misma escala).
-\end{itemize}
-
-Consideraremos como ejemplo el conjunto de datos \emph{hatco.RData} que contiene
-observaciones de clientes de la compañía de distribución industrial (Compañía
-Hair, Anderson y Tatham).
+Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
+\href{https://dplyr.tidyverse.org}{\texttt{dplyr}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}),
+\href{https://tidyr.tidyverse.org}{\texttt{tidyr}},
+\href{https://stringr.tidyverse.org}{\texttt{stringr}},
+\href{https://readxl.tidyverse.org}{\texttt{readxl}} ,
+\href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}},
+\href{https://cran.r-project.org/web/packages/sqldf/index.html}{\texttt{sqldf}},
+\href{https://r-dbi.github.io/RSQLite}{\texttt{RSQLite}},
+\href{https://cran.r-project.org/web/packages/foreign/index.html}{\texttt{foreign}},
+\href{https://cran.r-project.org/web/packages/magrittr/index.html}{\texttt{magrittr}},
+\href{https://rattle.togaware.com}{\texttt{rattle}},
+\href{https://yihui.name/knitr}{\texttt{knitr}}
+Por ejemplo mediante los comandos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{'data/hatco.RData'}\NormalTok{)}
-\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{attr}\NormalTok{(hatco, }\StringTok{"variable.labels"}\NormalTok{))}
+\NormalTok{pkgs <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'dplyr'}\NormalTok{, }\StringTok{'tidyr'}\NormalTok{, }\StringTok{'stringr'}\NormalTok{, }\StringTok{'readxl'}\NormalTok{, }\StringTok{'openxlsx'}\NormalTok{, }\StringTok{'magrittr'}\NormalTok{, }
+          \StringTok{'RODBC'}\NormalTok{, }\StringTok{'sqldf'}\NormalTok{, }\StringTok{'RSQLite'}\NormalTok{, }\StringTok{'foreign'}\NormalTok{, }\StringTok{'rattle'}\NormalTok{, }\StringTok{'knitr'}\NormalTok{)}
+\CommentTok{# install.packages(pkgs, dependencies=TRUE)}
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{setdiff}\NormalTok{(pkgs, }\KeywordTok{installed.packages}\NormalTok{()[,}\StringTok{'Package'}\NormalTok{]), }\DataTypeTok{dependencies =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##          attr(hatco, "variable.labels")
-## empresa                         Empresa
-## tamano             Tamaño de la empresa
-## adquisic      Estructura de adquisición
-## tindustr              Tipo de industria
-## tsitcomp    Tipo de situación de compra
-## velocida           Velocidad de entrega
-## precio                 Nivel de precios
-## flexprec        Flexibilidad de precios
-## imgfabri          Imagen del fabricante
-## servconj              Servicio conjunto
-## imgfvent     Imagen de fuerza de ventas
-## calidadp            Calidad de producto
-## fidelida   Porcentaje de compra a HATCO
-## satisfac            Satisfacción global
-## nfidelid        Nivel de compra a HATCO
-## nsatisfa          Nivel de satisfacción
-\end{verbatim}
+(puede que haya que seleccionar el repositorio de descarga, e.g.~\emph{Spain (Madrid)}).
 
-Consideraremos como respuesta la variable \emph{fidelida} y como variables explicativas
-el resto de variables continuas menos \emph{satisfac}.
+La forma tradicional es esta:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Se inicia R y se selecciona \emph{Paquetes -\textgreater{} Instalar paquetes}
+\item
+  Se selecciona el repositorio.
+\item
+  Se selecciona el paquete y automáticamente se instala.
+\end{enumerate}
+
+\texttt{Rattle} depende de la libraría gráfica GTK+, al iniciarlo por primera vez
+con el comando \texttt{library(rattle)} nos pregunta si queremos instalarla:
+
+\includegraphics[width=0.15\textwidth,height=\textheight]{images/image7.png}
+
+Pulsamos OK y reiniciamos R.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{instalaciuxf3n-en-mac-os-x}{%
+\section{Instalación en Mac OS X}\label{instalaciuxf3n-en-mac-os-x}}
+
+Instalar R de
+\url{http://cran.es.r‐project.org/bin/macosx}
+siguiendo los pasos anteriores.
+
+Para instalar \texttt{rattle} seguir estos pasos (\url{https://zhiyzuo.github.io/installation-rattle}):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Instalar Homebrew:
+  \url{https://brew.sh/}.
+\item
+  Ejecutar el siguiente código en la consola:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(glmnet)}
+\KeywordTok{system}\NormalTok{(}\StringTok{'brew install gtk+'}\NormalTok{)}
+
+\KeywordTok{local}\NormalTok{(\{}
+  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{Sys.info}\NormalTok{()[[}\StringTok{'sysname'}\NormalTok{]] }\OperatorTok{!=}\StringTok{ 'Darwin'}\NormalTok{) }\KeywordTok{return}\NormalTok{()}
+
+\NormalTok{  .Platform}\OperatorTok{$}\NormalTok{pkgType =}\StringTok{ 'mac.binary.el-capitan'}
+  \KeywordTok{unlockBinding}\NormalTok{(}\StringTok{'.Platform'}\NormalTok{, }\KeywordTok{baseenv}\NormalTok{())}
+  \KeywordTok{assign}\NormalTok{(}\StringTok{'.Platform'}\NormalTok{, .Platform, }\StringTok{'package:base'}\NormalTok{)}
+  \KeywordTok{lockBinding}\NormalTok{(}\StringTok{'.Platform'}\NormalTok{, }\KeywordTok{baseenv}\NormalTok{())}
+
+  \KeywordTok{options}\NormalTok{(}
+    \DataTypeTok{pkgType =} \StringTok{'both'}\NormalTok{, }\DataTypeTok{install.packages.compile.from.source =} \StringTok{'always'}\NormalTok{,}
+    \DataTypeTok{repos =} \StringTok{'https://macos.rbind.org'}
+\NormalTok{  )}
+\NormalTok{\})}
+
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{'RGtk2'}\NormalTok{, }\StringTok{'cairoDevice'}\NormalTok{, }\StringTok{'rattle'}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+\end{enumerate}
 
-El paquete \texttt{glmnet} no emplea formulación de modelos, hay que establecer la respuesta
-\texttt{y} y las variables explicativas \texttt{x} (se puede emplear la función \texttt{model.matrix()}
-para construir \texttt{x}, la matriz de diseño, a partir de una fórmula).
-En este caso, eliminamos también la última fila por tener datos faltantes:
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{instalaciuxf3n-opcional-de-un-entorno-o-editor-de-comandos}{%
+\section{Instalación (opcional) de un entorno o editor de comandos}\label{instalaciuxf3n-opcional-de-un-entorno-o-editor-de-comandos}}
+
+Aunque la consola de R dispone de un editor básico de códido (script),
+puede ser recomendable trabajar con un editor de comandos más cómodo y
+flexible.
+
+Un entorno de R muy recomendable es el \textbf{RStudio},
+\href{http://rstudio.org}{\emph{http://rstudio.org}}:
+
+\includegraphics[width=0.4\textwidth,height=\textheight]{images/image8.png}
+
+Para instalarlo descargar el archivo de instalación de
+\href{http://rstudio.org/download/desktop}{\emph{http://rstudio.org/download/desktop}}.
+
+\hypertarget{opciones-adicionales}{%
+\subsection{Opciones adicionales}\label{opciones-adicionales}}
+
+Nos puede interesar modificar las opciones por defecto en RStudio, por ejemplo que los gráficos se muestren en una ventana de R o que se emplee el navegador por defecto, para ello habría que modificar (con permisos de administrador) los archivos de configuración \emph{Tools.R} y \emph{Options.R}
+(en Windows se encuentran en la carpeta \emph{C:\textbackslash Program Files\textbackslash RStudio\textbackslash R}).
+
+Para utilizar el dispositivo gráfico de R, modificar \emph{Tools.R}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(hatco[}\OperatorTok{-}\DecValTok{100}\NormalTok{, }\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{])}
-\NormalTok{y <-}\StringTok{ }\NormalTok{hatco}\OperatorTok{$}\NormalTok{fidelida[}\OperatorTok{-}\DecValTok{100}\NormalTok{]}
+\CommentTok{# set our graphics device as the default and cause it to be created/set}
+\KeywordTok{.rs.addFunction}\NormalTok{( }\StringTok{"initGraphicsDevice"}\NormalTok{, }\ControlFlowTok{function}\NormalTok{()}
+\NormalTok{\{}
+   \CommentTok{# options(device="RStudioGD")}
+   \CommentTok{# grDevices::deviceIsInteractive("RStudioGD")}
+\NormalTok{  grDevices}\OperatorTok{::}\KeywordTok{deviceIsInteractive}\NormalTok{()}
+\NormalTok{\})}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{ridge-regression}{%
-\subsection{Ridge Regression}\label{ridge-regression}}
-
-Ajustamos un modelo de regresión ridge con la función \texttt{glmnet} con \texttt{alpha=0} (ridge penalty).
+Para utilizar el navegador del equipo en lugar del visor integrado de de R, modificar \emph{Options.R}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fit.ridge <-}\StringTok{ }\KeywordTok{glmnet}\NormalTok{(x, y, }\DataTypeTok{alpha =} \DecValTok{0}\NormalTok{)}
-\KeywordTok{plot}\NormalTok{(fit.ridge, }\DataTypeTok{xvar =} \StringTok{"lambda"}\NormalTok{, }\DataTypeTok{label =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{# # custom browseURL implementation}
+\CommentTok{# options(browser = function(url)}
+\CommentTok{# \{}
+\CommentTok{#    .Call("rs_browseURL", url) ;}
+\CommentTok{# \})}
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{23-StatisticalLearning_files/figure-latex/unnamed-chunk-9-1.pdf}
-
-Para seleccionar el parámetro de penalización por validación cruzada se puede emplear
-la función \texttt{cv.glmnet}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cv.ridge <-}\StringTok{ }\KeywordTok{cv.glmnet}\NormalTok{(x, y, }\DataTypeTok{alpha =} \DecValTok{0}\NormalTok{)}
-\KeywordTok{plot}\NormalTok{(cv.ridge)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{23-StatisticalLearning_files/figure-latex/unnamed-chunk-10-1.pdf}
-
-En este caso el parámetro sería:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cv.ridge}\OperatorTok{$}\NormalTok{lambda}\FloatTok{.1}\NormalTok{se}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 3.635163
-\end{verbatim}
-
-y el modelo resultante contiene todas las variables explicativas:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{coef}\NormalTok{(cv.ridge)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                      1
-## (Intercept) 5.26333438
-## velocida    1.58051175
-## precio      0.70395775
-## flexprec    2.24798481
-## imgfabri    0.31897738
-## servconj    3.76988236
-## imgfvent    1.07304993
-## calidadp    0.06641356
-\end{verbatim}
-
-\hypertarget{lasso}{%
-\subsection{Lasso}\label{lasso}}
-
-Ajustamos un modelo lasso también con la función \texttt{glmnet} (con la opción por defecto \texttt{alpha=1}, lasso penalty).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fit.lasso <-}\StringTok{ }\KeywordTok{glmnet}\NormalTok{(x,y)}
-\KeywordTok{plot}\NormalTok{(fit.lasso, }\DataTypeTok{xvar =} \StringTok{"lambda"}\NormalTok{, }\DataTypeTok{label =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{23-StatisticalLearning_files/figure-latex/unnamed-chunk-13-1.pdf}
-
-Seleccionamos el parámetro de penalización por validación cruzada.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cv.lasso <-}\StringTok{ }\KeywordTok{cv.glmnet}\NormalTok{(x,y)}
-\KeywordTok{plot}\NormalTok{(cv.lasso)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{23-StatisticalLearning_files/figure-latex/unnamed-chunk-14-1.pdf}
-
-En este caso el modelo resultante solo contiene 4 variables explicativas:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{coef}\NormalTok{(cv.lasso)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     1
-## (Intercept) 4.4757712
-## velocida    0.1020531
-## precio      .        
-## flexprec    2.7202485
-## imgfabri    .        
-## servconj    6.4044378
-## imgfvent    0.4651076
-## calidadp    .
-\end{verbatim}
-
-\hypertarget{regresiuxf3n-no-paramuxe9trica}{%
-\section{Regresión no paramétrica}\label{regresiuxf3n-no-paramuxe9trica}}
-
-No se supone ninguna forma concreta en el efecto de las variables explicativas:
-\[Y=f\left(  \mathbf{X}\right)  +\varepsilon,\]
-con \emph{f} función ``cualquiera'' (suave).
-
-\begin{itemize}
-\item
-  Métodos disponibles en \texttt{R}:
-
-  \begin{itemize}
-  \item
-    Regresión local (métodos de suavizado): \texttt{loess()}, \texttt{KernSmooth}, \texttt{sm}, \ldots{}
-  \item
-    Modelos aditivos generalizados (GAM): \texttt{gam}, \texttt{mgcv}, \ldots{}
-  \item
-    \ldots{}
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{modelos-aditivos}{%
-\subsection{Modelos aditivos}\label{modelos-aditivos}}
-
-Se supone que:
-\[Y=\beta_{0}+f_{1}\left(  \mathbf{X}_{1}\right)  +f_{2}\left(  \mathbf{X}_{2}\right)  +\cdots+f_{p}\left(  \mathbf{X}_{p}\right)  +\varepsilon\text{,}\]
-con \(f_{i},\) \(i=1,...,p,\) funciones cualesquiera.
-
-\begin{itemize}
-\item
-  Los modelos lineales son un caso particular considerando \(f_{i}(x) = \beta_{i}x\).
-\item
-  Son mucho más flexibles pero siguen siendo fáciles de interpretar.
-\item
-  Adicionalmente se puede considerar una función link:
-  \textbf{Modelos aditivos generalizados} (GAM)
-
-  \begin{itemize}
-  \item
-    Hastie, T.J. y Tibshirani, R.J. (1990). Generalized Additive Models.
-    Chapman \& Hall.
-  \item
-    Wood, S. N. (2006). Generalized Additive Models: An Introduction with R.
-    Chapman \& Hall/CRC
-  \end{itemize}
-\end{itemize}
-
-Utilizaremos como ejemplo el conjunto de datos \texttt{Prestige} de la librería \texttt{carData}
-(Companion to Applied Regression Data Sets, paquete \texttt{car}).
-Se tratará de explicar \texttt{prestige} (puntuación de ocupaciones obtenidas a traves
-de una encuesta) a partir de \texttt{income} (media de ingresos en la ocupación) y
-\texttt{education} (media de los años de educación).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(mgcv)}
-\KeywordTok{data}\NormalTok{(Prestige, }\DataTypeTok{package =} \StringTok{"carData"}\NormalTok{)}
-\NormalTok{modelo <-}\StringTok{ }\KeywordTok{gam}\NormalTok{(prestige }\OperatorTok{~}\StringTok{ }\KeywordTok{s}\NormalTok{(income) }\OperatorTok{+}\StringTok{ }\KeywordTok{s}\NormalTok{(education), }\DataTypeTok{data =}\NormalTok{ Prestige)}
-\KeywordTok{summary}\NormalTok{(modelo)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Family: gaussian 
-## Link function: identity 
-## 
-## Formula:
-## prestige ~ s(income) + s(education)
-## 
-## Parametric coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  46.8333     0.6889   67.98   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Approximate significance of smooth terms:
-##                edf Ref.df     F p-value    
-## s(income)    3.118  3.877 14.61  <2e-16 ***
-## s(education) 3.177  3.952 38.78  <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## R-sq.(adj) =  0.836   Deviance explained = 84.7%
-## GCV = 52.143  Scale est. = 48.414    n = 102
-\end{verbatim}
-
-En este caso la función \texttt{plot} representa los efectos (parciales) estimados de
-cada covariable:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{par.old <-}\StringTok{ }\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(modelo, }\DataTypeTok{shade =} \OtherTok{TRUE}\NormalTok{) }\CommentTok{# }
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{23-StatisticalLearning_files/figure-latex/unnamed-chunk-17-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(par.old)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{redes-neuronales}{%
-\section{Redes neuronales}\label{redes-neuronales}}
-
-Se trata de imitar el funcionamiento del cerebro de un ser vivo.
-
-\begin{itemize}
-\item
-  Neuronas organizadas en capas que interactuan por medio de pesos.
-\item
-  Capa de entrada, capas ocultas y capa de salida.
-
-  \includegraphics[width=6.88in]{images/nn}
-\end{itemize}
-
-Son modelos hiperparametrizados de difícil interpretación.
-
-\begin{itemize}
-\tightlist
-\item
-  Hay distintos métodos de aprendizaje (estimación de los pesos)
-\end{itemize}
-
-\hypertarget{bibliografuxeda}{%
-\section{Bibliografía}\label{bibliografuxeda}}
-
-\begin{itemize}
-\item
-  Efron, B. y Hastie, T. (2016). \href{http://web.stanford.edu/~hastie/CASI/}{Computer age statistical inference}.
-  Cambridge University Press.
-\item
-  Hastie, T., Tibshirani, R. y Friedman, J. (2017).
-  \href{https://web.stanford.edu/~hastie/ElemStatLearn}{The Elements of Statistical Learning: Data Mining, Inference, and Prediction}.
-  Springer.
-\item
-  James, G., Witten, D., Hastie, T. y Tibshirani, R. (2017).
-  \href{http://faculty.marshall.usc.edu/gareth-james/ISL}{An Introduction to Statistical Learning: with Aplications in R}.
-  Springer.
-\item
-  Torgo, L. (2011). Data Mining with R: Learning with Case
-  Studies. Chapman \& Hall/CRC Press.
-\item
-  Williams, G. (2011). Data Mining with Rattle and R. Springer.
-\end{itemize}
 
   \bibliography{book.bib,packages.bib}
 

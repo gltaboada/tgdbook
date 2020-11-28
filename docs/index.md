@@ -1,7 +1,7 @@
 --- 
 title: "Prácticas de Tecnologías de Gestión y Manipulación de Datos"
 author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)"
-date: "2020-11-11"
+date: "2020-11-28"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -33,14 +33,13 @@ Para ejecutar los ejemplos mostrados en el libro será necesario tener instalado
 [`sqldf`](https://cran.r-project.org/web/packages/sqldf/index.html),
 [`RSQLite`](https://r-dbi.github.io/RSQLite), 
 [`foreign`](https://cran.r-project.org/web/packages/foreign/index.html), 
-[`SparkR`](https://cran.r-project.org/web/packages/SparkR/index.html), 
 [`magrittr`](https://cran.r-project.org/web/packages/magrittr/index.html), 
 [`knitr`](https://yihui.name/knitr) 
 Por ejemplo mediante los comandos:
 
 ```r
 pkgs <- c('dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr', 
-          'RODBC', 'sqldf', 'RSQLite', 'foreign', 'SparkR', 'knitr')
+          'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr')
 # install.packages(pkgs, dependencies=TRUE)
 install.packages(setdiff(pkgs, installed.packages()[,'Package']), dependencies = TRUE)
 ```

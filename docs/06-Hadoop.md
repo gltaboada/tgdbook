@@ -11,78 +11,34 @@ Tecnologías para el Tratamiendo de Datos Masivos
 
 En este apartado trataremos los siguientes epígrafes:
 
-Tópicos tratados en este capítulo:
+1. Introducción al Aprendizaje Estadístico
 
-1. Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)
-2. Visualización y generación de cuadros de mando 
-3. Introducción al análisis de datos masivos.
+2. Tecnologías Big Data (Hadoop, Spark, Sparklyr)
 
-
-![](images/T3-CientificoDatos.png)
-
-![](images/T3-DMvsBD.jpg)
-
-![](images/T3-AI-ML.png)
+3. Ejercicios de análisis de datos masivos.
 
 
-![](images/T3-MLvsDL.png)
+## Introducción al Aprendizaje Estadístico
 
-![](images/T3-machinelearning.png)
+El material para este apartado está disponible en el 
+[Capítulo 1 del libro "Aprendizaje Estadístico"](
+https://rubenfcasal.github.io/aprendizaje_estadistico/intro-AE.html) de Rubén Fernández Casal.  
 
+Para seguir este capítulo es altamente recomendable tener instalado Rattle, para ello consultad el apéndice de instalación de R al final de este libro.
+
+![](images/T3-CientificoDatos.png){width="60%"}
 
 
 
 
 
-![](images/T3-machinelearningalgorithms.png)
-
-Y un ejemplo de cómo se trabaja en machine learning:
-
-![](images/T3-Supervised_ML.png)
-
-<!--
-
-https://medium.com/analytics-vidhya/iris-species-using-auto-ml-pycaret-327985fb362f
-http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
-https://sebastianraschka.com/faq/docs/clf-behavior-data.html
-https://pythonmachinelearning.pro/supervised-learning-using-decision-trees-to-classify-data/
-
--->
-
-### Rattle como alternativa a RapidMiner en R
-
-Es un paquete para R, con interfaz gráfica desarrollada en GTK, que permite generar código R para minería de datos. Se instala según los pasos indicados a continuación: 
 
 
-```r
-install.packages("ggplot2")
-install.packages("cairoDevice")
-install.packages("RGtk2")
-library("RGtk2")
-install.packages("rattle")
-library(rattle)
-rattle()
-```
+## Tecnologías Big Data (Hadoop/Spark y Visualización)
 
-Un tutorial adecuado para introducirse en Rattle es [éste](https://www.dummies.com/programming/using-rattle-iris-r-programming/)
- 
-![](images/T3-rattle1.png)
+### Tecnologías Hadoop, Spark, y Sparklyr
 
-
-Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.
-
-![](images/T3-rattle2.png)
-
-
-
-![](images/T3-rattle3.png)
-
-
-
-
-## Tecnologías Big Data (Hadoop, Spark, Hive, Rspark, Sparklyr)
-
-A continuación se introducen los conceptos básicos de las tecnologías Big Data:
+A continuación se introducen los conceptos básicos de las tecnologías Hadoop, Spark y Sparklyr:
 
 - Hadoop: framework open-source desarrollado en Java principalmente que soporta aplicaciones distribuidas sobre miles de nodos y a escala Petabyte. Está inspirado en el diseño de las operaciones de MapReduce de Google y el Google File System (GFS). Entre sus principales componentes destaca HDFS Hadoop Distributed File System, sistema de ficheros distribuido sobre múltiples nodos y accesible a nivel de aplicación. También destaca YARN como gestor de recursos, para ejecutar aplicaciones. Destacar que la versión original, Hadoop 1, estaba basada extensivamente en Map Reduce, Hadoop 2 colocó en su core a YARN y Hadoop 3 está orientado a la provisión de Plataforma como servicio y ejecución simultánea de múltiples cargas de trabajo distribuidas sobre recursos solicitados bajo demanda. 
 
@@ -100,8 +56,64 @@ A continuación se introducen los conceptos básicos de las tecnologías Big Dat
 
 ![](images/T3-ecosistema.png)
 
+![](images/T3-DMvsBD.jpg){width="60%"}
 
-## Visualización y Generación de Cuadros de Mando
+
+### Big Data y Machine Learning
+
+El Machine Learning o Aprendizaje Máquina es aquella parte de la inteligencia artificial con capacidad de aprender de los datos. 
+
+![](images/T3-AI-ML.png){width="70%"}
+
+![](images/T3-MLvsDL.png)
+
+![](images/T3-machinelearning.png)
+
+
+
+
+
+
+![](images/T3-machinelearningalgorithms.png)
+
+Y un ejemplo de cómo se trabaja en machine learning:
+
+![](images/T3-Supervised_ML.png){width="70%"}
+
+<!--
+
+https://medium.com/analytics-vidhya/iris-species-using-auto-ml-pycaret-327985fb362f
+http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
+https://sebastianraschka.com/faq/docs/clf-behavior-data.html
+https://pythonmachinelearning.pro/supervised-learning-using-decision-trees-to-classify-data/
+
+-->
+
+
+
+
+### Rattle como alternativa a RapidMiner en R
+
+
+Las instrucciones para instalar R está en el [Apéndice 3 de este documento](https://gltaboada.github.io/tgdbook/instalaci%C3%B3n-de-r.html)
+
+Un tutorial adecuado para introducirse en Rattle es [éste](https://www.dummies.com/programming/using-rattle-iris-r-programming/)
+ 
+![](images/T3-rattle1.png)
+
+
+Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.
+
+![](images/T3-rattle2.png)
+
+
+
+![](images/T3-rattle3.png)
+
+
+
+
+### Visualización y Generación de Cuadros de Mando
 
 Se sigue un tutorial de la herramienta [PowerBI, con datos de Excel y OData Feed](https://docs.microsoft.com/es-es/power-bi/desktop-tutorial-analyzing-sales-data-from-excel-and-an-odata-feed)
 
@@ -109,9 +121,13 @@ Como documentación de se soporte se cuenta con la web de [PowerBI](https://docs
 
 
 
+
+
 ## Introducción al Análisis de Datos Masivos
 
-En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía sparklyr.
+En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía sparklyr. 
+
+Este apartado, eminentemente práctico, lo trabajaremos a través de [la práctica 3 de TGD](https://www.kaggle.com/gltaboada/t3-practice3-flights).
 
 
 
