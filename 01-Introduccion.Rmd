@@ -1,7 +1,7 @@
 ---
 title: "T0 INTRO"
 author: "Guillermo Lopez Taboada"
-date: "14/09/2020"
+date: "2/11/2020"
 output: pdf_document
 ---
 
@@ -45,46 +45,21 @@ En particular, los resultados de aprendizaje son:
 La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los 
 conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/9HR5iFHXoLowrCHLA
 
-- Clase 1 (14/9): Presentación e introducción a Tema 1.
+- Semana 1 (3 y 5/11): Presentación e introducción a Tema 1 y SQL.
 
-- Clase 2 (17/9): Tema 1: Introducción a SQL
+- Semana 2 (8, 10 y 12/11): Seminario Manipulación de datos con dplyr y Ejercicios SQL
 
-- Clase 3 (21/9-RFC): Seminario Manipulación de datos con R 
+- Semana 3 (17 y 19/11): Tema 2: NoSQL y Seminario tratamiento de texto (CSV, excel, Json) y open data 
 
-- Clase 4 (24/9-RFC): Seminario Manipulación de datos con dplyr
+- Semana 4 (22, 24 y 26): Tema 3: Conceptos de Big Data y Tutorial de sparklyr, 
 
-- Clase 5 (28/9-RFC): Seminario Manipulación de datos con dplyr (continuación)
+- Semana 5 (29/11, 1 y 3/12): Tema 3: Introducción al Aprendizaje Estadístico y prácticas
 
-- Clase 6 (1/10): Tema 1: Ejercicios SQL 
+- Semana 6 (10/12): Tema 3: Prácticas sparklyr
 
-- Clase 7 (5/10): Tema 1: Ejercicios SQL 
+- Semana 7 (13, 15 y 17/12): Tema 3: Prácticas spkarlyr y seminario de visualización
 
-- Clase 8 (8/10): Tema 1: Ejercicios SQL
-
-- Clase 9 (19/10): Tema 2: Seminario tratamiento de texto (CSV, excel, Json) y open data
-
-- Clase 10 (26/10): Tema 2: Introducción a NoSQL 
-
-- Clase 11 (2/11): Tema 2: Introducción a NoSQL (base de datos MongoDB y columnar) (sin clase el 5/11)
-
-- Clase 12 (9/11): Tema 2: Introducción a NoSQL (base de datos de grafos)
-
-- Clase 13 (12/11): Tema 3: Seminario Rapidminer
-
-- Clase 14 (16/11): Tema 3: Tutorial de sparklyr
-
-- Clase 15 (19/11): Tema 3: Conceptos de Big Data
-
-- Clase 16 (23/11): Tema 3: sparklyr: regresión lineal
-
-- Clase 17 (26/11): Tema 3: sparklyr: naive bayes
-
-- Clases 18-19 (30/11-3/12-RFC): Tema 3: Introducción al Aprendizaje Estadístico
-
-- Clases 20-21 (7-10/12): Tema 3: Prácticas de sparklyr
-
-- Clases 22-23 (14-17/12): Tema 3: Aplicaciones Big Data y Seminario Visualización con PowerBI
-
+Examen 25/1 4pm. 
 
 
 <!-- Curso 2019-2020
@@ -127,14 +102,13 @@ conceptos. Para completar nuestra visión de los conocimientos previos os requer
 Conceptos de la materia: Dominio de los conocimientos teóricos y operativos de la materia.
 Asimilación práctica de materia: Asimilación y comprensión de los conocimientos teóricos y operativos de la materia.
 
--   **Prácticas de laboratorio** (30%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.
-
--   **Trabajos tutelados** (10%): Evaluación de los trabajos tutelados desarrollados por los estudiantes.
+-   **Prácticas de laboratorio** (40%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.
 
 
+<!-- Curso 2019-2020
 #### Observaciones sobre la evaluación:
 
-* Las prácticas de laboratorio se realizarán de forma individual, así como el trabajo tutelado que es opcional. En caso de no realizar el trabajo tutelado los estudiantes tendrán un 67% de nota del examen y un 33% de prácticas de laboratorio. El plazo para realizar las 3 prácticas será indicado en la presentación de la práctica. El plazo para la entrega de los trabajos tutelados es el último día de clase de la asignatura.
+* Las prácticas de laboratorio se realizarán de forma individual. El plazo para realizar las 3 prácticas será indicado en la presentación de la práctica. El plazo para la entrega de los trabajos tutelados es el último día de clase de la asignatura.
 
 * El estudiante que quiera realizar un trabajo tutelado ha de hablar (o mediante correo electrónico) con los profesores para validar y confirmar el tema y alcance del trabajo tutelado.
 
@@ -143,6 +117,8 @@ Asimilación práctica de materia: Asimilación y comprensión de los conocimien
 * En la segunda oportunidad solamente se podrá recuperar la nota del examen. Las notas de prácticas y de trabajos tutelados serán las obtenidas durante el curso. Para los alumnos que utilicen la oportunidad adelantada de diciembre se utilizarán las notas de prácticas y trabajos tutelados que obtuvieran en su último curso. En esta oportunidad solo será necesario para aprobar obtener una nota total igual o superior al 50% de la nota máxima.
 
 * Una vez que un estudiante es evaluado en una práctica de laboratorio o en un trabajo tutelado implica que será calificado. Por tanto, la calificación "No Presentado" no es posible una vez que una práctica/trabajo ha sido evaluada.
+
+-->
 
 ## Fuentes de información:
 
