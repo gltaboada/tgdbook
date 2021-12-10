@@ -89,6 +89,10 @@ https://pythonmachinelearning.pro/supervised-learning-using-decision-trees-to-cl
 
 -->
 
+![](images/T3-ML-indicadores.png){width="70%"}
+
+
+
 
 
 
