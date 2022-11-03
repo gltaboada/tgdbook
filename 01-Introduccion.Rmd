@@ -43,23 +43,30 @@ En particular, los resultados de aprendizaje son:
 ## Planificación (tentativa)
 
 La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los 
-conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/9HR5iFHXoLowrCHLA
+conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/EbbBNeXTpk8MK1C76
 
-- Semana 1 (3 y 5/11): Presentación e introducción a Tema 1 y SQL.
+- Semana 1 (4/11): Presentación e introducción a Tema 1 y SQL.
 
-- Semana 2 (8, 10 y 12/11): Seminario Manipulación de datos con dplyr y Ejercicios SQL
+- Semana 2 (11/11): Tema 1 y SQL.
 
-- Semana 3 (17 y 19/11): Tema 2: NoSQL y Seminario tratamiento de texto (CSV, excel, Json) y open data 
+- Semana 3 (15, 16, 17 y 18/11): Seminario Manipulación de datos con dplyr (15 y 16) y Ejercicios SQL (17 y 18).
 
-- Semana 4 (22, 24 y 26): Tema 3: Conceptos de Big Data y Tutorial de sparklyr, 
+- Semana 4 (21 y 22/11) Tema 2: NoSQL y Seminario tratamiento de texto (CSV, excel, Json) y open data 
 
-- Semana 5 (29/11, 1 y 3/12): Tema 3: Introducción al Aprendizaje Estadístico y prácticas
+- Semana 4 (23 y 24/11) Tema 3: Conceptos de Big Data y datos masivos. 25 no hay clase.
 
-- Semana 6 (10/12): Tema 3: Prácticas sparklyr
+- Semana 5 (28, 29 y 30/11) Tema 3: Introducción al Aprendizaje Estadístico 
 
-- Semana 7 (13, 15 y 17/12): Tema 3: Prácticas spkarlyr y seminario de visualización
+- Semana 5 (1 y 2/12) Tema 3: Tutorial de sparklyr
 
-Examen 25/1 4pm. 
+- Semana 6 (5, 7 y 9/12) Tema 3: Prácticas sparklyr
+
+- Semana 7 (12, 13, 14, 15 y 16) Tema 3: Prácticas sparklyr, seminario de visualización y aplicaciones de datos masivos
+
+- Semana 8 (19, 20 y 21/12) Backup
+
+
+Examen 24/1 4pm. 
 
 
 <!-- Curso 2019-2020
