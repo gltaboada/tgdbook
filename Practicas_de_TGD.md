@@ -1,7 +1,7 @@
 --- 
 title: "Prácticas de Tecnologías de Gestión y Manipulación de Datos"
 author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)"
-date: "2022-11-04"
+date: "2023-11-03"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -103,28 +103,24 @@ En particular, los resultados de aprendizaje son:
 La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los 
 conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/EbbBNeXTpk8MK1C76
 
-- Semana 1 (4/11): Presentación e introducción a Tema 1 y SQL.
+- Semana 1 (3/11): Presentación e introducción a Tema 1 y SQL.
 
-- Semana 2 (11/11): Tema 1 y SQL.
+- Semana 2 (6, 8, 9, 10/11): Tema 1 y SQL. Seminario Manipulación de datos con dplyr (8 y 9). Ejercicios SQL (11)
 
-- Semana 3 (15, 16, 17 y 18/11): Seminario Manipulación de datos con dplyr (15 y 16) y Ejercicios SQL (17 y 18).
+- Semana 3 (13, 15 y 16/11):  Ejercicios SQL (13). Tema 2: NoSQL y Seminario tratamiento de texto (CSV, excel, Json) y open data. 
 
-- Semana 4 (21 y 22/11) Tema 2: NoSQL y Seminario tratamiento de texto (CSV, excel, Json) y open data 
+- Semana 4 (20, 22, 23 y 24/11): Tema 3: Conceptos de Big Data y datos masivos. Introducción al Aprendizaje Estadístico.
 
-- Semana 4 (23 y 24/11) Tema 3: Conceptos de Big Data y datos masivos. 25 no hay clase.
+- Semana 5 (27, 29, 30 y 1/12): Tema 3: Tutorial de sparklyr, seminario de visualización y aplicaciones de datos masivos
 
-- Semana 5 (28, 29 y 30/11) Tema 3: Introducción al Aprendizaje Estadístico 
+- Semana 6 (4/12) Tema 3: Prácticas sparklyr
 
-- Semana 5 (1 y 2/12) Tema 3: Tutorial de sparklyr
+- Semana 7 (11, 13, 14 y 15/12) Tema 3: Prácticas sparklyr. 
 
-- Semana 6 (5, 7 y 9/12) Tema 3: Prácticas sparklyr
-
-- Semana 7 (12, 13, 14, 15 y 16) Tema 3: Prácticas sparklyr, seminario de visualización y aplicaciones de datos masivos
-
-- Semana 8 (19, 20 y 21/12) Backup
+- Semana 8 (18, 20, 21 y 22/12) Revisión prácticas, dudas de cara a examen, backup. 
 
 
-Examen 24/1 4pm. 
+Examen 22/1 4pm. 
 
 
 <!-- Curso 2019-2020
@@ -2643,7 +2639,7 @@ str(head(invoices))
 ##   .. .. ..@ loadable.extensions: logi TRUE
 ##   .. .. ..@ flags              : int 70
 ##   .. .. ..@ vfs                : chr ""
-##   .. .. ..@ ref                :<environment: 0x000000001cde8160> 
+##   .. .. ..@ ref                :<environment: 0x000000001cde8a58> 
 ##   .. .. ..@ bigint             : chr "integer64"
 ##   ..$ disco: NULL
 ##   ..- attr(*, "class")= chr [1:4] "src_SQLiteConnection" "src_dbi" "src_sql" "src"
