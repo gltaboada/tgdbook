@@ -173,13 +173,11 @@ con la función `get.idDocs()`.
     get.idCategories(db, grepl('Mathematics', WC))
     ```
 
-- `get.idJournals()` códigos de las revistas
+- `get.idSources()` códigos de otras fuentes (como resvistas)
 
     ```{r }
-    ijss <- get.idJournals(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
-    ijss
-    knitr::kable(db$Journals[ijss, ], caption = "JSS")
-    get.idJournals(db, JI == 'J. Stat. Softw.')
+    get.idSources(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
+    # get.idSources(db, JI == 'J. Stat. Softw.')
     ```
 
 ### Obtener documentos (de autores, revistas, ...)

@@ -1,12 +1,5 @@
----
-title: "T0 INTRO"
-author: "Guillermo Lopez Taboada"
-date: "2/11/2020"
-output: pdf_document
----
-
-Introducción a las Tecnologías de Gestión y Manipulación de Datos
-=================================================================
+Introducción
+============
 
 
 ```{r , child = '_global_options.Rmd'}

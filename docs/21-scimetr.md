@@ -200,8 +200,10 @@ str(db, 1)
 
 ```
 ## List of 11
-##  $ Docs      :'data.frame':	389 obs. of  26 variables:
-##  $ Authors   :'data.frame':	611 obs. of  4 variables:
+##  $ Docs      :'data.frame':	389 obs. of  25 variables:
+##   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
+##   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
+##  $ Authors   :'data.frame':	610 obs. of  4 variables:
 ##  $ AutDoc    :'data.frame':	1260 obs. of  2 variables:
 ##  $ Categories:'data.frame':	46 obs. of  2 variables:
 ##  $ CatDoc    :'data.frame':	866 obs. of  2 variables:
@@ -209,7 +211,7 @@ str(db, 1)
 ##  $ AreaDoc   :'data.frame':	771 obs. of  2 variables:
 ##  $ Addresses :'data.frame':	896 obs. of  5 variables:
 ##  $ AddAutDoc :'data.frame':	1328 obs. of  3 variables:
-##  $ Journals  :'data.frame':	150 obs. of  12 variables:
+##  $ Sources   :'data.frame':	150 obs. of  14 variables:
 ##  $ label     : chr "Mathematics_UDC_2008-2017 (01-02-2019)"
 ##  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
 ##   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
@@ -257,16 +259,16 @@ res1
 
 ```
 ## Number of documents: 389 
-## Authors: 611 
+## Authors: 610 
 ## Period: 2008 - 2017 
 ## 
 ## Document types:
-##                    Documents
-## Article                  360
-## Correction                 1
-## Editorial Material         5
-## Proceedings Paper         16
-## Review                     7
+##                            Documents
+## Article                          360
+## Article; Proceedings Paper        16
+## Correction                         1
+## Editorial Material                 5
+## Review                             7
 ## 
 ## Number of authors per document:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -274,7 +276,7 @@ res1
 ## 
 ## Number of documents per author:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1.00    1.00    1.00    2.06    2.00   29.00 
+##    1.00    1.00    1.00    2.07    2.00   29.00 
 ## 
 ## Number of times cited:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -320,10 +322,10 @@ res1
 ## Rev. Int. Metod. Numer. Calc. Dise.        11
 ## J. Comput. Appl. Math.                     10
 ## Comput. Stat. Data Anal.                    9
-## Appl. Numer. Math.                          9
 ## Int. J. Numer. Methods Fluids               9
-## Int. J. Numer. Methods Eng.                 8
+## Appl. Numer. Math.                          9
 ## J. Nonparametr. Stat.                       8
+## Int. J. Numer. Methods Eng.                 8
 ## Others                                    274
 ## 
 ## Top Countries:
@@ -577,43 +579,19 @@ con la función `get.idDocs()`.
     ##                                          30
     ```
 
-- `get.idJournals()` códigos de las revistas
+- `get.idSources()` códigos de otras fuentes (como resvistas)
 
     
     ```r
-    ijss <- get.idJournals(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
-    ijss
+    get.idSources(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
     ```
     
     ```
-    ## JOURNAL OF STATISTICAL SOFTWARE 
-    ##                             134
+    ## [1] 70
     ```
     
     ```r
-    knitr::kable(db$Journals[ijss, ], caption = "JSS")
-    ```
-    
-    \begin{table}
-    
-    \caption{(\#tab:unnamed-chunk-15)JSS}
-    \centering
-    \begin{tabular}[t]{l|r|l|l|l|l|l|l|l|l|l|l|l}
-    \hline
-      & idj & SO & SE & BS & LA & PU & PI & PA & SN & EI & J9 & JI\\
-    \hline
-    2796 & 134 & JOURNAL OF STATISTICAL SOFTWARE &  &  & English & JOURNAL STATISTICAL SOFTWARE & LOS ANGELES & UCLA DEPT STATISTICS, 8130 MATH SCIENCES BLDG, BOX 951554, LOS ANGELES, CA 90095-1554 USA & 1548-7660 &  & J STAT SOFTW & J. Stat. Softw.\\
-    \hline
-    \end{tabular}
-    \end{table}
-    
-    ```r
-    get.idJournals(db, JI == 'J. Stat. Softw.')
-    ```
-    
-    ```
-    ## JOURNAL OF STATISTICAL SOFTWARE 
-    ##                             134
+    # get.idSources(db, JI == 'J. Stat. Softw.')
     ```
 
 ### Obtener documentos (de autores, revistas, ...)
@@ -648,10 +626,10 @@ summary(db, idocs)
 ## Period: 2008 - 2017 
 ## 
 ## Document types:
-##                    Documents
-## Article                   26
-## Editorial Material         1
-## Proceedings Paper          1
+##                            Documents
+## Article                           26
+## Article; Proceedings Paper         1
+## Editorial Material                 1
 ## 
 ## Number of authors per document:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -698,18 +676,18 @@ summary(db, idocs)
 ## Others                                             1
 ## 
 ## Top Journals:
-##                          Documents
-## J. Nonparametr. Stat.            4
-## Comput. Stat. Data Anal.         3
-## Comput. Stat.                    3
-## Ann. Inst. Stat. Math.           2
-## Test                             2
-## Stat. Neerl.                     1
-## J. Multivar. Anal.               1
-## J. Time Ser. Anal.               1
-## Stat. Probab. Lett.              1
-## J. Appl. Stat.                   1
-## Others                           9
+##                               Documents
+## J. Nonparametr. Stat.                 4
+## Comput. Stat. Data Anal.              3
+## Comput. Stat.                         3
+## Test                                  2
+## Ann. Inst. Stat. Math.                2
+## J. Chemometr.                         1
+## J. Time Ser. Anal.                    1
+## Stat. Probab. Lett.                   1
+## SORT-Stat. Oper. Res. Trans.          1
+## Stat. Appl. Genet. Mol. Biol.         1
+## Others                                9
 ## 
 ## Top Countries:
 ##           Documents

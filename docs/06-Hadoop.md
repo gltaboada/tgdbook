@@ -1,11 +1,3 @@
----
-title: "T3 Big Data"
-author: "Guillermo Lopez Taboada"
-date: "11/11/20202"
-output: pdf_document
----
-
-
 Tecnologías para el Tratamiendo de Datos Masivos
 ================================================
 

@@ -71,8 +71,8 @@ Ver: [Cursos MOOC relacionados con R](http://r-es.org/2016/02/12/cursos-masivos-
 
 * ***Iniciación***:
     
-    - R for Data Science
-      ([online](http://r4ds.had.co.nz/), [O'Reilly](http://shop.oreilly.com/product/0636920034407.do))
+    - R for Data Science  by Hadley Wickham and Garrett Grolemund
+      ([online](http://r4ds.had.co.nz/), [O'Reilly](http://shop.oreilly.com/product/0636920034407.do)). [online-castellano](https://es.r4ds.hadley.nz), [O'Reilly](http://shop.oreilly.com/product/0636920034407.do).
     
     - 2011 - The Art of R Programming. A Tour of Statistical Software Design, 
       ([No Starch Press](https://www.nostarch.com/artofr.htm))

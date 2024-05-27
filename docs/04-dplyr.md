@@ -1,6 +1,285 @@
+# Manipulación de datos con tidyverse {#tidyverse}
 
+Este la primera parte de este capítulo (Sección \@ref(introTidyverse)), se pretende realizar una breve introducción al *ecosistema* [**Tidyverse**](https://dplyr.tidyverse.org), una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente.
+
+La referencia recomendada para usuarios de R que deseen iniciarse en el uso de estos paquetes es: 
+
+Wickham, H., y Grolemund, G. (2016). *[R for data science: import, tidy, transform, visualize, and model data](http://r4ds.had.co.nz)*, [online-castellano](https://es.r4ds.hadley.nz), [O'Reilly](http://shop.oreilly.com/product/0636920034407.do).
+
+En las consecutivas secciones se presentan las alternativas *tidyverse* a la lectura, manipulacióin y escritura de datos tratadas en Capítulo \@ref(manipR).
+
+Más adelante, en la Sección \@ref(dplyr) se realiza una breve introducción al paquete  [`dplyr`](https://dplyr.tidyverse.org) y en la Sección \@ref(tidyr-pkg) se comentan algunas de las utilidades del paquete [`tidyr`](https://tidyr.tidyverse.org) que pueden resultar de interés^[Otra alternativa (más rápida) es [`data.table`](https://rdatatable.gitlab.io/data.table) pero en versiones recientes ya se puede emplear desde `dplyr`, como se comenta más adelante.]. Finalmente, las secciones \@ref(dplyr-join) y \@ref(dbplyr) se muestra las utilizades para tratar tablas y bases de datos respectivamente.
+
+
+
+## Introducción al ecosistema tidyverse {#introTidyverse}
+
+
+El paquete [`tidyverse`](https://tidyverse.tidyverse.org) está diseñado para facilitar la instalación y carga de los paquetes principales de la colección tidyverse con un solo comando.
+Al instalar este paquete se instalan paquetes que forman el denominado núcleo de tidyverse (se cargan con `library(tidyverse)`):
+
+- [`ggplot2`](https://ggplot2.tidyverse.org): visualización de datos.
+- [`dplyr`](https://dplyr.tidyverse.org): manipulación de datos.
+- [`tidyr`](https://tidyr.tidyverse.org): reorganización (limpieza) de datos.
+- [`readr`](https://readr.tidyverse.org): importación de datos.
+- [`tibble`](https://tibble.tidyverse.org): tablas de datos (extensión de `data.frame`).
+- [`purrr`](https://purrr.tidyverse.org): programación funcional.
+- [`stringr`](https://github.com/tidyverse/stringr): manipulación de cadenas de texto.
+- [`forcats`](https://github.com/tidyverse/forcats): manipulación de factores.
+- [`lubridate`](https://github.com/tidyverse/lubridate): manipulación de fechas y horas.
+
+y un conjunto de paquetes recomendados:  
+- [`feather`](https://github.com/wesm/feather): almacenamiento efeciente de data frames.
+- [`haven`](https://github.com/tidyverse/haven): lectura y escritura de datos de SPSS, Stata y SAS en R 
+- [`modelr`](https://github.com/tidyverse/modelr):  crear pipelines^[serie de pasos conectados (tuberías) que procesan datos y los transforman en un formato deseado para su análisis o modelado] elegantes al modelar datos en R (obsoleto). [`broom`](https://github.com/tidymodels/broom)...): resumenes estadísticos en formato Tidy
+
+Otros paquetes de interés son:
+
+- [`readxl`](https://github.com/tidyverse/readxl): lectura de archivos Excel.
+- [`readxl`](https://github.com/ropensci/writexl): exportación a Excel.
+- [`hms`](https://github.com/tidyverse/hms): manipulación de medidas de tiempo.
+- [`httr`](https://github.com/r-lib/httr): interactuar con web APIs.
+- [`jsonlite`](https://github.com/jeroen/jsonlite): Lectura y escritura de archivos JSON (*JavaScript Object Notation*).
+- [`rvest`](https://github.com/tidyverse/rvest): extraación de datos (estructurados) de páginas web *web scraping*.
+- [`xml2`](https://github.com/r-lib/xml2): lectura y escritura de archivos XML.
+- [`vroom`](https://github.com/tidyverse/vroom): lectura eficiente de archivos delimitados
+
+
+
+```r
+library(tidyverse)
+```
+
+También hay paquetes "asociados":
+
+- [`rlang`](https://rlang.r-lib.org): herramientas para programación funcional.
+- [`tidyselect`](https://tidyselect.r-lib.org) Sintaxis seleccionar variables (columnas).
+- [`tune`](https://tune.tidymodels.org/): hiperparámetros en modelos estadísticos
+- [`tidymodels`](https://tidymodels.tidymodels.org)  meta-paquete para todo el  proceso de modelado.
+
+Muchos otros paquetes están adaptando este estilo, por ejemplo, el meta paquete [`tidyverts`](https://tidyverts.org/)) para el análisis de series temporales (*time series*, TS), que incluye, por ejemplo:
+
+- [`tsibble`](https://tsibble.tidyverts.org/) (infra)estructuras de datos. 
+- [`fable`](https://fable.tidyverts.org/)  predicción (*forecasting*). 
+- [`feasts`](https://feasts.tidyverts.org/) extracción de características (predictores).
+
+El paquete [`fpp3`](https://github.com/robjhyndman/fpp3package) asociado al libro [**Forecasting: Principles and Practice**](https://otexts.com/fpp3/) también sigue una filosofía *tidy*.
+
+Otro ejemplo, en este caso, para el tratamiento de datos espaciales, sería el paquete [`sf`](https://github.com/r-spatial/sf/),  para más detalles ver [Sección 2.2 Introducción al paquete sf ](https://rubenfcasal.github.io/estadistica_espacial/sf-intro.html) del libro **Estadística Espacial con R**
+
+
+<!--
+Hacer una lista para un apéndice.
+[`infer`](https://infer.netlify.app/)  pruebas de hipótesis no paramétricas 
+
+[`moderndive`](https://github.com/moderndive/moderndive/)  introducción amigable a la inferencia estadística (incluida la regresión lineal) 
+
+[A ModernDive into R and the Tidyverse](https://moderndive.com/)
+
+[`staks`](https://stacks.tidymodels.org/) combinación de modelos para generar un modelo ensamblado más preciso.
+[`tidyfun`](https://tidyfun.github.io/tidyfun/) The goal of tidyfun is to provide accessible and well-documented software that makes functional data analysis in R easy 
+- [`tinytable`](https://vincentarelbundock.github.io/tinytable/): herramientas para crear tablas (multiformato).
+-->
+
+Resumiendo, está muy de moda y puede terminar convirtiéndose en un dialecto del lenguaje R, todo lo que resulte de utilidad es bien venido... Aunque se recomienda evitar estos paquetes en las primeras etapas de formación en R.
+
+El estilo de programación tiene como origen la gramática de [`ggplot2`](https://ggplot2.tidyverse.org) para crear gráficos de forma declarativa, basado a su vez en:
+
+Wilkinson, L. (2005). *The Grammar of Graphics*. [Springer](https://www.google.es/books/edition/The_Grammar_of_Graphics/YGgUswEACAAJ?hl=es).
+
+Este paquete se ha convertido en un sustituto de los gráficos [`lattice`](http://lattice.r-forge.r-project.org/), de utilidad en algunos informes finales, aplicaciones para empresas, o para gráficos muy especializados. Aunque, en condiciones normales, suele ser más rápido generar o programar gráficos estándar de R.
+
+<!-- capítulo ggplot2? -->
+
+Para iniciarse en este paquete lo recomendado es consultar los capítulos [Data     Visualización](https://r4ds.had.co.nz/data-visualisation.html) y [Graphics for communication](https://r4ds.had.co.nz/graphics-for-communication.html) de [R for Data Science](https://r4ds.had.co.nz). 
+También puede resultar de interés la [chuleta](https://github.com/rstudio/cheatsheets/blob/master/data-visualization.pdf)).
+La referencia que cubre con mayor profundidad este paquete es:
+
+Wickham, H. (2016). *[ggplot2: Elegant graphics for Data Analysis](https://ggplot2-book.org)* (3ª edición, en desarrollo junto a Navarro, D. y Pedersen, T.L.). [Springer](https://www.amazon.com/gp/product/331924275X).
+
+Otra alternativa sería:
+
+Chang, W. (2023). *[The R Graphics Cookbook](https://r-graphics.org)*. [O’Reilly](https://www.amazon.com/dp/1491978600). 
+
+En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añadir componentes de los gráficos (ver , en *Tidyverse* se emplea un operador de redirección para añadir operaciones.
+
+
+### Operador *pipe* (redirección) {#pipe}
+
+El operador `%>%` (paquete [`magrittr`](https://magrittr.tidyverse.org)) permite canalizar la salida de una función a la entrada de otra. Se utiliza para mejorar la legibilidad y la claridad del código al encadenar múltiples operaciones en una secuencia fluida
+Por ejemplo, `segundo(primero(datos))` se traduce en `datos %>% primero %>% segundo`, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.
+
+Desde la versión 4.1 de R está disponible un operador interno `|>`.
+Por ejemplo, para el conjunto de datos `empleados.RData` que contiene datos de empleados de un banco.   Supongamos, por ejemplo, que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza.
+
+
+```r
+load("data/empleados.RData")
+# NOTA: Cuidado con la codificación latin1 (no declarada) 
+# al abrir archivos creados en versiones anteriores de R < 4.2: 
+# load("data/empleados.latin1.RData")
+
+# Listamos las etiquetas
+knitr::kable(attr(empleados, "variable.labels"),
+             col.names = "Etiqueta")
+```
+
+
+\begin{tabular}{l|l}
+\hline
+  & Etiqueta\\
+\hline
+id & Código de empleado\\
+\hline
+sexo & Sexo\\
+\hline
+fechnac & Fecha de nacimiento\\
+\hline
+educ & Nivel educativo (años)\\
+\hline
+catlab & Categoría Laboral\\
+\hline
+salario & Salario actual\\
+\hline
+salini & Salario inicial\\
+\hline
+tiempemp & Meses desde el contrato\\
+\hline
+expprev & Experiencia previa (meses)\\
+\hline
+minoria & Clasificación étnica\\
+\hline
+sexoraza & Clasificación por sexo y raza\\
+\hline
+\end{tabular}
+
+```r
+# Eliminamos las etiquetas para que no molesten...
+# attr(empleados, "variable.labels") <- NULL  
+
+empleados |>  
+  subset(catlab == "Directivo", catlab:sexoraza) |>
+  summary()
+```
+
+```
+##             catlab      salario           salini         tiempemp    
+##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
+##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
+##  Directivo     :84   Median : 60500   Median :28740   Median :81.00  
+##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
+##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
+##                      Max.   :135000   Max.   :79980   Max.   :98.00  
+##     expprev       minoria          sexoraza 
+##  Min.   :  3.00   No:80   Blanca varón :70  
+##  1st Qu.: 19.75   Sí: 4   Minoría varón: 4  
+##  Median : 52.00           Blanca mujer :10  
+##  Mean   : 77.62           Minoría mujer: 0  
+##  3rd Qu.:125.25                             
+##  Max.   :285.00
+```
+
+Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
+Sin embargo, el operador `%>%` permite redirigir el resultado de la operación anterior a un parámetro distinto mediante un `.`.
+Por ejemplo:
+
+
+```r
+# ?"|>"
+# empleados |> subset(catlab != "Seguridad") |> droplevels |> 
+#     boxplot(salario ~ sexo*catlab, data = .) # ERROR
+
+library(magrittr)
+empleados %>% 
+  subset(catlab != "Seguridad") %>%
+  droplevels() %>%
+  boxplot(salario ~ sexo*catlab, data = .)
+```
+
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-3-1} \end{center}
+
+
+### Lectura y escritura de archivos de texto {#readr}
+
+En esta seccón la alternativa *tidyverse*, a la tradicional, vista en las secciones \@ref(cap2-texto) y \@ref(cap2-exporta) del Capítulo 2.
+
+Para leer archivos de texto en distintos formatos se puede emplear el paquete [`readr`](https://readr.tidyverse.org), disponible en la colección de paquetes [`tidyverse`](https://tidyverse.tidyverse.org). Para más información, se recomienda consultar el [Capítulo 11](https://r4ds.had.co.nz/data-import.html) del libro [*R for Data Science*](http://r4ds.had.co.nz) [@wickham2023r]  o la versión en español "[*R Para Ciencia de Datos*](https://es.r4ds.hadley.nz/)".
+
+
+```r
+library(readr)
+# ?readr
+datos <- read_csv2("./data/coches.csv")
+class(datos) 
+```
+
+```
+## [1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame"
+```
+
+
+También se puede importación desde Excel fácilmente:
+
+
+```r
+library(readxl)
+datos<-read_excel("./data/coches.xlsx")
+class(datos)
+```
+
+```
+## [1] "tbl_df"     "tbl"        "data.frame"
+```
+
+```r
+excel_sheets("./data/coches.xlsx") # listado de hojas
+```
+
+```
+## [1] "coches"
+```
+
+Otra alternativa, sería emplear el paquete [`data.table`](https://r-datatable.com).
+La función `fread()` puede considerarse como alternativa a `read_csv()` 
+cuando el proceso de lectura resulta lento, especialmente con datos numéricos pesados. ESta función intenta *adivinar* automáticamente algunos argumentos sin tener que especificarse como, por ejemplo, el delimitador, las filas omitidas y la cabecera. Sin embargo, si requiere especificar el separador del decimal, como a continuación:
+
+
+```r
+library(data.table)
+# ?fread
+datos <- fread(file = "./data/coches.csv", dec = ",")
+class(datos) 
+```
+
+```
+## [1] "data.table" "data.frame"
+```
+
+Para más información, se recomienda ver la viñeta [*Introduction to data.table*](https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html).
+
+### Escritura {#writer}
+
+Con el ecosistema *tidyverse*, también con el paquete [`readr`](https://readr.tidyverse.org) se puede utilizar la función `write_csv2()`:
+
+```r
+write_csv2(datos, file = "datos.csv")
+```
+y como opción más rápida, se podría usar `fwrite()` del paqute `data.table`:
+
+
+```r
+# datos2 <- data.table(datos)
+fwrite(datos2, file = "datos2.csv")
+```
+
+
+
+<!--  xxx
 Manipulación de datos con `dplyr` {#dplyr}
 =================================
+-->
 
 Working draft...
 
@@ -12,66 +291,79 @@ o el Capítulo [5 Data transformation](http://r4ds.had.co.nz/transform.html) del
 [data.table](https://rdatatable.gitlab.io/data.table).].
 
 
-El paquete **dplyr**
---------------------
+
+
+## Manipulación de datos con dplyr y tidyr {#dplyr}
+
+<!--
+# Introducción  {#dplyr}
+-->
+En esta sección se realiza una breve introducción al paquete  [`dplyr`](https://dplyr.tidyverse.org) y se comentan algunas de las utilidades del paquete [`tidyr`](https://tidyr.tidyverse.org) que pueden resultar de interés^[Otra alternativa (más rápida) es [`data.table`](https://rdatatable.gitlab.io/data.table) pero en versiones recientes ya se puede emplear desde `dplyr`, como se comenta más adelante.]. 
+
+La referencia recomendada para iniciarse en esta herramienta es el Capítulo [5 Data transformation](http://r4ds.had.co.nz/transform.html) de 
+[R for Data Science](http://r4ds.had.co.nz).
+También puede resultar de utilidad la viñeta del paquete [Introduction to dplyr](https://dplyr.tidyverse.org/articles/dplyr.html) o la [chuleta](https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf) (menú de RStudio *Help > Cheat Sheets > Data Transformation with dplyr*).
+
+
+### El paquete dplyr {#dplyr-pkg}
 
 
 ```r
 library(dplyr)
 ```
 
-[`dplyr`](https://dplyr.tidyverse.org/index.html) 
-permite sustituir funciones base de R (como `split()`, `subset()`, 
-`apply()`, `sapply()`, `lapply()`, `tapply()` y `aggregate()`)
-mediante una "gramática" más sencilla para la manipulación de datos:
-
-- `select()` seleccionar variables/columnas (también `rename()`).
-
-- `mutate()` crear variables/columnas (también `transmute()`).
-
-- `filter()` seleccionar casos/filas (también `slice()`).
-
-- `arrange()`  ordenar o organizar casos/filas.
-
-- `summarise()` resumir valores.
-
-- `group_by()` permite operaciones por grupo empleando el concepto
-"dividir-aplicar-combinar" (`ungroup()` elimina el agrupamiento).
-
-Puede trabajar con conjuntos de datos en distintos formatos:
+La principal ventaja de [`dplyr`](https://dplyr.tidyverse.org/index.html) es que permite trabajar (de la misma forma) con datos en distintos formatos:
      
-- `data.frame`, `data.table`, `tibble`, ...
+- `data.frame`, [`tibble`](https://tibble.tidyverse.org/).
 
-- bases de datos relacionales (lenguaje SQL); paquete [dbplyr](https://dbplyr.tidyverse.org), ...
+- [`data.table`](https://rdatatable.gitlab.io/data.table): extensión (paquete *backend*) [`dtplyr`](https://dtplyr.tidyverse.org).
 
-- bases de datos *Hadoop*:
+- conjuntos de datos más grandes que la memoria disponible: extensiones [`duckdb`](https://duckdb.org/docs/api/r) y [`arrow`](https://arrow.apache.org/docs/r/) (incluyendo almacenamiento en la nube, e.g. [AWS](https://aws.amazon.com/es/s3)). 
 
-    - [`plyrmr`](https://github.com/RevolutionAnalytics/plyrmr/blob/master/docs/tutorial.md), 
-    
-    - [`sparklyr`](https://spark.rstudio.com)
-    
-    - ...
+- bases de datos relacionales (lenguaje SQL, locales o remotas); extensión [`dbplyr`](https://dbplyr.tidyverse.org).
 
-En lugar de operar sobre vectores como las funciones base,
-opera sobre objetos de este tipo (solo nos centraremos en `data.frame`).
-
-### Datos de ejemplo
-
-El fichero *empleados.RData* contiene datos de empleados de un banco.
-Supongamos por ejemplo que estamos interesados en estudiar si hay
-discriminación por cuestión de sexo o raza.
+- grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema [Hadoop](http://hadoop.apache.org/)/[Spark](https://spark.apache.org/)): extensión [`sparklyr`](https://spark.rstudio.com) (ver menú de RStudio *Help > Cheat Sheets > Interfacing Spark with sparklyr*).
 
 
+El paquete dplyr permite sustituir operaciones con funciones base de R (como [`subset`](NA), [`split`](NA), [`apply`](NA), [`sapply`](NA), [`lapply`](NA), [`tapply`](NA), [`aggregate`](NA)...) por una "gramática" más sencilla para la manipulación de datos.
+En lugar de operar sobre vectores como la mayoría de las funciones base,
+opera sobre conjuntos de datos (de forma que es compatible con el operador `%>%`).
+Los principales "verbos" (funciones) son:
 
+- [`select()`](https://dplyr.tidyverse.org/reference/select.html): seleccionar variables (ver también [`rename`](https://dplyr.tidyverse.org/reference/rename.html), [`relocate`](https://dplyr.tidyverse.org/reference/rename.html), [`pull`](https://dplyr.tidyverse.org/reference/rename.html)).
 
-Operaciones con variables (columnas)
-------------------------------------
+- [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html): crear variables (ver también `transmute()`).
 
-### Seleccionar variables con **select()**
+- [`filter()`](https://dplyr.tidyverse.org/reference/filter.html): seleccionar casos/filas (ver también `slice()`).
+
+- [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html): ordenar casos/filas.
+
+- [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html): resumir valores.
+
+- [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html): permite operaciones por grupo empleando el concepto "dividir-aplicar-combinar" (`ungroup()` elimina el agrupamiento).
+
+NOTA: Para entender el funcionamiento de ciertas funciones (como [`rowwise()`](https://dplyr.tidyverse.org/reference/rowwise.html)) y las posibilidades en el manejo de datos, hay que tener en cuenta que un `data.frame` no es más que una lista cuyas componentes (variables) tienen la misma longitud.
+Realmente las componentes también pueden ser listas de la misma longitud y, por tanto, podemos almacenar casi cualquier estructura de datos en un `data.frame`.
+
+En la primera parte de este capítulo consideraremos solo  `data.frame` por comodidad.
+Emplearemos como ejemplo los datos de empleados de banca almacenados en el fichero *empleados.RData* (y supondremos que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza).
 
 
 ```r
-emplea2 <- select(empleados, id, sexo, minoria, tiempemp, salini, salario)
+load("data/empleados.RData")
+attr(empleados, "variable.labels") <- NULL                  
+```
+
+En la Sección \@ref(dbplyr) final emplearemos una base de datos relacional como ejemplo.
+
+
+### Operaciones con variables (columnas) {#dplyr-variables}
+
+Podemos **seleccionar variables con [`select()`](https://dplyr.tidyverse.org/reference/select.html)**:
+
+```r
+emplea2 <- empleados %>% select(id, sexo, minoria, tiempemp, 
+                                salini, salario)
 head(emplea2)
 ```
 
@@ -85,11 +377,10 @@ head(emplea2)
 ## 6  6 Hombre      No       98  13500   32100
 ```
 
-Se puede cambiar el nombre (ver también *?rename()*)
-
+Se puede cambiar el nombre (ver también [`rename()`](https://dplyr.tidyverse.org/reference/rename.html)):
 
 ```r
-head(select(empleados, sexo, noblanca = minoria, salario))
+empleados %>% select(sexo, noblanca = minoria, salario) %>% head()
 ```
 
 ```
@@ -104,9 +395,8 @@ head(select(empleados, sexo, noblanca = minoria, salario))
 
 Se pueden emplear los nombres de variables como índices:
 
-
 ```r
-head(select(empleados, sexo:salario))
+empleados %>% select(sexo:salario) %>% head()
 ```
 
 ```
@@ -120,7 +410,8 @@ head(select(empleados, sexo:salario))
 ```
 
 ```r
-head(select(empleados, -(sexo:salario)))
+# empleados %>% select(-(sexo:salario)) %>% head()
+empleados %>% select(!(sexo:salario)) %>% head()
 ```
 
 ```
@@ -133,12 +424,20 @@ head(select(empleados, -(sexo:salario)))
 ## 6  6  13500       98      67      No Blanca varón
 ```
 
-Hay opciones para considerar distintos criterios: `starts_with()`, `ends_with()`, 
-`contains()`, `matches()`, `one_of()` (ver *?select*).
+Se pueden emplear distintas herramientas (*[selection helpers](https://tidyselect.r-lib.org/reference/language.html)*) para seleccionar variables (ver paquete [`tidyselect`](https://tidyselect.r-lib.org)):
 
+- [`starts_with`](https://tidyselect.r-lib.org/reference/starts_with.html), [`ends_with`](https://tidyselect.r-lib.org/reference/starts_with.html), [`contains`](https://tidyselect.r-lib.org/reference/starts_with.html), [`matches`](https://tidyselect.r-lib.org/reference/starts_with.html), [`num_range`](https://tidyselect.r-lib.org/reference/starts_with.html): variables que coincidan con un patrón.
+
+- [`all_of`](https://tidyselect.r-lib.org/reference/all_of.html), [`any_of`](https://tidyselect.r-lib.org/reference/all_of.html): variables de un vectores de caracteres.
+
+- [`everything`](https://tidyselect.r-lib.org/reference/everything.html), [`last_col`](https://tidyselect.r-lib.org/reference/everything.html): todas las variables o la última variable.
+
+- [`where()`](https://tidyselect.r-lib.org/reference/where.html): a partir de una función (e.g. `where(is.numeric)`)
+
+Por ejemplo:
 
 ```r
-head(select(empleados, starts_with("s")))
+empleados %>% select(starts_with("s")) %>% head()
 ```
 
 ```
@@ -151,11 +450,12 @@ head(select(empleados, starts_with("s")))
 ## 6 Hombre   32100  13500 Blanca varón
 ```
 
-### Generar nuevas variables con **mutate()**
-
+Podemos **crear variables con [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)**:
 
 ```r
-head(mutate(emplea2, incsal = salario - salini, tsal = incsal/tiempemp ))
+emplea2 %>% 
+  mutate(incsal = salario - salini, tsal = incsal/tiempemp) %>% 
+  head()
 ```
 
 ```
@@ -169,14 +469,12 @@ head(mutate(emplea2, incsal = salario - salini, tsal = incsal/tiempemp ))
 ```
 
 
-Operaciones con casos (filas)
------------------------------
+### Operaciones con casos (filas) {#dplyr-casos}
 
-### Seleccionar casos con **filter()**
-
+Podemos **seleccionar casos con [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)**:
 
 ```r
-head(filter(emplea2, sexo == "Mujer", minoria == "Sí"))
+emplea2 %>% filter(sexo == "Mujer", minoria == "Sí") %>% head()
 ```
 
 ```
@@ -189,11 +487,10 @@ head(filter(emplea2, sexo == "Mujer", minoria == "Sí"))
 ## 6 41 Mujer      Sí       96  11550   23550
 ```
 
-### Organizar casos con **arrange()**
-
+Podemos **reordenar casos con [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)**:
 
 ```r
-head(arrange(emplea2, salario))
+emplea2 %>% arrange(salario) %>% head()
 ```
 
 ```
@@ -207,7 +504,7 @@ head(arrange(emplea2, salario))
 ```
 
 ```r
-head(arrange(emplea2, desc(salini), salario))
+emplea2 %>% arrange(desc(salini), salario) %>% head()
 ```
 
 ```
@@ -220,13 +517,10 @@ head(arrange(emplea2, desc(salini), salario))
 ## 6  32 Hombre      No       96  45000  110625
 ```
 
-
-Resumir valores con **summarise()**
------------------------------------
-
+Podemos **resumir valores con [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)**:
 
 ```r
-summarise(empleados, sal.med = mean(salario), n = n())
+empleados %>% summarise(sal.med = mean(salario), n = n())
 ```
 
 ```
@@ -234,22 +528,34 @@ summarise(empleados, sal.med = mean(salario), n = n())
 ## 1 34419.57 474
 ```
 
-
-Agrupar casos con **group_by()**
------------------------------
-
+Para realizar **operaciones con múltiples variables podemos emplear [`across()`](https://dplyr.tidyverse.org/reference/across.html)** (admite selección de variables [`tidyselect`](https://tidyselect.r-lib.org)):
 
 ```r
-summarise(group_by(empleados, sexo, minoria), sal.med = mean(salario), n = n())
+empleados %>% summarise(across(where(is.numeric), mean), n = n())
 ```
 
 ```
-## `summarise()` regrouping output by 'sexo' (override with `.groups` argument)
+##      id     educ  salario   salini tiempemp  expprev   n
+## 1 237.5 13.49156 34419.57 17016.09  81.1097 95.86076 474
+```
+
+```r
+# empleados %>% summarise(across(where(is.numeric) & !id, mean), n = n())
+```
+
+NOTA: Esta función sustituye a las "variantes de ámbito" `_at()`, `_if()` y  `_all()` de versiones anteriores de dplyr (como `summarise_at()`, `summarise_if()`, `summarise_all()`, `mutate_at()`, `mutate_if()`...) y también el uso de `vars()`.
+En el caso de `filter()` se puede emplear [`if_any()`](https://dplyr.tidyverse.org/reference/across.html) e [`if_all()`](https://dplyr.tidyverse.org/reference/across.html).
+
+Podemos **agrupar casos con [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)**:
+
+```r
+empleados %>% group_by(sexo, minoria) %>% 
+    summarise(sal.med = mean(salario), n = n()) %>%
+    ungroup()
 ```
 
 ```
 ## # A tibble: 4 x 4
-## # Groups:   sexo [2]
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
 ## 1 Hombre No       44475.   194
@@ -258,50 +564,171 @@ summarise(group_by(empleados, sexo, minoria), sal.med = mean(salario), n = n())
 ## 4 Mujer  Sí       23062.    40
 ```
 
-
-Operador *pipe* **%>%** (tubería, redirección)
------------------------------
-Este operador le permite canalizar la salida de una función a la entrada de otra función. 
-`segundo(primero(datos))` se traduce en `datos %>% primero %>% segundo`
-(lectura de funciones de izquierda a derecha).
-
-Ejemplos:
-
-
 ```r
-empleados %>%  filter(catlab == "Directivo") %>%
-          group_by(sexo, minoria) %>%
-          summarise(sal.med = mean(salario), n = n())
+empleados %>% group_by(sexo, minoria) %>% 
+    summarise(sal.med = mean(salario), n = n(), .groups = "drop")
 ```
 
 ```
-## `summarise()` regrouping output by 'sexo' (override with `.groups` argument)
-```
-
-```
-## # A tibble: 3 x 4
-## # Groups:   sexo [2]
+## # A tibble: 4 x 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre No       65684.    70
-## 2 Hombre Sí       76038.     4
-## 3 Mujer  No       47214.    10
+## 1 Hombre No       44475.   194
+## 2 Hombre Sí       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  Sí       23062.    40
 ```
 
 ```r
-empleados %>% select(sexo, catlab, salario) %>%
-          filter(catlab != "Seguridad") %>%
-          group_by(catlab) %>%
-          mutate(saldif = salario - mean(salario)) %>%
-          ungroup() %>%
-          boxplot(saldif ~ sexo*droplevels(catlab), data = .)
-abline(h = 0, lty = 2)
+# dplyr >= 1.1.0 # packageVersion("dplyr")
+# empleados %>% summarise(sal.med = mean(salario), n = n(), 
+#                         .by = c(sexo, minoria))
 ```
 
-![](04-dplyr_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
+Por defecto la agrupación se mantiene para el resto de operaciones, habría que emplear `ungroup()` (o el argumento `.groups = "drop"`) para eliminarla (se puede emplear `group_vars()` o `str()` para ver la agrupación).
+Desde dplyr 1.1.0 (2023-01-29) está disponible un parámetro `.by/by` en `mutate()`, `summarise()`, `filter()` y `slice()` como alternativa a agrupar y desagrupar posteriormente.
+Para más detalles ver [Per-operation grouping with .by/by](https://dplyr.tidyverse.org/reference/dplyr_by.html).
 
-Operaciones con tablas de datos
--------------------------------
+### Datos faltantes {#tidyr-missing}
+
+Continuamos con el ejemplo de la Sección \@ref{missing}. 
+*tidyverse* dispone de muchas herramientas para el tratamiento de los datos faltantes.
+
+
+```r
+data("airquality")
+datos <- airquality
+library(visdat)
+vis_dat(airquality)
+# vis_miss(airquality)
+```
+
+Visualización (amigable) de la estrutura de datos:
+
+```r
+library(naniar)
+bind_shadow(airquality)
+```
+
+```
+## # A tibble: 153 x 12
+##    Ozone Solar.R  Wind  Temp Month   Day Ozone_NA Solar.R_NA Wind_NA Temp_NA
+##    <int>   <int> <dbl> <int> <int> <int> <fct>    <fct>      <fct>   <fct>  
+##  1    41     190   7.4    67     5     1 !NA      !NA        !NA     !NA    
+##  2    36     118   8      72     5     2 !NA      !NA        !NA     !NA    
+##  3    12     149  12.6    74     5     3 !NA      !NA        !NA     !NA    
+##  4    18     313  11.5    62     5     4 !NA      !NA        !NA     !NA    
+##  5    NA      NA  14.3    56     5     5 NA       NA         !NA     !NA    
+##  6    28      NA  14.9    66     5     6 !NA      NA         !NA     !NA    
+##  7    23     299   8.6    65     5     7 !NA      !NA        !NA     !NA    
+##  8    19      99  13.8    59     5     8 !NA      !NA        !NA     !NA    
+##  9     8      19  20.1    61     5     9 !NA      !NA        !NA     !NA    
+## 10    NA     194   8.6    69     5    10 NA       !NA        !NA     !NA    
+## # i 143 more rows
+## # i 2 more variables: Month_NA <fct>, Day_NA <fct>
+```
+
+```r
+# nabular(airquality)
+```
+
+Distribución por variables de los datos faltantes:
+
+
+```r
+miss_var_table(airquality) 
+```
+
+```
+## # A tibble: 3 x 3
+##   n_miss_in_var n_vars pct_vars
+##           <int>  <int>    <dbl>
+## 1             0      4     66.7
+## 2             7      1     16.7
+## 3            37      1     16.7
+```
+
+```r
+prop_miss_case(airquality)
+```
+
+```
+## [1] 0.2745098
+```
+
+```r
+gg_miss_upset(airquality) 
+```
+
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-23-1} \end{center}
+
+Distribución conjunta de los valores faltantes para la radiación solar y ozono:
+
+```r
+library(naniar)
+library(ggplot2)
+ggplot(airquality, 
+       aes(x = Solar.R, 
+           y = Ozone)) + 
+  geom_miss_point()
+```
+
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-24-1} \end{center}
+
+Distribución mensual de los valores faltantes:
+
+```r
+# gg_miss_var(airquality)
+gg_miss_var(airquality, facet = Month)
+```
+
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-25-1} \end{center}
+
+<!--
+library(dplyr)
+gg_miss_upset(pen) # Relacioese entre las variables en los datos ausentes
+n_miss(penguins)
+tidyr::replace_na: Missing values turns into a value (NA –> -99)
+naniar::replace_with_na: Value becomes a missing value (-99 –> NA)
+as_shadow(airquality)
+aq_shadow <- bind_shadow(airquality)
+aq_nab <- nabular(airquality)
+
+glimpse(aq_shadow)
+glimpse(aq_nab)
+# Numerical summaries of missing values
+dplyr::n_distinct(airquality)
+## [1] 153
+dplyr::n_distinct(airquality$Ozone)
+prop_miss_case(airquality)
+miss_case_summary(airquality)
+Future development
+Make naniar work with big data tools like sparklyr, and sparklingwater.
+Provide tools for assessing goodness of fit for classical approaches of MCAR, MAR, and MNAR (graphical inference from nullabor package)
+-->
+
+
+## Herramientas tidyr {#tidyr-pkg}
+
+Algunas funciones del paquete [`tidyr`](https://tidyr.tidyverse.org) que pueden resultar de especial interés son:
+
+- [`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html): permite transformar valores de grupos de casos a nuevas variables.
+- [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html): realiza la transformación inversa, colapsar varias columnas en una. 
+
+Ver la viñeta [Pivoting](https://tidyr.tidyverse.org/articles/pivot.html) para más detalles.
+
+- [`separate()`](https://tidyr.tidyverse.org/reference/separate.html): permite separar una columna de texto en varias (ver también [`extract()`](https://tidyr.tidyverse.org/reference/extract.html)).
+
+Ver [mortalidad.R](ejemplos/mortalidad/mortalidad.R) en [ejemplos](https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos).
+
+
+## Operaciones con tablas de datos {#dplyr-join}
 
 Se emplean funciones `xxx_join()` (ver la documentación del paquete 
 [Join two tbls together](https://dplyr.tidyverse.org/reference/join.html),
@@ -315,20 +742,21 @@ o la vignette [Two-table verbs](https://dplyr.tidyverse.org/articles/two-table.h
   Las filas de `x` sin correspondencia en `y` contendrán `NA` en las nuevas columnas. 
   Si hay varias coincidencias entre `x` e `y`, se devuelven todas las combinaciones
   (duplicando las filas).
-  `right_join()` hace lo contrario, devuelve todas las filas de `y`, y `full_join()`
-  devuelve todas las filas de `x` e `y` (duplicando o asignando `NA` si es necesario).
+
+    `right_join()` hace lo contrario, devuelve todas las filas de `y`.
+    
+    `full_join()` devuelve todas las filas de `x` e `y` (duplicando o asignando `NA` si es necesario).
 
 - `semi_join()`: devuelve las filas de `x` que tienen valores coincidentes en `y`, 
   manteniendo sólo las columnas de `x` (al contrario que `inner_join()` no duplica filas).
-  `anti_join()` hace lo contrario, devuelve las filas sin correspondencia. 
+  
+    `anti_join()` hace lo contrario, devuelve las filas sin correspondencia. 
 
 El parámetro `by` determina las variables clave para las correspondencias.
 Si no se establece se considerarán todas las que tengan el mismo nombre en ambas tablas.
-Se puede establecer a un vector de nombres coincidentes y en caso de que los nombres sean
-distintos a un vector con nombres de la forma `c("clave_x" = "clave_y")`.
+Se puede establecer a un vector de nombres coincidentes y en caso de que los nombres sean distintos a un vector con nombres de la forma `c("clave_x" = "clave_y")`.
 
-Adicionalmente, si las tablas `x` e `y` tienen las mismas variables, se pueden combinar 
-las observaciones con operaciones de conjuntos:
+Adicionalmente, si las tablas `x` e `y` tienen las mismas variables, se pueden combinar las observaciones con operaciones de conjuntos:
 
 - `intersect(x, y)`: observaciones en `x` y en `y`.
 
@@ -337,27 +765,25 @@ las observaciones con operaciones de conjuntos:
 - `setdiff(x, y)`: observaciones en `x` pero no en `y`.
 
 
-Bases de datos con dplyr
-------------------------
+## Bases de datos con dplyr {#dbplyr}
+
+Para poder usar tablas en bases de datos relacionales con `dplyr` hay que emplear el paquete [dbplyr](https://dbplyr.tidyverse.org) (convierte automáticamente el código de dplyr en consultas SQL).
 
 Algunos enlaces:
 
-- [Databases using R](https://db.rstudio.com)
-
-    - [dplyr as a database interface](https://db.rstudio.com/overview)
-
-    - [Databases using dplyr](https://db.rstudio.com/dplyr)
+- [Best Practices in Working with Databases](https://solutions.posit.co/connections/db)
 
 - [Introduction to dbplyr](https://dbplyr.tidyverse.org/articles/dbplyr.html)
 
-- [Data Carpentry](https://datacarpentry.org/R-ecology-lesson/index.html)
-    - [SQL databases and R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html), 
+- [Data Carpentry](https://datacarpentry.org/R-ecology-lesson/index.html):
+  [SQL databases and R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html), 
 
 - [R and Data – When Should we Use Relational Databases? ](https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases)
 
-### Ejemplos (Práctica 1)
 
-Como ejemplo emplearemos los ejercicios de la Práctica 1.
+### Ejemplos
+
+Como ejemplo emplearemos la base de datos de [SQLite Sample Database Tutorial](https://www.sqlitetutorial.net/sqlite-sample-database/), almacenada en el archivo [*chinook.db*](data/chinook.db).
 
 
 ```r
@@ -366,25 +792,25 @@ library(dplyr)
 library(dbplyr)
 ```
 
-Conectar la base de datos:
+En primer lugar hay que conectar la base de datos:
 
 ```r
 chinook <- DBI::dbConnect(RSQLite::SQLite(), "data/chinook.db")
 ```
 
-Listar tablas:
+Podemos listar las tablas:
 
 ```r
 src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.33.0 [C:\Users\Guillermo LT\Documents\GitHub\tgdbook\data\chinook.db]
+## src:  sqlite 3.45.2 [D:\Users\moviedo\github\tgdbook\data\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
 
-Enlazar una tabla:
+Para enlazar una tabla:
 
 ```r
 invoices <- tbl(chinook, "invoices")
@@ -392,23 +818,23 @@ invoices
 ```
 
 ```
-## # Source:   table<invoices> [?? x 9]
-## # Database: sqlite 3.33.0 [C:\Users\Guillermo
-## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
-##    InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
-##        <int>      <int> <chr>       <chr>          <chr>       <chr>       
-##  1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   <NA>        
-##  2         2          4 2009-01-02~ Ullevålsveien~ Oslo        <NA>        
-##  3         3          8 2009-01-03~ Grétrystraat ~ Brussels    <NA>        
-##  4         4         14 2009-01-06~ 8210 111 ST NW Edmonton    AB          
-##  5         5         23 2009-01-11~ 69 Salem Stre~ Boston      MA          
-##  6         6         37 2009-01-19~ Berger Straße~ Frankfurt   <NA>        
-##  7         7         38 2009-02-01~ Barbarossastr~ Berlin      <NA>        
-##  8         8         40 2009-02-01~ 8, Rue Hanovre Paris       <NA>        
-##  9         9         42 2009-02-02~ 9, Place Loui~ Bordeaux    <NA>        
-## 10        10         46 2009-02-03~ 3 Chatham Str~ Dublin      Dublin      
-## # ... with more rows, and 3 more variables: BillingCountry <chr>,
-## #   BillingPostalCode <chr>, Total <dbl>
+## # Source:   table<`invoices`> [?? x 9]
+## # Database: sqlite 3.45.2 [D:\Users\moviedo\github\tgdbook\data\chinook.db]
+##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
+##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
+##  1         1          2 2009-01-01 00:0~ Theodor-Heuss~ Stuttgart   <NA>        
+##  2         2          4 2009-01-02 00:0~ Ullevålsveien~ Oslo        <NA>        
+##  3         3          8 2009-01-03 00:0~ Grétrystraat ~ Brussels    <NA>        
+##  4         4         14 2009-01-06 00:0~ 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11 00:0~ 69 Salem Stre~ Boston      MA          
+##  6         6         37 2009-01-19 00:0~ Berger Straße~ Frankfurt   <NA>        
+##  7         7         38 2009-02-01 00:0~ Barbarossastr~ Berlin      <NA>        
+##  8         8         40 2009-02-01 00:0~ 8, Rue Hanovre Paris       <NA>        
+##  9         9         42 2009-02-02 00:0~ 9, Place Loui~ Bordeaux    <NA>        
+## 10        10         46 2009-02-03 00:0~ 3 Chatham Str~ Dublin      Dublin      
+## # i more rows
+## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## #   Total <dbl>
 ```
 
 Ojo `[?? x 9]`: de momento no conoce el número de filas.
@@ -421,7 +847,7 @@ nrow(invoices)
 ## [1] NA
 ```
 
-Mostrar la consulta SQL:
+Podemos mostrar la consulta SQL correspondiente a una operación:
 
 ```r
 show_query(head(invoices))
@@ -429,39 +855,13 @@ show_query(head(invoices))
 
 ```
 ## <SQL>
-## SELECT *
+## SELECT `invoices`.*
 ## FROM `invoices`
 ## LIMIT 6
 ```
 
 ```r
-str(head(invoices))
-```
-
-```
-## List of 2
-##  $ src:List of 2
-##   ..$ con  :Formal class 'SQLiteConnection' [package "RSQLite"] with 7 slots
-##   .. .. ..@ ptr                :<externalptr> 
-##   .. .. ..@ dbname             : chr "C:\\Users\\Guillermo LT\\Documents\\GitHub\\tgdbook\\data\\chinook.db"
-##   .. .. ..@ loadable.extensions: logi TRUE
-##   .. .. ..@ flags              : int 70
-##   .. .. ..@ vfs                : chr ""
-##   .. .. ..@ ref                :<environment: 0x000000001cde8a58> 
-##   .. .. ..@ bigint             : chr "integer64"
-##   ..$ disco: NULL
-##   ..- attr(*, "class")= chr [1:4] "src_SQLiteConnection" "src_dbi" "src_sql" "src"
-##  $ ops:List of 4
-##   ..$ name: chr "head"
-##   ..$ x   :List of 2
-##   .. ..$ x   : 'ident' chr "invoices"
-##   .. ..$ vars: chr [1:9] "InvoiceId" "CustomerId" "InvoiceDate" "BillingAddress" ...
-##   .. ..- attr(*, "class")= chr [1:3] "op_base_remote" "op_base" "op"
-##   ..$ dots: list()
-##   ..$ args:List of 1
-##   .. ..$ n: num 6
-##   ..- attr(*, "class")= chr [1:3] "op_head" "op_single" "op"
-##  - attr(*, "class")= chr [1:5] "tbl_SQLiteConnection" "tbl_dbi" "tbl_sql" "tbl_lazy" ...
+# str(head(invoices))
 ```
 
 Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
@@ -478,15 +878,15 @@ invoices %>% head %>% collect
 
 ```
 ## # A tibble: 6 x 9
-##   InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
-##       <int>      <int> <chr>       <chr>          <chr>       <chr>       
-## 1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   <NA>        
-## 2         2          4 2009-01-02~ Ullevålsveien~ Oslo        <NA>        
-## 3         3          8 2009-01-03~ Grétrystraat ~ Brussels    <NA>        
-## 4         4         14 2009-01-06~ 8210 111 ST NW Edmonton    AB          
-## 5         5         23 2009-01-11~ 69 Salem Stre~ Boston      MA          
-## 6         6         37 2009-01-19~ Berger Straße~ Frankfurt   <NA>        
-## # ... with 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+##   InvoiceId CustomerId InvoiceDate       BillingAddress BillingCity BillingState
+##       <int>      <int> <chr>             <chr>          <chr>       <chr>       
+## 1         1          2 2009-01-01 00:00~ Theodor-Heuss~ Stuttgart   <NA>        
+## 2         2          4 2009-01-02 00:00~ Ullevålsveien~ Oslo        <NA>        
+## 3         3          8 2009-01-03 00:00~ Grétrystraat ~ Brussels    <NA>        
+## 4         4         14 2009-01-06 00:00~ 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11 00:00~ 69 Salem Stre~ Boston      MA          
+## 6         6         37 2009-01-19 00:00~ Berger Straße~ Frankfurt   <NA>        
+## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
 ## #   Total <dbl>
 ```
 
@@ -495,351 +895,123 @@ invoices %>% count # número de filas
 ```
 
 ```
-## # Source:   lazy query [?? x 1]
-## # Database: sqlite 3.33.0 [C:\Users\Guillermo
-## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
+## # Source:   SQL [1 x 1]
+## # Database: sqlite 3.45.2 [D:\Users\moviedo\github\tgdbook\data\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
 ```
 
-1.  Conocer el importe mínimo, máximo y la media de las facturas
-    
-    
-    ```r
-    res <- invoices %>% summarise(min = min(Total, na.rm = TRUE), 
-                            max = max(Total, na.rm = TRUE), med = mean(Total, na.rm = TRUE))
-    show_query(res)
-    ```
-    
-    ```
-    ## <SQL>
-    ## SELECT MIN(`Total`) AS `min`, MAX(`Total`) AS `max`, AVG(`Total`) AS `med`
-    ## FROM `invoices`
-    ```
-    
-    ```r
-    res  %>% collect
-    ```
-    
-    ```
-    ## # A tibble: 1 x 3
-    ##     min   max   med
-    ##   <dbl> <dbl> <dbl>
-    ## 1  0.99  25.9  5.65
-    ```
+Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:
 
-2.  Conocer el total de las facturas de cada uno de los países.
 
-    
-    ```r
-    res <- invoices %>% group_by(BillingCountry) %>% 
-              summarise(n = n(), total = sum(Total, na.rm = TRUE))
-    show_query(res)
-    ```
-    
-    ```
-    ## <SQL>
-    ## SELECT `BillingCountry`, COUNT(*) AS `n`, SUM(`Total`) AS `total`
-    ## FROM `invoices`
-    ## GROUP BY `BillingCountry`
-    ```
-    
-    ```r
-    res  %>% collect
-    ```
-    
-    ```
-    ## # A tibble: 24 x 3
-    ##    BillingCountry     n total
-    ##    <chr>          <int> <dbl>
-    ##  1 Argentina          7  37.6
-    ##  2 Australia          7  37.6
-    ##  3 Austria            7  42.6
-    ##  4 Belgium            7  37.6
-    ##  5 Brazil            35 190. 
-    ##  6 Canada            56 304. 
-    ##  7 Chile              7  46.6
-    ##  8 Czech Republic    14  90.2
-    ##  9 Denmark            7  37.6
-    ## 10 Finland            7  41.6
-    ## # ... with 14 more rows
-    ```
+```r
+res <- invoices %>% summarise(min = min(Total, na.rm = TRUE), 
+                        max = max(Total, na.rm = TRUE), 
+                        med = mean(Total, na.rm = TRUE))
+# show_query(res)
+res  %>% collect
+```
 
-3.  Obtener el listado de países junto con su facturación media, ordenado 
-    (a) alfabéticamente por país
+```
+## # A tibble: 1 x 3
+##     min   max   med
+##   <dbl> <dbl> <dbl>
+## 1  0.99  25.9  5.65
+```
 
-    
-    ```r
-    res <- invoices %>% group_by(BillingCountry) %>% 
-              summarise(n = n(), med = mean(Total, na.rm = TRUE)) %>%
-              arrange(BillingCountry)
-    show_query(res)
-    ```
-    
-    ```
-    ## <SQL>
-    ## SELECT `BillingCountry`, COUNT(*) AS `n`, AVG(`Total`) AS `med`
-    ## FROM `invoices`
-    ## GROUP BY `BillingCountry`
-    ## ORDER BY `BillingCountry`
-    ```
-    
-    ```r
-    res  %>% collect
-    ```
-    
-    ```
-    ## # A tibble: 24 x 3
-    ##    BillingCountry     n   med
-    ##    <chr>          <int> <dbl>
-    ##  1 Argentina          7  5.37
-    ##  2 Australia          7  5.37
-    ##  3 Austria            7  6.09
-    ##  4 Belgium            7  5.37
-    ##  5 Brazil            35  5.43
-    ##  6 Canada            56  5.43
-    ##  7 Chile              7  6.66
-    ##  8 Czech Republic    14  6.45
-    ##  9 Denmark            7  5.37
-    ## 10 Finland            7  5.95
-    ## # ... with 14 more rows
-    ```
+Para obtener el total de las facturas de cada uno de los países:
 
-(b) decrecientemente por importe de facturación media
-    
-    
-    ```r
-    invoices %>% group_by(BillingCountry) %>% 
-              summarise(n = n(), med = mean(Total, na.rm = TRUE)) %>%
-              arrange(desc(med)) %>% collect
-    ```
-    
-    ```
-    ## # A tibble: 24 x 3
-    ##    BillingCountry     n   med
-    ##    <chr>          <int> <dbl>
-    ##  1 Chile              7  6.66
-    ##  2 Ireland            7  6.52
-    ##  3 Hungary            7  6.52
-    ##  4 Czech Republic    14  6.45
-    ##  5 Austria            7  6.09
-    ##  6 Finland            7  5.95
-    ##  7 Netherlands        7  5.80
-    ##  8 India             13  5.79
-    ##  9 USA               91  5.75
-    ## 10 Norway             7  5.66
-    ## # ... with 14 more rows
-    ```
 
-4.  Obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas 
-    (Hint: WHERE customer.CustomerID=invoices.CustomerID)
+```r
+res <- invoices %>% group_by(BillingCountry) %>% 
+          summarise(n = n(), total = sum(Total, na.rm = TRUE))
+# show_query(res)
+res  %>% collect
+```
 
-    
-    ```r
-    customers <- tbl(chinook, "customers")
-    tbl_vars(customers) 
-    ```
-    
-    ```
-    ## <dplyr:::vars>
-    ##  [1] "CustomerId"   "FirstName"    "LastName"     "Company"      "Address"     
-    ##  [6] "City"         "State"        "Country"      "PostalCode"   "Phone"       
-    ## [11] "Fax"          "Email"        "SupportRepId"
-    ```
-    
-    ```r
-    res <- customers %>% inner_join(invoices, by = "CustomerId") %>% select(FirstName, LastName, Country, Total) 
-    show_query(res)
-    ```
-    
-    ```
-    ## <SQL>
-    ## SELECT `FirstName`, `LastName`, `Country`, `Total`
-    ## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
-    ## FROM `customers` AS `LHS`
-    ## INNER JOIN `invoices` AS `RHS`
-    ## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
-    ## )
-    ```
-    
-    ```r
-    res  %>% collect
-    ```
-    
-    ```
-    ## # A tibble: 412 x 4
-    ##    FirstName LastName  Country Total
-    ##    <chr>     <chr>     <chr>   <dbl>
-    ##  1 Luís      Gonçalves Brazil   3.98
-    ##  2 Luís      Gonçalves Brazil   3.96
-    ##  3 Luís      Gonçalves Brazil   5.94
-    ##  4 Luís      Gonçalves Brazil   0.99
-    ##  5 Luís      Gonçalves Brazil   1.98
-    ##  6 Luís      Gonçalves Brazil  13.9 
-    ##  7 Luís      Gonçalves Brazil   8.91
-    ##  8 Leonie    Köhler    Germany  1.98
-    ##  9 Leonie    Köhler    Germany 13.9 
-    ## 10 Leonie    Köhler    Germany  8.91
-    ## # ... with 402 more rows
-    ```
+```
+## # A tibble: 24 x 3
+##    BillingCountry     n total
+##    <chr>          <int> <dbl>
+##  1 Argentina          7  37.6
+##  2 Australia          7  37.6
+##  3 Austria            7  42.6
+##  4 Belgium            7  37.6
+##  5 Brazil            35 190. 
+##  6 Canada            56 304. 
+##  7 Chile              7  46.6
+##  8 Czech Republic    14  90.2
+##  9 Denmark            7  37.6
+## 10 Finland            7  41.6
+## # i 14 more rows
+```
 
-5.  ¿Qué porcentaje de las canciones son video?
+Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
 
-    
-    ```r
-    tracks <- tbl(chinook, "tracks")
-    head(tracks) 
-    ```
-    
-    ```
-    ## # Source:   lazy query [?? x 9]
-    ## # Database: sqlite 3.33.0 [C:\Users\Guillermo
-    ## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
-    ##   TrackId Name  AlbumId MediaTypeId GenreId Composer Milliseconds  Bytes
-    ##     <int> <chr>   <int>       <int>   <int> <chr>           <int>  <int>
-    ## 1       1 For ~       1           1       1 Angus Y~       343719 1.12e7
-    ## 2       2 Ball~       2           2       1 <NA>           342562 5.51e6
-    ## 3       3 Fast~       3           2       1 F. Balt~       230619 3.99e6
-    ## 4       4 Rest~       3           2       1 F. Balt~       252051 4.33e6
-    ## 5       5 Prin~       3           2       1 Deaffy ~       375418 6.29e6
-    ## 6       6 Put ~       1           1       1 Angus Y~       205662 6.71e6
-    ## # ... with 1 more variable: UnitPrice <dbl>
-    ```
-    
-    ```r
-    tracks %>% group_by(MediaTypeId) %>% 
-        summarise(n = n()) %>% collect %>% mutate(freq = n / sum(n))
-    ```
-    
-    ```
-    ## # A tibble: 5 x 3
-    ##   MediaTypeId     n    freq
-    ##         <int> <int>   <dbl>
-    ## 1           1  3034 0.866  
-    ## 2           2   237 0.0677 
-    ## 3           3   214 0.0611 
-    ## 4           4     7 0.00200
-    ## 5           5    11 0.00314
-    ```
-    
-    ```r
-    media_types <- tbl(chinook, "media_types")
-    head(media_types)
-    ```
-    
-    ```
-    ## # Source:   lazy query [?? x 2]
-    ## # Database: sqlite 3.33.0 [C:\Users\Guillermo
-    ## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
-    ##   MediaTypeId Name                       
-    ##         <int> <chr>                      
-    ## 1           1 MPEG audio file            
-    ## 2           2 Protected AAC audio file   
-    ## 3           3 Protected MPEG-4 video file
-    ## 4           4 Purchased AAC audio file   
-    ## 5           5 AAC audio file
-    ```
-    
-    ```r
-    tracks %>% inner_join(media_types, by = "MediaTypeId") %>% count(Name.y) %>% 
-        collect %>% mutate(freq = n / sum(n)) %>% filter(grepl('video', Name.y))
-    ```
-    
-    ```
-    ## # A tibble: 1 x 3
-    ##   Name.y                          n   freq
-    ##   <chr>                       <int>  <dbl>
-    ## 1 Protected MPEG-4 video file   214 0.0611
-    ```
 
-6.  Listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) 
-    indicando Nombre, Apellidos, Pais y el importe total de su facturación.
+```r
+customers <- tbl(chinook, "customers")
+tbl_vars(customers) 
+```
 
-    
-    ```r
-    customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
-        summarise(FirstName, LastName, country, total = sum(Total, na.rm = TRUE)) %>%  
-        arrange(desc(total)) %>% head(10) %>% collect
-    ```
-    
-    ```
-    ## # A tibble: 10 x 5
-    ##    CustomerId FirstName LastName   Country        total
-    ##         <int> <chr>     <chr>      <chr>          <dbl>
-    ##  1          6 Helena    Holý       Czech Republic  49.6
-    ##  2         26 Richard   Cunningham USA             47.6
-    ##  3         57 Luis      Rojas      Chile           46.6
-    ##  4         45 Ladislav  Kovács     Hungary         45.6
-    ##  5         46 Hugh      O'Reilly   Ireland         45.6
-    ##  6         28 Julia     Barnett    USA             43.6
-    ##  7         24 Frank     Ralston    USA             43.6
-    ##  8         37 Fynn      Zimmermann Germany         43.6
-    ##  9          7 Astrid    Gruber     Austria         42.6
-    ## 10         25 Victor    Stevens    USA             42.6
-    ```
+```
+## <dplyr:::vars>
+##  [1] "CustomerId"   "FirstName"    "LastName"     "Company"      "Address"     
+##  [6] "City"         "State"        "Country"      "PostalCode"   "Phone"       
+## [11] "Fax"          "Email"        "SupportRepId"
+```
 
-7.  Listar los géneros musicales por orden decreciente de popularidad 
-    (definida la popularidad como el número de canciones de ese género), 
-    indicando el porcentaje de las canciones de ese género.
+```r
+res <- customers %>% 
+  inner_join(invoices, by = "CustomerId") %>% 
+  select(FirstName, LastName, Country, Total) 
+show_query(res)
+```
 
-    
-    ```r
-    tracks %>% inner_join(tbl(chinook, "genres"), by = "GenreId") %>% count(Name.y) %>% 
-        arrange(desc(n)) %>% collect %>% mutate(freq = n / sum(n))
-    ```
-    
-    ```
-    ## # A tibble: 25 x 3
-    ##    Name.y                 n   freq
-    ##    <chr>              <int>  <dbl>
-    ##  1 Rock                1297 0.370 
-    ##  2 Latin                579 0.165 
-    ##  3 Metal                374 0.107 
-    ##  4 Alternative & Punk   332 0.0948
-    ##  5 Jazz                 130 0.0371
-    ##  6 TV Shows              93 0.0265
-    ##  7 Blues                 81 0.0231
-    ##  8 Classical             74 0.0211
-    ##  9 Drama                 64 0.0183
-    ## 10 R&B/Soul              61 0.0174
-    ## # ... with 15 more rows
-    ```
+```
+## <SQL>
+## SELECT `FirstName`, `LastName`, `Country`, `Total`
+## FROM `customers`
+## INNER JOIN `invoices`
+##   ON (`customers`.`CustomerId` = `invoices`.`CustomerId`)
+```
 
-8.  Listar los 10 artistas con mayor número de canciones 
-    de forma descendente según el número de canciones.
+```r
+res  %>% collect
+```
 
-    
-    ```r
-    tracks %>% inner_join(tbl(chinook, "albums"), by = "AlbumId") %>% 
-        inner_join(tbl(chinook, "artists"), by = "ArtistId") %>% 
-        count(Name.y) %>% arrange(desc(n)) %>% collect
-    ```
-    
-    ```
-    ## # A tibble: 204 x 2
-    ##    Name.y              n
-    ##    <chr>           <int>
-    ##  1 Iron Maiden       213
-    ##  2 U2                135
-    ##  3 Led Zeppelin      114
-    ##  4 Metallica         112
-    ##  5 Lost               92
-    ##  6 Deep Purple        92
-    ##  7 Pearl Jam          67
-    ##  8 Lenny Kravitz      57
-    ##  9 Various Artists    56
-    ## 10 The Office         53
-    ## # ... with 194 more rows
-    ```
+```
+## # A tibble: 412 x 4
+##    FirstName LastName  Country Total
+##    <chr>     <chr>     <chr>   <dbl>
+##  1 Luís      Gonçalves Brazil   3.98
+##  2 Luís      Gonçalves Brazil   3.96
+##  3 Luís      Gonçalves Brazil   5.94
+##  4 Luís      Gonçalves Brazil   0.99
+##  5 Luís      Gonçalves Brazil   1.98
+##  6 Luís      Gonçalves Brazil  13.9 
+##  7 Luís      Gonçalves Brazil   8.91
+##  8 Leonie    Köhler    Germany  1.98
+##  9 Leonie    Köhler    Germany 13.9 
+## 10 Leonie    Köhler    Germany  8.91
+## # i 402 more rows
+```
 
-Desconectar la base de datos:
+Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
+
+
+```r
+customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
+    summarise(FirstName, LastName, country, total = sum(Total, na.rm = TRUE)) %>%  
+    arrange(desc(total)) %>% head(10) %>% collect
+```
+
+
+Al finalizar hay que desconectar la base de datos:
 
 
 ```r
 DBI::dbDisconnect(chinook)            
 ```
-
-
-
 

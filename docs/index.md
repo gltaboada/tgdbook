@@ -1,7 +1,10 @@
 --- 
-title: "Prácticas de Tecnologías de Gestión y Manipulación de Datos"
-author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)"
-date: "2023-11-03"
+title: "Tecnologías de Gestión y Manipulación de Datos"
+author: 
+  - "Guillermo López Taboada (guillermo.lopez.taboada@udc.es)"
+  - "Rubén Fernández Casal (ruben.fcasal@udc.es)"
+  - "Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)"
+date: "Edición: Mayo de 2024. Impresión: 2024-05-27"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -41,7 +44,8 @@ Por ejemplo mediante los comandos:
 pkgs <- c('dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr', 
           'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr')
 # install.packages(pkgs, dependencies=TRUE)
-install.packages(setdiff(pkgs, installed.packages()[,'Package']), dependencies = TRUE)
+install.packages(setdiff(pkgs, installed.packages()[,'Package']), 
+                 dependencies = TRUE)
 ```
 
 Para generar el libro (compilar) se recomendaría consultar el libro de ["Escritura de libros con bookdown" ](https://rubenfcasal.github.io/bookdown_intro) en castellano.

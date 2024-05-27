@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>B.5 Filtrado | Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="B.5 Filtrado | Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="B.5 Filtrado | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="B.5 Filtrado | Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
 
-<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es)" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2023-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,8 @@
   
 <link rel="prev" href="gráficos.html"/>
 <link rel="next" href="indices-de-autores.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,25 +50,33 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,13 +96,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +115,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -118,6 +127,33 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -137,78 +173,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
-<li class="chapter" data-level="1" data-path="introducción-a-las-tecnologías-de-gestión-y-manipulación-de-datos.html"><a href="introducción-a-las-tecnologías-de-gestión-y-manipulación-de-datos.html"><i class="fa fa-check"></i><b>1</b> Introducción a las Tecnologías de Gestión y Manipulación de Datos</a><ul>
+<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i><b>1.1</b> Contenidos</a></li>
-<li class="chapter" data-level="1.2" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html"><i class="fa fa-check"></i><b>1.2</b> Planificación (tentativa)</a><ul>
+<li class="chapter" data-level="1.2" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html"><i class="fa fa-check"></i><b>1.2</b> Planificación (tentativa)</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html#evaluación"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html"><i class="fa fa-check"></i><b>1.3</b> Fuentes de información:</a><ul>
+<li class="chapter" data-level="1.3" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html"><i class="fa fa-check"></i><b>1.3</b> Fuentes de información:</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#básica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
 <li class="chapter" data-level="1.3.2" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#complementaria"><i class="fa fa-check"></i><b>1.3.2</b> Complementaria:</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="manipulación-de-datos-con-r.html"><a href="manipulación-de-datos-con-r.html"><i class="fa fa-check"></i><b>2</b> Manipulación de datos con R</a><ul>
-<li class="chapter" data-level="2.1" data-path="lectura-importación-y-exportación-de-datos.html"><a href="lectura-importación-y-exportación-de-datos.html"><i class="fa fa-check"></i><b>2.1</b> Lectura, importación y exportación de datos</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="lectura-importación-y-exportación-de-datos.html"><a href="lectura-importación-y-exportación-de-datos.html#formato-de-datos-de-r"><i class="fa fa-check"></i><b>2.1.1</b> Formato de datos de R</a></li>
-<li class="chapter" data-level="2.1.2" data-path="lectura-importación-y-exportación-de-datos.html"><a href="lectura-importación-y-exportación-de-datos.html#acceso-a-datos-en-paquetes"><i class="fa fa-check"></i><b>2.1.2</b> Acceso a datos en paquetes</a></li>
-<li class="chapter" data-level="2.1.3" data-path="lectura-importación-y-exportación-de-datos.html"><a href="lectura-importación-y-exportación-de-datos.html#cap2-texto"><i class="fa fa-check"></i><b>2.1.3</b> Lectura de archivos de texto</a></li>
-<li class="chapter" data-level="2.1.4" data-path="lectura-importación-y-exportación-de-datos.html"><a href="lectura-importación-y-exportación-de-datos.html#alternativa-tidyverse"><i class="fa fa-check"></i><b>2.1.4</b> Alternativa <code>tidyverse</code></a></li>
-<li class="chapter" data-level="2.1.5" data-path="lectura-importación-y-exportación-de-datos.html"><a href="lectura-importación-y-exportación-de-datos.html#importación-desde-spss"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde SPSS</a></li>
-<li class="chapter" data-level="2.1.6" data-path="lectura-importación-y-exportación-de-datos.html"><a href="lectura-importación-y-exportación-de-datos.html#importación-desde-excel"><i class="fa fa-check"></i><b>2.1.6</b> Importación desde Excel</a></li>
-<li class="chapter" data-level="2.1.7" data-path="lectura-importación-y-exportación-de-datos.html"><a href="lectura-importación-y-exportación-de-datos.html#exportación-de-datos"><i class="fa fa-check"></i><b>2.1.7</b> Exportación de datos</a></li>
+<li class="chapter" data-level="2" data-path="manipR.html"><a href="manipR.html"><i class="fa fa-check"></i><b>2</b> Manipulación de datos con R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="read.html"><a href="read.html"><i class="fa fa-check"></i><b>2.1</b> Lectura, importación y exportación de datos</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="read.html"><a href="read.html#formato-de-datos-de-r"><i class="fa fa-check"></i><b>2.1.1</b> Formato de datos de R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="read.html"><a href="read.html#acceso-a-datos-en-paquetes"><i class="fa fa-check"></i><b>2.1.2</b> Acceso a datos en paquetes</a></li>
+<li class="chapter" data-level="2.1.3" data-path="read.html"><a href="read.html#cap2-texto"><i class="fa fa-check"></i><b>2.1.3</b> Lectura de archivos de texto</a></li>
+<li class="chapter" data-level="2.1.4" data-path="read.html"><a href="read.html#importación-desde-spss"><i class="fa fa-check"></i><b>2.1.4</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="read.html"><a href="read.html#importación-desde-excel"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
+<li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programación"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a><ul>
+<li class="chapter" data-level="2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
 <li class="chapter" data-level="2.2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
-<li class="chapter" data-level="2.2.3" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.3</b> Funciones <code>apply</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.4</b> Operaciones con tablas de datos</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+<li class="chapter" data-level="2.3" data-path="missing.html"><a href="missing.html"><i class="fa fa-check"></i><b>2.3</b> Datos faltantes</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="missing.html"><a href="missing.html#funciones-apply"><i class="fa fa-check"></i><b>2.3.1</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="missing.html"><a href="missing.html#tablas-para-informes"><i class="fa fa-check"></i><b>2.3.2</b> Tablas (para informes)</a></li>
+<li class="chapter" data-level="2.3.3" data-path="missing.html"><a href="missing.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.3.3</b> Operaciones con tablas de datos</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introducción-al-lenguaje-sql.html"><a href="introducción-al-lenguaje-sql.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a><ul>
-<li class="chapter" data-level="3.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>3.1</b> Bases de Datos Relacionales</a><ul>
+<li class="chapter" data-level="2.4" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.4</b> Ejemplo WoS data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introducción-al-lenguaje-sql.html"><a href="introducción-al-lenguaje-sql.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>3.1</b> Bases de Datos Relacionales</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html#definiciones"><i class="fa fa-check"></i><b>3.1.1</b> Definiciones</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis SQL</a><ul>
+<li class="chapter" data-level="3.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis SQL</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#extracción-sql-11-statements"><i class="fa fa-check"></i><b>3.2.1</b> Extracción SQL (11 statements)</a></li>
 <li class="chapter" data-level="3.2.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#crearactualizarborrar-tablas-sql-8-statements"><i class="fa fa-check"></i><b>3.2.2</b> Crear/Actualizar/Borrar tablas SQL (8 statements)</a></li>
 <li class="chapter" data-level="3.2.3" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#añadiractualizarborrar-tuplas-en-sql-3-statements"><i class="fa fa-check"></i><b>3.2.3</b> Añadir/Actualizar/Borrar tuplas en SQL (3 statements)</a></li>
 <li class="chapter" data-level="3.2.4" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#gestión-bases-de-datos-5-statements"><i class="fa fa-check"></i><b>3.2.4</b> Gestión Bases de Datos (5 statements)</a></li>
 <li class="chapter" data-level="3.2.5" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#ejemplos-de-consultas-sql"><i class="fa fa-check"></i><b>3.2.5</b> Ejemplos de consultas SQL</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.3</b> Conexión con bases de datos desde R</a><ul>
+<li class="chapter" data-level="3.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.3</b> Conexión con bases de datos desde R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#introducción-a-sql-en-r"><i class="fa fa-check"></i><b>3.3.1</b> Introducción a SQL en R</a></li>
 <li class="chapter" data-level="3.3.2" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#el-paquete-sqldf"><i class="fa fa-check"></i><b>3.3.2</b> El paquete sqldf</a></li>
 <li class="chapter" data-level="3.3.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#sql-queries"><i class="fa fa-check"></i><b>3.3.3</b> SQL Queries</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="ejemplo-scopus-data.html"><a href="ejemplo-scopus-data.html"><i class="fa fa-check"></i><b>3.4</b> Ejemplo Scopus data</a></li>
-<li class="chapter" data-level="3.5" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html"><i class="fa fa-check"></i><b>3.5</b> Ejercicios SQL con RSQLite</a><ul>
+<li class="chapter" data-level="3.5" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html"><i class="fa fa-check"></i><b>3.5</b> Ejercicios SQL con RSQLite</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html#setup-de-rsqlite"><i class="fa fa-check"></i><b>3.5.1</b> Setup de RSQLite</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="práctica-1-sql.html"><a href="práctica-1-sql.html"><i class="fa fa-check"></i><b>3.6</b> Práctica 1: SQL</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con <code>dplyr</code></a><ul>
-<li class="chapter" data-level="4.1" data-path="el-paquete-dplyr.html"><a href="el-paquete-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> El paquete <strong>dplyr</strong></a><ul>
-<li class="chapter" data-level="4.1.1" data-path="el-paquete-dplyr.html"><a href="el-paquete-dplyr.html#datos-de-ejemplo"><i class="fa fa-check"></i><b>4.1.1</b> Datos de ejemplo</a></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con tidyverse</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introTidyverse.html"><a href="introTidyverse.html"><i class="fa fa-check"></i><b>4.1</b> Introducción al ecosistema tidyverse</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introTidyverse.html"><a href="introTidyverse.html#pipe"><i class="fa fa-check"></i><b>4.1.1</b> Operador <em>pipe</em> (redirección)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introTidyverse.html"><a href="introTidyverse.html#readr"><i class="fa fa-check"></i><b>4.1.2</b> Lectura y escritura de archivos de texto</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introTidyverse.html"><a href="introTidyverse.html#writer"><i class="fa fa-check"></i><b>4.1.3</b> Escritura</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html#seleccionar-variables-con-select"><i class="fa fa-check"></i><b>4.2.1</b> Seleccionar variables con <strong>select()</strong></a></li>
-<li class="chapter" data-level="4.2.2" data-path="operaciones-con-variables-columnas.html"><a href="operaciones-con-variables-columnas.html#generar-nuevas-variables-con-mutate"><i class="fa fa-check"></i><b>4.2.2</b> Generar nuevas variables con <strong>mutate()</strong></a></li>
+<li class="chapter" data-level="4.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4.2</b> Manipulación de datos con dplyr y tidyr</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dplyr.html"><a href="dplyr.html#dplyr-pkg"><i class="fa fa-check"></i><b>4.2.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dplyr.html"><a href="dplyr.html#dplyr-variables"><i class="fa fa-check"></i><b>4.2.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="4.2.3" data-path="dplyr.html"><a href="dplyr.html#dplyr-casos"><i class="fa fa-check"></i><b>4.2.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="4.2.4" data-path="dplyr.html"><a href="dplyr.html#tidyr-missing"><i class="fa fa-check"></i><b>4.2.4</b> Datos faltantes</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html#seleccionar-casos-con-filter"><i class="fa fa-check"></i><b>4.3.1</b> Seleccionar casos con <strong>filter()</strong></a></li>
-<li class="chapter" data-level="4.3.2" data-path="operaciones-con-casos-filas.html"><a href="operaciones-con-casos-filas.html#organizar-casos-con-arrange"><i class="fa fa-check"></i><b>4.3.2</b> Organizar casos con <strong>arrange()</strong></a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="resumir-valores-con-summarise.html"><a href="resumir-valores-con-summarise.html"><i class="fa fa-check"></i><b>4.4</b> Resumir valores con <strong>summarise()</strong></a></li>
-<li class="chapter" data-level="4.5" data-path="agrupar-casos-con-group-by.html"><a href="agrupar-casos-con-group-by.html"><i class="fa fa-check"></i><b>4.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
-<li class="chapter" data-level="4.6" data-path="operador-pipe-tubería-redirección.html"><a href="operador-pipe-tubería-redirección.html"><i class="fa fa-check"></i><b>4.6</b> Operador <em>pipe</em> <strong>%&gt;%</strong> (tubería, redirección)</a></li>
-<li class="chapter" data-level="4.7" data-path="operaciones-con-tablas-de-datos-1.html"><a href="operaciones-con-tablas-de-datos-1.html"><i class="fa fa-check"></i><b>4.7</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.8" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>4.8</b> Bases de datos con dplyr</a><ul>
-<li class="chapter" data-level="4.8.1" data-path="bases-de-datos-con-dplyr.html"><a href="bases-de-datos-con-dplyr.html#ejemplos-práctica-1"><i class="fa fa-check"></i><b>4.8.1</b> Ejemplos (Práctica 1)</a></li>
+<li class="chapter" data-level="4.3" data-path="tidyr-pkg.html"><a href="tidyr-pkg.html"><i class="fa fa-check"></i><b>4.3</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="4.4" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>4.4</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="4.5" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>4.5</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>4.5.1</b> Ejemplos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="introducción-a-tecnologías-nosql.html"><a href="introducción-a-tecnologías-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a><ul>
-<li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a><ul>
+<li class="chapter" data-level="5" data-path="introducción-a-tecnologías-nosql.html"><a href="introducción-a-tecnologías-nosql.html"><i class="fa fa-check"></i><b>5</b> Introducción a Tecnologías NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#características-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.1</b> Características de las bases de datos NoSQL</a></li>
 <li class="chapter" data-level="5.1.2" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#tipos-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.2</b> Tipos de Bases de Datos NoSQL</a></li>
 <li class="chapter" data-level="5.1.3" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#mongodb-nosql-documental"><i class="fa fa-check"></i><b>5.1.3</b> MongoDB: NoSQL documental</a></li>
@@ -220,9 +275,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="conexión-de-r-a-mongodb.html"><a href="conexión-de-r-a-mongodb.html"><i class="fa fa-check"></i><b>5.2</b> Conexión de R a MongoDB</a></li>
 <li class="chapter" data-level="5.3" data-path="ejercicios-prácticos-con-mongodb.html"><a href="ejercicios-prácticos-con-mongodb.html"><i class="fa fa-check"></i><b>5.3</b> Ejercicios prácticos con MongoDB</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>6</b> Tecnologías para el Tratamiendo de Datos Masivos</a><ul>
+<li class="chapter" data-level="6" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>6</b> Tecnologías para el Tratamiendo de Datos Masivos</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="introducción-al-aprendizaje-estadístico.html"><a href="introducción-al-aprendizaje-estadístico.html"><i class="fa fa-check"></i><b>6.1</b> Introducción al Aprendizaje Estadístico</a></li>
-<li class="chapter" data-level="6.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>6.2</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a><ul>
+<li class="chapter" data-level="6.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>6.2</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnologías-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>6.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
 <li class="chapter" data-level="6.2.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>6.2.2</b> Big Data y Machine Learning</a></li>
 <li class="chapter" data-level="6.2.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>6.2.3</b> Rattle como alternativa a RapidMiner en R</a></li>
@@ -231,50 +288,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apendices</b></span></li>
-<li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a><ul>
+<li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="rstudio-links.html"><a href="rstudio-links.html"><i class="fa fa-check"></i><b>A.1</b> RStudio</a></li>
 <li class="chapter" data-level="A.2" data-path="bibliom-links.html"><a href="bibliom-links.html"><i class="fa fa-check"></i><b>A.2</b> Bibliometría</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="scimetr.html"><a href="scimetr.html"><i class="fa fa-check"></i><b>B</b> El paquete scimetr</a><ul>
+<li class="chapter" data-level="B" data-path="scimetr.html"><a href="scimetr.html"><i class="fa fa-check"></i><b>B</b> El paquete scimetr</a>
+<ul>
 <li class="chapter" data-level="B.1" data-path="instalación.html"><a href="instalación.html"><i class="fa fa-check"></i><b>B.1</b> Instalación</a></li>
-<li class="chapter" data-level="B.2" data-path="carga-de-datos.html"><a href="carga-de-datos.html"><i class="fa fa-check"></i><b>B.2</b> Carga de datos</a><ul>
-<li class="chapter" data-level="B.2.1" data-path="carga-de-datos.html"><a href="carga-de-datos.html#datos-de-ejemplo-1"><i class="fa fa-check"></i><b>B.2.1</b> Datos de ejemplo</a></li>
+<li class="chapter" data-level="B.2" data-path="carga-de-datos.html"><a href="carga-de-datos.html"><i class="fa fa-check"></i><b>B.2</b> Carga de datos</a>
+<ul>
+<li class="chapter" data-level="B.2.1" data-path="carga-de-datos.html"><a href="carga-de-datos.html#datos-de-ejemplo"><i class="fa fa-check"></i><b>B.2.1</b> Datos de ejemplo</a></li>
 <li class="chapter" data-level="B.2.2" data-path="carga-de-datos.html"><a href="carga-de-datos.html#cargar-datos-de-directorio"><i class="fa fa-check"></i><b>B.2.2</b> Cargar datos de directorio</a></li>
 </ul></li>
-<li class="chapter" data-level="B.3" data-path="sumarios.html"><a href="sumarios.html"><i class="fa fa-check"></i><b>B.3</b> Sumarios</a><ul>
+<li class="chapter" data-level="B.3" data-path="sumarios.html"><a href="sumarios.html"><i class="fa fa-check"></i><b>B.3</b> Sumarios</a>
+<ul>
 <li class="chapter" data-level="B.3.1" data-path="sumarios.html"><a href="sumarios.html#sumario-summary.wos.db"><i class="fa fa-check"></i><b>B.3.1</b> Sumario <code>summary.wos.db()</code></a></li>
 <li class="chapter" data-level="B.3.2" data-path="sumarios.html"><a href="sumarios.html#sumario-por-años-summary_year"><i class="fa fa-check"></i><b>B.3.2</b> Sumario por años <code>summary_year()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="B.4" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>B.4</b> Gráficos</a><ul>
+<li class="chapter" data-level="B.4" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>B.4</b> Gráficos</a>
+<ul>
 <li class="chapter" data-level="B.4.1" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-la-base-de-datos-plot.wos.db"><i class="fa fa-check"></i><b>B.4.1</b> Gráficos de la base de datos <code>plot.wos.db()</code></a></li>
 <li class="chapter" data-level="B.4.2" data-path="gráficos.html"><a href="gráficos.html#gráficos-sumario-plot.summary.wos.db"><i class="fa fa-check"></i><b>B.4.2</b> Gráficos sumario <code>plot.summary.wos.db()</code></a></li>
 <li class="chapter" data-level="B.4.3" data-path="gráficos.html"><a href="gráficos.html#gráficos-sumario-por-años-plot.summary.year"><i class="fa fa-check"></i><b>B.4.3</b> Gráficos sumario por años <code>plot.summary.year()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="B.5" data-path="filtrado-1.html"><a href="filtrado-1.html"><i class="fa fa-check"></i><b>B.5</b> Filtrado</a><ul>
+<li class="chapter" data-level="B.5" data-path="filtrado-1.html"><a href="filtrado-1.html"><i class="fa fa-check"></i><b>B.5</b> Filtrado</a>
+<ul>
 <li class="chapter" data-level="B.5.1" data-path="filtrado-1.html"><a href="filtrado-1.html#funciones-get"><i class="fa fa-check"></i><b>B.5.1</b> Funciones get</a></li>
 <li class="chapter" data-level="B.5.2" data-path="filtrado-1.html"><a href="filtrado-1.html#obtener-documentos-de-autores-revistas"><i class="fa fa-check"></i><b>B.5.2</b> Obtener documentos (de autores, revistas, …)</a></li>
 <li class="chapter" data-level="B.5.3" data-path="filtrado-1.html"><a href="filtrado-1.html#sumarios-filtrados"><i class="fa fa-check"></i><b>B.5.3</b> Sumarios filtrados</a></li>
 </ul></li>
 <li class="chapter" data-level="B.6" data-path="indices-de-autores.html"><a href="indices-de-autores.html"><i class="fa fa-check"></i><b>B.6</b> Indices de autores</a></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="citan.html"><a href="citan.html"><i class="fa fa-check"></i><b>C</b> El paquete CITAN</a><ul>
-<li class="chapter" data-level="C.1" data-path="creación-de-la-base-de-datos.html"><a href="creación-de-la-base-de-datos.html"><i class="fa fa-check"></i><b>C.1</b> Creación de la base de datos</a><ul>
+<li class="chapter" data-level="C" data-path="citan.html"><a href="citan.html"><i class="fa fa-check"></i><b>C</b> El paquete CITAN</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="creación-de-la-base-de-datos.html"><a href="creación-de-la-base-de-datos.html"><i class="fa fa-check"></i><b>C.1</b> Creación de la base de datos</a>
+<ul>
 <li class="chapter" data-level="C.1.1" data-path="creación-de-la-base-de-datos.html"><a href="creación-de-la-base-de-datos.html#primera-ejecución-creación-del-modelo-de-db"><i class="fa fa-check"></i><b>C.1.1</b> Primera ejecución: Creación del modelo de DB</a></li>
 <li class="chapter" data-level="C.1.2" data-path="creación-de-la-base-de-datos.html"><a href="creación-de-la-base-de-datos.html#incorporar-nuevos-datos"><i class="fa fa-check"></i><b>C.1.2</b> Incorporar nuevos datos</a></li>
 </ul></li>
-<li class="chapter" data-level="C.2" data-path="extraer-información-de-la-bd.html"><a href="extraer-información-de-la-bd.html"><i class="fa fa-check"></i><b>C.2</b> Extraer información de la BD</a><ul>
+<li class="chapter" data-level="C.2" data-path="extraer-información-de-la-bd.html"><a href="extraer-información-de-la-bd.html"><i class="fa fa-check"></i><b>C.2</b> Extraer información de la BD</a>
+<ul>
 <li class="chapter" data-level="C.2.1" data-path="extraer-información-de-la-bd.html"><a href="extraer-información-de-la-bd.html#estadísticos-descriptivos"><i class="fa fa-check"></i><b>C.2.1</b> Estadísticos descriptivos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="extraer-información-de-la-bd.html"><a href="extraer-información-de-la-bd.html#otra-información"><i class="fa fa-check"></i><b>C.2.2</b> Otra información</a></li>
 </ul></li>
 <li class="chapter" data-level="C.3" data-path="cerrar-conexión.html"><a href="cerrar-conexión.html"><i class="fa fa-check"></i><b>C.3</b> Cerrar conexión</a></li>
 </ul></li>
-<li class="chapter" data-level="D" data-path="instalación-de-r.html"><a href="instalación-de-r.html"><i class="fa fa-check"></i><b>D</b> Instalación de R</a><ul>
-<li class="chapter" data-level="D.1" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html"><i class="fa fa-check"></i><b>D.1</b> Instalación de R en Windows</a><ul>
+<li class="chapter" data-level="D" data-path="instalación-de-r.html"><a href="instalación-de-r.html"><i class="fa fa-check"></i><b>D</b> Instalación de R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html"><i class="fa fa-check"></i><b>D.1</b> Instalación de R en Windows</a>
+<ul>
 <li class="chapter" data-level="D.1.1" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html#asistente-de-instalación"><i class="fa fa-check"></i><b>D.1.1</b> Asistente de instalación</a></li>
 <li class="chapter" data-level="D.1.2" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html#instalación-de-paquetes"><i class="fa fa-check"></i><b>D.1.2</b> Instalación de paquetes</a></li>
 </ul></li>
 <li class="chapter" data-level="D.2" data-path="instalación-en-mac-os-x.html"><a href="instalación-en-mac-os-x.html"><i class="fa fa-check"></i><b>D.2</b> Instalación en Mac OS X</a></li>
-<li class="chapter" data-level="D.3" data-path="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><a href="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><i class="fa fa-check"></i><b>D.3</b> Instalación (opcional) de un entorno o editor de comandos</a><ul>
+<li class="chapter" data-level="D.3" data-path="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><a href="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><i class="fa fa-check"></i><b>D.3</b> Instalación (opcional) de un entorno o editor de comandos</a>
+<ul>
 <li class="chapter" data-level="D.3.1" data-path="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><a href="instalación-opcional-de-un-entorno-o-editor-de-comandos.html#opciones-adicionales"><i class="fa fa-check"></i><b>D.3.1</b> Opciones adicionales</a></li>
 </ul></li>
 </ul></li>
@@ -290,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prácticas de Tecnologías de Gestión y Manipulación de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tecnologías de Gestión y Manipulación de Datos</a>
           </h1>
         </div>
 
@@ -298,126 +367,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="filtrado-1" class="section level2">
-<h2><span class="header-section-number">B.5</span> Filtrado</h2>
+<div id="filtrado-1" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">B.5</span> Filtrado<a href="filtrado-1.html#filtrado-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code>
 (se puede emplear cualquier variable de la correspondiente tabla;
 multiple conditions are combined with <code>&amp;</code>, see e.g. <code>dplyr::filter()</code>)
 con la función <code>get.idDocs()</code>.</p>
-<div id="funciones-get" class="section level3">
-<h3><span class="header-section-number">B.5.1</span> Funciones get</h3>
+<div id="funciones-get" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">B.5.1</span> Funciones get<a href="filtrado-1.html#funciones-get" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p><code>get.idAuthors()</code>: buscar id (códigos) de autores</p>
 <p>Buscar un autor concreto:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="filtrado-1.html#cb263-1"></a>idAuthor &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, AF <span class="op">==</span><span class="st"> &quot;Cao, Ricardo&quot;</span>)</span>
-<span id="cb263-2"><a href="filtrado-1.html#cb263-2"></a>idAuthor</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="filtrado-1.html#cb317-1" tabindex="-1"></a>idAuthor <span class="ot">&lt;-</span> <span class="fu">get.idAuthors</span>(db, AF <span class="sc">==</span> <span class="st">&quot;Cao, Ricardo&quot;</span>)</span>
+<span id="cb317-2"><a href="filtrado-1.html#cb317-2" tabindex="-1"></a>idAuthor</span></code></pre></div>
 <pre><code>## Cao, Ricardo 
 ##           16</code></pre>
 <p>Buscar en nombres de autores:</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="filtrado-1.html#cb265-1"></a>idAuthors &lt;-<span class="st"> </span><span class="kw">get.idAuthors</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Cao&#39;</span>, AF))</span>
-<span id="cb265-2"><a href="filtrado-1.html#cb265-2"></a>idAuthors</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="filtrado-1.html#cb319-1" tabindex="-1"></a>idAuthors <span class="ot">&lt;-</span> <span class="fu">get.idAuthors</span>(db, <span class="fu">grepl</span>(<span class="st">&#39;Cao&#39;</span>, AF))</span>
+<span id="cb319-2"><a href="filtrado-1.html#cb319-2" tabindex="-1"></a>idAuthors</span></code></pre></div>
 <pre><code>##           Cao, Ricardo Cao-Rial, Maria Teresa 
 ##                     16                     69</code></pre></li>
 <li><p><code>get.idAreas()</code>: Devuelve códigos de las áreas</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="filtrado-1.html#cb267-1"></a><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="filtrado-1.html#cb321-1" tabindex="-1"></a><span class="fu">get.idAreas</span>(db, SC <span class="sc">==</span> <span class="st">&#39;Mathematics&#39;</span>)</span></code></pre></div>
 <pre><code>## Mathematics 
 ##          16</code></pre>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="filtrado-1.html#cb269-1"></a><span class="kw">get.idAreas</span>(db, SC <span class="op">==</span><span class="st"> &#39;Mathematics&#39;</span> <span class="op">|</span><span class="st"> </span>SC <span class="op">==</span><span class="st"> &#39;Computer Science&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="filtrado-1.html#cb323-1" tabindex="-1"></a><span class="fu">get.idAreas</span>(db, SC <span class="sc">==</span> <span class="st">&#39;Mathematics&#39;</span> <span class="sc">|</span> SC <span class="sc">==</span> <span class="st">&#39;Computer Science&#39;</span>)</span></code></pre></div>
 <pre><code>## Computer Science      Mathematics 
 ##                7               16</code></pre></li>
 <li><p><code>get.idCategories()</code>: códigos de las categorías</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="filtrado-1.html#cb271-1"></a><span class="kw">get.idCategories</span>(db, <span class="kw">grepl</span>(<span class="st">&#39;Mathematics&#39;</span>, WC))</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="filtrado-1.html#cb325-1" tabindex="-1"></a><span class="fu">get.idCategories</span>(db, <span class="fu">grepl</span>(<span class="st">&#39;Mathematics&#39;</span>, WC))</span></code></pre></div>
 <pre><code>##                                 Mathematics 
 ##                                          28 
 ##                        Mathematics, Applied 
 ##                                          29 
 ## Mathematics, Interdisciplinary Applications 
 ##                                          30</code></pre></li>
-<li><p><code>get.idJournals()</code> códigos de las revistas</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="filtrado-1.html#cb273-1"></a>ijss &lt;-<span class="st"> </span><span class="kw">get.idJournals</span>(db, SO <span class="op">==</span><span class="st"> &#39;JOURNAL OF STATISTICAL SOFTWARE&#39;</span>)</span>
-<span id="cb273-2"><a href="filtrado-1.html#cb273-2"></a>ijss</span></code></pre></div>
-<pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
-##                             134</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="filtrado-1.html#cb275-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(db<span class="op">$</span>Journals[ijss, ], <span class="dt">caption =</span> <span class="st">&quot;JSS&quot;</span>)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-15">Tabla B.1: </span>JSS</caption>
-<colgroup>
-<col width="2%" />
-<col width="1%" />
-<col width="14%" />
-<col width="1%" />
-<col width="1%" />
-<col width="3%" />
-<col width="12%" />
-<col width="5%" />
-<col width="39%" />
-<col width="4%" />
-<col width="1%" />
-<col width="5%" />
-<col width="7%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">idj</th>
-<th align="left">SO</th>
-<th align="left">SE</th>
-<th align="left">BS</th>
-<th align="left">LA</th>
-<th align="left">PU</th>
-<th align="left">PI</th>
-<th align="left">PA</th>
-<th align="left">SN</th>
-<th align="left">EI</th>
-<th align="left">J9</th>
-<th align="left">JI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">2796</td>
-<td align="right">134</td>
-<td align="left">JOURNAL OF STATISTICAL SOFTWARE</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">English</td>
-<td align="left">JOURNAL STATISTICAL SOFTWARE</td>
-<td align="left">LOS ANGELES</td>
-<td align="left">UCLA DEPT STATISTICS, 8130 MATH SCIENCES BLDG, BOX 951554, LOS ANGELES, CA 90095-1554 USA</td>
-<td align="left">1548-7660</td>
-<td align="left"></td>
-<td align="left">J STAT SOFTW</td>
-<td align="left">J. Stat. Softw.</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="filtrado-1.html#cb276-1"></a><span class="kw">get.idJournals</span>(db, JI <span class="op">==</span><span class="st"> &#39;J. Stat. Softw.&#39;</span>)</span></code></pre></div>
-<pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
-##                             134</code></pre></li>
+<li><p><code>get.idSources()</code> códigos de otras fuentes (como resvistas)</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="filtrado-1.html#cb327-1" tabindex="-1"></a><span class="fu">get.idSources</span>(db, SO <span class="sc">==</span> <span class="st">&#39;JOURNAL OF STATISTICAL SOFTWARE&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 70</code></pre>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="filtrado-1.html#cb329-1" tabindex="-1"></a><span class="co"># get.idSources(db, JI == &#39;J. Stat. Softw.&#39;)</span></span></code></pre></div></li>
 </ul>
 </div>
-<div id="obtener-documentos-de-autores-revistas" class="section level3">
-<h3><span class="header-section-number">B.5.2</span> Obtener documentos (de autores, revistas, …)</h3>
+<div id="obtener-documentos-de-autores-revistas" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">B.5.2</span> Obtener documentos (de autores, revistas, …)<a href="filtrado-1.html#obtener-documentos-de-autores-revistas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Los indices anteriores se pueden combinar en <code>get.idDocs()</code></p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="filtrado-1.html#cb278-1"></a>idocs &lt;-<span class="st"> </span><span class="kw">get.idDocs</span>(db, <span class="dt">idAuthors =</span> idAuthor)</span>
-<span id="cb278-2"><a href="filtrado-1.html#cb278-2"></a>idocs</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="filtrado-1.html#cb330-1" tabindex="-1"></a>idocs <span class="ot">&lt;-</span> <span class="fu">get.idDocs</span>(db, <span class="at">idAuthors =</span> idAuthor)</span>
+<span id="cb330-2"><a href="filtrado-1.html#cb330-2" tabindex="-1"></a>idocs</span></code></pre></div>
 <pre><code>##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315 332 340
 ## [20] 346 347 350 359 362 372 375 384 385</code></pre>
 <p>Los índices de documentos se pueden utilizar como filtro p.e. en <code>summary.wos.db()</code>.</p>
 </div>
-<div id="sumarios-filtrados" class="section level3">
-<h3><span class="header-section-number">B.5.3</span> Sumarios filtrados</h3>
+<div id="sumarios-filtrados" class="section level3 hasAnchor" number="8.5.3">
+<h3><span class="header-section-number">B.5.3</span> Sumarios filtrados<a href="filtrado-1.html#sumarios-filtrados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Obtener sumario de autores:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="filtrado-1.html#cb280-1"></a><span class="kw">summary</span>(db, idocs)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="filtrado-1.html#cb332-1" tabindex="-1"></a><span class="fu">summary</span>(db, idocs)</span></code></pre></div>
 <pre><code>## Number of documents: 28 
 ## Authors: 40 
 ## Period: 2008 - 2017 
 ## 
 ## Document types:
-##                    Documents
-## Article                   26
-## Editorial Material         1
-## Proceedings Paper          1
+##                            Documents
+## Article                           26
+## Article; Proceedings Paper         1
+## Editorial Material                 1
 ## 
 ## Number of authors per document:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -464,18 +476,18 @@ con la función <code>get.idDocs()</code>.</p>
 ## Others                                             1
 ## 
 ## Top Journals:
-##                          Documents
-## J. Nonparametr. Stat.            4
-## Comput. Stat. Data Anal.         3
-## Comput. Stat.                    3
-## Ann. Inst. Stat. Math.           2
-## Test                             2
-## Stat. Neerl.                     1
-## J. Multivar. Anal.               1
-## J. Time Ser. Anal.               1
-## Stat. Probab. Lett.              1
-## J. Appl. Stat.                   1
-## Others                           9
+##                               Documents
+## J. Nonparametr. Stat.                 4
+## Comput. Stat. Data Anal.              3
+## Comput. Stat.                         3
+## Test                                  2
+## Ann. Inst. Stat. Math.                2
+## J. Chemometr.                         1
+## J. Time Ser. Anal.                    1
+## Stat. Probab. Lett.                   1
+## SORT-Stat. Oper. Res. Trans.          1
+## Stat. Appl. Genet. Mol. Biol.         1
+## Others                                9
 ## 
 ## Top Countries:
 ##           Documents
@@ -489,7 +501,7 @@ con la función <code>get.idDocs()</code>.</p>
 ## Mexico            1
 ## Norway            1</code></pre>
 <p>Obtener sumario de autores por años:</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="filtrado-1.html#cb282-1"></a><span class="kw">summary_year</span>(db, idocs)</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="filtrado-1.html#cb334-1" tabindex="-1"></a><span class="fu">summary_year</span>(db, idocs)</span></code></pre></div>
 <pre><code>## 
 ## Annual Scientific Production:
 ## 
@@ -541,7 +553,6 @@ con la función <code>get.idDocs()</code>.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -560,6 +571,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -580,6 +592,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Practicas_de_TGD.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -587,6 +603,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

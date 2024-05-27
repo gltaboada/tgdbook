@@ -5,7 +5,7 @@ En la web del proyecto R
 mucha información sobre este entorno estadístico.
 
 ----------------------------------------   ------------------------------------
- ![](images/rproject.png){width="80%"}       ![](images/cran.png){width="70%"}
+ ![](images/rproject.png){width="68%"}       ![](images/cran.png){width="63%"}
    [R-project](https://r-project.org)       [CRAN](https://cran.r-project.org) 
 ----------------------------------------   ------------------------------------
 
@@ -31,8 +31,8 @@ al enlace con el instalador de R para Windows.
 Durante el proceso de instalación la recomendación (para evitar posibles problemas) es seleccionar ventanas simples SDI en lugar de múltiples ventanas MDI (hay que *utilizar opciones de configuración*).
 
 --------------------------------------   --------------------------------------
- ![](images/image3.png){width="95%"}      ![](images/image4.png){width="95%"}
- ![](images/image5.png){width="95%"}      ![](images/image6.png){width="95%"}
+ ![](images/image3.png){width="80%"}      ![](images/image4.png){width="80%"}
+ ![](images/image5.png){width="80%"}      ![](images/image6.png){width="80%"}
 --------------------------------------   --------------------------------------
 
 Una vez terminada la instalación, al abrir R aparece la ventana de la consola (simula una ventana de comandos de Unix) que permite ejecutar comandos de R.
@@ -108,7 +108,8 @@ Para instalar `rattle` seguir estos pasos (https://zhiyzuo.github.io/installatio
       lockBinding('.Platform', baseenv())
     
       options(
-        pkgType = 'both', install.packages.compile.from.source = 'always',
+        pkgType = 'both', 
+        install.packages.compile.from.source = 'always',
         repos = 'https://macos.rbind.org'
       )
     })
@@ -127,7 +128,7 @@ flexible.
 Un entorno de R muy recomendable es el **RStudio**,
 [*http://rstudio.org*](http://rstudio.org):
 
-![](images/image8.png){width="40%"}
+![](images/image8.png){width="60%"}
 
 Para instalarlo descargar el archivo de instalación de
 [*http://rstudio.org/download/desktop*](http://rstudio.org/download/desktop).
