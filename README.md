@@ -1,5 +1,5 @@
 # Prácticas de Tecnologías de Gestión de Datos
-## Guillermo López Taboada y Rubén F. Casal 
+## Guillermo López Taboada, Rubén F. Casal y Manuel Oviedo de la Fuente
 
 Este libro contiene algunas de las prácticas de la asignatura de [Tecnologías de Gestión de Datos](http://eamo.usc.es/pub/mte/index.php/es/?option=com_content&view=article&id=2202&idm=38&a%C3%B1o=2019) del [Máster interuniversitario en Técnicas Estadísticas](http://eio.usc.es/pub/mte)).
 
