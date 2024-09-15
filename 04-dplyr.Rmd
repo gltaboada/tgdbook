@@ -114,21 +114,22 @@ Por ejemplo, `segundo(primero(datos))` se traduce en `datos %>% primero %>% segu
 Desde la versión 4.1 de R está disponible un operador interno `|>`.
 Por ejemplo, para el conjunto de datos `empleados.RData` que contiene datos de empleados de un banco.   Supongamos, por ejemplo, que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza.
 
-```{r }
+```{r}
 load("data/empleados.RData")
 # NOTA: Cuidado con la codificación latin1 (no declarada) 
 # al abrir archivos creados en versiones anteriores de R < 4.2: 
 # load("data/empleados.latin1.RData")
 
 # Listamos las etiquetas
-knitr::kable(attr(empleados, "variable.labels"),
-             col.names = "Etiqueta")
+#knitr::kable(attr(empleados, "variable.labels"),
+#             col.names = "Etiqueta")
+
 # Eliminamos las etiquetas para que no molesten...
 # attr(empleados, "variable.labels") <- NULL  
 
-empleados |>  
-  subset(catlab == "Directivo", catlab:sexoraza) |>
-  summary()
+#empleados |>  
+#  subset(catlab == "Directivo", catlab:sexoraza) |>
+#  summary()
 ```
 
 Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
@@ -606,6 +607,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     indicando el porcentaje de las canciones de ese género.
 
     ```{r }
+    tracks <- tbl(chinook, "tracks")
     tracks %>% inner_join(tbl(chinook, "genres"), by = "GenreId") %>% count(Name.y) %>% 
         arrange(desc(n)) %>% collect %>% mutate(freq = n / sum(n))
     ```

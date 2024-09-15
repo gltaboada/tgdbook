@@ -46,7 +46,7 @@ Otros paquetes de interés son:
 
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
@@ -113,70 +113,22 @@ Desde la versión 4.1 de R está disponible un operador interno `|>`.
 Por ejemplo, para el conjunto de datos `empleados.RData` que contiene datos de empleados de un banco.   Supongamos, por ejemplo, que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza.
 
 
-```r
+``` r
 load("data/empleados.RData")
 # NOTA: Cuidado con la codificación latin1 (no declarada) 
 # al abrir archivos creados en versiones anteriores de R < 4.2: 
 # load("data/empleados.latin1.RData")
 
 # Listamos las etiquetas
-knitr::kable(attr(empleados, "variable.labels"),
-             col.names = "Etiqueta")
-```
+#knitr::kable(attr(empleados, "variable.labels"),
+#             col.names = "Etiqueta")
 
-
-\begin{tabular}{l|l}
-\hline
-  & Etiqueta\\
-\hline
-id & Código de empleado\\
-\hline
-sexo & Sexo\\
-\hline
-fechnac & Fecha de nacimiento\\
-\hline
-educ & Nivel educativo (años)\\
-\hline
-catlab & Categoría Laboral\\
-\hline
-salario & Salario actual\\
-\hline
-salini & Salario inicial\\
-\hline
-tiempemp & Meses desde el contrato\\
-\hline
-expprev & Experiencia previa (meses)\\
-\hline
-minoria & Clasificación étnica\\
-\hline
-sexoraza & Clasificación por sexo y raza\\
-\hline
-\end{tabular}
-
-```r
 # Eliminamos las etiquetas para que no molesten...
 # attr(empleados, "variable.labels") <- NULL  
 
-empleados |>  
-  subset(catlab == "Directivo", catlab:sexoraza) |>
-  summary()
-```
-
-```
-##             catlab      salario           salini         tiempemp    
-##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
-##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
-##  Directivo     :84   Median : 60500   Median :28740   Median :81.00  
-##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
-##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
-##                      Max.   :135000   Max.   :79980   Max.   :98.00  
-##     expprev       minoria          sexoraza 
-##  Min.   :  3.00   No:80   Blanca varón :70  
-##  1st Qu.: 19.75   Sí: 4   Minoría varón: 4  
-##  Median : 52.00           Blanca mujer :10  
-##  Mean   : 77.62           Minoría mujer: 0  
-##  3rd Qu.:125.25                             
-##  Max.   :285.00
+#empleados |>  
+#  subset(catlab == "Directivo", catlab:sexoraza) |>
+#  summary()
 ```
 
 Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
@@ -184,7 +136,7 @@ Sin embargo, el operador `%>%` permite redirigir el resultado de la operación a
 Por ejemplo:
 
 
-```r
+``` r
 # ?"|>"
 # empleados |> subset(catlab != "Seguridad") |> droplevels |> 
 #     boxplot(salario ~ sexo*catlab, data = .) # ERROR
@@ -196,9 +148,7 @@ empleados %>%
   boxplot(salario ~ sexo*catlab, data = .)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-3-1} \end{center}
+<img src="04-dplyr_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" />
 
 
 ### Lectura y escritura de archivos de texto {#readr}
@@ -208,7 +158,7 @@ En esta seccón la alternativa *tidyverse*, a la tradicional, vista en las secci
 Para leer archivos de texto en distintos formatos se puede emplear el paquete [`readr`](https://readr.tidyverse.org), disponible en la colección de paquetes [`tidyverse`](https://tidyverse.tidyverse.org). Para más información, se recomienda consultar el [Capítulo 11](https://r4ds.had.co.nz/data-import.html) del libro [*R for Data Science*](http://r4ds.had.co.nz) [@wickham2023r]  o la versión en español "[*R Para Ciencia de Datos*](https://es.r4ds.hadley.nz/)".
 
 
-```r
+``` r
 library(readr)
 # ?readr
 datos <- read_csv2("./data/coches.csv")
@@ -223,7 +173,7 @@ class(datos)
 También se puede importación desde Excel fácilmente:
 
 
-```r
+``` r
 library(readxl)
 datos<-read_excel("./data/coches.xlsx")
 class(datos)
@@ -233,7 +183,7 @@ class(datos)
 ## [1] "tbl_df"     "tbl"        "data.frame"
 ```
 
-```r
+``` r
 excel_sheets("./data/coches.xlsx") # listado de hojas
 ```
 
@@ -246,7 +196,7 @@ La función `fread()` puede considerarse como alternativa a `read_csv()`
 cuando el proceso de lectura resulta lento, especialmente con datos numéricos pesados. ESta función intenta *adivinar* automáticamente algunos argumentos sin tener que especificarse como, por ejemplo, el delimitador, las filas omitidas y la cabecera. Sin embargo, si requiere especificar el separador del decimal, como a continuación:
 
 
-```r
+``` r
 library(data.table)
 # ?fread
 datos <- fread(file = "./data/coches.csv", dec = ",")
@@ -263,13 +213,13 @@ Para más información, se recomienda ver la viñeta [*Introduction to data.tabl
 
 Con el ecosistema *tidyverse*, también con el paquete [`readr`](https://readr.tidyverse.org) se puede utilizar la función `write_csv2()`:
 
-```r
+``` r
 write_csv2(datos, file = "datos.csv")
 ```
 y como opción más rápida, se podría usar `fwrite()` del paqute `data.table`:
 
 
-```r
+``` r
 # datos2 <- data.table(datos)
 fwrite(datos2, file = "datos2.csv")
 ```
@@ -308,7 +258,7 @@ También puede resultar de utilidad la viñeta del paquete [Introduction to dply
 ### El paquete dplyr {#dplyr-pkg}
 
 
-```r
+``` r
 library(dplyr)
 ```
 
@@ -349,7 +299,7 @@ En la primera parte de este capítulo consideraremos solo  `data.frame` por como
 Emplearemos como ejemplo los datos de empleados de banca almacenados en el fichero *empleados.RData* (y supondremos que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza).
 
 
-```r
+``` r
 load("data/empleados.RData")
 attr(empleados, "variable.labels") <- NULL                  
 ```
@@ -361,7 +311,7 @@ En la Sección \@ref(dbplyr) final emplearemos una base de datos relacional como
 
 Podemos **seleccionar variables con [`select()`](https://dplyr.tidyverse.org/reference/select.html)**:
 
-```r
+``` r
 emplea2 <- empleados %>% select(id, sexo, minoria, tiempemp, 
                                 salini, salario)
 head(emplea2)
@@ -379,7 +329,7 @@ head(emplea2)
 
 Se puede cambiar el nombre (ver también [`rename()`](https://dplyr.tidyverse.org/reference/rename.html)):
 
-```r
+``` r
 empleados %>% select(sexo, noblanca = minoria, salario) %>% head()
 ```
 
@@ -395,7 +345,7 @@ empleados %>% select(sexo, noblanca = minoria, salario) %>% head()
 
 Se pueden emplear los nombres de variables como índices:
 
-```r
+``` r
 empleados %>% select(sexo:salario) %>% head()
 ```
 
@@ -409,7 +359,7 @@ empleados %>% select(sexo:salario) %>% head()
 ## 6 Hombre 1958-08-22   15 Administrativo   32100
 ```
 
-```r
+``` r
 # empleados %>% select(-(sexo:salario)) %>% head()
 empleados %>% select(!(sexo:salario)) %>% head()
 ```
@@ -436,7 +386,7 @@ Se pueden emplear distintas herramientas (*[selection helpers](https://tidyselec
 
 Por ejemplo:
 
-```r
+``` r
 empleados %>% select(starts_with("s")) %>% head()
 ```
 
@@ -452,7 +402,7 @@ empleados %>% select(starts_with("s")) %>% head()
 
 Podemos **crear variables con [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)**:
 
-```r
+``` r
 emplea2 %>% 
   mutate(incsal = salario - salini, tsal = incsal/tiempemp) %>% 
   head()
@@ -473,23 +423,18 @@ emplea2 %>%
 
 Podemos **seleccionar casos con [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)**:
 
-```r
+``` r
 emplea2 %>% filter(sexo == "Mujer", minoria == "Sí") %>% head()
 ```
 
 ```
-##   id  sexo minoria tiempemp salini salario
-## 1 14 Mujer      Sí       98  16800   35100
-## 2 23 Mujer      Sí       97  11100   24000
-## 3 24 Mujer      Sí       97   9000   16950
-## 4 25 Mujer      Sí       97   9000   21150
-## 5 40 Mujer      Sí       96   9000   19200
-## 6 41 Mujer      Sí       96  11550   23550
+## [1] id       sexo     minoria  tiempemp salini   salario 
+## <0 rows> (o 0- extensión row.names)
 ```
 
 Podemos **reordenar casos con [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)**:
 
-```r
+``` r
 emplea2 %>% arrange(salario) %>% head()
 ```
 
@@ -500,10 +445,10 @@ emplea2 %>% arrange(salario) %>% head()
 ## 3  90 Mujer      No       92   9750   16200
 ## 4 224 Mujer      No       82  10200   16200
 ## 5 411 Mujer      No       68  10200   16200
-## 6 448 Mujer      Sí       66  10200   16350
+## 6 448 Mujer   S\xed       66  10200   16350
 ```
 
-```r
+``` r
 emplea2 %>% arrange(desc(salini), salario) %>% head()
 ```
 
@@ -519,7 +464,7 @@ emplea2 %>% arrange(desc(salini), salario) %>% head()
 
 Podemos **resumir valores con [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)**:
 
-```r
+``` r
 empleados %>% summarise(sal.med = mean(salario), n = n())
 ```
 
@@ -530,7 +475,7 @@ empleados %>% summarise(sal.med = mean(salario), n = n())
 
 Para realizar **operaciones con múltiples variables podemos emplear [`across()`](https://dplyr.tidyverse.org/reference/across.html)** (admite selección de variables [`tidyselect`](https://tidyselect.r-lib.org)):
 
-```r
+``` r
 empleados %>% summarise(across(where(is.numeric), mean), n = n())
 ```
 
@@ -539,7 +484,7 @@ empleados %>% summarise(across(where(is.numeric), mean), n = n())
 ## 1 237.5 13.49156 34419.57 17016.09  81.1097 95.86076 474
 ```
 
-```r
+``` r
 # empleados %>% summarise(across(where(is.numeric) & !id, mean), n = n())
 ```
 
@@ -548,38 +493,38 @@ En el caso de `filter()` se puede emplear [`if_any()`](https://dplyr.tidyverse.o
 
 Podemos **agrupar casos con [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)**:
 
-```r
+``` r
 empleados %>% group_by(sexo, minoria) %>% 
     summarise(sal.med = mean(salario), n = n()) %>%
     ungroup()
 ```
 
 ```
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
 ## 1 Hombre No       44475.   194
-## 2 Hombre Sí       32246.    64
+## 2 Hombre S�       32246.    64
 ## 3 Mujer  No       26707.   176
-## 4 Mujer  Sí       23062.    40
+## 4 Mujer  S�       23062.    40
 ```
 
-```r
+``` r
 empleados %>% group_by(sexo, minoria) %>% 
     summarise(sal.med = mean(salario), n = n(), .groups = "drop")
 ```
 
 ```
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
 ## 1 Hombre No       44475.   194
-## 2 Hombre Sí       32246.    64
+## 2 Hombre S�       32246.    64
 ## 3 Mujer  No       26707.   176
-## 4 Mujer  Sí       23062.    40
+## 4 Mujer  S�       23062.    40
 ```
 
-```r
+``` r
 # dplyr >= 1.1.0 # packageVersion("dplyr")
 # empleados %>% summarise(sal.med = mean(salario), n = n(), 
 #                         .by = c(sexo, minoria))
@@ -595,7 +540,7 @@ Continuamos con el ejemplo de la Sección \@ref{missing}.
 *tidyverse* dispone de muchas herramientas para el tratamiento de los datos faltantes.
 
 
-```r
+``` r
 data("airquality")
 datos <- airquality
 library(visdat)
@@ -605,13 +550,13 @@ vis_dat(airquality)
 
 Visualización (amigable) de la estrutura de datos:
 
-```r
+``` r
 library(naniar)
 bind_shadow(airquality)
 ```
 
 ```
-## # A tibble: 153 x 12
+## # A tibble: 153 × 12
 ##    Ozone Solar.R  Wind  Temp Month   Day Ozone_NA Solar.R_NA Wind_NA Temp_NA
 ##    <int>   <int> <dbl> <int> <int> <int> <fct>    <fct>      <fct>   <fct>  
 ##  1    41     190   7.4    67     5     1 !NA      !NA        !NA     !NA    
@@ -624,23 +569,23 @@ bind_shadow(airquality)
 ##  8    19      99  13.8    59     5     8 !NA      !NA        !NA     !NA    
 ##  9     8      19  20.1    61     5     9 !NA      !NA        !NA     !NA    
 ## 10    NA     194   8.6    69     5    10 NA       !NA        !NA     !NA    
-## # i 143 more rows
-## # i 2 more variables: Month_NA <fct>, Day_NA <fct>
+## # ℹ 143 more rows
+## # ℹ 2 more variables: Month_NA <fct>, Day_NA <fct>
 ```
 
-```r
+``` r
 # nabular(airquality)
 ```
 
 Distribución por variables de los datos faltantes:
 
 
-```r
+``` r
 miss_var_table(airquality) 
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   n_miss_in_var n_vars pct_vars
 ##           <int>  <int>    <dbl>
 ## 1             0      4     66.7
@@ -648,7 +593,7 @@ miss_var_table(airquality)
 ## 3            37      1     16.7
 ```
 
-```r
+``` r
 prop_miss_case(airquality)
 ```
 
@@ -656,17 +601,15 @@ prop_miss_case(airquality)
 ## [1] 0.2745098
 ```
 
-```r
+``` r
 gg_miss_upset(airquality) 
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-23-1} \end{center}
+<img src="04-dplyr_files/figure-html/unnamed-chunk-23-1.png" width="80%" style="display: block; margin: auto;" />
 
 Distribución conjunta de los valores faltantes para la radiación solar y ozono:
 
-```r
+``` r
 library(naniar)
 library(ggplot2)
 ggplot(airquality, 
@@ -675,20 +618,16 @@ ggplot(airquality,
   geom_miss_point()
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-24-1} \end{center}
+<img src="04-dplyr_files/figure-html/unnamed-chunk-24-1.png" width="80%" style="display: block; margin: auto;" />
 
 Distribución mensual de los valores faltantes:
 
-```r
+``` r
 # gg_miss_var(airquality)
 gg_miss_var(airquality, facet = Month)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-25-1} \end{center}
+<img src="04-dplyr_files/figure-html/unnamed-chunk-25-1.png" width="80%" style="display: block; margin: auto;" />
 
 <!--
 library(dplyr)
@@ -786,7 +725,7 @@ Algunos enlaces:
 Como ejemplo emplearemos la base de datos de [SQLite Sample Database Tutorial](https://www.sqlitetutorial.net/sqlite-sample-database/), almacenada en el archivo [*chinook.db*](data/chinook.db).
 
 
-```r
+``` r
 # install.packages('dbplyr')
 library(dplyr)
 library(dbplyr)
@@ -794,52 +733,52 @@ library(dbplyr)
 
 En primer lugar hay que conectar la base de datos:
 
-```r
+``` r
 chinook <- DBI::dbConnect(RSQLite::SQLite(), "data/chinook.db")
 ```
 
 Podemos listar las tablas:
 
-```r
+``` r
 src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.45.2 [D:\Users\moviedo\github\tgdbook\data\chinook.db]
+## src:  sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
 
 Para enlazar una tabla:
 
-```r
+``` r
 invoices <- tbl(chinook, "invoices")
 invoices
 ```
 
 ```
 ## # Source:   table<`invoices`> [?? x 9]
-## # Database: sqlite 3.45.2 [D:\Users\moviedo\github\tgdbook\data\chinook.db]
+## # Database: sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
 ##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
 ##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
-##  1         1          2 2009-01-01 00:0~ Theodor-Heuss~ Stuttgart   <NA>        
-##  2         2          4 2009-01-02 00:0~ Ullevålsveien~ Oslo        <NA>        
-##  3         3          8 2009-01-03 00:0~ Grétrystraat ~ Brussels    <NA>        
-##  4         4         14 2009-01-06 00:0~ 8210 111 ST NW Edmonton    AB          
-##  5         5         23 2009-01-11 00:0~ 69 Salem Stre~ Boston      MA          
-##  6         6         37 2009-01-19 00:0~ Berger Straße~ Frankfurt   <NA>        
-##  7         7         38 2009-02-01 00:0~ Barbarossastr~ Berlin      <NA>        
-##  8         8         40 2009-02-01 00:0~ 8, Rue Hanovre Paris       <NA>        
-##  9         9         42 2009-02-02 00:0~ 9, Place Loui~ Bordeaux    <NA>        
-## 10        10         46 2009-02-03 00:0~ 3 Chatham Str~ Dublin      Dublin      
-## # i more rows
-## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+##  1         1          2 2009-01-01 00:0… Theodor-Heuss… Stuttgart   <NA>        
+##  2         2          4 2009-01-02 00:0… Ullevålsveien… Oslo        <NA>        
+##  3         3          8 2009-01-03 00:0… Grétrystraat … Brussels    <NA>        
+##  4         4         14 2009-01-06 00:0… 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11 00:0… 69 Salem Stre… Boston      MA          
+##  6         6         37 2009-01-19 00:0… Berger Straße… Frankfurt   <NA>        
+##  7         7         38 2009-02-01 00:0… Barbarossastr… Berlin      <NA>        
+##  8         8         40 2009-02-01 00:0… 8, Rue Hanovre Paris       <NA>        
+##  9         9         42 2009-02-02 00:0… 9, Place Loui… Bordeaux    <NA>        
+## 10        10         46 2009-02-03 00:0… 3 Chatham Str… Dublin      Dublin      
+## # ℹ more rows
+## # ℹ 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
 ## #   Total <dbl>
 ```
 
 Ojo `[?? x 9]`: de momento no conoce el número de filas.
 
-```r
+``` r
 nrow(invoices)
 ```
 
@@ -847,9 +786,9 @@ nrow(invoices)
 ## [1] NA
 ```
 
-Podemos mostrar la consulta SQL correspondiente a una operación:
+1. Podemos mostrar la consulta SQL correspondiente a una operación:
 
-```r
+``` r
 show_query(head(invoices))
 ```
 
@@ -860,52 +799,52 @@ show_query(head(invoices))
 ## LIMIT 6
 ```
 
-```r
+``` r
 # str(head(invoices))
 ```
 
 Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
 
--  No exporta datos a R a menos que se pida explícitamente (`colect()`).
+-  No exporta datos a R a menos que se pida explícitamente (`collect()`).
 
 -  Retrasa cualquier operación lo máximo posible: 
    agrupa todo lo que se desea hacer y luego hace una única petición a la base de datos.
    
 
-```r
+``` r
 invoices %>% head %>% collect
 ```
 
 ```
-## # A tibble: 6 x 9
+## # A tibble: 6 × 9
 ##   InvoiceId CustomerId InvoiceDate       BillingAddress BillingCity BillingState
 ##       <int>      <int> <chr>             <chr>          <chr>       <chr>       
-## 1         1          2 2009-01-01 00:00~ Theodor-Heuss~ Stuttgart   <NA>        
-## 2         2          4 2009-01-02 00:00~ Ullevålsveien~ Oslo        <NA>        
-## 3         3          8 2009-01-03 00:00~ Grétrystraat ~ Brussels    <NA>        
-## 4         4         14 2009-01-06 00:00~ 8210 111 ST NW Edmonton    AB          
-## 5         5         23 2009-01-11 00:00~ 69 Salem Stre~ Boston      MA          
-## 6         6         37 2009-01-19 00:00~ Berger Straße~ Frankfurt   <NA>        
-## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## 1         1          2 2009-01-01 00:00… Theodor-Heuss… Stuttgart   <NA>        
+## 2         2          4 2009-01-02 00:00… Ullevålsveien… Oslo        <NA>        
+## 3         3          8 2009-01-03 00:00… Grétrystraat … Brussels    <NA>        
+## 4         4         14 2009-01-06 00:00… 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11 00:00… 69 Salem Stre… Boston      MA          
+## 6         6         37 2009-01-19 00:00… Berger Straße… Frankfurt   <NA>        
+## # ℹ 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
 ## #   Total <dbl>
 ```
 
-```r
+``` r
 invoices %>% count # número de filas
 ```
 
 ```
 ## # Source:   SQL [1 x 1]
-## # Database: sqlite 3.45.2 [D:\Users\moviedo\github\tgdbook\data\chinook.db]
+## # Database: sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
 ```
 
-Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:
+2. Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:
 
 
-```r
+``` r
 res <- invoices %>% summarise(min = min(Total, na.rm = TRUE), 
                         max = max(Total, na.rm = TRUE), 
                         med = mean(Total, na.rm = TRUE))
@@ -914,16 +853,16 @@ res  %>% collect
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##     min   max   med
 ##   <dbl> <dbl> <dbl>
 ## 1  0.99  25.9  5.65
 ```
 
-Para obtener el total de las facturas de cada uno de los países:
+3. Para obtener el total de las facturas de cada uno de los países:
 
 
-```r
+``` r
 res <- invoices %>% group_by(BillingCountry) %>% 
           summarise(n = n(), total = sum(Total, na.rm = TRUE))
 # show_query(res)
@@ -931,7 +870,7 @@ res  %>% collect
 ```
 
 ```
-## # A tibble: 24 x 3
+## # A tibble: 24 × 3
 ##    BillingCountry     n total
 ##    <chr>          <int> <dbl>
 ##  1 Argentina          7  37.6
@@ -944,13 +883,13 @@ res  %>% collect
 ##  8 Czech Republic    14  90.2
 ##  9 Denmark            7  37.6
 ## 10 Finland            7  41.6
-## # i 14 more rows
+## # ℹ 14 more rows
 ```
 
-Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
+4. Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
 
 
-```r
+``` r
 customers <- tbl(chinook, "customers")
 tbl_vars(customers) 
 ```
@@ -962,7 +901,7 @@ tbl_vars(customers)
 ## [11] "Fax"          "Email"        "SupportRepId"
 ```
 
-```r
+``` r
 res <- customers %>% 
   inner_join(invoices, by = "CustomerId") %>% 
   select(FirstName, LastName, Country, Total) 
@@ -977,12 +916,12 @@ show_query(res)
 ##   ON (`customers`.`CustomerId` = `invoices`.`CustomerId`)
 ```
 
-```r
+``` r
 res  %>% collect
 ```
 
 ```
-## # A tibble: 412 x 4
+## # A tibble: 412 × 4
 ##    FirstName LastName  Country Total
 ##    <chr>     <chr>     <chr>   <dbl>
 ##  1 Luís      Gonçalves Brazil   3.98
@@ -995,23 +934,104 @@ res  %>% collect
 ##  8 Leonie    Köhler    Germany  1.98
 ##  9 Leonie    Köhler    Germany 13.9 
 ## 10 Leonie    Köhler    Germany  8.91
-## # i 402 more rows
+## # ℹ 402 more rows
 ```
 
-Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
+5. Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
 
 
-```r
+``` r
 customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
     summarise(FirstName, LastName, country, total = sum(Total, na.rm = TRUE)) %>%  
     arrange(desc(total)) %>% head(10) %>% collect
 ```
 
 
+6.  Listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) 
+    indicando Nombre, Apellidos, Pais y el importe total de su facturación.
+
+    
+    ``` r
+    customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
+        summarise(FirstName, LastName, Country, total = sum(Total, na.rm = TRUE)) %>%  
+        arrange(desc(total)) %>% head(10) %>% collect
+    ```
+    
+    ```
+    ## # A tibble: 10 × 5
+    ##    CustomerId FirstName LastName   Country        total
+    ##         <int> <chr>     <chr>      <chr>          <dbl>
+    ##  1          6 Helena    Holý       Czech Republic  49.6
+    ##  2         26 Richard   Cunningham USA             47.6
+    ##  3         57 Luis      Rojas      Chile           46.6
+    ##  4         45 Ladislav  Kovács     Hungary         45.6
+    ##  5         46 Hugh      O'Reilly   Ireland         45.6
+    ##  6         24 Frank     Ralston    USA             43.6
+    ##  7         28 Julia     Barnett    USA             43.6
+    ##  8         37 Fynn      Zimmermann Germany         43.6
+    ##  9          7 Astrid    Gruber     Austria         42.6
+    ## 10         25 Victor    Stevens    USA             42.6
+    ```
+
+7.  Listar los géneros musicales por orden decreciente de popularidad 
+    (definida la popularidad como el número de canciones de ese género), 
+    indicando el porcentaje de las canciones de ese género.
+
+    
+    ``` r
+    tracks <- tbl(chinook, "tracks")
+    tracks %>% inner_join(tbl(chinook, "genres"), by = "GenreId") %>% count(Name.y) %>% 
+        arrange(desc(n)) %>% collect %>% mutate(freq = n / sum(n))
+    ```
+    
+    ```
+    ## # A tibble: 25 × 3
+    ##    Name.y                 n   freq
+    ##    <chr>              <int>  <dbl>
+    ##  1 Rock                1297 0.370 
+    ##  2 Latin                579 0.165 
+    ##  3 Metal                374 0.107 
+    ##  4 Alternative & Punk   332 0.0948
+    ##  5 Jazz                 130 0.0371
+    ##  6 TV Shows              93 0.0265
+    ##  7 Blues                 81 0.0231
+    ##  8 Classical             74 0.0211
+    ##  9 Drama                 64 0.0183
+    ## 10 R&B/Soul              61 0.0174
+    ## # ℹ 15 more rows
+    ```
+
+8.  Listar los 10 artistas con mayor número de canciones 
+    de forma descendente según el número de canciones.
+
+    
+    ``` r
+    tracks %>% inner_join(tbl(chinook, "albums"), by = "AlbumId") %>% 
+        inner_join(tbl(chinook, "artists"), by = "ArtistId") %>% 
+        count(Name.y) %>% arrange(desc(n)) %>% collect
+    ```
+    
+    ```
+    ## # A tibble: 204 × 2
+    ##    Name.y              n
+    ##    <chr>           <int>
+    ##  1 Iron Maiden       213
+    ##  2 U2                135
+    ##  3 Led Zeppelin      114
+    ##  4 Metallica         112
+    ##  5 Lost               92
+    ##  6 Deep Purple        92
+    ##  7 Pearl Jam          67
+    ##  8 Lenny Kravitz      57
+    ##  9 Various Artists    56
+    ## 10 The Office         53
+    ## # ℹ 194 more rows
+    ```
+
 Al finalizar hay que desconectar la base de datos:
 
 
-```r
+``` r
 DBI::dbDisconnect(chinook)            
 ```
 
