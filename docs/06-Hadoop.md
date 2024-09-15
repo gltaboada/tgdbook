@@ -159,7 +159,7 @@ Vamos a seguir [un tutorial de análisis de datos de vuelos](http://hua-zhou.git
 En primer lugar, tras conectarnos por ssh al CESGA, y en el mismo directorio en que hemos hecho la conexión, nos descargamos los datos:
 
 
-```r
+``` r
 # Make download directory
 mkdir flights
 
@@ -183,7 +183,7 @@ wget -O airports.csv https://raw.githubusercontent.com/jpatokal/openflights/mast
 Comprobamos que los datos están correctos:
 
 
-```r
+``` r
 head flights/1987.csv 
 head airlines.csv
 head airports.csv
@@ -192,7 +192,7 @@ head airports.csv
 Y los copiamos al HDFS a través del comando fs de Hadoop:
 
 
-```r
+``` r
 # Copy flight data to HDFS
 hadoop fs -put flights 
 
@@ -209,7 +209,7 @@ hadoop fs -put airports.csv airports
 A continuación lanzamos la ejecución de 'hive':
 
 
-```r
+``` r
 $ hive
 ```
 
@@ -217,7 +217,7 @@ $ hive
 Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los datos en la tabla Hive:
 
 
-```r
+``` r
 # Create metadata for flights
 CREATE EXTERNAL TABLE IF NOT EXISTS flights230
 (
@@ -265,7 +265,7 @@ LOAD DATA INPATH 'flights' INTO TABLE flights230;
 
 
 
-```r
+``` r
 # Create metadata for airlines
 CREATE EXTERNAL TABLE IF NOT EXISTS airlines
 (
@@ -289,7 +289,7 @@ LOAD DATA INPATH 'airlines' INTO TABLE airlines;
 
 
 
-```r
+``` r
 # Create metadata for airports
 CREATE EXTERNAL TABLE IF NOT EXISTS airports
 (
@@ -322,7 +322,7 @@ LOAD DATA INPATH 'airports' INTO TABLE airports;
 Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con 'sc <- spark_connect(master = "local")' )
 
 
-```r
+``` r
 # Connect to Spark
 library(sparklyr)
 library(dplyr)
@@ -335,7 +335,7 @@ sc
 Si tenemos problemas para conectar podemos gestionar con YARN los recursos
 
 
-```r
+``` r
 # Ver trabajos en YARN
 yarn top
 
@@ -353,7 +353,7 @@ Crear tablas dplyr a tablas HIVE:
 
 
 
-```r
+``` r
 # Cache flights Hive table into Spark
 #tbl_cache(sc, 'flights')
 flights_tbl <- tbl(sc, 'flights230')
@@ -362,7 +362,7 @@ flights_tbl %>% print(width = Inf)
 
 
 
-```r
+``` r
 # Cache airlines Hive table into Spark
 #tbl_cache(sc, 'airlines')
 airlines_tbl <- tbl(sc, 'airlines')
@@ -371,7 +371,7 @@ airlines_tbl %>% print(width = Inf)
 
 
 
-```r
+``` r
 # Cache airports Hive table into Spark
 #tbl_cache(sc, 'airports')
 airports_tbl <- tbl(sc, 'airports')
@@ -383,7 +383,7 @@ airports_tbl %>% print(width = Inf)
 Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:
 
 
-```r
+``` r
 system.time({
 out <- flights_tbl %>%
   group_by(year) %>%
@@ -399,7 +399,7 @@ out %>% ggplot(aes(x = year, y = n)) + geom_col()
 Vuelos con origen LAX (Los Angeles) por año:
 
 
-```r
+``` r
 system.time({
 out <- flights_tbl %>%
   filter(origin == "LAX") %>%
@@ -417,7 +417,7 @@ out %>% ggplot(aes(x = year, y = n)) +
 Y listado de países y número de aeropuertos:
 
 
-```r
+``` r
 system.time({
 out <- airports_tbl %>%
   group_by("country") %>%
@@ -430,7 +430,7 @@ Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para el
 
 
 
-```r
+``` r
 # Filter records and create target variable 'gain'
 system.time(
   model_data <- flights_tbl %>%
@@ -446,7 +446,7 @@ model_data
 ```
 
 
-```r
+``` r
 # Summarize data by carrier
 model_data %>%
   group_by(uniquecarrier) %>%
@@ -461,7 +461,7 @@ Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un v
 
 
 
-```r
+``` r
 # Partition the data into training and validation sets
 model_partition <- model_data %>% 
   sdf_partition(train = 0.8, valid = 0.2, seed = 5555)
@@ -479,7 +479,7 @@ summary(ml1)
 A continuación se compara la bondad del modelo con el subconjunto de validación
 
 
-```r
+``` r
 # Calculate average gains by predicted decile
 system.time(
   model_deciles <- lapply(model_partition, function(x) {
@@ -511,7 +511,7 @@ deciles %>%
 Visualizar predicciones usando el año 2008 (no usado en el entrenamiento):
 
 
-```r
+``` r
 # Select data from an out of time sample
 data_2008 <- flights_tbl %>%
   filter(!is.na(arrdelay) & !is.na(depdelay) & !is.na(distance)) %>%
@@ -543,7 +543,7 @@ ggplot(carrier, aes(gain, prediction)) +
 Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:
 
 
-```r
+``` r
 spark_disconnect_all()
 ```
 
@@ -563,7 +563,7 @@ Conexión vía SSH a CESGA (siempre con VPN activada!) y ejemplo #1:
 
 
 
-```r
+``` r
 wget  https://packages.revolutionanalytics.com/datasets/claims2.csv 
 
 # [3 minutos – 1GB/minuto en CESGA]  [recomendada la descarga desde servidor dtn.srv.cesga.es] [copia temp /tmp]
@@ -588,7 +588,7 @@ $ spark-shell --packages com.databricks:spark-csv_2.10:1.4.0
 Usando Spark-shell pero también podemos realizar ciertos análisis con hive:
 
 
-```r
+``` r
 $ hadoop fs -mkdir bdp
 $ hadoop fs -mkdir bdp/hv_csv_table
 $ hadoop fs -mkdir bdp/hv_csv_table/ip
@@ -609,7 +609,7 @@ SELECT * FROM bdp.hv_csv_table where Calendar_Year>2005;
 Y ejemplo #2:
  
 
-```r
+``` r
 # Generación de un archivo spanishTexts-ALL y 120-million-word-spanish-corpus.zip  
 # Origen: https://www.kaggle.com/rtatman/120-million-word-spanish-corpus
 hadoop fs –mkdir p2
@@ -638,7 +638,7 @@ Conexión vía SSH a CESGA (siempre con VPN activada!) y una vez dentro "module 
 Y dentro del notebook R ya se puede probar el funcionamiento de Sparklyr con los siguientes pasos, cuyo resultado debería ser el que se aprecia a continuación:
 
 
-```r
+``` r
 library(sparklyr)
 sc <- spark_connect(master = "yarn-client", spark_home = Sys.getenv('SPARK_HOME')) 
 iris_tbl <- copy_to(sc, iris, "iris", overwrite = TRUE)
@@ -651,7 +651,7 @@ iris_tbl
 NOTA: en ausencia de clúster Hadoop con YARN, o para debugging, también se puede conectar usando las siguientes instrucciones, y obtener elm mismo resultado que en presencia de YARN.
 
 
-```r
+``` r
 library(sparklyr)
 sc <- spark_connect(master = "local")
 iris_tbl <- copy_to(sc, iris, "iris", overwrite = TRUE)

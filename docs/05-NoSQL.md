@@ -133,13 +133,13 @@ Son sistemas especializados en búsquedas, procesamiento de lenguaje natural com
 A través del paquete [mongolite](https://cran.rstudio.com/web/packages/mongolite/mongolite.pdf), aquí tenéis un [Tutorial](https://datascienceplus.com/using-mongodb-with-r/)
 
 
-```r
+``` r
 install.packages("mongolite")
 ```
 
 
 
-```r
+``` r
 library(mongolite)
 
 # Connect to a local MongoDB

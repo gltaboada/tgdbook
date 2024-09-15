@@ -533,7 +533,7 @@ Ojo `[?? x 9]`: de momento no conoce el número de filas.
 nrow(invoices)
 ```
 
-Podemos mostrar la consulta SQL correspondiente a una operación:
+1. Podemos mostrar la consulta SQL correspondiente a una operación:
 ```{r }
 show_query(head(invoices))
 # str(head(invoices))
@@ -541,7 +541,7 @@ show_query(head(invoices))
 
 Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
 
--  No exporta datos a R a menos que se pida explícitamente (`colect()`).
+-  No exporta datos a R a menos que se pida explícitamente (`collect()`).
 
 -  Retrasa cualquier operación lo máximo posible: 
    agrupa todo lo que se desea hacer y luego hace una única petición a la base de datos.
@@ -551,7 +551,7 @@ invoices %>% head %>% collect
 invoices %>% count # número de filas
 ```
 
-Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:
+2. Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:
 
 ```{r }
 res <- invoices %>% summarise(min = min(Total, na.rm = TRUE), 
@@ -561,7 +561,7 @@ res <- invoices %>% summarise(min = min(Total, na.rm = TRUE),
 res  %>% collect
 ```
 
-Para obtener el total de las facturas de cada uno de los países:
+3. Para obtener el total de las facturas de cada uno de los países:
 
 ```{r }
 res <- invoices %>% group_by(BillingCountry) %>% 
@@ -570,7 +570,7 @@ res <- invoices %>% group_by(BillingCountry) %>%
 res  %>% collect
 ```
 
-Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
+4. Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
 
 ```{r}
 customers <- tbl(chinook, "customers")
@@ -583,7 +583,7 @@ show_query(res)
 res  %>% collect
 ```
 
-Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
+5. Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
 
 ```{r eval=F}
 customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
@@ -591,6 +591,33 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     arrange(desc(total)) %>% head(10) %>% collect
 ```
 
+
+6.  Listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) 
+    indicando Nombre, Apellidos, Pais y el importe total de su facturación.
+
+    ```{r }
+    customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
+        summarise(FirstName, LastName, Country, total = sum(Total, na.rm = TRUE)) %>%  
+        arrange(desc(total)) %>% head(10) %>% collect
+    ```
+
+7.  Listar los géneros musicales por orden decreciente de popularidad 
+    (definida la popularidad como el número de canciones de ese género), 
+    indicando el porcentaje de las canciones de ese género.
+
+    ```{r }
+    tracks %>% inner_join(tbl(chinook, "genres"), by = "GenreId") %>% count(Name.y) %>% 
+        arrange(desc(n)) %>% collect %>% mutate(freq = n / sum(n))
+    ```
+
+8.  Listar los 10 artistas con mayor número de canciones 
+    de forma descendente según el número de canciones.
+
+    ```{r }
+    tracks %>% inner_join(tbl(chinook, "albums"), by = "AlbumId") %>% 
+        inner_join(tbl(chinook, "artists"), by = "ArtistId") %>% 
+        count(Name.y) %>% arrange(desc(n)) %>% collect
+    ```
 
 Al finalizar hay que desconectar la base de datos:
 

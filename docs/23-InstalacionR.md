@@ -56,7 +56,7 @@ Para ejecutar los ejemplos mostrados en el libro será necesario tener instalado
 [`knitr`](https://yihui.name/knitr) 
 Por ejemplo mediante los comandos:
 
-```r
+``` r
 pkgs <- c('dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr', 
           'RODBC', 'sqldf', 'RSQLite', 'foreign', 'rattle', 'knitr')
 # install.packages(pkgs, dependencies=TRUE)
@@ -96,7 +96,7 @@ Para instalar `rattle` seguir estos pasos (https://zhiyzuo.github.io/installatio
    
 2.  Ejecutar el siguiente código en la consola:
     
-    ```r
+    ``` r
     system('brew install gtk+')
     
     local({
@@ -141,7 +141,7 @@ Nos puede interesar modificar las opciones por defecto en RStudio, por ejemplo q
 Para utilizar el dispositivo gráfico de R, modificar *Tools.R*:
 
 
-```r
+``` r
 # set our graphics device as the default and cause it to be created/set
 .rs.addFunction( "initGraphicsDevice", function()
 {
@@ -154,7 +154,7 @@ Para utilizar el dispositivo gráfico de R, modificar *Tools.R*:
 Para utilizar el navegador del equipo en lugar del visor integrado de de R, modificar *Options.R*:
 
 
-```r
+``` r
 # # custom browseURL implementation
 # options(browser = function(url)
 # {

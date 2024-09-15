@@ -46,17 +46,13 @@ Una fila de la tabla (relación) es una tupla y una columna un atributo (ver Fig
 
 (ver Figura \@ref(fig:relacion))
 
-(ver Figura \@ref(fig:relacion))
 
 
-\begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{images/Relacion} 
-
-}
-
-\caption{Esquema de una relación.}(\#fig:relacion)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/Relacion.png" alt="Esquema de una relación." width="70%" />
+<p class="caption">(\#fig:relacion)Esquema de una relación.</p>
+</div>
 
 Una base de datos es un conjunto de tablas (al menos una).
 
@@ -116,7 +112,7 @@ A continuación 27 clásulas SQL básicas
 ### Extracción SQL (11 statements)
 
 
-```r
+``` r
 SELECT column1, column2....columnN
 FROM   table_name;
 
@@ -168,7 +164,7 @@ HAVING (arithematic function condition);
 
 
 
-```r
+``` r
 CREATE TABLE table_name(
 column1 datatype,
 column2 datatype,
@@ -198,7 +194,7 @@ ALTER TABLE table_name RENAME TO new_table_name;
 ### Añadir/Actualizar/Borrar tuplas en SQL (3 statements)
 
 
-```r
+``` r
 INSERT INTO table_name( column1, column2....columnN)
 VALUES ( value1, value2....valueN);
 
@@ -213,7 +209,7 @@ WHERE  {CONDITION};
 ### Gestión Bases de Datos (5 statements)
 
 
-```r
+``` r
 CREATE DATABASE database_name;
 
 DROP DATABASE database_name;
@@ -229,7 +225,7 @@ ROLLBACK;
 ### Ejemplos de consultas SQL
 
 
-```r
+``` r
 SELECT Nombre, Apellido1, Apellido2, Municipio, Provincia 
 FROM Cliente
 WHERE Municipio = 'Lugo'
@@ -275,12 +271,12 @@ datos, solamente el uso de SQL para extraer datos con el objetivo de ser analiza
 
 
 
-```r
+``` r
 library(sqldf)
 ```
 
 
-```r
+``` r
 sqldf('SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC')
 ```
 
@@ -300,7 +296,7 @@ sqldf('SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumferen
 El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:
 
 
-```r
+``` r
 sqldf("SELECT * FROM iris")
 sqldf("select * from iris")
 ```
@@ -308,14 +304,14 @@ sqldf("select * from iris")
 pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:
 
 
-```r
+``` r
 sqldf("SELECT * FROM IRIS")
 ```
 
 La sintaxis básica de SELECT es:
 
 
-```r
+``` r
 SELECT variable1, variable2 FROM data
 ```
 
@@ -324,7 +320,7 @@ SELECT variable1, variable2 FROM data
 Lo extrae todo
 
 
-```r
+``` r
 bod2 <- sqldf('SELECT * FROM BOD')
 ```
 
@@ -333,7 +329,7 @@ bod2 <- sqldf('SELECT * FROM BOD')
 Limita el número de resultados
 
 
-```r
+``` r
 sqldf('SELECT * FROM iris LIMIT 5')
 ```
 
@@ -351,12 +347,12 @@ sqldf('SELECT * FROM iris LIMIT 5')
 Ordena las variables
 
 
-```r
+``` r
 ORDER BY var1 {ASC/DESC}, var2 {ASC/DESC}
 ```
 
 
-```r
+``` r
 sqldf("SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5")
 ```
 
@@ -374,7 +370,7 @@ sqldf("SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5")
 Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.
 
 
-```r
+``` r
 sqldf('SELECT demand FROM BOD WHERE Time < 3')
 ```
 
@@ -385,7 +381,7 @@ sqldf('SELECT demand FROM BOD WHERE Time < 3')
 ```
 
 
-```r
+``` r
 sqldf('SELECT * FROM rock WHERE (peri > 5000 AND shape < .05) OR perm > 1000')
 ```
 
@@ -400,7 +396,7 @@ sqldf('SELECT * FROM rock WHERE (peri > 5000 AND shape < .05) OR perm > 1000')
 Y extendiendo su uso con IN o LIKE (es último sólo con %), pudiendo aplicárseles el NOT:
 
 
-```r
+``` r
 sqldf('SELECT * FROM BOD WHERE Time IN (1,7)')
 ```
 
@@ -411,7 +407,7 @@ sqldf('SELECT * FROM BOD WHERE Time IN (1,7)')
 ```
 
 
-```r
+``` r
 sqldf('SELECT * FROM BOD WHERE Time NOT IN (1,7)')
 ```
 
@@ -424,7 +420,7 @@ sqldf('SELECT * FROM BOD WHERE Time NOT IN (1,7)')
 ```
 
 
-```r
+``` r
 sqldf('SELECT * FROM chickwts WHERE feed LIKE "%bean" LIMIT 5')
 ```
 
@@ -438,7 +434,7 @@ sqldf('SELECT * FROM chickwts WHERE feed LIKE "%bean" LIMIT 5')
 ```
 
 
-```r
+``` r
 sqldf('SELECT * FROM chickwts WHERE feed NOT LIKE "%bean" LIMIT 5')
 ```
 
@@ -471,7 +467,7 @@ Vamos a utilizar [RSQLite](https://cran.r-project.org/web/packages/RSQLite/index
 
 
 
-```r
+``` r
 library(DBI)
 
 # Create an ephemeral in-memory RSQLite database
@@ -486,7 +482,7 @@ dbListTables(con)
 
 
 
-```r
+``` r
 dbWriteTable(con, "mtcars", mtcars)
 dbListTables(con)
 ```
@@ -495,7 +491,7 @@ dbListTables(con)
 ## [1] "mtcars"
 ```
 
-```r
+``` r
 dbListFields(con, "mtcars")
 ```
 
@@ -504,7 +500,7 @@ dbListFields(con, "mtcars")
 ## [11] "carb"
 ```
 
-```r
+``` r
 dbReadTable(con, "mtcars")
 ```
 
@@ -544,7 +540,7 @@ dbReadTable(con, "mtcars")
 ## 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
 ```
 
-```r
+``` r
 # You can fetch all results:
 res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
 dbFetch(res)
@@ -565,7 +561,7 @@ dbFetch(res)
 ## 11 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
 ```
 
-```r
+``` r
 dbClearResult(res)
 
 # Or a chunk at a time
@@ -582,7 +578,7 @@ while(!dbHasCompleted(res)){
 ## [1] 1
 ```
 
-```r
+``` r
 # Clear the result
 dbClearResult(res)
 
