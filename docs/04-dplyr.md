@@ -16,7 +16,7 @@ El paquete **dplyr**
 --------------------
 
 
-```r
+``` r
 library(dplyr)
 ```
 
@@ -70,7 +70,7 @@ Operaciones con variables (columnas)
 ### Seleccionar variables con **select()**
 
 
-```r
+``` r
 emplea2 <- select(empleados, id, sexo, minoria, tiempemp, salini, salario)
 head(emplea2)
 ```
@@ -88,7 +88,7 @@ head(emplea2)
 Se puede cambiar el nombre (ver también *?rename()*)
 
 
-```r
+``` r
 head(select(empleados, sexo, noblanca = minoria, salario))
 ```
 
@@ -105,7 +105,7 @@ head(select(empleados, sexo, noblanca = minoria, salario))
 Se pueden emplear los nombres de variables como índices:
 
 
-```r
+``` r
 head(select(empleados, sexo:salario))
 ```
 
@@ -119,7 +119,7 @@ head(select(empleados, sexo:salario))
 ## 6 Hombre 1958-08-22   15 Administrativo   32100
 ```
 
-```r
+``` r
 head(select(empleados, -(sexo:salario)))
 ```
 
@@ -137,7 +137,7 @@ Hay opciones para considerar distintos criterios: `starts_with()`, `ends_with()`
 `contains()`, `matches()`, `one_of()` (ver *?select*).
 
 
-```r
+``` r
 head(select(empleados, starts_with("s")))
 ```
 
@@ -154,7 +154,7 @@ head(select(empleados, starts_with("s")))
 ### Generar nuevas variables con **mutate()**
 
 
-```r
+``` r
 head(mutate(emplea2, incsal = salario - salini, tsal = incsal/tiempemp ))
 ```
 
@@ -175,24 +175,19 @@ Operaciones con casos (filas)
 ### Seleccionar casos con **filter()**
 
 
-```r
+``` r
 head(filter(emplea2, sexo == "Mujer", minoria == "Sí"))
 ```
 
 ```
-##   id  sexo minoria tiempemp salini salario
-## 1 14 Mujer      Sí       98  16800   35100
-## 2 23 Mujer      Sí       97  11100   24000
-## 3 24 Mujer      Sí       97   9000   16950
-## 4 25 Mujer      Sí       97   9000   21150
-## 5 40 Mujer      Sí       96   9000   19200
-## 6 41 Mujer      Sí       96  11550   23550
+## [1] id       sexo     minoria  tiempemp salini   salario 
+## <0 rows> (o 0- extensión row.names)
 ```
 
 ### Organizar casos con **arrange()**
 
 
-```r
+``` r
 head(arrange(emplea2, salario))
 ```
 
@@ -203,10 +198,10 @@ head(arrange(emplea2, salario))
 ## 3  90 Mujer      No       92   9750   16200
 ## 4 224 Mujer      No       82  10200   16200
 ## 5 411 Mujer      No       68  10200   16200
-## 6 448 Mujer      Sí       66  10200   16350
+## 6 448 Mujer   S\xed       66  10200   16350
 ```
 
-```r
+``` r
 head(arrange(emplea2, desc(salini), salario))
 ```
 
@@ -225,7 +220,7 @@ Resumir valores con **summarise()**
 -----------------------------------
 
 
-```r
+``` r
 summarise(empleados, sal.med = mean(salario), n = n())
 ```
 
@@ -239,23 +234,24 @@ Agrupar casos con **group_by()**
 -----------------------------
 
 
-```r
+``` r
 summarise(group_by(empleados, sexo, minoria), sal.med = mean(salario), n = n())
 ```
 
 ```
-## `summarise()` regrouping output by 'sexo' (override with `.groups` argument)
+## `summarise()` has grouped output by 'sexo'. You can override using the
+## `.groups` argument.
 ```
 
 ```
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ## # Groups:   sexo [2]
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
 ## 1 Hombre No       44475.   194
-## 2 Hombre Sí       32246.    64
+## 2 Hombre S�       32246.    64
 ## 3 Mujer  No       26707.   176
-## 4 Mujer  Sí       23062.    40
+## 4 Mujer  S�       23062.    40
 ```
 
 
@@ -268,27 +264,28 @@ Este operador le permite canalizar la salida de una función a la entrada de otr
 Ejemplos:
 
 
-```r
+``` r
 empleados %>%  filter(catlab == "Directivo") %>%
           group_by(sexo, minoria) %>%
           summarise(sal.med = mean(salario), n = n())
 ```
 
 ```
-## `summarise()` regrouping output by 'sexo' (override with `.groups` argument)
+## `summarise()` has grouped output by 'sexo'. You can override using the
+## `.groups` argument.
 ```
 
 ```
-## # A tibble: 3 x 4
+## # A tibble: 3 × 4
 ## # Groups:   sexo [2]
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
 ## 1 Hombre No       65684.    70
-## 2 Hombre Sí       76038.     4
+## 2 Hombre S�       76038.     4
 ## 3 Mujer  No       47214.    10
 ```
 
-```r
+``` r
 empleados %>% select(sexo, catlab, salario) %>%
           filter(catlab != "Seguridad") %>%
           group_by(catlab) %>%
@@ -298,7 +295,7 @@ empleados %>% select(sexo, catlab, salario) %>%
 abline(h = 0, lty = 2)
 ```
 
-![](04-dplyr_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
+<img src="04-dplyr_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 Operaciones con tablas de datos
 -------------------------------
@@ -360,7 +357,7 @@ Algunos enlaces:
 Como ejemplo emplearemos los ejercicios de la Práctica 1.
 
 
-```r
+``` r
 # install.packages('dbplyr')
 library(dplyr)
 library(dbplyr)
@@ -368,52 +365,52 @@ library(dbplyr)
 
 Conectar la base de datos:
 
-```r
+``` r
 chinook <- DBI::dbConnect(RSQLite::SQLite(), "data/chinook.db")
 ```
 
 Listar tablas:
 
-```r
+``` r
 src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.33.0 [C:\Users\Guillermo LT\Documents\GitHub\tgdbook\data\chinook.db]
+## src:  sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
 
 Enlazar una tabla:
 
-```r
+``` r
 invoices <- tbl(chinook, "invoices")
 invoices
 ```
 
 ```
-## # Source:   table<invoices> [?? x 9]
-## # Database: sqlite 3.33.0 [C:\Users\Guillermo
-## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
-##    InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
-##        <int>      <int> <chr>       <chr>          <chr>       <chr>       
-##  1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   <NA>        
-##  2         2          4 2009-01-02~ Ullevålsveien~ Oslo        <NA>        
-##  3         3          8 2009-01-03~ Grétrystraat ~ Brussels    <NA>        
-##  4         4         14 2009-01-06~ 8210 111 ST NW Edmonton    AB          
-##  5         5         23 2009-01-11~ 69 Salem Stre~ Boston      MA          
-##  6         6         37 2009-01-19~ Berger Straße~ Frankfurt   <NA>        
-##  7         7         38 2009-02-01~ Barbarossastr~ Berlin      <NA>        
-##  8         8         40 2009-02-01~ 8, Rue Hanovre Paris       <NA>        
-##  9         9         42 2009-02-02~ 9, Place Loui~ Bordeaux    <NA>        
-## 10        10         46 2009-02-03~ 3 Chatham Str~ Dublin      Dublin      
-## # ... with more rows, and 3 more variables: BillingCountry <chr>,
-## #   BillingPostalCode <chr>, Total <dbl>
+## # Source:   table<`invoices`> [?? x 9]
+## # Database: sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
+##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
+##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
+##  1         1          2 2009-01-01 00:0… Theodor-Heuss… Stuttgart   <NA>        
+##  2         2          4 2009-01-02 00:0… Ullevålsveien… Oslo        <NA>        
+##  3         3          8 2009-01-03 00:0… Grétrystraat … Brussels    <NA>        
+##  4         4         14 2009-01-06 00:0… 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11 00:0… 69 Salem Stre… Boston      MA          
+##  6         6         37 2009-01-19 00:0… Berger Straße… Frankfurt   <NA>        
+##  7         7         38 2009-02-01 00:0… Barbarossastr… Berlin      <NA>        
+##  8         8         40 2009-02-01 00:0… 8, Rue Hanovre Paris       <NA>        
+##  9         9         42 2009-02-02 00:0… 9, Place Loui… Bordeaux    <NA>        
+## 10        10         46 2009-02-03 00:0… 3 Chatham Str… Dublin      Dublin      
+## # ℹ more rows
+## # ℹ 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## #   Total <dbl>
 ```
 
 Ojo `[?? x 9]`: de momento no conoce el número de filas.
 
-```r
+``` r
 nrow(invoices)
 ```
 
@@ -423,44 +420,96 @@ nrow(invoices)
 
 Mostrar la consulta SQL:
 
-```r
+``` r
 show_query(head(invoices))
 ```
 
 ```
 ## <SQL>
-## SELECT *
+## SELECT `invoices`.*
 ## FROM `invoices`
 ## LIMIT 6
 ```
 
-```r
+``` r
 str(head(invoices))
 ```
 
 ```
 ## List of 2
-##  $ src:List of 2
-##   ..$ con  :Formal class 'SQLiteConnection' [package "RSQLite"] with 7 slots
+##  $ src       :List of 2
+##   ..$ con  :Formal class 'SQLiteConnection' [package "RSQLite"] with 8 slots
 ##   .. .. ..@ ptr                :<externalptr> 
-##   .. .. ..@ dbname             : chr "C:\\Users\\Guillermo LT\\Documents\\GitHub\\tgdbook\\data\\chinook.db"
+##   .. .. ..@ dbname             : chr "C:\\Users\\guill\\GitHub\\tgdbook\\data\\chinook.db"
 ##   .. .. ..@ loadable.extensions: logi TRUE
 ##   .. .. ..@ flags              : int 70
 ##   .. .. ..@ vfs                : chr ""
-##   .. .. ..@ ref                :<environment: 0x000000001cde8a58> 
+##   .. .. ..@ ref                :<environment: 0x00000180f42bafd0> 
 ##   .. .. ..@ bigint             : chr "integer64"
+##   .. .. ..@ extended_types     : logi FALSE
 ##   ..$ disco: NULL
 ##   ..- attr(*, "class")= chr [1:4] "src_SQLiteConnection" "src_dbi" "src_sql" "src"
-##  $ ops:List of 4
-##   ..$ name: chr "head"
-##   ..$ x   :List of 2
-##   .. ..$ x   : 'ident' chr "invoices"
-##   .. ..$ vars: chr [1:9] "InvoiceId" "CustomerId" "InvoiceDate" "BillingAddress" ...
-##   .. ..- attr(*, "class")= chr [1:3] "op_base_remote" "op_base" "op"
-##   ..$ dots: list()
-##   ..$ args:List of 1
-##   .. ..$ n: num 6
-##   ..- attr(*, "class")= chr [1:3] "op_head" "op_single" "op"
+##  $ lazy_query:List of 12
+##   ..$ x                :List of 5
+##   .. ..$ x         : 'dbplyr_table_path' chr "`invoices`"
+##   .. ..$ vars      : chr [1:9] "InvoiceId" "CustomerId" "InvoiceDate" "BillingAddress" ...
+##   .. ..$ group_vars: chr(0) 
+##   .. ..$ order_vars: NULL
+##   .. ..$ frame     : NULL
+##   .. ..- attr(*, "class")= chr [1:3] "lazy_base_remote_query" "lazy_base_query" "lazy_query"
+##   ..$ select           : tibble [9 × 5] (S3: tbl_df/tbl/data.frame)
+##   .. ..$ name      : chr [1:9] "InvoiceId" "CustomerId" "InvoiceDate" "BillingAddress" ...
+##   .. ..$ expr      :List of 9
+##   .. .. ..$ : symbol InvoiceId
+##   .. .. ..$ : symbol CustomerId
+##   .. .. ..$ : symbol InvoiceDate
+##   .. .. ..$ : symbol BillingAddress
+##   .. .. ..$ : symbol BillingCity
+##   .. .. ..$ : symbol BillingState
+##   .. .. ..$ : symbol BillingCountry
+##   .. .. ..$ : symbol BillingPostalCode
+##   .. .. ..$ : symbol Total
+##   .. ..$ group_vars:List of 9
+##   .. .. ..$ : chr(0) 
+##   .. .. ..$ : chr(0) 
+##   .. .. ..$ : chr(0) 
+##   .. .. ..$ : chr(0) 
+##   .. .. ..$ : chr(0) 
+##   .. .. ..$ : chr(0) 
+##   .. .. ..$ : chr(0) 
+##   .. .. ..$ : chr(0) 
+##   .. .. ..$ : chr(0) 
+##   .. ..$ order_vars:List of 9
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. ..$ frame     :List of 9
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   .. .. ..$ : NULL
+##   ..$ where            : NULL
+##   ..$ group_by         : NULL
+##   ..$ order_by         : NULL
+##   ..$ distinct         : logi FALSE
+##   ..$ limit            : num 6
+##   ..$ select_operation : chr "select"
+##   ..$ message_summarise: NULL
+##   ..$ group_vars       : chr(0) 
+##   ..$ order_vars       : NULL
+##   ..$ frame            : NULL
+##   ..- attr(*, "class")= chr [1:2] "lazy_select_query" "lazy_query"
 ##  - attr(*, "class")= chr [1:5] "tbl_SQLiteConnection" "tbl_dbi" "tbl_sql" "tbl_lazy" ...
 ```
 
@@ -472,32 +521,31 @@ Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
    agrupa todo lo que se desea hacer y luego hace una única petición a la base de datos.
    
 
-```r
+``` r
 invoices %>% head %>% collect
 ```
 
 ```
-## # A tibble: 6 x 9
-##   InvoiceId CustomerId InvoiceDate BillingAddress BillingCity BillingState
-##       <int>      <int> <chr>       <chr>          <chr>       <chr>       
-## 1         1          2 2009-01-01~ Theodor-Heuss~ Stuttgart   <NA>        
-## 2         2          4 2009-01-02~ Ullevålsveien~ Oslo        <NA>        
-## 3         3          8 2009-01-03~ Grétrystraat ~ Brussels    <NA>        
-## 4         4         14 2009-01-06~ 8210 111 ST NW Edmonton    AB          
-## 5         5         23 2009-01-11~ 69 Salem Stre~ Boston      MA          
-## 6         6         37 2009-01-19~ Berger Straße~ Frankfurt   <NA>        
-## # ... with 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## # A tibble: 6 × 9
+##   InvoiceId CustomerId InvoiceDate       BillingAddress BillingCity BillingState
+##       <int>      <int> <chr>             <chr>          <chr>       <chr>       
+## 1         1          2 2009-01-01 00:00… Theodor-Heuss… Stuttgart   <NA>        
+## 2         2          4 2009-01-02 00:00… Ullevålsveien… Oslo        <NA>        
+## 3         3          8 2009-01-03 00:00… Grétrystraat … Brussels    <NA>        
+## 4         4         14 2009-01-06 00:00… 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11 00:00… 69 Salem Stre… Boston      MA          
+## 6         6         37 2009-01-19 00:00… Berger Straße… Frankfurt   <NA>        
+## # ℹ 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
 ## #   Total <dbl>
 ```
 
-```r
+``` r
 invoices %>% count # número de filas
 ```
 
 ```
-## # Source:   lazy query [?? x 1]
-## # Database: sqlite 3.33.0 [C:\Users\Guillermo
-## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
+## # Source:   SQL [1 x 1]
+## # Database: sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -506,7 +554,7 @@ invoices %>% count # número de filas
 1.  Conocer el importe mínimo, máximo y la media de las facturas
     
     
-    ```r
+    ``` r
     res <- invoices %>% summarise(min = min(Total, na.rm = TRUE), 
                             max = max(Total, na.rm = TRUE), med = mean(Total, na.rm = TRUE))
     show_query(res)
@@ -518,12 +566,12 @@ invoices %>% count # número de filas
     ## FROM `invoices`
     ```
     
-    ```r
+    ``` r
     res  %>% collect
     ```
     
     ```
-    ## # A tibble: 1 x 3
+    ## # A tibble: 1 × 3
     ##     min   max   med
     ##   <dbl> <dbl> <dbl>
     ## 1  0.99  25.9  5.65
@@ -532,7 +580,7 @@ invoices %>% count # número de filas
 2.  Conocer el total de las facturas de cada uno de los países.
 
     
-    ```r
+    ``` r
     res <- invoices %>% group_by(BillingCountry) %>% 
               summarise(n = n(), total = sum(Total, na.rm = TRUE))
     show_query(res)
@@ -545,12 +593,12 @@ invoices %>% count # número de filas
     ## GROUP BY `BillingCountry`
     ```
     
-    ```r
+    ``` r
     res  %>% collect
     ```
     
     ```
-    ## # A tibble: 24 x 3
+    ## # A tibble: 24 × 3
     ##    BillingCountry     n total
     ##    <chr>          <int> <dbl>
     ##  1 Argentina          7  37.6
@@ -563,14 +611,14 @@ invoices %>% count # número de filas
     ##  8 Czech Republic    14  90.2
     ##  9 Denmark            7  37.6
     ## 10 Finland            7  41.6
-    ## # ... with 14 more rows
+    ## # ℹ 14 more rows
     ```
 
 3.  Obtener el listado de países junto con su facturación media, ordenado 
     (a) alfabéticamente por país
 
     
-    ```r
+    ``` r
     res <- invoices %>% group_by(BillingCountry) %>% 
               summarise(n = n(), med = mean(Total, na.rm = TRUE)) %>%
               arrange(BillingCountry)
@@ -585,12 +633,12 @@ invoices %>% count # número de filas
     ## ORDER BY `BillingCountry`
     ```
     
-    ```r
+    ``` r
     res  %>% collect
     ```
     
     ```
-    ## # A tibble: 24 x 3
+    ## # A tibble: 24 × 3
     ##    BillingCountry     n   med
     ##    <chr>          <int> <dbl>
     ##  1 Argentina          7  5.37
@@ -603,20 +651,20 @@ invoices %>% count # número de filas
     ##  8 Czech Republic    14  6.45
     ##  9 Denmark            7  5.37
     ## 10 Finland            7  5.95
-    ## # ... with 14 more rows
+    ## # ℹ 14 more rows
     ```
 
 (b) decrecientemente por importe de facturación media
     
     
-    ```r
+    ``` r
     invoices %>% group_by(BillingCountry) %>% 
               summarise(n = n(), med = mean(Total, na.rm = TRUE)) %>%
               arrange(desc(med)) %>% collect
     ```
     
     ```
-    ## # A tibble: 24 x 3
+    ## # A tibble: 24 × 3
     ##    BillingCountry     n   med
     ##    <chr>          <int> <dbl>
     ##  1 Chile              7  6.66
@@ -629,14 +677,14 @@ invoices %>% count # número de filas
     ##  8 India             13  5.79
     ##  9 USA               91  5.75
     ## 10 Norway             7  5.66
-    ## # ... with 14 more rows
+    ## # ℹ 14 more rows
     ```
 
 4.  Obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas 
     (Hint: WHERE customer.CustomerID=invoices.CustomerID)
 
     
-    ```r
+    ``` r
     customers <- tbl(chinook, "customers")
     tbl_vars(customers) 
     ```
@@ -648,7 +696,7 @@ invoices %>% count # número de filas
     ## [11] "Fax"          "Email"        "SupportRepId"
     ```
     
-    ```r
+    ``` r
     res <- customers %>% inner_join(invoices, by = "CustomerId") %>% select(FirstName, LastName, Country, Total) 
     show_query(res)
     ```
@@ -656,19 +704,17 @@ invoices %>% count # número de filas
     ```
     ## <SQL>
     ## SELECT `FirstName`, `LastName`, `Country`, `Total`
-    ## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
-    ## FROM `customers` AS `LHS`
-    ## INNER JOIN `invoices` AS `RHS`
-    ## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
-    ## )
+    ## FROM `customers`
+    ## INNER JOIN `invoices`
+    ##   ON (`customers`.`CustomerId` = `invoices`.`CustomerId`)
     ```
     
-    ```r
+    ``` r
     res  %>% collect
     ```
     
     ```
-    ## # A tibble: 412 x 4
+    ## # A tibble: 412 × 4
     ##    FirstName LastName  Country Total
     ##    <chr>     <chr>     <chr>   <dbl>
     ##  1 Luís      Gonçalves Brazil   3.98
@@ -681,39 +727,38 @@ invoices %>% count # número de filas
     ##  8 Leonie    Köhler    Germany  1.98
     ##  9 Leonie    Köhler    Germany 13.9 
     ## 10 Leonie    Köhler    Germany  8.91
-    ## # ... with 402 more rows
+    ## # ℹ 402 more rows
     ```
 
 5.  ¿Qué porcentaje de las canciones son video?
 
     
-    ```r
+    ``` r
     tracks <- tbl(chinook, "tracks")
     head(tracks) 
     ```
     
     ```
-    ## # Source:   lazy query [?? x 9]
-    ## # Database: sqlite 3.33.0 [C:\Users\Guillermo
-    ## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
-    ##   TrackId Name  AlbumId MediaTypeId GenreId Composer Milliseconds  Bytes
-    ##     <int> <chr>   <int>       <int>   <int> <chr>           <int>  <int>
-    ## 1       1 For ~       1           1       1 Angus Y~       343719 1.12e7
-    ## 2       2 Ball~       2           2       1 <NA>           342562 5.51e6
-    ## 3       3 Fast~       3           2       1 F. Balt~       230619 3.99e6
-    ## 4       4 Rest~       3           2       1 F. Balt~       252051 4.33e6
-    ## 5       5 Prin~       3           2       1 Deaffy ~       375418 6.29e6
-    ## 6       6 Put ~       1           1       1 Angus Y~       205662 6.71e6
-    ## # ... with 1 more variable: UnitPrice <dbl>
+    ## # Source:   SQL [6 x 9]
+    ## # Database: sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
+    ##   TrackId Name          AlbumId MediaTypeId GenreId Composer Milliseconds  Bytes
+    ##     <int> <chr>           <int>       <int>   <int> <chr>           <int>  <int>
+    ## 1       1 For Those Ab…       1           1       1 Angus Y…       343719 1.12e7
+    ## 2       2 Balls to the…       2           2       1 <NA>           342562 5.51e6
+    ## 3       3 Fast As a Sh…       3           2       1 F. Balt…       230619 3.99e6
+    ## 4       4 Restless and…       3           2       1 F. Balt…       252051 4.33e6
+    ## 5       5 Princess of …       3           2       1 Deaffy …       375418 6.29e6
+    ## 6       6 Put The Fing…       1           1       1 Angus Y…       205662 6.71e6
+    ## # ℹ 1 more variable: UnitPrice <dbl>
     ```
     
-    ```r
+    ``` r
     tracks %>% group_by(MediaTypeId) %>% 
         summarise(n = n()) %>% collect %>% mutate(freq = n / sum(n))
     ```
     
     ```
-    ## # A tibble: 5 x 3
+    ## # A tibble: 5 × 3
     ##   MediaTypeId     n    freq
     ##         <int> <int>   <dbl>
     ## 1           1  3034 0.866  
@@ -723,15 +768,14 @@ invoices %>% count # número de filas
     ## 5           5    11 0.00314
     ```
     
-    ```r
+    ``` r
     media_types <- tbl(chinook, "media_types")
     head(media_types)
     ```
     
     ```
-    ## # Source:   lazy query [?? x 2]
-    ## # Database: sqlite 3.33.0 [C:\Users\Guillermo
-    ## #   LT\Documents\GitHub\tgdbook\data\chinook.db]
+    ## # Source:   SQL [5 x 2]
+    ## # Database: sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
     ##   MediaTypeId Name                       
     ##         <int> <chr>                      
     ## 1           1 MPEG audio file            
@@ -741,13 +785,13 @@ invoices %>% count # número de filas
     ## 5           5 AAC audio file
     ```
     
-    ```r
+    ``` r
     tracks %>% inner_join(media_types, by = "MediaTypeId") %>% count(Name.y) %>% 
         collect %>% mutate(freq = n / sum(n)) %>% filter(grepl('video', Name.y))
     ```
     
     ```
-    ## # A tibble: 1 x 3
+    ## # A tibble: 1 × 3
     ##   Name.y                          n   freq
     ##   <chr>                       <int>  <dbl>
     ## 1 Protected MPEG-4 video file   214 0.0611
@@ -757,14 +801,14 @@ invoices %>% count # número de filas
     indicando Nombre, Apellidos, Pais y el importe total de su facturación.
 
     
-    ```r
+    ``` r
     customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
-        summarise(FirstName, LastName, country, total = sum(Total, na.rm = TRUE)) %>%  
+        summarise(FirstName, LastName, Country, total = sum(Total, na.rm = TRUE)) %>%  
         arrange(desc(total)) %>% head(10) %>% collect
     ```
     
     ```
-    ## # A tibble: 10 x 5
+    ## # A tibble: 10 × 5
     ##    CustomerId FirstName LastName   Country        total
     ##         <int> <chr>     <chr>      <chr>          <dbl>
     ##  1          6 Helena    Holý       Czech Republic  49.6
@@ -772,8 +816,8 @@ invoices %>% count # número de filas
     ##  3         57 Luis      Rojas      Chile           46.6
     ##  4         45 Ladislav  Kovács     Hungary         45.6
     ##  5         46 Hugh      O'Reilly   Ireland         45.6
-    ##  6         28 Julia     Barnett    USA             43.6
-    ##  7         24 Frank     Ralston    USA             43.6
+    ##  6         24 Frank     Ralston    USA             43.6
+    ##  7         28 Julia     Barnett    USA             43.6
     ##  8         37 Fynn      Zimmermann Germany         43.6
     ##  9          7 Astrid    Gruber     Austria         42.6
     ## 10         25 Victor    Stevens    USA             42.6
@@ -784,13 +828,13 @@ invoices %>% count # número de filas
     indicando el porcentaje de las canciones de ese género.
 
     
-    ```r
+    ``` r
     tracks %>% inner_join(tbl(chinook, "genres"), by = "GenreId") %>% count(Name.y) %>% 
         arrange(desc(n)) %>% collect %>% mutate(freq = n / sum(n))
     ```
     
     ```
-    ## # A tibble: 25 x 3
+    ## # A tibble: 25 × 3
     ##    Name.y                 n   freq
     ##    <chr>              <int>  <dbl>
     ##  1 Rock                1297 0.370 
@@ -803,21 +847,21 @@ invoices %>% count # número de filas
     ##  8 Classical             74 0.0211
     ##  9 Drama                 64 0.0183
     ## 10 R&B/Soul              61 0.0174
-    ## # ... with 15 more rows
+    ## # ℹ 15 more rows
     ```
 
 8.  Listar los 10 artistas con mayor número de canciones 
     de forma descendente según el número de canciones.
 
     
-    ```r
+    ``` r
     tracks %>% inner_join(tbl(chinook, "albums"), by = "AlbumId") %>% 
         inner_join(tbl(chinook, "artists"), by = "ArtistId") %>% 
         count(Name.y) %>% arrange(desc(n)) %>% collect
     ```
     
     ```
-    ## # A tibble: 204 x 2
+    ## # A tibble: 204 × 2
     ##    Name.y              n
     ##    <chr>           <int>
     ##  1 Iron Maiden       213
@@ -830,13 +874,13 @@ invoices %>% count # número de filas
     ##  8 Lenny Kravitz      57
     ##  9 Various Artists    56
     ## 10 The Office         53
-    ## # ... with 194 more rows
+    ## # ℹ 194 more rows
     ```
 
 Desconectar la base de datos:
 
 
-```r
+``` r
 DBI::dbDisconnect(chinook)            
 ```
 

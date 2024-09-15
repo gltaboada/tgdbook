@@ -1,7 +1,7 @@
 ---
 title: "T0 INTRO"
 author: "Guillermo Lopez Taboada"
-date: "2/11/2020"
+date: "15/9/2024"
 output: pdf_document
 ---
 
@@ -43,26 +43,37 @@ En particular, los resultados de aprendizaje son:
 ## Planificación (tentativa)
 
 La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los 
-conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/EbbBNeXTpk8MK1C76
-
-- Semana 1 (3/11): Presentación e introducción a Tema 1 y SQL.
-
-- Semana 2 (6, 8, 9, 10/11): Tema 1 y SQL. Seminario Manipulación de datos con dplyr (8 y 9). Ejercicios SQL (11)
-
-- Semana 3 (13, 15 y 16/11):  Ejercicios SQL (13). Tema 2: NoSQL y Seminario tratamiento de texto (CSV, excel, Json) y open data. 
-
-- Semana 4 (20, 22, 23 y 24/11): Tema 3: Conceptos de Big Data y datos masivos. Introducción al Aprendizaje Estadístico.
-
-- Semana 5 (27, 29, 30 y 1/12): Tema 3: Tutorial de sparklyr, seminario de visualización y aplicaciones de datos masivos
-
-- Semana 6 (4/12) Tema 3: Prácticas sparklyr
-
-- Semana 7 (11, 13, 14 y 15/12) Tema 3: Prácticas sparklyr. 
-
-- Semana 8 (18, 20, 21 y 22/12) Revisión prácticas, dudas de cara a examen, backup. 
+conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/D5bhiLLBUFuh6k1n8 
 
 
-Examen 22/1 4pm. 
+- Semana 1   (9/9) : 10 y 11/9 - Presentación e introducción a Tema 1 & SQL 
+
+- Semana 2 (16/9) : 17 y 18/9 - Seminario dplyr. 
+
+- Semana 3 (23/9) : 24 y 25/9 - Tema 1 & SQL. 
+
+- Semana 4 (30/9) : 1 y 2/10 - Ejercicios SQL.
+
+- Semana 5 (7/10) : 8 y 9/10 - Tema 2 & NoSQL - Seminario texto proc. (CSV, excel, Json) y open data . 
+
+- Semana 6 (14/10) : 15/10 - Tutorial sparklyr-SQL. + 16/10 Consultas SQL con sparklyr.
+
+- Semana 7 (21/10) : 22 y 23/10 Tema 3 Big Data.
+
+- Semana 8 (28/10) : 29 y 30/10 - Tutoriales sparklyr-ML.
+
+- Semana 9 (4/11) : 6/11 - Ejercicios ML.
+
+- Semana 10(11/11) : 11 y 13/11 - Intro a AE (día 13 1 hora de 13 a 14h).
+
+- Semana 11(18/11) : 18/11 - Intro a AE Manuel,  20 y 21/11 -  Ejercicios ML.
+
+- Semana 12 /25/11): 25/11 o cualquier otro día hasta el 5/12, seguramente el 5/12, dudas práctica ML. Backup.
+
+
+Examen 21/1/25 4pm. 
+
+Recuperación 1/7/25 4pm.
 
 
 <!-- Curso 2019-2020

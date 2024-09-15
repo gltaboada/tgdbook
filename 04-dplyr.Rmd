@@ -336,7 +336,7 @@ invoices %>% count # número de filas
 
     ```{r }
     customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
-        summarise(FirstName, LastName, country, total = sum(Total, na.rm = TRUE)) %>%  
+        summarise(FirstName, LastName, Country, total = sum(Total, na.rm = TRUE)) %>%  
         arrange(desc(total)) %>% head(10) %>% collect
     ```
 

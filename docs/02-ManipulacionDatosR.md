@@ -8,14 +8,10 @@ En el proceso de análisis de datos, al margen de su obtención y organización,
 En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para ello.
 Posteriormente en el Capítulo \@ref(dplyr) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html).
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.8\linewidth]{images/esquema2} 
-
-}
-
-\caption{Etapas del proceso}(\#fig:esquema2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/esquema2.png" alt="Etapas del proceso" width="80%" />
+<p class="caption">(\#fig:esquema2)Etapas del proceso</p>
+</div>
 
 
 
@@ -43,7 +39,7 @@ El formato de archivo en el que habitualmente se almacena objetos (datos)
 R es binario y está comprimido (en formato `"gzip"` por defecto).
 Para cargar un fichero de datos se emplea normalmente [`load()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load):
 
-```r
+``` r
 res <- load("data/empleados.RData")
 res
 ```
@@ -52,7 +48,7 @@ res
 ## [1] "empleados"
 ```
 
-```r
+``` r
 ls()
 ```
 
@@ -62,7 +58,7 @@ ls()
 ```
 y para guardar [`save()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save):
 
-```r
+``` r
 # Guardar
 save(empleados, file = "data/empleados_new.RData")
 ```
@@ -74,7 +70,7 @@ Aunque, como indica este comando en la ayuda (`?save`):
 > notably because of the functional nature of readRDS(), as opposed to load(). 
 
 
-```r
+``` r
 saveRDS(empleados, file = "data/empleados_new.rds")
 ## restore it under a different name
 empleados2 <- readRDS("data/empleados_new.rds")
@@ -104,7 +100,7 @@ Supóngase, por ejemplo, que en el directorio actual está el fichero
 *empleados.txt*. La lectura de este fichero vendría dada por el código:
 
 
-```r
+``` r
 # Session > Set Working Directory > To Source...?
 datos <- read.table(file = "data/empleados.txt", header = TRUE)
 # head(datos)
@@ -147,7 +143,7 @@ Resumiendo, los (principales) argumentos por defecto de la función
 `read.table` son los que se muestran en la siguiente línea:
 
 
-```r
+``` r
 read.table(file, header = FALSE, sep = "", dec = ".")  
 ```
 
@@ -158,7 +154,7 @@ Estan disponibles otras funciones con valores por defecto de los parámetros
 adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores 
 se puede utilizar `read.delim()` o `read.delim2()`:
 
-```r
+``` r
 read.delim(file, header = TRUE, sep = "\t", dec = ".")
 read.delim2(file, header = TRUE, sep = "\t", dec = ",")
 ```
@@ -184,7 +180,7 @@ se necesita:
 Por ejemplo:
 
 
-```r
+``` r
 library(foreign)
 datos <- read.spss(file = "data/Employee data.sav", to.data.frame = TRUE)
 # head(datos)
@@ -222,7 +218,7 @@ Por ejemplo el siguiente código implementa una función que permite leer todos
 los archivos en formato *.xlsx* en un directorio:
 
 
-```r
+``` r
 library(openxlsx)
 
 read_xlsx <- function(path = '.') {
@@ -242,7 +238,7 @@ o emplear la función [`bind_rows()` ](https://www.rdocumentation.org/packages/d
 del paquete [`dplyr`](https://dplyr.tidyverse.org):
 
 
-```r
+``` r
 df <- do.call('rbind', file.list)
 
 df <- dplyr::bind_rows(file.list)
@@ -263,7 +259,7 @@ Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
 -   Por lo tanto, la lectura de este fichero se puede hacer con:
 
     
-    ```r
+    ``` r
     datos <- read.table("coches.csv", header = TRUE, sep = ";", dec = ",")
     ```
 
@@ -271,14 +267,14 @@ Otra posibilidad es utilizar la función `read.csv2`, que es
 una adaptación de la función general `read.table` con las siguientes
 opciones:
 
-```r
+``` r
 read.csv2(file, header = TRUE, sep = ";", dec = ",")
 ```
 
 Por lo tanto, la lectura del fichero *coches.csv* se puede hacer de modo
 más directo con:
 
-```r
+``` r
 datos <- read.csv2("coches.csv")
 ```
 
@@ -297,7 +293,7 @@ similar, pero funcionando en sentido inverso, a `read.table()`
 Veamos un ejemplo:
 
 
-```r
+``` r
 tipo <- c("A", "B", "C")
 longitud <- c(120.34, 99.45, 115.67)
 datos <- data.frame(tipo, longitud)
@@ -313,12 +309,12 @@ datos
 Para guardar el data.frame `datos` en un fichero de texto se
 puede utilizar:
 
-```r
+``` r
 write.table(datos, file = "datos.txt")
 ```
 Otra posibilidad es utilizar la función:
 
-```r
+``` r
 write.csv2(datos, file = "datos.csv")
 ```
 que dará lugar al fichero *datos.csv* importable directamente desde Excel.
@@ -357,7 +353,7 @@ A continuación se tratan algunas operaciones *básicas*.
 Consideremos de nuevo la
 base de datos `cars` incluida en el paquete `datasets`:
 
-```r
+``` r
 data(cars)
 # str(cars)
 head(cars)
@@ -385,7 +381,7 @@ Recordemos que, para acceder a la variable `speed` se puede
 hacer directamente con su nombre o bien utilizando notación
 "matricial".
 
-```r
+``` r
 cars$speed
 ```
 
@@ -394,7 +390,7 @@ cars$speed
 ## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25
 ```
 
-```r
+``` r
 cars[, 1]  # Equivalente
 ```
 
@@ -409,14 +405,14 @@ La transformación que permite pasar millas a kilómetros es
 `kilómetros=millas/0.62137` que en R se hace directamente con:
 
 
-```r
+``` r
 cars$speed/0.62137
 ```
 
  Finalmente, incluimos la nueva variable que llamaremos
 `velocidad` en `cars`:
 
-```r
+``` r
 cars$velocidad <- cars$speed / 0.62137
 head(cars)
 ```
@@ -436,7 +432,7 @@ variable `distancia` (en metros). Ahora la transformación deseada es
 `metros=pies/3.2808`:
 
 
-```r
+``` r
 cars$distancia <- cars$dis / 3.2808
 head(cars)
 ```
@@ -456,7 +452,7 @@ head(cars)
 En primer lugar, veamos varias formas de acceder a las variables de
 interés:
 
-```r
+``` r
 cars[, c(3, 4)]
 cars[, c("velocidad", "distancia")]
 cars[, -c(1, 2)]
@@ -465,7 +461,7 @@ cars[, -c(1, 2)]
 Utilizando alguna de las opciones anteriores se obtiene el `data.frame`
 deseado:
 
-```r
+``` r
 coches <- cars[, c("velocidad", "distancia")]
 # head(coches)
 str(coches)
@@ -480,7 +476,7 @@ str(coches)
 Finalmente los datos anteriores podrían ser guardados en un fichero
 exportable a Excel con el siguiente comando:
 
-```r
+``` r
 write.csv2(coches, file = "coches.csv")
 ```
 
@@ -491,7 +487,7 @@ El parámetro `breaks` permite especificar los intervalos para la discretizació
 Por ejemplo, para categorizar la variable `cars$speed` en tres intervalos equidistantes podemos emplear^[Aunque si el objetivo es obtener las frecuencias de cada intervalo puede ser más eficiente emplear `hist()` con `plot = FALSE`.]:
 
 
-```r
+``` r
 fspeed <- cut(cars$speed, 3, labels = c("Baja", "Media", "Alta"))
 table(fspeed)
 ```
@@ -505,7 +501,7 @@ table(fspeed)
 Para categorizar esta variable en tres niveles con aproximadamente el mismo número de observaciones podríamos combinar esta función con `quantile()`:
 
 
-```r
+``` r
 breaks <- quantile(cars$speed, probs = seq(0, 1, len = 4))
 fspeed <- cut(cars$speed, breaks, labels = c("Baja", "Media", "Alta"))
 table(fspeed)
@@ -520,7 +516,7 @@ table(fspeed)
 Para otro tipo de recodificaciones podríamos emplear la función `ifelse()` vectorial:
 
 
-```r
+``` r
 fspeed <- ifelse(cars$speed < 15, "Baja", "Alta")
 fspeed <- factor(fspeed, levels = c("Baja", "Alta"))
 table(fspeed)
@@ -535,7 +531,7 @@ table(fspeed)
 Alternativamente en el caso de dos niveles podríamos emplear directamente la función `factor()`:
 
 
-```r
+``` r
 fspeed <- factor(cars$speed >= 15, labels = c("Baja", "Alta")) # levels = c("FALSE", "TRUE")
 table(fspeed)
 ```
@@ -549,7 +545,7 @@ table(fspeed)
 En el caso de múltiples niveles se podría emplear `ifelse()` anidados:
 
 
-```r
+``` r
 fspeed <- ifelse(cars$speed < 10, "Baja",
                  ifelse(cars$speed < 20, "Media", "Alta"))
 fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
@@ -569,7 +565,7 @@ Sin embargo esta forma de proceder puede causar numerosos inconvenientes, especi
 Por ejemplo, podríamos calcular el factor anterior empleando:
 
 
-```r
+``` r
 fspeed <- with(cars, ifelse(speed < 10, "Baja",
                  ifelse(speed < 20, "Media", "Alta")))
 fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
@@ -596,7 +592,7 @@ Este vector establece el orden en que tienen que ser elegidos los
 elementos para obtener la ordenación deseada. 
 Veamos un ejemplo sencillo:
 
-```r
+``` r
 x <- c(2.5, 4.3, 1.2, 3.1, 5.0) # valores originales
 ii <- order(x)
 ii    # vector de ordenación
@@ -606,7 +602,7 @@ ii    # vector de ordenación
 ## [1] 3 1 4 2 5
 ```
 
-```r
+``` r
 x[ii] # valores ordenados
 ```
 
@@ -616,7 +612,7 @@ x[ii] # valores ordenados
 En el caso de vectores, el procedimiento anterior se podría
 hacer directamente con: 
 
-```r
+``` r
 sort(x)
 ```
 
@@ -624,7 +620,7 @@ Sin embargo, para ordenar data.frames será necesario la utilización del
 vector de índices de ordenación. A continuación, los datos de `cars`
 ordenados por `dist`:
 
-```r
+``` r
 ii <- order(cars$dist) # Vector de índices de ordenación
 cars2 <- cars[ii, ]    # Datos ordenados por dist
 head(cars2)
@@ -649,7 +645,7 @@ puede utilizar la función [`subset()` ](https://www.rdocumentation.org/packages
 
 A continuación se muestran un par de ejemplos:
 
-```r
+``` r
 subset(cars, dist > 85) # datos con dis>85
 ```
 
@@ -660,7 +656,7 @@ subset(cars, dist > 85) # datos con dis>85
 ## 49    24  120  38.62433  36.57644
 ```
 
-```r
+``` r
 subset(cars, speed > 10 & speed < 15 & dist > 45) # speed en (10,15) y dist>45
 ```
 
@@ -675,7 +671,7 @@ También se pueden hacer el filtrado empleando directamente los
 correspondientes vectores de índices:
 
 
-```r
+``` r
 ii <- cars$dist > 85
 cars[ii, ]   # dis>85
 ```
@@ -687,7 +683,7 @@ cars[ii, ]   # dis>85
 ## 49    24  120  38.62433  36.57644
 ```
 
-```r
+``` r
 ii <- cars$speed > 10 & cars$speed < 15 & cars$dist > 45
 cars[ii, ]  # speed en (10,15) y dist>45
 ```
@@ -702,7 +698,7 @@ cars[ii, ]  # speed en (10,15) y dist>45
 En este caso puede ser de utilidad la función [`which()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which):
 
 
-```r
+``` r
 it <- which(ii)
 str(it)
 ```
@@ -711,7 +707,7 @@ str(it)
 ##  int [1:3] 19 22 23
 ```
 
-```r
+``` r
 cars[it, 1:2]
 ```
 
@@ -722,7 +718,7 @@ cars[it, 1:2]
 ## 23    14   80
 ```
 
-```r
+``` r
 # rownames(cars[it, 1:2])
 
 id <- which(!ii)
@@ -735,7 +731,7 @@ str(cars[id, 1:2])
 ##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...
 ```
 
-```r
+``` r
 # Equivalentemente:
 str(cars[-it, 1:2])
 ```
@@ -746,7 +742,7 @@ str(cars[-it, 1:2])
 ##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...
 ```
 
-```r
+``` r
 # Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed
 # ?which.min
 ```
@@ -764,7 +760,7 @@ de forma simultánea.
 
 La sintaxis de esta función es:
 
-```r
+``` r
 apply(X, MARGIN, FUN, ...)
 ```
 -   `X`: matriz (o array)
@@ -776,7 +772,7 @@ apply(X, MARGIN, FUN, ...)
 
 Veamos la utilización de la función `apply` con un ejemplo:
 
-```r
+``` r
 x <- matrix(1:9, nrow = 3)
 x
 ```
@@ -788,7 +784,7 @@ x
 ## [3,]    3    6    9
 ```
 
-```r
+``` r
 apply(x, 1, sum)    # Suma por filas
 ```
 
@@ -796,7 +792,7 @@ apply(x, 1, sum)    # Suma por filas
 ## [1] 12 15 18
 ```
 
-```r
+``` r
 apply(x, 2, sum)    # Suma por columnas
 ```
 
@@ -804,7 +800,7 @@ apply(x, 2, sum)    # Suma por columnas
 ## [1]  6 15 24
 ```
 
-```r
+``` r
 apply(x, 2, min)    # Mínimo de las columnas
 ```
 
@@ -812,7 +808,7 @@ apply(x, 2, min)    # Mínimo de las columnas
 ## [1] 1 4 7
 ```
 
-```r
+``` r
 apply(x, 2, range)  # Rango (mínimo y máximo) de las columnas
 ```
 
@@ -827,7 +823,7 @@ apply(x, 2, range)  # Rango (mínimo y máximo) de las columnas
 [`lapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/lapply):
 
 
-```r
+``` r
 # lista con las medianas de las variables
 list <- lapply(cars, median)
 str(list)
@@ -844,7 +840,7 @@ str(list)
 [`sapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/sapply):
 
 
-```r
+``` r
 # matriz con las medias, medianas y desv. de las variables
 res <- sapply(cars, 
           function(x) c(mean = mean(x), median = median(x), sd = sd(x)))
@@ -859,28 +855,22 @@ res
 ## sd      5.287644 25.76938  8.509655  7.854602
 ```
 
-```r
+``` r
 knitr::kable(t(res), digits = 1)
 ```
 
 
-\begin{tabular}{l|r|r|r}
-\hline
-  & mean & median & sd\\
-\hline
-speed & 15.4 & 15.0 & 5.3\\
-\hline
-dist & 43.0 & 36.0 & 25.8\\
-\hline
-velocidad & 24.8 & 24.1 & 8.5\\
-\hline
-distancia & 13.1 & 11.0 & 7.9\\
-\hline
-\end{tabular}
+
+|          | mean| median|   sd|
+|:---------|----:|------:|----:|
+|speed     | 15.4|   15.0|  5.3|
+|dist      | 43.0|   36.0| 25.8|
+|velocidad | 24.8|   24.1|  8.5|
+|distancia | 13.1|   11.0|  7.9|
 
 
 
-```r
+``` r
 cfuns <- function(x, funs = c(mean, median, sd))
             sapply(funs, function(f) f(x))
 x <- 1:10
@@ -891,7 +881,7 @@ cfuns(x)
 ## [1] 5.50000 5.50000 3.02765
 ```
 
-```r
+``` r
 sapply(cars, cfuns)
 ```
 
@@ -902,7 +892,7 @@ sapply(cars, cfuns)
 ## [3,]  5.287644 25.76938  8.509655  7.854602
 ```
 
-```r
+``` r
 nfuns <- c("mean", "median", "sd")
 sapply(nfuns, function(f) eval(parse(text = paste0(f, "(x)"))))
 ```
@@ -930,7 +920,7 @@ similar a la función `apply()` y permite aplicar una función a los datos desag
 utilizando como criterio los distintos niveles de una variable factor. 
 La sintaxis de esta función es como sigue:
 
-```r
+``` r
     tapply(X, INDEX, FUN, ...,)
 ```
 -   `X`: matriz (o array).
@@ -942,7 +932,7 @@ Consideremos, por ejemplo, el data.frame `ChickWeight` con datos de un
 experimento relacionado con la repercusión de varias dietas en el peso
 de pollos.
 
-```r
+``` r
 data(ChickWeight)
 # str(ChickWeight)
 head(ChickWeight)
@@ -958,7 +948,7 @@ head(ChickWeight)
 ## 6     93   10     1    1
 ```
 
-```r
+``` r
 peso <- ChickWeight$weight
 dieta <- ChickWeight$Diet
 levels(dieta) <- c("Dieta 1", "Dieta 2", "Dieta 3", "Dieta 4")
@@ -970,7 +960,7 @@ tapply(peso, dieta, mean)  # Peso medio por dieta
 ## 102.6455 122.6167 142.9500 135.2627
 ```
 
-```r
+``` r
 tapply(peso, dieta, summary)
 ```
 
@@ -994,7 +984,7 @@ tapply(peso, dieta, summary)
 
 Otro ejemplo:
 
-```r
+``` r
 provincia <- as.factor(c(1, 3, 4, 2, 4, 3, 2, 1, 4, 3, 2))
 levels(provincia) = c("A Coruña", "Lugo", "Orense", "Pontevedra")
 hijos <- c(1, 2, 0, 3, 4, 1, 0, 0, 2, 3, 1)
@@ -1016,7 +1006,7 @@ data.frame(provincia, hijos)
 ## 11       Lugo     1
 ```
 
-```r
+``` r
 tapply(hijos, provincia, mean) # Número medio de hijos por provincia
 ```
 
@@ -1054,7 +1044,7 @@ Ejemplo [*wosdata.R*](data/wosdata.R) en [*wosdata.zip*](data/wosdata.zip).
 Ver Apéndice \@ref(scimetr).
 
 
-```r
+``` r
 # library(dplyr)
 # library(stringr)
 # https://rubenfcasal.github.io/scimetr/articles/scimetr.html
@@ -1082,146 +1072,82 @@ str(db, 1)
 ##  - attr(*, "class")= chr "wos.db"
 ```
 
-```r
+``` r
 variable.labels <- attr(db, "variable.labels")
 knitr::kable(as.data.frame(variable.labels)) # caption = "Variable labels"
 ```
 
 
-\begin{tabular}{l|l}
-\hline
-  & variable.labels\\
-\hline
-PT & Publication type\\
-\hline
-AU & Author\\
-\hline
-BA & Book authors\\
-\hline
-BE & Editor\\
-\hline
-GP & Group author\\
-\hline
-AF & Author full\\
-\hline
-BF & Book authors fullname\\
-\hline
-CA & Corporate author\\
-\hline
-TI & Title\\
-\hline
-SO & Publication name\\
-\hline
-SE & Series title\\
-\hline
-BS & Book series\\
-\hline
-LA & Language\\
-\hline
-DT & Document type\\
-\hline
-CT & Conference title\\
-\hline
-CY & Conference year\\
-\hline
-CL & Conference place\\
-\hline
-SP & Conference sponsors\\
-\hline
-HO & Conference host\\
-\hline
-DE & Keywords\\
-\hline
-ID & Keywords Plus\\
-\hline
-AB & Abstract\\
-\hline
-C1 & Addresses\\
-\hline
-RP & Reprint author\\
-\hline
-EM & Author email\\
-\hline
-RI & Researcher id numbers\\
-\hline
-OI & Orcid numbers\\
-\hline
-FU & Funding agency and grant number\\
-\hline
-FX & Funding text\\
-\hline
-CR & Cited references\\
-\hline
-NR & Number of cited references\\
-\hline
-TC & Times cited\\
-\hline
-Z9 & Total times cited count\\
-\hline
-U1 & Usage Count (Last 180 Days)\\
-\hline
-U2 & Usage Count (Since 2013)\\
-\hline
-PU & Publisher\\
-\hline
-PI & Publisher city\\
-\hline
-PA & Publisher address\\
-\hline
-SN & ISSN\\
-\hline
-EI & eISSN\\
-\hline
-BN & ISBN\\
-\hline
-J9 & Journal.ISI\\
-\hline
-JI & Journal.ISO\\
-\hline
-PD & Publication date\\
-\hline
-PY & Year published\\
-\hline
-VL & Volume\\
-\hline
-IS & Issue\\
-\hline
-PN & Part number\\
-\hline
-SU & Supplement\\
-\hline
-SI & Special issue\\
-\hline
-MA & Meeting abstract\\
-\hline
-BP & Beginning page\\
-\hline
-EP & Ending page\\
-\hline
-AR & Article number\\
-\hline
-DI & DOI\\
-\hline
-D2 & Book DOI\\
-\hline
-PG & Page count\\
-\hline
-WC & WOS category\\
-\hline
-SC & Research areas\\
-\hline
-GA & Document delivery number\\
-\hline
-UT & Access number\\
-\hline
-PM & Pub Med ID\\
-\hline
-\end{tabular}
+
+|   |variable.labels                 |
+|:--|:-------------------------------|
+|PT |Publication type                |
+|AU |Author                          |
+|BA |Book authors                    |
+|BE |Editor                          |
+|GP |Group author                    |
+|AF |Author full                     |
+|BF |Book authors fullname           |
+|CA |Corporate author                |
+|TI |Title                           |
+|SO |Publication name                |
+|SE |Series title                    |
+|BS |Book series                     |
+|LA |Language                        |
+|DT |Document type                   |
+|CT |Conference title                |
+|CY |Conference year                 |
+|CL |Conference place                |
+|SP |Conference sponsors             |
+|HO |Conference host                 |
+|DE |Keywords                        |
+|ID |Keywords Plus                   |
+|AB |Abstract                        |
+|C1 |Addresses                       |
+|RP |Reprint author                  |
+|EM |Author email                    |
+|RI |Researcher id numbers           |
+|OI |Orcid numbers                   |
+|FU |Funding agency and grant number |
+|FX |Funding text                    |
+|CR |Cited references                |
+|NR |Number of cited references      |
+|TC |Times cited                     |
+|Z9 |Total times cited count         |
+|U1 |Usage Count (Last 180 Days)     |
+|U2 |Usage Count (Since 2013)        |
+|PU |Publisher                       |
+|PI |Publisher city                  |
+|PA |Publisher address               |
+|SN |ISSN                            |
+|EI |eISSN                           |
+|BN |ISBN                            |
+|J9 |Journal.ISI                     |
+|JI |Journal.ISO                     |
+|PD |Publication date                |
+|PY |Year published                  |
+|VL |Volume                          |
+|IS |Issue                           |
+|PN |Part number                     |
+|SU |Supplement                      |
+|SI |Special issue                   |
+|MA |Meeting abstract                |
+|BP |Beginning page                  |
+|EP |Ending page                     |
+|AR |Article number                  |
+|DI |DOI                             |
+|D2 |Book DOI                        |
+|PG |Page count                      |
+|WC |WOS category                    |
+|SC |Research areas                  |
+|GA |Document delivery number        |
+|UT |Access number                   |
+|PM |Pub Med ID                      |
 
 Documentos correspondientes a revistas:
 
 
-```r
+``` r
 # View(db$Journals)
 iidj <- with(db$Journals, idj[grepl('Chem', JI)])
 db$Journals$JI[iidj]
@@ -1245,7 +1171,7 @@ db$Journals$JI[iidj]
 ## [29] "J. Mat. Chem. B"
 ```
 
-```r
+``` r
 idd <- with(db$Docs, idj %in% iidj)
 which(idd)
 ```
@@ -1256,7 +1182,7 @@ which(idd)
 ## [39] 605 616 620 665 697 751 753 775 784 796 806 808 847 848
 ```
 
-```r
+``` r
 # View(db$Docs[idd, ])
 head(db$Docs[idd, 1:3])
 ```
@@ -1281,7 +1207,7 @@ head(db$Docs[idd, 1:3])
 Documentos correspondientes a autores:
 
 
-```r
+``` r
 # View(db$Authors)
 iida <- with(db$Authors, ida[grepl('Abad', AF)])
 db$Authors$AF[iida]
@@ -1292,7 +1218,7 @@ db$Authors$AF[iida]
 ## [4] "Abada, Sabah"
 ```
 
-```r
+``` r
 idd <- with(db$AutDoc, idd[ida %in% iida])
 idd
 ```
@@ -1301,7 +1227,7 @@ idd
 ## [1] 273 291 518 586
 ```
 
-```r
+``` r
 # View(db$Docs[idd, ])
 head(db$Docs[idd, 1:3])
 ```
