@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.2 Tecnologías Big Data (Hadoop/Spark y Visualización) | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.2 Tecnologías Big Data (Hadoop/Spark y Visualización) | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
 
-<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es), Rubén F. Casal (ruben.fcasal@udc.es) y Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
+<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es), Diego Darriba (diego.darriba@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
 
 
-<meta name="date" content="2024-09-15" />
+<meta name="date" content="2025-10-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="introducción-al-aprendizaje-estadístico.html"/>
 <link rel="next" href="introducción-al-análisis-de-datos-masivos.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -64,8 +64,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -178,11 +179,11 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i><b>1.1</b> Contenidos</a></li>
 <li class="chapter" data-level="1.2" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html"><i class="fa fa-check"></i><b>1.2</b> Planificación (tentativa)</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html#evaluación"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
+<li class="chapter" data-level="1.2.1" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html#evaluaci%C3%B3n"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html"><i class="fa fa-check"></i><b>1.3</b> Fuentes de información:</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#básica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
+<li class="chapter" data-level="1.3.1" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#b%C3%A1sica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
 <li class="chapter" data-level="1.3.2" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#complementaria"><i class="fa fa-check"></i><b>1.3.2</b> Complementaria:</a></li>
 </ul></li>
 </ul></li>
@@ -193,10 +194,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.1" data-path="read.html"><a href="read.html#formato-de-datos-de-r"><i class="fa fa-check"></i><b>2.1.1</b> Formato de datos de R</a></li>
 <li class="chapter" data-level="2.1.2" data-path="read.html"><a href="read.html#acceso-a-datos-en-paquetes"><i class="fa fa-check"></i><b>2.1.2</b> Acceso a datos en paquetes</a></li>
 <li class="chapter" data-level="2.1.3" data-path="read.html"><a href="read.html#cap2-texto"><i class="fa fa-check"></i><b>2.1.3</b> Lectura de archivos de texto</a></li>
-<li class="chapter" data-level="2.1.4" data-path="read.html"><a href="read.html#importación-desde-spss"><i class="fa fa-check"></i><b>2.1.4</b> Importación desde SPSS</a></li>
-<li class="chapter" data-level="2.1.5" data-path="read.html"><a href="read.html#importación-desde-excel"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="2.1.4" data-path="read.html"><a href="read.html#importaci%C3%B3n-desde-spss"><i class="fa fa-check"></i><b>2.1.4</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="read.html"><a href="read.html#importaci%C3%B3n-desde-excel"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde Excel</a></li>
 <li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
-<li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programación"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
+<li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
 <ul>
@@ -211,32 +212,35 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.4</b> Ejemplo WoS data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introducción-al-lenguaje-sql.html"><a href="introducción-al-lenguaje-sql.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
+<li class="chapter" data-level="3" data-path="introSQL.html"><a href="introSQL.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>3.1</b> Bases de Datos Relacionales</a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html#definiciones"><i class="fa fa-check"></i><b>3.1.1</b> Definiciones</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis SQL</a>
+<li class="chapter" data-level="3.2" data-path="restricciones.html"><a href="restricciones.html"><i class="fa fa-check"></i><b>3.2</b> Restricciones</a></li>
+<li class="chapter" data-level="3.3" data-path="sistemas-gestores-de-bases-de-datos-sgdb.html"><a href="sistemas-gestores-de-bases-de-datos-sgdb.html"><i class="fa fa-check"></i><b>3.3</b> Sistemas Gestores de Bases de Datos (SGDB)</a></li>
+<li class="chapter" data-level="3.4" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.4</b> Sintaxis SQL</a></li>
+<li class="chapter" data-level="3.5" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html"><i class="fa fa-check"></i><b>3.5</b> Cláusulas básicas de SQL</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#extracción-sql-11-statements"><i class="fa fa-check"></i><b>3.2.1</b> Extracción SQL (11 statements)</a></li>
-<li class="chapter" data-level="3.2.2" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#crearactualizarborrar-tablas-sql-8-statements"><i class="fa fa-check"></i><b>3.2.2</b> Crear/Actualizar/Borrar tablas SQL (8 statements)</a></li>
-<li class="chapter" data-level="3.2.3" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#añadiractualizarborrar-tuplas-en-sql-3-statements"><i class="fa fa-check"></i><b>3.2.3</b> Añadir/Actualizar/Borrar tuplas en SQL (3 statements)</a></li>
-<li class="chapter" data-level="3.2.4" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#gestión-bases-de-datos-5-statements"><i class="fa fa-check"></i><b>3.2.4</b> Gestión Bases de Datos (5 statements)</a></li>
-<li class="chapter" data-level="3.2.5" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html#ejemplos-de-consultas-sql"><i class="fa fa-check"></i><b>3.2.5</b> Ejemplos de consultas SQL</a></li>
+<li class="chapter" data-level="3.5.1" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#lectura"><i class="fa fa-check"></i><b>3.5.1</b> Lectura</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.3</b> Conexión con bases de datos desde R</a>
+<li class="chapter" data-level="3.6" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html"><i class="fa fa-check"></i><b>3.6</b> Gestión de tablas</a></li>
+<li class="chapter" data-level="3.7" data-path="gestión-de-datos.html"><a href="gestión-de-datos.html"><i class="fa fa-check"></i><b>3.7</b> Gestión de datos</a></li>
+<li class="chapter" data-level="3.8" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html"><i class="fa fa-check"></i><b>3.8</b> Gestión de Bases de Datos</a></li>
+<li class="chapter" data-level="3.9" data-path="ejemplos-de-consultas-sql.html"><a href="ejemplos-de-consultas-sql.html"><i class="fa fa-check"></i><b>3.9</b> Ejemplos de consultas SQL</a></li>
+<li class="chapter" data-level="3.10" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.10</b> Conexión con bases de datos desde R</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#introducción-a-sql-en-r"><i class="fa fa-check"></i><b>3.3.1</b> Introducción a SQL en R</a></li>
-<li class="chapter" data-level="3.3.2" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#el-paquete-sqldf"><i class="fa fa-check"></i><b>3.3.2</b> El paquete sqldf</a></li>
-<li class="chapter" data-level="3.3.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#sql-queries"><i class="fa fa-check"></i><b>3.3.3</b> SQL Queries</a></li>
+<li class="chapter" data-level="3.10.1" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#introducci%C3%B3n-a-sql-en-r"><i class="fa fa-check"></i><b>3.10.1</b> Introducción a SQL en R</a></li>
+<li class="chapter" data-level="3.10.2" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#el-paquete-sqldf"><i class="fa fa-check"></i><b>3.10.2</b> El paquete sqldf</a></li>
+<li class="chapter" data-level="3.10.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#sql-queries"><i class="fa fa-check"></i><b>3.10.3</b> SQL Queries</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="ejemplo-scopus-data.html"><a href="ejemplo-scopus-data.html"><i class="fa fa-check"></i><b>3.4</b> Ejemplo Scopus data</a></li>
-<li class="chapter" data-level="3.5" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html"><i class="fa fa-check"></i><b>3.5</b> Ejercicios SQL con RSQLite</a>
+<li class="chapter" data-level="3.11" data-path="ejemplo-scopus-data.html"><a href="ejemplo-scopus-data.html"><i class="fa fa-check"></i><b>3.11</b> Ejemplo Scopus data</a></li>
+<li class="chapter" data-level="3.12" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html"><i class="fa fa-check"></i><b>3.12</b> Ejercicios SQL con RSQLite</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html#setup-de-rsqlite"><i class="fa fa-check"></i><b>3.5.1</b> Setup de RSQLite</a></li>
+<li class="chapter" data-level="3.12.1" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html#setup-de-rsqlite"><i class="fa fa-check"></i><b>3.12.1</b> Setup de RSQLite</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="práctica-1-sql.html"><a href="práctica-1-sql.html"><i class="fa fa-check"></i><b>3.6</b> Práctica 1: SQL</a></li>
+<li class="chapter" data-level="3.13" data-path="práctica-1-sql.html"><a href="práctica-1-sql.html"><i class="fa fa-check"></i><b>3.13</b> Práctica 1: SQL</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con tidyverse</a>
 <ul>
@@ -264,7 +268,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#características-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.1</b> Características de las bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#caracter%C3%ADsticas-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.1</b> Características de las bases de datos NoSQL</a></li>
 <li class="chapter" data-level="5.1.2" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#tipos-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.2</b> Tipos de Bases de Datos NoSQL</a></li>
 <li class="chapter" data-level="5.1.3" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#mongodb-nosql-documental"><i class="fa fa-check"></i><b>5.1.3</b> MongoDB: NoSQL documental</a></li>
 <li class="chapter" data-level="5.1.4" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#redis-nosql-key-value"><i class="fa fa-check"></i><b>5.1.4</b> Redis: NoSQL key-value</a></li>
@@ -280,10 +284,10 @@ div.csl-indent {
 <li class="chapter" data-level="6.1" data-path="introducción-al-aprendizaje-estadístico.html"><a href="introducción-al-aprendizaje-estadístico.html"><i class="fa fa-check"></i><b>6.1</b> Introducción al Aprendizaje Estadístico</a></li>
 <li class="chapter" data-level="6.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>6.2</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnologías-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>6.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
+<li class="chapter" data-level="6.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>6.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
 <li class="chapter" data-level="6.2.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>6.2.2</b> Big Data y Machine Learning</a></li>
 <li class="chapter" data-level="6.2.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>6.2.3</b> Rattle como alternativa a RapidMiner en R</a></li>
-<li class="chapter" data-level="6.2.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualización-y-generación-de-cuadros-de-mando"><i class="fa fa-check"></i><b>6.2.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+<li class="chapter" data-level="6.2.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>6.2.4</b> Visualización y Generación de Cuadros de Mando</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
@@ -297,8 +301,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="B.1" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html"><i class="fa fa-check"></i><b>B.1</b> Instalación de R en Windows</a>
 <ul>
-<li class="chapter" data-level="B.1.1" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html#asistente-de-instalación"><i class="fa fa-check"></i><b>B.1.1</b> Asistente de instalación</a></li>
-<li class="chapter" data-level="B.1.2" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html#instalación-de-paquetes"><i class="fa fa-check"></i><b>B.1.2</b> Instalación de paquetes</a></li>
+<li class="chapter" data-level="B.1.1" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html#asistente-de-instalaci%C3%B3n"><i class="fa fa-check"></i><b>B.1.1</b> Asistente de instalación</a></li>
+<li class="chapter" data-level="B.1.2" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html#instalaci%C3%B3n-de-paquetes"><i class="fa fa-check"></i><b>B.1.2</b> Instalación de paquetes</a></li>
 </ul></li>
 <li class="chapter" data-level="B.2" data-path="instalación-en-mac-os-x.html"><a href="instalación-en-mac-os-x.html"><i class="fa fa-check"></i><b>B.2</b> Instalación en Mac OS X</a></li>
 <li class="chapter" data-level="B.3" data-path="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><a href="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><i class="fa fa-check"></i><b>B.3</b> Instalación (opcional) de un entorno o editor de comandos</a>
@@ -327,9 +331,9 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="tecnologías-big-data-hadoopspark-y-visualización" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Tecnologías Big Data (Hadoop/Spark y Visualización)<a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnologías-big-data-hadoopspark-y-visualización" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">6.2</span> Tecnologías Big Data (Hadoop/Spark y Visualización)<a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-big-data-hadoopspark-y-visualizaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="tecnologías-hadoop-spark-y-sparklyr" class="section level3 hasAnchor" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Tecnologías Hadoop, Spark, y Sparklyr<a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnologías-hadoop-spark-y-sparklyr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">6.2.1</span> Tecnologías Hadoop, Spark, y Sparklyr<a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A continuación se introducen los conceptos básicos de las tecnologías Hadoop, Spark y Sparklyr:</p>
 <ul>
 <li><p>Hadoop: framework open-source desarrollado en Java principalmente que soporta aplicaciones distribuidas sobre miles de nodos y a escala Petabyte. Está inspirado en el diseño de las operaciones de MapReduce de Google y el Google File System (GFS). Entre sus principales componentes destaca HDFS Hadoop Distributed File System, sistema de ficheros distribuido sobre múltiples nodos y accesible a nivel de aplicación. También destaca YARN como gestor de recursos, para ejecutar aplicaciones. Destacar que la versión original, Hadoop 1, estaba basada extensivamente en Map Reduce, Hadoop 2 colocó en su core a YARN y Hadoop 3 está orientado a la provisión de Plataforma como servicio y ejecución simultánea de múltiples cargas de trabajo distribuidas sobre recursos solicitados bajo demanda.</p></li>
@@ -370,7 +374,7 @@ https://pythonmachinelearning.pro/supervised-learning-using-decision-trees-to-cl
 <p><img src="images/T3-rattle3.png" /></p>
 </div>
 <div id="visualización-y-generación-de-cuadros-de-mando" class="section level3 hasAnchor" number="6.2.4">
-<h3><span class="header-section-number">6.2.4</span> Visualización y Generación de Cuadros de Mando<a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualización-y-generación-de-cuadros-de-mando" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">6.2.4</span> Visualización y Generación de Cuadros de Mando<a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Se sigue un tutorial de la herramienta <a href="https://docs.microsoft.com/es-es/power-bi/desktop-tutorial-analyzing-sales-data-from-excel-and-an-odata-feed">PowerBI, con datos de Excel y OData Feed</a></p>
 <p>Como documentación de se soporte se cuenta con la web de <a href="https://docs.microsoft.com/es-es/power-bi/">PowerBI</a> y <a href="https://ccance.net/manuales/powerbi/capitulo_01_introduccion.pdf">un tutorial adicional</a></p>
 </div>
@@ -395,42 +399,42 @@ https://pythonmachinelearning.pro/supervised-learning-using-decision-trees-to-cl
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/gltaboada/tgdbook/edit/master/06-Hadoop.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["Practicas_de_TGD.pdf"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/06-Hadoop.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Practicas_de_TGD.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

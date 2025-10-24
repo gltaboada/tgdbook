@@ -148,7 +148,9 @@ empleados %>%
   boxplot(salario ~ sexo*catlab, data = .)
 ```
 
-<img src="04-dplyr_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 
 ### Lectura y escritura de archivos de texto {#readr}
@@ -429,7 +431,7 @@ emplea2 %>% filter(sexo == "Mujer", minoria == "Sí") %>% head()
 
 ```
 ## [1] id       sexo     minoria  tiempemp salini   salario 
-## <0 rows> (o 0- extensión row.names)
+## <0 rows> (or 0-length row.names)
 ```
 
 Podemos **reordenar casos con [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)**:
@@ -500,13 +502,13 @@ empleados %>% group_by(sexo, minoria) %>%
 ```
 
 ```
-## # A tibble: 4 × 4
+## # A tibble: 4 x 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre No       44475.   194
-## 2 Hombre S�       32246.    64
-## 3 Mujer  No       26707.   176
-## 4 Mujer  S�       23062.    40
+## 1 Hombre "No"     44475.   194
+## 2 Hombre "S\xed"  32246.    64
+## 3 Mujer  "No"     26707.   176
+## 4 Mujer  "S\xed"  23062.    40
 ```
 
 ``` r
@@ -515,13 +517,13 @@ empleados %>% group_by(sexo, minoria) %>%
 ```
 
 ```
-## # A tibble: 4 × 4
+## # A tibble: 4 x 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre No       44475.   194
-## 2 Hombre S�       32246.    64
-## 3 Mujer  No       26707.   176
-## 4 Mujer  S�       23062.    40
+## 1 Hombre "No"     44475.   194
+## 2 Hombre "S\xed"  32246.    64
+## 3 Mujer  "No"     26707.   176
+## 4 Mujer  "S\xed"  23062.    40
 ```
 
 ``` r
@@ -556,7 +558,7 @@ bind_shadow(airquality)
 ```
 
 ```
-## # A tibble: 153 × 12
+## # A tibble: 153 x 12
 ##    Ozone Solar.R  Wind  Temp Month   Day Ozone_NA Solar.R_NA Wind_NA Temp_NA
 ##    <int>   <int> <dbl> <int> <int> <int> <fct>    <fct>      <fct>   <fct>  
 ##  1    41     190   7.4    67     5     1 !NA      !NA        !NA     !NA    
@@ -569,8 +571,8 @@ bind_shadow(airquality)
 ##  8    19      99  13.8    59     5     8 !NA      !NA        !NA     !NA    
 ##  9     8      19  20.1    61     5     9 !NA      !NA        !NA     !NA    
 ## 10    NA     194   8.6    69     5    10 NA       !NA        !NA     !NA    
-## # ℹ 143 more rows
-## # ℹ 2 more variables: Month_NA <fct>, Day_NA <fct>
+## # i 143 more rows
+## # i 2 more variables: Month_NA <fct>, Day_NA <fct>
 ```
 
 ``` r
@@ -585,7 +587,7 @@ miss_var_table(airquality)
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   n_miss_in_var n_vars pct_vars
 ##           <int>  <int>    <dbl>
 ## 1             0      4     66.7
@@ -605,7 +607,9 @@ prop_miss_case(airquality)
 gg_miss_upset(airquality) 
 ```
 
-<img src="04-dplyr_files/figure-html/unnamed-chunk-23-1.png" width="80%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-23-1} \end{center}
 
 Distribución conjunta de los valores faltantes para la radiación solar y ozono:
 
@@ -618,7 +622,9 @@ ggplot(airquality,
   geom_miss_point()
 ```
 
-<img src="04-dplyr_files/figure-html/unnamed-chunk-24-1.png" width="80%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-24-1} \end{center}
 
 Distribución mensual de los valores faltantes:
 
@@ -627,7 +633,9 @@ Distribución mensual de los valores faltantes:
 gg_miss_var(airquality, facet = Month)
 ```
 
-<img src="04-dplyr_files/figure-html/unnamed-chunk-25-1.png" width="80%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-25-1} \end{center}
 
 <!--
 library(dplyr)
@@ -744,7 +752,7 @@ src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
+## src:  sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
@@ -758,21 +766,21 @@ invoices
 
 ```
 ## # Source:   table<`invoices`> [?? x 9]
-## # Database: sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
+## # Database: sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
 ##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
 ##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
-##  1         1          2 2009-01-01 00:0… Theodor-Heuss… Stuttgart   <NA>        
-##  2         2          4 2009-01-02 00:0… Ullevålsveien… Oslo        <NA>        
-##  3         3          8 2009-01-03 00:0… Grétrystraat … Brussels    <NA>        
-##  4         4         14 2009-01-06 00:0… 8210 111 ST NW Edmonton    AB          
-##  5         5         23 2009-01-11 00:0… 69 Salem Stre… Boston      MA          
-##  6         6         37 2009-01-19 00:0… Berger Straße… Frankfurt   <NA>        
-##  7         7         38 2009-02-01 00:0… Barbarossastr… Berlin      <NA>        
-##  8         8         40 2009-02-01 00:0… 8, Rue Hanovre Paris       <NA>        
-##  9         9         42 2009-02-02 00:0… 9, Place Loui… Bordeaux    <NA>        
-## 10        10         46 2009-02-03 00:0… 3 Chatham Str… Dublin      Dublin      
-## # ℹ more rows
-## # ℹ 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+##  1         1          2 2009-01-01 00:0~ Theodor-Heuss~ Stuttgart   <NA>        
+##  2         2          4 2009-01-02 00:0~ Ullevålsveien~ Oslo        <NA>        
+##  3         3          8 2009-01-03 00:0~ Grétrystraat ~ Brussels    <NA>        
+##  4         4         14 2009-01-06 00:0~ 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11 00:0~ 69 Salem Stre~ Boston      MA          
+##  6         6         37 2009-01-19 00:0~ Berger Straße~ Frankfurt   <NA>        
+##  7         7         38 2009-02-01 00:0~ Barbarossastr~ Berlin      <NA>        
+##  8         8         40 2009-02-01 00:0~ 8, Rue Hanovre Paris       <NA>        
+##  9         9         42 2009-02-02 00:0~ 9, Place Loui~ Bordeaux    <NA>        
+## 10        10         46 2009-02-03 00:0~ 3 Chatham Str~ Dublin      Dublin      
+## # i more rows
+## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
 ## #   Total <dbl>
 ```
 
@@ -816,16 +824,16 @@ invoices %>% head %>% collect
 ```
 
 ```
-## # A tibble: 6 × 9
+## # A tibble: 6 x 9
 ##   InvoiceId CustomerId InvoiceDate       BillingAddress BillingCity BillingState
 ##       <int>      <int> <chr>             <chr>          <chr>       <chr>       
-## 1         1          2 2009-01-01 00:00… Theodor-Heuss… Stuttgart   <NA>        
-## 2         2          4 2009-01-02 00:00… Ullevålsveien… Oslo        <NA>        
-## 3         3          8 2009-01-03 00:00… Grétrystraat … Brussels    <NA>        
-## 4         4         14 2009-01-06 00:00… 8210 111 ST NW Edmonton    AB          
-## 5         5         23 2009-01-11 00:00… 69 Salem Stre… Boston      MA          
-## 6         6         37 2009-01-19 00:00… Berger Straße… Frankfurt   <NA>        
-## # ℹ 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## 1         1          2 2009-01-01 00:00~ Theodor-Heuss~ Stuttgart   <NA>        
+## 2         2          4 2009-01-02 00:00~ Ullevålsveien~ Oslo        <NA>        
+## 3         3          8 2009-01-03 00:00~ Grétrystraat ~ Brussels    <NA>        
+## 4         4         14 2009-01-06 00:00~ 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11 00:00~ 69 Salem Stre~ Boston      MA          
+## 6         6         37 2009-01-19 00:00~ Berger Straße~ Frankfurt   <NA>        
+## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
 ## #   Total <dbl>
 ```
 
@@ -834,8 +842,8 @@ invoices %>% count # número de filas
 ```
 
 ```
-## # Source:   SQL [1 x 1]
-## # Database: sqlite 3.46.0 [C:\Users\guill\GitHub\tgdbook\data\chinook.db]
+## # Source:   SQL [?? x 1]
+## # Database: sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -853,7 +861,7 @@ res  %>% collect
 ```
 
 ```
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##     min   max   med
 ##   <dbl> <dbl> <dbl>
 ## 1  0.99  25.9  5.65
@@ -870,7 +878,7 @@ res  %>% collect
 ```
 
 ```
-## # A tibble: 24 × 3
+## # A tibble: 24 x 3
 ##    BillingCountry     n total
 ##    <chr>          <int> <dbl>
 ##  1 Argentina          7  37.6
@@ -883,7 +891,7 @@ res  %>% collect
 ##  8 Czech Republic    14  90.2
 ##  9 Denmark            7  37.6
 ## 10 Finland            7  41.6
-## # ℹ 14 more rows
+## # i 14 more rows
 ```
 
 4. Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
@@ -921,7 +929,7 @@ res  %>% collect
 ```
 
 ```
-## # A tibble: 412 × 4
+## # A tibble: 412 x 4
 ##    FirstName LastName  Country Total
 ##    <chr>     <chr>     <chr>   <dbl>
 ##  1 Luís      Gonçalves Brazil   3.98
@@ -934,7 +942,7 @@ res  %>% collect
 ##  8 Leonie    Köhler    Germany  1.98
 ##  9 Leonie    Köhler    Germany 13.9 
 ## 10 Leonie    Köhler    Germany  8.91
-## # ℹ 402 more rows
+## # i 402 more rows
 ```
 
 5. Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
@@ -958,7 +966,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ```
     
     ```
-    ## # A tibble: 10 × 5
+    ## # A tibble: 10 x 5
     ##    CustomerId FirstName LastName   Country        total
     ##         <int> <chr>     <chr>      <chr>          <dbl>
     ##  1          6 Helena    Holý       Czech Republic  49.6
@@ -985,7 +993,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ```
     
     ```
-    ## # A tibble: 25 × 3
+    ## # A tibble: 25 x 3
     ##    Name.y                 n   freq
     ##    <chr>              <int>  <dbl>
     ##  1 Rock                1297 0.370 
@@ -998,7 +1006,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ##  8 Classical             74 0.0211
     ##  9 Drama                 64 0.0183
     ## 10 R&B/Soul              61 0.0174
-    ## # ℹ 15 more rows
+    ## # i 15 more rows
     ```
 
 8.  Listar los 10 artistas con mayor número de canciones 
@@ -1012,7 +1020,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ```
     
     ```
-    ## # A tibble: 204 × 2
+    ## # A tibble: 204 x 2
     ##    Name.y              n
     ##    <chr>           <int>
     ##  1 Iron Maiden       213
@@ -1025,7 +1033,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ##  8 Lenny Kravitz      57
     ##  9 Various Artists    56
     ## 10 The Office         53
-    ## # ℹ 194 more rows
+    ## # i 194 more rows
     ```
 
 Al finalizar hay que desconectar la base de datos:

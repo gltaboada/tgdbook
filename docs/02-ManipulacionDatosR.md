@@ -10,10 +10,14 @@ En el proceso de análisis de datos, al margen de su obtención y organización,
 En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para ello.
 Posteriormente en el Capítulo \@ref(tidyverse) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html).
 
-<div class="figure" style="text-align: center">
-<img src="images/esquema2.png" alt="Etapas del proceso" width="80%" />
-<p class="caption">(\#fig:esquema2)Etapas del proceso</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.8\linewidth]{images/esquema2} 
+
+}
+
+\caption{Etapas del proceso}(\#fig:esquema2)
+\end{figure}
 
 
 
@@ -951,14 +955,18 @@ library(naniar)
 vis_miss(airquality)
 ```
 
-<img src="02-ManipulacionDatosR_files/figure-html/unnamed-chunk-48-1.png" width="80%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{02-ManipulacionDatosR_files/figure-latex/unnamed-chunk-48-1} \end{center}
 -->
 
 ``` r
 plot(ts(airquality[,1:2]))
 ```
 
-<img src="02-ManipulacionDatosR_files/figure-html/unnamed-chunk-49-1.png" width="80%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{02-ManipulacionDatosR_files/figure-latex/unnamed-chunk-49-1} \end{center}
 
 
 
@@ -972,7 +980,7 @@ mcar_test(airquality[,-2])
 ```
 
 ```
-## # A tibble: 1 × 4
+## # A tibble: 1 x 4
 ##   statistic    df p.value missing.patterns
 ##       <dbl> <dbl>   <dbl>            <int>
 ## 1      13.7     4 0.00829                2
@@ -1163,7 +1171,7 @@ proc.time() - t1
 
 ```
 ##    user  system elapsed 
-##    0.33    0.17    1.92
+##   0.496   0.108   0.604
 ```
 
 ``` r
@@ -1174,7 +1182,7 @@ proc.time() - t2
 
 ```
 ##    user  system elapsed 
-##    0.06    0.08    0.30
+##   0.080   0.000   0.079
 ```
 
 
@@ -1393,13 +1401,19 @@ knitr::kable(t(res), digits = 1,
 ```
 
 
-
-|          | Media| Mediana| Desv. típica|
-|:---------|-----:|-------:|------------:|
-|speed     |  15.4|    15.0|          5.3|
-|dist      |  43.0|    36.0|         25.8|
-|velocidad |  24.8|    24.1|          8.5|
-|distancia |  13.1|    11.0|          7.9|
+\begin{tabular}{l|r|r|r}
+\hline
+  & Media & Mediana & Desv. típica\\
+\hline
+speed & 15.4 & 15.0 & 5.3\\
+\hline
+dist & 43.0 & 36.0 & 25.8\\
+\hline
+velocidad & 24.8 & 24.1 & 8.5\\
+\hline
+distancia & 13.1 & 11.0 & 7.9\\
+\hline
+\end{tabular}
 
 <!--
 Consideremos, el conjunto de datos `iris`  
@@ -1412,15 +1426,23 @@ knitr::kable(iris2,
 ```
 
 
-
-| Sepal Length| Sepal Width| Petal Length| Petal Width|Species |
-|------------:|-----------:|------------:|-----------:|:-------|
-|          5.1|         3.5|          1.4|         0.2|setosa  |
-|          4.9|         3.0|          1.4|         0.2|setosa  |
-|          4.7|         3.2|          1.3|         0.2|setosa  |
-|          4.6|         3.1|          1.5|         0.2|setosa  |
-|          5.0|         3.6|          1.4|         0.2|setosa  |
-|          5.4|         3.9|          1.7|         0.4|setosa  |
+\begin{tabular}{r|r|r|r|l}
+\hline
+Sepal Length & Sepal Width & Petal Length & Petal Width & Species\\
+\hline
+5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+\hline
+4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+\hline
+4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+\hline
+4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+\hline
+5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\hline
+5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+\hline
+\end{tabular}
 -->
 Y en este segundo ejemplo, se muestra el resumen de un modelo de regresión lineal simple (distancia de frenado en función de la velocidad del vehículo):
 
@@ -1431,22 +1453,21 @@ knitr::kable(coefs, escape = FALSE, digits = 5)
 ```
 
 
-
-|            |  Estimate| Std. Error|  t value| Pr(>&#124;t&#124;)|
-|:-----------|---------:|----------:|--------:|------------------:|
-|(Intercept) | -17.57909|    6.75844| -2.60106|            0.01232|
-|speed       |   3.93241|    0.41551|  9.46399|            0.00000|
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & Estimate & Std. Error & t value & Pr(>|t|)\\
+\hline
+(Intercept) & -17.57909 & 6.75844 & -2.60106 & 0.01232\\
+\hline
+speed & 3.93241 & 0.41551 & 9.46399 & 0.00000\\
+\hline
+\end{tabular}
 
 b. Tablas interactivas con `datatabe()` del paquete `DT`:
 
 ``` r
 library(DT)
 datatable(iris,options = list(scrollX = TRUE))
-```
-
-```{=html}
-<div class="datatables html-widget html-fill-item" id="htmlwidget-caf1477832ece4098d0e" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-caf1477832ece4098d0e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5,5,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5,5.5,4.9,4.4,5.1,5,4.5,4.4,5,5.1,4.8,5.1,4.6,5.3,5,7,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5,5.9,6,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6,5.7,5.5,5.5,5.8,6,5.4,6,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3,3,4,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3,3.4,3.5,2.3,3.2,3.5,3.8,3,3.8,3.2,3.7,3.3,3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2,3,2.2,2.9,2.9,3.1,3,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3,2.8,3,2.9,2.6,2.4,2.4,2.7,2.7,3,3.4,3.1,2.3,3,2.5,2.6,3,2.6,2.3,2.7,3,2.9,2.9,2.5,2.8,3.3,2.7,3,2.9,3,3,2.5,2.9,2.5,3.6,3.2,2.7,3,2.5,2.8,3.2,3,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3,2.8,3,2.8,3.8,2.8,2.8,2.6,3,3.4,3.1,3,3.1,3.1,3.1,2.7,3.2,3.3,3,2.5,3,3.4,3],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5,1.7,1.5,1,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4,4.7,4.5,4.9,4,4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4,4.9,4.7,4.3,4.4,4.8,5,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4,4.4,4.6,4,3.3,4.2,4.2,4.2,4.3,3,4.1,6,5.1,5.9,5.6,5.8,6.6,4.5,6.3,5.8,6.1,5.1,5.3,5.5,5,5.1,5.3,5.5,6.7,6.9,5,5.7,4.9,6.7,4.9,5.7,6,4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,5.7,5.2,5,5.2,5.4,5.1],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1,0.2,0.2,0.1,0.1,0.2,0.4,0.4,0.3,0.3,0.3,0.2,0.4,0.2,0.5,0.2,0.2,0.4,0.2,0.2,0.2,0.2,0.4,0.1,0.2,0.2,0.2,0.2,0.1,0.2,0.2,0.3,0.3,0.2,0.6,0.4,0.3,0.2,0.2,0.2,0.2,1.4,1.5,1.5,1.3,1.5,1.3,1.6,1,1.3,1.4,1,1.5,1,1.4,1.3,1.4,1.5,1,1.5,1.1,1.8,1.3,1.5,1.2,1.3,1.4,1.4,1.7,1.5,1,1.1,1,1.2,1.6,1.5,1.6,1.5,1.3,1.3,1.3,1.2,1.4,1.2,1,1.3,1.2,1.3,1.3,1.1,1.3,2.5,1.9,2.1,1.8,2.2,2.1,1.7,1.8,1.8,2.5,2,1.9,2.1,2,2.4,2.3,1.8,2.2,2.3,1.5,2.3,2,2,1.8,2.1,1.8,1.8,1.8,2.1,1.6,1.9,2,2.2,1.5,1.4,2.3,2.4,1.8,1.8,2.1,2.4,2.3,1.9,2.3,2.5,2.3,1.9,2,2.3,1.8],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Sepal.Length","targets":1},{"name":"Sepal.Width","targets":2},{"name":"Petal.Length","targets":3},{"name":"Petal.Width","targets":4},{"name":"Species","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 ```
 <!--  options = list(scrollX = TRUE))-->
 
@@ -1525,74 +1546,140 @@ knitr::kable(as.data.frame(variable.labels),
              caption = "Variable labels")
 ```
 
+\begin{table}
 
-
-Table: (\#tab:unnamed-chunk-69)Variable labels
-
-|   |variable.labels                 |
-|:--|:-------------------------------|
-|PT |Publication type                |
-|AU |Author                          |
-|BA |Book authors                    |
-|BE |Editor                          |
-|GP |Group author                    |
-|AF |Author full                     |
-|BF |Book authors fullname           |
-|CA |Corporate author                |
-|TI |Title                           |
-|SO |Publication name                |
-|SE |Series title                    |
-|BS |Book series                     |
-|LA |Language                        |
-|DT |Document type                   |
-|CT |Conference title                |
-|CY |Conference year                 |
-|CL |Conference place                |
-|SP |Conference sponsors             |
-|HO |Conference host                 |
-|DE |Keywords                        |
-|ID |Keywords Plus                   |
-|AB |Abstract                        |
-|C1 |Addresses                       |
-|RP |Reprint author                  |
-|EM |Author email                    |
-|RI |Researcher id numbers           |
-|OI |Orcid numbers                   |
-|FU |Funding agency and grant number |
-|FX |Funding text                    |
-|CR |Cited references                |
-|NR |Number of cited references      |
-|TC |Times cited                     |
-|Z9 |Total times cited count         |
-|U1 |Usage Count (Last 180 Days)     |
-|U2 |Usage Count (Since 2013)        |
-|PU |Publisher                       |
-|PI |Publisher city                  |
-|PA |Publisher address               |
-|SN |ISSN                            |
-|EI |eISSN                           |
-|BN |ISBN                            |
-|J9 |Journal.ISI                     |
-|JI |Journal.ISO                     |
-|PD |Publication date                |
-|PY |Year published                  |
-|VL |Volume                          |
-|IS |Issue                           |
-|PN |Part number                     |
-|SU |Supplement                      |
-|SI |Special issue                   |
-|MA |Meeting abstract                |
-|BP |Beginning page                  |
-|EP |Ending page                     |
-|AR |Article number                  |
-|DI |DOI                             |
-|D2 |Book DOI                        |
-|PG |Page count                      |
-|WC |WOS category                    |
-|SC |Research areas                  |
-|GA |Document delivery number        |
-|UT |Access number                   |
-|PM |Pub Med ID                      |
+\caption{(\#tab:unnamed-chunk-69)Variable labels}
+\centering
+\begin{tabular}[t]{l|l}
+\hline
+  & variable.labels\\
+\hline
+PT & Publication type\\
+\hline
+AU & Author\\
+\hline
+BA & Book authors\\
+\hline
+BE & Editor\\
+\hline
+GP & Group author\\
+\hline
+AF & Author full\\
+\hline
+BF & Book authors fullname\\
+\hline
+CA & Corporate author\\
+\hline
+TI & Title\\
+\hline
+SO & Publication name\\
+\hline
+SE & Series title\\
+\hline
+BS & Book series\\
+\hline
+LA & Language\\
+\hline
+DT & Document type\\
+\hline
+CT & Conference title\\
+\hline
+CY & Conference year\\
+\hline
+CL & Conference place\\
+\hline
+SP & Conference sponsors\\
+\hline
+HO & Conference host\\
+\hline
+DE & Keywords\\
+\hline
+ID & Keywords Plus\\
+\hline
+AB & Abstract\\
+\hline
+C1 & Addresses\\
+\hline
+RP & Reprint author\\
+\hline
+EM & Author email\\
+\hline
+RI & Researcher id numbers\\
+\hline
+OI & Orcid numbers\\
+\hline
+FU & Funding agency and grant number\\
+\hline
+FX & Funding text\\
+\hline
+CR & Cited references\\
+\hline
+NR & Number of cited references\\
+\hline
+TC & Times cited\\
+\hline
+Z9 & Total times cited count\\
+\hline
+U1 & Usage Count (Last 180 Days)\\
+\hline
+U2 & Usage Count (Since 2013)\\
+\hline
+PU & Publisher\\
+\hline
+PI & Publisher city\\
+\hline
+PA & Publisher address\\
+\hline
+SN & ISSN\\
+\hline
+EI & eISSN\\
+\hline
+BN & ISBN\\
+\hline
+J9 & Journal.ISI\\
+\hline
+JI & Journal.ISO\\
+\hline
+PD & Publication date\\
+\hline
+PY & Year published\\
+\hline
+VL & Volume\\
+\hline
+IS & Issue\\
+\hline
+PN & Part number\\
+\hline
+SU & Supplement\\
+\hline
+SI & Special issue\\
+\hline
+MA & Meeting abstract\\
+\hline
+BP & Beginning page\\
+\hline
+EP & Ending page\\
+\hline
+AR & Article number\\
+\hline
+DI & DOI\\
+\hline
+D2 & Book DOI\\
+\hline
+PG & Page count\\
+\hline
+WC & WOS category\\
+\hline
+SC & Research areas\\
+\hline
+GA & Document delivery number\\
+\hline
+UT & Access number\\
+\hline
+PM & Pub Med ID\\
+\hline
+\end{tabular}
+\end{table}
 
 Veamos ahora un par de ejemplos, en el primero se buscan los documentos correspondientes a revistas (que contiene `Chem` en el título de la revista *journal*).  Para ello utilizamos la función  `grepl()` que busca las coincidencias con el patrón `Chem` dentro de cada elemento de un vector de caracteres.
 

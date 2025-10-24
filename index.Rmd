@@ -1,6 +1,6 @@
 ---
 title: "Prácticas de Tecnologías de Gestión y Manipulación de Datos"
-author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es), Rubén F. Casal (ruben.fcasal@udc.es) y Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)"
+author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es), Diego Darriba (diego.darriba@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
