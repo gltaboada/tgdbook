@@ -12,7 +12,7 @@ La información relevante de la materia está disponible en la guía docente y l
 
 En particular, los resultados de aprendizaje son:
 
-* Manejar de forma autónoma y solvente el software necesario para acceder a conjuntos de datos en entornos profesionales y/o en la nube.	
+* Manejar de forma autónoma y solvente el software necesario para acceder a conjuntos de datos en entornos profesionales y/o en la nube.
 
 * Saber gestionar conjuntos de datos masivos en un entorno multidisciplinar que permita la participación en proyectos profesionales complejos que requieran el uso de técnicas estadísticas.	
 
@@ -39,34 +39,23 @@ La impartición de los contenidos durante el curso dependerá de los conocimient
 conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: https://forms.gle/D5bhiLLBUFuh6k1n8 
 
 
-- Semana 1   (9/9) : 10 y 11/9 - Presentación e introducción a Tema 1 & SQL 
+- Semana 1 (20/10) : 21/10 - Presentación
 
-- Semana 2 (16/9) : 17 y 18/9 - Seminario dplyr. 
+- Semana 2 (27/10) : 28 y 30/10 - Tema 1 - SQL
 
-- Semana 3 (23/9) : 24 y 25/9 - Tema 1 & SQL. 
+- Semana 3 (03/11) : 04 y 06/11 - Seminario dplyr
 
-- Semana 4 (30/9) : 1 y 2/10 - Ejercicios SQL.
+- Semana 4 (10/11) : 11, 13 y 14/11 - Tema 1 - SQL
 
-- Semana 5 (7/10) : 8 y 9/10 - Tema 2 & NoSQL - Seminario texto proc. (CSV, excel, Json) y open data . 
+- Semana 5 (17/11) : 18, 20/11 - Tema 1 - SQL. + 21/11 - Seminario texto proc. (CSV, excel, Json) y open data 
 
-- Semana 6 (14/10) : 15/10 - Tutorial sparklyr-SQL. + 16/10 Consultas SQL con sparklyr.
+- Semana 6 (24/11) : 25/11 - Tema 2 NOSQL + 27 y 28/11 - Tema 3 Big Data
 
-- Semana 7 (21/10) : 22 y 23/10 Tema 3 Big Data.
+- Semana 7 (1/12) : 2, 4 y 5/12 Tema 3 Big Data.
 
-- Semana 8 (28/10) : 29 y 30/10 - Tutoriales sparklyr-ML.
+- Semana 8 (8/12) : 9 y 11/12 - Intro a AE + 12/12 Tutoría práctica ML.
 
-- Semana 9 (4/11) : 6/11 - Ejercicios ML.
-
-- Semana 10(11/11) : 11 y 13/11 - Intro a AE (día 13 1 hora de 13 a 14h).
-
-- Semana 11(18/11) : 18/11 - Intro a AE Manuel,  20 y 21/11 -  Ejercicios ML.
-
-- Semana 12 (25/11): 25/11 o cualquier otro día hasta el 5/12, seguramente el 5/12, dudas práctica ML. Backup.
-
-
-Examen 21/1/25 4pm. 
-
-Recuperación 1/7/25 4pm.
+- Semana 9 (15/12) : 16, 18 y 19/12 - Clases de paso / tutorías de cara a examen.
 
 
 <!-- Curso 2019-2020
