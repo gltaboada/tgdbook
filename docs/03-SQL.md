@@ -184,7 +184,7 @@ Sintaxis general:
 
 ## Cláusulas básicas de SQL
 
-### Lectura
+### Selección de campos
 
 * Seleccionar todas las columnas de una tabla: 
 
@@ -218,15 +218,6 @@ Sintaxis general:
   SELECT AVG(milliseconds) AS 'Duración Media' FROM Track; 
 ```
 
-* Filtrado de duplicados: 
-
-
-``` sql
-  SELECT DISTINCT FirstName FROM Customer; 
-
-  SELECT COUNT(DISTINCT FirstName) FROM Customer; 
-```
-
 * Formato: 
 
 
@@ -237,8 +228,37 @@ Sintaxis general:
 
   SELECT ROUND(AVG(Total), 2) AS 'Facturacion Media' FROM Invoice; 
 ```
- 
-#### Filtrado de Resultados 
+
+### Número de filas (paginación) 
+
+* Obtener las N primeras: 
+
+
+``` sql
+  SELECT * FROM Track
+  ORDER BY title ASC
+  LIMIT 5;
+```
+
+* Obtener las N filas siguientes:
+
+
+``` sql
+  SELECT * FROM Track
+  ORDER BY title ASC
+  OFFSET 5 LIMIT 5;
+```
+
+### Filtrado de Resultados 
+
+* Filtrado de duplicados: 
+
+
+``` sql
+  SELECT DISTINCT FirstName FROM Customer; 
+
+  SELECT COUNT(DISTINCT FirstName) FROM Customer; 
+```
 
 * Seleccionar filas con condiciones: 
 
@@ -292,7 +312,7 @@ WHERE UnitPrice < 2.0;
   WHERE composer IN ('Metallica', 'Ulrich'); 
 ```
 
-#### Ordenar Resultados 
+### Ordenación de Resultados 
 
 * Ordenar por una columna: 
 
@@ -313,26 +333,144 @@ WHERE UnitPrice < 2.0;
   ORDER BY composer ASC, title DESC; 
 ```
 
-#### Número de filas (paginación) 
+### Unión de tablas
 
-* Obtener las N primeras: 
+* Intersección por clave primaria / clave foránea: 
 
-
-``` sql
-  SELECT * FROM Track
-  ORDER BY title ASC
-  LIMIT 5;
-```
-
-* Obtener las N filas siguientes:
+  + Operador A *[INNER] JOIN* B: interesección de A y B
 
 
 ``` sql
-  SELECT * FROM Track
-  ORDER BY title ASC
-  OFFSET 5 LIMIT 5;
+  SELECT ar.Name AS Artista, a.Title AS Album
+  FROM Artist ar JOIN Album a ON ar.ArtistId = a.ArtistId;
+```
+    
+  + Operador A *LEFT JOIN* B: interesección de A y B, y filas de A sin correspondencia en B
+  
+
+``` sql
+  SELECT ar.Name AS Artista, a.Title AS Album
+  FROM Artist ar LEFT JOIN Album a ON ar.ArtistId = a.ArtistId;
 ```
 
+  + Operador A *RIGHT JOIN* B:  interesección de A y B, y filas de B sin correspondencia en A
+  
+  + A 'FULL [OUTER] JOIN' B: interesección de A y B, y filas de A y B sin correspondencia
+
+  + sqlite no soporta directamente RIGHT JOIN ni FULL JOIN
+
+* Producto cartesiano
+
+
+``` sql
+  SELECT g.Name AS Genero, m.Name AS Formato
+  FROM Genre g CROSS JOIN MediaType m
+```
+
+### Agrupamiento
+
+* Funciones de agregación parciales
+
+
+``` sql
+  SELECT A.Title AS Album, COUNT(*) AS Canciones, SUM(UnitPrice) AS Precio 
+  FROM Album A JOIN Track T ON A.AlbumId = T.AlbumId 
+  GROUP BY A.Title; 
+```
+
+  + *CONSEJO:* Es importante agrupar por *clave candidata* o *superclave*.
+    La consulta anterior daría resultados incorrectos si existen dos álbumes diferentes con el mismo título.
+    Mejor:
+
+
+``` sql
+  SELECT A.Title AS Album, COUNT(*) AS Canciones, SUM(UnitPrice) AS Precio 
+  FROM Album A JOIN Track T ON A.AlbumId = T.AlbumId 
+  GROUP BY A.AlbumId;
+```
+
+  + Además, también es importante que ese campo de agrupación o algo que garantice la identificación unívoca
+    se presente en los resultados. En el ejemplo anterior sí aparecerían los álbumes por separado, pero no
+    sería posible identificar cuál es cuál en los resultados. Mejor:
+    
+
+``` sql
+  SELECT A.AlbumId, A.Title AS Album, COUNT(*) AS Canciones, SUM(UnitPrice) AS Precio 
+  FROM Album A JOIN Track T ON A.AlbumId = T.AlbumId 
+  GROUP BY A.AlbumId;
+```
+
+  + Incluso mejor, si asumimos que no habrá un artista con dos álbumes con el mismo nombre:
+
+
+``` sql
+  SELECT AR.Name AS Artista, AS Album, COUNT(*) AS Canciones, SUM(UnitPrice) AS Precio 
+  FROM Album A JOIN Track T ON A.AlbumId = T.AlbumId
+               JOIN Artist AR ON A.ArtistId = AR.ArtistId 
+  GROUP BY A.AlbumId;
+```
+
+* Filtrado por grupos (seleccionar grupos con condiciones)
+
+
+``` sql
+  SELECT AR.Name AS Artista, AS Album, COUNT(*) AS Canciones, SUM(UnitPrice) AS Precio
+  FROM Album A JOIN Track T ON A.AlbumId = T.AlbumId 
+  GROUP BY A.AlbumId
+  HAVING Canciones > 6; 
+```
+
+### Subconsultas (subqueries)
+
+* Subqueries en la cláusula SELECT:
+
+  + La consulta debe devolver una única columna, y típicamente un único valor 
+ 
+
+``` sql
+  SELECT T.Name, (SELECT COUNT(*) 
+                  FROM Track T2 
+                  WHERE T2.GenreId = T.GenreId) AS Canciones 
+  FROM Track T JOIN Genre G ON T.GenreId = G.GenreId; 
+```
+
+  + *Observación:* en una subquery se puede hacer referencia a columnas de la consulta externa. 
+
+* Subqueries en la cláusula WHERE / HAVING:
+
+
+``` sql
+  SELECT T.Name, T.Milliseconds 
+  FROM Track T 
+  WHERE T.Milliseconds > (SELECT AVG(Milliseconds) FROM Track);  
+```
+
+* Subqueries en la cláusula FROM:
+
+
+``` sql
+  SELECT T.Song, G.Name 
+  FROM Genre G JOIN (SELECT Name AS Song, GenreId as Id 
+                     FROM Track) AS T 
+               ON Id = G.GenreId 
+```
+
+### Operaciones con conjuntos de resultados
+
+
+``` sql
+  Query1 
+  { UNION [ ALL ] | INTERSECT | EXCEPT } 
+  Query2 
+```
+
+* Query1 y Query2 deben devolver el *mismo número de columnas*, pero no necesariamente el mismo tipo de dato.
+  Elimina filas duplicadas.
+* **Unión:** Resultados existentes en alguna consulta (eq. OR)
+* **Intersección:** Resultados existentes en ambas consultas (eq. AND) 
+* **Diferencia (Except):** Resultados existentes en Query1 pero no en Query2 (eq. MINUS) 
+* Cláusula **UNION ALL**: Elimina la restricción de filas duplicadas y muestra todo
+ 
 
 ## Gestión de tablas
 
