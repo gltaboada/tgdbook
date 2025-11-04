@@ -1,32 +1,38 @@
-#' Manipulación de datos con R
-#' ===========================
-#'
-#' En el proceso de análisis de datos, al margen de su obtención y organización,
-#' una de las primeras etapas es el acceso y la manipulación de los datos.
-#'
-#' Lectura, importación y exportación de datos
-#' -------------------------------------------
-#'
+#' # Manipulación de datos con R {#manipR}
+#' 
+#' En el proceso de análisis de datos, al margen de su obtención y organización, una de las primeras etapas es el acceso y la manipulación de los datos (ver Figura \@ref(fig:esquema2)).
+#' En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para ello.
+#' Posteriormente en el Capítulo \@ref(tidyverse) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html).
+#' 
+## ----esquema2, echo=FALSE, out.width="80%", fig.cap="Etapas del proceso"----
+knitr::include_graphics("images/esquema2.png")
+
+#' 
+#' ## Lectura, importación y exportación de datos {#read}
+#' 
+#' 
 #' Además de la introducción directa, R es capaz de
 #' importar datos externos en múltiples formatos:
-#'
+#' 
 #' -   bases de datos disponibles en librerías de R
-#'
+#' 
 #' -   archivos de texto en formato ASCII
-#'
-#' -   archivos en otros formatos: Excel, SPSS, ...
-#'
-#' -   bases de datos relacionales: MySQL, Oracle, ...
-#'
-#' -   formatos web: HTML, XML, JSON, ...
-#'
-#' -   ....
-#'
+#' 
+#' -   archivos en otros formatos: Excel, SPSS, Matlab...
+#' 
+#' -   bases de datos relacionales: MySQL, Oracle...
+#' 
+#' -   formatos web: HTML, XML, JSON...
+#' 
+#' -   otros lenguajes de programación: Python, Julia...
+#' 
 #' ### Formato de datos de R
-#'
+#' 
 #' El formato de archivo en el que habitualmente se almacena objetos (datos)
 #' R es binario y está comprimido (en formato `"gzip"` por defecto).
-#' Para cargar un fichero de datos se emplea normalmente [`load()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load):
+#' Para cargar un fichero de datos se emplea normalmente [`load()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load).
+#' A continuación se utiliza el fichero `empleados.RData` que contiene datos de empleados de un banco.
+#' 
 
 res <- load("data/empleados.RData")
 res
@@ -34,189 +40,194 @@ ls()
 
 #' y para guardar [`save()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save):
 
-# Guardar
-save(empleados, file = "data/empleados_new.RData")
+# # Guardar
+# save(empleados, file = "data/empleados_new.RData")
 
-#'
+#' 
 #' Aunque, como indica este comando en la ayuda (`?save`):
-#'
-#' > For saving single R objects, [`saveRDS()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/saveRDS)
-#' > is mostly preferable to save(),
-#' > notably because of the functional nature of readRDS(), as opposed to load().
-#'
+#' 
+#' > *For saving single R objects, [`saveRDS()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/saveRDS)* 
+#' > *is mostly preferable to save(),* 
+#' > *notably because of the functional nature of readRDS(), as opposed to load().*
+#' 
 
-saveRDS(empleados, file = "data/empleados_new.rds")
-## restore it under a different name
-empleados2 <- readRDS("data/empleados_new.rds")
-identical(empleados, empleados2)
+# saveRDS(empleados, file = "data/empleados_new.rds")
+# ## restore it under a different name
+# empleados2 <- readRDS("data/empleados_new.rds")
+# # identical(empleados, empleados2)
 
-#'
-#' El objeto empleado normalmente en R para almacenar datos en memoria
-#' es el [`data.frame`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame).'
-#'
+#' 
+#' Normalmente, el objeto empleado en R para almacenar datos en memoria 
+#' es el [`data.frame`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame).
+#' 
 #' ### Acceso a datos en paquetes
-#'
-#' R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete `datasets`
-#' que se carga por defecto al abrir R.
+#' 
+#' R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete `datasets` 
+#' que se carga por defecto al abrir R. 
 #' Con el comando `data()` podemos obtener un listado de las bases de datos disponibles.
-#'
+#' 
 #' Para cargar una base de datos concreta se utiliza el comando
-#' `data(nombre)` (aunque en algunos casos se cargan automáticamente al emplearlos).
+#' `data(nombre)` (aunque en algunos casos se cargan automáticamente al emplearlos). 
 #' Por ejemplo, `data(cars)` carga la base de datos llamada `cars` en el entorno de trabajo (`".GlobalEnv"`)
 #' y `?cars` muestra la ayuda correspondiente con la descripición de la base de datos.
-#'
-#'
+#' 
+#' 
 #' ### Lectura de archivos de texto {#cap2-texto}
-#'
-#' En R para leer archivos de texto se suele utilizar la función `read.table()`.
-#' Supóngase, por ejemplo, que en el directorio actual está el fichero
+#' 
+#' En R, para leer archivos de texto se suele utilizar la función `read.table()`.
+#' Suponinedo, por ejemplo, que en el directorio actual está el fichero
 #' *empleados.txt*. La lectura de este fichero vendría dada por el código:
-#'
+#' 
 
 # Session > Set Working Directory > To Source...?
 datos <- read.table(file = "data/empleados.txt", header = TRUE)
 # head(datos)
 str(datos)
+class(datos)
 
 #' Si el fichero estuviese en el directorio *c:\\datos* bastaría con especificar
 #' `file = "c:/datos/empleados.txt"`.
 #' Nótese también que para la lectura del fichero anterior se ha
 #' establecido el argumento `header=TRUE` para indicar que la primera línea del
 #' fichero contiene los nombres de las variables.
-#'
+#' 
 #' Los argumentos utilizados habitualmente para esta función son:
-#'
+#' 
 #' -   `header`: indica si el fichero tiene cabecera (`header=TRUE`) o no
 #'     (`header=FALSE`). Por defecto toma el valor `header=FALSE`.
-#'
+#' 
 #' -   `sep`: carácter separador de columnas que por defecto es un espacio
 #'     en blanco (`sep=""`). Otras opciones serían: `sep=","` si el separador es
 #'     un ";", `sep="*"` si el separador es un "\*", etc.
-#'
+#' 
 #' -   `dec`: carácter utilizado en el fichero para los números decimales.
 #'     Por defecto se establece `dec = "."`. Si los decimales vienen dados
-#'     por "," se utiliza `dec = ","`
-#'
+#'     por "," se utiliza `dec = ","`.
+#' 
 #' Resumiendo, los (principales) argumentos por defecto de la función
 #' `read.table` son los que se muestran en la siguiente línea:
+#' 
 
 # read.table(file, header = FALSE, sep = "", dec = ".")
 
+#' 
 #' Para más detalles sobre esta función véase
-help(read.table)
-
-#' Estan disponibles otras funciones con valores por defecto de los parámetros
-#' adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores
+#' `help(read.table)`.
+#' 
+#' Estan disponibles otras funciones con valores por defecto de los parámetros 
+#' adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores 
 #' se puede utilizar `read.delim()` o `read.delim2()`:
 
 # read.delim(file, header = TRUE, sep = "\t", dec = ".")
 # read.delim2(file, header = TRUE, sep = "\t", dec = ",")
 
-#'
-#' ### Alternativa `tidyverse`
-#'
-#' Para leer archivos de texto en distintos formatos también se puede emplear el paquete [`readr`](https://readr.tidyverse.org)
-#' (colección [`tidyverse`](https://www.tidyverse.org/)), para lo que se recomienda
-#' consultar el [Capítulo 11](https://r4ds.had.co.nz/data-import.html) del libro [R for Data Science](http://r4ds.had.co.nz).
-#'
-#'
+#' 
+#' 
 #' ### Importación desde SPSS
-#'
-#' El programa R permite
-#' lectura de ficheros de datos en formato SPSS (extensión *.sav*) sin
-#' necesidad de tener instalado dicho programa en el ordenador. Para ello
-#' se necesita:
-#'
+#' 
+#' El programa R permite lectura de ficheros de datos en formato SPSS (extensión *.sav*) sin necesidad de tener instalado dicho programa en el ordenador. Para ello se necesita:
+#' 
 #' -   cargar la librería `foreign`
-#'
+#' 
 #' -   utilizar la función `read.spss`
-#'
+#' 
 #' Por ejemplo:
-#'
+#' 
 
 library(foreign)
-datos <- read.spss(file = "data/Employee data.sav", to.data.frame = TRUE)
+datos <- read.spss(file = "data/Employee data.sav", 
+                   to.data.frame = TRUE)
 # head(datos)
 str(datos)
 
-#'
+#' 
 #' **Nota**: Si hay fechas, puede ser recomendable emplear la función `spss.get()` del paquete `Hmisc`.
-#'
-#'
+#' 
+#' 
 #' ### Importación desde Excel
-#'
-#' Se pueden leer fichero de
-#' Excel (con extensión *.xlsx*) utilizando por ejemplo los paquetes [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html), [`readxl`](https://readxl.tidyverse.org) (colección [`tidyverse`](https://www.tidyverse.org/)), `XLConnect` o
-#' [`RODBC`](https://cran.r-project.org/web/packages/RODBC/index.html) (este paquete se empleará más adelante para acceder a bases de datos),
-#' entre otros.
-#'
-#' Por ejemplo el siguiente código implementa una función que permite leer todos
-#' los archivos en formato *.xlsx* en un directorio:
-#'
+#' 
+#' Se pueden leer fichero de Excel (con extensión *.xlsx*) utilizando, por ejemplo, los paquetes:
+#' 
+#' + [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html), 
+#' 
 
 library(openxlsx)
+datos<-read.xlsx("./data/coches.xlsx")
+class(datos)
 
+#' 
+#' 
+#' + [`RODBC`](https://cran.r-project.org/web/packages/RODBC/index.html) (este paquete se empleará más adelante para acceder a bases de datos),
+#' entre otros.
+#' 
+#' El siguiente código implementa una función que permite leer todos
+#' los archivos en formato *.xlsx* en un directorio:
+#' 
+
+library(openxlsx)
 read_xlsx <- function(path = '.') {
   files <- dir(path, pattern = '*.xlsx') # list.files
   # file.list <- lapply(files, readWorkbook)
   file.list <- vector(length(files), mode = 'list')
-  for (i in seq_along(files))
+  for (i in seq_along(files)) 
       file.list[[i]] <- readWorkbook(files[i])
-  file.names <- sub('\\.xlsx$', '', basename(files))
+  file.names <- sub('\\.xlsx$', '', basename(files)) 
   names(file.list) <- file.names
   file.list
 }
 
-#' Para combinar los archivos (suponiendo que tienen las mismas columnas), podríamos ejecutar una llamada a [`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind)
-#' o emplear la función [`bind_rows()` ](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/bind)
-#' del paquete [`dplyr`](https://dplyr.tidyverse.org):
+#' 
+#' Para combinar los archivos, suponiendo que tienen las mismas columnas, podríamos ejecutar una llamada a [`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind)(R base):
 
 # df <- do.call('rbind', file.list)
 
+#' o emplear la función [`bind_rows()` ](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/bind)
+#' del paquete [`dplyr`](https://dplyr.tidyverse.org), donde las columnas se emparejan por nombre, y cualquier columna que falte se rellenará con `NA`:
+#' 
+
 # df <- dplyr::bind_rows(file.list)
 
-#' Como alternativa simple se pueden exportar los datos desde Excel a un archivo de texto *separado por comas* (extensión *.csv*).
+#' El Capítulo 4, provee de otras utilidades  para la manipulación de datos con `dplyr` [@R-dplyr]. 
+#' 
+#' 
+#' 
+#' Los datos cargados en R (usualmente un `data.frame`) se pueden exportar desde Excel fácilmente a un archivo de texto *separado por comas* (extensión *.csv*), evitando utilizar algunos de los paquetes mencionados anteriormente.
 #' Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
-#'
-#' -   Desde Excel se selecciona el menú
-#'     `Archivo -> Guardar como -> Guardar como` y en `Tipo` se escoge la opción de
-#'     archivo CSV. De esta forma se guardarán los datos en el archivo
-#'     *coches.csv*.
-#'
+#' 
+#' -   Desde Excel, se selecciona el menú `Archivo -> Guardar como -> Guardar como`, y en `Tipo`, se escoge la opción de archivo CSV. De esta forma se guardarán los datos en el archivo *coches.csv*.
+#' 
 #' -   El fichero *coches.csv* es un fichero de texto plano (se puede
-#'     editar con Notepad), con cabecera, las columnas separadas por ";", y
-#'     siendo "," el carácter decimal.
-#'
+#'     editar con el bloc de notas, *Notepad*), con cabecera, las columnas separadas por ";", y siendo "," el carácter decimal.
+#' 
 #' -   Por lo tanto, la lectura de este fichero se puede hacer con:
-#'
+#' 
 
-datos <- read.table("coches.csv", header = TRUE, sep = ";", dec = ",")
+# datos <- read.table("coches.csv", header = TRUE,
+#                     sep = ";", dec = ",")
 
-#' Otra posibilidad es utilizar la función `read.csv2`, que es
-#' una adaptación de la función general `read.table` con las siguientes
+#' 
+#' Otra posibilidad, es utilizar la función `read.csv2`. Esta función no es más que una adaptación de la función general `read.table` con las siguientes
 #' opciones:
 
-# read.csv2(file, header = TRUE, sep = ";", dec = ",")
+# read.csv2(file, header = TRUE, sep = ";", dec = ",", ...)
 
-#'
+#' 
 #' Por lo tanto, la lectura del fichero *coches.csv* se puede hacer de modo
 #' más directo con:
 
-datos <- read.csv2("coches.csv")
+# datos <- read.csv2("coches.csv")
 
-#' Esta forma de proceder, exportando a formato CSV, se puede emplear con otras hojas de cálculo o fuentes de datos.
-#' Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el separador de campos será `sep = ","` y el de decimales `dec = ","`, las opciones por defecto en la función `read.csv()`.
-
-#'
-#' ### Exportación de datos
-#'
-#' Puede ser de interés la
-#' exportación de datos para que puedan leídos con otros programas. Para
-#' ello, se puede emplear la función `write.table()`. Esta función es
-#' similar, pero funcionando en sentido inverso, a `read.table()`
-#' (Sección \@ref(cap2-texto)).
-#'
+#' 
+#' Esta forma de proceder, exportando a formato CSV, se puede emplear con otras hojas de cálculo o fuentes de datos. 
+#' Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el separador de campos será `sep = ","` y el de decimales `dec = "."`, las opciones por defecto en la función `read.csv()`.
+#' 
+#' 
+#' ### Exportación de datos  {#cap2-exporta}
+#' 
+#' Puede ser de interés la exportacifn de datos para que puedan ser leídos con otros programas. Para ello, se puede emplear la función `write.table()`. Esta función es similar, pero funcionando en sentido inverso, a `read.table()`, ver Sección \@ref(cap2-texto).
+#' 
 #' Veamos un ejemplo:
+#' 
 
 tipo <- c("A", "B", "C")
 longitud <- c(120.34, 99.45, 115.67)
@@ -226,100 +237,130 @@ datos
 #' Para guardar el data.frame `datos` en un fichero de texto se
 #' puede utilizar:
 
-write.table(datos, file = "datos.txt")
+# write.table(datos, file = "datos.txt")
 
 #' Otra posibilidad es utilizar la función:
 
-write.csv2(datos, file = "datos.csv")
+# write.csv2(datos, file = "datos.csv")
 
-#' que dará lugar al fichero *datos.csv* importable directamente desde Excel.
-#'
-#'
+#' que dará lugar al fichero *datos.csv* importable directamente desde Excel. Las opciones anteriores sólo dependen del paquete `utils`, que se instala por defecto con R base.
+#' 
+#' 
+#' 
+#' ### Python, Julia y otros lenguajes de programación
+#' R es un lenguaje de programación libre (derivado del lenguaje S  en  los Laboratorios Bell) que se caracteriza por su capacidad para interactuar con otros lenguajes de programación, incluyendo Python [@python] y Julia [@julia]. 
+#' 
+#' En el ámbito de la Estadística (como en la denominada **Ciencia de Datos**), R destaca por su extensa y detallada documentación  (en muchos casos como resultado de aportaciones metodológicas y/o avances científicos). Por ejemplo, después de diez años de la primera edición del libro *An Introduction to Statistical Learning con aplicaciones en R (ISLR)* , @james2013introduction, algunos de los mismos autores publicaron la edición en Python (ISLP), @james2023introduction.  
+#' Las últimas ediciones de ambos libros están disponibles en abierto en [https://www.statlearning.com](https://www.statlearning.com/).
+#' Por otro lado, en 2015, se lanzó el paquete `r cite_pkg(reticulate)` disponible en [https://rstudio.github.io/reticulate/](https://rstudio.github.io/reticulate/), permitiendo la ejecución de código Python desde R (y en 2020 se completó la integración de Python en la interfaz de RStudio).  
+#' 
+#' 
+
+# library(reticulate)
+# os <- import("os")
+# os$listdir(".")
+
+#' 
+#' Si queremos trabajar con Python de forma interactiva, podemos usar `repl_python()`. Los objetos creados en Python se pueden usar en R con `py`  de `reticulate`.
+#' 
+#' Recientemente, *Julia* se presenta también como una alternativa a considerar. 
+#' El paquete  `r cite_pkg(JuliaConnectoR)` disponible en [https://cran.r-project.org/web/packages/JuliaConnectoR/](https://cran.r-project.org/web/packages/JuliaConnectoR/) facilita la importación de funciones y paquetes completos de Julia a R, es decir, permite el uso de funciones de Julia directamente en R.
+#' 
+#' R también permite el uso/comunicación de otros lenguajes de programación como Java, C, C++, Fortran, entre otros.
+#' 
+#' En julio de 2022, la compañía *RStudio Inc* anunció que cambiaba su nombre a [*Posit*](https://posit.co), para reflejar su interés en el desarrollo de herramientas para lenguajes adicionales de programación, principalmente Python.
+#' En esa misma fecha lanzó [Quarto](https://quarto.org) como una nueva alternativa a R Markdown para ofrecer compatibilidad integrada para múltiples lenguajes, como Python o Julia, además de R.
+#' Desde julio de 2025 ya están disponibles versiones estables de [Positron](https://positron.posit.co/), un nuevo IDE para el análisis de datos que es compatible de forma nativa con otros lenguajes, como Python o Julia, y que se supone que será un sustituto de RStudio en el futuro.
+#' 
+#' 
+#' 
 #' Manipulación de datos
 #' ---------------------
-#'
-#' Una vez cargada una (o varias) bases
-#' de datos hay una series de operaciones que serán de interés para el
-#' tratamiento de datos:
-#'
-#' -   Operaciones con variables:
+#' 
+#' Una vez cargada una (o varias) bases de datos hay una series de operaciones que serán de interés para el tratamiento de datos: 
+#' 
+#' -   Operaciones con variables: 
 #'     - crear
 #'     - recodificar (e.g. categorizar)
 #'     - ...
-#'
+#' 
 #' -   Operaciones con casos:
 #'     - ordenar
 #'     - filtrar
 #'     - ...
-#'
+#' 
 #' -   Operaciones con tablas de datos:
 #'     - unir
 #'     - combinar
 #'     - consultar
 #'     - ...
-#'
-#'
+#' 
+#' 
 #' A continuación se tratan algunas operaciones *básicas*.
-#'
+#' 
 #' ### Operaciones con variables
-#'
+#' 
 #' #### Creación (y eliminación) de variables
-#'
-#' Consideremos de nuevo la
-#' base de datos `cars` incluida en el paquete `datasets`:
+#' 
+#' Consideremos de nuevo la base de datos `cars` incluida en el paquete `datasets`:
 
 data(cars)
 # str(cars)
 head(cars)
 
-#'
-#' Utilizando el comando `help(cars)`
-#' se obtiene que `cars` es un data.frame con 50 observaciones y dos
-#' variables:
-#'
-#' -   `speed`: Velocidad (millas por hora)
-#'
-#' -   `dist`: tiempo hasta detenerse (pies)
-#'
+#' 
+#' Utilizando el comando `help(cars)` se obtiene que `cars` es un data.frame con 50
+#' observaciones y dos variables:
+#' 
+#' -   `speed`: Velocidad (en millas por hora)
+#' 
+#' -   `dist`: tiempo hasta detenerse (en pies)
+#' 
 #' Recordemos que, para acceder a la variable `speed` se puede
 #' hacer directamente con su nombre o bien utilizando notación
-#' "matricial".
+#' "matricial" (se seleccionan las 6 primeras observaciones por comodidad).
 
 cars$speed
-cars[, 1]  # Equivalente
+# cars[, 1]       # Equivalente
+# cars[,"speed"]  # Equivalente
 
+#' 
 #' Supongamos ahora que queremos transformar la variable original `speed`
 #' (millas por hora) en una nueva variable `velocidad` (kilómetros por
 #' hora) y añadir esta nueva variable al data.frame `cars`.
 #' La transformación que permite pasar millas a kilómetros es
 #' `kilómetros=millas/0.62137` que en R se hace directamente con:
-#'
+#' 
 
-cars$speed/0.62137
+# (cars$speed/0.62137)[1:10]
 
+#' 
 #'  Finalmente, incluimos la nueva variable que llamaremos
 #' `velocidad` en `cars`:
 
 cars$velocidad <- cars$speed / 0.62137
 head(cars)
 
-
+#' 
 #' También transformaremos la variable `dist` (en pies) en una nueva
-#' variable `distancia` (en metros). Ahora la transformación deseada es
+#' variable `distancia` (en metros), por lo que la transformación deseada es
 #' `metros=pies/3.2808`:
+#' 
 
 cars$distancia <- cars$dis / 3.2808
 head(cars)
 
+#' 
 #'  Ahora, eliminaremos las variables originales `speed` y
 #' `dist`, y guardaremos el data.frame resultante con el nombre `coches`.
 #' En primer lugar, veamos varias formas de acceder a las variables de
 #' interés:
 
-cars[, c(3, 4)]
-cars[, c("velocidad", "distancia")]
-cars[, -c(1, 2)]
+# cars[, c(3, 4)]
+# cars[, c("velocidad", "distancia")]
+# cars[, -c(1, 2)]
 
+#' 
 #' Utilizando alguna de las opciones anteriores se obtiene el `data.frame`
 #' deseado:
 
@@ -327,151 +368,270 @@ coches <- cars[, c("velocidad", "distancia")]
 # head(coches)
 str(coches)
 
-#' Finalmente los datos anteriores podrían ser guardados en un fichero
+#' 
+#' Finalmente, los datos anteriores podrían ser guardados en un fichero
 #' exportable a Excel con el siguiente comando:
 
-write.csv2(coches, file = "coches.csv")
+# write.csv2(coches, file = "coches.csv")
 
-#'
+#' 
 #' #### Recodificación de variables
-#'
+#' 
 #' Con el comando `cut()` podemos crear variables categóricas a partir de variables numéricas.
 #' El parámetro `breaks` permite especificar los intervalos para la discretización, puede ser un vector con los extremos de los intervalos o un entero con el número de intervalos.
 #' Por ejemplo, para categorizar la variable `cars$speed` en tres intervalos equidistantes podemos emplear^[Aunque si el objetivo es obtener las frecuencias de cada intervalo puede ser más eficiente emplear `hist()` con `plot = FALSE`.]:
-#'
+#' 
 
 fspeed <- cut(cars$speed, 3, labels = c("Baja", "Media", "Alta"))
 table(fspeed)
 
-#'
+#' 
 #' Para categorizar esta variable en tres niveles con aproximadamente el mismo número de observaciones podríamos combinar esta función con `quantile()`:
-#'
+#' 
 
-breaks <- quantile(cars$speed, probs = seq(0, 1, len = 4))
-fspeed <- cut(cars$speed, breaks, labels = c("Baja", "Media", "Alta"))
+breaks <- quantile(cars$speed, probs = 0:3/3)
+etiquetas3 <- c("Baja", "Media", "Alta")
+fspeed <- cut(cars$speed, breaks, labels = etiquetas3)
 table(fspeed)
 
-#'
+#' 
 #' Para otro tipo de recodificaciones podríamos emplear la función `ifelse()` vectorial:
+#' 
 
 fspeed <- ifelse(cars$speed < 15, "Baja", "Alta")
-fspeed <- factor(fspeed, levels = c("Baja", "Alta"))
+etiquetas2 <- c("Baja", "Alta")
+fspeed <- factor(fspeed, levels = etiquetas2)
 table(fspeed)
 
-#'
-#' Alternativamente en el caso de dos niveles podríamos emplear directamente la función `factor()`:
+#' 
+#' Alternativamente, en el caso de dos niveles podríamos emplear directamente la función `factor()`:
+#' 
 
-fspeed <- factor(cars$speed >= 15, labels = c("Baja", "Alta")) # levels = c("FALSE", "TRUE")
+fspeed <- factor(cars$speed >= 15, 
+                 labels = etiquetas2) # levels = c("FALSE", "TRUE")
 table(fspeed)
 
-#'
-#' En el caso de múltiples niveles se podría emplear `ifelse()` anidados:
+#' 
+#' En el caso de múltiples niveles, se podría emplear `ifelse()` anidados:
+#' 
 
 fspeed <- ifelse(cars$speed < 10, "Baja",
                  ifelse(cars$speed < 20, "Media", "Alta"))
-fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+fspeed <- factor(fspeed, levels = etiquetas3)
 table(fspeed)
 
-#'
-#' Otra alternativa sería emplear la función [`recode()`](https://www.rdocumentation.org/packages/car/versions/3.0-9/topics/recode) del paquete `car`.
-#'
-#' NOTA: Para acceder directamente a las variables de un data.frame podríamos emplear la función `attach()` para añadirlo a la ruta de búsqueda y `detach()` al finalizar.
+#' 
+#' Otra alternativa, sería emplear la función [`recode()`](https://www.rdocumentation.org/packages/car/versions/3.0-9/topics/recode) del paquete `car`. 
+#' 
+
+library(car)
+fspeed <- recode(cars$speed, "0:10 = 'Baja'; 
+                 10:20 = 'Media';
+                 else='Alta'
+                 ")
+fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+
+#' 
+#' NOTA: Para acceder directamente a las variables de un `data.frame` podríamos emplear la función `attach()` para añadirlo a la ruta de búsqueda y `detach()` al finalizar.
 #' Sin embargo esta forma de proceder puede causar numerosos inconvenientes, especialmente al modificar la base de datos, por lo que la recomendación sería emplear `with()`.
 #' Por ejemplo, podríamos calcular el factor anterior empleando:
+#' 
 
 fspeed <- with(cars, ifelse(speed < 10, "Baja",
                  ifelse(speed < 20, "Media", "Alta")))
 fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
 table(fspeed)
 
-
-#'
+#' 
+#' 
 #' ### Operaciones con casos
-#'
+#' 
 #' #### Ordenación
-#'
-#' Continuemos con el data.frame `cars`.
+#' 
+#' Continuemos con el data.frame `cars`. 
 #' Se puede comprobar que los datos disponibles están ordenados por
 #' los valores de `speed`. A continuación haremos la ordenación utilizando
-#' los valores de `dist`. Para ello utilizaremos el conocido como vector de
+#' los valores de `dist`. Para ello, utilizaremos el conocido como vector de
 #' índices de ordenación.
 #' Este vector establece el orden en que tienen que ser elegidos los
-#' elementos para obtener la ordenación deseada.
-#' Veamos un ejemplo sencillo:
+#' elementos para obtener la ordenación deseada. 
+#' Veamos primero un ejemplo sencillo:
 
 x <- c(2.5, 4.3, 1.2, 3.1, 5.0) # valores originales
 ii <- order(x)
 ii    # vector de ordenación
-x[ii] # valores ordenados
+x[ii] # valores ordenados (por defecto, ascendentemente)
 
 #' En el caso de vectores, el procedimiento anterior se podría
-#' hacer directamente con:
+#' hacer directamente con: 
 
-sort(x)
+# sort(x)
 
-#' Sin embargo, para ordenar data.frames será necesario la utilización del
-#' vector de índices de ordenación. A continuación, los datos de `cars`
-#' ordenados por `dist`:
+#' 
+#' Sin embargo, para ordenar tablas de datos será necesario la utilización del
+#' vector de índices de ordenación. A continuación, se muestan los datos de `cars` ordenados por `dist`:
+#' 
 
 ii <- order(cars$dist) # Vector de índices de ordenación
 cars2 <- cars[ii, ]    # Datos ordenados por dist
 head(cars2)
 
-#'
+#' 
 #' #### Filtrado
-#'
-#' El filtrado de datos consiste en
-#' elegir una submuestra que cumpla determinadas condiciones. Para ello se
-#' puede utilizar la función [`subset()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset)
-#' (que además permite seleccionar variables).
-#'
+#' 
+#' El filtrado de datos consiste en elegir una submuestra que cumpla determinadas condiciones. Para ello, se puede utilizar la función [`subset(x, subset, select, drop = FALSE, ...)` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset) , que además permite seleccionar variables con el argumento `select`.
+#' 
 #' A continuación se muestran un par de ejemplos:
 
-subset(cars, dist > 85) # datos con dis>85
-subset(cars, speed > 10 & speed < 15 & dist > 45) # speed en (10,15) y dist>45
+# datos con dis>85
+subset(cars, dist > 85) 
+# datos con speed en (10,15) y dist > 45
+subset(cars, speed > 10 & speed < 15 & dist > 45)
 
+#' 
 #' También se pueden hacer el filtrado empleando directamente los
 #' correspondientes vectores de índices:
+#' 
 
 ii <- cars$dist > 85
 cars[ii, ]   # dis>85
+
 ii <- cars$speed > 10 & cars$speed < 15 & cars$dist > 45
 cars[ii, ]  # speed en (10,15) y dist>45
 
-#' En este caso puede ser de utilidad la función [`which()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which):
+#' 
+#' En este caso, puede ser de utilidad la función [`which()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which):
+#' 
 
 it <- which(ii)
 str(it)
-cars[it, 1:2]
-# rownames(cars[it, 1:2])
-
+cars[it, ]
+# rownames(cars[it, ])
 id <- which(!ii)
-str(cars[id, 1:2])
-# Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed
+str(cars[id, ])
+# Equivalentemente:
+str(cars[-it, ])
 # ?which.min
 
-#'
+#' 
+#' Si se realiza una selección de variables como en:
+
+cars[ii, "speed"]
+
+#' es posible que se quiera mantener la estructura original de los datos, para ello, 
+#' bastaría con:
+
+cars[ii, "speed", drop=FALSE]
+# subset(cars, ii, "speed") # equivalente
+
+#' 
+#' A veces puede ser necesario dividir (particionar) el conjunto de datos, uno para cada nivel de un grupo (factor), para ello se puede usar la función `split()`:
+#' 
+
+speed2 <- factor(cars$speed > 20, labels = c("slow","fast"))
+table(speed2)
+cars2 <- split(cars,speed2)
+class(cars2) # lista con 2 data.frames
+sapply(cars2,class)
+sapply(cars2,dim)
+cars2$fast
+
+#' 
+#' De forma inversa, podríamos recuperar el  data.frame original con:
+#' 
+
+# unsplit(cars2,speed2)
+
+#' 
+#' ### Datos faltantes {#missing}
+#' 
+#' La problemática originada por los datos faltantes (*missing data*) en cualquier conjunto de datos subyace cuando se desea
+#' realizar un análisis estadístico, para más información en R, se puede consultar [CRAN Task View: Missing Data](https://cran.r-project.org/web/views/MissingData.html)
+#' 
+#' 
+#' Vamos a ver un ejemplo, empleando el conjunto de datos `airquality` que contiene datos falntantes en sus dos primeras variables:
+
+data("airquality")
+datos <- airquality[,1:3]
+summary(datos)
+nrow(datos)
+# Datos faltantes por variable
+sapply(datos, function(x) sum(is.na(x)))
+
+#' A continuación se muestra la distribución de los datos perdidos en el data.frame (a lo largo del tiempo, por mes):
+#' 
+#' 
+
+plot(ts(airquality[,1:2]))
+
+#' 
+#' ¿Existe un patrón no aleatorio en los datos faltantes del ozono? Esta pregunta puede ser abordada parcialmente utilizando el test de Little [@little1998], disponible en la función `mcar_test()` del paquete [`naniar`](https://naniar.njtierney.com). Este test permite evaluar si los datos faltantes son generados por un mecanismo completamente aleatorio (MCAR). Si la hipótesis de MCAR es rechazada, esto sugiere que los datos faltantes podrían estar siguiendo un mecanismo MAR (*missing at random*) o MNAR (*non missing at random*).
+#' 
+#' Sin embargo, en muchos estudios, se omite el paso anterior y se procede directamente con alguno de los siguientes métodos:
+#' 
+#' + Análisis de casos completos (*complete cases*)
+#' + Análisis de casos disponibles (borrado por parejas *pairwise cases*)
+#' + Imputación de datos faltantes (por la media, mediana, último valor observado, vecino más cercano, valores predichos usando los datos observados....)
+#' 
+#' Siguiendo con el ejemplo, ante la presencia de datos faltantes, en R inicialmente no podemos conocer cómo se relacionan las tres primeras variables:"
+#' 
+
+cor(datos[,1:3])
+
+#' y requiere indicar cómo tratar los datos perdidos. Por ejemplo, 
+#' una opción sería realizar un análisis sólo de los casos completos, eliminando todas las observaciones (filas) con algún dato faltante de nuestro conjunto de datos:
+#' 
+
+datosC <- na.omit(datos)
+nrow(datosC) # n fija (sólo se utilizan 111 de las 153 de Wind)
+cor(datosC[,1:3])
+# otra forma de hacerlo sería:
+# nrow(datos[complete.cases(datos),]) 
+# cor(datos[,1:3], use ="complete.obs") 
+
+#' 
+#' También, se podría usar toda la información disponible. El tamaño muestral $n$ sería variable en función de los NA's de cada par de variables: 
+#' 
+
+cor(datos[,1:3], use = "pairwise.complete.obs")
+
+#' 
+#' Por ejmmplo, ahora la correlación usa los $146$ pares de observaciones disponibles para (`Solar.R`,`Wind`), en lugar de $111$ del primer caso.
+#' 
+#' Por último, también se podría realizar una imputación [@van2018flexible]. A modo de ejemplo, en el siguiente código, se utiliza la media:
+
+datosI <- datos
+datosI$Ozone[is.na(datos$Ozone)] <- mean(datos$Ozone, na.rm = T)
+datosI$Solar.R[is.na(datos$Solar.R)] <- mean(datosI$Solar.R, na.rm = T)
+cor(datosI[,1:3])
+
+#' Notar que para el caso del ozono, se han sustituido los 37 *NA's* (24% de las observaciones) por un único valor (de ahí que ahora la varianza sea menor a la observada inicialmente, algo que en principio, no sería deseable).
+#' 
+
+var(datos$Ozone,na.rm = T)
+var(datosI$Ozone)
+
+#' 
+#' Los datos faltantes son una realidad común en muchos estudios, aunque nadie los desea. Para tratarlos correctamente, es esencial comprender cómo se obtuvieron los datos observados y por qué algunos datos no fueron registrados antes de iniciar cualquier otro análisis. No abordar adecuadamente los datos faltantes puede tener un efecto perjudicial en nuestro estudio, ya que las conclusiones obtenidas podrían ser no representativas o contener sesgos.
+#' 
+#' 
 #' ### Funciones `apply`
-#'
-#'
+#' 
 #' #### La función `apply`
-#'
-#' Una forma de evitar la
-#' utilización de bucles es utilizando la sentencia `apply` que permite
-#' evaluar una misma función en todas las filas, columnas, etc. de un array
-#' de forma simultánea.
-#'
+#' 
+#' Una forma de evitar la utilización de bucles es utilizando la sentencia `apply` que permite evaluar una misma función en todas las filas, columnas, etc. de un array de forma simultánea.
+#' 
 #' La sintaxis de esta función es:
 
-apply(X, MARGIN, FUN, ...)
+# apply(X, MARGIN, FUN, ...)
 
-#' -   `X`: matriz (o array)
-#' -   `MARGIN`: Un vector indicando las dimensiones donde se aplicará
+#' -   `X`: matriz (o array).
+#' -   `MARGIN`: un vector indicando las dimensiones donde se aplicará
 #'     la función. 1 indica filas, 2 indica columnas, y `c(1,2)` indica
 #'     filas y columnas.
 #' -   `FUN`: función que será aplicada.
 #' -   `...`: argumentos opcionales que serán usados por `FUN`.
-#'
+#' 
 #' Veamos la utilización de la función `apply` con un ejemplo:
 
 x <- matrix(1:9, nrow = 3)
@@ -481,28 +641,40 @@ apply(x, 2, sum)    # Suma por columnas
 apply(x, 2, min)    # Mínimo de las columnas
 apply(x, 2, range)  # Rango (mínimo y máximo) de las columnas
 
-#'
+#' Alternativamente, se puede utilizar opciones más eficientes: `colSums()`, `rowSums()`, `colMeans()` y `rowMeans()`, como se muestra en el siguiente código de ejemplo:
+#' 
+
+x <- matrix(1:1e8, ncol = 10, byrow = FALSE)
+t1 <- proc.time()
+out<-apply(x, 2, mean)   
+proc.time() - t1
+t2 <- proc.time()
+out <- colMeans(x)
+proc.time() - t2
+
+#' 
 #' #### Variantes de la función `apply`
-#'
-#' [`lapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/lapply):
-#'
+#' 
+#' a. La función [`lapply(X, FUN, ...)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/lapply)
+#'  aplica la función `FUN` a cada elemento de una lista en R y devuelve una lista como resultado (sin necesidad de especificar el argumento MARGIN). Notar  que todas las estructuras de datos en R pueden convertirse en listas, por lo que  `lapply()` puede utilizarse en más casos que `apply()`. 
+#' 
 
 # lista con las medianas de las variables
 list <- lapply(cars, median)
 str(list)
 
-#'
-#' [`sapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/sapply):
-#'
+#' 
+#' b. La función 
+#' [`sapply(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE) `](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/sapply) permite iterar sobre una lista o vector (alternativa más eficiente a un `for`):
 
 # matriz con las medias, medianas y desv. de las variables
-res <- sapply(cars,
-          function(x) c(mean = mean(x), median = median(x), sd = sd(x)))
+res <- sapply(cars, 
+          function(x) c(mean = mean(x), 
+                        median = median(x), 
+                        sd = sd(x)))
 # str(res)
 res
-knitr::kable(t(res), digits = 1)
 
-# Función externa
 
 cfuns <- function(x, funs = c(mean, median, sd))
             sapply(funs, function(f) f(x))
@@ -511,26 +683,26 @@ cfuns(x)
 sapply(cars, cfuns)
 
 nfuns <- c("mean", "median", "sd")
-sapply(nfuns, function(f) eval(parse(text = paste0(f, "(x)"))))
+sapply(nfuns, 
+       function(f) eval(parse(text = paste0(f, "(x)"))))
 
-#'
-#' #### La función `tapply`
-#'
-#' La function [`tapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/tapply) es
+#' 
+#' c. La función [`tapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/tapply) es
 #' similar a la función `apply()` y permite aplicar una función a los datos desagregados,
-#' utilizando como criterio los distintos niveles de una variable factor.
-#' La sintaxis de esta función es como sigue:
+#' utilizando como criterio los distintos niveles de una variable factor. Es decir, 
+#'  facilita la creación de tablars resumen por grupos. La sintaxis de esta función es como sigue:
 
-    tapply(X, INDEX, FUN, ...,)
+#     tapply(X, INDEX, FUN, ...,)
 
 #' -   `X`: matriz (o array).
 #' -   `INDEX`: factor indicando los grupos (niveles).
 #' -   `FUN`: función que será aplicada.
 #' -   `...`: argumentos opcionales .
-#'
+#' 
 #' Consideremos, por ejemplo, el data.frame `ChickWeight` con datos de un
 #' experimento relacionado con la repercusión de varias dietas en el peso
 #' de pollos.
+#' 
 
 data(ChickWeight)
 # str(ChickWeight)
@@ -541,64 +713,135 @@ levels(dieta) <- c("Dieta 1", "Dieta 2", "Dieta 3", "Dieta 4")
 tapply(peso, dieta, mean)  # Peso medio por dieta
 tapply(peso, dieta, summary)
 
-#' Otro ejemplo:
+#' 
+#' Alternativamente, se podría emplear la función `aggregate()` que tiene las ventajas de admitir fórmulas y disponer de un método para series de tiempo.
+#' 
 
-provincia <- as.factor(c(1, 3, 4, 2, 4, 3, 2, 1, 4, 3, 2))
-levels(provincia) = c("A Coruña", "Lugo", "Orense", "Pontevedra")
-hijos <- c(1, 2, 0, 3, 4, 1, 0, 0, 2, 3, 1)
-data.frame(provincia, hijos)
-tapply(hijos, provincia, mean) # Número medio de hijos por provincia
+# help(aggregate)
+aggregate(peso, by = list(dieta = dieta), FUN = "mean" )
+aggregate(peso ~ dieta, FUN = "summary" ) # con formula
 
-#'
+#' 
+#' 
+#' ### Generación de tablas
+#' 
+#' Hay muchos paquetes de R que se pueden utilizar para generar tablas en informes RMarkdown o en aplicaciones shiny.
+#' Entre las herramientas disponibles podríamos destacar la función `kable()` del paquete `knitr` para generar tablas básicas, y la función `datatable()` del paquete `DT` para generar tablas dinámicas.
+#' Otros paquetes son:
+#' `kableExtra`, `flextable`, `reactable`, `reactablefmtr`, 
+#' `formattable`, `gt` y `tinytable`.
+#' 
+#' 
+#' #### Tablas con `kable()`
+#' 
+#' A continuación, se muestra un ejemplo, de tabla resumen, con las medias, medianas y desviación típica de las variables:
+#' 
+
+res <- sapply(cars, 
+          function(x) c(mean = mean(x), 
+                        median = median(x), 
+                        sd = sd(x)))
+knitr::kable(t(res), digits = 1, 
+             col.names = c("Media", "Mediana", "Desv. típica"))
+
+#' 
+#' 
+#' Y en este segundo ejemplo, se muestra el resumen de un modelo de regresión lineal simple (distancia de frenado en función de la velocidad del vehículo):
+
+modelo <- lm(dist ~ speed, data = cars)
+coefs <- coef(summary(modelo))
+knitr::kable(coefs, escape = FALSE, digits = 5)
+
+#' 
+#' #### Tablas interactivas con `datatable()`
+#' 
 #' ### Operaciones con tablas de datos
-#'
-#' Ver ejemplo [*wosdata.R*](data/wosdata.zip)
-#'
+#' 
 #' ***Unir tablas***:
-#'
-#' [`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind)
-#'
-#' [`cbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind)
-#'
+#' 
+#' * [`rbind()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind): combina vectores, matrices, arrays o data.frames por filas.
+#' 
+#' * [`cbind()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind): Idem por columnas.
+#' 
+#' * [`merge()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/merge): Fusiona dos data.frame por columnas o nombres de fila comunes.  También permite otras operaciones de unión (*join*) de bases de datos, algunas de ellas se verán con más detalle en el Capítulo 4.
+#' 
 #' ***Combinar tablas***:
-#'
-#' [`match()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match)
-#'
-#' [`pmatch()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match)
-
-#'
+#' 
+#' 
+#' * [`match(x, table)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match) devuelve un vector (de la misma longitud que `x`)  con las (primeras) posiciones de coincidencia de `x` en `table` (o `NA`, por defecto, si no hay coincidencia).
+#' 
+#'     Para realizar consultas combinando tablas puede ser más cómodo el operador `%in%` (`?'%in%'`).
+#' 
+#' * [`pmatch(x, table, ...)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/pmatch): similar al anterior pero con coincidencias parciales de cadenas de texto. 
+#' 
+#' 
 #' ## Ejemplo WoS data
-#'
-
-# library(dplyr)
-# library(stringr)
-# Session > Set Working Directory > To Source...
-# source("data/wosdata/rwos.R")
+#' 
+#' Ejemplo *wosdata.R* en [*wosdata.zip*](data/wosdata.zip).
+#' Ver paquete [scimetr](https://rubenfcasal.github.io/scimetr/articles/scimetr.html).
+#' 
+#' Empleando la función `ImportSources.wos()` se importaron ficheros de texto descargados de WoS (que por defecto tienen una limitación de 500 registros).
+#' Posteriormente se creo una base de datos como una lista de tablas con la función  `CreateDB.wos()`, 
+#' que finalmente se almacenó en el fichero *db_udc_2015.rds*.
+#' 
 
 db <- readRDS("data/wosdata/db_udc_2015.rds")
-
 str(db, 1)
 
+#' 
+#' Puede ser recomendable añadir a los datos un atributo `variable.labels` que
+#' contenga un vector de etiquetas de las variables y empleando como nombres de
+#' las componentes las propias variables:
+#' 
+
 variable.labels <- attr(db, "variable.labels")
-knitr::kable(as.data.frame(variable.labels)) # caption = "Variable labels"
+knitr::kable(head(as.data.frame(variable.labels)),
+             caption = "Variable labels")
 
-#'
-#' Documentos correspondientes a revistas:
-#'
+#' 
+#' Las tablas de datos con este atributo son compatibles con RStudio.
+#' Por ejemplo, también se mostrarán las etiquetas al abrirla con `View()`
+#' 
 
-# View(db$Journals)
+Docs <- db$Docs # No copia los datos (crea otro objeto que apunta a los mismos datos)
+attr(Docs, "variable.labels") <- variable.labels[names(Docs)]
+# View(Docs)
+
+#' 
+#' Para combinar tablas podemos emplear `match(x, table)`.
+#' Por ejemplo, el siguiente código permite añadir el nombre de la revista a la
+#' tabla de documentos, combinándola con la de revistas:
+#' 
+
+str(Docs)
+str(db$Journals) # View(db$Journals)
+ii <- match(Docs$idj, db$Journals$idj)
+docs2 <- Docs[, c("PY", "TI")]
+docs2$Journal <- db$Journals$SO[ii]
+head(docs2)
+
+#' 
+#' Si solo nos interesa hacer un filtrado puede resultar más cómodo emplear
+#' el operador `%in%` (`?'%in%'`).
+#' Por ejemplo, podemos buscar los documentos correspondientes a revistas (que
+#' contengan `"Chem"` en el nombre ISO de la revista).
+#' Para ello utilizamos la función `grepl()` que busca las coincidencias de
+#' un patrón dentro de cada elemento de un vector de caracteres:
+#' 
+
 iidj <- with(db$Journals, idj[grepl('Chem', JI)])
 db$Journals$JI[iidj]
 
-idd <- with(db$Docs, idj %in% iidj)
+idd <- with(Docs, idj %in% iidj)
 which(idd)
 
-# View(db$Docs[idd, ])
-head(db$Docs[idd, 1:3])
+# View(Docs[idd, ])
+head(Docs[idd, 1:3])
 
-#'
-#' Documentos correspondientes a autores:
-#'
+#' 
+#' Como ejemplo adicional, se buscan los documentos correspondientes a autores
+#' (que contiene `"Abad"` en su nombre):
+#' 
 
 # View(db$Authors)
 iida <- with(db$Authors, ida[grepl('Abad', AF)])
@@ -607,5 +850,7 @@ db$Authors$AF[iida]
 idd <- with(db$AutDoc, idd[ida %in% iida])
 idd
 
-# View(db$Docs[idd, ])
-head(db$Docs[idd, 1:3])
+# View(Docs[idd, ])
+head(Docs[idd, 1:3])
+
+#' 
