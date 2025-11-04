@@ -273,7 +273,8 @@ que dará lugar al fichero *datos.csv* importable directamente desde Excel. Las 
 ### Python, Julia y otros lenguajes de programación
 R es un lenguaje de programación libre (derivado del lenguaje S  en  los Laboratorios Bell) que se caracteriza por su capacidad para interactuar con otros lenguajes de programación, incluyendo Python [@python] y Julia [@julia]. 
 
-En el ámbito de la Estadística (como en la denominada **Ciendica de Datos**), R destaca por su extensa y detallada documentación  (en muchos casos como resultado de aportaciones metodológicas y/o avances científicos). Por ejemplo, después de diez años de la primera edición del libro *An Introduction to Statistical Learning con aplicaciones en R (ISLR)* , @james2013introduction, algunos de los mismos autores publicaron la edición en Python (ISLP), @james2023introduction.  
+En el ámbito de la Estadística (como en la denominada **Ciencia de Datos**), R destaca por su extensa y detallada documentación  (en muchos casos como resultado de aportaciones metodológicas y/o avances científicos). Por ejemplo, después de diez años de la primera edición del libro *An Introduction to Statistical Learning con aplicaciones en R (ISLR)* , @james2013introduction, algunos de los mismos autores publicaron la edición en Python (ISLP), @james2023introduction.  
+Las últimas ediciones de ambos libros están disponibles en abierto en [https://www.statlearning.com](https://www.statlearning.com/).
 Por otro lado, en 2015, se lanzó el paquete `r cite_pkg(reticulate)` disponible en [https://rstudio.github.io/reticulate/](https://rstudio.github.io/reticulate/), permitiendo la ejecución de código Python desde R (y en 2020 se completó la integración de Python en la interfaz de RStudio).  
 
 
@@ -283,19 +284,17 @@ os <- import("os")
 os$listdir(".")
 ```
 
-
 Si queremos trabajar con Python de forma interactiva, podemos usar `repl_python()`. Los objetos creados en Python se pueden usar en R con `py`  de `reticulate`.
 
 Recientemente, *Julia* se presenta también como una alternativa a considerar. 
 El paquete  `r cite_pkg(JuliaConnectoR)` disponible en [https://cran.r-project.org/web/packages/JuliaConnectoR/](https://cran.r-project.org/web/packages/JuliaConnectoR/) facilita la importación de funciones y paquetes completos de Julia a R, es decir, permite el uso de funciones de Julia directamente en R.
 
-
 R también permite el uso/comunicación de otros lenguajes de programación como Java, C, C++, Fortran, entre otros.
 
+En julio de 2022, la compañía *RStudio Inc* anunció que cambiaba su nombre a [*Posit*](https://posit.co), para reflejar su interés en el desarrollo de herramientas para lenguajes adicionales de programación, principalmente Python.
+En esa misma fecha lanzó [Quarto](https://quarto.org) como una nueva alternativa a R Markdown para ofrecer compatibilidad integrada para múltiples lenguajes, como Python o Julia, además de R.
+Desde julio de 2025 ya están disponibles versiones estables de [Positron](https://positron.posit.co/), un nuevo IDE para el análisis de datos que es compatible de forma nativa con otros lenguajes, como Python o Julia, y que se supone que será un sustituto de RStudio en el futuro.
 
-<!--
-https://es.r4ds.hadley.nz/01-intro.html
--->
 
 
 Manipulación de datos
@@ -567,7 +566,7 @@ De forma inversa, podríamos recuperar el  data.frame original con:
 unsplit(cars2,speed2)
 ```
 
-## Datos faltantes {#missing}
+### Datos faltantes {#missing}
 
 La problemática originada por los datos faltantes (*missing data*) en cualquier conjunto de datos subyace cuando se desea
 realizar un análisis estadístico, para más información en R, se puede consultar [CRAN Task View: Missing Data](https://cran.r-project.org/web/views/MissingData.html)
@@ -596,7 +595,7 @@ plot(ts(airquality[,1:2]))
 
 
 
-¿Existe un patrón no aleatorio en los datos faltantes del ozono? Esta pregunta puede ser abordada parcialmente utilizando el test de Little [@little1998], disponible en la función `mcar_test()` del paquete `naniar`. Este test permite evaluar si los datos faltantes son generados por un mecanismo completamente aleatorio (MCAR). Si la hipótesis de MCAR es rechazada, esto sugiere que los datos faltantes podrían estar siguiendo un mecanismo MAR (*missing at random*) o MNAR (*non missing at random*).
+¿Existe un patrón no aleatorio en los datos faltantes del ozono? Esta pregunta puede ser abordada parcialmente utilizando el test de Little [@little1998], disponible en la función `mcar_test()` del paquete [`naniar`](https://naniar.njtierney.com). Este test permite evaluar si los datos faltantes son generados por un mecanismo completamente aleatorio (MCAR). Si la hipótesis de MCAR es rechazada, esto sugiere que los datos faltantes podrían estar siguiendo un mecanismo MAR (*missing at random*) o MNAR (*non missing at random*).
 
 <!--Esto,  si los datos faltantes son completamente aleatorios (MCAR) o no usando el test de Little [@little1998].
 
@@ -787,14 +786,22 @@ tapply(peso, dieta, summary)
 Alternativamente, se podría emplear la función `aggregate()` que tiene las ventajas de admitir fórmulas y disponer de un método para series de tiempo.
 
 ```{r}
-help(aggregate)
-aggregate(peso,by=list(dieta=dieta),FUN = "mean" )
-aggregate(peso~dieta,FUN = "summary" ) # con formula
+# help(aggregate)
+aggregate(peso, by = list(dieta = dieta), FUN = "mean" )
+aggregate(peso ~ dieta, FUN = "summary" ) # con formula
 ```
 
-### Tablas (para informes)
 
-a. Tablas con `kable()`:
+### Generación de tablas
+
+Hay muchos paquetes de R que se pueden utilizar para generar tablas en informes RMarkdown o en aplicaciones shiny.
+Entre las herramientas disponibles podríamos destacar la función `kable()` del paquete `knitr` para generar tablas básicas, y la función `datatable()` del paquete `DT` para generar tablas dinámicas.
+Otros paquetes son:
+`kableExtra`, `flextable`, `reactable`, `reactablefmtr`, 
+`formattable`, `gt` y `tinytable`.
+
+
+#### Tablas con `kable()`
 
 A continuación, se muestra un ejemplo, de tabla resumen, con las medias, medianas y desviación típica de las variables:
 
@@ -823,7 +830,8 @@ coefs <- coef(summary(modelo))
 knitr::kable(coefs, escape = FALSE, digits = 5)
 ```
 
-b. Tablas interactivas con `datatabe()` del paquete `DT`:
+#### Tablas interactivas con `datatable()`
+
 ```{r,eval=is_html()}
 library(DT)
 datatable(iris,options = list(scrollX = TRUE))
@@ -831,29 +839,15 @@ datatable(iris,options = list(scrollX = TRUE))
 <!--  options = list(scrollX = TRUE))-->
 
 
-
-Hay muchos otros paquetes de R que se pueden utilizar para generar tablas como:
-`kableExtra()`, `flextable()`, `reactable()`, `reactablefmtr()`, 
-`formattable()`, `gt()` y `tinytable()`.
-
-<!--https://bookdown.org/yihui/rmarkdown-cookbook/table-other.html-->
-<!-- c. Tablas con `tt()` del paquete `tinytable`: -->
-<!-- ```{r} -->
-<!-- library(tinytable) -->
-<!-- tt(data.frame(variables=rownames(res),res), digits = 3) -->
-<!-- ``` -->
-
-
 ### Operaciones con tablas de datos
-
 
 ***Unir tablas***:
 
-* [`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind): combina vectores, matrices, arrays o data.frames por filas.
+* [`rbind()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind): combina vectores, matrices, arrays o data.frames por filas.
 
-* [`cbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind): Idem por columnas.
+* [`cbind()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind): Idem por columnas.
 
-* [`merge()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/merge): Fusiona dos data.frame por columnas o nombres de fila comunes.  También permite otras operaciones de unión (*join*) de bases de datos, algunas de ellas se verán con más detalle en el Capítulo 4.
+* [`merge()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/merge): Fusiona dos data.frame por columnas o nombres de fila comunes.  También permite otras operaciones de unión (*join*) de bases de datos, algunas de ellas se verán con más detalle en el Capítulo 4.
 
 ***Combinar tablas***:
 
@@ -867,38 +861,72 @@ Hay muchos otros paquetes de R que se pueden utilizar para generar tablas como:
 
 ## Ejemplo WoS data
 
-Ejemplo [*wosdata.R*](data/wosdata.R) en [*wosdata.zip*](data/wosdata.zip).
-Ver Apéndice \@ref(scimetr).
+Ejemplo *wosdata.R* en [*wosdata.zip*](data/wosdata.zip).
+Ver paquete [scimetr](https://rubenfcasal.github.io/scimetr/articles/scimetr.html).
+
+Empleando la función `ImportSources.wos()` se importaron ficheros de texto descargados de WoS (que por defecto tienen una limitación de 500 registros).
+Posteriormente se creo una base de datos como una lista de tablas con la función  `CreateDB.wos()`, 
+que finalmente se almacenó en el fichero *db_udc_2015.rds*.
 
 ```{r}
-# library(dplyr)
-# library(stringr)
-# https://rubenfcasal.github.io/scimetr/articles/scimetr.html
-# library(scimetr)
-
 db <- readRDS("data/wosdata/db_udc_2015.rds")
 str(db, 1)
+```
 
+Puede ser recomendable añadir a los datos un atributo `variable.labels` que
+contenga un vector de etiquetas de las variables y empleando como nombres de
+las componentes las propias variables:
+
+```{r}
 variable.labels <- attr(db, "variable.labels")
-knitr::kable(as.data.frame(variable.labels),
+knitr::kable(head(as.data.frame(variable.labels)),
              caption = "Variable labels")
 ```
 
-Veamos ahora un par de ejemplos, en el primero se buscan los documentos correspondientes a revistas (que contiene `Chem` en el título de la revista *journal*).  Para ello utilizamos la función  `grepl()` que busca las coincidencias con el patrón `Chem` dentro de cada elemento de un vector de caracteres.
+Las tablas de datos con este atributo son compatibles con RStudio.
+Por ejemplo, también se mostrarán las etiquetas al abrirla con `View()`
 
 ```{r}
-# View(db$Journals)
+Docs <- db$Docs # No copia los datos (crea otro objeto que apunta a los mismos datos)
+attr(Docs, "variable.labels") <- variable.labels[names(Docs)]
+# View(Docs)
+```
+
+
+Para combinar tablas podemos emplear `match(x, table)`.
+Por ejemplo, el siguiente código permite añadir el nombre de la revista a la
+tabla de documentos, combinándola con la de revistas:
+
+```{r}
+str(Docs)
+str(db$Journals) # View(db$Journals)
+ii <- match(Docs$idj, db$Journals$idj)
+docs2 <- Docs[, c("PY", "TI")]
+docs2$Journal <- db$Journals$SO[ii]
+head(docs2)
+```
+
+Si solo nos interesa hacer un filtrado puede resultar más cómodo emplear
+el operador `%in%` (`?'%in%'`).
+Por ejemplo, podemos buscar los documentos correspondientes a revistas (que
+contengan `"Chem"` en el nombre ISO de la revista).
+Para ello utilizamos la función `grepl()` que busca las coincidencias de
+un patrón dentro de cada elemento de un vector de caracteres:
+
+```{r}
 iidj <- with(db$Journals, idj[grepl('Chem', JI)])
 db$Journals$JI[iidj]
 
-idd <- with(db$Docs, idj %in% iidj)
+idd <- with(Docs, idj %in% iidj)
 which(idd)
 
-# View(db$Docs[idd, ])
-head(db$Docs[idd, -3])
+# View(Docs[idd, ])
+head(Docs[idd, 1:3])
 ```
 
-En este segundo ejemplo, se buscan los documentos correspondientes a autores (que contiene `Abad` en su nombre):
+
+Como ejemplo adicional, se buscan los documentos correspondientes a autores
+(que contiene `"Abad"` en su nombre):
 
 ```{r}
 # View(db$Authors)
@@ -908,6 +936,7 @@ db$Authors$AF[iida]
 idd <- with(db$AutDoc, idd[ida %in% iida])
 idd
 
-# View(db$Docs[idd, ])
-head(db$Docs[idd, -3])
+# View(Docs[idd, ])
+head(Docs[idd, 1:3])
 ```
+
