@@ -1,7 +1,11 @@
 ---
 title: "Prácticas de Tecnologías de Gestión y Manipulación de Datos"
-author: "Guillermo López Taboada (guillermo.lopez.taboada@udc.es), Diego Darriba (diego.darriba@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)"
-date: "2025-10-24"
+author: 
+  - "Guillermo López Taboada (guillermo.lopez.taboada@udc.es)"
+  - "Diego Darriba (diego.darriba@udc.es)"
+  - "Rubén Fernández Casal (ruben.fcasal@udc.es)"
+  - "Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)"
+date: "Edición: Octubre de 2025. Impresión: 2025-11-04"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -23,6 +27,14 @@ Datos](http://eamo.usc.es/pub/mte/index.php/es/?option=com_content&view=article&
 del [Máster interuniversitario en Técnicas
 Estadísticas](http://eio.usc.es/pub/mte)).
 
+En este libro se asume que se dispone de conocimientos básicos de [`R`](https://www.r-project.org), un lenguaje de programación interpretado y un entorno estadístico desarrollado específicamente para el análisis de datos. 
+Para instalar R se recomienda seguir los pasos descritos en el post [*https://rubenfcasal.github.io/post/instalacion-de-r*](https://rubenfcasal.github.io/post/instalacion-de-r).
+Para el desarrollo de código e informes se sugiere emplear *RStudio Desktop*, que se puede instalar y configurar siguiendo las indicaciones proporcionadas en el post [*https://rubenfcasal.github.io/post/instalacion-de-rstudio*](https://rubenfcasal.github.io/post/instalacion-de-rstudio).
+
+Para una introducción a la programación en [`R`](https://www.r-project.org) se puede consultar el libro Fernández-Casal et al. (2022): *[Introducción al Análisis de Datos con R](https://rubenfcasal.github.io/intror)* ([github](https://github.com/rubenfcasal/intror)). 
+Adicionalmente, en el post [*https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r*](https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r) se proporcionan enlaces a recursos adicionales, incluyendo bibliografía y cursos.
+También puede ser de utilidad el libro Fernández-Casal (2023): *[Notas de Programación en R](https://rubenfcasal.github.io/book_notasr)*   ([github](https://github.com/rubenfcasal/book_notasr)).
+
 Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com)
 empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/)
 y está disponible en el repositorio Github:
@@ -42,6 +54,7 @@ instalados los siguientes paquetes:
 [`stringr`](https://stringr.tidyverse.org),
 [`readxl`](https://readxl.tidyverse.org) ,
 [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html),
+[`naniar`](https://naniar.njtierney.com),
 [`RODBC`](https://cran.r-project.org/web/packages/RODBC/index.html),
 [`sqldf`](https://cran.r-project.org/web/packages/sqldf/index.html),
 [`RSQLite`](https://r-dbi.github.io/RSQLite),
@@ -52,7 +65,7 @@ instalados los siguientes paquetes:
 
 ``` r
 pkgs <- c('dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr', 
-          'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr')
+          'naniar', 'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr')
 # install.packages(pkgs, dependencies=TRUE)
 install.packages(setdiff(pkgs, installed.packages()[,'Package']), dependencies = TRUE)
 ```

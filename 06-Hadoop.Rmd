@@ -13,17 +13,10 @@ En este apartado trataremos los siguientes epígrafes:
 ## Introducción al Aprendizaje Estadístico
 
 El material para este apartado está disponible en el 
-[Capítulo 1 del libro "Aprendizaje Estadístico"](
-https://rubenfcasal.github.io/aprendizaje_estadistico/intro-AE.html) de Rubén Fernández Casal.  
+[Capítulo 1](https://rubenfcasal.github.io/aprendizaje_estadistico/intro-AE.html) de Fernández-Casal et al., 2024, [Métodos predictivos de aprendizaje estadístico](https://rubenfcasal.github.io/aprendizaje_estadistico/).  
 
-Para seguir este capítulo es altamente recomendable tener instalado Rattle, para ello consultad el apéndice de instalación de R al final de este libro.
 
 ![](images/T3-CientificoDatos.png){width="60%"}
-
-
-
-
-
 
 
 ## Tecnologías Big Data (Hadoop/Spark y Visualización)

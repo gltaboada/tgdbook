@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.1 Lectura, importación y exportación de datos | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.1 Lectura, importación y exportación de datos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,12 @@
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
 
-<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es), Diego Darriba (diego.darriba@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es)" />
+<meta name="author" content="Diego Darriba (diego.darriba@udc.es)" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2025-10-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +34,7 @@
   
 <link rel="prev" href="manipR.html"/>
 <link rel="next" href="manipulación-de-datos.html"/>
-<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -55,16 +57,15 @@
 <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.33/datatables.js"></script>
-<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<script src="libs/datatables-binding-0.30/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -138,7 +139,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -179,11 +179,11 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i><b>1.1</b> Contenidos</a></li>
 <li class="chapter" data-level="1.2" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html"><i class="fa fa-check"></i><b>1.2</b> Planificación (tentativa)</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html#evaluaci%C3%B3n"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
+<li class="chapter" data-level="1.2.1" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html#evaluación"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html"><i class="fa fa-check"></i><b>1.3</b> Fuentes de información:</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#b%C3%A1sica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
+<li class="chapter" data-level="1.3.1" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#básica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
 <li class="chapter" data-level="1.3.2" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#complementaria"><i class="fa fa-check"></i><b>1.3.2</b> Complementaria:</a></li>
 </ul></li>
 </ul></li>
@@ -194,23 +194,21 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.1" data-path="read.html"><a href="read.html#formato-de-datos-de-r"><i class="fa fa-check"></i><b>2.1.1</b> Formato de datos de R</a></li>
 <li class="chapter" data-level="2.1.2" data-path="read.html"><a href="read.html#acceso-a-datos-en-paquetes"><i class="fa fa-check"></i><b>2.1.2</b> Acceso a datos en paquetes</a></li>
 <li class="chapter" data-level="2.1.3" data-path="read.html"><a href="read.html#cap2-texto"><i class="fa fa-check"></i><b>2.1.3</b> Lectura de archivos de texto</a></li>
-<li class="chapter" data-level="2.1.4" data-path="read.html"><a href="read.html#importaci%C3%B3n-desde-spss"><i class="fa fa-check"></i><b>2.1.4</b> Importación desde SPSS</a></li>
-<li class="chapter" data-level="2.1.5" data-path="read.html"><a href="read.html#importaci%C3%B3n-desde-excel"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="2.1.4" data-path="read.html"><a href="read.html#importación-desde-spss"><i class="fa fa-check"></i><b>2.1.4</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="read.html"><a href="read.html#importación-desde-excel"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde Excel</a></li>
 <li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
-<li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
+<li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programación"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
 <li class="chapter" data-level="2.2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
+<li class="chapter" data-level="2.2.4" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#generación-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
+<li class="chapter" data-level="2.2.6" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="missing.html"><a href="missing.html"><i class="fa fa-check"></i><b>2.3</b> Datos faltantes</a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="missing.html"><a href="missing.html#funciones-apply"><i class="fa fa-check"></i><b>2.3.1</b> Funciones <code>apply</code></a></li>
-<li class="chapter" data-level="2.3.2" data-path="missing.html"><a href="missing.html#tablas-para-informes"><i class="fa fa-check"></i><b>2.3.2</b> Tablas (para informes)</a></li>
-<li class="chapter" data-level="2.3.3" data-path="missing.html"><a href="missing.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.3.3</b> Operaciones con tablas de datos</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.4</b> Ejemplo WoS data</a></li>
+<li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introSQL.html"><a href="introSQL.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
 <ul>
@@ -223,7 +221,14 @@ div.csl-indent {
 <li class="chapter" data-level="3.4" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.4</b> Sintaxis SQL</a></li>
 <li class="chapter" data-level="3.5" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html"><i class="fa fa-check"></i><b>3.5</b> Cláusulas básicas de SQL</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#lectura"><i class="fa fa-check"></i><b>3.5.1</b> Lectura</a></li>
+<li class="chapter" data-level="3.5.1" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#selección-de-campos"><i class="fa fa-check"></i><b>3.5.1</b> Selección de campos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#número-de-filas-paginación"><i class="fa fa-check"></i><b>3.5.2</b> Número de filas (paginación)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#filtrado-de-resultados"><i class="fa fa-check"></i><b>3.5.3</b> Filtrado de Resultados</a></li>
+<li class="chapter" data-level="3.5.4" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#ordenación-de-resultados"><i class="fa fa-check"></i><b>3.5.4</b> Ordenación de Resultados</a></li>
+<li class="chapter" data-level="3.5.5" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#unión-de-tablas"><i class="fa fa-check"></i><b>3.5.5</b> Unión de tablas</a></li>
+<li class="chapter" data-level="3.5.6" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#agrupamiento"><i class="fa fa-check"></i><b>3.5.6</b> Agrupamiento</a></li>
+<li class="chapter" data-level="3.5.7" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#subconsultas-subqueries"><i class="fa fa-check"></i><b>3.5.7</b> Subconsultas (subqueries)</a></li>
+<li class="chapter" data-level="3.5.8" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#operaciones-con-conjuntos-de-resultados"><i class="fa fa-check"></i><b>3.5.8</b> Operaciones con conjuntos de resultados</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html"><i class="fa fa-check"></i><b>3.6</b> Gestión de tablas</a></li>
 <li class="chapter" data-level="3.7" data-path="gestión-de-datos.html"><a href="gestión-de-datos.html"><i class="fa fa-check"></i><b>3.7</b> Gestión de datos</a></li>
@@ -231,7 +236,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.9" data-path="ejemplos-de-consultas-sql.html"><a href="ejemplos-de-consultas-sql.html"><i class="fa fa-check"></i><b>3.9</b> Ejemplos de consultas SQL</a></li>
 <li class="chapter" data-level="3.10" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.10</b> Conexión con bases de datos desde R</a>
 <ul>
-<li class="chapter" data-level="3.10.1" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#introducci%C3%B3n-a-sql-en-r"><i class="fa fa-check"></i><b>3.10.1</b> Introducción a SQL en R</a></li>
+<li class="chapter" data-level="3.10.1" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#introducción-a-sql-en-r"><i class="fa fa-check"></i><b>3.10.1</b> Introducción a SQL en R</a></li>
 <li class="chapter" data-level="3.10.2" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#el-paquete-sqldf"><i class="fa fa-check"></i><b>3.10.2</b> El paquete sqldf</a></li>
 <li class="chapter" data-level="3.10.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#sql-queries"><i class="fa fa-check"></i><b>3.10.3</b> SQL Queries</a></li>
 </ul></li>
@@ -268,7 +273,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>5.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#caracter%C3%ADsticas-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.1</b> Características de las bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#características-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.1</b> Características de las bases de datos NoSQL</a></li>
 <li class="chapter" data-level="5.1.2" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#tipos-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.1.2</b> Tipos de Bases de Datos NoSQL</a></li>
 <li class="chapter" data-level="5.1.3" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#mongodb-nosql-documental"><i class="fa fa-check"></i><b>5.1.3</b> MongoDB: NoSQL documental</a></li>
 <li class="chapter" data-level="5.1.4" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#redis-nosql-key-value"><i class="fa fa-check"></i><b>5.1.4</b> Redis: NoSQL key-value</a></li>
@@ -284,31 +289,12 @@ div.csl-indent {
 <li class="chapter" data-level="6.1" data-path="introducción-al-aprendizaje-estadístico.html"><a href="introducción-al-aprendizaje-estadístico.html"><i class="fa fa-check"></i><b>6.1</b> Introducción al Aprendizaje Estadístico</a></li>
 <li class="chapter" data-level="6.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>6.2</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>6.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
+<li class="chapter" data-level="6.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnologías-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>6.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
 <li class="chapter" data-level="6.2.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>6.2.2</b> Big Data y Machine Learning</a></li>
 <li class="chapter" data-level="6.2.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>6.2.3</b> Rattle como alternativa a RapidMiner en R</a></li>
-<li class="chapter" data-level="6.2.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>6.2.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+<li class="chapter" data-level="6.2.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualización-y-generación-de-cuadros-de-mando"><i class="fa fa-check"></i><b>6.2.4</b> Visualización y Generación de Cuadros de Mando</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>6.3</b> Introducción al Análisis de Datos Masivos</a></li>
-</ul></li>
-<li class="appendix"><span><b>Apendices</b></span></li>
-<li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a>
-<ul>
-<li class="chapter" data-level="A.1" data-path="rstudio-links.html"><a href="rstudio-links.html"><i class="fa fa-check"></i><b>A.1</b> RStudio</a></li>
-<li class="chapter" data-level="A.2" data-path="bibliom-links.html"><a href="bibliom-links.html"><i class="fa fa-check"></i><b>A.2</b> Bibliometría</a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="instalación-de-r.html"><a href="instalación-de-r.html"><i class="fa fa-check"></i><b>B</b> Instalación de R</a>
-<ul>
-<li class="chapter" data-level="B.1" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html"><i class="fa fa-check"></i><b>B.1</b> Instalación de R en Windows</a>
-<ul>
-<li class="chapter" data-level="B.1.1" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html#asistente-de-instalaci%C3%B3n"><i class="fa fa-check"></i><b>B.1.1</b> Asistente de instalación</a></li>
-<li class="chapter" data-level="B.1.2" data-path="instalación-de-r-en-windows.html"><a href="instalación-de-r-en-windows.html#instalaci%C3%B3n-de-paquetes"><i class="fa fa-check"></i><b>B.1.2</b> Instalación de paquetes</a></li>
-</ul></li>
-<li class="chapter" data-level="B.2" data-path="instalación-en-mac-os-x.html"><a href="instalación-en-mac-os-x.html"><i class="fa fa-check"></i><b>B.2</b> Instalación en Mac OS X</a></li>
-<li class="chapter" data-level="B.3" data-path="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><a href="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><i class="fa fa-check"></i><b>B.3</b> Instalación (opcional) de un entorno o editor de comandos</a>
-<ul>
-<li class="chapter" data-level="B.3.1" data-path="instalación-opcional-de-un-entorno-o-editor-de-comandos.html"><a href="instalación-opcional-de-un-entorno-o-editor-de-comandos.html#opciones-adicionales"><i class="fa fa-check"></i><b>B.3.1</b> Opciones adicionales</a></li>
-</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -348,28 +334,28 @@ importar datos externos en múltiples formatos:</p>
 R es binario y está comprimido (en formato <code>"gzip"</code> por defecto).
 Para cargar un fichero de datos se emplea normalmente <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load"><code>load()</code></a>.
 A continuación se utiliza el fichero <code>empleados.RData</code> que contiene datos de empleados de un banco.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="read.html#cb2-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">load</span>(<span class="st">&quot;data/empleados.RData&quot;</span>)</span>
-<span id="cb2-2"><a href="read.html#cb2-2" tabindex="-1"></a>res</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="read.html#cb2-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">load</span>(<span class="st">&quot;data/empleados.RData&quot;</span>)</span>
+<span id="cb2-2"><a href="read.html#cb2-2" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
 <pre><code>## [1] &quot;empleados&quot;</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="read.html#cb4-1" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="read.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;cite_cran&quot; &quot;cite_fig&quot;  &quot;cite_fig2&quot; &quot;cite_fun&quot; 
 ##  [5] &quot;cite_fun_&quot; &quot;cite_pkg&quot;  &quot;cite_pkg_&quot; &quot;citefig&quot;  
 ##  [9] &quot;citefig2&quot;  &quot;empleados&quot; &quot;fig.path&quot;  &quot;inline&quot;   
 ## [13] &quot;inline2&quot;   &quot;is_html&quot;   &quot;is_latex&quot;  &quot;latexfig&quot; 
 ## [17] &quot;latexfig2&quot; &quot;res&quot;</code></pre>
 <p>y para guardar <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save"><code>save()</code></a>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="read.html#cb6-1" tabindex="-1"></a><span class="co"># Guardar</span></span>
-<span id="cb6-2"><a href="read.html#cb6-2" tabindex="-1"></a><span class="fu">save</span>(empleados, <span class="at">file =</span> <span class="st">&quot;data/empleados_new.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="read.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar</span></span>
+<span id="cb6-2"><a href="read.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(empleados, <span class="at">file =</span> <span class="st">&quot;data/empleados_new.RData&quot;</span>)</span></code></pre></div>
 <p>Aunque, como indica este comando en la ayuda (<code>?save</code>):</p>
 <blockquote>
 <p><em>For saving single R objects, <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/saveRDS"><code>saveRDS()</code></a></em>
 <em>is mostly preferable to save(),</em>
 <em>notably because of the functional nature of readRDS(), as opposed to load().</em></p>
 </blockquote>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="read.html#cb7-1" tabindex="-1"></a><span class="fu">saveRDS</span>(empleados, <span class="at">file =</span> <span class="st">&quot;data/empleados_new.rds&quot;</span>)</span>
-<span id="cb7-2"><a href="read.html#cb7-2" tabindex="-1"></a><span class="do">## restore it under a different name</span></span>
-<span id="cb7-3"><a href="read.html#cb7-3" tabindex="-1"></a>empleados2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/empleados_new.rds&quot;</span>)</span>
-<span id="cb7-4"><a href="read.html#cb7-4" tabindex="-1"></a><span class="co"># identical(empleados, empleados2)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="read.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(empleados, <span class="at">file =</span> <span class="st">&quot;data/empleados_new.rds&quot;</span>)</span>
+<span id="cb7-2"><a href="read.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## restore it under a different name</span></span>
+<span id="cb7-3"><a href="read.html#cb7-3" aria-hidden="true" tabindex="-1"></a>empleados2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/empleados_new.rds&quot;</span>)</span>
+<span id="cb7-4"><a href="read.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># identical(empleados, empleados2)</span></span></code></pre></div>
 <p>Normalmente, el objeto empleado en R para almacenar datos en memoria
 es el <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame"><code>data.frame</code></a>.</p>
 </div>
@@ -388,10 +374,10 @@ y <code>?cars</code> muestra la ayuda correspondiente con la descripición de la
 <p>En R, para leer archivos de texto se suele utilizar la función <code>read.table()</code>.
 Suponinedo, por ejemplo, que en el directorio actual está el fichero
 <em>empleados.txt</em>. La lectura de este fichero vendría dada por el código:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="read.html#cb8-1" tabindex="-1"></a><span class="co"># Session &gt; Set Working Directory &gt; To Source...?</span></span>
-<span id="cb8-2"><a href="read.html#cb8-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;data/empleados.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-3"><a href="read.html#cb8-3" tabindex="-1"></a><span class="co"># head(datos)</span></span>
-<span id="cb8-4"><a href="read.html#cb8-4" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="read.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Session &gt; Set Working Directory &gt; To Source...?</span></span>
+<span id="cb8-2"><a href="read.html#cb8-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;data/empleados.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-3"><a href="read.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># head(datos)</span></span>
+<span id="cb8-4"><a href="read.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    474 obs. of  10 variables:
 ##  $ id      : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ sexo    : chr  &quot;Hombre&quot; &quot;Hombre&quot; &quot;Mujer&quot; &quot;Mujer&quot; ...
@@ -403,7 +389,7 @@ Suponinedo, por ejemplo, que en el directorio actual está el fichero
 ##  $ tiempemp: int  98 98 98 98 98 98 98 98 98 98 ...
 ##  $ expprev : int  144 36 381 190 138 67 114 0 115 244 ...
 ##  $ minoria : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="read.html#cb10-1" tabindex="-1"></a><span class="fu">class</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="read.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(datos)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <p>Si el fichero estuviese en el directorio <em>c:\datos</em> bastaría con especificar
 <code>file = "c:/datos/empleados.txt"</code>.
@@ -423,28 +409,28 @@ por “,” se utiliza <code>dec = ","</code>.</p></li>
 </ul>
 <p>Resumiendo, los (principales) argumentos por defecto de la función
 <code>read.table</code> son los que se muestran en la siguiente línea:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="read.html#cb12-1" tabindex="-1"></a><span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)  </span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="read.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)  </span></code></pre></div>
 <p>Para más detalles sobre esta función véase
 <code>help(read.table)</code>.</p>
 <p>Estan disponibles otras funciones con valores por defecto de los parámetros
 adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores
 se puede utilizar <code>read.delim()</code> o <code>read.delim2()</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="read.html#cb13-1" tabindex="-1"></a><span class="fu">read.delim</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)</span>
-<span id="cb13-2"><a href="read.html#cb13-2" tabindex="-1"></a><span class="fu">read.delim2</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="read.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.delim</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb13-2"><a href="read.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.delim2</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 </div>
 <div id="importación-desde-spss" class="section level3 hasAnchor" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Importación desde SPSS<a href="read.html#importaci%C3%B3n-desde-spss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">2.1.4</span> Importación desde SPSS<a href="read.html#importación-desde-spss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>El programa R permite lectura de ficheros de datos en formato SPSS (extensión <em>.sav</em>) sin necesidad de tener instalado dicho programa en el ordenador. Para ello se necesita:</p>
 <ul>
 <li><p>cargar la librería <code>foreign</code></p></li>
 <li><p>utilizar la función <code>read.spss</code></p></li>
 </ul>
 <p>Por ejemplo:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="read.html#cb14-1" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb14-2"><a href="read.html#cb14-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="at">file =</span> <span class="st">&quot;data/Employee data.sav&quot;</span>, </span>
-<span id="cb14-3"><a href="read.html#cb14-3" tabindex="-1"></a>                   <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-4"><a href="read.html#cb14-4" tabindex="-1"></a><span class="co"># head(datos)</span></span>
-<span id="cb14-5"><a href="read.html#cb14-5" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="read.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb14-2"><a href="read.html#cb14-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="at">file =</span> <span class="st">&quot;data/Employee data.sav&quot;</span>, </span>
+<span id="cb14-3"><a href="read.html#cb14-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-4"><a href="read.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># head(datos)</span></span>
+<span id="cb14-5"><a href="read.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    474 obs. of  10 variables:
 ##  $ id      : num  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ sexo    : Factor w/ 2 levels &quot;Hombre&quot;,&quot;Mujer&quot;: 1 1 2 2 1 1 1 2 2 2 ...
@@ -462,14 +448,14 @@ se puede utilizar <code>read.delim()</code> o <code>read.delim2()</code>:</p>
 <p><strong>Nota</strong>: Si hay fechas, puede ser recomendable emplear la función <code>spss.get()</code> del paquete <code>Hmisc</code>.</p>
 </div>
 <div id="importación-desde-excel" class="section level3 hasAnchor" number="2.1.5">
-<h3><span class="header-section-number">2.1.5</span> Importación desde Excel<a href="read.html#importaci%C3%B3n-desde-excel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">2.1.5</span> Importación desde Excel<a href="read.html#importación-desde-excel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Se pueden leer fichero de Excel (con extensión <em>.xlsx</em>) utilizando, por ejemplo, los paquetes:</p>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/openxlsx/index.html"><code>openxlsx</code></a>,</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="read.html#cb16-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb16-2"><a href="read.html#cb16-2" tabindex="-1"></a>datos<span class="ot">&lt;-</span><span class="fu">read.xlsx</span>(<span class="st">&quot;./data/coches.xlsx&quot;</span>)</span>
-<span id="cb16-3"><a href="read.html#cb16-3" tabindex="-1"></a><span class="fu">class</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="read.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb16-2"><a href="read.html#cb16-2" aria-hidden="true" tabindex="-1"></a>datos<span class="ot">&lt;-</span><span class="fu">read.xlsx</span>(<span class="st">&quot;./data/coches.xlsx&quot;</span>)</span>
+<span id="cb16-3"><a href="read.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(datos)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/RODBC/index.html"><code>RODBC</code></a> (este paquete se empleará más adelante para acceder a bases de datos),
@@ -477,23 +463,23 @@ entre otros.</li>
 </ul>
 <p>El siguiente código implementa una función que permite leer todos
 los archivos en formato <em>.xlsx</em> en un directorio:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="read.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb18-2"><a href="read.html#cb18-2" tabindex="-1"></a>read_xlsx <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">path =</span> <span class="st">&#39;.&#39;</span>) {</span>
-<span id="cb18-3"><a href="read.html#cb18-3" tabindex="-1"></a>  files <span class="ot">&lt;-</span> <span class="fu">dir</span>(path, <span class="at">pattern =</span> <span class="st">&#39;*.xlsx&#39;</span>) <span class="co"># list.files</span></span>
-<span id="cb18-4"><a href="read.html#cb18-4" tabindex="-1"></a>  <span class="co"># file.list &lt;- lapply(files, readWorkbook)</span></span>
-<span id="cb18-5"><a href="read.html#cb18-5" tabindex="-1"></a>  file.list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="fu">length</span>(files), <span class="at">mode =</span> <span class="st">&#39;list&#39;</span>)</span>
-<span id="cb18-6"><a href="read.html#cb18-6" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) </span>
-<span id="cb18-7"><a href="read.html#cb18-7" tabindex="-1"></a>      file.list[[i]] <span class="ot">&lt;-</span> <span class="fu">readWorkbook</span>(files[i])</span>
-<span id="cb18-8"><a href="read.html#cb18-8" tabindex="-1"></a>  file.names <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&#39;</span><span class="sc">\\</span><span class="st">.xlsx$&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">basename</span>(files)) </span>
-<span id="cb18-9"><a href="read.html#cb18-9" tabindex="-1"></a>  <span class="fu">names</span>(file.list) <span class="ot">&lt;-</span> file.names</span>
-<span id="cb18-10"><a href="read.html#cb18-10" tabindex="-1"></a>  file.list</span>
-<span id="cb18-11"><a href="read.html#cb18-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="read.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb18-2"><a href="read.html#cb18-2" aria-hidden="true" tabindex="-1"></a>read_xlsx <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">path =</span> <span class="st">&#39;.&#39;</span>) {</span>
+<span id="cb18-3"><a href="read.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  files <span class="ot">&lt;-</span> <span class="fu">dir</span>(path, <span class="at">pattern =</span> <span class="st">&#39;*.xlsx&#39;</span>) <span class="co"># list.files</span></span>
+<span id="cb18-4"><a href="read.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># file.list &lt;- lapply(files, readWorkbook)</span></span>
+<span id="cb18-5"><a href="read.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  file.list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="fu">length</span>(files), <span class="at">mode =</span> <span class="st">&#39;list&#39;</span>)</span>
+<span id="cb18-6"><a href="read.html#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) </span>
+<span id="cb18-7"><a href="read.html#cb18-7" aria-hidden="true" tabindex="-1"></a>      file.list[[i]] <span class="ot">&lt;-</span> <span class="fu">readWorkbook</span>(files[i])</span>
+<span id="cb18-8"><a href="read.html#cb18-8" aria-hidden="true" tabindex="-1"></a>  file.names <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&#39;</span><span class="sc">\\</span><span class="st">.xlsx$&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">basename</span>(files)) </span>
+<span id="cb18-9"><a href="read.html#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(file.list) <span class="ot">&lt;-</span> file.names</span>
+<span id="cb18-10"><a href="read.html#cb18-10" aria-hidden="true" tabindex="-1"></a>  file.list</span>
+<span id="cb18-11"><a href="read.html#cb18-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Para combinar los archivos, suponiendo que tienen las mismas columnas, podríamos ejecutar una llamada a <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind"><code>rbind()</code></a>(R base):</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="read.html#cb19-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>, file.list)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="read.html#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>, file.list)</span></code></pre></div>
 <p>o emplear la función <a href="https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/bind"><code>bind_rows()</code></a>
 del paquete <a href="https://dplyr.tidyverse.org"><code>dplyr</code></a>, donde las columnas se emparejan por nombre, y cualquier columna que falte se rellenará con <code>NA</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="read.html#cb20-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(file.list)</span></code></pre></div>
-<p>El Capítulo 4, provee de otras utilidades para la manipulación de datos con <code>dplyr</code> <span class="citation">(<a href="#ref-R-dplyr">Wickham et al. 2023</a>)</span>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="read.html#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(file.list)</span></code></pre></div>
+<p>El Capítulo 4, provee de otras utilidades para la manipulación de datos con <code>dplyr</code> <span class="citation">(<a href="#ref-R-dplyr" role="doc-biblioref">Wickham et al. 2023</a>)</span>.</p>
 <p>Los datos cargados en R (usualmente un <code>data.frame</code>) se pueden exportar desde Excel fácilmente a un archivo de texto <em>separado por comas</em> (extensión <em>.csv</em>), evitando utilizar algunos de los paquetes mencionados anteriormente.
 Por ejemplo, supongamos que queremos leer el fichero <em>coches.xls</em>:</p>
 <ul>
@@ -501,15 +487,15 @@ Por ejemplo, supongamos que queremos leer el fichero <em>coches.xls</em>:</p>
 <li><p>El fichero <em>coches.csv</em> es un fichero de texto plano (se puede
 editar con el bloc de notas, <em>Notepad</em>), con cabecera, las columnas separadas por “;”, y siendo “,” el carácter decimal.</p></li>
 <li><p>Por lo tanto, la lectura de este fichero se puede hacer con:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="read.html#cb21-1" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;coches.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb21-2"><a href="read.html#cb21-2" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="read.html#cb21-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;coches.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb21-2"><a href="read.html#cb21-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div></li>
 </ul>
 <p>Otra posibilidad, es utilizar la función <code>read.csv2</code>. Esta función no es más que una adaptación de la función general <code>read.table</code> con las siguientes
 opciones:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="read.html#cb22-1" tabindex="-1"></a><span class="fu">read.csv2</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="read.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv2</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>, ...)</span></code></pre></div>
 <p>Por lo tanto, la lectura del fichero <em>coches.csv</em> se puede hacer de modo
 más directo con:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="read.html#cb23-1" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;coches.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="read.html#cb23-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;coches.csv&quot;</span>)</span></code></pre></div>
 <p>Esta forma de proceder, exportando a formato CSV, se puede emplear con otras hojas de cálculo o fuentes de datos.
 Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el separador de campos será <code>sep = ","</code> y el de decimales <code>dec = "."</code>, las opciones por defecto en la función <code>read.csv()</code>.</p>
 </div>
@@ -517,40 +503,41 @@ Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el 
 <h3><span class="header-section-number">2.1.6</span> Exportación de datos<a href="read.html#cap2-exporta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Puede ser de interés la exportacifn de datos para que puedan ser leídos con otros programas. Para ello, se puede emplear la función <code>write.table()</code>. Esta función es similar, pero funcionando en sentido inverso, a <code>read.table()</code>, ver Sección <a href="read.html#cap2-texto">2.1.3</a>.</p>
 <p>Veamos un ejemplo:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="read.html#cb24-1" tabindex="-1"></a>tipo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
-<span id="cb24-2"><a href="read.html#cb24-2" tabindex="-1"></a>longitud <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">120.34</span>, <span class="fl">99.45</span>, <span class="fl">115.67</span>)</span>
-<span id="cb24-3"><a href="read.html#cb24-3" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(tipo, longitud)</span>
-<span id="cb24-4"><a href="read.html#cb24-4" tabindex="-1"></a>datos</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="read.html#cb24-1" aria-hidden="true" tabindex="-1"></a>tipo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
+<span id="cb24-2"><a href="read.html#cb24-2" aria-hidden="true" tabindex="-1"></a>longitud <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">120.34</span>, <span class="fl">99.45</span>, <span class="fl">115.67</span>)</span>
+<span id="cb24-3"><a href="read.html#cb24-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(tipo, longitud)</span>
+<span id="cb24-4"><a href="read.html#cb24-4" aria-hidden="true" tabindex="-1"></a>datos</span></code></pre></div>
 <pre><code>##   tipo longitud
 ## 1    A   120.34
 ## 2    B    99.45
 ## 3    C   115.67</code></pre>
 <p>Para guardar el data.frame <code>datos</code> en un fichero de texto se
 puede utilizar:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="read.html#cb26-1" tabindex="-1"></a><span class="fu">write.table</span>(datos, <span class="at">file =</span> <span class="st">&quot;datos.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="read.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(datos, <span class="at">file =</span> <span class="st">&quot;datos.txt&quot;</span>)</span></code></pre></div>
 <p>Otra posibilidad es utilizar la función:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="read.html#cb27-1" tabindex="-1"></a><span class="fu">write.csv2</span>(datos, <span class="at">file =</span> <span class="st">&quot;datos.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="read.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(datos, <span class="at">file =</span> <span class="st">&quot;datos.csv&quot;</span>)</span></code></pre></div>
 <p>que dará lugar al fichero <em>datos.csv</em> importable directamente desde Excel. Las opciones anteriores sólo dependen del paquete <code>utils</code>, que se instala por defecto con R base.</p>
 </div>
 <div id="python-julia-y-otros-lenguajes-de-programación" class="section level3 hasAnchor" number="2.1.7">
-<h3><span class="header-section-number">2.1.7</span> Python, Julia y otros lenguajes de programación<a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>R es un lenguaje de programación libre (derivado del lenguaje S en los Laboratorios Bell) que se caracteriza por su capacidad para interactuar con otros lenguajes de programación, incluyendo Python <span class="citation">(<a href="#ref-python">Van Rossum and Drake Jr 1995</a>)</span> y Julia <span class="citation">(<a href="#ref-julia">Bezanson et al. 2017</a>)</span>.</p>
-<p>En el ámbito de la Estadística (como en la denominada <strong>Ciendica de Datos</strong>), R destaca por su extensa y detallada documentación (en muchos casos como resultado de aportaciones metodológicas y/o avances científicos). Por ejemplo, después de diez años de la primera edición del libro <em>An Introduction to Statistical Learning con aplicaciones en R (ISLR)</em> , <span class="citation">James et al. (<a href="#ref-james2013introduction">2013</a>)</span>, algunos de los mismos autores publicaron la edición en Python (ISLP), <span class="citation">James et al. (<a href="#ref-james2023introduction">2023</a>)</span>.<br />
+<h3><span class="header-section-number">2.1.7</span> Python, Julia y otros lenguajes de programación<a href="read.html#python-julia-y-otros-lenguajes-de-programación" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R es un lenguaje de programación libre (derivado del lenguaje S en los Laboratorios Bell) que se caracteriza por su capacidad para interactuar con otros lenguajes de programación, incluyendo Python <span class="citation">(<a href="#ref-python" role="doc-biblioref">Van Rossum and Drake Jr 1995</a>)</span> y Julia <span class="citation">(<a href="#ref-julia" role="doc-biblioref">Bezanson et al. 2017</a>)</span>.</p>
+<p>En el ámbito de la Estadística (como en la denominada <strong>Ciencia de Datos</strong>), R destaca por su extensa y detallada documentación (en muchos casos como resultado de aportaciones metodológicas y/o avances científicos). Por ejemplo, después de diez años de la primera edición del libro <em>An Introduction to Statistical Learning con aplicaciones en R (ISLR)</em> , <span class="citation">James et al. (<a href="#ref-james2013introduction" role="doc-biblioref">2013</a>)</span>, algunos de los mismos autores publicaron la edición en Python (ISLP), <span class="citation">James et al. (<a href="#ref-james2023introduction" role="doc-biblioref">2023</a>)</span>.<br />
+Las últimas ediciones de ambos libros están disponibles en abierto en <a href="https://www.statlearning.com/">https://www.statlearning.com</a>.
 Por otro lado, en 2015, se lanzó el paquete <a href="https://rstudio.github.io/reticulate/"><code>reticulate</code></a> disponible en <a href="https://rstudio.github.io/reticulate/">https://rstudio.github.io/reticulate/</a>, permitiendo la ejecución de código Python desde R (y en 2020 se completó la integración de Python en la interfaz de RStudio).</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="read.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb28-2"><a href="read.html#cb28-2" tabindex="-1"></a>os <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;os&quot;</span>)</span>
-<span id="cb28-3"><a href="read.html#cb28-3" tabindex="-1"></a>os<span class="sc">$</span><span class="fu">listdir</span>(<span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="read.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb28-2"><a href="read.html#cb28-2" aria-hidden="true" tabindex="-1"></a>os <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;os&quot;</span>)</span>
+<span id="cb28-3"><a href="read.html#cb28-3" aria-hidden="true" tabindex="-1"></a>os<span class="sc">$</span><span class="fu">listdir</span>(<span class="st">&quot;.&quot;</span>)</span></code></pre></div>
 <p>Si queremos trabajar con Python de forma interactiva, podemos usar <code>repl_python()</code>. Los objetos creados en Python se pueden usar en R con <code>py</code> de <code>reticulate</code>.</p>
 <p>Recientemente, <em>Julia</em> se presenta también como una alternativa a considerar.
 El paquete <a href="NA"><code>JuliaConnectoR</code></a> disponible en <a href="https://cran.r-project.org/web/packages/JuliaConnectoR/">https://cran.r-project.org/web/packages/JuliaConnectoR/</a> facilita la importación de funciones y paquetes completos de Julia a R, es decir, permite el uso de funciones de Julia directamente en R.</p>
 <p>R también permite el uso/comunicación de otros lenguajes de programación como Java, C, C++, Fortran, entre otros.</p>
-<!--
-https://es.r4ds.hadley.nz/01-intro.html
--->
+<p>En julio de 2022, la compañía <em>RStudio Inc</em> anunció que cambiaba su nombre a <a href="https://posit.co"><em>Posit</em></a>, para reflejar su interés en el desarrollo de herramientas para lenguajes adicionales de programación, principalmente Python.
+En esa misma fecha lanzó <a href="https://quarto.org">Quarto</a> como una nueva alternativa a R Markdown para ofrecer compatibilidad integrada para múltiples lenguajes, como Python o Julia, además de R.
+Desde julio de 2025 ya están disponibles versiones estables de <a href="https://positron.posit.co/">Positron</a>, un nuevo IDE para el análisis de datos que es compatible de forma nativa con otros lenguajes, como Python o Julia, y que se supone que será un sustituto de RStudio en el futuro.</p>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-julia" class="csl-entry">
 Bezanson, Jeff, Alan Edelman, Stefan Karpinski, and Viral B Shah. 2017. <span>“Julia: A Fresh Approach to Numerical Computing.”</span> <em>SIAM Review</em> 59 (1): 65–98. <a href="https://doi.org/10.1137/141000671">https://doi.org/10.1137/141000671</a>.
 </div>

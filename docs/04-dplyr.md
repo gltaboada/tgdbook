@@ -60,10 +60,8 @@ También hay paquetes "asociados":
 Muchos otros paquetes están adaptando este estilo, por ejemplo, el meta paquete [`tidyverts`](https://tidyverts.org/)) para el análisis de series temporales (*time series*, TS), que incluye, por ejemplo:
 
 - [`tsibble`](https://tsibble.tidyverts.org/) (infra)estructuras de datos. 
-- [`fable`](https://fable.tidyverts.org/)  predicción (*forecasting*). 
+- [`fable`](https://fable.tidyverts.org/) predicción (*forecasting*)^[El libro [**Forecasting: Principles and Practice**](https://otexts.com/fpp3/) donde se describe su uso, y el paquete [`fpp3`](https://github.com/robjhyndman/fpp3package) asociado, también siguen una filosofía *tidy*.]. 
 - [`feasts`](https://feasts.tidyverts.org/) extracción de características (predictores).
-
-El paquete [`fpp3`](https://github.com/robjhyndman/fpp3package) asociado al libro [**Forecasting: Principles and Practice**](https://otexts.com/fpp3/) también sigue una filosofía *tidy*.
 
 Otro ejemplo, en este caso, para el tratamiento de datos espaciales, sería el paquete [`sf`](https://github.com/r-spatial/sf/),  para más detalles ver [Sección 2.2 Introducción al paquete sf ](https://rubenfcasal.github.io/estadistica_espacial/sf-intro.html) del libro **Estadística Espacial con R**
 
@@ -122,13 +120,29 @@ load("data/empleados.RData")
 # Listamos las etiquetas
 #knitr::kable(attr(empleados, "variable.labels"),
 #             col.names = "Etiqueta")
-
 # Eliminamos las etiquetas para que no molesten...
-# attr(empleados, "variable.labels") <- NULL  
+attr(empleados, "variable.labels") <- NULL  
 
-#empleados |>  
-#  subset(catlab == "Directivo", catlab:sexoraza) |>
-#  summary()
+empleados |>
+   subset(catlab == "Directivo", catlab:sexoraza) |>
+   summary()
+```
+
+```
+##             catlab      salario           salini         tiempemp    
+##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
+##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
+##  Directivo     :84   Median : 60500   Median :28740   Median :81.00  
+##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
+##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
+##                      Max.   :135000   Max.   :79980   Max.   :98.00  
+##     expprev        minoria            sexoraza 
+##  Min.   :  3.00   No   :80   Blanca varón :70  
+##  1st Qu.: 19.75   S\xed: 4   Minoría varón: 4  
+##  Median : 52.00              Blanca mujer :10  
+##  Mean   : 77.62              Minoría mujer: 0  
+##  3rd Qu.:125.25                                
+##  Max.   :285.00
 ```
 
 Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
@@ -195,7 +209,7 @@ excel_sheets("./data/coches.xlsx") # listado de hojas
 
 Otra alternativa, sería emplear el paquete [`data.table`](https://r-datatable.com).
 La función `fread()` puede considerarse como alternativa a `read_csv()` 
-cuando el proceso de lectura resulta lento, especialmente con datos numéricos pesados. ESta función intenta *adivinar* automáticamente algunos argumentos sin tener que especificarse como, por ejemplo, el delimitador, las filas omitidas y la cabecera. Sin embargo, si requiere especificar el separador del decimal, como a continuación:
+cuando el proceso de lectura resulta lento, especialmente con datos numéricos pesados. Esta función intenta *adivinar* automáticamente algunos argumentos sin tener que especificarse como, por ejemplo, el delimitador, las filas omitidas y la cabecera. Sin embargo, si requiere especificar el separador del decimal, como a continuación:
 
 
 ``` r
@@ -227,29 +241,8 @@ fwrite(datos2, file = "datos2.csv")
 ```
 
 
-
-<!--  xxx
-Manipulación de datos con `dplyr` {#dplyr}
-=================================
--->
-
-Working draft...
-
-En este capítulo se realiza una breve introducción al paquete  [`dplyr`](https://dplyr.tidyverse.org/index.html). 
-Para mas información, ver por ejemplo la 'vignette' del paquete   
-[Introduction to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html),
-o el Capítulo [5 Data transformation](http://r4ds.had.co.nz/transform.html) del libro 
-[R for Data Science](http://r4ds.had.co.nz)^[Una alternativa (más rápida) es emplear
-[data.table](https://rdatatable.gitlab.io/data.table).].
-
-
-
-
 ## Manipulación de datos con dplyr y tidyr {#dplyr}
 
-<!--
-# Introducción  {#dplyr}
--->
 En esta sección se realiza una breve introducción al paquete  [`dplyr`](https://dplyr.tidyverse.org) y se comentan algunas de las utilidades del paquete [`tidyr`](https://tidyr.tidyverse.org) que pueden resultar de interés^[Otra alternativa (más rápida) es [`data.table`](https://rdatatable.gitlab.io/data.table) pero en versiones recientes ya se puede emplear desde `dplyr`, como se comenta más adelante.]. 
 
 La referencia recomendada para iniciarse en esta herramienta es el Capítulo [5 Data transformation](http://r4ds.had.co.nz/transform.html) de 
@@ -505,10 +498,10 @@ empleados %>% group_by(sexo, minoria) %>%
 ## # A tibble: 4 x 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre "No"     44475.   194
-## 2 Hombre "S\xed"  32246.    64
-## 3 Mujer  "No"     26707.   176
-## 4 Mujer  "S\xed"  23062.    40
+## 1 Hombre No       44475.   194
+## 2 Hombre S�       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  S�       23062.    40
 ```
 
 ``` r
@@ -520,10 +513,10 @@ empleados %>% group_by(sexo, minoria) %>%
 ## # A tibble: 4 x 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre "No"     44475.   194
-## 2 Hombre "S\xed"  32246.    64
-## 3 Mujer  "No"     26707.   176
-## 4 Mujer  "S\xed"  23062.    40
+## 1 Hombre No       44475.   194
+## 2 Hombre S�       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  S�       23062.    40
 ```
 
 ``` r
@@ -672,7 +665,7 @@ Ver la viñeta [Pivoting](https://tidyr.tidyverse.org/articles/pivot.html) para 
 
 - [`separate()`](https://tidyr.tidyverse.org/reference/separate.html): permite separar una columna de texto en varias (ver también [`extract()`](https://tidyr.tidyverse.org/reference/extract.html)).
 
-Ver [mortalidad.R](ejemplos/mortalidad/mortalidad.R) en [ejemplos](https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos).
+Ver ejemplo [mortalidad.R](data/mortalidad.R).
 
 
 ## Operaciones con tablas de datos {#dplyr-join}
@@ -752,7 +745,7 @@ src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
+## src:  sqlite 3.43.2 [E:\OneDrive - Universidade da Coruña\__Actual\__TGD_clase\tgdbook\data\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
@@ -765,8 +758,8 @@ invoices
 ```
 
 ```
-## # Source:   table<`invoices`> [?? x 9]
-## # Database: sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
+## # Source:   table<invoices> [?? x 9]
+## # Database: sqlite 3.43.2 [E:\OneDrive - Universidade da Coruña\__Actual\__TGD_clase\tgdbook\data\chinook.db]
 ##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
 ##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
 ##  1         1          2 2009-01-01 00:0~ Theodor-Heuss~ Stuttgart   <NA>        
@@ -842,8 +835,8 @@ invoices %>% count # número de filas
 ```
 
 ```
-## # Source:   SQL [?? x 1]
-## # Database: sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
+## # Source:   SQL [1 x 1]
+## # Database: sqlite 3.43.2 [E:\OneDrive - Universidade da Coruña\__Actual\__TGD_clase\tgdbook\data\chinook.db]
 ##       n
 ##   <int>
 ## 1   412

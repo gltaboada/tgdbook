@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 # Directorio figuras
 # ················································
-fig.path <- "figuras/"
+fig.path <- "images/"
 # fig.path <- ""
 
 # Funciones auxiliares rmarkdown -----------------

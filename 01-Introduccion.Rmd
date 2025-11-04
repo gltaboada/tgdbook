@@ -133,14 +133,16 @@ Asimilación práctica de materia: Asimilación y comprensión de los conocimien
 * Rubén Fernández Casal ([R Machinery](https://rubenfcasal.github.io)):
 
     - [Introducción al Análisis de Datos con R ](https://rubenfcasal.github.io/intror)
-      (con Javier Roca y Julián Costa)
+      (con Javier Roca, Julián Costa y Manuel Oviedo)
     
     - [Ayuda y Recursos para el Aprendizaje de R ](https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r)
     
+    - [Notas de Programación en R](https://rubenfcasal.github.io/book_notasr)
+    
+        [Capítulo introducción a Rmarkdown ](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html) 
+    
     - [Escritura de libros con el paquete bookdown ](https://rubenfcasal.github.io/bookdown_intro)
       (con Tomás Cotos)
-    
-    - [Apéndice introducción a Rmarkdown ](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html) 
     
     - [Pesentación análisis de datos con R ](https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf)
 

@@ -678,7 +678,10 @@ sqldf('SELECT * FROM chickwts WHERE feed NOT LIKE "%bean" LIMIT 5')
 
 ## Ejemplo Scopus data
 
-Ver ejemplo [*citan.zip*](data/citan.zip) y Apéndice \@ref(citan).
+Ver ejemplo [*citan.zip*](data/citan.zip) y paquete [CITAN](https://cran.r-project.org/web/packages/CITAN/index.html) (descontinuado).
+
+Las herramientas de este paquete realizan consultas SQL de forma continuada a una base de datos por lo que pueden resultar notablemente lentas.
+La recomendación es realizar el menor número de consultas posible y después operar en R:
 
 > “If your data fits in memory 
   there is no advantage to putting it in a database: 

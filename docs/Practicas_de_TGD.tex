@@ -1,24 +1,20 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+%
 \documentclass[
 ]{book}
-\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{5}
+\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
+  \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -36,6 +32,7 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+\usepackage{xcolor}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -47,13 +44,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -61,7 +58,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -70,7 +67,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -88,55 +85,154 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\newsavebox\pandoc@box
-\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
-  \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
-  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
-  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
-  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
-  \else\usebox{\pandoc@box}%
-  \fi%
-}
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 % Set default figure placement to htbp
+\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\usepackage[]{natbib}
-\bibliographystyle{apalike}
+\setcounter{secnumdepth}{5}
+%\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{fontsetup}
 \usepackage{booktabs}
-\usepackage{amsthm}
+\usepackage[a4paper, top=3.25cm, bottom=2.5cm, inner=2.5cm, outer=2.5cm]{geometry}
+%\usepackage[papersize={19cm, 24cm}, top=2.5cm, bottom=2cm, inner=2.5cm, outer=2cm]{geometry}
 %\usepackage{animate}
+%\usepackage{lmodern}
+%\usepackage{fontspec}
+% ---------------------------
+% Problemas con negritas en ecuaciones
+% https://tex.stackexchange.com/questions/141656/suddenly-a-problem-with-boldface-greek-symbols-bm-package-doesnt-work
+%\usepackage{bm}
+%\usepackage{unicode-math} % por defecto en bookdown
+% Emplear \symbf \symbfit \symbfup en lugar de \boldsymbol y \mathbf
+% Causa problemas en MathJax
+\renewcommand{\boldsymbol}[1]{\symbf{#1}}
+\renewcommand{\mathbf}[1]{\symbf{#1}}
+% ---------------------------
+\usepackage{emptypage}
+% líneas viudas y huérfanas
+\widowpenalty=500
+\clubpenalty=500
+% ---------------------------
+% Space above/below an [h] float (default 12pt)
+\setlength{\intextsep}{18pt}
+% Leyendas de figuras y tablas
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, margin={.08\textwidth}}
+%\captionsetup{font=small, labelfont=bf, margin={.08\textwidth, .02\textwidth}}
+% ---------------------------
+% Espacio después de teorema
+% https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
+% https://tex.stackexchange.com/questions/8110/is-it-possible-to-skip-the-first-line-in-a-theorem-environment
+\usepackage{ntheorem}
+\theoremstyle{break}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theorempreskip{\bigskipamount}
+\theorempostskip{\smallskipamount}
+\theoremprework{\bigskip\hrule\leavevmode}
+\theoremseparator{\smallskip}
+\theorempostwork{\bigskip\hrule\bigskip}
+\newtheorem{theorem}{Teorema}[chapter]
+\theoremprework{\bigskip\hrule\leavevmode}
+\theorempostwork{\bigskip\hrule\bigskip}
+\newtheorem{conjecture}{Algoritmo}[chapter]
+\newtheorem{lemma}{Lema}[chapter]
+\newtheorem{corollary}{Corolario}[chapter]
+\newtheorem{proposition}{Proposición}[chapter]
+\newtheorem{definition}{Definición}[chapter]
+\newtheorem{hypothesis}{Hipótesis}[chapter]
+\newtheorem{exercise}{Ejercicio}[chapter]
+%\theoremprework{\bigskip\leavevmode}
+%\theorempostwork{\vspace*{-\bigskipamount}\vspace*{-\medskipamount}}
+\newtheorem{example}{Ejemplo}[chapter]
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\normalfont\itshape}
+\theoremseparator{:}
+% \theorempostskip{\bigskipamount} % PENDIENTE
+% \theorempostwork{\hrule}
+\newtheorem{remark}{Nota}
+\newtheorem{solution}{Solución}
+\newtheorem{proof}{Demostración}
+% ---------------------------
+% Spanish
 \ifxetex
   \usepackage{polyglossia}
   \setmainlanguage{spanish}
   % Tabla en lugar de cuadro
   \gappto\captionsspanish{\renewcommand{\tablename}{Tabla}
           \renewcommand{\listtablename}{Índice de tablas}}
-
 \else
   \usepackage[spanish,es-tabla]{babel}
 \fi
-\makeatletter
-\def\thm@space@setup{%
-  \thm@preskip=8pt plus 2pt minus 4pt
-  \thm@postskip=\thm@preskip
-}
-\makeatother
-\usepackage{bookmark}
+\usepackage{csquotes}
+% Añadir bibliografía en el índice
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+\addto\captionsspanish{\renewcommand{\contentsname}{\'Indice}}
+% ---------------------------
+% Encabezados
+\usepackage{fancyhdr}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\itshape\nouppercase{\rightmark}}
+\fancyhead[RE]{\itshape\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{13.2pt}
+% ---------------------------
+% Code chunks
+% https://github.com/tidymodels/TMwR/blob/main/latex_extras/preamble.tex
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small}
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small, xleftmargin=2mm}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, xleftmargin=2mm}
+\renewcommand{\CommentTok}[1]{\textcolor[rgb]{0.41,0.41,0.41}{\texttt{#1}}}
+% https://tex.stackexchange.com/questions/161678/decreasing-font-size-in-verbatim
+% https://tex.stackexchange.com/questions/56970/how-can-i-set-stretch-of-verbatim-to-be-different-than-global-setting
+\usepackage[nodisplayskipstretch]{setspace} \setstretch{1.2}
+%\usepackage{etoolbox}
+% Interlineado code chunk
+\preto{\Shaded}{\vspace{0.2\baselineskip}\edef\tempstretch{\baselinestretch}\par\setstretch{1}}
+\appto{\endShaded}{\vspace{-\tempstretch\baselineskip}\vspace{1.2\baselineskip}}
+% Interlineado resultados y tamaño
+%\preto{\verbatim}{\edef\tempstretch{\baselinestretch}\par\setstretch{1}\small}
+%\appto{\endverbatim}{\vspace{-\tempstretch\baselineskip}\normalsize\vspace{1.2\baselineskip}}
+\preto{\verbatim}{\edef\tempstretch{\baselinestretch}\par\setstretch{1}}
+\appto{\endverbatim}{\vspace{-\tempstretch\baselineskip}\vspace{1.2\baselineskip}}
+% ---------------------------
+% Notas al pie
+\let\oldfootnote\footnote
+\renewcommand\footnote[1]{\oldfootnote{\hspace{2mm}#1}}
+% ---------------------------
+\usepackage{microtype}
+\usepackage{hyperref}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
+\urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Prácticas de Tecnologías de Gestión y Manipulación de Datos},
-  pdfauthor={Guillermo López Taboada (guillermo.lopez.taboada@udc.es), Diego Darriba (diego.darriba@udc.es) y Rubén F. Casal (ruben.fcasal@udc.es)},
+  pdfauthor={Guillermo López Taboada (guillermo.lopez.taboada@udc.es); Diego Darriba (diego.darriba@udc.es); Rubén Fernández Casal (ruben.fcasal@udc.es); Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{Prácticas de Tecnologías de Gestión y Manipulación de Datos}
-\author{Guillermo López Taboada (\href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}}), Diego Darriba (\href{mailto:diego.darriba@udc.es}{\nolinkurl{diego.darriba@udc.es}}) y Rubén F. Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}})}
-\date{2025-10-24}
+\author{Guillermo López Taboada (\href{mailto:guillermo.lopez.taboada@udc.es}{\nolinkurl{guillermo.lopez.taboada@udc.es}}) \and Diego Darriba (\href{mailto:diego.darriba@udc.es}{\nolinkurl{diego.darriba@udc.es}}) \and Rubén Fernández Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}}) \and Manuel Oviedo de la Fuente (\href{mailto:manuel.oviedo@udc.es}{\nolinkurl{manuel.oviedo@udc.es}})}
+\date{Edición: Octubre de 2025. Impresión: 2025-11-04}
 
 \begin{document}
 \maketitle
@@ -145,14 +241,23 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter*{Prólogo}\label{pruxf3logo}
+\hypertarget{pruxf3logo}{%
+\chapter*{Prólogo}\label{pruxf3logo}}
 \addcontentsline{toc}{chapter}{Prólogo}
 
 Este libro contiene algunas de las prácticas de la asignatura de
-\href{http://eamo.usc.es/pub/mte/index.php/es/?option=com_content&view=article&id=2202&idm=38&a\%C3\%B1o=2020}{Tecnologías de Gestión de
+\href{http://eamo.usc.es/pub/mte/index.php/es/?option=com_content\&view=article\&id=2202\&idm=38\&a\%C3\%B1o=2020}{Tecnologías de Gestión de
 Datos}
 del \href{http://eio.usc.es/pub/mte}{Máster interuniversitario en Técnicas
 Estadísticas}).
+
+En este libro se asume que se dispone de conocimientos básicos de \href{https://www.r-project.org}{\texttt{R}}, un lenguaje de programación interpretado y un entorno estadístico desarrollado específicamente para el análisis de datos.
+Para instalar R se recomienda seguir los pasos descritos en el post \href{https://rubenfcasal.github.io/post/instalacion-de-r}{\emph{https://rubenfcasal.github.io/post/instalacion-de-r}}.
+Para el desarrollo de código e informes se sugiere emplear \emph{RStudio Desktop}, que se puede instalar y configurar siguiendo las indicaciones proporcionadas en el post \href{https://rubenfcasal.github.io/post/instalacion-de-rstudio}{\emph{https://rubenfcasal.github.io/post/instalacion-de-rstudio}}.
+
+Para una introducción a la programación en \href{https://www.r-project.org}{\texttt{R}} se puede consultar el libro Fernández-Casal et al.~(2022): \emph{\href{https://rubenfcasal.github.io/intror}{Introducción al Análisis de Datos con R}} (\href{https://github.com/rubenfcasal/intror}{github}).
+Adicionalmente, en el post \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{\emph{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}} se proporcionan enlaces a recursos adicionales, incluyendo bibliografía y cursos.
+También puede ser de utilidad el libro Fernández-Casal (2023): \emph{\href{https://rubenfcasal.github.io/book_notasr}{Notas de Programación en R}} (\href{https://github.com/rubenfcasal/book_notasr}{github}).
 
 Este libro ha sido escrito en \href{http://rmarkdown.rstudio.com}{R-Markdown}
 empleando el paquete \href{https://bookdown.org/yihui/bookdown/}{\texttt{bookdown}}
@@ -173,6 +278,7 @@ instalados los siguientes paquetes:
 \href{https://stringr.tidyverse.org}{\texttt{stringr}},
 \href{https://readxl.tidyverse.org}{\texttt{readxl}} ,
 \href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}},
+\href{https://naniar.njtierney.com}{\texttt{naniar}},
 \href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}},
 \href{https://cran.r-project.org/web/packages/sqldf/index.html}{\texttt{sqldf}},
 \href{https://r-dbi.github.io/RSQLite}{\texttt{RSQLite}},
@@ -183,7 +289,7 @@ instalados los siguientes paquetes:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{pkgs }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}dplyr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}tidyr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}stringr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}readxl\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}openxlsx\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}magrittr\textquotesingle{}}\NormalTok{, }
-          \StringTok{\textquotesingle{}RODBC\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sqldf\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}RSQLite\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}foreign\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}knitr\textquotesingle{}}\NormalTok{)}
+          \StringTok{\textquotesingle{}naniar\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}RODBC\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sqldf\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}RSQLite\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}foreign\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}knitr\textquotesingle{}}\NormalTok{)}
 \CommentTok{\# install.packages(pkgs, dependencies=TRUE)}
 \FunctionTok{install.packages}\NormalTok{(}\FunctionTok{setdiff}\NormalTok{(pkgs, }\FunctionTok{installed.packages}\NormalTok{()[,}\StringTok{\textquotesingle{}Package\textquotesingle{}}\NormalTok{]), }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
@@ -201,7 +307,8 @@ Internacional}
 (esperamos poder liberarlo bajo una licencia menos restrictiva más
 adelante\ldots).
 
-\chapter{Introducción}\label{introducciuxf3n}
+\hypertarget{introducciuxf3n}{%
+\chapter{Introducción}\label{introducciuxf3n}}
 
 La información relevante de la materia está disponible en la guía docente y la ficha de la asignatura
 
@@ -216,7 +323,8 @@ En particular, los resultados de aprendizaje son:
   Saber relacionar el software de diseño y gestión de bases de datos con el específicamente implementado para el análisis de datos.
 \end{itemize}
 
-\section{Contenidos}\label{contenidos}
+\hypertarget{contenidos}{%
+\section{Contenidos}\label{contenidos}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -257,43 +365,35 @@ En particular, los resultados de aprendizaje son:
   \end{itemize}
 \end{enumerate}
 
-\section{Planificación (tentativa)}\label{planificaciuxf3n-tentativa}
+\hypertarget{planificaciuxf3n-tentativa}{%
+\section{Planificación (tentativa)}\label{planificaciuxf3n-tentativa}}
 
 La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los
 conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: \url{https://forms.gle/D5bhiLLBUFuh6k1n8}
 
 \begin{itemize}
 \item
-  Semana 1 (9/9) : 10 y 11/9 - Presentación e introducción a Tema 1 \& SQL
+  Semana 1 (20/10) : 21/10 - Presentación
 \item
-  Semana 2 (16/9) : 17 y 18/9 - Seminario dplyr.
+  Semana 2 (27/10) : 28 y 30/10 - Tema 1 - SQL
 \item
-  Semana 3 (23/9) : 24 y 25/9 - Tema 1 \& SQL.
+  Semana 3 (03/11) : 04 y 06/11 - Seminario dplyr
 \item
-  Semana 4 (30/9) : 1 y 2/10 - Ejercicios SQL.
+  Semana 4 (10/11) : 11, 13 y 14/11 - Tema 1 - SQL
 \item
-  Semana 5 (7/10) : 8 y 9/10 - Tema 2 \& NoSQL - Seminario texto proc. (CSV, excel, Json) y open data .
+  Semana 5 (17/11) : 18, 20/11 - Tema 1 - SQL. + 21/11 - Seminario texto proc. (CSV, excel, Json) y open data
 \item
-  Semana 6 (14/10) : 15/10 - Tutorial sparklyr-SQL. + 16/10 Consultas SQL con sparklyr.
+  Semana 6 (24/11) : 25/11 - Tema 2 NOSQL + 27 y 28/11 - Tema 3 Big Data
 \item
-  Semana 7 (21/10) : 22 y 23/10 Tema 3 Big Data.
+  Semana 7 (1/12) : 2, 4 y 5/12 Tema 3 Big Data.
 \item
-  Semana 8 (28/10) : 29 y 30/10 - Tutoriales sparklyr-ML.
+  Semana 8 (8/12) : 9 y 11/12 - Intro a AE + 12/12 Tutoría práctica ML.
 \item
-  Semana 9 (4/11) : 6/11 - Ejercicios ML.
-\item
-  Semana 10(11/11) : 11 y 13/11 - Intro a AE (día 13 1 hora de 13 a 14h).
-\item
-  Semana 11(18/11) : 18/11 - Intro a AE Manuel, 20 y 21/11 - Ejercicios ML.
-\item
-  Semana 12 (25/11): 25/11 o cualquier otro día hasta el 5/12, seguramente el 5/12, dudas práctica ML. Backup.
+  Semana 9 (15/12) : 16, 18 y 19/12 - Clases de paso / tutorías de cara a examen.
 \end{itemize}
 
-Examen 21/1/25 4pm.
-
-Recuperación 1/7/25 4pm.
-
-\subsection{Evaluación}\label{evaluaciuxf3n}
+\hypertarget{evaluaciuxf3n}{%
+\subsection{Evaluación}\label{evaluaciuxf3n}}
 
 \begin{itemize}
 \item
@@ -304,9 +404,11 @@ Recuperación 1/7/25 4pm.
   \textbf{Prácticas de laboratorio} (40\%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.
 \end{itemize}
 
-\section{Fuentes de información:}\label{fuentes-de-informaciuxf3n}
+\hypertarget{fuentes-de-informaciuxf3n}{%
+\section{Fuentes de información:}\label{fuentes-de-informaciuxf3n}}
 
-\subsection{Básica}\label{buxe1sica}
+\hypertarget{buxe1sica}{%
+\subsection{Básica}\label{buxe1sica}}
 
 \begin{itemize}
 \item
@@ -325,20 +427,23 @@ Recuperación 1/7/25 4pm.
   \begin{itemize}
   \item
     \href{https://rubenfcasal.github.io/intror}{Introducción al Análisis de Datos con R}
-    (con Javier Roca y Julián Costa)
+    (con Javier Roca, Julián Costa y Manuel Oviedo)
   \item
     \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{Ayuda y Recursos para el Aprendizaje de R}
   \item
+    \href{https://rubenfcasal.github.io/book_notasr}{Notas de Programación en R}
+
+    \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Capítulo introducción a Rmarkdown}
+  \item
     \href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con el paquete bookdown}
     (con Tomás Cotos)
-  \item
-    \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Apéndice introducción a Rmarkdown}
   \item
     \href{https://rubenfcasal.github.io/post/presentaciones/AnalisisDatosR.pdf}{Pesentación análisis de datos con R}
   \end{itemize}
 \end{itemize}
 
-\subsection{Complementaria:}\label{complementaria}
+\hypertarget{complementaria}{%
+\subsection{Complementaria:}\label{complementaria}}
 
 \begin{itemize}
 \tightlist
@@ -352,7 +457,8 @@ Recuperación 1/7/25 4pm.
   Centro de Supercomputación de Galicia (2020). {[}Servicio de Big Data del CESGA{]} (\url{https://bigdata.cesga.es/})
 \end{itemize}
 
-\chapter{Manipulación de datos con R}\label{manipR}
+\hypertarget{manipR}{%
+\chapter{Manipulación de datos con R}\label{manipR}}
 
 En el proceso de análisis de datos, al margen de su obtención y organización, una de las primeras etapas es el acceso y la manipulación de los datos (ver Figura \ref{fig:esquema2}).
 En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para ello.
@@ -367,7 +473,8 @@ Posteriormente en el Capítulo \ref{tidyverse} se mostrará como alternativa el 
 \caption{Etapas del proceso}\label{fig:esquema2}
 \end{figure}
 
-\section{Lectura, importación y exportación de datos}\label{read}
+\hypertarget{read}{%
+\section{Lectura, importación y exportación de datos}\label{read}}
 
 Además de la introducción directa, R es capaz de
 importar datos externos en múltiples formatos:
@@ -387,7 +494,8 @@ importar datos externos en múltiples formatos:
   otros lenguajes de programación: Python, Julia\ldots{}
 \end{itemize}
 
-\subsection{Formato de datos de R}\label{formato-de-datos-de-r}
+\hypertarget{formato-de-datos-de-r}{%
+\subsection{Formato de datos de R}\label{formato-de-datos-de-r}}
 
 El formato de archivo en el que habitualmente se almacena objetos (datos)
 R es binario y está comprimido (en formato \texttt{"gzip"} por defecto).
@@ -448,7 +556,8 @@ Aunque, como indica este comando en la ayuda (\texttt{?save}):
 Normalmente, el objeto empleado en R para almacenar datos en memoria
 es el \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame}{\texttt{data.frame}}.
 
-\subsection{Acceso a datos en paquetes}\label{acceso-a-datos-en-paquetes}
+\hypertarget{acceso-a-datos-en-paquetes}{%
+\subsection{Acceso a datos en paquetes}\label{acceso-a-datos-en-paquetes}}
 
 R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete \texttt{datasets}
 que se carga por defecto al abrir R.
@@ -459,7 +568,8 @@ Para cargar una base de datos concreta se utiliza el comando
 Por ejemplo, \texttt{data(cars)} carga la base de datos llamada \texttt{cars} en el entorno de trabajo (\texttt{".GlobalEnv"})
 y \texttt{?cars} muestra la ayuda correspondiente con la descripición de la base de datos.
 
-\subsection{Lectura de archivos de texto}\label{cap2-texto}
+\hypertarget{cap2-texto}{%
+\subsection{Lectura de archivos de texto}\label{cap2-texto}}
 
 En R, para leer archivos de texto se suele utilizar la función \texttt{read.table()}.
 Suponinedo, por ejemplo, que en el directorio actual está el fichero
@@ -543,7 +653,8 @@ se puede utilizar \texttt{read.delim()} o \texttt{read.delim2()}:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Importación desde SPSS}\label{importaciuxf3n-desde-spss}
+\hypertarget{importaciuxf3n-desde-spss}{%
+\subsection{Importación desde SPSS}\label{importaciuxf3n-desde-spss}}
 
 El programa R permite lectura de ficheros de datos en formato SPSS (extensión \emph{.sav}) sin necesidad de tener instalado dicho programa en el ordenador. Para ello se necesita:
 
@@ -589,7 +700,8 @@ Por ejemplo:
 
 \textbf{Nota}: Si hay fechas, puede ser recomendable emplear la función \texttt{spss.get()} del paquete \texttt{Hmisc}.
 
-\subsection{Importación desde Excel}\label{importaciuxf3n-desde-excel}
+\hypertarget{importaciuxf3n-desde-excel}{%
+\subsection{Importación desde Excel}\label{importaciuxf3n-desde-excel}}
 
 Se pueden leer fichero de Excel (con extensión \emph{.xlsx}) utilizando, por ejemplo, los paquetes:
 
@@ -697,7 +809,8 @@ más directo con:
 Esta forma de proceder, exportando a formato CSV, se puede emplear con otras hojas de cálculo o fuentes de datos.
 Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el separador de campos será \texttt{sep\ =\ ","} y el de decimales \texttt{dec\ =\ "."}, las opciones por defecto en la función \texttt{read.csv()}.
 
-\subsection{Exportación de datos}\label{cap2-exporta}
+\hypertarget{cap2-exporta}{%
+\subsection{Exportación de datos}\label{cap2-exporta}}
 
 Puede ser de interés la exportacifn de datos para que puedan ser leídos con otros programas. Para ello, se puede emplear la función \texttt{write.table()}. Esta función es similar, pero funcionando en sentido inverso, a \texttt{read.table()}, ver Sección \ref{cap2-texto}.
 
@@ -738,11 +851,13 @@ Otra posibilidad es utilizar la función:
 
 que dará lugar al fichero \emph{datos.csv} importable directamente desde Excel. Las opciones anteriores sólo dependen del paquete \texttt{utils}, que se instala por defecto con R base.
 
-\subsection{Python, Julia y otros lenguajes de programación}\label{python-julia-y-otros-lenguajes-de-programaciuxf3n}
+\hypertarget{python-julia-y-otros-lenguajes-de-programaciuxf3n}{%
+\subsection{Python, Julia y otros lenguajes de programación}\label{python-julia-y-otros-lenguajes-de-programaciuxf3n}}
 
 R es un lenguaje de programación libre (derivado del lenguaje S en los Laboratorios Bell) que se caracteriza por su capacidad para interactuar con otros lenguajes de programación, incluyendo Python \citep{python} y Julia \citep{julia}.
 
-En el ámbito de la Estadística (como en la denominada \textbf{Ciendica de Datos}), R destaca por su extensa y detallada documentación (en muchos casos como resultado de aportaciones metodológicas y/o avances científicos). Por ejemplo, después de diez años de la primera edición del libro \emph{An Introduction to Statistical Learning con aplicaciones en R (ISLR)} , \citet{james2013introduction}, algunos de los mismos autores publicaron la edición en Python (ISLP), \citet{james2023introduction}.\\
+En el ámbito de la Estadística (como en la denominada \textbf{Ciencia de Datos}), R destaca por su extensa y detallada documentación (en muchos casos como resultado de aportaciones metodológicas y/o avances científicos). Por ejemplo, después de diez años de la primera edición del libro \emph{An Introduction to Statistical Learning con aplicaciones en R (ISLR)} , \citet{james2013introduction}, algunos de los mismos autores publicaron la edición en Python (ISLP), \citet{james2023introduction}.\\
+Las últimas ediciones de ambos libros están disponibles en abierto en \href{https://www.statlearning.com/}{https://www.statlearning.com}.
 Por otro lado, en 2015, se lanzó el paquete \href{https://rstudio.github.io/reticulate/}{\texttt{reticulate}} disponible en \url{https://rstudio.github.io/reticulate/}, permitiendo la ejecución de código Python desde R (y en 2020 se completó la integración de Python en la interfaz de RStudio).
 
 \begin{Shaded}
@@ -760,7 +875,12 @@ El paquete \href{NA}{\texttt{JuliaConnectoR}} disponible en \url{https://cran.r-
 
 R también permite el uso/comunicación de otros lenguajes de programación como Java, C, C++, Fortran, entre otros.
 
-\section{Manipulación de datos}\label{manipulaciuxf3n-de-datos}
+En julio de 2022, la compañía \emph{RStudio Inc} anunció que cambiaba su nombre a \href{https://posit.co}{\emph{Posit}}, para reflejar su interés en el desarrollo de herramientas para lenguajes adicionales de programación, principalmente Python.
+En esa misma fecha lanzó \href{https://quarto.org}{Quarto} como una nueva alternativa a R Markdown para ofrecer compatibilidad integrada para múltiples lenguajes, como Python o Julia, además de R.
+Desde julio de 2025 ya están disponibles versiones estables de \href{https://positron.posit.co/}{Positron}, un nuevo IDE para el análisis de datos que es compatible de forma nativa con otros lenguajes, como Python o Julia, y que se supone que será un sustituto de RStudio en el futuro.
+
+\hypertarget{manipulaciuxf3n-de-datos}{%
+\section{Manipulación de datos}\label{manipulaciuxf3n-de-datos}}
 
 Una vez cargada una (o varias) bases de datos hay una series de operaciones que serán de interés para el tratamiento de datos:
 
@@ -808,9 +928,11 @@ Una vez cargada una (o varias) bases de datos hay una series de operaciones que 
 
 A continuación se tratan algunas operaciones \emph{básicas}.
 
-\subsection{Operaciones con variables}\label{operaciones-con-variables}
+\hypertarget{operaciones-con-variables}{%
+\subsection{Operaciones con variables}\label{operaciones-con-variables}}
 
-\subsubsection{Creación (y eliminación) de variables}\label{creaciuxf3n-y-eliminaciuxf3n-de-variables}
+\hypertarget{creaciuxf3n-y-eliminaciuxf3n-de-variables}{%
+\subsubsection{Creación (y eliminación) de variables}\label{creaciuxf3n-y-eliminaciuxf3n-de-variables}}
 
 Consideremos de nuevo la base de datos \texttt{cars} incluida en el paquete \texttt{datasets}:
 
@@ -957,7 +1079,8 @@ exportable a Excel con el siguiente comando:
 \end{Highlighting}
 \end{Shaded}
 
-\subsubsection{Recodificación de variables}\label{recodificaciuxf3n-de-variables}
+\hypertarget{recodificaciuxf3n-de-variables}{%
+\subsubsection{Recodificación de variables}\label{recodificaciuxf3n-de-variables}}
 
 Con el comando \texttt{cut()} podemos crear variables categóricas a partir de variables numéricas.
 El parámetro \texttt{breaks} permite especificar los intervalos para la discretización, puede ser un vector con los extremos de los intervalos o un entero con el número de intervalos.
@@ -1075,9 +1198,11 @@ Por ejemplo, podríamos calcular el factor anterior empleando:
 ##     6    32    12
 \end{verbatim}
 
-\subsection{Operaciones con casos}\label{operaciones-con-casos}
+\hypertarget{operaciones-con-casos}{%
+\subsection{Operaciones con casos}\label{operaciones-con-casos}}
 
-\subsubsection{Ordenación}\label{ordenaciuxf3n}
+\hypertarget{ordenaciuxf3n}{%
+\subsubsection{Ordenación}\label{ordenaciuxf3n}}
 
 Continuemos con el data.frame \texttt{cars}.
 Se puede comprobar que los datos disponibles están ordenados por
@@ -1140,7 +1265,8 @@ vector de índices de ordenación. A continuación, se muestan los datos de \tex
 ## 5      8   16 12.874777 4.8768593
 \end{verbatim}
 
-\subsubsection{Filtrado}\label{filtrado}
+\hypertarget{filtrado}{%
+\subsubsection{Filtrado}\label{filtrado}}
 
 El filtrado de datos consiste en elegir una submuestra que cumpla determinadas condiciones. Para ello, se puede utilizar la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset}{\texttt{subset(x,\ subset,\ select,\ drop\ =\ FALSE,\ ...)}} , que además permite seleccionar variables con el argumento \texttt{select}.
 
@@ -1376,7 +1502,8 @@ De forma inversa, podríamos recuperar el data.frame original con:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Datos faltantes}\label{missing}
+\hypertarget{missing}{%
+\subsection{Datos faltantes}\label{missing}}
 
 La problemática originada por los datos faltantes (\emph{missing data}) en cualquier conjunto de datos subyace cuando se desea
 realizar un análisis estadístico, para más información en R, se puede consultar \href{https://cran.r-project.org/web/views/MissingData.html}{CRAN Task View: Missing Data}
@@ -1434,7 +1561,7 @@ A continuación se muestra la distribución de los datos perdidos en el data.fra
 
 \begin{center}\includegraphics[width=0.7\linewidth]{02-ManipulacionDatosR_files/figure-latex/unnamed-chunk-49-1} \end{center}
 
-¿Existe un patrón no aleatorio en los datos faltantes del ozono? Esta pregunta puede ser abordada parcialmente utilizando el test de Little \citep{little1998}, disponible en la función \texttt{mcar\_test()} del paquete \texttt{naniar}. Este test permite evaluar si los datos faltantes son generados por un mecanismo completamente aleatorio (MCAR). Si la hipótesis de MCAR es rechazada, esto sugiere que los datos faltantes podrían estar siguiendo un mecanismo MAR (\emph{missing at random}) o MNAR (\emph{non missing at random}).
+¿Existe un patrón no aleatorio en los datos faltantes del ozono? Esta pregunta puede ser abordada parcialmente utilizando el test de Little \citep{little1998}, disponible en la función \texttt{mcar\_test()} del paquete \href{https://naniar.njtierney.com}{\texttt{naniar}}. Este test permite evaluar si los datos faltantes son generados por un mecanismo completamente aleatorio (MCAR). Si la hipótesis de MCAR es rechazada, esto sugiere que los datos faltantes podrían estar siguiendo un mecanismo MAR (\emph{missing at random}) o MNAR (\emph{non missing at random}).
 
 Sin embargo, en muchos estudios, se omite el paso anterior y se procede directamente con alguno de los siguientes métodos:
 
@@ -1557,9 +1684,11 @@ Notar que para el caso del ozono, se han sustituido los 37 \emph{NA's} (24\% de 
 
 Los datos faltantes son una realidad común en muchos estudios, aunque nadie los desea. Para tratarlos correctamente, es esencial comprender cómo se obtuvieron los datos observados y por qué algunos datos no fueron registrados antes de iniciar cualquier otro análisis. No abordar adecuadamente los datos faltantes puede tener un efecto perjudicial en nuestro estudio, ya que las conclusiones obtenidas podrían ser no representativas o contener sesgos.
 
-\subsection{\texorpdfstring{Funciones \texttt{apply}}{Funciones apply}}\label{funciones-apply}
+\hypertarget{funciones-apply}{%
+\subsection{\texorpdfstring{Funciones \texttt{apply}}{Funciones apply}}\label{funciones-apply}}
 
-\subsubsection{\texorpdfstring{La función \texttt{apply}}{La función apply}}\label{la-funciuxf3n-apply}
+\hypertarget{la-funciuxf3n-apply}{%
+\subsubsection{\texorpdfstring{La función \texttt{apply}}{La función apply}}\label{la-funciuxf3n-apply}}
 
 Una forma de evitar la utilización de bucles es utilizando la sentencia \texttt{apply} que permite evaluar una misma función en todas las filas, columnas, etc. de un array de forma simultánea.
 
@@ -1656,7 +1785,7 @@ Alternativamente, se puede utilizar opciones más eficientes: \texttt{colSums()}
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.496   0.108   0.604
+##    0.56    0.03    0.59
 \end{verbatim}
 
 \begin{Shaded}
@@ -1669,10 +1798,11 @@ Alternativamente, se puede utilizar opciones más eficientes: \texttt{colSums()}
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.080   0.000   0.079
+##    0.08    0.00    0.08
 \end{verbatim}
 
-\subsubsection{\texorpdfstring{Variantes de la función \texttt{apply}}{Variantes de la función apply}}\label{variantes-de-la-funciuxf3n-apply}
+\hypertarget{variantes-de-la-funciuxf3n-apply}{%
+\subsubsection{\texorpdfstring{Variantes de la función \texttt{apply}}{Variantes de la función apply}}\label{variantes-de-la-funciuxf3n-apply}}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -1858,8 +1988,8 @@ Alternativamente, se podría emplear la función \texttt{aggregate()} que tiene 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{help}\NormalTok{(aggregate)}
-\FunctionTok{aggregate}\NormalTok{(peso,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(}\AttributeTok{dieta=}\NormalTok{dieta),}\AttributeTok{FUN =} \StringTok{"mean"}\NormalTok{ )}
+\CommentTok{\# help(aggregate)}
+\FunctionTok{aggregate}\NormalTok{(peso, }\AttributeTok{by =} \FunctionTok{list}\NormalTok{(}\AttributeTok{dieta =}\NormalTok{ dieta), }\AttributeTok{FUN =} \StringTok{"mean"}\NormalTok{ )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1873,7 +2003,7 @@ Alternativamente, se podría emplear la función \texttt{aggregate()} que tiene 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{aggregate}\NormalTok{(peso}\SpecialCharTok{\textasciitilde{}}\NormalTok{dieta,}\AttributeTok{FUN =} \StringTok{"summary"}\NormalTok{ ) }\CommentTok{\# con formula}
+\FunctionTok{aggregate}\NormalTok{(peso }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dieta, }\AttributeTok{FUN =} \StringTok{"summary"}\NormalTok{ ) }\CommentTok{\# con formula}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1890,14 +2020,17 @@ Alternativamente, se podría emplear la función \texttt{aggregate()} que tiene 
 ## 4     184.7500  322.0000
 \end{verbatim}
 
-\subsection{Tablas (para informes)}\label{tablas-para-informes}
+\hypertarget{generaciuxf3n-de-tablas}{%
+\subsection{Generación de tablas}\label{generaciuxf3n-de-tablas}}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\tightlist
-\item
-  Tablas con \texttt{kable()}:
-\end{enumerate}
+Hay muchos paquetes de R que se pueden utilizar para generar tablas en informes RMarkdown o en aplicaciones shiny.
+Entre las herramientas disponibles podríamos destacar la función \texttt{kable()} del paquete \texttt{knitr} para generar tablas básicas, y la función \texttt{datatable()} del paquete \texttt{DT} para generar tablas dinámicas.
+Otros paquetes son:
+\texttt{kableExtra}, \texttt{flextable}, \texttt{reactable}, \texttt{reactablefmtr},
+\texttt{formattable}, \texttt{gt} y \texttt{tinytable}.
+
+\hypertarget{tablas-con-kable}{%
+\subsubsection{\texorpdfstring{Tablas con \texttt{kable()}}{Tablas con kable()}}\label{tablas-con-kable}}
 
 A continuación, se muestra un ejemplo, de tabla resumen, con las medias, medianas y desviación típica de las variables:
 
@@ -1946,13 +2079,8 @@ speed & 3.93241 & 0.41551 & 9.46399 & 0.00000\\
 \hline
 \end{tabular}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Tablas interactivas con \texttt{datatabe()} del paquete \texttt{DT}:
-\end{enumerate}
+\hypertarget{tablas-interactivas-con-datatable}{%
+\subsubsection{\texorpdfstring{Tablas interactivas con \texttt{datatable()}}{Tablas interactivas con datatable()}}\label{tablas-interactivas-con-datatable}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1961,11 +2089,8 @@ speed & 3.93241 & 0.41551 & 9.46399 & 0.00000\\
 \end{Highlighting}
 \end{Shaded}
 
-Hay muchos otros paquetes de R que se pueden utilizar para generar tablas como:
-\texttt{kableExtra()}, \texttt{flextable()}, \texttt{reactable()}, \texttt{reactablefmtr()},
-\texttt{formattable()}, \texttt{gt()} y \texttt{tinytable()}.
-
-\subsection{Operaciones con tablas de datos}\label{operaciones-con-tablas-de-datos}
+\hypertarget{operaciones-con-tablas-de-datos}{%
+\subsection{Operaciones con tablas de datos}\label{operaciones-con-tablas-de-datos}}
 
 \textbf{\emph{Unir tablas}}:
 
@@ -1989,18 +2114,18 @@ Hay muchos otros paquetes de R que se pueden utilizar para generar tablas como:
   \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/pmatch}{\texttt{pmatch(x,\ table,\ ...)}}: similar al anterior pero con coincidencias parciales de cadenas de texto.
 \end{itemize}
 
-\section{Ejemplo WoS data}\label{ejemplo-wos-data}
+\hypertarget{ejemplo-wos-data}{%
+\section{Ejemplo WoS data}\label{ejemplo-wos-data}}
 
-Ejemplo \href{data/wosdata.R}{\emph{wosdata.R}} en \href{data/wosdata.zip}{\emph{wosdata.zip}}.
-Ver Apéndice \ref{scimetr}.
+Ejemplo \emph{wosdata.R} en \href{data/wosdata.zip}{\emph{wosdata.zip}}.
+Ver paquete \href{https://rubenfcasal.github.io/scimetr/articles/scimetr.html}{scimetr}.
+
+Empleando la función \texttt{ImportSources.wos()} se importaron ficheros de texto descargados de WoS (que por defecto tienen una limitación de 500 registros).
+Posteriormente se creo una base de datos como una lista de tablas con la función \texttt{CreateDB.wos()},
+que finalmente se almacenó en el fichero \emph{db\_udc\_2015.rds}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# library(dplyr)}
-\CommentTok{\# library(stringr)}
-\CommentTok{\# https://rubenfcasal.github.io/scimetr/articles/scimetr.html}
-\CommentTok{\# library(scimetr)}
-
 \NormalTok{db }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"data/wosdata/db\_udc\_2015.rds"}\NormalTok{)}
 \FunctionTok{str}\NormalTok{(db, }\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
@@ -2024,17 +2149,21 @@ Ver Apéndice \ref{scimetr}.
 ##  - attr(*, "class")= chr "wos.db"
 \end{verbatim}
 
+Puede ser recomendable añadir a los datos un atributo \texttt{variable.labels} que
+contenga un vector de etiquetas de las variables y empleando como nombres de
+las componentes las propias variables:
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{variable.labels }\OtherTok{\textless{}{-}} \FunctionTok{attr}\NormalTok{(db, }\StringTok{"variable.labels"}\NormalTok{)}
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{as.data.frame}\NormalTok{(variable.labels),}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{head}\NormalTok{(}\FunctionTok{as.data.frame}\NormalTok{(variable.labels)),}
              \AttributeTok{caption =} \StringTok{"Variable labels"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-69}Variable labels}
+\caption{\label{tab:unnamed-chunk-70}Variable labels}
 \centering
 \begin{tabular}[t]{l|l}
 \hline
@@ -2052,126 +2181,126 @@ GP & Group author\\
 \hline
 AF & Author full\\
 \hline
-BF & Book authors fullname\\
-\hline
-CA & Corporate author\\
-\hline
-TI & Title\\
-\hline
-SO & Publication name\\
-\hline
-SE & Series title\\
-\hline
-BS & Book series\\
-\hline
-LA & Language\\
-\hline
-DT & Document type\\
-\hline
-CT & Conference title\\
-\hline
-CY & Conference year\\
-\hline
-CL & Conference place\\
-\hline
-SP & Conference sponsors\\
-\hline
-HO & Conference host\\
-\hline
-DE & Keywords\\
-\hline
-ID & Keywords Plus\\
-\hline
-AB & Abstract\\
-\hline
-C1 & Addresses\\
-\hline
-RP & Reprint author\\
-\hline
-EM & Author email\\
-\hline
-RI & Researcher id numbers\\
-\hline
-OI & Orcid numbers\\
-\hline
-FU & Funding agency and grant number\\
-\hline
-FX & Funding text\\
-\hline
-CR & Cited references\\
-\hline
-NR & Number of cited references\\
-\hline
-TC & Times cited\\
-\hline
-Z9 & Total times cited count\\
-\hline
-U1 & Usage Count (Last 180 Days)\\
-\hline
-U2 & Usage Count (Since 2013)\\
-\hline
-PU & Publisher\\
-\hline
-PI & Publisher city\\
-\hline
-PA & Publisher address\\
-\hline
-SN & ISSN\\
-\hline
-EI & eISSN\\
-\hline
-BN & ISBN\\
-\hline
-J9 & Journal.ISI\\
-\hline
-JI & Journal.ISO\\
-\hline
-PD & Publication date\\
-\hline
-PY & Year published\\
-\hline
-VL & Volume\\
-\hline
-IS & Issue\\
-\hline
-PN & Part number\\
-\hline
-SU & Supplement\\
-\hline
-SI & Special issue\\
-\hline
-MA & Meeting abstract\\
-\hline
-BP & Beginning page\\
-\hline
-EP & Ending page\\
-\hline
-AR & Article number\\
-\hline
-DI & DOI\\
-\hline
-D2 & Book DOI\\
-\hline
-PG & Page count\\
-\hline
-WC & WOS category\\
-\hline
-SC & Research areas\\
-\hline
-GA & Document delivery number\\
-\hline
-UT & Access number\\
-\hline
-PM & Pub Med ID\\
-\hline
 \end{tabular}
 \end{table}
 
-Veamos ahora un par de ejemplos, en el primero se buscan los documentos correspondientes a revistas (que contiene \texttt{Chem} en el título de la revista \emph{journal}). Para ello utilizamos la función \texttt{grepl()} que busca las coincidencias con el patrón \texttt{Chem} dentro de cada elemento de un vector de caracteres.
+Las tablas de datos con este atributo son compatibles con RStudio.
+Por ejemplo, también se mostrarán las etiquetas al abrirla con \texttt{View()}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# View(db$Journals)}
+\NormalTok{Docs }\OtherTok{\textless{}{-}}\NormalTok{ db}\SpecialCharTok{$}\NormalTok{Docs }\CommentTok{\# No copia los datos (crea otro objeto que apunta a los mismos datos)}
+\FunctionTok{attr}\NormalTok{(Docs, }\StringTok{"variable.labels"}\NormalTok{) }\OtherTok{\textless{}{-}}\NormalTok{ variable.labels[}\FunctionTok{names}\NormalTok{(Docs)]}
+\CommentTok{\# View(Docs)}
+\end{Highlighting}
+\end{Shaded}
+
+Para combinar tablas podemos emplear \texttt{match(x,\ table)}.
+Por ejemplo, el siguiente código permite añadir el nombre de la revista a la
+tabla de documentos, combinándola con la de revistas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(Docs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    856 obs. of  26 variables:
+##  $ idd: int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ idj: int  260 37 86 272 64 429 14 408 333 214 ...
+##  $ TI : chr  "Fractionation of Miscanthus x giganteus via modification of the Formacell process" "Role of Temperature and Pressure on the Multisensitive Multiferroic Dicyanamide Framework [TPrA][Mn(dca)(3)] wi"| __truncated__ "Methane and carbon dioxide emissions from constructed wetlands receiving anaerobically pretreated sewage" "Exceptionally Inert Lanthanide(III) PARACEST MRI Contrast Agents Based on an 18-Membered Macrocyclic Platform" ...
+##  $ PT : Factor w/ 2 levels "Journal","Series": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ DT : Factor w/ 9 levels "Article","Book Review",..: 1 1 1 1 5 1 6 9 1 1 ...
+##  $ NR : int  40 45 35 78 2 59 0 53 20 50 ...
+##  $ TC : int  1 5 2 2 1 0 0 10 0 1 ...
+##  $ Z9 : int  1 5 2 2 1 0 0 10 0 1 ...
+##  $ U1 : int  5 0 10 4 0 1 0 26 0 3 ...
+##  $ U2 : int  6 0 61 21 2 5 0 66 2 4 ...
+##  $ PD : chr  "DEC 23" "DEC 21" "DEC 15" "DEC 14" ...
+##  $ PY : int  2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 ...
+##  $ VL : chr  "77" "54" "538" "21" ...
+##  $ IS : chr  "" "24" "" "51" ...
+##  $ PN : chr  "" "" "" "" ...
+##  $ SU : chr  "" "" "" "" ...
+##  $ SI : chr  "" "" "" "" ...
+##  $ MA : chr  "" "" "" "" ...
+##  $ BP : chr  "275" "11680" "824" "18662" ...
+##  $ EP : chr  "281" "11687" "833" "18670" ...
+##  $ AR : chr  "" "" "" "" ...
+##  $ DI : chr  "10.1016/j.indcrop.2015.08.066" "10.1021/acs.inorgchem.5b01652" "10.1016/j.scitotenv.2015.08.090" "10.1002/chem.201502937" ...
+##  $ D2 : chr  "" "" "" "" ...
+##  $ PG : int  7 8 10 9 2 28 3 16 4 25 ...
+##  $ UT : num  3.66e+11 3.67e+11 3.63e+11 3.68e+11 3.66e+11 ...
+##  $ an : num  3 9 4 8 3 5 8 5 3 3 ...
+##  - attr(*, "variable.labels")= Named chr [1:26] NA NA "Title" "Publication type" ...
+##   ..- attr(*, "names")= chr [1:26] NA NA "TI" "PT" ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(db}\SpecialCharTok{$}\NormalTok{Journals) }\CommentTok{\# View(db$Journals)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    520 obs. of  12 variables:
+##  $ idj: int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ SO : chr  "TISSUE ANTIGENS" "ACTA NEUROLOGICA SCANDINAVICA" "ACTA PSYCHOLOGICA" "AFINIDAD" ...
+##  $ SE : chr  "" "" "" "" ...
+##  $ BS : chr  "" "" "" "" ...
+##  $ LA : chr  "English" "English" "English" "English" ...
+##  $ PU : chr  "WILEY-BLACKWELL" "WILEY-BLACKWELL" "ELSEVIER SCIENCE BV" "ASOC QUIMICOS" ...
+##  $ PI : chr  "HOBOKEN" "HOBOKEN" "AMSTERDAM" "BARCELONA" ...
+##  $ PA : chr  "111 RIVER ST, HOBOKEN 07030-5774, NJ USA" "111 RIVER ST, HOBOKEN 07030-5774, NJ USA" "PO BOX 211, 1000 AE AMSTERDAM, NETHERLANDS" "INST QUIMICO SARRIA, VIA AUGUSTA, 390, 08017 BARCELONA, SPAIN" ...
+##  $ SN : chr  "0001-2815" "0001-6314" "0001-6918" "0001-9704" ...
+##  $ EI : chr  "1399-0039" "1600-0404" "1873-6297" "" ...
+##  $ J9 : chr  "TISSUE ANTIGENS" "ACTA NEUROL SCAND" "ACTA PSYCHOL" "AFINIDAD" ...
+##  $ JI : chr  "Tissue Antigens" "Acta Neurol. Scand." "Acta Psychol." "Afinidad" ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ii }\OtherTok{\textless{}{-}} \FunctionTok{match}\NormalTok{(Docs}\SpecialCharTok{$}\NormalTok{idj, db}\SpecialCharTok{$}\NormalTok{Journals}\SpecialCharTok{$}\NormalTok{idj)}
+\NormalTok{docs2 }\OtherTok{\textless{}{-}}\NormalTok{ Docs[, }\FunctionTok{c}\NormalTok{(}\StringTok{"PY"}\NormalTok{, }\StringTok{"TI"}\NormalTok{)]}
+\NormalTok{docs2}\SpecialCharTok{$}\NormalTok{Journal }\OtherTok{\textless{}{-}}\NormalTok{ db}\SpecialCharTok{$}\NormalTok{Journals}\SpecialCharTok{$}\NormalTok{SO[ii]}
+\FunctionTok{head}\NormalTok{(docs2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     PY
+## 1 2015
+## 2 2015
+## 3 2015
+## 4 2015
+## 5 2015
+## 6 2015
+##                                                                                                                                            TI
+## 1                                                           Fractionation of Miscanthus x giganteus via modification of the Formacell process
+## 2 Role of Temperature and Pressure on the Multisensitive Multiferroic Dicyanamide Framework [TPrA][Mn(dca)(3)] with Perovskite-like Structure
+## 3                                    Methane and carbon dioxide emissions from constructed wetlands receiving anaerobically pretreated sewage
+## 4                               Exceptionally Inert Lanthanide(III) PARACEST MRI Contrast Agents Based on an 18-Membered Macrocyclic Platform
+## 5                                                                                      Community-Acquired Pneumonia Requiring Hospitalization
+## 6                                                                             Low-latency Java communication devices on RDMA-enabled networks
+##                                             Journal
+## 1                     INDUSTRIAL CROPS AND PRODUCTS
+## 2                               INORGANIC CHEMISTRY
+## 3                  SCIENCE OF THE TOTAL ENVIRONMENT
+## 4                      CHEMISTRY-A EUROPEAN JOURNAL
+## 5                   NEW ENGLAND JOURNAL OF MEDICINE
+## 6 CONCURRENCY AND COMPUTATION-PRACTICE & EXPERIENCE
+\end{verbatim}
+
+Si solo nos interesa hacer un filtrado puede resultar más cómodo emplear
+el operador \texttt{\%in\%} (\texttt{?\textquotesingle{}\%in\%\textquotesingle{}}).
+Por ejemplo, podemos buscar los documentos correspondientes a revistas (que
+contengan \texttt{"Chem"} en el nombre ISO de la revista).
+Para ello utilizamos la función \texttt{grepl()} que busca las coincidencias de
+un patrón dentro de cada elemento de un vector de caracteres:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{iidj }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(db}\SpecialCharTok{$}\NormalTok{Journals, idj[}\FunctionTok{grepl}\NormalTok{(}\StringTok{\textquotesingle{}Chem\textquotesingle{}}\NormalTok{, JI)])}
 \NormalTok{db}\SpecialCharTok{$}\NormalTok{Journals}\SpecialCharTok{$}\NormalTok{JI[iidj]}
 \end{Highlighting}
@@ -2211,7 +2340,7 @@ Veamos ahora un par de ejemplos, en el primero se buscan los documentos correspo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{idd }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(db}\SpecialCharTok{$}\NormalTok{Docs, idj }\SpecialCharTok{\%in\%}\NormalTok{ iidj)}
+\NormalTok{idd }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(Docs, idj }\SpecialCharTok{\%in\%}\NormalTok{ iidj)}
 \FunctionTok{which}\NormalTok{(idd)}
 \end{Highlighting}
 \end{Shaded}
@@ -2225,36 +2354,30 @@ Veamos ahora un par de ejemplos, en el primero se buscan los documentos correspo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# View(db$Docs[idd, ])}
-\FunctionTok{head}\NormalTok{(db}\SpecialCharTok{$}\NormalTok{Docs[idd, }\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{])}
+\CommentTok{\# View(Docs[idd, ])}
+\FunctionTok{head}\NormalTok{(Docs[idd, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    idd idj      PT      DT  NR TC Z9 U1 U2     PD   PY VL
-## 2    2  37 Journal Article  45  5  5  0  0 DEC 21 2015 54
-## 4    4 272 Journal Article  78  2  2  4 21 DEC 14 2015 21
-## 16  16 195 Journal Article  34  2  2  0  0    DEC 2015 70
-## 23  23 436 Journal Article  48  3  3  0  4    DEC 2015 10
-## 43  43 455 Journal  Review 214  0  0  0  8    DEC 2015 13
-## 69  69  37 Journal Article  86  2  2  8 28  NOV 2 2015 54
-##    IS PN SU SI MA    BP    EP AR
-## 2  24             11680 11687   
-## 4  51             18662 18670   
-## 16 12              3222  3229   
-## 23 12              2850  2860   
-## 43  4               413   430   
-## 69 21             10342 10350   
-##                               DI D2 PG           UT an
-## 2  10.1021/acs.inorgchem.5b01652     8 367118100013  9
-## 4         10.1002/chem.201502937     9 368280400026  8
-## 16            10.1093/jac/dkv262     8 368246800008 10
-## 23    10.1021/acschembio.5b00624    11 366875400020 10
-## 43     10.1007/s10311-015-0526-2    18 365096700004  2
-## 69 10.1021/acs.inorgchem.5b01719     9 364175000028  8
+##    idd idj
+## 2    2  37
+## 4    4 272
+## 16  16 195
+## 23  23 436
+## 43  43 455
+## 69  69  37
+##                                                                                                                                                                                                                                 TI
+## 2                                                                                      Role of Temperature and Pressure on the Multisensitive Multiferroic Dicyanamide Framework [TPrA][Mn(dca)(3)] with Perovskite-like Structure
+## 4                                                                                                                    Exceptionally Inert Lanthanide(III) PARACEST MRI Contrast Agents Based on an 18-Membered Macrocyclic Platform
+## 16 Reduced susceptibility to biocides in Acinetobacter baumannii: association with resistance to antimicrobials, epidemiological behaviour, biological cost and effect on the expression of genes encoding porins and efflux pumps
+## 23                                                       Two Catechol Siderophores, Acinetobactin and Amonabactin, Are Simultaneously Produced by Aeromonas salmonicida subsp salmonicida Sharing Part of the Biosynthetic Pathway
+## 43                                                                                                                                                                        Conservation of stony materials in the built environment
+## 69                                                                                                                                                         Gd3+-Based Magnetic Resonance Imaging Contrast Agent Responsive to Zn2+
 \end{verbatim}
 
-En este segundo ejemplo, se buscan los documentos correspondientes a autores (que contiene \texttt{Abad} en su nombre):
+Como ejemplo adicional, se buscan los documentos correspondientes a autores
+(que contiene \texttt{"Abad"} en su nombre):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2282,39 +2405,37 @@ En este segundo ejemplo, se buscan los documentos correspondientes a autores (qu
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# View(db$Docs[idd, ])}
-\FunctionTok{head}\NormalTok{(db}\SpecialCharTok{$}\NormalTok{Docs[idd, }\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{])}
+\CommentTok{\# View(Docs[idd, ])}
+\FunctionTok{head}\NormalTok{(Docs[idd, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##     idd idj      PT               DT  NR TC Z9 U1 U2     PD
-## 273 273 282 Journal          Article 107  8  8  0  0    SEP
-## 291 291 141 Journal Meeting Abstract   0  0  0  0  1  AUG 1
-## 518 518 272 Journal          Article 103  4  4  0  0 APR 20
-## 586 586 311 Journal          Article  32  2  2  2 19    APR
-##       PY VL    IS PN SU SI   MA   BP   EP AR
-## 273 2015 42 15-16               6205 6214   
-## 291 2015 36           1    P167    9    9   
-## 518 2015 21    17               6535 6546   
-## 586 2015 26     4                369  375   
-##                             DI D2 PG           UT an
-## 273 10.1016/j.eswa.2015.03.011    10 355063700018  7
-## 291                                1 361205101026 10
-## 518     10.1002/chem.201500155    12 352796100030 10
-## 586           10.1002/pat.3462     7 351472700012  6
+##     idd idj
+## 273 273 282
+## 291 291 141
+## 518 518 272
+## 586 586 311
+##                                                                                                                                                                                      TI
+## 273                                 Classification of mild cognitive impairment and Alzheimer's Disease with machine-learning techniques using H-1 Magnetic Resonance Spectroscopy data
+## 291 Identifying a population of patients suitable for the implantation of a subcutaneous defibrillator (S-ICD) among patients implanted with a conventional transvenous device (TV-ICD)
+## 518           Importance of Outer-Sphere and Aggregation Phenomena in the Relaxation Properties of Phosphonated Gadolinium Complexes with Potential Applications as MRI Contrast Agents
+## 586                                                                      Enhanced thermal conductivity of rheologically percolated carbon nanofiber reinforced polypropylene composites
 \end{verbatim}
 
-\chapter{Introducción al lenguaje SQL}\label{introSQL}
+\hypertarget{introSQL}{%
+\chapter{Introducción al lenguaje SQL}\label{introSQL}}
 
 Los sistemas de información gestionan repositorios de información en múltiples formatos,
 siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured Query Language).
 
 El ejemplo que trabajaremos en este capítulo está disponible en Kaggle: \href{https://www.kaggle.com/code/diegodx/txd-2025-tutorialsql}{kaggle.com/code/diegodx/txd-2025-tutorialsql}
 
-\section{Bases de Datos Relacionales}\label{bases-de-datos-relacionales}
+\hypertarget{bases-de-datos-relacionales}{%
+\section{Bases de Datos Relacionales}\label{bases-de-datos-relacionales}}
 
-\subsection{Definiciones}\label{definiciones}
+\hypertarget{definiciones}{%
+\subsection{Definiciones}\label{definiciones}}
 
 \begin{itemize}
 \item
@@ -2359,7 +2480,7 @@ El ejemplo que trabajaremos en este capítulo está disponible en Kaggle: \href{
   Modelo \textbf{Entidad Relación} (entidades, relaciones, atributos)
 \end{itemize}
 
-\includegraphics[width=4.16667in,height=\textheight,keepaspectratio]{images/modelo-ER.png}
+\includegraphics[width=4.16667in,height=\textheight]{images/modelo-ER.png}
 
 \begin{itemize}
 \tightlist
@@ -2377,7 +2498,7 @@ El ejemplo que trabajaremos en este capítulo está disponible en Kaggle: \href{
   \end{itemize}
 \end{itemize}
 
-\includegraphics[width=6.25in,height=\textheight,keepaspectratio]{images/modelo-relacional.png}
+\includegraphics[width=6.25in,height=\textheight]{images/modelo-relacional.png}
 
 \begin{itemize}
 \tightlist
@@ -2387,11 +2508,11 @@ El ejemplo que trabajaremos en este capítulo está disponible en Kaggle: \href{
 
 Una fila de la tabla (relación) es una tupla y una columna un atributo.
 
-\includegraphics[width=6.25in,height=\textheight,keepaspectratio]{images/Relacion.png}
+\includegraphics[width=6.25in,height=\textheight]{images/Relacion.png}
 
 Una base de datos es un conjunto de tablas (al menos una).
 
-\includegraphics[width=6.25in,height=\textheight,keepaspectratio]{images/BBDD.png}
+\includegraphics[width=6.25in,height=\textheight]{images/BBDD.png}
 
 La tabla no es una relación porque la relación es un conjunto sin orden y una tabla puede tener filas repetidas y tiene orden.
 
@@ -2406,7 +2527,8 @@ La tabla no es una relación porque la relación es un conjunto sin orden y una 
   Restricción de \textbf{integridad}: regla que debe cumplir la información registrada en la base de datos para garantizar la integridad de la información.
 \end{itemize}
 
-\section{Restricciones}\label{restricciones}
+\hypertarget{restricciones}{%
+\section{Restricciones}\label{restricciones}}
 
 Cualquier Base de Datos basada en el modelo relacional debería cumplir como mínimo estas restricciones (además de las propias del dominio):
 
@@ -2435,13 +2557,14 @@ Cualquier Base de Datos basada en el modelo relacional debería cumplir como mí
   La Restricción de integridad referencial nos dice que la clave foránea ha de corresponderse con la clave primaria de R\_2, y si la clave foránea no es nula ha de refir a una tupla en R\_2.
 \end{itemize}
 
-\includegraphics[width=6.25in,height=\textheight,keepaspectratio]{images/ClaveForanea.png}
+\includegraphics[width=6.25in,height=\textheight]{images/ClaveForanea.png}
 
-\includegraphics[width=6.25in,height=\textheight,keepaspectratio]{images/IntegridadReferencial.png}
+\includegraphics[width=6.25in,height=\textheight]{images/IntegridadReferencial.png}
 
 Si borramos/actualizamos un valor de clave foránea podemos: (a) prohibir el cambio, o (b) poner a nulo la clave foránea (borrado) o propagar el cambio (modificación).
 
-\section{Sistemas Gestores de Bases de Datos (SGDB)}\label{sistemas-gestores-de-bases-de-datos-sgdb}
+\hypertarget{sistemas-gestores-de-bases-de-datos-sgdb}{%
+\section{Sistemas Gestores de Bases de Datos (SGDB)}\label{sistemas-gestores-de-bases-de-datos-sgdb}}
 
 Utilizar un SGDB tiene múltiples ventajas:
 
@@ -2518,13 +2641,13 @@ Existen muchos SGDBs, pero los más populares son:
 Ranking de popularidad según \href{http://db-engines.com}{DB-Engines}. La puntuación está calculada en función del número de menciones en páginas web, interés general en los sitemas, frecuencia de discusiones técnias, cantidad de ofertas de trabajo, relevancia en redes sociales, etc.
 
 \begin{longtable}[]{@{}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0946}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0946}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0946}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.4189}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2027}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0946}}@{}}
-\toprule\noalign{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0946}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0946}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0946}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.4189}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0946}}@{}}
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedleft
 2025
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -2538,10 +2661,8 @@ Puntuacion
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Var
 \end{minipage} \\
-\midrule\noalign{}
+\midrule()
 \endhead
-\bottomrule\noalign{}
-\endlastfoot
 1. & 1. & Oracle & Relacional, Multi-modelo & 1212.77 & -96.67 \\
 2. & 2. & MySQL & Relacional, Multi-modelo & 879.66 & -143.09 \\
 3. & 3. & Microsoft SQL Server & Relacional, Multi-modelo & 715.05 & -87.04 \\
@@ -2557,9 +2678,11 @@ Var
 13. & 15. & MariaDB & Relacional, Multi-modelo & 87.77 & +2.88 \\
 14. & 12. & Microsoft Access & Relacional & 80.79 & -11.36 \\
 15. & 17. & Amazon DynamoDB & Multi-modelo & 75.91 & +4.06 \\
+\bottomrule()
 \end{longtable}
 
-\section{Sintaxis SQL}\label{sintaxis-sql}
+\hypertarget{sintaxis-sql}{%
+\section{Sintaxis SQL}\label{sintaxis-sql}}
 
 SQL (Structured Query Language) es un lenguaje declarativo.
 Es un lenguaje estándar: tiene un estándar oficial definido por ISO y ANSI.
@@ -2630,9 +2753,11 @@ Sintaxis general:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Cláusulas básicas de SQL}\label{cluxe1usulas-buxe1sicas-de-sql}
+\hypertarget{cluxe1usulas-buxe1sicas-de-sql}{%
+\section{Cláusulas básicas de SQL}\label{cluxe1usulas-buxe1sicas-de-sql}}
 
-\subsection{Lectura}\label{lectura}
+\hypertarget{selecciuxf3n-de-campos}{%
+\subsection{Selección de campos}\label{selecciuxf3n-de-campos}}
 
 \begin{itemize}
 \tightlist
@@ -2689,20 +2814,6 @@ Sintaxis general:
 \begin{itemize}
 \tightlist
 \item
-  Filtrado de duplicados:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-  \KeywordTok{SELECT} \KeywordTok{DISTINCT}\NormalTok{ FirstName }\KeywordTok{FROM}\NormalTok{ Customer; }
-
-  \KeywordTok{SELECT} \FunctionTok{COUNT}\NormalTok{(}\KeywordTok{DISTINCT}\NormalTok{ FirstName) }\KeywordTok{FROM}\NormalTok{ Customer; }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
   Formato:
 \end{itemize}
 
@@ -2716,7 +2827,53 @@ Sintaxis general:
 \end{Highlighting}
 \end{Shaded}
 
-\subsubsection{Filtrado de Resultados}\label{filtrado-de-resultados}
+\hypertarget{nuxfamero-de-filas-paginaciuxf3n}{%
+\subsection{Número de filas (paginación)}\label{nuxfamero-de-filas-paginaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  Obtener las N primeras:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ Track}
+  \KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ title }\KeywordTok{ASC}
+  \KeywordTok{LIMIT} \DecValTok{5}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Obtener las N filas siguientes:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ Track}
+  \KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ title }\KeywordTok{ASC}
+\NormalTok{  OFFSET }\DecValTok{5} \KeywordTok{LIMIT} \DecValTok{5}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{filtrado-de-resultados}{%
+\subsection{Filtrado de Resultados}\label{filtrado-de-resultados}}
+
+\begin{itemize}
+\tightlist
+\item
+  Filtrado de duplicados:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT} \KeywordTok{DISTINCT}\NormalTok{ FirstName }\KeywordTok{FROM}\NormalTok{ Customer; }
+
+  \KeywordTok{SELECT} \FunctionTok{COUNT}\NormalTok{(}\KeywordTok{DISTINCT}\NormalTok{ FirstName) }\KeywordTok{FROM}\NormalTok{ Customer; }
+\end{Highlighting}
+\end{Shaded}
 
 \begin{itemize}
 \tightlist
@@ -2799,7 +2956,8 @@ Sintaxis general:
 \end{Highlighting}
 \end{Shaded}
 
-\subsubsection{Ordenar Resultados}\label{ordenar-resultados}
+\hypertarget{ordenaciuxf3n-de-resultados}{%
+\subsection{Ordenación de Resultados}\label{ordenaciuxf3n-de-resultados}}
 
 \begin{itemize}
 \tightlist
@@ -2830,37 +2988,218 @@ Sintaxis general:
 \end{Highlighting}
 \end{Shaded}
 
-\subsubsection{Número de filas (paginación)}\label{nuxfamero-de-filas-paginaciuxf3n}
+\hypertarget{uniuxf3n-de-tablas}{%
+\subsection{Unión de tablas}\label{uniuxf3n-de-tablas}}
 
 \begin{itemize}
-\tightlist
 \item
-  Obtener las N primeras:
+  Intersección por clave primaria / clave foránea:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Operador A \emph{{[}INNER{]} JOIN} B: interesección de A y B
+  \end{itemize}
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-  \KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ Track}
-  \KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ title }\KeywordTok{ASC}
-  \KeywordTok{LIMIT} \DecValTok{5}\NormalTok{;}
+  \KeywordTok{SELECT}\NormalTok{ ar.Name }\KeywordTok{AS}\NormalTok{ Artista, a.Title }\KeywordTok{AS}\NormalTok{ Album}
+  \KeywordTok{FROM}\NormalTok{ Artist ar }\KeywordTok{JOIN}\NormalTok{ Album a }\KeywordTok{ON}\NormalTok{ ar.ArtistId }\OperatorTok{=}\NormalTok{ a.ArtistId;}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{itemize}
 \tightlist
 \item
-  Obtener las N filas siguientes:
+  Operador A \emph{LEFT JOIN} B: interesección de A y B, y filas de A sin correspondencia en B
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-  \KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ Track}
-  \KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ title }\KeywordTok{ASC}
-\NormalTok{  OFFSET }\DecValTok{5} \KeywordTok{LIMIT} \DecValTok{5}\NormalTok{;}
+  \KeywordTok{SELECT}\NormalTok{ ar.Name }\KeywordTok{AS}\NormalTok{ Artista, a.Title }\KeywordTok{AS}\NormalTok{ Album}
+  \KeywordTok{FROM}\NormalTok{ Artist ar }\KeywordTok{LEFT} \KeywordTok{JOIN}\NormalTok{ Album a }\KeywordTok{ON}\NormalTok{ ar.ArtistId }\OperatorTok{=}\NormalTok{ a.ArtistId;}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Gestión de tablas}\label{gestiuxf3n-de-tablas}
+\begin{itemize}
+\item
+  Operador A \emph{RIGHT JOIN} B: interesección de A y B, y filas de B sin correspondencia en A
+\item
+  A `FULL {[}OUTER{]} JOIN' B: interesección de A y B, y filas de A y B sin correspondencia
+\item
+  sqlite no soporta directamente RIGHT JOIN ni FULL JOIN
+\item
+  Producto cartesiano
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ g.Name }\KeywordTok{AS}\NormalTok{ Genero, m.Name }\KeywordTok{AS}\NormalTok{ Formato}
+  \KeywordTok{FROM}\NormalTok{ Genre g }\KeywordTok{CROSS} \KeywordTok{JOIN}\NormalTok{ MediaType m}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{agrupamiento}{%
+\subsection{Agrupamiento}\label{agrupamiento}}
+
+\begin{itemize}
+\tightlist
+\item
+  Funciones de agregación parciales
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ A.Title }\KeywordTok{AS}\NormalTok{ Album, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\KeywordTok{AS}\NormalTok{ Canciones, }\FunctionTok{SUM}\NormalTok{(UnitPrice) }\KeywordTok{AS}\NormalTok{ Precio }
+  \KeywordTok{FROM}\NormalTok{ Album A }\KeywordTok{JOIN}\NormalTok{ Track T }\KeywordTok{ON}\NormalTok{ A.AlbumId }\OperatorTok{=}\NormalTok{ T.AlbumId }
+  \KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ A.Title; }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{CONSEJO:} Es importante agrupar por \emph{clave candidata} o \emph{superclave}.
+  La consulta anterior daría resultados incorrectos si existen dos álbumes diferentes con el mismo título.
+  Mejor:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ A.Title }\KeywordTok{AS}\NormalTok{ Album, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\KeywordTok{AS}\NormalTok{ Canciones, }\FunctionTok{SUM}\NormalTok{(UnitPrice) }\KeywordTok{AS}\NormalTok{ Precio }
+  \KeywordTok{FROM}\NormalTok{ Album A }\KeywordTok{JOIN}\NormalTok{ Track T }\KeywordTok{ON}\NormalTok{ A.AlbumId }\OperatorTok{=}\NormalTok{ T.AlbumId }
+  \KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ A.AlbumId;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Además, también es importante que ese campo de agrupación o algo que garantice la identificación unívoca
+  se presente en los resultados. En el ejemplo anterior sí aparecerían los álbumes por separado, pero no
+  sería posible identificar cuál es cuál en los resultados. Mejor:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ A.AlbumId, A.Title }\KeywordTok{AS}\NormalTok{ Album, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\KeywordTok{AS}\NormalTok{ Canciones, }\FunctionTok{SUM}\NormalTok{(UnitPrice) }\KeywordTok{AS}\NormalTok{ Precio }
+  \KeywordTok{FROM}\NormalTok{ Album A }\KeywordTok{JOIN}\NormalTok{ Track T }\KeywordTok{ON}\NormalTok{ A.AlbumId }\OperatorTok{=}\NormalTok{ T.AlbumId }
+  \KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ A.AlbumId;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Incluso mejor, si asumimos que no habrá un artista con dos álbumes con el mismo nombre:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ AR.Name }\KeywordTok{AS}\NormalTok{ Artista, }\KeywordTok{AS}\NormalTok{ Album, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\KeywordTok{AS}\NormalTok{ Canciones, }\FunctionTok{SUM}\NormalTok{(UnitPrice) }\KeywordTok{AS}\NormalTok{ Precio }
+  \KeywordTok{FROM}\NormalTok{ Album A }\KeywordTok{JOIN}\NormalTok{ Track T }\KeywordTok{ON}\NormalTok{ A.AlbumId }\OperatorTok{=}\NormalTok{ T.AlbumId}
+               \KeywordTok{JOIN}\NormalTok{ Artist AR }\KeywordTok{ON}\NormalTok{ A.ArtistId }\OperatorTok{=}\NormalTok{ AR.ArtistId }
+  \KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ A.AlbumId;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Filtrado por grupos (seleccionar grupos con condiciones)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ AR.Name }\KeywordTok{AS}\NormalTok{ Artista, }\KeywordTok{AS}\NormalTok{ Album, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\KeywordTok{AS}\NormalTok{ Canciones, }\FunctionTok{SUM}\NormalTok{(UnitPrice) }\KeywordTok{AS}\NormalTok{ Precio}
+  \KeywordTok{FROM}\NormalTok{ Album A }\KeywordTok{JOIN}\NormalTok{ Track T }\KeywordTok{ON}\NormalTok{ A.AlbumId }\OperatorTok{=}\NormalTok{ T.AlbumId }
+  \KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ A.AlbumId}
+  \KeywordTok{HAVING}\NormalTok{ Canciones }\OperatorTok{\textgreater{}} \DecValTok{6}\NormalTok{; }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{subconsultas-subqueries}{%
+\subsection{Subconsultas (subqueries)}\label{subconsultas-subqueries}}
+
+\begin{itemize}
+\item
+  Subqueries en la cláusula SELECT:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    La consulta debe devolver una única columna, y típicamente un único valor
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ T.Name, (}\KeywordTok{SELECT} \FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }
+                  \KeywordTok{FROM}\NormalTok{ Track T2 }
+                  \KeywordTok{WHERE}\NormalTok{ T2.GenreId }\OperatorTok{=}\NormalTok{ T.GenreId) }\KeywordTok{AS}\NormalTok{ Canciones }
+  \KeywordTok{FROM}\NormalTok{ Track T }\KeywordTok{JOIN}\NormalTok{ Genre G }\KeywordTok{ON}\NormalTok{ T.GenreId }\OperatorTok{=}\NormalTok{ G.GenreId; }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \emph{Observación:} en una subquery se puede hacer referencia a columnas de la consulta externa.
+\item
+  Subqueries en la cláusula WHERE / HAVING:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ T.Name, T.Milliseconds }
+  \KeywordTok{FROM}\NormalTok{ Track T }
+  \KeywordTok{WHERE}\NormalTok{ T.Milliseconds }\OperatorTok{\textgreater{}}\NormalTok{ (}\KeywordTok{SELECT} \FunctionTok{AVG}\NormalTok{(Milliseconds) }\KeywordTok{FROM}\NormalTok{ Track);  }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Subqueries en la cláusula FROM:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{SELECT}\NormalTok{ T.Song, G.Name }
+  \KeywordTok{FROM}\NormalTok{ Genre G }\KeywordTok{JOIN}\NormalTok{ (}\KeywordTok{SELECT}\NormalTok{ Name }\KeywordTok{AS}\NormalTok{ Song, GenreId }\KeywordTok{as} \KeywordTok{Id} 
+                     \KeywordTok{FROM}\NormalTok{ Track) }\KeywordTok{AS}\NormalTok{ T }
+               \KeywordTok{ON} \KeywordTok{Id} \OperatorTok{=}\NormalTok{ G.GenreId }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{operaciones-con-conjuntos-de-resultados}{%
+\subsection{Operaciones con conjuntos de resultados}\label{operaciones-con-conjuntos-de-resultados}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  Query1 }
+\NormalTok{  \{ }\KeywordTok{UNION}\NormalTok{ [ }\KeywordTok{ALL}\NormalTok{ ] | }\KeywordTok{INTERSECT}\NormalTok{ | }\KeywordTok{EXCEPT}\NormalTok{ \} }
+\NormalTok{  Query2 }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Query1 y Query2 deben devolver el \emph{mismo número de columnas}, pero no necesariamente el mismo tipo de dato.
+  Elimina filas duplicadas.
+\item
+  \textbf{Unión:} Resultados existentes en alguna consulta (eq. OR)
+\item
+  \textbf{Intersección:} Resultados existentes en ambas consultas (eq. AND)
+\item
+  \textbf{Diferencia (Except):} Resultados existentes en Query1 pero no en Query2 (eq. MINUS)
+\item
+  Cláusula \textbf{UNION ALL}: Elimina la restricción de filas duplicadas y muestra todo
+\end{itemize}
+
+\hypertarget{gestiuxf3n-de-tablas}{%
+\section{Gestión de tablas}\label{gestiuxf3n-de-tablas}}
 
 \begin{itemize}
 \tightlist
@@ -2924,7 +3263,8 @@ Sintaxis general:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Gestión de datos}\label{gestiuxf3n-de-datos}
+\hypertarget{gestiuxf3n-de-datos}{%
+\section{Gestión de datos}\label{gestiuxf3n-de-datos}}
 
 \begin{itemize}
 \tightlist
@@ -2966,7 +3306,8 @@ Sintaxis general:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Gestión de Bases de Datos}\label{gestiuxf3n-de-bases-de-datos}
+\hypertarget{gestiuxf3n-de-bases-de-datos}{%
+\section{Gestión de Bases de Datos}\label{gestiuxf3n-de-bases-de-datos}}
 
 \begin{itemize}
 \tightlist
@@ -3022,7 +3363,8 @@ Sintaxis general:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Ejemplos de consultas SQL}\label{ejemplos-de-consultas-sql}
+\hypertarget{ejemplos-de-consultas-sql}{%
+\section{Ejemplos de consultas SQL}\label{ejemplos-de-consultas-sql}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3043,9 +3385,11 @@ Sintaxis general:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Conexión con bases de datos desde R}\label{conexiuxf3n-con-bases-de-datos-desde-r}
+\hypertarget{conexiuxf3n-con-bases-de-datos-desde-r}{%
+\section{Conexión con bases de datos desde R}\label{conexiuxf3n-con-bases-de-datos-desde-r}}
 
-\subsection{Introducción a SQL en R}\label{introducciuxf3n-a-sql-en-r}
+\hypertarget{introducciuxf3n-a-sql-en-r}{%
+\subsection{Introducción a SQL en R}\label{introducciuxf3n-a-sql-en-r}}
 
 SQL se usa para manipular datos dentro de una base de datos. Si la base de datos no es muy grande se puede cargar toda en un data.frame.
 No obstante, por escalabilidad y offloading de la carga de trabajo al servidor SGBD utilizaremos SQL.
@@ -3072,7 +3416,8 @@ A continuación se lista una serie de paquetes utilizados en el acceso a los dat
   \href{https://cran.r-project.org/web/packages/RPostgreSQL/index.html}{RPostgreSQL}
 \end{itemize}
 
-\subsection{El paquete sqldf}\label{el-paquete-sqldf}
+\hypertarget{el-paquete-sqldf}{%
+\subsection{El paquete sqldf}\label{el-paquete-sqldf}}
 
 A continuación se presenta una serie de ejercicios con la sintaxis de SQL operando sobre un data.frame con el paquete sqldf. Esto inicialmente no incluye los detalles de conectarse a un SGBD, ni modificar los
 datos, solamente el uso de SQL para extraer datos con el objetivo de ser analizados en R.
@@ -3100,7 +3445,8 @@ datos, solamente el uso de SQL para extraer datos con el objetivo de ser analiza
 ## 7 1582           145
 \end{verbatim}
 
-\subsection{SQL Queries}\label{sql-queries}
+\hypertarget{sql-queries}{%
+\subsection{SQL Queries}\label{sql-queries}}
 
 El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:
 
@@ -3127,7 +3473,8 @@ La sintaxis básica de SELECT es:
 \end{Highlighting}
 \end{Shaded}
 
-\subsubsection{Asterisco/Wildcard}\label{asteriscowildcard}
+\hypertarget{asteriscowildcard}{%
+\subsubsection{Asterisco/Wildcard}\label{asteriscowildcard}}
 
 Lo extrae todo
 
@@ -3137,7 +3484,8 @@ Lo extrae todo
 \end{Highlighting}
 \end{Shaded}
 
-\subsubsection{Limit}\label{limit}
+\hypertarget{limit}{%
+\subsubsection{Limit}\label{limit}}
 
 Limita el número de resultados
 
@@ -3156,7 +3504,8 @@ Limita el número de resultados
 ## 5          5.0         3.6          1.4         0.2  setosa
 \end{verbatim}
 
-\subsubsection{Order By}\label{order-by}
+\hypertarget{order-by}{%
+\subsubsection{Order By}\label{order-by}}
 
 Ordena las variables
 
@@ -3181,7 +3530,8 @@ Ordena las variables
 ## 5    5 118            30
 \end{verbatim}
 
-\subsubsection{Where}\label{where}
+\hypertarget{where}{%
+\subsubsection{Where}\label{where}}
 
 Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.
 
@@ -3269,9 +3619,13 @@ Y extendiendo su uso con IN o LIKE (es último sólo con \%), pudiendo aplicárs
 ## 5    260 linseed
 \end{verbatim}
 
-\section{Ejemplo Scopus data}\label{ejemplo-scopus-data}
+\hypertarget{ejemplo-scopus-data}{%
+\section{Ejemplo Scopus data}\label{ejemplo-scopus-data}}
 
-Ver ejemplo \href{data/citan.zip}{\emph{citan.zip}} y Apéndice \ref{citan}.
+Ver ejemplo \href{data/citan.zip}{\emph{citan.zip}} y paquete \href{https://cran.r-project.org/web/packages/CITAN/index.html}{CITAN} (descontinuado).
+
+Las herramientas de este paquete realizan consultas SQL de forma continuada a una base de datos por lo que pueden resultar notablemente lentas.
+La recomendación es realizar el menor número de consultas posible y después operar en R:
 
 \begin{quote}
 ``If your data fits in memory
@@ -3281,9 +3635,11 @@ it will only be slower and more frustrating''
 --- Hadley Wickham -- \url{https://dbplyr.tidyverse.org/articles/dbplyr.html}
 \end{quote}
 
-\section{Ejercicios SQL con RSQLite}\label{ejercicios-sql-con-rsqlite}
+\hypertarget{ejercicios-sql-con-rsqlite}{%
+\section{Ejercicios SQL con RSQLite}\label{ejercicios-sql-con-rsqlite}}
 
-\subsection{Setup de RSQLite}\label{setup-de-rsqlite}
+\hypertarget{setup-de-rsqlite}{%
+\subsection{Setup de RSQLite}\label{setup-de-rsqlite}}
 
 Vamos a utilizar \href{https://cran.r-project.org/web/packages/RSQLite/index.html}{RSQLite} desde Kaggle. Pero si lo queréis instalar en local La información para su instalación está \href{https://db.rstudio.com/databases/sqlite/}{en el siguiente enlace}.
 
@@ -3417,15 +3773,17 @@ Vamos a utilizar \href{https://cran.r-project.org/web/packages/RSQLite/index.htm
 \end{Highlighting}
 \end{Shaded}
 
-\section{Práctica 1: SQL}\label{pruxe1ctica-1-sql}
+\hypertarget{pruxe1ctica-1-sql}{%
+\section{Práctica 1: SQL}\label{pruxe1ctica-1-sql}}
 
 Vamos a utilizar la base de datos \href{https://www.sqlitetutorial.net/wp-content/uploads/2018/03/chinook.zip}{Chinook} del \href{https://www.sqlitetutorial.net/sqlite-sample-database/}{tutorial de SQLite}
 
-\includegraphics[width=6.25in,height=\textheight,keepaspectratio]{images/sqlite-sample-database-color.jpg}
+\includegraphics[width=6.25in,height=\textheight]{images/sqlite-sample-database-color.jpg}
 
 Los ejercicios pedidos en Kaggle \href{https://www.kaggle.com/gltaboada/sqlite-tutorial-in-r}{kaggle.com/gltaboada/sqlite-tutorial-in-r} se entregarán preferentemente antes del \textbf{14/10} compartiendo un notebook con las soluciones (¡notebooke privado!) con el usuario \textbf{gltaboada}. Antes me tenéis que enviar un email comunicando qué usuario tenéis cada uno. En caso de incidencia me podéis mandar un notebook descargado (.ipynb), o el mecanismo que hayamos acordado previamente.
 
-\chapter{Manipulación de datos con tidyverse}\label{tidyverse}
+\hypertarget{tidyverse}{%
+\chapter{Manipulación de datos con tidyverse}\label{tidyverse}}
 
 Este la primera parte de este capítulo (Sección \ref{introTidyverse}), se pretende realizar una breve introducción al \emph{ecosistema} \href{https://dplyr.tidyverse.org}{\textbf{Tidyverse}}, una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente.
 
@@ -3437,7 +3795,8 @@ En las consecutivas secciones se presentan las alternativas \emph{tidyverse} a l
 
 Más adelante, en la Sección \ref{dplyr} se realiza una breve introducción al paquete \href{https://dplyr.tidyverse.org}{\texttt{dplyr}} y en la Sección \ref{tidyr-pkg} se comentan algunas de las utilidades del paquete \href{https://tidyr.tidyverse.org}{\texttt{tidyr}} que pueden resultar de interés\footnote{Otra alternativa (más rápida) es \href{https://rdatatable.gitlab.io/data.table}{\texttt{data.table}} pero en versiones recientes ya se puede emplear desde \texttt{dplyr}, como se comenta más adelante.}. Finalmente, las secciones \ref{dplyr-join} y \ref{dbplyr} se muestra las utilizades para tratar tablas y bases de datos respectivamente.
 
-\section{Introducción al ecosistema tidyverse}\label{introTidyverse}
+\hypertarget{introTidyverse}{%
+\section{Introducción al ecosistema tidyverse}\label{introTidyverse}}
 
 El paquete \href{https://tidyverse.tidyverse.org}{\texttt{tidyverse}} está diseñado para facilitar la instalación y carga de los paquetes principales de la colección tidyverse con un solo comando.
 Al instalar este paquete se instalan paquetes que forman el denominado núcleo de tidyverse (se cargan con \texttt{library(tidyverse)}):
@@ -3518,12 +3877,10 @@ Muchos otros paquetes están adaptando este estilo, por ejemplo, el meta paquete
 \item
   \href{https://tsibble.tidyverts.org/}{\texttt{tsibble}} (infra)estructuras de datos.
 \item
-  \href{https://fable.tidyverts.org/}{\texttt{fable}} predicción (\emph{forecasting}).
+  \href{https://fable.tidyverts.org/}{\texttt{fable}} predicción (\emph{forecasting})\footnote{El libro \href{https://otexts.com/fpp3/}{\textbf{Forecasting: Principles and Practice}} donde se describe su uso, y el paquete \href{https://github.com/robjhyndman/fpp3package}{\texttt{fpp3}} asociado, también siguen una filosofía \emph{tidy}.}.
 \item
   \href{https://feasts.tidyverts.org/}{\texttt{feasts}} extracción de características (predictores).
 \end{itemize}
-
-El paquete \href{https://github.com/robjhyndman/fpp3package}{\texttt{fpp3}} asociado al libro \href{https://otexts.com/fpp3/}{\textbf{Forecasting: Principles and Practice}} también sigue una filosofía \emph{tidy}.
 
 Otro ejemplo, en este caso, para el tratamiento de datos espaciales, sería el paquete \href{https://github.com/r-spatial/sf/}{\texttt{sf}}, para más detalles ver \href{https://rubenfcasal.github.io/estadistica_espacial/sf-intro.html}{Sección 2.2 Introducción al paquete sf} del libro \textbf{Estadística Espacial con R}
 
@@ -3547,7 +3904,8 @@ Chang, W. (2023). \emph{\href{https://r-graphics.org}{The R Graphics Cookbook}}.
 
 En \href{https://ggplot2.tidyverse.org}{\texttt{ggplot2}} se emplea el operador \texttt{+} para añadir componentes de los gráficos (ver , en \emph{Tidyverse} se emplea un operador de redirección para añadir operaciones.
 
-\subsection{\texorpdfstring{Operador \emph{pipe} (redirección)}{Operador pipe (redirección)}}\label{pipe}
+\hypertarget{pipe}{%
+\subsection{\texorpdfstring{Operador \emph{pipe} (redirección)}{Operador pipe (redirección)}}\label{pipe}}
 
 El operador \texttt{\%\textgreater{}\%} (paquete \href{https://magrittr.tidyverse.org}{\texttt{magrittr}}) permite canalizar la salida de una función a la entrada de otra. Se utiliza para mejorar la legibilidad y la claridad del código al encadenar múltiples operaciones en una secuencia fluida
 Por ejemplo, \texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.
@@ -3565,15 +3923,31 @@ Por ejemplo, para el conjunto de datos \texttt{empleados.RData} que contiene dat
 \CommentTok{\# Listamos las etiquetas}
 \CommentTok{\#knitr::kable(attr(empleados, "variable.labels"),}
 \CommentTok{\#             col.names = "Etiqueta")}
-
 \CommentTok{\# Eliminamos las etiquetas para que no molesten...}
-\CommentTok{\# attr(empleados, "variable.labels") \textless{}{-} NULL  }
+\FunctionTok{attr}\NormalTok{(empleados, }\StringTok{"variable.labels"}\NormalTok{) }\OtherTok{\textless{}{-}} \ConstantTok{NULL}  
 
-\CommentTok{\#empleados |\textgreater{}  }
-\CommentTok{\#  subset(catlab == "Directivo", catlab:sexoraza) |\textgreater{}}
-\CommentTok{\#  summary()}
+\NormalTok{empleados }\SpecialCharTok{|\textgreater{}}
+   \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|\textgreater{}}
+   \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+##             catlab      salario           salini         tiempemp    
+##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
+##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
+##  Directivo     :84   Median : 60500   Median :28740   Median :81.00  
+##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
+##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
+##                      Max.   :135000   Max.   :79980   Max.   :98.00  
+##     expprev        minoria            sexoraza 
+##  Min.   :  3.00   No   :80   Blanca varón :70  
+##  1st Qu.: 19.75   S\xed: 4   Minoría varón: 4  
+##  Median : 52.00              Blanca mujer :10  
+##  Mean   : 77.62              Minoría mujer: 0  
+##  3rd Qu.:125.25                                
+##  Max.   :285.00
+\end{verbatim}
 
 Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
 Sin embargo, el operador \texttt{\%\textgreater{}\%} permite redirigir el resultado de la operación anterior a un parámetro distinto mediante un \texttt{.}.
@@ -3595,7 +3969,8 @@ Por ejemplo:
 
 \begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
-\subsection{Lectura y escritura de archivos de texto}\label{readr}
+\hypertarget{readr}{%
+\subsection{Lectura y escritura de archivos de texto}\label{readr}}
 
 En esta seccón la alternativa \emph{tidyverse}, a la tradicional, vista en las secciones \ref{cap2-texto} y \ref{cap2-exporta} del Capítulo 2.
 
@@ -3640,7 +4015,7 @@ También se puede importación desde Excel fácilmente:
 
 Otra alternativa, sería emplear el paquete \href{https://r-datatable.com}{\texttt{data.table}}.
 La función \texttt{fread()} puede considerarse como alternativa a \texttt{read\_csv()}
-cuando el proceso de lectura resulta lento, especialmente con datos numéricos pesados. ESta función intenta \emph{adivinar} automáticamente algunos argumentos sin tener que especificarse como, por ejemplo, el delimitador, las filas omitidas y la cabecera. Sin embargo, si requiere especificar el separador del decimal, como a continuación:
+cuando el proceso de lectura resulta lento, especialmente con datos numéricos pesados. Esta función intenta \emph{adivinar} automáticamente algunos argumentos sin tener que especificarse como, por ejemplo, el delimitador, las filas omitidas y la cabecera. Sin embargo, si requiere especificar el separador del decimal, como a continuación:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3657,7 +4032,8 @@ cuando el proceso de lectura resulta lento, especialmente con datos numéricos p
 
 Para más información, se recomienda ver la viñeta \href{https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html}{\emph{Introduction to data.table}}.
 
-\subsection{Escritura}\label{writer}
+\hypertarget{writer}{%
+\subsection{Escritura}\label{writer}}
 
 Con el ecosistema \emph{tidyverse}, también con el paquete \href{https://readr.tidyverse.org}{\texttt{readr}} se puede utilizar la función \texttt{write\_csv2()}:
 
@@ -3676,16 +4052,8 @@ y como opción más rápida, se podría usar \texttt{fwrite()} del paqute \textt
 \end{Highlighting}
 \end{Shaded}
 
-Working draft\ldots{}
-
-En este capítulo se realiza una breve introducción al paquete \href{https://dplyr.tidyverse.org/index.html}{\texttt{dplyr}}.
-Para mas información, ver por ejemplo la `vignette' del paquete\\
-\href{https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html}{Introduction to dplyr},
-o el Capítulo \href{http://r4ds.had.co.nz/transform.html}{5 Data transformation} del libro
-\href{http://r4ds.had.co.nz}{R for Data Science}\footnote{Una alternativa (más rápida) es emplear
-  \href{https://rdatatable.gitlab.io/data.table}{data.table}.}.
-
-\section{Manipulación de datos con dplyr y tidyr}\label{dplyr}
+\hypertarget{dplyr}{%
+\section{Manipulación de datos con dplyr y tidyr}\label{dplyr}}
 
 En esta sección se realiza una breve introducción al paquete \href{https://dplyr.tidyverse.org}{\texttt{dplyr}} y se comentan algunas de las utilidades del paquete \href{https://tidyr.tidyverse.org}{\texttt{tidyr}} que pueden resultar de interés\footnote{Otra alternativa (más rápida) es \href{https://rdatatable.gitlab.io/data.table}{\texttt{data.table}} pero en versiones recientes ya se puede emplear desde \texttt{dplyr}, como se comenta más adelante.}.
 
@@ -3693,7 +4061,8 @@ La referencia recomendada para iniciarse en esta herramienta es el Capítulo \hr
 \href{http://r4ds.had.co.nz}{R for Data Science}.
 También puede resultar de utilidad la viñeta del paquete \href{https://dplyr.tidyverse.org/articles/dplyr.html}{Introduction to dplyr} o la \href{https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf}{chuleta} (menú de RStudio \emph{Help \textgreater{} Cheat Sheets \textgreater{} Data Transformation with dplyr}).
 
-\subsection{El paquete dplyr}\label{dplyr-pkg}
+\hypertarget{dplyr-pkg}{%
+\subsection{El paquete dplyr}\label{dplyr-pkg}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3751,7 +4120,8 @@ Emplearemos como ejemplo los datos de empleados de banca almacenados en el fiche
 
 En la Sección \ref{dbplyr} final emplearemos una base de datos relacional como ejemplo.
 
-\subsection{Operaciones con variables (columnas)}\label{dplyr-variables}
+\hypertarget{dplyr-variables}{%
+\subsection{Operaciones con variables (columnas)}\label{dplyr-variables}}
 
 Podemos \textbf{seleccionar variables con \href{https://dplyr.tidyverse.org/reference/select.html}{\texttt{select()}}}:
 
@@ -3877,7 +4247,8 @@ Podemos \textbf{crear variables con \href{https://dplyr.tidyverse.org/reference/
 ## 6  6 Hombre      No       98  13500   32100  18600 189.79592
 \end{verbatim}
 
-\subsection{Operaciones con casos (filas)}\label{dplyr-casos}
+\hypertarget{dplyr-casos}{%
+\subsection{Operaciones con casos (filas)}\label{dplyr-casos}}
 
 Podemos \textbf{seleccionar casos con \href{https://dplyr.tidyverse.org/reference/filter.html}{\texttt{filter()}}}:
 
@@ -3975,10 +4346,10 @@ Podemos \textbf{agrupar casos con \href{https://dplyr.tidyverse.org/reference/gr
 ## # A tibble: 4 x 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre "No"     44475.   194
-## 2 Hombre "S\xed"  32246.    64
-## 3 Mujer  "No"     26707.   176
-## 4 Mujer  "S\xed"  23062.    40
+## 1 Hombre No       44475.   194
+## 2 Hombre S�       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  S�       23062.    40
 \end{verbatim}
 
 \begin{Shaded}
@@ -3992,10 +4363,10 @@ Podemos \textbf{agrupar casos con \href{https://dplyr.tidyverse.org/reference/gr
 ## # A tibble: 4 x 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre "No"     44475.   194
-## 2 Hombre "S\xed"  32246.    64
-## 3 Mujer  "No"     26707.   176
-## 4 Mujer  "S\xed"  23062.    40
+## 1 Hombre No       44475.   194
+## 2 Hombre S�       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  S�       23062.    40
 \end{verbatim}
 
 \begin{Shaded}
@@ -4010,7 +4381,8 @@ Por defecto la agrupación se mantiene para el resto de operaciones, habría que
 Desde dplyr 1.1.0 (2023-01-29) está disponible un parámetro \texttt{.by/by} en \texttt{mutate()}, \texttt{summarise()}, \texttt{filter()} y \texttt{slice()} como alternativa a agrupar y desagrupar posteriormente.
 Para más detalles ver \href{https://dplyr.tidyverse.org/reference/dplyr_by.html}{Per-operation grouping with .by/by}.
 
-\subsection{Datos faltantes}\label{tidyr-missing}
+\hypertarget{tidyr-missing}{%
+\subsection{Datos faltantes}\label{tidyr-missing}}
 
 Continuamos con el ejemplo de la Sección @ref\{missing\}.
 \emph{tidyverse} dispone de muchas herramientas para el tratamiento de los datos faltantes.
@@ -4119,7 +4491,8 @@ Distribución mensual de los valores faltantes:
 
 \begin{center}\includegraphics[width=0.8\linewidth]{04-dplyr_files/figure-latex/unnamed-chunk-25-1} \end{center}
 
-\section{Herramientas tidyr}\label{tidyr-pkg}
+\hypertarget{tidyr-pkg}{%
+\section{Herramientas tidyr}\label{tidyr-pkg}}
 
 Algunas funciones del paquete \href{https://tidyr.tidyverse.org}{\texttt{tidyr}} que pueden resultar de especial interés son:
 
@@ -4139,9 +4512,10 @@ Ver la viñeta \href{https://tidyr.tidyverse.org/articles/pivot.html}{Pivoting} 
   \href{https://tidyr.tidyverse.org/reference/separate.html}{\texttt{separate()}}: permite separar una columna de texto en varias (ver también \href{https://tidyr.tidyverse.org/reference/extract.html}{\texttt{extract()}}).
 \end{itemize}
 
-Ver \href{ejemplos/mortalidad/mortalidad.R}{mortalidad.R} en \href{https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos}{ejemplos}.
+Ver ejemplo \href{data/mortalidad.R}{mortalidad.R}.
 
-\section{Operaciones con tablas de datos}\label{dplyr-join}
+\hypertarget{dplyr-join}{%
+\section{Operaciones con tablas de datos}\label{dplyr-join}}
 
 Se emplean funciones \texttt{xxx\_join()} (ver la documentación del paquete
 \href{https://dplyr.tidyverse.org/reference/join.html}{Join two tbls together},
@@ -4183,7 +4557,8 @@ Adicionalmente, si las tablas \texttt{x} e \texttt{y} tienen las mismas variable
   \texttt{setdiff(x,\ y)}: observaciones en \texttt{x} pero no en \texttt{y}.
 \end{itemize}
 
-\section{Bases de datos con dplyr}\label{dbplyr}
+\hypertarget{dbplyr}{%
+\section{Bases de datos con dplyr}\label{dbplyr}}
 
 Para poder usar tablas en bases de datos relacionales con \texttt{dplyr} hay que emplear el paquete \href{https://dbplyr.tidyverse.org}{dbplyr} (convierte automáticamente el código de dplyr en consultas SQL).
 
@@ -4201,7 +4576,8 @@ Algunos enlaces:
   \href{https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases}{R and Data -- When Should we Use Relational Databases?}
 \end{itemize}
 
-\subsection{Ejemplos}\label{ejemplos}
+\hypertarget{ejemplos}{%
+\subsection{Ejemplos}\label{ejemplos}}
 
 Como ejemplo emplearemos la base de datos de \href{https://www.sqlitetutorial.net/sqlite-sample-database/}{SQLite Sample Database Tutorial}, almacenada en el archivo \href{data/chinook.db}{\emph{chinook.db}}.
 
@@ -4230,7 +4606,7 @@ Podemos listar las tablas:
 \end{Shaded}
 
 \begin{verbatim}
-## src:  sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
+## src:  sqlite 3.43.2 [E:\OneDrive - Universidade da Coruña\__Actual\__TGD_clase\tgdbook\data\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 \end{verbatim}
@@ -4245,8 +4621,8 @@ Para enlazar una tabla:
 \end{Shaded}
 
 \begin{verbatim}
-## # Source:   table<`invoices`> [?? x 9]
-## # Database: sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
+## # Source:   table<invoices> [?? x 9]
+## # Database: sqlite 3.43.2 [E:\OneDrive - Universidade da Coruña\__Actual\__TGD_clase\tgdbook\data\chinook.db]
 ##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
 ##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
 ##  1         1          2 2009-01-01 00:0~ Theodor-Heuss~ Stuttgart   <NA>        
@@ -4339,8 +4715,8 @@ Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
 \end{Shaded}
 
 \begin{verbatim}
-## # Source:   SQL [?? x 1]
-## # Database: sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TGD/tgdbook-guillermo/data/chinook.db]
+## # Source:   SQL [1 x 1]
+## # Database: sqlite 3.43.2 [E:\OneDrive - Universidade da Coruña\__Actual\__TGD_clase\tgdbook\data\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -4580,11 +4956,13 @@ Al finalizar hay que desconectar la base de datos:
 \end{Highlighting}
 \end{Shaded}
 
-\chapter{Introducción a Tecnologías NoSQL}\label{introducciuxf3n-a-tecnologuxedas-nosql}
+\hypertarget{introducciuxf3n-a-tecnologuxedas-nosql}{%
+\chapter{Introducción a Tecnologías NoSQL}\label{introducciuxf3n-a-tecnologuxedas-nosql}}
 
 Son tecnologías de almacenamiento de datos en servicios web altamente escalables.
 
-\section{Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)}\label{conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos}
+\hypertarget{conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos}{%
+\section{Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)}\label{conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos}}
 
 NoSQL - ``Not Only SQL'' - es una nueva categoría de bases de datos no-relacionales y altamente distribuidas.
 
@@ -4601,7 +4979,8 @@ Las bases de datos NoSQL nacen de la necesidad de:
 
 Pero cuidado, en muchos escenarios las BBDD relacionales siguen siendo la mejor opción.
 
-\subsection{Características de las bases de datos NoSQL}\label{caracteruxedsticas-de-las-bases-de-datos-nosql}
+\hypertarget{caracteruxedsticas-de-las-bases-de-datos-nosql}{%
+\subsection{Características de las bases de datos NoSQL}\label{caracteruxedsticas-de-las-bases-de-datos-nosql}}
 
 \begin{itemize}
 \tightlist
@@ -4633,7 +5012,8 @@ El modelo BASE consiste en:
   Eventual consistency -- el sistema alcanzará un estado consistente con el tiempo, siempre y cuando no reciba entrada durante ese tiempo.
 \end{itemize}
 
-\subsubsection{Teorema CAP}\label{teorema-cap}
+\hypertarget{teorema-cap}{%
+\subsubsection{Teorema CAP}\label{teorema-cap}}
 
 Es imposible para un sistema de cómputo distribuido garantizar simultáneamente:
 
@@ -4647,7 +5027,7 @@ Es imposible para un sistema de cómputo distribuido garantizar simultáneamente
   Partition Tolerance -- El sistema seguirá funcionando ante pérdidas arbitrarias de información o fallos parciales
 \end{itemize}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/TeoremaCAP.jpg}}
+\includegraphics{images/TeoremaCAP.jpg}
 
 Las razones para escoger NoSQL son:
 
@@ -4691,23 +5071,26 @@ Razones para NO escoger NoSQL:
 + E.g. joins numerosos y/o importantes
 * En general, cuando el modelo ACID encaja mejor
 
-\subsection{Tipos de Bases de Datos NoSQL}\label{tipos-de-bases-de-datos-nosql}
+\hypertarget{tipos-de-bases-de-datos-nosql}{%
+\subsection{Tipos de Bases de Datos NoSQL}\label{tipos-de-bases-de-datos-nosql}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/TiposBBDDNoSQL.png}}
+\includegraphics{images/TiposBBDDNoSQL.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/TiposBBDDNoSQL2.png}}
+\includegraphics{images/TiposBBDDNoSQL2.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/451ResearchMap.png}}
+\includegraphics{images/451ResearchMap.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/DBEnginesRanking.png}}
+\includegraphics{images/DBEnginesRanking.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/451ResearchSkills.png}}
+\includegraphics{images/451ResearchSkills.png}
 
-\subsection{MongoDB: NoSQL documental}\label{mongodb-nosql-documental}
+\hypertarget{mongodb-nosql-documental}{%
+\subsection{MongoDB: NoSQL documental}\label{mongodb-nosql-documental}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/MongoDB.jpg}}
+\includegraphics{images/MongoDB.jpg}
 
-\subsection{Redis: NoSQL key-value}\label{redis-nosql-key-value}
+\hypertarget{redis-nosql-key-value}{%
+\subsection{Redis: NoSQL key-value}\label{redis-nosql-key-value}}
 
 In-memory data structure store, útil para base de datos de login-password, sensor-valor, URL-respuesta, con una sintaxis muy sencilla:
 
@@ -4735,25 +5118,29 @@ In-memory data structure store, útil para base de datos de login-password, sens
   EXPIRE promocion 60
 \end{itemize}
 
-\subsection{Cassandra: NoSQL columnar}\label{cassandra-nosql-columnar}
+\hypertarget{cassandra-nosql-columnar}{%
+\subsection{Cassandra: NoSQL columnar}\label{cassandra-nosql-columnar}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/BlogRDMS.png}}
+\includegraphics{images/BlogRDMS.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/BlogNoSQL.png}}
+\includegraphics{images/BlogNoSQL.png}
 
-\subsection{Neo4j: NoSQL grafos}\label{neo4j-nosql-grafos}
+\hypertarget{neo4j-nosql-grafos}{%
+\subsection{Neo4j: NoSQL grafos}\label{neo4j-nosql-grafos}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/Neo4jlogo.png}}
+\includegraphics{images/Neo4jlogo.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/CypherQuery.png}}
+\includegraphics{images/CypherQuery.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/CypherResult.png}}
+\includegraphics{images/CypherResult.png}
 
-\subsection{Otros: search engines}\label{otros-search-engines}
+\hypertarget{otros-search-engines}{%
+\subsection{Otros: search engines}\label{otros-search-engines}}
 
 Son sistemas especializados en búsquedas, procesamiento de lenguaje natural como ElasticSearch, Solr, Splunk (logs de aplicaciones), etc\ldots{}
 
-\section{Conexión de R a MongoDB}\label{conexiuxf3n-de-r-a-mongodb}
+\hypertarget{conexiuxf3n-de-r-a-mongodb}{%
+\section{Conexión de R a MongoDB}\label{conexiuxf3n-de-r-a-mongodb}}
 
 A través del paquete \href{https://cran.rstudio.com/web/packages/mongolite/mongolite.pdf}{mongolite}, aquí tenéis un \href{https://datascienceplus.com/using-mongodb-with-r/}{Tutorial}
 
@@ -4774,7 +5161,8 @@ A través del paquete \href{https://cran.rstudio.com/web/packages/mongolite/mong
 \end{Highlighting}
 \end{Shaded}
 
-\section{Ejercicios prácticos con MongoDB}\label{ejercicios-pruxe1cticos-con-mongodb}
+\hypertarget{ejercicios-pruxe1cticos-con-mongodb}{%
+\section{Ejercicios prácticos con MongoDB}\label{ejercicios-pruxe1cticos-con-mongodb}}
 
 Estos ejercicios se pueden hacer en un notebook Kaggle accediendo a un clúster de MongoDB en el \href{https://cloud.mongodb.com}{cloud de MongoDB}. Se carga la base de datos de ejemplo y se puede hacer con la colección de restaurantes (o alternativamente con otras colleciones).
 
@@ -4798,7 +5186,8 @@ Estos ejercicios se pueden hacer en un notebook Kaggle accediendo a un clúster 
   Propón un JSON para descargar (de algún repositorio OpenData o disponible en un API), indícame la URL, si has de hacer algún proceso antes de importarlo en MongoDB, cómo lo importas, dame un pantallazo del análisis exploratorio de ese JSON y una query que harías contra ese JSON (la query en MongoDB, Compass o RmongoDB)
 \end{enumerate}
 
-\chapter{Tecnologías para el Tratamiendo de Datos Masivos}\label{tecnologuxedas-para-el-tratamiendo-de-datos-masivos}
+\hypertarget{tecnologuxedas-para-el-tratamiendo-de-datos-masivos}{%
+\chapter{Tecnologías para el Tratamiendo de Datos Masivos}\label{tecnologuxedas-para-el-tratamiendo-de-datos-masivos}}
 
 En este apartado trataremos los siguientes epígrafes:
 
@@ -4812,18 +5201,19 @@ En este apartado trataremos los siguientes epígrafes:
   Ejercicios de análisis de datos masivos.
 \end{enumerate}
 
-\section{Introducción al Aprendizaje Estadístico}\label{introducciuxf3n-al-aprendizaje-estaduxedstico}
+\hypertarget{introducciuxf3n-al-aprendizaje-estaduxedstico}{%
+\section{Introducción al Aprendizaje Estadístico}\label{introducciuxf3n-al-aprendizaje-estaduxedstico}}
 
 El material para este apartado está disponible en el
-\href{https://rubenfcasal.github.io/aprendizaje_estadistico/intro-AE.html}{Capítulo 1 del libro ``Aprendizaje Estadístico''} de Rubén Fernández Casal.
+\href{https://rubenfcasal.github.io/aprendizaje_estadistico/intro-AE.html}{Capítulo 1} de Fernández-Casal et al., 2024, \href{https://rubenfcasal.github.io/aprendizaje_estadistico/}{Métodos predictivos de aprendizaje estadístico}.
 
-Para seguir este capítulo es altamente recomendable tener instalado Rattle, para ello consultad el apéndice de instalación de R al final de este libro.
+\includegraphics[width=0.6\textwidth,height=\textheight]{images/T3-CientificoDatos.png}
 
-\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{images/T3-CientificoDatos.png}
+\hypertarget{tecnologuxedas-big-data-hadoopspark-y-visualizaciuxf3n}{%
+\section{Tecnologías Big Data (Hadoop/Spark y Visualización)}\label{tecnologuxedas-big-data-hadoopspark-y-visualizaciuxf3n}}
 
-\section{Tecnologías Big Data (Hadoop/Spark y Visualización)}\label{tecnologuxedas-big-data-hadoopspark-y-visualizaciuxf3n}
-
-\subsection{Tecnologías Hadoop, Spark, y Sparklyr}\label{tecnologuxedas-hadoop-spark-y-sparklyr}
+\hypertarget{tecnologuxedas-hadoop-spark-y-sparklyr}{%
+\subsection{Tecnologías Hadoop, Spark, y Sparklyr}\label{tecnologuxedas-hadoop-spark-y-sparklyr}}
 
 A continuación se introducen los conceptos básicos de las tecnologías Hadoop, Spark y Sparklyr:
 
@@ -4840,511 +5230,58 @@ A continuación se introducen los conceptos básicos de las tecnologías Hadoop,
   Sparklyr: es una librería para conectar R con Spark posterior a SparkR. Intenta ser lo más parecida a dplyr y embeber SQL en las consultas, soportando una mayor cantidad de paquetes. Por este motivo es el proyecto más activo actualmente, sustituyendo a SparkR.
 \end{itemize}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/T3-ecosistema.png}}
+\includegraphics{images/T3-ecosistema.png}
 
-\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{images/T3-DMvsBD.jpg}
+\includegraphics[width=0.6\textwidth,height=\textheight]{images/T3-DMvsBD.jpg}
 
-\subsection{Big Data y Machine Learning}\label{big-data-y-machine-learning}
+\hypertarget{big-data-y-machine-learning}{%
+\subsection{Big Data y Machine Learning}\label{big-data-y-machine-learning}}
 
 El Machine Learning o Aprendizaje Máquina es aquella parte de la inteligencia artificial con capacidad de aprender de los datos.
 
-\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{images/T3-AI-ML.png}
+\includegraphics[width=0.7\textwidth,height=\textheight]{images/T3-AI-ML.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/T3-MLvsDL.png}}
+\includegraphics{images/T3-MLvsDL.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/T3-machinelearning.png}}
+\includegraphics{images/T3-machinelearning.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/T3-machinelearningalgorithms.png}}
+\includegraphics{images/T3-machinelearningalgorithms.png}
 
 Y un ejemplo de cómo se trabaja en machine learning:
 
-\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{images/T3-Supervised_ML.png}
+\includegraphics[width=0.7\textwidth,height=\textheight]{images/T3-Supervised_ML.png}
 
-\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{images/T3-ML-indicadores.png}
+\includegraphics[width=0.7\textwidth,height=\textheight]{images/T3-ML-indicadores.png}
 
-\subsection{Rattle como alternativa a RapidMiner en R}\label{rattle-como-alternativa-a-rapidminer-en-r}
+\hypertarget{rattle-como-alternativa-a-rapidminer-en-r}{%
+\subsection{Rattle como alternativa a RapidMiner en R}\label{rattle-como-alternativa-a-rapidminer-en-r}}
 
 Las instrucciones para instalar R está en el \href{https://gltaboada.github.io/tgdbook/instalaci\%C3\%B3n-de-r.html}{Apéndice 3 de este documento}
 
 Un tutorial adecuado para introducirse en Rattle es \href{https://www.dummies.com/programming/using-rattle-iris-r-programming/}{éste}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/T3-rattle1.png}}
+\includegraphics{images/T3-rattle1.png}
 
 Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/T3-rattle2.png}}
+\includegraphics{images/T3-rattle2.png}
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/T3-rattle3.png}}
+\includegraphics{images/T3-rattle3.png}
 
-\subsection{Visualización y Generación de Cuadros de Mando}\label{visualizaciuxf3n-y-generaciuxf3n-de-cuadros-de-mando}
+\hypertarget{visualizaciuxf3n-y-generaciuxf3n-de-cuadros-de-mando}{%
+\subsection{Visualización y Generación de Cuadros de Mando}\label{visualizaciuxf3n-y-generaciuxf3n-de-cuadros-de-mando}}
 
 Se sigue un tutorial de la herramienta \href{https://docs.microsoft.com/es-es/power-bi/desktop-tutorial-analyzing-sales-data-from-excel-and-an-odata-feed}{PowerBI, con datos de Excel y OData Feed}
 
 Como documentación de se soporte se cuenta con la web de \href{https://docs.microsoft.com/es-es/power-bi/}{PowerBI} y \href{https://ccance.net/manuales/powerbi/capitulo_01_introduccion.pdf}{un tutorial adicional}
 
-\section{Introducción al Análisis de Datos Masivos}\label{introducciuxf3n-al-anuxe1lisis-de-datos-masivos}
+\hypertarget{introducciuxf3n-al-anuxe1lisis-de-datos-masivos}{%
+\section{Introducción al Análisis de Datos Masivos}\label{introducciuxf3n-al-anuxe1lisis-de-datos-masivos}}
 
 En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía sparklyr.
 
 Este apartado, eminentemente práctico, lo trabajaremos a través de \href{https://www.kaggle.com/gltaboada/t3-practice3-flights}{la práctica 3 de TGD}.
 
-\appendix
-
-
-Working draft\ldots{}
-
-\chapter{Enlaces}\label{links}
-
-\textbf{Recursos para el aprendizaje de R} ( \url{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}
-): A continuación se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda\ldots{}
-
-\textbf{\emph{Ayuda online}}:
-
-\begin{itemize}
-\item
-  Ayuda en línea sobre funciones o paquetes: \href{https://www.rdocumentation.org/}{RDocumentation}
-\item
-  Buscador \href{http://rseek.org/}{RSeek}
-\item
-  \href{http://stackoverflow.com/questions/tagged/r}{StackOverflow}
-\end{itemize}
-
-\textbf{\emph{Cursos}}:
-algunos cursos gratuitos:
-
-\begin{itemize}
-\item
-  \href{https://www.coursera.org/}{Coursera}:
-
-  \begin{itemize}
-  \item
-    \href{https://www.coursera.org/learn/intro-data-science-programacion-estadistica-r}{Introducción a Data Science: Programación Estadística con R}
-  \item
-    \href{https://www.coursera.org/specializations/r}{Mastering Software Development in R}
-  \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-\item
-  \href{https://www.datacamp.com/courses}{DataCamp}:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://www.datacamp.com/courses/introduccion-a-r/}{Introducción a R}
-  \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-\item
-  \href{http://online.stanford.edu/courses}{Stanford online}:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{http://online.stanford.edu/course/statistical-learning}{Statistical Learning}
-  \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-\tightlist
-\item
-  Curso UCA: \href{http://knuth.uca.es/moodle/course/view.php?id=51}{Introducción a R, R-commander y shiny}
-\end{itemize}
-
-\begin{itemize}
-\tightlist
-\item
-  Curso \href{https://r-coder.com/curso-r}{R CODER}
-\end{itemize}
-
-\begin{itemize}
-\tightlist
-\item
-  Udacity: \href{https://eu.udacity.com/course/data-analysis-with-r--ud651}{Data Analysis with R}
-\end{itemize}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://swirlstats.com/scn/title.html}{Swirl Courses}:
-  se pueden hacer cursos desde el propio R con el paquete
-  \href{https://swirlstats.com}{swirl}.
-\end{itemize}
-
-Para información sobre cursos en castellano se puede recurrir a la web de \href{http://r-es.org/}{R-Hispano} en el apartado \href{http://r-es.org/category/formacion}{formación}. Algunos de los cursos que aparecen en entradas antiguas son gratuitos.
-Ver: \href{http://r-es.org/2016/02/12/cursos-masivos-y-otra-formacion-on-line-sobre-r/}{Cursos MOOC relacionados con R}.
-
-\textbf{\emph{Libros}}
-
-\begin{itemize}
-\item
-  \textbf{\emph{Iniciación}}:
-
-  \begin{itemize}
-  \item
-    R for Data Science by Hadley Wickham and Garrett Grolemund
-    (\href{http://r4ds.had.co.nz/}{online}, \href{http://shop.oreilly.com/product/0636920034407.do}{O'Reilly}). \href{https://es.r4ds.hadley.nz}{online-castellano}, \href{http://shop.oreilly.com/product/0636920034407.do}{O'Reilly}.
-  \item
-    2011 - The Art of R Programming. A Tour of Statistical Software Design,
-    (\href{https://www.nostarch.com/artofr.htm}{No Starch Press})
-  \item
-    Hands-On Programming with R: Write Your Own Functions and Simulations,
-    by Garrett Grolemund
-    (\href{http://shop.oreilly.com/product/0636920028574.do}{O'Reilly})
-  \end{itemize}
-\item
-  \textbf{\emph{Avanzados}}:
-
-  \begin{itemize}
-  \item
-    Advanced R by Hadley Wickham
-    (online: \href{http://adv-r.had.co.nz/}{1ª ed},
-    \href{https://adv-r.hadley.nz/}{2ª ed},
-    \href{https://www.amazon.com/dp/1466586966}{Chapman \& Hall})
-  \item
-    2008 - Software for Data Analysis: Programming with R - Chambers
-    (\href{http://www.springer.com/la/book/9780387759357}{Springer})
-  \item
-    R packages by Hadley Wickham
-    (\href{http://r-pkgs.had.co.nz/}{online},
-    \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly})
-  \end{itemize}
-\item
-  \textbf{\emph{Bookdown}}:
-  el paquete \href{https://bookdown.org}{\texttt{bookdown}} de R permite escribir libros empleando
-  \href{http://rmarkdown.rstudio.com}{R Markdown} y compartirlos.
-  En \url{https://bookdown.org} está disponible una selección de libros escritos con este paquete
-  (un listado más completo está disponible \href{https://bookdown.org/home/archive/}{aquí}).
-  Algunos libros en este formato en castellano son:
-
-  \begin{itemize}
-  \item
-    \href{https://rubenfcasal.github.io/intror}{Introducción al Análisis de Datos con R}
-    (disponible en el repositorio de GitHub
-    \href{https://github.com/rubenfcasal/intror}{rubenfcasal/intror}).
-  \item
-    \href{https://rubenfcasal.github.io/simbook}{Prácticas de Simulación}
-    (disponible en el repositorio de GitHub
-    \href{https://github.com/rubenfcasal/simbook}{rubenfcasal/simbook}).
-  \item
-    \href{https://rubenfcasal.github.io/bookdown_intro/}{Escritura de libros con bookdown}
-    (disponible en el repositorio de GitHub
-    \href{https://github.com/rubenfcasal/bookdown_intro}{rubenfcasal/bookdown\_intro}).
-  \item
-    \href{https://www.datanalytics.com/libro_r/index.html}{R para profesionales de los datos: una introducción}.
-  \item
-    \href{https://bookdown.org/aquintela/EBE}{Estadística Básica Edulcorada}.
-  \end{itemize}
-\end{itemize}
-
-\textbf{\emph{Material online}}:
-en la web se puede encontrar mucho material adicional, por ejemplo:
-
-\begin{itemize}
-\item
-  \href{https://www.r-project.org/other-docs.html}{CRAN: Other R documentation}
-\item
-  Blogs en inglés:
-
-  \begin{itemize}
-  \item
-    \url{https://www.r-bloggers.com/}
-  \item
-    \url{https://www.littlemissdata.com/blog/rstudioconf2019}
-  \item
-    RStudio: \url{https://blog.rstudio.com}
-  \item
-    Microsoft Revolutions: \url{https://blog.revolutionanalytics.com}
-  \end{itemize}
-\item
-  Blogs en castellano:
-
-  \begin{itemize}
-  \item
-    \url{https://www.datanalytics.com}
-  \item
-    \url{http://oscarperpinan.github.io/R}
-  \item
-    \url{http://rubenfcasal.github.io}
-  \end{itemize}
-\item
-  Listas de correo:
-
-  \begin{itemize}
-  \item
-    Listas de distribución de r-project.org: \url{https://stat.ethz.ch/mailman/listinfo}
-  \item
-    Búsqueda en R-help: \url{http://r.789695.n4.nabble.com/R-help-f789696.html}
-  \item
-    Búsqueda en R-help-es: \url{https://r-help-es.r-project.narkive.com}
-
-    \url{https://grokbase.com/g/r/r-help-es}
-  \item
-    Archivos de R-help-es: \url{https://stat.ethz.ch/pipermail/r-help-es}
-  \end{itemize}
-\end{itemize}
-
-\section{RStudio}\label{rstudio-links}
-
-\href{https://www.rstudio.com}{\textbf{\emph{RStudio}}}:
-
-\begin{itemize}
-\item
-  \href{https://www.rstudio.com/online-learning}{Online learning}
-\item
-  \href{https://resources.rstudio.com/webinars}{Webinars}
-\item
-  \href{https://spark.rstudio.com/}{sparklyr}
-\item
-  \href{http://shiny.rstudio.com}{shiny}
-\end{itemize}
-
-\href{https://www.tidyverse.org/}{\textbf{\emph{tidyverse}}}:
-
-\begin{itemize}
-\item
-  \href{https://dplyr.tidyverse.org}{dplyr}
-\item
-  \href{https://tibble.tidyverse.org}{tibble}
-\item
-  \href{https://tidyr.tidyverse.org}{tidyr}
-\item
-  \href{https://stringr.tidyverse.org}{stringr}
-\item
-  \href{https://readr.tidyverse.org}{readr}
-\item
-  \href{https://db.rstudio.com}{Databases using R},
-  \href{https://db.rstudio.com/overview}{dplyr as a database interface},
-  \href{https://db.rstudio.com/dplyr}{Databases using dplyr}
-\end{itemize}
-
-\href{https://resources.rstudio.com/rstudio-cheatsheets}{\textbf{\emph{CheatSheets}}}:
-
-\begin{itemize}
-\item
-  \href{https://resources.rstudio.com/rstudio-cheatsheets/rmarkdown-2-0-cheat-sheet}{rmarkdown}
-\item
-  \href{https://resources.rstudio.com/rstudio-cheatsheets/shiny-cheat-sheet}{shiny}
-\item
-  \href{https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf}{dplyr}
-\item
-  \href{https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf}{tidyr}
-\item
-  \href{https://resources.rstudio.com/rstudio-cheatsheets/stringr-cheat-sheet}{stringr}
-\end{itemize}
-
-\section{Bibliometría}\label{bibliom-links}
-
-\begin{itemize}
-\item
-  \href{https://cran.r-project.org/web/packages/CITAN/index.html}{CITAN}
-\item
-  \href{https://rubenfcasal.github.io/scimetr/index.html}{scimetr}
-\item
-  \href{http://www.bibliometrix.org}{bibliometrix}
-\item
-  \href{https://vt-arc.github.io/wosr/index.html}{wosr}
-\item
-  \href{https://github.com/juba/rwos}{rwos}
-\item
-  \href{https://docs.ropensci.org/rcrossref}{rcrossref}
-\item
-  \href{https://ropensci.org/packages/}{ropensci}: Literature
-\item
-  \href{https://cran.r-project.org/web/packages/Diderot/index.html}{Diderot}
-\item
-  \ldots{}
-\end{itemize}
-
-\chapter{Instalación de R}\label{instalaciuxf3n-de-r}
-
-En la web del proyecto R
-(\href{http://www.r-project.org}{www.r-project.org}) está disponible
-mucha información sobre este entorno estadístico.
-
-\begin{longtable}[]{@{}cc@{}}
-\toprule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\includegraphics[width=0.68\linewidth,height=\textheight,keepaspectratio]{images/rproject.png} & \includegraphics[width=0.63\linewidth,height=\textheight,keepaspectratio]{images/cran.png} \\
-\href{https://r-project.org}{R-project} & \href{https://cran.r-project.org}{CRAN} \\
-\end{longtable}
-
-Las descargas se realizan a través de la web del CRAN (The Comprehensive
-R Archive Network), con múltiples mirrors:
-
-\begin{itemize}
-\tightlist
-\item
-  \emph{Oficina de software libre} (CIXUG) \href{http://ftp.cixug.es/CRAN/}{ftp.cixug.es/CRAN}.
-\item
-  \emph{Spanish National Research Network (Madrid)} (RedIRIS) es
-  \href{http://cran.es.r-project.org/}{cran.es.r-project.org}.
-\end{itemize}
-
-\section{Instalación de R en Windows}\label{instalaciuxf3n-de-r-en-windows}
-
-Seleccionando \href{http://ftp.cixug.es/CRAN/bin/windows/}{Download R for Windows} y posteriormente
-\href{http://ftp.cixug.es/CRAN/bin/windows/base/}{base} accedemos
-al enlace con el instalador de R para Windows.
-
-\includegraphics[width=0.4\linewidth,height=\textheight,keepaspectratio]{images/R351.png}
-
-\subsection{Asistente de instalación}\label{asistente-de-instalaciuxf3n}
-
-Durante el proceso de instalación la recomendación (para evitar posibles problemas) es seleccionar ventanas simples SDI en lugar de múltiples ventanas MDI (hay que \emph{utilizar opciones de configuración}).
-
-\begin{longtable}[]{@{}cc@{}}
-\toprule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{images/image3.png} & \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{images/image4.png} \\
-\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{images/image5.png} & \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{images/image6.png} \\
-\end{longtable}
-
-Una vez terminada la instalación, al abrir R aparece la ventana de la consola (simula una ventana de comandos de Unix) que permite ejecutar comandos de R.
-
-\subsection{Instalación de paquetes}\label{instalaciuxf3n-de-paquetes}
-
-Después de la instalación de R, puede ser necesario instalar paquetes adicionales (puede ser recomendable ejecutar R \emph{como Administrador} para evitar problemas de permiso de escritura en la carpeta \emph{library}\footnote{Alternativamente se podrían proporcionar a los usuarios del equipo el permiso \emph{control total} en la carpeta de instalación de R.}).
-
-Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
-\href{https://dplyr.tidyverse.org}{\texttt{dplyr}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}),
-\href{https://tidyr.tidyverse.org}{\texttt{tidyr}},
-\href{https://stringr.tidyverse.org}{\texttt{stringr}},
-\href{https://readxl.tidyverse.org}{\texttt{readxl}} ,
-\href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}},
-\href{https://cran.r-project.org/web/packages/sqldf/index.html}{\texttt{sqldf}},
-\href{https://r-dbi.github.io/RSQLite}{\texttt{RSQLite}},
-\href{https://cran.r-project.org/web/packages/foreign/index.html}{\texttt{foreign}},
-\href{https://cran.r-project.org/web/packages/magrittr/index.html}{\texttt{magrittr}},
-\href{https://rattle.togaware.com}{\texttt{rattle}},
-\href{https://yihui.name/knitr}{\texttt{knitr}}
-Por ejemplo mediante los comandos:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pkgs }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}dplyr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}tidyr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}stringr\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}readxl\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}openxlsx\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}magrittr\textquotesingle{}}\NormalTok{, }
-          \StringTok{\textquotesingle{}RODBC\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sqldf\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}RSQLite\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}foreign\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}rattle\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}knitr\textquotesingle{}}\NormalTok{)}
-\CommentTok{\# install.packages(pkgs, dependencies=TRUE)}
-\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{setdiff}\NormalTok{(pkgs, }\FunctionTok{installed.packages}\NormalTok{()[,}\StringTok{\textquotesingle{}Package\textquotesingle{}}\NormalTok{]), }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-(puede que haya que seleccionar el repositorio de descarga, e.g.~\emph{Spain (Madrid)}).
-
-La forma tradicional es esta:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Se inicia R y se selecciona \emph{Paquetes -\textgreater{} Instalar paquetes}
-\item
-  Se selecciona el repositorio.
-\item
-  Se selecciona el paquete y automáticamente se instala.
-\end{enumerate}
-
-\texttt{Rattle} depende de la libraría gráfica GTK+, al iniciarlo por primera vez
-con el comando \texttt{library(rattle)} nos pregunta si queremos instalarla:
-
-\includegraphics[width=0.15\linewidth,height=\textheight,keepaspectratio]{images/image7.png}
-
-Pulsamos OK y reiniciamos R.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section{Instalación en Mac OS X}\label{instalaciuxf3n-en-mac-os-x}
-
-Instalar R de
-\url{http://cran.es.r‐project.org/bin/macosx}
-siguiendo los pasos anteriores.
-
-Para instalar \texttt{rattle} seguir estos pasos (\url{https://zhiyzuo.github.io/installation-rattle}):
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Instalar Homebrew:
-  \url{https://brew.sh/}.
-\item
-  Ejecutar el siguiente código en la consola:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{system}\NormalTok{(}\StringTok{\textquotesingle{}brew install gtk+\textquotesingle{}}\NormalTok{)}
-
-\FunctionTok{local}\NormalTok{(\{}
-  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{Sys.info}\NormalTok{()[[}\StringTok{\textquotesingle{}sysname\textquotesingle{}}\NormalTok{]] }\SpecialCharTok{!=} \StringTok{\textquotesingle{}Darwin\textquotesingle{}}\NormalTok{) }\FunctionTok{return}\NormalTok{()}
-
-\NormalTok{  .Platform}\SpecialCharTok{$}\NormalTok{pkgType }\OtherTok{=} \StringTok{\textquotesingle{}mac.binary.el{-}capitan\textquotesingle{}}
-  \FunctionTok{unlockBinding}\NormalTok{(}\StringTok{\textquotesingle{}.Platform\textquotesingle{}}\NormalTok{, }\FunctionTok{baseenv}\NormalTok{())}
-  \FunctionTok{assign}\NormalTok{(}\StringTok{\textquotesingle{}.Platform\textquotesingle{}}\NormalTok{, .Platform, }\StringTok{\textquotesingle{}package:base\textquotesingle{}}\NormalTok{)}
-  \FunctionTok{lockBinding}\NormalTok{(}\StringTok{\textquotesingle{}.Platform\textquotesingle{}}\NormalTok{, }\FunctionTok{baseenv}\NormalTok{())}
-
-  \FunctionTok{options}\NormalTok{(}
-    \AttributeTok{pkgType =} \StringTok{\textquotesingle{}both\textquotesingle{}}\NormalTok{, }
-    \AttributeTok{install.packages.compile.from.source =} \StringTok{\textquotesingle{}always\textquotesingle{}}\NormalTok{,}
-    \AttributeTok{repos =} \StringTok{\textquotesingle{}https://macos.rbind.org\textquotesingle{}}
-\NormalTok{  )}
-\NormalTok{\})}
-
-\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}RGtk2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cairoDevice\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}rattle\textquotesingle{}}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-\end{enumerate}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section{Instalación (opcional) de un entorno o editor de comandos}\label{instalaciuxf3n-opcional-de-un-entorno-o-editor-de-comandos}
-
-Aunque la consola de R dispone de un editor básico de códido (script),
-puede ser recomendable trabajar con un editor de comandos más cómodo y
-flexible.
-
-Un entorno de R muy recomendable es el \textbf{RStudio},
-\href{http://rstudio.org}{\emph{http://rstudio.org}}:
-
-\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{images/image8.png}
-
-Para instalarlo descargar el archivo de instalación de
-\href{http://rstudio.org/download/desktop}{\emph{http://rstudio.org/download/desktop}}.
-
-\subsection{Opciones adicionales}\label{opciones-adicionales}
-
-Nos puede interesar modificar las opciones por defecto en RStudio, por ejemplo que los gráficos se muestren en una ventana de R o que se emplee el navegador por defecto, para ello habría que modificar (con permisos de administrador) los archivos de configuración \emph{Tools.R} y \emph{Options.R}
-(en Windows se encuentran en la carpeta \emph{C:\textbackslash Program Files\textbackslash RStudio\textbackslash R}).
-
-Para utilizar el dispositivo gráfico de R, modificar \emph{Tools.R}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# set our graphics device as the default and cause it to be created/set}
-\FunctionTok{.rs.addFunction}\NormalTok{( }\StringTok{"initGraphicsDevice"}\NormalTok{, }\ControlFlowTok{function}\NormalTok{()}
-\NormalTok{\{}
-   \CommentTok{\# options(device="RStudioGD")}
-   \CommentTok{\# grDevices::deviceIsInteractive("RStudioGD")}
-\NormalTok{  grDevices}\SpecialCharTok{::}\FunctionTok{deviceIsInteractive}\NormalTok{()}
-\NormalTok{\})}
-\end{Highlighting}
-\end{Shaded}
-
-Para utilizar el navegador del equipo en lugar del visor integrado de de R, modificar \emph{Options.R}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# \# custom browseURL implementation}
-\CommentTok{\# options(browser = function(url)}
-\CommentTok{\# \{}
-\CommentTok{\#    .Call("rs\_browseURL", url) ;}
-\CommentTok{\# \})}
-\end{Highlighting}
-\end{Shaded}
-
-
-\bibliography{book.bib,packages.bib}
+  \bibliography{book.bib,packages.bib}
 
 \end{document}
