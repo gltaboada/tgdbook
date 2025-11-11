@@ -472,52 +472,40 @@ WHERE UnitPrice < 2.0;
 * Cláusula **UNION ALL**: Elimina la restricción de filas duplicadas y muestra todo
  
 
-## Gestión de tablas
-
-* Creación de tablas
-
-
-``` sql
-CREATE TABLE table_name(
-column1 datatype,
-column2 datatype,
-column3 datatype,
-.....
-columnN datatype,
-PRIMARY KEY( one or more columns )
-);
-```
-* Borrado de tablas
-
-
-``` sql
-DROP TABLE table_name;
-```
-
-* Creación de índices
-
-
-``` sql
-CREATE UNIQUE INDEX index_name
-ON table_name ( column1, column2,...columnN);
-```
-
-* Modificación de tablas
-
-
-``` sql
-ALTER TABLE table_name
-DROP INDEX index_name;
-
-ALTER TABLE table_name
-{ADD|DROP|MODIFY} column_name {data_ype};
-
-ALTER TABLE table_name RENAME TO new_table_name;
-```
-
 ## Gestión de datos
 
-* Inserción de tuplas
+### Vistas
+
+Una vista es una **consulta guardada** que actúa como una tabla virtual. Facilita reutilizar consultas o simplificar código.
+
+* Creación de una vista
+
+
+``` sql
+CREATE [TEMP] VIEW [IF NOT EXISTS] view_name AS
+    SELECT...;
+```
+
+* Vistas temporales
+
+Al añadir "TEMP" a la creación de la vista, sólo existe durante la sesión actual.
+Se borra al desconectarse de la Base de Datos.
+
+* Eliminación de vistas
+
+Se puede eliminar una vista, tanto temporal como permanente:
+
+
+``` sql
+DROP VIEW view_name;
+```
+
+- Las vistas en SQLite **no almacenan datos**, solo la consulta.
+- Para hacer vistas modificables (actualizables) la consulta debe cumplir ciertas condiciones: una sola tabla, sin agregaciones.
+
+### Operaciones CRUD
+
+#### Inserción de tuplas
 
 
 ``` sql
@@ -525,7 +513,27 @@ INSERT INTO table_name( column1, column2....columnN)
 VALUES ( value1, value2....valueN);
 ```
 
-* Modificación de datos
+* El número de valores **debe coincidir** con el número de columnas especificadas
+
+* Si alguna columna de la tabla no se indica, su valor será el indicado por defecto o **NULL**
+  * Por ejemplo, AUTOINCREMENT
+  
+* Si no se especifica alguna columna con restricción **NOT NULL**, la inserción producirá un error
+
+* Igualmente, dará error si no se cumple cualquier otra restricción
+
+* Es posible insertar datos a partir de otra consulta:
+
+
+``` sql
+INSERT INTO TopClientes (nombre, gasto_total)
+  SELECT nombre, SUM(importe)
+  FROM Ventas
+  GROUP BY nombre
+  HAVING SUM(monto) > 1000;
+```
+
+#### Modificación de datos
 
 
 ``` sql
@@ -534,7 +542,38 @@ SET column1 = value1, column2 = value2....columnN=valueN
 [ WHERE  CONDITION ];
 ```
 
-* Eliminación de datos
+* Si no se incluye WHERE, se actualiza toda la tabla. Lo más habitual es utilizar la clave primaria en el WHERE.
+
+* Se puede actualizar una columna a partir de un cálculo:
+
+
+``` sql
+UPDATE Ventas
+SET total = cantidad * precio_unitario;
+```
+
+* Se puede actualizar a partir de una consulta
+
+
+``` sql
+UPDATE Album
+SET artista_id = (
+    SELECT id FROM Artista WHERE nombre = 'Queen'
+  )
+WHERE titulo = 'A Night at the Opera';
+```
+
+* Si la actualización afecta una columna usada en la condición, la comprobación se hace sobre el valor original, no el nuevo.
+
+* Al actualizar también se verifican las restricciones
+
+* Buenas prácticas:
+  * Realizar copias de seguridad antes de actualizaciones masivas.
+  * Usar transacciones si se actualizan varias tablas relacionadas.
+  * No modificar claves primarias salvo necesidad justificada.
+  * Revisar restricciones de integridad antes de ejecutar.
+
+#### Eliminación de datos
 
 
 ``` sql
@@ -542,33 +581,18 @@ DELETE FROM table_name
 WHERE  {CONDITION};
 ```
 
+* Antes de borrar, se comprueban las restricciones de la Base de Datos.
+* Al usar DELETE, los valores de una columna AUTOINCREMENT no se modifican: el siguiente INSERT seguirá con el siguiente número disponible.
+* Buenas prácticas:
+  * Siempre incluir WHERE salvo que se quiera vaciar la tabla.
+  * Comprobar cuántas filas se afectarán con SELECT COUNT(*) ... antes.
+  * Usar transacciones para borrados masivos o dependientes.
+  * Revisar reglas ON DELETE en claves foráneas (para evitar borrados en cascada inesperados).
+  * Realizar copia de seguridad antes de operaciones grandes.
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/i_cVJgIz_Cs" frameborder="0" allowfullscreen></iframe>
 
-
-## Gestión de Bases de Datos
-
-* Creación de una base de datos
-
-
-``` sql
-CREATE DATABASE database_name;
-```
-
-* Eliminación de una base de datos
-
-
-``` sql
-DROP DATABASE database_name;
-```
-
-* Selección de base de datos
-
-
-``` sql
-USE database_name;
-```
-
-* Gestión de transacciones
+#### Gestión de transacciones
 
 
 ``` sql
@@ -581,6 +605,95 @@ COMMIT;
 ROLLBACK;
 ```
 
+* Ejemplo: si alguna operación falla, no se realiza ninguna
+
+
+``` sql
+BEGIN;
+  INSERT INTO Pedido VALUES (1, '2025-11-04', 100);
+  UPDATE Cliente SET saldo = saldo - 100 WHERE id = 1;
+COMMIT;
+```
+
+* Las transacciones cumplen las propiedades **ACID**
+
+| Propiedad                   | Significado                                                                    |
+| --------------------------- | ------------------------------------------------------------------------------ |
+| **Atomicidad**              | Todas las operaciones se ejecutan como una sola — o todas, o ninguna.          |
+| **Consistencia**            | Los datos pasan de un estado válido a otro estado válido.                      |
+| **Aislamiento (Isolation)** | Cada transacción se ejecuta como si fuera la única.                            |
+| **Durabilidad**             | Una vez hecho COMMIT, los cambios se hacen persistentes.                       |
+
+* Los cambios realizados no son visibles para otras conexiones hasta que se hace COMMIT
+
+* Inserciones/actualizaciones en bloque son mucho más rápidas dentro de una transacción
+
+## Gestión de Bases de Datos
+
+### Creación de una base de datos
+
+
+``` sql
+CREATE DATABASE database_name;
+```
+
+### Eliminación de una base de datos
+
+
+``` sql
+DROP DATABASE database_name;
+```
+
+### Selección de base de datos
+
+
+``` sql
+USE database_name;
+```
+
+## Gestión de tablas
+
+### Creación de tablas
+
+
+``` sql
+CREATE TABLE table_name(
+column1 datatype,
+column2 datatype,
+column3 datatype,
+.....
+columnN datatype,
+PRIMARY KEY( one or more columns )
+);
+```
+
+### Creación de índices
+
+
+``` sql
+CREATE UNIQUE INDEX index_name
+ON table_name ( column1, column2,...columnN);
+```
+
+### Borrado de tablas
+
+
+``` sql
+DROP TABLE table_name;
+```
+
+### Modificación de tablas
+
+
+``` sql
+ALTER TABLE table_name
+DROP INDEX index_name;
+
+ALTER TABLE table_name
+{ADD|DROP|MODIFY} column_name {data_ype};
+
+ALTER TABLE table_name RENAME TO new_table_name;
+```
 
 ## Ejemplos de consultas SQL
 
