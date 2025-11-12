@@ -443,33 +443,6 @@ WHERE UnitPrice < 2.0;
 
 ## Gestión de datos
 
-### Vistas
-
-Una vista es una **consulta guardada** que actúa como una tabla virtual. Facilita reutilizar consultas o simplificar código.
-
-* Creación de una vista
-
-```{sql eval=FALSE}
-CREATE [TEMP] VIEW [IF NOT EXISTS] view_name AS
-    SELECT...;
-```
-
-* Vistas temporales
-
-Al añadir "TEMP" a la creación de la vista, sólo existe durante la sesión actual.
-Se borra al desconectarse de la Base de Datos.
-
-* Eliminación de vistas
-
-Se puede eliminar una vista, tanto temporal como permanente:
-
-```{sql eval=FALSE}
-DROP VIEW view_name;
-```
-
-- Las vistas en SQLite **no almacenan datos**, solo la consulta.
-- Para hacer vistas modificables (actualizables) la consulta debe cumplir ciertas condiciones: una sola tabla, sin agregaciones.
-
 ### Operaciones CRUD
 
 #### Inserción de tuplas
@@ -613,14 +586,52 @@ USE database_name;
 
 ```{sql eval=FALSE}
 CREATE TABLE table_name(
-column1 datatype,
-column2 datatype,
-column3 datatype,
-.....
-columnN datatype,
-PRIMARY KEY( one or more columns )
+  column1 datatype [constraints],
+  column2 datatype [constraints],
+  ...
+  columnN datatype [constraints],
+  [table_constraints])
 );
 ```
+
+#### Tipos de datos
+
+| Propósito / tipo lógico               | **SQLite**                                        | **MySQL**                                           | **PostgreSQL**                                 |
+| ------------------------------------- | ------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------- |
+| **Enteros (números sin decimales)**   | `INTEGER` / `INT` / `SMALLINT` / `BIGINT`         | `TINYINT`, `SMALLINT`, `MEDIUMINT`, `INT`, `BIGINT` | `SMALLINT`, `INTEGER`, `BIGINT`                |
+| **Números reales / decimales**        | `REAL` / `FLOAT` / `DOUBLE` / `NUMERIC`           | `FLOAT`, `DOUBLE`, `DECIMAL(p,s)`                   | `REAL`, `DOUBLE PRECISION`, `NUMERIC(p,s)`     |
+| **Texto / cadenas**                   | `TEXT`, `CHAR(n)`, `VARCHAR(n)`                   | `CHAR(n)`, `VARCHAR(n)`, `TEXT`                     | `CHAR(n)`, `VARCHAR(n)`, `TEXT`                |
+| **Valores booleanos**                 | `BOOLEAN`                                         | `BOOLEAN` / `TINYINT(1)` *(interpreta 0/1)*         | `BOOLEAN` *(nativo)*                           |
+| **Fechas y horas**                    | `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`           | `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`             | `DATE`, `TIME`, `TIMESTAMP`, `INTERVAL`        |
+| **Información binaria**               | `BLOB`                                            | `BLOB`, `BINARY`, `VARBINARY`                       | `BYTEA`                                        |
+
+#### Restricciones a nivel de columna:
+
+| Restricción                     | Descripción                                       | Ejemplo                                     |
+| ------------------------------- | ------------------------------------------------- | ------------------------------------------- |
+| **`PRIMARY KEY`**               | Clave primaria | `id INTEGER PRIMARY KEY`         | `id INTEGER PRIMARY KEY`                    |
+| **`AUTOINCREMENT`**             | Hace que un `INTEGER PRIMARY KEY` aumente siempre | `id INTEGER PRIMARY KEY AUTOINCREMENT`      |
+| **`NOT NULL`**                  | No permite valores nulos                          | `nombre TEXT NOT NULL`                      |
+| **`UNIQUE`**                    | Impide valores duplicados                         | `email TEXT UNIQUE`                         |
+| **`CHECK (condición)`**         | Impone una condición lógica                       | `edad INTEGER CHECK (edad >= 0)`            |
+| **`DEFAULT valor`**             | Asigna un valor por defecto si no se especifica   | `pais TEXT DEFAULT 'España'`                |
+| **`REFERENCES tabla(columna)`** | Define una **clave foránea**                      | `artista_id INTEGER REFERENCES Artista(id)` |
+
+* En una **clave foránea** se puede especificar el trigger **ON DELETE** para determina qué ocurre cuando se elimina la tupla referenciada:
+  * **CASCADE**: Se borran todas las filas que referencian a la tupla eliminada
+  * **SET NULL**: Se pone a nulo la clave foránea
+  * **SET DEFAULT**: Se pone la clave foránea al valor definido como DEFAULT
+  * **RESTRICT**: Impide eliminar la fila referenciada (valor por defecto)
+* Con ninguna de estas acciones la base de datos puede quedar en un estado inconsistente
+ 
+#### Restricciones a nivel de tabla:
+
+| Tipo                                 | Descripción              | Ejemplo                                           |
+| ------------------------------------ | ------------------------ | ------------------------------------------------- |
+| **PRIMARY KEY (col1, col2)**         | Clave primaria compuesta | `PRIMARY KEY (id, nombre)`                        |
+| **UNIQUE (col1, col2)**              | Combinación única        | `UNIQUE (email, pais)`                            |
+| **CHECK (condición)**                | Condición general        | `CHECK (precio > 0 OR descuento IS NOT NULL)`     |
+| **FOREIGN KEY (col) REFERENCES ...** | Clave foránea explícita  | `FOREIGN KEY (artista_id) REFERENCES Artista(id)` |
 
 ### Creación de índices
 
@@ -647,6 +658,34 @@ ALTER TABLE table_name
 ALTER TABLE table_name RENAME TO new_table_name;
 ```
 
+## Vistas
+
+Una vista es una **consulta guardada** que actúa como una tabla virtual. Facilita reutilizar consultas o simplificar código.
+
+* Creación de una vista
+
+```{sql eval=FALSE}
+CREATE [TEMP] VIEW [IF NOT EXISTS] view_name AS
+    SELECT...;
+```
+
+* Vistas temporales
+
+Al añadir "TEMP" a la creación de la vista, sólo existe durante la sesión actual.
+Se borra al desconectarse de la Base de Datos.
+
+* Eliminación de vistas
+
+Se puede eliminar una vista, tanto temporal como permanente:
+
+```{sql eval=FALSE}
+DROP VIEW view_name;
+```
+
+- Las vistas en SQLite **no almacenan datos**, solo la consulta.
+- Para hacer vistas modificables (actualizables) la consulta debe cumplir ciertas condiciones: una sola tabla, sin agregaciones.
+
+
 ## Ejemplos de consultas SQL
 
 ```{sql eval=FALSE}
@@ -666,7 +705,6 @@ DELETE Cliente
 WHERE Email = 'alexandregb@gmail.com'
 
 ```
-
 
 
 ## Conexión con bases de datos desde R 
