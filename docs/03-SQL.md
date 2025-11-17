@@ -628,7 +628,7 @@ USE database_name;
 
 
 ``` sql
-CREATE TABLE table_name(
+CREATE TABLE [IF NOT EXISTS] table_name (
   column1 datatype [constraints],
   column2 datatype [constraints],
   ...

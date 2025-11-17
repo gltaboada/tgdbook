@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.3 Ejemplo WoS data | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>4.2 Python y SQLite | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.3 Ejemplo WoS data | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="4.2 Python y SQLite | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.3 Ejemplo WoS data | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="4.2 Python y SQLite | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="manipulación-de-datos.html"/>
-<link rel="next" href="introSQL.html"/>
+<link rel="prev" href="introducción-a-python.html"/>
+<link rel="next" href="context-manager.html"/>
 <script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -354,239 +354,171 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ejemplo-wos-data" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Ejemplo WoS data<a href="ejemplo-wos-data.html#ejemplo-wos-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Ejemplo <em>wosdata.R</em> en <a href="data/wosdata.zip"><em>wosdata.zip</em></a>.
-Ver paquete <a href="https://rubenfcasal.github.io/scimetr/articles/scimetr.html">scimetr</a>.</p>
-<p>Empleando la función <code>ImportSources.wos()</code> se importaron ficheros de texto descargados de WoS (que por defecto tienen una limitación de 500 registros).
-Posteriormente se creo una base de datos como una lista de tablas con la función <code>CreateDB.wos()</code>,
-que finalmente se almacenó en el fichero <em>db_udc_2015.rds</em>.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="ejemplo-wos-data.html#cb157-1" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/wosdata/db_udc_2015.rds&quot;</span>)</span>
-<span id="cb157-2"><a href="ejemplo-wos-data.html#cb157-2" tabindex="-1"></a><span class="fu">str</span>(db, <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## List of 11
-##  $ Docs      :&#39;data.frame&#39;:  856 obs. of  26 variables:
-##  $ Authors   :&#39;data.frame&#39;:  4051 obs. of  4 variables:
-##  $ AutDoc    :&#39;data.frame&#39;:  5511 obs. of  2 variables:
-##  $ Categories:&#39;data.frame&#39;:  189 obs. of  2 variables:
-##  $ CatDoc    :&#39;data.frame&#39;:  1495 obs. of  2 variables:
-##  $ Areas     :&#39;data.frame&#39;:  121 obs. of  2 variables:
-##  $ AreaDoc   :&#39;data.frame&#39;:  1364 obs. of  2 variables:
-##  $ Addresses :&#39;data.frame&#39;:  3655 obs. of  5 variables:
-##  $ AddAutDoc :&#39;data.frame&#39;:  7751 obs. of  3 variables:
-##  $ Journals  :&#39;data.frame&#39;:  520 obs. of  12 variables:
-##  $ label     : chr &quot;&quot;
-##  - attr(*, &quot;variable.labels&quot;)= Named chr [1:62] &quot;Publication type&quot; &quot;Author&quot; &quot;Book authors&quot; &quot;Editor&quot; ...
-##   ..- attr(*, &quot;names&quot;)= chr [1:62] &quot;PT&quot; &quot;AU&quot; &quot;BA&quot; &quot;BE&quot; ...
-##  - attr(*, &quot;class&quot;)= chr &quot;wos.db&quot;</code></pre>
-<p>Puede ser recomendable añadir a los datos un atributo <code>variable.labels</code> que
-contenga un vector de etiquetas de las variables y empleando como nombres de
-las componentes las propias variables:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="ejemplo-wos-data.html#cb159-1" tabindex="-1"></a>variable.labels <span class="ot">&lt;-</span> <span class="fu">attr</span>(db, <span class="st">&quot;variable.labels&quot;</span>)</span>
-<span id="cb159-2"><a href="ejemplo-wos-data.html#cb159-2" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(<span class="fu">as.data.frame</span>(variable.labels)),</span>
-<span id="cb159-3"><a href="ejemplo-wos-data.html#cb159-3" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Variable labels&quot;</span>)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-70">Tabla 2.1: </span>Variable labels</caption>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">variable.labels</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">PT</td>
-<td align="left">Publication type</td>
-</tr>
-<tr class="even">
-<td align="left">AU</td>
-<td align="left">Author</td>
-</tr>
-<tr class="odd">
-<td align="left">BA</td>
-<td align="left">Book authors</td>
-</tr>
-<tr class="even">
-<td align="left">BE</td>
-<td align="left">Editor</td>
-</tr>
-<tr class="odd">
-<td align="left">GP</td>
-<td align="left">Group author</td>
-</tr>
-<tr class="even">
-<td align="left">AF</td>
-<td align="left">Author full</td>
-</tr>
-</tbody>
-</table>
-<p>Las tablas de datos con este atributo son compatibles con RStudio.
-Por ejemplo, también se mostrarán las etiquetas al abrirla con <code>View()</code></p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="ejemplo-wos-data.html#cb160-1" tabindex="-1"></a>Docs <span class="ot">&lt;-</span> db<span class="sc">$</span>Docs <span class="co"># No copia los datos (crea otro objeto que apunta a los mismos datos)</span></span>
-<span id="cb160-2"><a href="ejemplo-wos-data.html#cb160-2" tabindex="-1"></a><span class="fu">attr</span>(Docs, <span class="st">&quot;variable.labels&quot;</span>) <span class="ot">&lt;-</span> variable.labels[<span class="fu">names</span>(Docs)]</span>
-<span id="cb160-3"><a href="ejemplo-wos-data.html#cb160-3" tabindex="-1"></a><span class="co"># View(Docs)</span></span></code></pre></div>
-<p>Para combinar tablas podemos emplear <code>match(x, table)</code>.
-Por ejemplo, el siguiente código permite añadir el nombre de la revista a la
-tabla de documentos, combinándola con la de revistas:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="ejemplo-wos-data.html#cb161-1" tabindex="-1"></a><span class="fu">str</span>(Docs)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    856 obs. of  26 variables:
-##  $ idd: int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ idj: int  260 37 86 272 64 429 14 408 333 214 ...
-##  $ TI : chr  &quot;Fractionation of Miscanthus x giganteus via modification of the Formacell process&quot; &quot;Role of Temperature and Pressure on the Multisensitive Multiferroic Dicyanamide Framework [TPrA][Mn(dca)(3)] wi&quot;| __truncated__ &quot;Methane and carbon dioxide emissions from constructed wetlands receiving anaerobically pretreated sewage&quot; &quot;Exceptionally Inert Lanthanide(III) PARACEST MRI Contrast Agents Based on an 18-Membered Macrocyclic Platform&quot; ...
-##  $ PT : Factor w/ 2 levels &quot;Journal&quot;,&quot;Series&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ DT : Factor w/ 9 levels &quot;Article&quot;,&quot;Book Review&quot;,..: 1 1 1 1 5 1 6 9 1 1 ...
-##  $ NR : int  40 45 35 78 2 59 0 53 20 50 ...
-##  $ TC : int  1 5 2 2 1 0 0 10 0 1 ...
-##  $ Z9 : int  1 5 2 2 1 0 0 10 0 1 ...
-##  $ U1 : int  5 0 10 4 0 1 0 26 0 3 ...
-##  $ U2 : int  6 0 61 21 2 5 0 66 2 4 ...
-##  $ PD : chr  &quot;DEC 23&quot; &quot;DEC 21&quot; &quot;DEC 15&quot; &quot;DEC 14&quot; ...
-##  $ PY : int  2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 ...
-##  $ VL : chr  &quot;77&quot; &quot;54&quot; &quot;538&quot; &quot;21&quot; ...
-##  $ IS : chr  &quot;&quot; &quot;24&quot; &quot;&quot; &quot;51&quot; ...
-##  $ PN : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ SU : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ SI : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ MA : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ BP : chr  &quot;275&quot; &quot;11680&quot; &quot;824&quot; &quot;18662&quot; ...
-##  $ EP : chr  &quot;281&quot; &quot;11687&quot; &quot;833&quot; &quot;18670&quot; ...
-##  $ AR : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ DI : chr  &quot;10.1016/j.indcrop.2015.08.066&quot; &quot;10.1021/acs.inorgchem.5b01652&quot; &quot;10.1016/j.scitotenv.2015.08.090&quot; &quot;10.1002/chem.201502937&quot; ...
-##  $ D2 : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ PG : int  7 8 10 9 2 28 3 16 4 25 ...
-##  $ UT : num  3.66e+11 3.67e+11 3.63e+11 3.68e+11 3.66e+11 ...
-##  $ an : num  3 9 4 8 3 5 8 5 3 3 ...
-##  - attr(*, &quot;variable.labels&quot;)= Named chr [1:26] NA NA &quot;Title&quot; &quot;Publication type&quot; ...
-##   ..- attr(*, &quot;names&quot;)= chr [1:26] NA NA &quot;TI&quot; &quot;PT&quot; ...</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="ejemplo-wos-data.html#cb163-1" tabindex="-1"></a><span class="fu">str</span>(db<span class="sc">$</span>Journals) <span class="co"># View(db$Journals)</span></span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    520 obs. of  12 variables:
-##  $ idj: int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ SO : chr  &quot;TISSUE ANTIGENS&quot; &quot;ACTA NEUROLOGICA SCANDINAVICA&quot; &quot;ACTA PSYCHOLOGICA&quot; &quot;AFINIDAD&quot; ...
-##  $ SE : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ BS : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ LA : chr  &quot;English&quot; &quot;English&quot; &quot;English&quot; &quot;English&quot; ...
-##  $ PU : chr  &quot;WILEY-BLACKWELL&quot; &quot;WILEY-BLACKWELL&quot; &quot;ELSEVIER SCIENCE BV&quot; &quot;ASOC QUIMICOS&quot; ...
-##  $ PI : chr  &quot;HOBOKEN&quot; &quot;HOBOKEN&quot; &quot;AMSTERDAM&quot; &quot;BARCELONA&quot; ...
-##  $ PA : chr  &quot;111 RIVER ST, HOBOKEN 07030-5774, NJ USA&quot; &quot;111 RIVER ST, HOBOKEN 07030-5774, NJ USA&quot; &quot;PO BOX 211, 1000 AE AMSTERDAM, NETHERLANDS&quot; &quot;INST QUIMICO SARRIA, VIA AUGUSTA, 390, 08017 BARCELONA, SPAIN&quot; ...
-##  $ SN : chr  &quot;0001-2815&quot; &quot;0001-6314&quot; &quot;0001-6918&quot; &quot;0001-9704&quot; ...
-##  $ EI : chr  &quot;1399-0039&quot; &quot;1600-0404&quot; &quot;1873-6297&quot; &quot;&quot; ...
-##  $ J9 : chr  &quot;TISSUE ANTIGENS&quot; &quot;ACTA NEUROL SCAND&quot; &quot;ACTA PSYCHOL&quot; &quot;AFINIDAD&quot; ...
-##  $ JI : chr  &quot;Tissue Antigens&quot; &quot;Acta Neurol. Scand.&quot; &quot;Acta Psychol.&quot; &quot;Afinidad&quot; ...</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="ejemplo-wos-data.html#cb165-1" tabindex="-1"></a>ii <span class="ot">&lt;-</span> <span class="fu">match</span>(Docs<span class="sc">$</span>idj, db<span class="sc">$</span>Journals<span class="sc">$</span>idj)</span>
-<span id="cb165-2"><a href="ejemplo-wos-data.html#cb165-2" tabindex="-1"></a>docs2 <span class="ot">&lt;-</span> Docs[, <span class="fu">c</span>(<span class="st">&quot;PY&quot;</span>, <span class="st">&quot;TI&quot;</span>)]</span>
-<span id="cb165-3"><a href="ejemplo-wos-data.html#cb165-3" tabindex="-1"></a>docs2<span class="sc">$</span>Journal <span class="ot">&lt;-</span> db<span class="sc">$</span>Journals<span class="sc">$</span>SO[ii]</span>
-<span id="cb165-4"><a href="ejemplo-wos-data.html#cb165-4" tabindex="-1"></a><span class="fu">head</span>(docs2)</span></code></pre></div>
-<pre><code>##     PY
-## 1 2015
-## 2 2015
-## 3 2015
-## 4 2015
-## 5 2015
-## 6 2015
-##                                                                                                                                            TI
-## 1                                                           Fractionation of Miscanthus x giganteus via modification of the Formacell process
-## 2 Role of Temperature and Pressure on the Multisensitive Multiferroic Dicyanamide Framework [TPrA][Mn(dca)(3)] with Perovskite-like Structure
-## 3                                    Methane and carbon dioxide emissions from constructed wetlands receiving anaerobically pretreated sewage
-## 4                               Exceptionally Inert Lanthanide(III) PARACEST MRI Contrast Agents Based on an 18-Membered Macrocyclic Platform
-## 5                                                                                      Community-Acquired Pneumonia Requiring Hospitalization
-## 6                                                                             Low-latency Java communication devices on RDMA-enabled networks
-##                                             Journal
-## 1                     INDUSTRIAL CROPS AND PRODUCTS
-## 2                               INORGANIC CHEMISTRY
-## 3                  SCIENCE OF THE TOTAL ENVIRONMENT
-## 4                      CHEMISTRY-A EUROPEAN JOURNAL
-## 5                   NEW ENGLAND JOURNAL OF MEDICINE
-## 6 CONCURRENCY AND COMPUTATION-PRACTICE &amp; EXPERIENCE</code></pre>
-<p>Si solo nos interesa hacer un filtrado puede resultar más cómodo emplear
-el operador <code>%in%</code> (<code>?'%in%'</code>).
-Por ejemplo, podemos buscar los documentos correspondientes a revistas (que
-contengan <code>"Chem"</code> en el nombre ISO de la revista).
-Para ello utilizamos la función <code>grepl()</code> que busca las coincidencias de
-un patrón dentro de cada elemento de un vector de caracteres:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="ejemplo-wos-data.html#cb167-1" tabindex="-1"></a>iidj <span class="ot">&lt;-</span> <span class="fu">with</span>(db<span class="sc">$</span>Journals, idj[<span class="fu">grepl</span>(<span class="st">&#39;Chem&#39;</span>, JI)])</span>
-<span id="cb167-2"><a href="ejemplo-wos-data.html#cb167-2" tabindex="-1"></a>db<span class="sc">$</span>Journals<span class="sc">$</span>JI[iidj]</span></code></pre></div>
-<pre><code>##  [1] &quot;J. Am. Chem. Soc.&quot;                 
-##  [2] &quot;Inorg. Chem.&quot;                      
-##  [3] &quot;J. Chem. Phys.&quot;                    
-##  [4] &quot;J. Chem. Thermodyn.&quot;               
-##  [5] &quot;J. Solid State Chem.&quot;              
-##  [6] &quot;Chemosphere&quot;                       
-##  [7] &quot;Antimicrob. Agents Chemother.&quot;     
-##  [8] &quot;Trac-Trends Anal. Chem.&quot;           
-##  [9] &quot;Eur. J. Med. Chem.&quot;                
-## [10] &quot;J. Chem. Technol. Biotechnol.&quot;     
-## [11] &quot;J. Antimicrob. Chemother.&quot;         
-## [12] &quot;Food Chem.&quot;                        
-## [13] &quot;Cancer Chemother. Pharmacol.&quot;      
-## [14] &quot;Int. J. Chem. Kinet.&quot;              
-## [15] &quot;Chem.-Eur. J.&quot;                     
-## [16] &quot;J. Phys. Chem. A&quot;                  
-## [17] &quot;New J. Chem.&quot;                      
-## [18] &quot;Chem. Commun.&quot;                     
-## [19] &quot;Chem. Eng. J.&quot;                     
-## [20] &quot;Comb. Chem. High Throughput Screen&quot;
-## [21] &quot;Mini-Rev. Med. Chem.&quot;              
-## [22] &quot;Phys. Chem. Chem. Phys.&quot;           
-## [23] &quot;Org. Biomol. Chem.&quot;                
-## [24] &quot;J. Chem Inf. Model.&quot;               
-## [25] &quot;ACS Chem. Biol.&quot;                   
-## [26] &quot;Environ. Chem. Lett.&quot;              
-## [27] &quot;Anal. Bioanal. Chem.&quot;              
-## [28] &quot;J. Cheminformatics&quot;                
-## [29] &quot;J. Mat. Chem. B&quot;</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="ejemplo-wos-data.html#cb169-1" tabindex="-1"></a>idd <span class="ot">&lt;-</span> <span class="fu">with</span>(Docs, idj <span class="sc">%in%</span> iidj)</span>
-<span id="cb169-2"><a href="ejemplo-wos-data.html#cb169-2" tabindex="-1"></a><span class="fu">which</span>(idd)</span></code></pre></div>
-<pre><code>##  [1]   2   4  16  23  43  69 119 126 138 175 188 190 203 208
-## [15] 226 240 272 337 338 341 342 357 382 385 386 387 388 394
-## [29] 411 412 428 460 483 518 525 584 600 604 605 616 620 665
-## [43] 697 751 753 775 784 796 806 808 847 848</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="ejemplo-wos-data.html#cb171-1" tabindex="-1"></a><span class="co"># View(Docs[idd, ])</span></span>
-<span id="cb171-2"><a href="ejemplo-wos-data.html#cb171-2" tabindex="-1"></a><span class="fu">head</span>(Docs[idd, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
-<pre><code>##    idd idj
-## 2    2  37
-## 4    4 272
-## 16  16 195
-## 23  23 436
-## 43  43 455
-## 69  69  37
-##                                                                                                                                                                                                                                 TI
-## 2                                                                                      Role of Temperature and Pressure on the Multisensitive Multiferroic Dicyanamide Framework [TPrA][Mn(dca)(3)] with Perovskite-like Structure
-## 4                                                                                                                    Exceptionally Inert Lanthanide(III) PARACEST MRI Contrast Agents Based on an 18-Membered Macrocyclic Platform
-## 16 Reduced susceptibility to biocides in Acinetobacter baumannii: association with resistance to antimicrobials, epidemiological behaviour, biological cost and effect on the expression of genes encoding porins and efflux pumps
-## 23                                                       Two Catechol Siderophores, Acinetobactin and Amonabactin, Are Simultaneously Produced by Aeromonas salmonicida subsp salmonicida Sharing Part of the Biosynthetic Pathway
-## 43                                                                                                                                                                        Conservation of stony materials in the built environment
-## 69                                                                                                                                                         Gd3+-Based Magnetic Resonance Imaging Contrast Agent Responsive to Zn2+</code></pre>
-<p>Como ejemplo adicional, se buscan los documentos correspondientes a autores
-(que contiene <code>"Abad"</code> en su nombre):</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="ejemplo-wos-data.html#cb173-1" tabindex="-1"></a><span class="co"># View(db$Authors)</span></span>
-<span id="cb173-2"><a href="ejemplo-wos-data.html#cb173-2" tabindex="-1"></a>iida <span class="ot">&lt;-</span> <span class="fu">with</span>(db<span class="sc">$</span>Authors, ida[<span class="fu">grepl</span>(<span class="st">&#39;Abad&#39;</span>, AF)])</span>
-<span id="cb173-3"><a href="ejemplo-wos-data.html#cb173-3" tabindex="-1"></a>db<span class="sc">$</span>Authors<span class="sc">$</span>AF[iida]</span></code></pre></div>
-<pre><code>## [1] &quot;Mato Abad, Virginia&quot; &quot;Abad, Maria-Jose&quot;   
-## [3] &quot;Abad Vicente, J.&quot;    &quot;Abada, Sabah&quot;</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="ejemplo-wos-data.html#cb175-1" tabindex="-1"></a>idd <span class="ot">&lt;-</span> <span class="fu">with</span>(db<span class="sc">$</span>AutDoc, idd[ida <span class="sc">%in%</span> iida])</span>
-<span id="cb175-2"><a href="ejemplo-wos-data.html#cb175-2" tabindex="-1"></a>idd</span></code></pre></div>
-<pre><code>## [1] 273 291 518 586</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="ejemplo-wos-data.html#cb177-1" tabindex="-1"></a><span class="co"># View(Docs[idd, ])</span></span>
-<span id="cb177-2"><a href="ejemplo-wos-data.html#cb177-2" tabindex="-1"></a><span class="fu">head</span>(Docs[idd, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
-<pre><code>##     idd idj
-## 273 273 282
-## 291 291 141
-## 518 518 272
-## 586 586 311
-##                                                                                                                                                                                      TI
-## 273                                 Classification of mild cognitive impairment and Alzheimer&#39;s Disease with machine-learning techniques using H-1 Magnetic Resonance Spectroscopy data
-## 291 Identifying a population of patients suitable for the implantation of a subcutaneous defibrillator (S-ICD) among patients implanted with a conventional transvenous device (TV-ICD)
-## 518           Importance of Outer-Sphere and Aggregation Phenomena in the Relaxation Properties of Phosphonated Gadolinium Complexes with Potential Applications as MRI Contrast Agents
-## 586                                                                      Enhanced thermal conductivity of rheologically percolated carbon nanofiber reinforced polypropylene composites</code></pre>
-
+<div id="python-y-sqlite" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Python y SQLite<a href="python-y-sqlite.html#python-y-sqlite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>sqlite3</code> es un módulo estándar de Python que permite:</p>
+<ul>
+<li>Conectarse a una base de datos SQLite</li>
+<li>Ejecutar consultas SQL</li>
+<li>Gestionar transacciones (<code>commit</code>, <code>rollback</code>)</li>
+<li>Recibir datos como tuplas o diccionarios</li>
+<li>Crear tablas, insertar, actualizar y borrar datos</li>
+</ul>
+<div class="sourceCode" id="cb291"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb291-1"><a href="python-y-sqlite.html#cb291-1" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb291-2"><a href="python-y-sqlite.html#cb291-2" tabindex="-1"></a></span>
+<span id="cb291-3"><a href="python-y-sqlite.html#cb291-3" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;chinook.db&quot;</span>)</span>
+<span id="cb291-4"><a href="python-y-sqlite.html#cb291-4" tabindex="-1"></a>cursor <span class="op">=</span> conn.cursor()</span></code></pre></div>
+<p><code>conn</code> es un <em>objeto conexión</em> análogo al que se usa en R.
+Representa un canal abierto entre tu programa y el archivo de base de datos.</p>
+<p>Sirve para:</p>
+<ul>
+<li>Iniciar y finalizar transacciones</li>
+<li>Ejecutar consultas</li>
+<li>Confirmar cambios (<code>commit</code>)</li>
+<li>Revertir cambios (<code>rollback</code>)</li>
+<li>Crear cursores</li>
+<li>Cerrar la base de datos</li>
+</ul>
+<p>Para ejecutar consultas se obtiene un <strong>cursor</strong> a partir de esa conexión.
+El cursor es uno de los conceptos más importantes cuando trabajas con cualquier base de datos desde Python.
+Un cursor es un objeto intermediario entre el programa y la base de datos.
+Se usa para:</p>
+<ul>
+<li>enviar consultas SQL a la base de datos</li>
+<li>recibir resultados de las consultas</li>
+<li>iterar sobre las filas devueltas</li>
+<li>ejecutar operaciones como INSERT, UPDATE, DELETE, CREATE TABLE</li>
+</ul>
+<p>En otras palabras, es como una “pluma” que escribe y lee en la base de datos a través de la conexión.</p>
+<p>A diferencia de R, Python separa estos dos conceptos:</p>
+<ul>
+<li><strong>conexión (conn)</strong>: maneja transacciones</li>
+<li><strong>cursor</strong>: ejecuta consultas y maneja resultados</li>
+</ul>
+<p>Cada cursor mantiene un “estado”</p>
+<p>Cuando haces un <code>SELECT</code>, el cursor “apunta” a la posición actual dentro del conjunto de resultados.</p>
+<p>Los cursores no necesitan cerrarse explícitamente, pero es buena práctica hacerlo:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb292-1"><a href="python-y-sqlite.html#cb292-1" tabindex="-1"></a>cursor.close()</span></code></pre></div>
+<div id="operaciones-de-inserción-borrado-o-modificación-de-datos" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Operaciones de inserción, borrado o modificación de datos<a href="python-y-sqlite.html#operaciones-de-inserci%C3%B3n-borrado-o-modificaci%C3%B3n-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Igual que en R, se utiliza el método <strong>execute</strong> del objeto python</li>
+<li>Python inicia transacciones automáticamente en estas operaciones</li>
+<li>Por legibilidad normalmente las consultas se escriben en varias líneas.
+Para escrbir cadenas multilínea se usa <code>"""</code> en lugar de <code>"</code>.</li>
+</ul>
+<div class="sourceCode" id="cb293"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb293-1"><a href="python-y-sqlite.html#cb293-1" tabindex="-1"></a>cursor.execute(<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb293-2"><a href="python-y-sqlite.html#cb293-2" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS usuarios (</span></span>
+<span id="cb293-3"><a href="python-y-sqlite.html#cb293-3" tabindex="-1"></a><span class="st">    id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb293-4"><a href="python-y-sqlite.html#cb293-4" tabindex="-1"></a><span class="st">    nombre TEXT NOT NULL,</span></span>
+<span id="cb293-5"><a href="python-y-sqlite.html#cb293-5" tabindex="-1"></a><span class="st">    edad INTEGER</span></span>
+<span id="cb293-6"><a href="python-y-sqlite.html#cb293-6" tabindex="-1"></a><span class="st">)</span></span>
+<span id="cb293-7"><a href="python-y-sqlite.html#cb293-7" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
+<span id="cb293-8"><a href="python-y-sqlite.html#cb293-8" tabindex="-1"></a></span>
+<span id="cb293-9"><a href="python-y-sqlite.html#cb293-9" tabindex="-1"></a>cursor.executemany(</span>
+<span id="cb293-10"><a href="python-y-sqlite.html#cb293-10" tabindex="-1"></a>    <span class="st">&quot;INSERT INTO usuarios (nombre, edad) VALUES (?, ?)&quot;</span>,</span>
+<span id="cb293-11"><a href="python-y-sqlite.html#cb293-11" tabindex="-1"></a>    [(<span class="st">&quot;Luis&quot;</span>, <span class="dv">25</span>), (<span class="st">&quot;María&quot;</span>, <span class="dv">22</span>), (<span class="st">&quot;Pedro&quot;</span>, <span class="dv">40</span>)]</span>
+<span id="cb293-12"><a href="python-y-sqlite.html#cb293-12" tabindex="-1"></a>)</span>
+<span id="cb293-13"><a href="python-y-sqlite.html#cb293-13" tabindex="-1"></a></span>
+<span id="cb293-14"><a href="python-y-sqlite.html#cb293-14" tabindex="-1"></a>cursor.execute(</span>
+<span id="cb293-15"><a href="python-y-sqlite.html#cb293-15" tabindex="-1"></a>    <span class="st">&quot;UPDATE usuarios SET edad = ? WHERE nombre = ?&quot;</span>,</span>
+<span id="cb293-16"><a href="python-y-sqlite.html#cb293-16" tabindex="-1"></a>    (<span class="dv">31</span>, <span class="st">&quot;Ana&quot;</span>)</span>
+<span id="cb293-17"><a href="python-y-sqlite.html#cb293-17" tabindex="-1"></a>)</span>
+<span id="cb293-18"><a href="python-y-sqlite.html#cb293-18" tabindex="-1"></a></span>
+<span id="cb293-19"><a href="python-y-sqlite.html#cb293-19" tabindex="-1"></a>cursor.execute(<span class="st">&quot;DELETE FROM usuarios WHERE edad &lt; ?&quot;</span>, (<span class="dv">30</span>,))</span>
+<span id="cb293-20"><a href="python-y-sqlite.html#cb293-20" tabindex="-1"></a></span>
+<span id="cb293-21"><a href="python-y-sqlite.html#cb293-21" tabindex="-1"></a>conn.commit()</span></code></pre></div>
+<ul>
+<li>Para ejecutar varias sentencias a la vez, en lugar del método <code>execute</code> se usa <code>executescript</code></li>
+</ul>
+<div class="sourceCode" id="cb294"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb294-1"><a href="python-y-sqlite.html#cb294-1" tabindex="-1"></a>cursor.executescript(<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb294-2"><a href="python-y-sqlite.html#cb294-2" tabindex="-1"></a><span class="st">    INSERT INTO usuarios (nombre, edad) VALUES (&#39;Roi&#39;, 20);</span></span>
+<span id="cb294-3"><a href="python-y-sqlite.html#cb294-3" tabindex="-1"></a><span class="st">    INSERT INTO usuarios (nombre, edad) VALUES (&#39;Sara&#39;, 33);</span></span>
+<span id="cb294-4"><a href="python-y-sqlite.html#cb294-4" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
+<span id="cb294-5"><a href="python-y-sqlite.html#cb294-5" tabindex="-1"></a>conn.commit()</span></code></pre></div>
 </div>
-<!-- </div> -->
+<div id="operaciones-de-consulta" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Operaciones de consulta<a href="python-y-sqlite.html#operaciones-de-consulta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando se ejecuta una consulta, el cursor apunta a la primera fila de resultado.
+Para obtener los datos hay 3 métodos útiles:</p>
+<ul>
+<li><code>fetchone()</code>: Devuelve una fila cada vez. Cuando ya no quedan filas, devuelve <code>None</code>.</li>
+<li><code>fetchall()</code>: Devuelve todas las filas como una lista. Si la consulta devuelve muchas filas, es mejor optar por una de las otras opciones.</li>
+<li><code>fetchmany(n)</code>: Devuelve una lista con un bloque de como máximo <strong>n</strong> filas. Si quedan menos, devuelve un bloque menor. Si no quedan filas, devuelve una lista vacía <code>[]</code>.</li>
+<li><code>fetchmany()</code>: Si no se utiliza el parámetro n, se usa el tamaño por defecto del cursor (<code>cursor.arraysize</code>), que si no se modifica tiene valor 1.</li>
+</ul>
+<p>Ejemplo iterando sobre el cursor:</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb295-1"><a href="python-y-sqlite.html#cb295-1" tabindex="-1"></a>cursor.execute(<span class="st">&quot;SELECT * FROM Artist&quot;</span>)</span>
+<span id="cb295-2"><a href="python-y-sqlite.html#cb295-2" tabindex="-1"></a>filas <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb295-3"><a href="python-y-sqlite.html#cb295-3" tabindex="-1"></a></span>
+<span id="cb295-4"><a href="python-y-sqlite.html#cb295-4" tabindex="-1"></a>fila <span class="op">=</span> cursor.fetchone()</span>
+<span id="cb295-5"><a href="python-y-sqlite.html#cb295-5" tabindex="-1"></a><span class="cf">while</span> fila <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb295-6"><a href="python-y-sqlite.html#cb295-6" tabindex="-1"></a>    <span class="bu">print</span>(fila)</span>
+<span id="cb295-7"><a href="python-y-sqlite.html#cb295-7" tabindex="-1"></a>    fila <span class="op">=</span> cursor.fetchone()</span></code></pre></div>
+<p>Ejemplo iterando sobre los resultados:</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb296-1"><a href="python-y-sqlite.html#cb296-1" tabindex="-1"></a>cursor.execute(<span class="st">&quot;SELECT * FROM Artist&quot;</span>)</span>
+<span id="cb296-2"><a href="python-y-sqlite.html#cb296-2" tabindex="-1"></a>filas <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb296-3"><a href="python-y-sqlite.html#cb296-3" tabindex="-1"></a></span>
+<span id="cb296-4"><a href="python-y-sqlite.html#cb296-4" tabindex="-1"></a><span class="cf">for</span> fila <span class="kw">in</span> filas:</span>
+<span id="cb296-5"><a href="python-y-sqlite.html#cb296-5" tabindex="-1"></a>    <span class="bu">print</span>(fila)</span></code></pre></div>
+<div id="seleccionar-una-fila" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Seleccionar una fila<a href="python-y-sqlite.html#seleccionar-una-fila" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb297"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb297-1"><a href="python-y-sqlite.html#cb297-1" tabindex="-1"></a>cursor.execute(<span class="st">&quot;SELECT * FROM usuarios WHERE id = ?&quot;</span>, (<span class="dv">1</span>,))</span>
+<span id="cb297-2"><a href="python-y-sqlite.html#cb297-2" tabindex="-1"></a>fila <span class="op">=</span> cursor.fetchone()</span>
+<span id="cb297-3"><a href="python-y-sqlite.html#cb297-3" tabindex="-1"></a><span class="bu">print</span>(fila)</span></code></pre></div>
+<p>El valor que devuelve es de tipo tupla.
+Es una <strong>estructura inmutable</strong>, rápida y ligera que garantiza que los datos no se modifiquen accidentalmente.
+Refleja una fila tal cual la devuelve SQLite.</p>
+<p>Se puede acceder a los campos por índices:</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb298-1"><a href="python-y-sqlite.html#cb298-1" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> fila[<span class="dv">0</span>]</span>
+<span id="cb298-2"><a href="python-y-sqlite.html#cb298-2" tabindex="-1"></a>nombre <span class="op">=</span> fila[<span class="dv">1</span>]</span>
+<span id="cb298-3"><a href="python-y-sqlite.html#cb298-3" tabindex="-1"></a>edad <span class="op">=</span> fila[<span class="dv">2</span>]</span></code></pre></div>
+<p>Se puede desempaquetar la tupla:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb299-1"><a href="python-y-sqlite.html#cb299-1" tabindex="-1"></a><span class="bu">id</span>, nombre, edad <span class="op">=</span> fila</span>
+<span id="cb299-2"><a href="python-y-sqlite.html#cb299-2" tabindex="-1"></a><span class="bu">print</span>(nombre)</span></code></pre></div>
+<p>Si la consulta devuelve un conjunto de tuplas, se puede recorrer en bucle:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb300-1"><a href="python-y-sqlite.html#cb300-1" tabindex="-1"></a>cursor.execute(<span class="st">&quot;SELECT id, nombre, edad FROM usuarios&quot;</span>)</span>
+<span id="cb300-2"><a href="python-y-sqlite.html#cb300-2" tabindex="-1"></a></span>
+<span id="cb300-3"><a href="python-y-sqlite.html#cb300-3" tabindex="-1"></a><span class="cf">for</span> fila <span class="kw">in</span> cursor.fetchall():</span>
+<span id="cb300-4"><a href="python-y-sqlite.html#cb300-4" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;ID=</span><span class="sc">{</span>fila[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">, Nombre=</span><span class="sc">{</span>fila[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">, Edad=</span><span class="sc">{</span>fila[<span class="dv">2</span>]<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<p>Se puede convertir en lista si se necesita modificar:</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb301-1"><a href="python-y-sqlite.html#cb301-1" tabindex="-1"></a>fila_lista <span class="op">=</span> <span class="bu">list</span>(fila)</span>
+<span id="cb301-2"><a href="python-y-sqlite.html#cb301-2" tabindex="-1"></a>fila_lista[<span class="dv">1</span>] <span class="op">=</span> <span class="st">&quot;NuevoNombre&quot;</span></span></code></pre></div>
+<p>O en diccionario para trabajar con mayor comodidad:</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb302-1"><a href="python-y-sqlite.html#cb302-1" tabindex="-1"></a>columnas <span class="op">=</span> [desc[<span class="dv">0</span>] <span class="cf">for</span> desc <span class="kw">in</span> cursor.description]</span>
+<span id="cb302-2"><a href="python-y-sqlite.html#cb302-2" tabindex="-1"></a>dic <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(columnas, fila))</span>
+<span id="cb302-3"><a href="python-y-sqlite.html#cb302-3" tabindex="-1"></a><span class="bu">print</span>(dic)</span></code></pre></div>
+</div>
+<div id="devolver-resultados-como-diccionarios" class="section level4 hasAnchor" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> Devolver resultados como diccionarios<a href="python-y-sqlite.html#devolver-resultados-como-diccionarios" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>También se puede cambiar el tipo devuelto para que sea un diccionario en lugar de una tupla y evitar la conversión explícita:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb303-1"><a href="python-y-sqlite.html#cb303-1" tabindex="-1"></a>conn.row_factory <span class="op">=</span> sqlite3.Row</span>
+<span id="cb303-2"><a href="python-y-sqlite.html#cb303-2" tabindex="-1"></a>cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb303-3"><a href="python-y-sqlite.html#cb303-3" tabindex="-1"></a></span>
+<span id="cb303-4"><a href="python-y-sqlite.html#cb303-4" tabindex="-1"></a>cursor.execute(<span class="st">&quot;SELECT * FROM usuarios&quot;</span>)</span>
+<span id="cb303-5"><a href="python-y-sqlite.html#cb303-5" tabindex="-1"></a><span class="cf">for</span> fila <span class="kw">in</span> cursor.fetchall():</span>
+<span id="cb303-6"><a href="python-y-sqlite.html#cb303-6" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">dict</span>(fila))</span></code></pre></div>
+<p>De esta forma también se puede acceder a los campos de una forma más human-readable:</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb304-1"><a href="python-y-sqlite.html#cb304-1" tabindex="-1"></a>cursor.execute(<span class="st">&quot;SELECT * FROM usuarios&quot;</span>)</span>
+<span id="cb304-2"><a href="python-y-sqlite.html#cb304-2" tabindex="-1"></a><span class="cf">for</span> fila <span class="kw">in</span> cursor.fetchall():</span>
+<span id="cb304-3"><a href="python-y-sqlite.html#cb304-3" tabindex="-1"></a>    <span class="bu">print</span>(fila[<span class="st">&quot;nombre&quot;</span>])</span></code></pre></div>
+</div>
+</div>
+<div id="usar-sqlite-con-pandas" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Usar SQLite con Pandas<a href="python-y-sqlite.html#usar-sqlite-con-pandas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb305"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb305-1"><a href="python-y-sqlite.html#cb305-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb305-2"><a href="python-y-sqlite.html#cb305-2" tabindex="-1"></a></span>
+<span id="cb305-3"><a href="python-y-sqlite.html#cb305-3" tabindex="-1"></a>df <span class="op">=</span> pd.read_sql_query(<span class="st">&quot;SELECT * FROM usuarios&quot;</span>, conn)</span>
+<span id="cb305-4"><a href="python-y-sqlite.html#cb305-4" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="manipulación-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introSQL.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introducción-a-python.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="context-manager.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -617,7 +549,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/gltaboada/tgdbook/edit/master/02-ManipulacionDatosR.Rmd",
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/04-Python.Rmd",
     "text": "Edit"
   },
   "history": {

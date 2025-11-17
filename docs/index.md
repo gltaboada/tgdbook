@@ -5,7 +5,7 @@ author:
   - "Diego Darriba (diego.darriba@udc.es)"
   - "Rubén Fernández Casal (ruben.fcasal@udc.es)"
   - "Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)"
-date: "Edición: Octubre de 2025. Impresión: 2025-11-04"
+date: "Edición: Octubre de 2025. Impresión: 2025-11-18"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
