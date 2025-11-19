@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="python-y-sqlite.html"/>
-<link rel="next" href="tidyverse.html"/>
+<link rel="next" href="csv-en-python.html"/>
 <script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -284,6 +284,12 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="context-manager.html"><a href="context-manager.html#ejemplo-conexi%C3%B3n-sqlite"><i class="fa fa-check"></i><b>4.3.1</b> Ejemplo: conexión SQLite</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="csv-en-python.html"><a href="csv-en-python.html"><i class="fa fa-check"></i><b>4.4</b> CSV en python</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="csv-en-python.html"><a href="csv-en-python.html#la-librer%C3%ADa-csv"><i class="fa fa-check"></i><b>4.4.1</b> La librería <code>csv</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path="csv-en-python.html"><a href="csv-en-python.html#trabajar-con-csv-usando-pandas"><i class="fa fa-check"></i><b>4.4.2</b> Trabajar con CSV usando <code>pandas</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="csv-en-python.html"><a href="csv-en-python.html#insertar-datos-en-sqlite-a-partir-de-csv"><i class="fa fa-check"></i><b>4.4.3</b> Insertar datos en SQLite a partir de CSV</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Manipulación de datos con tidyverse</a>
 <ul>
@@ -395,17 +401,15 @@ El siguiente código garantiza un <code>commit()</code> si todo va bien, o un <c
 <span id="cb309-3"><a href="context-manager.html#cb309-3" tabindex="-1"></a><span class="cf">with</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;personas.sqlite&quot;</span>) <span class="im">as</span> conn:</span>
 <span id="cb309-4"><a href="context-manager.html#cb309-4" tabindex="-1"></a>    cursor <span class="op">=</span> conn.cursor()</span>
 <span id="cb309-5"><a href="context-manager.html#cb309-5" tabindex="-1"></a>    cursor.execute(<span class="st">&quot;INSERT INTO usuarios(nombre) VALUES (&#39;Ana&#39;)&quot;</span>)</span></code></pre></div>
-
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="python-y-sqlite.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="csv-en-python.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

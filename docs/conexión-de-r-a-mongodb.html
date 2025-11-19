@@ -284,6 +284,12 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="context-manager.html"><a href="context-manager.html#ejemplo-conexi%C3%B3n-sqlite"><i class="fa fa-check"></i><b>4.3.1</b> Ejemplo: conexión SQLite</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="csv-en-python.html"><a href="csv-en-python.html"><i class="fa fa-check"></i><b>4.4</b> CSV en python</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="csv-en-python.html"><a href="csv-en-python.html#la-librer%C3%ADa-csv"><i class="fa fa-check"></i><b>4.4.1</b> La librería <code>csv</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path="csv-en-python.html"><a href="csv-en-python.html#trabajar-con-csv-usando-pandas"><i class="fa fa-check"></i><b>4.4.2</b> Trabajar con CSV usando <code>pandas</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="csv-en-python.html"><a href="csv-en-python.html#insertar-datos-en-sqlite-a-partir-de-csv"><i class="fa fa-check"></i><b>4.4.3</b> Insertar datos en SQLite a partir de CSV</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Manipulación de datos con tidyverse</a>
 <ul>
@@ -357,13 +363,13 @@ div.csl-indent {
 <div id="conexión-de-r-a-mongodb" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Conexión de R a MongoDB<a href="conexión-de-r-a-mongodb.html#conexi%C3%B3n-de-r-a-mongodb" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A través del paquete <a href="https://cran.rstudio.com/web/packages/mongolite/mongolite.pdf">mongolite</a>, aquí tenéis un <a href="https://datascienceplus.com/using-mongodb-with-r/">Tutorial</a></p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="conexión-de-r-a-mongodb.html#cb398-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;mongolite&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="conexión-de-r-a-mongodb.html#cb399-1" tabindex="-1"></a><span class="fu">library</span>(mongolite)</span>
-<span id="cb399-2"><a href="conexión-de-r-a-mongodb.html#cb399-2" tabindex="-1"></a></span>
-<span id="cb399-3"><a href="conexión-de-r-a-mongodb.html#cb399-3" tabindex="-1"></a><span class="co"># Connect to a local MongoDB</span></span>
-<span id="cb399-4"><a href="conexión-de-r-a-mongodb.html#cb399-4" tabindex="-1"></a></span>
-<span id="cb399-5"><a href="conexión-de-r-a-mongodb.html#cb399-5" tabindex="-1"></a>my_collection <span class="ot">=</span> <span class="fu">mongo</span>(<span class="at">collection =</span> <span class="st">&quot;restaurants&quot;</span>, <span class="at">db =</span> <span class="st">&quot;Restaurants&quot;</span>) <span class="co"># create connection, database and collection</span></span>
-<span id="cb399-6"><a href="conexión-de-r-a-mongodb.html#cb399-6" tabindex="-1"></a>my_collection<span class="sc">$</span>count</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="conexión-de-r-a-mongodb.html#cb406-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;mongolite&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="conexión-de-r-a-mongodb.html#cb407-1" tabindex="-1"></a><span class="fu">library</span>(mongolite)</span>
+<span id="cb407-2"><a href="conexión-de-r-a-mongodb.html#cb407-2" tabindex="-1"></a></span>
+<span id="cb407-3"><a href="conexión-de-r-a-mongodb.html#cb407-3" tabindex="-1"></a><span class="co"># Connect to a local MongoDB</span></span>
+<span id="cb407-4"><a href="conexión-de-r-a-mongodb.html#cb407-4" tabindex="-1"></a></span>
+<span id="cb407-5"><a href="conexión-de-r-a-mongodb.html#cb407-5" tabindex="-1"></a>my_collection <span class="ot">=</span> <span class="fu">mongo</span>(<span class="at">collection =</span> <span class="st">&quot;restaurants&quot;</span>, <span class="at">db =</span> <span class="st">&quot;Restaurants&quot;</span>) <span class="co"># create connection, database and collection</span></span>
+<span id="cb407-6"><a href="conexión-de-r-a-mongodb.html#cb407-6" tabindex="-1"></a>my_collection<span class="sc">$</span>count</span></code></pre></div>
 </div>
             </section>
 

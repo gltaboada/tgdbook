@@ -15,7 +15,9 @@ Enlaces de interés:
   - [Oficial 3.14](https://docs.python.org/es/3/tutorial/)
   - [J2Logo (modular)](https://j2logo.com/python/tutorial/)
   - [Python España (listado de cursos)](https://es.python.org/aprende-python/)
--
+- IDEs
+  - [pyCharm](https://www.jetbrains.com/es-es/pycharm/download)
+  - [Visual Studio Code](https://code.visualstudio.com/)
   
 ### Instalación
 
@@ -625,8 +627,6 @@ df = pd.read_sql_query("SELECT * FROM usuarios", conn)
 print(df)
 ```
 
-
-
 ## Context Manager
 
 En Python existe una construcción muy útil llamada **context manager**, que se utiliza a través de la palabra clave `with`.  
@@ -687,3 +687,135 @@ with sqlite3.connect("personas.sqlite") as conn:
     cursor.execute("INSERT INTO usuarios(nombre) VALUES ('Ana')")
 ```
 
+## CSV en python
+
+### La librería `csv`
+
+La librería `csv` viene incluida en Python, por lo que no requiere instalación.
+
+#### Leer un CSV con `csv.reader()`
+
+```python
+import csv
+
+with open("datos.csv", newline='', encoding="utf-8") as f:
+    reader = csv.reader(f)
+    for fila in reader:
+        print(fila)
+```
+
+#### Leer un CSV con cabeceras: `csv.DictReader()`
+
+```python
+import csv
+
+with open("datos.csv", newline='', encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for fila in reader:
+        print(fila["Nombre"], fila["Edad"])
+```
+
+#### Escribir un CSV con `csv.writer()`
+
+```python
+import csv
+
+datos = [
+    ["Nombre", "Edad"],
+    ["Ana", 40],
+    ["Diego", 41]
+]
+
+with open("salida.csv", "w", newline='', encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerows(datos)
+```*
+
+#### Escribir un CSV con cabeceras: `csv.DictWriter()`
+
+```python
+import csv
+
+personas = [
+    {"Nombre": "Ana", "Edad": 40},
+    {"Nombre": "Diego", "Edad": 41}
+]
+
+with open("salida.csv", "w", newline='', encoding="utf-8") as f:
+    writer = csv.DictWriter(f, fieldnames=["Nombre", "Edad"])
+    writer.writeheader()
+    writer.writerows(personas)
+```
+
+
+### Trabajar con CSV usando `pandas`
+
+`pandas` es la librería más potente para análisis de datos en Python.
+
+#### Leer un CSV
+
+```python
+import pandas as pd
+
+df = pd.read_csv("datos.csv")
+print(df.head())
+```
+
+#### Guardar un CSV
+
+```python
+df.to_csv("salida.csv", index=False)
+```
+
+#### Operaciones básicas
+
+```python
+df["Nombre"]                # Acceder a una columna
+df["Edad"].mean()           # Media de una columna numérica
+df[df["Edad"] > 30]         # Filtrar filas
+```
+
+### Insertar datos en SQLite a partir de CSV
+
+```python
+with open('venues.csv') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        cursor.execute('''
+            INSERT INTO Venue (Name, Capacity, Street, Number, City)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (row['Name'], row['Capacity'], row['Street'], row['Number'], row['City']))
+```
+       
+A menudo un CSV contiene nombres en vez de IDs, por ejemplo:
+
+```python
+with open("concerts.csv") as f:
+    reader = csv.DictReader(f)
+
+    for row in reader:
+        venue_name = row["Venue"].strip()
+
+        # Buscar VenueId
+        cur.execute("SELECT VenueId FROM Venue WHERE Name = ?", (venue_name,))
+        result = cur.fetchone()
+
+        if result is None:
+            print("ERROR: No existe el Venue:", venue_name)
+            continue
+
+        venue_id = result[0]
+
+        # Insertar en la tabla Concert
+        cur.execute("""
+            INSERT INTO Concert (ConcertId, VenueId, Name, Tickets, TicketsSold, Date)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (
+            int(row["ConcertId"]),
+            venue_id,
+            row["Name"],
+            int(row["Tickets"]),
+            int(row["TicketsSold"]),
+            row["Date"]
+        ))
+```

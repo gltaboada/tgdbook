@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.13 Ejercicios SQL con RSQLite | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>Capítulo 4 Python | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.13 Ejercicios SQL con RSQLite | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="Capítulo 4 Python | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.13 Ejercicios SQL con RSQLite | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="Capítulo 4 Python | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ejemplo-scopus-data.html"/>
-<link rel="next" href="práctica-1-sql.html"/>
+<link rel="prev" href="práctica-1-sql.html"/>
+<link rel="next" href="introducción-a-python.html"/>
 <script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -360,88 +360,38 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ejercicios-sql-con-rsqlite" class="section level2 hasAnchor" number="3.13">
-<h2><span class="header-section-number">3.13</span> Ejercicios SQL con RSQLite<a href="ejercicios-sql-con-rsqlite.html#ejercicios-sql-con-rsqlite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="setup-de-rsqlite" class="section level3 hasAnchor" number="3.13.1">
-<h3><span class="header-section-number">3.13.1</span> Setup de RSQLite<a href="ejercicios-sql-con-rsqlite.html#setup-de-rsqlite" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Vamos a utilizar <a href="https://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a> desde Kaggle. Pero si lo queréis instalar en local La información para su instalación está <a href="https://db.rstudio.com/databases/sqlite/">en el siguiente enlace</a>.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="ejercicios-sql-con-rsqlite.html#cb252-1" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb252-2"><a href="ejercicios-sql-con-rsqlite.html#cb252-2" tabindex="-1"></a></span>
-<span id="cb252-3"><a href="ejercicios-sql-con-rsqlite.html#cb252-3" tabindex="-1"></a><span class="co"># Create an ephemeral in-memory RSQLite database</span></span>
-<span id="cb252-4"><a href="ejercicios-sql-con-rsqlite.html#cb252-4" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">&quot;:memory:&quot;</span>)</span>
-<span id="cb252-5"><a href="ejercicios-sql-con-rsqlite.html#cb252-5" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
-<pre><code>## character(0)</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="ejercicios-sql-con-rsqlite.html#cb254-1" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mtcars&quot;</span>, mtcars)</span>
-<span id="cb254-2"><a href="ejercicios-sql-con-rsqlite.html#cb254-2" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
-<pre><code>## [1] &quot;mtcars&quot;</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="ejercicios-sql-con-rsqlite.html#cb256-1" tabindex="-1"></a><span class="fu">dbListFields</span>(con, <span class="st">&quot;mtcars&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
-## [11] &quot;carb&quot;</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="ejercicios-sql-con-rsqlite.html#cb258-1" tabindex="-1"></a><span class="fu">dbReadTable</span>(con, <span class="st">&quot;mtcars&quot;</span>)</span></code></pre></div>
-<pre><code>##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-## 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
-## 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
-## 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
-## 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
-## 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
-## 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
-## 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
-## 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
-## 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
-## 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
-## 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
-## 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
-## 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
-## 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
-## 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
-## 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
-## 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
-## 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
-## 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
-## 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
-## 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
-## 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
-## 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
-## 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
-## 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
-## 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
-## 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
-## 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
-## 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
-## 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
-## 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
-## 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="ejercicios-sql-con-rsqlite.html#cb260-1" tabindex="-1"></a><span class="co"># You can fetch all results:</span></span>
-<span id="cb260-2"><a href="ejercicios-sql-con-rsqlite.html#cb260-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mtcars WHERE cyl = 4&quot;</span>)</span>
-<span id="cb260-3"><a href="ejercicios-sql-con-rsqlite.html#cb260-3" tabindex="-1"></a><span class="fu">dbFetch</span>(res)</span></code></pre></div>
-<pre><code>##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-## 1  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
-## 2  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
-## 3  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
-## 4  32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
-## 5  30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
-## 6  33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
-## 7  21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
-## 8  27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
-## 9  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
-## 10 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
-## 11 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="ejercicios-sql-con-rsqlite.html#cb262-1" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb262-2"><a href="ejercicios-sql-con-rsqlite.html#cb262-2" tabindex="-1"></a></span>
-<span id="cb262-3"><a href="ejercicios-sql-con-rsqlite.html#cb262-3" tabindex="-1"></a><span class="co"># Or a chunk at a time</span></span>
-<span id="cb262-4"><a href="ejercicios-sql-con-rsqlite.html#cb262-4" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mtcars WHERE cyl = 4&quot;</span>)</span>
-<span id="cb262-5"><a href="ejercicios-sql-con-rsqlite.html#cb262-5" tabindex="-1"></a><span class="cf">while</span>(<span class="sc">!</span><span class="fu">dbHasCompleted</span>(res)){</span>
-<span id="cb262-6"><a href="ejercicios-sql-con-rsqlite.html#cb262-6" tabindex="-1"></a>  chunk <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res, <span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb262-7"><a href="ejercicios-sql-con-rsqlite.html#cb262-7" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">nrow</span>(chunk))</span>
-<span id="cb262-8"><a href="ejercicios-sql-con-rsqlite.html#cb262-8" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] 5
-## [1] 5
-## [1] 1</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="ejercicios-sql-con-rsqlite.html#cb264-1" tabindex="-1"></a><span class="co"># Clear the result</span></span>
-<span id="cb264-2"><a href="ejercicios-sql-con-rsqlite.html#cb264-2" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb264-3"><a href="ejercicios-sql-con-rsqlite.html#cb264-3" tabindex="-1"></a></span>
-<span id="cb264-4"><a href="ejercicios-sql-con-rsqlite.html#cb264-4" tabindex="-1"></a><span class="co"># Disconnect from the database</span></span>
-<span id="cb264-5"><a href="ejercicios-sql-con-rsqlite.html#cb264-5" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code></pre></div>
+<div id="introPython" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Python<a href="introPython.html#introPython" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Python es un lenguaje de programación de alto nivel, interpretado y de propósito general.<br />
+Se caracteriza por ser legible, versátil y contar con una gran comunidad de usuarios, lo que lo hace ideal tanto para principiantes como para profesionales.</p>
+<p>En este documento se presenta una introducción básica al lenguaje, su sintaxis esencial y algunas de sus aplicaciones más comunes.</p>
+<p>Enlaces de interés:</p>
+<ul>
+<li>Intérpretes de Python online
+<ul>
+<li><a href="https://www.online-python.com/">Online-Python</a></li>
+<li><a href="https://www.programiz.com/python-programming/online-compiler/">Programiz</a></li>
+<li><a href="https://pythononline.net/">Python Online</a></li>
+</ul></li>
+<li>Tutoriales
+<ul>
+<li><a href="https://docs.python.org/es/3/tutorial/">Oficial 3.14</a></li>
+<li><a href="https://j2logo.com/python/tutorial/">J2Logo (modular)</a></li>
+<li><a href="https://es.python.org/aprende-python/">Python España (listado de cursos)</a></li>
+</ul></li>
+<li>IDEs
+<ul>
+<li><a href="https://www.jetbrains.com/es-es/pycharm/download">pyCharm</a></li>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+</ul></li>
+</ul>
+<div id="instalación" class="section level3 hasAnchor" number="4.0.1">
+<h3><span class="header-section-number">4.0.1</span> Instalación<a href="introPython.html#instalaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para instalar Python, puedes descargar la versión más reciente desde:</p>
+<ul>
+<li><a href="https://www.python.org/downloads/" class="uri">https://www.python.org/downloads/</a></li>
+</ul>
+<p>En muchos sistemas Linux y macOS, Python ya viene instalado por defecto.</p>
 </div>
 </div>
             </section>
@@ -449,8 +399,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="ejemplo-scopus-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="práctica-1-sql.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="práctica-1-sql.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introducción-a-python.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -481,7 +431,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/gltaboada/tgdbook/edit/master/03-SQL.Rmd",
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/04-Python.Rmd",
     "text": "Edit"
   },
   "history": {
