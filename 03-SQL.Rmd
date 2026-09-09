@@ -6,7 +6,7 @@
 Los sistemas de información gestionan repositorios de información en múltiples formatos, 
 siendo el más popular las bases de datos relacionales a las que se accede mediante SQL (Structured Query Language).
 
-El ejemplo que trabajaremos en este capítulo está disponible en Kaggle: [kaggle.com/code/diegodx/txd-2025-tutorialsql](https://www.kaggle.com/code/diegodx/txd-2025-tutorialsql)
+El ejemplo que trabajaremos en este capítulo está disponible en Kaggle: [kaggle.com/code/diegodx/txd-2026-tutorialsql](https://www.kaggle.com/code/diegodx/txd-2026-tutorialsql)
 
 ## Bases de Datos Relacionales
 
