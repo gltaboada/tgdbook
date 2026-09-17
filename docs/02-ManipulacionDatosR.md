@@ -1,5 +1,7 @@
 # Manipulación de datos con R {#manipR}
 
+<!-- 2026/09/16 corrección de erratas -->
+
 
 
 
@@ -7,17 +9,13 @@
 
 
 En el proceso de análisis de datos, al margen de su obtención y organización, una de las primeras etapas es el acceso y la manipulación de los datos (ver Figura \@ref(fig:esquema2)).
-En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para ello.
-Posteriormente en el Capítulo \@ref(tidyverse) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html).
+En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para la lectura, exploración, filtrado, transformación y combinación de tablas de datos.
+Posteriormente en el Capítulo \@ref(tidyverse) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html), resolviendo los mismos ejercicios de la Sección \@ref(ejercicios-manipR) con ambos enfoques.
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.8\linewidth]{images/esquema2} 
-
-}
-
-\caption{Etapas del proceso}(\#fig:esquema2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/esquema2.png" alt="Etapas del proceso" width="80%" />
+<p class="caption">(\#fig:esquema2)Etapas del proceso</p>
+</div>
 
 
 
@@ -102,13 +100,13 @@ Con el comando `data()` podemos obtener un listado de las bases de datos disponi
 Para cargar una base de datos concreta se utiliza el comando
 `data(nombre)` (aunque en algunos casos se cargan automáticamente al emplearlos). 
 Por ejemplo, `data(cars)` carga la base de datos llamada `cars` en el entorno de trabajo (`".GlobalEnv"`)
-y `?cars` muestra la ayuda correspondiente con la descripición de la base de datos.
+y `?cars` muestra la ayuda correspondiente con la descripción de la base de datos.
 
 
 ### Lectura de archivos de texto {#cap2-texto}
 
 En R, para leer archivos de texto se suele utilizar la función `read.table()`.
-Suponinedo, por ejemplo, que en el directorio actual está el fichero
+Suponiendo, por ejemplo, que en el directorio actual está el fichero
 *empleados.txt*. La lectura de este fichero vendría dada por el código:
 
 
@@ -170,7 +168,7 @@ read.table(file, header = FALSE, sep = "", dec = ".")
 Para más detalles sobre esta función véase
 `help(read.table)`.
 
-Estan disponibles otras funciones con valores por defecto de los parámetros 
+Están disponibles otras funciones con valores por defecto de los parámetros 
 adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores 
 se puede utilizar `read.delim()` o `read.delim2()`:
 
@@ -276,7 +274,7 @@ del paquete [`dplyr`](https://dplyr.tidyverse.org), donde las columnas se empare
 ``` r
 df <- dplyr::bind_rows(file.list)
 ```
-El Capítulo 4, provee de otras utilidades  para la manipulación de datos con `dplyr` [@R-dplyr]. 
+El Capítulo \@ref(tidyverse) provee de otras utilidades para la manipulación de datos con `dplyr` [@R-dplyr].
 
 
 
@@ -316,7 +314,7 @@ Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el 
 
 ### Exportación de datos  {#cap2-exporta}
 
-Puede ser de interés la exportacifn de datos para que puedan ser leídos con otros programas. Para ello, se puede emplear la función `write.table()`. Esta función es similar, pero funcionando en sentido inverso, a `read.table()`, ver Sección \@ref(cap2-texto).
+Puede ser de interés la exportación de datos para que puedan ser leídos con otros programas. Para ello, se puede emplear la función `write.table()`. Esta función es similar, pero funcionando en sentido inverso, a `read.table()`, ver Sección \@ref(cap2-texto).
 
 Veamos un ejemplo:
 
@@ -367,7 +365,7 @@ os$listdir(".")
 Si queremos trabajar con Python de forma interactiva, podemos usar `repl_python()`. Los objetos creados en Python se pueden usar en R con `py`  de `reticulate`.
 
 Recientemente, *Julia* se presenta también como una alternativa a considerar. 
-El paquete  [`JuliaConnectoR`](NA) disponible en [https://cran.r-project.org/web/packages/JuliaConnectoR/](https://cran.r-project.org/web/packages/JuliaConnectoR/) facilita la importación de funciones y paquetes completos de Julia a R, es decir, permite el uso de funciones de Julia directamente en R.
+El paquete  [`JuliaConnectoR`](https://github.com/stefan-m-lenz/JuliaConnectoR) disponible en [https://cran.r-project.org/web/packages/JuliaConnectoR/](https://cran.r-project.org/web/packages/JuliaConnectoR/) facilita la importación de funciones y paquetes completos de Julia a R, es decir, permite el uso de funciones de Julia directamente en R.
 
 R también permite el uso/comunicación de otros lenguajes de programación como Java, C, C++, Fortran, entre otros.
 
@@ -377,8 +375,7 @@ Desde julio de 2025 ya están disponibles versiones estables de [Positron](https
 
 
 
-Manipulación de datos
----------------------
+## Manipulación de datos {#manip}
 
 Una vez cargada una (o varias) bases de datos hay una series de operaciones que serán de interés para el tratamiento de datos: 
 
@@ -484,7 +481,7 @@ variable `distancia` (en metros), por lo que la transformación deseada es
 
 
 ``` r
-cars$distancia <- cars$dis / 3.2808
+cars$distancia <- cars$dist / 3.2808
 head(cars)
 ```
 
@@ -909,7 +906,7 @@ La problemática originada por los datos faltantes (*missing data*) en cualquier
 realizar un análisis estadístico, para más información en R, se puede consultar [CRAN Task View: Missing Data](https://cran.r-project.org/web/views/MissingData.html)
 
 
-Vamos a ver un ejemplo, empleando el conjunto de datos `airquality` que contiene datos falntantes en sus dos primeras variables:
+Vamos a ver un ejemplo, empleando el conjunto de datos `airquality` que contiene datos faltantes en sus dos primeras variables:
 
 ``` r
 data("airquality")
@@ -925,7 +922,7 @@ summary(datos)
 ##  Mean   : 42.13   Mean   :185.9   Mean   : 9.958  
 ##  3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500  
 ##  Max.   :168.00   Max.   :334.0   Max.   :20.700  
-##  NA's   :37       NA's   :7
+##  NAs    :37       NAs    :7
 ```
 
 ``` r
@@ -954,18 +951,14 @@ library(naniar)
 vis_miss(airquality)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{02-ManipulacionDatosR_files/figure-latex/unnamed-chunk-48-1} \end{center}
+<img src="02-ManipulacionDatosR_files/figure-html/unnamed-chunk-48-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 -->
 
 ``` r
 plot(ts(airquality[,1:2]))
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{02-ManipulacionDatosR_files/figure-latex/unnamed-chunk-49-1} \end{center}
+<img src="02-ManipulacionDatosR_files/figure-html/unnamed-chunk-49-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 
 
@@ -979,7 +972,7 @@ mcar_test(airquality[,-2])
 ```
 
 ```
-## # A tibble: 1 x 4
+## # A tibble: 1 × 4
 ##   statistic    df p.value missing.patterns
 ##       <dbl> <dbl>   <dbl>            <int>
 ## 1      13.7     4 0.00829                2
@@ -992,7 +985,7 @@ Sin embargo, en muchos estudios, se omite el paso anterior y se procede directam
 + Análisis de casos disponibles (borrado por parejas *pairwise cases*)
 + Imputación de datos faltantes (por la media, mediana, último valor observado, vecino más cercano, valores predichos usando los datos observados....)
 
-Siguiendo con el ejemplo, ante la presencia de datos faltantes, en R inicialmente no podemos conocer cómo se relacionan las tres primeras variables:"
+Siguiendo con el ejemplo, ante la presencia de datos faltantes, en R inicialmente no podemos conocer cómo se relacionan las tres primeras variables:
 
 
 ``` r
@@ -1049,7 +1042,7 @@ cor(datos[,1:3], use = "pairwise.complete.obs")
 ## Wind    -0.6015465 -0.05679167  1.00000000
 ```
 
-Por ejmmplo, ahora la correlación usa los $146$ pares de observaciones disponibles para (`Solar.R`,`Wind`), en lugar de $111$ del primer caso.
+Por ejemplo, ahora la correlación usa los $146$ pares de observaciones disponibles para (`Solar.R`,`Wind`), en lugar de $111$ del primer caso.
 
 Por último, también se podría realizar una imputación [@van2018flexible]. A modo de ejemplo, en el siguiente código, se utiliza la media:
 
@@ -1170,7 +1163,7 @@ proc.time() - t1
 
 ```
 ##    user  system elapsed 
-##   1.176   0.196   1.374
+##    1.05    0.09    1.16
 ```
 
 ``` r
@@ -1181,7 +1174,7 @@ proc.time() - t2
 
 ```
 ##    user  system elapsed 
-##   0.178   0.000   0.179
+##    0.08    0.02    0.08
 ```
 
 
@@ -1276,7 +1269,7 @@ cfuns <- function(x, funs = c(mean, median, sd)){
 c. La función [`tapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/tapply) es
 similar a la función `apply()` y permite aplicar una función a los datos desagregados,
 utilizando como criterio los distintos niveles de una variable factor. Es decir, 
- facilita la creación de tablars resumen por grupos. La sintaxis de esta función es como sigue:
+ facilita la creación de tablas resumen por grupos. La sintaxis de esta función es como sigue:
 
 ``` r
     tapply(X, INDEX, FUN, ...,)
@@ -1298,6 +1291,7 @@ head(ChickWeight)
 ```
 
 ```
+## Grouped Data: weight ~ Time | Chick
 ##   weight Time Chick Diet
 ## 1     42    0     1    1
 ## 2     51    2     1    1
@@ -1408,19 +1402,13 @@ knitr::kable(t(res), digits = 1,
 ```
 
 
-\begin{tabular}{l|r|r|r}
-\hline
-  & Media & Mediana & Desv. típica\\
-\hline
-speed & 15.4 & 15.0 & 5.3\\
-\hline
-dist & 43.0 & 36.0 & 25.8\\
-\hline
-velocidad & 24.8 & 24.1 & 8.5\\
-\hline
-distancia & 13.1 & 11.0 & 7.9\\
-\hline
-\end{tabular}
+
+|          | Media| Mediana| Desv. típica|
+|:---------|-----:|-------:|------------:|
+|speed     |  15.4|    15.0|          5.3|
+|dist      |  43.0|    36.0|         25.8|
+|velocidad |  24.8|    24.1|          8.5|
+|distancia |  13.1|    11.0|          7.9|
 
 <!--
 Consideremos, el conjunto de datos `iris`  
@@ -1433,23 +1421,15 @@ knitr::kable(iris2,
 ```
 
 
-\begin{tabular}{r|r|r|r|l}
-\hline
-Sepal Length & Sepal Width & Petal Length & Petal Width & Species\\
-\hline
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-\hline
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-\hline
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-\hline
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-\hline
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\hline
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-\hline
-\end{tabular}
+
+| Sepal Length| Sepal Width| Petal Length| Petal Width|Species |
+|------------:|-----------:|------------:|-----------:|:-------|
+|          5.1|         3.5|          1.4|         0.2|setosa  |
+|          4.9|         3.0|          1.4|         0.2|setosa  |
+|          4.7|         3.2|          1.3|         0.2|setosa  |
+|          4.6|         3.1|          1.5|         0.2|setosa  |
+|          5.0|         3.6|          1.4|         0.2|setosa  |
+|          5.4|         3.9|          1.7|         0.4|setosa  |
 -->
 Y en este segundo ejemplo, se muestra el resumen de un modelo de regresión lineal simple (distancia de frenado en función de la velocidad del vehículo):
 
@@ -1460,15 +1440,11 @@ knitr::kable(coefs, escape = FALSE, digits = 5)
 ```
 
 
-\begin{tabular}{l|r|r|r|r}
-\hline
-  & Estimate & Std. Error & t value & Pr(>|t|)\\
-\hline
-(Intercept) & -17.57909 & 6.75844 & -2.60106 & 0.01232\\
-\hline
-speed & 3.93241 & 0.41551 & 9.46399 & 0.00000\\
-\hline
-\end{tabular}
+
+|            |  Estimate| Std. Error|  t value| Pr(>&#124;t&#124;)|
+|:-----------|---------:|----------:|--------:|------------------:|
+|(Intercept) | -17.57909|    6.75844| -2.60106|            0.01232|
+|speed       |   3.93241|    0.41551|  9.46399|            0.00000|
 
 #### Tablas interactivas con `datatable()`
 
@@ -1477,20 +1453,25 @@ speed & 3.93241 & 0.41551 & 9.46399 & 0.00000\\
 library(DT)
 datatable(iris,options = list(scrollX = TRUE))
 ```
+
+```{=html}
+<div class="datatables html-widget html-fill-item" id="htmlwidget-cb9f9f412d7aae8dc95d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cb9f9f412d7aae8dc95d">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5,5,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5,5.5,4.9,4.4,5.1,5,4.5,4.4,5,5.1,4.8,5.1,4.6,5.3,5,7,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5,5.9,6,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6,5.7,5.5,5.5,5.8,6,5.4,6,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3,3,4,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3,3.4,3.5,2.3,3.2,3.5,3.8,3,3.8,3.2,3.7,3.3,3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2,3,2.2,2.9,2.9,3.1,3,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3,2.8,3,2.9,2.6,2.4,2.4,2.7,2.7,3,3.4,3.1,2.3,3,2.5,2.6,3,2.6,2.3,2.7,3,2.9,2.9,2.5,2.8,3.3,2.7,3,2.9,3,3,2.5,2.9,2.5,3.6,3.2,2.7,3,2.5,2.8,3.2,3,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3,2.8,3,2.8,3.8,2.8,2.8,2.6,3,3.4,3.1,3,3.1,3.1,3.1,2.7,3.2,3.3,3,2.5,3,3.4,3],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5,1.7,1.5,1,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4,4.7,4.5,4.9,4,4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4,4.9,4.7,4.3,4.4,4.8,5,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4,4.4,4.6,4,3.3,4.2,4.2,4.2,4.3,3,4.1,6,5.1,5.9,5.6,5.8,6.6,4.5,6.3,5.8,6.1,5.1,5.3,5.5,5,5.1,5.3,5.5,6.7,6.9,5,5.7,4.9,6.7,4.9,5.7,6,4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,5.7,5.2,5,5.2,5.4,5.1],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1,0.2,0.2,0.1,0.1,0.2,0.4,0.4,0.3,0.3,0.3,0.2,0.4,0.2,0.5,0.2,0.2,0.4,0.2,0.2,0.2,0.2,0.4,0.1,0.2,0.2,0.2,0.2,0.1,0.2,0.2,0.3,0.3,0.2,0.6,0.4,0.3,0.2,0.2,0.2,0.2,1.4,1.5,1.5,1.3,1.5,1.3,1.6,1,1.3,1.4,1,1.5,1,1.4,1.3,1.4,1.5,1,1.5,1.1,1.8,1.3,1.5,1.2,1.3,1.4,1.4,1.7,1.5,1,1.1,1,1.2,1.6,1.5,1.6,1.5,1.3,1.3,1.3,1.2,1.4,1.2,1,1.3,1.2,1.3,1.3,1.1,1.3,2.5,1.9,2.1,1.8,2.2,2.1,1.7,1.8,1.8,2.5,2,1.9,2.1,2,2.4,2.3,1.8,2.2,2.3,1.5,2.3,2,2,1.8,2.1,1.8,1.8,1.8,2.1,1.6,1.9,2,2.2,1.5,1.4,2.3,2.4,1.8,1.8,2.1,2.4,2.3,1.9,2.3,2.5,2.3,1.9,2,2.3,1.8],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Sepal.Length","targets":1},{"name":"Sepal.Width","targets":2},{"name":"Petal.Length","targets":3},{"name":"Petal.Width","targets":4},{"name":"Species","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+```
 <!--  options = list(scrollX = TRUE))-->
 
 
 ### Operaciones con tablas de datos
 
-***Unir tablas***:
+#### Unir tablas:
 
 * [`rbind()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind): combina vectores, matrices, arrays o data.frames por filas.
 
 * [`cbind()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind): Idem por columnas.
 
-* [`merge()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/merge): Fusiona dos data.frame por columnas o nombres de fila comunes.  También permite otras operaciones de unión (*join*) de bases de datos, algunas de ellas se verán con más detalle en el Capítulo 4.
+* [`merge()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/merge): Fusiona dos data.frame por columnas o nombres de fila comunes.  También permite otras operaciones de unión (*join*) de bases de datos, algunas de ellas se verán con más detalle en el Capítulo \@ref(tidyverse).
 
-***Combinar tablas***:
+#### Combinar tablas:
 
 
 * [`match(x, table)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match) devuelve un vector (de la misma longitud que `x`)  con las (primeras) posiciones de coincidencia de `x` en `table` (o `NA`, por defecto, si no hay coincidencia).
@@ -1544,28 +1525,18 @@ knitr::kable(head(as.data.frame(variable.labels)),
              caption = "Variable labels")
 ```
 
-\begin{table}
 
-\caption{(\#tab:unnamed-chunk-70)Variable labels}
-\centering
-\begin{tabular}[t]{l|l}
-\hline
-  & variable.labels\\
-\hline
-PT & Publication type\\
-\hline
-AU & Author\\
-\hline
-BA & Book authors\\
-\hline
-BE & Editor\\
-\hline
-GP & Group author\\
-\hline
-AF & Author full\\
-\hline
-\end{tabular}
-\end{table}
+
+Table: (\#tab:unnamed-chunk-70)Variable labels
+
+|   |variable.labels  |
+|:--|:----------------|
+|PT |Publication type |
+|AU |Author           |
+|BA |Book authors     |
+|BE |Editor           |
+|GP |Group author     |
+|AF |Author full      |
 
 Las tablas de datos con este atributo son compatibles con RStudio.
 Por ejemplo, también se mostrarán las etiquetas al abrirla con `View()`
@@ -1791,4 +1762,209 @@ head(Docs[idd, 1:3])
 ## 518           Importance of Outer-Sphere and Aggregation Phenomena in the Relaxation Properties of Phosphonated Gadolinium Complexes with Potential Applications as MRI Contrast Agents
 ## 586                                                                      Enhanced thermal conductivity of rheologically percolated carbon nanofiber reinforced polypropylene composites
 ```
+
+## Eficiencia en R: preasignación, vectorización y desfases {#eficiencia-manipR}
+
+R permite escribir código muy expresivo, pero no todas las formas de hacer lo mismo son igual de eficientes. A continuación se ilustran tres buenas prácticas habituales, empleando el paquete [`microbenchmark`](https://github.com/joshuaulrich/microbenchmark/) para comparar tiempos de ejecución (más fiable que una única medición con [`proc.time()`](https://rdrr.io/r/base/proc.time.html), ya que repite cada alternativa varias veces).
+
+**Preasignar en lugar de crecer un vector dentro de un bucle.** Cada vez que se amplía un vector elemento a elemento (`a[i] <- i` sin haber fijado antes su longitud), R puede tener que reservar memoria nueva y copiar todo el vector; si se preasigna con [`numeric()`](https://rdrr.io/r/base/numeric.html) (o `vector()`), el tamaño ya es el definitivo y no hay redimensionamientos:
+
+
+``` r
+library(microbenchmark)
+n <- 3e4
+microbenchmark(
+  crecer      = { a <- numeric(); for (i in seq_len(n)) a[i] <- i },
+  preasignado = { d <- numeric(n); for (i in seq_len(n)) d[i] <- i },
+  times = 10
+)
+```
+
+```
+## Unit: milliseconds
+##         expr     min      lq     mean   median      uq
+##       crecer 11.2600 12.2017 12.90545 12.93315 13.3264
+##  preasignado  3.0892  3.6697  6.03477  5.78825  8.1019
+##      max neval cld
+##  15.4908    10  a 
+##   9.3904    10   b
+```
+
+Con un `n` mucho mayor la diferencia se dispara (no se evalúa en el libro por el tiempo de cómputo que implicaría repetirlo varias veces):
+
+
+``` r
+n <- 1e8
+a <- numeric()
+system.time(for (i in seq_len(n)) a[i] <- i)
+d <- numeric(n)
+system.time(for (i in seq_len(n)) d[i] <- i)
+```
+
+**Usar funciones vectorizadas en lugar de [`apply()`](https://rdrr.io/r/base/apply.html).** Funciones como [`colMeans()`](https://rdrr.io/r/base/colSums.html) o [`rowSums()`](https://rdrr.io/r/base/colSums.html) están implementadas internamente en C y evitan el bucle (implícito) de `apply()`:
+
+
+``` r
+m <- matrix(rnorm(1e6), nrow = 1000)
+microbenchmark(
+  apply_mean = apply(m, 2, mean),
+  colMeans   = colMeans(m),
+  apply_sum  = apply(m, 1, sum),
+  rowSums    = rowSums(m),
+  times = 20
+)
+```
+
+```
+## Unit: milliseconds
+##        expr     min       lq      mean   median       uq
+##  apply_mean 17.8846 23.26870 25.467780 26.19270 27.43020
+##    colMeans  1.2296  1.36390  1.463310  1.46220  1.55245
+##   apply_sum 12.6796 14.78950 20.106695 16.27625 16.91945
+##     rowSums  1.2316  1.43565  2.263425  2.01455  3.30040
+##       max neval cld
+##   32.8468    20  a 
+##    1.8692    20   b
+##  101.8854    20  a 
+##    3.6706    20   b
+```
+
+**Calcular desfases (*lag*/*lead*) sin bucles.** Para comparar cada valor con el anterior (o el siguiente) de un vector, en R base basta con desplazar el vector y alinearlo con [`cbind()`](https://rdrr.io/r/base/cbind.html), en lugar de recorrerlo con un bucle:
+
+
+``` r
+a <- 1:11
+diff(a)                 # diferencias consecutivas
+```
+
+```
+##  [1] 1 1 1 1 1 1 1 1 1 1
+```
+
+``` r
+y <- c(NA, a[-length(a)])  # "lag": a desplazado una posición hacia atrás
+x <- c(a[-1], NA)          # "lead": a desplazado una posición hacia adelante
+cbind(original = a, lag = y, lead = x)
+```
+
+```
+##       original lag lead
+##  [1,]        1  NA    2
+##  [2,]        2   1    3
+##  [3,]        3   2    4
+##  [4,]        4   3    5
+##  [5,]        5   4    6
+##  [6,]        6   5    7
+##  [7,]        7   6    8
+##  [8,]        8   7    9
+##  [9,]        9   8   10
+## [10,]       10   9   11
+## [11,]       11  10   NA
+```
+
+En el Capítulo \@ref(tidyverse) se retoma este mismo desfase con `dplyr::lag()`/`lead()` (Sección \@ref(eficiencia-tidyverse)), comprobando que su sintaxis más legible no penaliza el rendimiento.
+
+## Resumen: R base {#resumen-manipR}
+
+A modo de referencia rápida, la siguiente tabla recoge las tareas más
+habituales de manipulación de datos vistas en este capítulo. En el
+Capítulo \@ref(tidyverse) se retomará esta misma lista mostrando el
+equivalente en `dplyr`/`tidyr` para cada tarea (ver el resumen
+comparativo de la Sección \@ref(resumen-tidyverse)):
+
+| Tarea                     | R base                              |
+|---------------------------|--------------------------------------|
+| Leer texto/CSV            | `read.table()`, `read.delim()`       |
+| Leer Excel                | `openxlsx::read.xlsx()`              |
+| Escribir texto/CSV        | `write.table()`                      |
+| Seleccionar columnas      | `df[, c("a","b")]`                   |
+| Renombrar columnas        | `names(df)[i] <- "x"`                |
+| Filtrar filas             | `subset(df, cond)`, `df[cond, ]`     |
+| Ordenar filas             | `df[order(df$x), ]`                  |
+| Crear/transformar variable| `df$z <- expr`                       |
+| Recodificar/categorizar   | `cut()`, `ifelse()`                  |
+| Resumir                   | `aggregate()`, `tapply()`            |
+| Agrupar y resumir         | `aggregate(y ~ g, df, FUN)`          |
+| Unir tablas (*join*)      | `merge()`                            |
+| Filtrar por coincidencia  | `df1[df1$x %in% df2$x, ]`            |
+| Encadenar operaciones     | llamadas anidadas                    |
+
+## Ejercicios {#ejercicios-manipR}
+
+Para practicar lo visto en este capítulo se proponen los siguientes
+ejercicios (los enunciados se dan sin solución; las soluciones se
+distribuyen aparte).
+
+
+``` r
+load("data/empleados.RData")
+```
+
+### Ejercicio 1: incremento salarial (`empleados`)
+
+A partir de los datos de `empleados` (Sección \@ref(read)), calcula para
+cada empleado el incremento salarial relativo respecto a su salario inicial:
+`incremento = salario / salini - 1`. Muestra los 5 empleados con mayor
+incremento porcentual, junto con su categoría laboral (`catlab`) y su
+antigüedad en meses (`tiempemp`).
+
+Para los siguientes ejercicios se empleará el conjunto de datos `starwars`
+(incluido en el paquete `dplyr`, aunque aquí se usa únicamente como fuente
+de datos, sin necesidad de emplear sus funciones):
+
+
+``` r
+data(starwars, package = "dplyr")
+starwars <- as.data.frame(starwars) # para evitar el formato tibble al imprimir
+```
+
+Para el ejercicio de unión de tablas se empleará además la siguiente tabla,
+creada manualmente, con información de algunos planetas:
+
+
+``` r
+planetas <- data.frame(
+  homeworld = c("Tatooine", "Naboo", "Alderaan", "Coruscant", "Kamino",
+                "Corellia", "Kashyyyk", "Ryloth", "Mirial", "Hoth"),
+  region    = c("Outer Rim", "Mid Rim", "Core Worlds", "Core Worlds", "Outer Rim",
+                "Core Worlds", "Mid Rim", "Outer Rim", "Outer Rim", "Outer Rim"),
+  clima     = c("Desértico", "Templado", "Templado", "Urbano", "Oceánico",
+                "Urbano", "Boscoso", "Húmedo", "Templado", "Helado")
+)
+```
+
+### Ejercicio 2: Filtrado y selección (`starwars`)
+
+Obtén el nombre, la altura, el peso y el planeta natal (`homeworld`) de los
+personajes de especie (`species`) `"Human"` con una altura (`height`)
+superior a 180 cm.
+
+### Ejercicio 3: Creación de una variable y categorización
+
+Calcula el índice de masa corporal (IMC = peso / altura^2^, con la altura en
+metros) de cada personaje, descartando aquellos con valores faltantes en
+peso o altura. A continuación, categoriza el IMC empleando los umbrales
+estándar de la OMS: menos de 18.5 "Bajo peso", de 18.5 a 25 "Normal", de 25
+a 30 "Sobrepeso" y 30 o más "Obesidad". Indica cuántos personajes hay en
+cada categoría.
+
+### Ejercicio 4: Resumen y agrupación
+
+Calcula la altura media y el número de personajes por especie, considerando
+únicamente las especies con al menos 3 personajes, y ordena el resultado de
+mayor a menor altura media.
+
+### Ejercicio 5: Unión de tablas
+
+Une `starwars` con `planetas` por la columna `homeworld` y muestra, para cada
+personaje, su nombre, `homeworld`, región y clima. ¿Qué ocurre con los
+personajes cuyo planeta no aparece en `planetas` (o cuyo `homeworld` es
+`NA`)? ¿Y con `"Hoth"`, que está en `planetas` pero no es el planeta natal de
+ningún personaje?
+
+### Ejercicio 6 (opcional): columnas-lista
+
+`starwars` incluye columnas que son listas, como `films` (las películas en
+las que aparece cada personaje). Calcula en cuántas películas aparece cada
+personaje y muestra los que más aparecen.
 

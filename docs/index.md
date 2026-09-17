@@ -5,7 +5,7 @@ author:
   - "Diego Darriba (diego.darriba@udc.es)"
   - "Rubén Fernández Casal (ruben.fcasal@udc.es)"
   - "Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)"
-date: "Edición: Octubre de 2025. Impresión: 2025-11-19"
+date: "Edición: Octubre de 2025. Impresión: 2026-09-17"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -20,6 +20,13 @@ editor_options:
 ---
 
 # Prólogo {.unnumbered}
+
+<!-- 
+bookdown::render_book("index.Rmd","bookdown::pdf_book")
+bookdown::render_book("index.Rmd","bookdown::gitbook") 
+# bookdown::serve_book()
+
+-->
 
 Este libro contiene algunas de las prácticas de la asignatura de
 [Tecnologías de Gestión de
@@ -60,12 +67,20 @@ instalados los siguientes paquetes:
 [`RSQLite`](https://r-dbi.github.io/RSQLite),
 [`foreign`](https://cran.r-project.org/web/packages/foreign/index.html),
 [`magrittr`](https://cran.r-project.org/web/packages/magrittr/index.html),
-[`knitr`](https://yihui.name/knitr) Por ejemplo mediante los comandos:
+[`knitr`](https://yihui.name/knitr),
+[`GGally`](https://ggobi.github.io/ggally),
+[`caret`](https://topepo.github.io/caret),
+[`MASS`](https://cran.r-project.org/web/packages/MASS/index.html),
+[`class`](https://cran.r-project.org/web/packages/class/index.html),
+[`e1071`](https://cran.r-project.org/web/packages/e1071/index.html),
+[`mpae`](https://cran.r-project.org/package=mpae) y
+[`microbenchmark`](https://cran.r-project.org/web/packages/microbenchmark/index.html). Por ejemplo mediante los comandos:
 
 
 ``` r
-pkgs <- c('dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr', 
-          'naniar', 'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr')
+pkgs <- c('dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr',
+          'naniar', 'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr',
+          'GGally', 'caret', 'MASS', 'class', 'e1071', 'mpae', 'microbenchmark')
 # install.packages(pkgs, dependencies=TRUE)
 install.packages(setdiff(pkgs, installed.packages()[,'Package']), dependencies = TRUE)
 ```
@@ -74,8 +89,7 @@ Para generar el libro (compilar) se recomendaría consultar el libro de
 ["Escritura de libros con
 bookdown"](https://rubenfcasal.github.io/bookdown_intro) en castellano.
 
-
-\includegraphics[width=1.22in]{images/by-nc-nd-88x31} 
+<img src="images/by-nc-nd-88x31.png" alt="" width="44" />
 
 Este obra está bajo una licencia de [Creative Commons
 Reconocimiento-NoComercial-SinObraDerivada 4.0

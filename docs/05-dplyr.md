@@ -1,19 +1,19 @@
 # Manipulación de datos con tidyverse {#tidyverse}
 
-Este la primera parte de este capítulo (Sección \@ref(introTidyverse)), se pretende realizar una breve introducción al *ecosistema* [**Tidyverse**](https://dplyr.tidyverse.org), una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente.
+En la primera parte de este capítulo (Sección \@ref(introTidyverse)), se pretende realizar una breve introducción al *ecosistema* [**Tidyverse**](https://dplyr.tidyverse.org), una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente, y en particular al paquete `dplyr`, que resuelve las mismas tareas de lectura, filtrado, transformación y combinación de tablas vistas en el Capítulo \@ref(manipR), pero con una sintaxis más uniforme.
 
 La referencia recomendada para usuarios de R que deseen iniciarse en el uso de estos paquetes es: 
 
 Wickham, H., y Grolemund, G. (2016). *[R for data science: import, tidy, transform, visualize, and model data](http://r4ds.had.co.nz)*, [online-castellano](https://es.r4ds.hadley.nz), [O'Reilly](http://shop.oreilly.com/product/0636920034407.do).
 
-En las consecutivas secciones se presentan las alternativas *tidyverse* a la lectura, manipulacióin y escritura de datos tratadas en Capítulo \@ref(manipR).
+En las consecutivas secciones se presentan las alternativas *tidyverse* a la lectura, manipulación y escritura de datos tratadas en Capítulo \@ref(manipR).
 
 Más adelante, en la Sección \@ref(dplyr) se realiza una breve introducción al paquete  [`dplyr`](https://dplyr.tidyverse.org) y en la Sección \@ref(tidyr-pkg) se comentan algunas de las utilidades del paquete [`tidyr`](https://tidyr.tidyverse.org) que pueden resultar de interés^[Otra alternativa (más rápida) es [`data.table`](https://rdatatable.gitlab.io/data.table) pero en versiones recientes ya se puede emplear desde `dplyr`, como se comenta más adelante.]. Finalmente, las secciones \@ref(dplyr-join) y \@ref(dbplyr) se muestra las utilizades para tratar tablas y bases de datos respectivamente.
 
 
 
-## Introducción al ecosistema tidyverse {#introTidyverse}
 
+## Introducción al ecosistema tidyverse {#introTidyverse}
 
 El paquete [`tidyverse`](https://tidyverse.tidyverse.org) está diseñado para facilitar la instalación y carga de los paquetes principales de la colección tidyverse con un solo comando.
 Al instalar este paquete se instalan paquetes que forman el denominado núcleo de tidyverse (se cargan con `library(tidyverse)`):
@@ -29,18 +29,18 @@ Al instalar este paquete se instalan paquetes que forman el denominado núcleo d
 - [`lubridate`](https://github.com/tidyverse/lubridate): manipulación de fechas y horas.
 
 y un conjunto de paquetes recomendados:  
-- [`feather`](https://github.com/wesm/feather): almacenamiento efeciente de data frames.
+- [`feather`](https://github.com/wesm/feather): almacenamiento eficiente de data frames.
 - [`haven`](https://github.com/tidyverse/haven): lectura y escritura de datos de SPSS, Stata y SAS en R 
-- [`modelr`](https://github.com/tidyverse/modelr):  crear pipelines^[serie de pasos conectados (tuberías) que procesan datos y los transforman en un formato deseado para su análisis o modelado] elegantes al modelar datos en R (obsoleto). [`broom`](https://github.com/tidymodels/broom)...): resumenes estadísticos en formato Tidy
+- [`modelr`](https://github.com/tidyverse/modelr): crear pipelines^[serie de pasos conectados (tuberías) que procesan datos y los transforman en un formato deseado para su análisis o modelado] elegantes al modelar datos en R (obsoleto).
+- [`broom`](https://github.com/tidymodels/broom): resúmenes estadísticos en formato Tidy.
 
 Otros paquetes de interés son:
-
 - [`readxl`](https://github.com/tidyverse/readxl): lectura de archivos Excel.
-- [`readxl`](https://github.com/ropensci/writexl): exportación a Excel.
+- [`writexl`](https://github.com/ropensci/writexl): exportación a Excel.
 - [`hms`](https://github.com/tidyverse/hms): manipulación de medidas de tiempo.
-- [`httr`](https://github.com/r-lib/httr): interactuar con web APIs.
+- [`httr2`](https://httr2.r-lib.org): interactuar con web APIs^[Sustituye a [`httr`](https://github.com/r-lib/httr), que se mantiene pero ya no recibe nuevas funcionalidades.].
 - [`jsonlite`](https://github.com/jeroen/jsonlite): Lectura y escritura de archivos JSON (*JavaScript Object Notation*).
-- [`rvest`](https://github.com/tidyverse/rvest): extraación de datos (estructurados) de páginas web *web scraping*.
+- [`rvest`](https://github.com/tidyverse/rvest): extracción de datos (estructurados) de páginas web *web scraping*.
 - [`xml2`](https://github.com/r-lib/xml2): lectura y escritura de archivos XML.
 - [`vroom`](https://github.com/tidyverse/vroom): lectura eficiente de archivos delimitados
 
@@ -50,14 +50,21 @@ Otros paquetes de interés son:
 library(tidyverse)
 ```
 
+Al cargar `tidyverse` es habitual que aparezcan avisos de *conflictos*: algunas
+funciones de estos paquetes tienen el mismo nombre que funciones de R base o
+de otros paquetes ya cargados (por ejemplo, `dplyr::filter()` enmascara a
+`stats::filter()`). Si esto ocurre, la función del paquete cargado en último
+lugar es la que se usará por defecto; para evitar ambigüedad se puede
+especificar explícitamente el paquete, p.&nbsp;ej. `stats::filter()`.
+
 También hay paquetes "asociados":
 
 - [`rlang`](https://rlang.r-lib.org): herramientas para programación funcional.
 - [`tidyselect`](https://tidyselect.r-lib.org) Sintaxis seleccionar variables (columnas).
 - [`tune`](https://tune.tidymodels.org/): hiperparámetros en modelos estadísticos
-- [`tidymodels`](https://tidymodels.tidymodels.org)  meta-paquete para todo el  proceso de modelado.
+- [`tidymodels`](https://tidymodels.tidymodels.org)  meta-paquete para todo el  proceso de modelado (juega para el modelado predictivo el mismo papel que `tidyverts`/`fable` para las series temporales, ver más abajo).
 
-Muchos otros paquetes están adaptando este estilo, por ejemplo, el meta paquete [`tidyverts`](https://tidyverts.org/)) para el análisis de series temporales (*time series*, TS), que incluye, por ejemplo:
+Muchos otros paquetes están adaptando este estilo, por ejemplo, el meta paquete [`tidyverts`](https://tidyverts.org/) para el análisis de series temporales (*time series*, TS), que incluye, por ejemplo:
 
 - [`tsibble`](https://tsibble.tidyverts.org/) (infra)estructuras de datos. 
 - [`fable`](https://fable.tidyverts.org/) predicción (*forecasting*)^[El libro [**Forecasting: Principles and Practice**](https://otexts.com/fpp3/) donde se describe su uso, y el paquete [`fpp3`](https://github.com/robjhyndman/fpp3package) asociado, también siguen una filosofía *tidy*.]. 
@@ -99,8 +106,7 @@ Otra alternativa sería:
 
 Chang, W. (2023). *[The R Graphics Cookbook](https://r-graphics.org)*. [O’Reilly](https://www.amazon.com/dp/1491978600). 
 
-En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añadir componentes de los gráficos (ver , en *Tidyverse* se emplea un operador de redirección para añadir operaciones.
-
+En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añadir componentes de los gráficos; en *Tidyverse* se emplea un operador de redirección (ver Sección \@ref(pipe)) para añadir operaciones.
 
 ### Operador *pipe* (redirección) {#pipe}
 
@@ -131,7 +137,7 @@ empleados |>
 ```
 ##             catlab      salario           salini         tiempemp    
 ##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
-##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23062   1st Qu.:73.00  
+##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
 ##  Directivo     :84   Median : 60500   Median :28740   Median :81.00  
 ##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
 ##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
@@ -162,14 +168,12 @@ empleados %>%
   boxplot(salario ~ sexo*catlab, data = .)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{05-dplyr_files/figure-latex/unnamed-chunk-3-1} \end{center}
+<img src="05-dplyr_files/figure-html/unnamed-chunk-3-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 
 ### Lectura y escritura de archivos de texto {#readr}
 
-En esta seccón la alternativa *tidyverse*, a la tradicional, vista en las secciones \@ref(cap2-texto) y \@ref(cap2-exporta) del Capítulo 2.
+En esta sección se presenta la alternativa *tidyverse* a la tradicional, vista en las secciones \@ref(cap2-texto) y \@ref(cap2-exporta) del Capítulo \@ref(manipR).
 
 Para leer archivos de texto en distintos formatos se puede emplear el paquete [`readr`](https://readr.tidyverse.org), disponible en la colección de paquetes [`tidyverse`](https://tidyverse.tidyverse.org). Para más información, se recomienda consultar el [Capítulo 11](https://r4ds.had.co.nz/data-import.html) del libro [*R for Data Science*](http://r4ds.had.co.nz) [@wickham2023r]  o la versión en español "[*R Para Ciencia de Datos*](https://es.r4ds.hadley.nz/)".
 
@@ -232,7 +236,7 @@ Con el ecosistema *tidyverse*, también con el paquete [`readr`](https://readr.t
 ``` r
 write_csv2(datos, file = "datos.csv")
 ```
-y como opción más rápida, se podría usar `fwrite()` del paqute `data.table`:
+y como opción más rápida, se podría usar `fwrite()` del paquete `data.table`:
 
 
 ``` r
@@ -270,12 +274,12 @@ La principal ventaja de [`dplyr`](https://dplyr.tidyverse.org/index.html) es que
 - grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema [Hadoop](http://hadoop.apache.org/)/[Spark](https://spark.apache.org/)): extensión [`sparklyr`](https://spark.rstudio.com) (ver menú de RStudio *Help > Cheat Sheets > Interfacing Spark with sparklyr*).
 
 
-El paquete dplyr permite sustituir operaciones con funciones base de R (como [`subset`](NA), [`split`](NA), [`apply`](NA), [`sapply`](NA), [`lapply`](NA), [`tapply`](NA), [`aggregate`](NA)...) por una "gramática" más sencilla para la manipulación de datos.
+El paquete dplyr permite sustituir operaciones con funciones base de R (como [`subset`](https://www.rdocumentation.org/search?q=subset), [`split`](https://www.rdocumentation.org/search?q=split), [`apply`](https://www.rdocumentation.org/search?q=apply), [`sapply`](https://www.rdocumentation.org/search?q=sapply), [`lapply`](https://www.rdocumentation.org/search?q=lapply), [`tapply`](https://www.rdocumentation.org/search?q=tapply), [`aggregate`](https://www.rdocumentation.org/search?q=aggregate)...) por una "gramática" más sencilla para la manipulación de datos.
 En lugar de operar sobre vectores como la mayoría de las funciones base,
 opera sobre conjuntos de datos (de forma que es compatible con el operador `%>%`).
 Los principales "verbos" (funciones) son:
 
-- [`select()`](https://dplyr.tidyverse.org/reference/select.html): seleccionar variables (ver también [`rename`](https://dplyr.tidyverse.org/reference/rename.html), [`relocate`](https://dplyr.tidyverse.org/reference/rename.html), [`pull`](https://dplyr.tidyverse.org/reference/rename.html)).
+- [`select()`](https://dplyr.tidyverse.org/reference/select.html): seleccionar variables (ver también [`rename`](https://dplyr.tidyverse.org/reference/rename.html), [`relocate`](https://dplyr.tidyverse.org/reference/relocate.html), [`pull`](https://dplyr.tidyverse.org/reference/pull.html)).
 
 - [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html): crear variables (ver también `transmute()`).
 
@@ -424,7 +428,7 @@ emplea2 %>% filter(sexo == "Mujer", minoria == "Sí") %>% head()
 
 ```
 ## [1] id       sexo     minoria  tiempemp salini   salario 
-## <0 rows> (or 0-length row.names)
+## <0 rows> (o 0- extensión row.names)
 ```
 
 Podemos **reordenar casos con [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)**:
@@ -495,13 +499,13 @@ empleados %>% group_by(sexo, minoria) %>%
 ```
 
 ```
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre "No"     44475.   194
-## 2 Hombre "S\xed"  32246.    64
-## 3 Mujer  "No"     26707.   176
-## 4 Mujer  "S\xed"  23062.    40
+## 1 Hombre No       44475.   194
+## 2 Hombre S�       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  S�       23062.    40
 ```
 
 ``` r
@@ -510,13 +514,13 @@ empleados %>% group_by(sexo, minoria) %>%
 ```
 
 ```
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ##   sexo   minoria sal.med     n
 ##   <fct>  <fct>     <dbl> <int>
-## 1 Hombre "No"     44475.   194
-## 2 Hombre "S\xed"  32246.    64
-## 3 Mujer  "No"     26707.   176
-## 4 Mujer  "S\xed"  23062.    40
+## 1 Hombre No       44475.   194
+## 2 Hombre S�       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  S�       23062.    40
 ```
 
 ``` r
@@ -531,7 +535,7 @@ Para más detalles ver [Per-operation grouping with .by/by](https://dplyr.tidyve
 
 ### Datos faltantes {#tidyr-missing}
 
-Continuamos con el ejemplo de la Sección \@ref{missing}. 
+Continuamos con el ejemplo de la Sección \@ref(missing). 
 *tidyverse* dispone de muchas herramientas para el tratamiento de los datos faltantes.
 
 
@@ -551,7 +555,7 @@ bind_shadow(airquality)
 ```
 
 ```
-## # A tibble: 153 x 12
+## # A tibble: 153 × 12
 ##    Ozone Solar.R  Wind  Temp Month   Day Ozone_NA Solar.R_NA Wind_NA Temp_NA
 ##    <int>   <int> <dbl> <int> <int> <int> <fct>    <fct>      <fct>   <fct>  
 ##  1    41     190   7.4    67     5     1 !NA      !NA        !NA     !NA    
@@ -564,8 +568,8 @@ bind_shadow(airquality)
 ##  8    19      99  13.8    59     5     8 !NA      !NA        !NA     !NA    
 ##  9     8      19  20.1    61     5     9 !NA      !NA        !NA     !NA    
 ## 10    NA     194   8.6    69     5    10 NA       !NA        !NA     !NA    
-## # i 143 more rows
-## # i 2 more variables: Month_NA <fct>, Day_NA <fct>
+## # ℹ 143 more rows
+## # ℹ 2 more variables: Month_NA <fct>, Day_NA <fct>
 ```
 
 ``` r
@@ -580,7 +584,7 @@ miss_var_table(airquality)
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   n_miss_in_var n_vars pct_vars
 ##           <int>  <int>    <dbl>
 ## 1             0      4     66.7
@@ -600,9 +604,7 @@ prop_miss_case(airquality)
 gg_miss_upset(airquality) 
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{05-dplyr_files/figure-latex/unnamed-chunk-23-1} \end{center}
+<img src="05-dplyr_files/figure-html/unnamed-chunk-23-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Distribución conjunta de los valores faltantes para la radiación solar y ozono:
 
@@ -615,9 +617,7 @@ ggplot(airquality,
   geom_miss_point()
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{05-dplyr_files/figure-latex/unnamed-chunk-24-1} \end{center}
+<img src="05-dplyr_files/figure-html/unnamed-chunk-24-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Distribución mensual de los valores faltantes:
 
@@ -626,9 +626,7 @@ Distribución mensual de los valores faltantes:
 gg_miss_var(airquality, facet = Month)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{05-dplyr_files/figure-latex/unnamed-chunk-25-1} \end{center}
+<img src="05-dplyr_files/figure-html/unnamed-chunk-25-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 <!--
 library(dplyr)
@@ -653,6 +651,42 @@ Make naniar work with big data tools like sparklyr, and sparklingwater.
 Provide tools for assessing goodness of fit for classical approaches of MCAR, MAR, and MNAR (graphical inference from nullabor package)
 -->
 
+Antes de decidir cómo tratar los valores faltantes conviene tener en cuenta por qué faltan, ya que no todos los mecanismos son igual de "inofensivos":
+
+- **MCAR** (*missing completely at random*): la probabilidad de que falte un valor no depende ni de los datos observados ni de los no observados (p. ej. un fallo aleatorio del sensor). Es el caso más favorable.
+- **MAR** (*missing at random*): la probabilidad de que falte depende de otras variables observadas, pero no del propio valor ausente (p. ej. un sensor que falla más en ciertos meses).
+- **MNAR** (*missing not at random*): la probabilidad de que falte depende del propio valor no observado (p. ej. valores muy altos de un contaminante que saturan y estropean el sensor). Es el caso más problemático: ignorar estos datos puede sesgar el análisis.
+
+Una vez localizados y entendidos los valores faltantes, una opción sencilla es la **imputación**, es decir, sustituirlos por un valor "razonable" en lugar de eliminar la fila. Con [`replace_na()`](https://tidyr.tidyverse.org/reference/replace_na.html) se puede imputar, por ejemplo, con la media de cada variable:
+
+
+``` r
+airquality %>%
+  mutate(
+    Ozone = tidyr::replace_na(as.numeric(Ozone), mean(Ozone, na.rm = TRUE)),
+    Solar.R = tidyr::replace_na(as.numeric(Solar.R), mean(Solar.R, na.rm = TRUE))
+  ) %>%
+  summary()
+```
+
+```
+##      Ozone           Solar.R           Wind             Temp      
+##  Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+##  1st Qu.: 21.00   1st Qu.:120.0   1st Qu.: 7.400   1st Qu.:72.00  
+##  Median : 42.13   Median :194.0   Median : 9.700   Median :79.00  
+##  Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+##  3rd Qu.: 46.00   3rd Qu.:256.0   3rd Qu.:11.500   3rd Qu.:85.00  
+##  Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+##      Month            Day      
+##  Min.   :5.000   Min.   : 1.0  
+##  1st Qu.:6.000   1st Qu.: 8.0  
+##  Median :7.000   Median :16.0  
+##  Mean   :6.993   Mean   :15.8  
+##  3rd Qu.:8.000   3rd Qu.:23.0  
+##  Max.   :9.000   Max.   :31.0
+```
+
+Esta imputación simple (con la media, la mediana o el último valor válido, [`fill()`](https://tidyr.tidyverse.org/reference/fill.html)) es rápida pero **reduce artificialmente la variabilidad** de los datos y puede introducir sesgo si el mecanismo no es MCAR. Para conjuntos de datos más exigentes existen paquetes especializados en imputación múltiple, como [`mice`](https://cran.r-project.org/package=mice) o [`missForest`](https://cran.r-project.org/package=missForest), que quedan fuera del alcance de esta introducción.
 
 ## Herramientas tidyr {#tidyr-pkg}
 
@@ -745,7 +779,7 @@ src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TXD/tgdbook-guillermo/data/chinook.db]
+## src:  sqlite 3.53.3 [C:\Users\Manuel Oviedo\OneDrive - Universidade da Coruña\MTE\TXD\2026_2027\tgdbook-master\data\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
@@ -758,22 +792,22 @@ invoices
 ```
 
 ```
-## # Source:   table<`invoices`> [?? x 9]
-## # Database: sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TXD/tgdbook-guillermo/data/chinook.db]
+## # A query:  ?? x 9
+## # Database: sqlite 3.53.3 [C:\Users\Manuel Oviedo\OneDrive - Universidade da Coruña\MTE\TXD\2026_2027\tgdbook-master\data\chinook.db]
 ##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
 ##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
-##  1         1          2 2009-01-01 00:0~ Theodor-Heuss~ Stuttgart   <NA>        
-##  2         2          4 2009-01-02 00:0~ Ullevålsveien~ Oslo        <NA>        
-##  3         3          8 2009-01-03 00:0~ Grétrystraat ~ Brussels    <NA>        
-##  4         4         14 2009-01-06 00:0~ 8210 111 ST NW Edmonton    AB          
-##  5         5         23 2009-01-11 00:0~ 69 Salem Stre~ Boston      MA          
-##  6         6         37 2009-01-19 00:0~ Berger Straße~ Frankfurt   <NA>        
-##  7         7         38 2009-02-01 00:0~ Barbarossastr~ Berlin      <NA>        
-##  8         8         40 2009-02-01 00:0~ 8, Rue Hanovre Paris       <NA>        
-##  9         9         42 2009-02-02 00:0~ 9, Place Loui~ Bordeaux    <NA>        
-## 10        10         46 2009-02-03 00:0~ 3 Chatham Str~ Dublin      Dublin      
-## # i more rows
-## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+##  1         1          2 2009-01-01 00:0… Theodor-Heuss… Stuttgart   <NA>        
+##  2         2          4 2009-01-02 00:0… Ullevålsveien… Oslo        <NA>        
+##  3         3          8 2009-01-03 00:0… Grétrystraat … Brussels    <NA>        
+##  4         4         14 2009-01-06 00:0… 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11 00:0… 69 Salem Stre… Boston      MA          
+##  6         6         37 2009-01-19 00:0… Berger Straße… Frankfurt   <NA>        
+##  7         7         38 2009-02-01 00:0… Barbarossastr… Berlin      <NA>        
+##  8         8         40 2009-02-01 00:0… 8, Rue Hanovre Paris       <NA>        
+##  9         9         42 2009-02-02 00:0… 9, Place Loui… Bordeaux    <NA>        
+## 10        10         46 2009-02-03 00:0… 3 Chatham Str… Dublin      Dublin      
+## # ℹ more rows
+## # ℹ 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
 ## #   Total <dbl>
 ```
 
@@ -795,7 +829,7 @@ show_query(head(invoices))
 
 ```
 ## <SQL>
-## SELECT `invoices`.*
+## SELECT *
 ## FROM `invoices`
 ## LIMIT 6
 ```
@@ -817,16 +851,16 @@ invoices %>% head %>% collect
 ```
 
 ```
-## # A tibble: 6 x 9
+## # A tibble: 6 × 9
 ##   InvoiceId CustomerId InvoiceDate       BillingAddress BillingCity BillingState
 ##       <int>      <int> <chr>             <chr>          <chr>       <chr>       
-## 1         1          2 2009-01-01 00:00~ Theodor-Heuss~ Stuttgart   <NA>        
-## 2         2          4 2009-01-02 00:00~ Ullevålsveien~ Oslo        <NA>        
-## 3         3          8 2009-01-03 00:00~ Grétrystraat ~ Brussels    <NA>        
-## 4         4         14 2009-01-06 00:00~ 8210 111 ST NW Edmonton    AB          
-## 5         5         23 2009-01-11 00:00~ 69 Salem Stre~ Boston      MA          
-## 6         6         37 2009-01-19 00:00~ Berger Straße~ Frankfurt   <NA>        
-## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## 1         1          2 2009-01-01 00:00… Theodor-Heuss… Stuttgart   <NA>        
+## 2         2          4 2009-01-02 00:00… Ullevålsveien… Oslo        <NA>        
+## 3         3          8 2009-01-03 00:00… Grétrystraat … Brussels    <NA>        
+## 4         4         14 2009-01-06 00:00… 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11 00:00… 69 Salem Stre… Boston      MA          
+## 6         6         37 2009-01-19 00:00… Berger Straße… Frankfurt   <NA>        
+## # ℹ 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
 ## #   Total <dbl>
 ```
 
@@ -835,8 +869,8 @@ invoices %>% count # número de filas
 ```
 
 ```
-## # Source:   SQL [?? x 1]
-## # Database: sqlite 3.47.1 [/home/diego/UDC/Teaching/MTE/TXD/tgdbook-guillermo/data/chinook.db]
+## # A query:  ?? x 1
+## # Database: sqlite 3.53.3 [C:\Users\Manuel Oviedo\OneDrive - Universidade da Coruña\MTE\TXD\2026_2027\tgdbook-master\data\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -854,7 +888,7 @@ res  %>% collect
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##     min   max   med
 ##   <dbl> <dbl> <dbl>
 ## 1  0.99  25.9  5.65
@@ -871,7 +905,7 @@ res  %>% collect
 ```
 
 ```
-## # A tibble: 24 x 3
+## # A tibble: 24 × 3
 ##    BillingCountry     n total
 ##    <chr>          <int> <dbl>
 ##  1 Argentina          7  37.6
@@ -884,7 +918,7 @@ res  %>% collect
 ##  8 Czech Republic    14  90.2
 ##  9 Denmark            7  37.6
 ## 10 Finland            7  41.6
-## # i 14 more rows
+## # ℹ 14 more rows
 ```
 
 4. Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
@@ -922,7 +956,7 @@ res  %>% collect
 ```
 
 ```
-## # A tibble: 412 x 4
+## # A tibble: 412 × 4
 ##    FirstName LastName  Country Total
 ##    <chr>     <chr>     <chr>   <dbl>
 ##  1 Luís      Gonçalves Brazil   3.98
@@ -935,7 +969,7 @@ res  %>% collect
 ##  8 Leonie    Köhler    Germany  1.98
 ##  9 Leonie    Köhler    Germany 13.9 
 ## 10 Leonie    Köhler    Germany  8.91
-## # i 402 more rows
+## # ℹ 402 more rows
 ```
 
 5. Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
@@ -959,7 +993,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ```
     
     ```
-    ## # A tibble: 10 x 5
+    ## # A tibble: 10 × 5
     ##    CustomerId FirstName LastName   Country        total
     ##         <int> <chr>     <chr>      <chr>          <dbl>
     ##  1          6 Helena    Holý       Czech Republic  49.6
@@ -986,7 +1020,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ```
     
     ```
-    ## # A tibble: 25 x 3
+    ## # A tibble: 25 × 3
     ##    Name.y                 n   freq
     ##    <chr>              <int>  <dbl>
     ##  1 Rock                1297 0.370 
@@ -999,7 +1033,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ##  8 Classical             74 0.0211
     ##  9 Drama                 64 0.0183
     ## 10 R&B/Soul              61 0.0174
-    ## # i 15 more rows
+    ## # ℹ 15 more rows
     ```
 
 8.  Listar los 10 artistas con mayor número de canciones 
@@ -1013,7 +1047,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ```
     
     ```
-    ## # A tibble: 204 x 2
+    ## # A tibble: 204 × 2
     ##    Name.y              n
     ##    <chr>           <int>
     ##  1 Iron Maiden       213
@@ -1026,13 +1060,159 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
     ##  8 Lenny Kravitz      57
     ##  9 Various Artists    56
     ## 10 The Office         53
-    ## # i 194 more rows
+    ## # ℹ 194 more rows
     ```
 
 Al finalizar hay que desconectar la base de datos:
 
 
 ``` r
-DBI::dbDisconnect(chinook)            
+DBI::dbDisconnect(chinook)
 ```
+
+## Eficiencia y desfases con dplyr {#eficiencia-tidyverse}
+
+En la Sección \@ref(eficiencia-manipR) se calculó el desfase (*lag*/*lead*) de un vector desplazándolo "a mano" en R base. `dplyr` ofrece las funciones [`lag()`](https://dplyr.tidyverse.org/reference/lead-lag.html) y [`lead()`](https://dplyr.tidyverse.org/reference/lead-lag.html), que hacen lo mismo con una sintaxis más legible (y son especialmente útiles dentro de `mutate()`, por ejemplo para calcular incrementos entre observaciones consecutivas):
+
+
+``` r
+a <- 1:11
+dplyr::lag(a)
+```
+
+```
+##  [1] NA  1  2  3  4  5  6  7  8  9 10
+```
+
+``` r
+dplyr::lead(a)
+```
+
+```
+##  [1]  2  3  4  5  6  7  8  9 10 11 NA
+```
+
+¿Tiene esta comodidad algún coste en rendimiento? Comparamos con [`microbenchmark`](https://github.com/joshuaulrich/microbenchmark/) frente al desplazamiento manual de la Sección \@ref(eficiencia-manipR):
+
+
+``` r
+library(microbenchmark)
+x <- rnorm(1e6)
+microbenchmark(
+  base_r    = c(NA, x[-length(x)]),
+  dplyr_lag = dplyr::lag(x),
+  times = 20
+)
+```
+
+```
+## Unit: milliseconds
+##       expr    min      lq     mean median       uq      max neval cld
+##     base_r 4.3350 5.43185 22.04644 8.8238 12.62165 271.1181    20   a
+##  dplyr_lag 3.8369 4.44960 23.06593 8.8857 12.56055 298.7548    20   a
+```
+
+`lag()`/`lead()` están vectorizadas internamente, por lo que su rendimiento es equiparable al del código base equivalente: la sintaxis más uniforme de `dplyr` no implica aquí una penalización relevante.
+
+## Resumen: dplyr/tidyr y R base {#resumen-tidyverse}
+
+A modo de referencia rápida, la siguiente tabla recoge las tareas más
+habituales de manipulación de datos vistas en este capítulo, junto con su
+equivalente en R base (Capítulo \@ref(manipR)):
+
+| Tarea                     | dplyr / tidyr                          | R base                              |
+|---------------------------|-----------------------------------------|--------------------------------------|
+| Leer texto/CSV            | `read_csv2()`, `read_delim()` (readr)   | `read.table()`, `read.delim()`       |
+| Leer Excel                | `read_excel()` (readxl)                 | `openxlsx::read.xlsx()`              |
+| Escribir texto/CSV        | `write_csv2()` (readr)                  | `write.table()`                      |
+| Seleccionar columnas      | `select(df, a, b)`                      | `df[, c("a","b")]`                   |
+| Renombrar columnas        | `rename(df, x = antiguo)`               | `names(df)[i] <- "x"`                |
+| Filtrar filas             | `filter(df, cond)`                      | `subset(df, cond)`, `df[cond, ]`     |
+| Ordenar filas             | `arrange(df, x)`                        | `df[order(df$x), ]`                  |
+| Crear/transformar variable| `mutate(df, z = expr)`                  | `df$z <- expr`                       |
+| Recodificar/categorizar   | `mutate(df, z = case_when(...))`        | `cut()`, `ifelse()`                  |
+| Resumir                   | `summarise(df, ...)`                    | `aggregate()`, `tapply()`            |
+| Agrupar y resumir         | `group_by(df, g) %>% summarise(...)`    | `aggregate(y ~ g, df, FUN)`          |
+| Unir tablas (*join*)      | `inner_join()`, `left_join()`, ...      | `merge()`                            |
+| Filtrar por coincidencia  | `semi_join(df1, df2)`                   | `df1[df1$x %in% df2$x, ]`            |
+| Encadenar operaciones     | `%>%` / `|>`                            | llamadas anidadas                    |
+
+## Ejercicios {#ejercicios-tidyverse}
+
+Los siguientes ejercicios son los mismos que los planteados al final del
+Capítulo \@ref(manipR) (Sección \@ref(ejercicios-manipR)), para resolverlos
+ahora empleando `dplyr`/`tidyr` en lugar de las funciones de R base. Los
+enunciados se dan sin solución; las soluciones se distribuyen aparte.
+
+
+``` r
+load("data/empleados.RData")
+attr(empleados, "variable.labels") <- NULL
+```
+
+### Ejercicio 1: incremento salarial (`empleados`)
+
+A partir de los datos de `empleados` (Sección \@ref(readr)), calcula para
+cada empleado el incremento salarial relativo respecto a su salario inicial:
+`incremento = salario / salini - 1`. Muestra los 5 empleados con mayor
+incremento porcentual, junto con su categoría laboral (`catlab`) y su
+antigüedad en meses (`tiempemp`).
+
+Para los siguientes ejercicios se empleará el conjunto de datos `starwars`
+(incluido en el propio paquete `dplyr`):
+
+
+``` r
+data(starwars, package = "dplyr")
+```
+
+Para el ejercicio de unión de tablas se empleará además la siguiente tabla,
+creada manualmente, con información de algunos planetas:
+
+
+``` r
+planetas <- tibble::tibble(
+  homeworld = c("Tatooine", "Naboo", "Alderaan", "Coruscant", "Kamino",
+                "Corellia", "Kashyyyk", "Ryloth", "Mirial", "Hoth"),
+  region    = c("Outer Rim", "Mid Rim", "Core Worlds", "Core Worlds", "Outer Rim",
+                "Core Worlds", "Mid Rim", "Outer Rim", "Outer Rim", "Outer Rim"),
+  clima     = c("Desértico", "Templado", "Templado", "Urbano", "Oceánico",
+                "Urbano", "Boscoso", "Húmedo", "Templado", "Helado")
+)
+```
+
+### Ejercicio 2: Filtrado y selección (`starwars`)
+
+Obtén el nombre, la altura, el peso y el planeta natal (`homeworld`) de los
+personajes de especie (`species`) `"Human"` con una altura (`height`)
+superior a 180 cm.
+
+### Ejercicio 3: Creación de una variable y categorización
+
+Calcula el índice de masa corporal (IMC = peso / altura^2^, con la altura en
+metros) de cada personaje, descartando aquellos con valores faltantes en
+peso o altura. A continuación, categoriza el IMC empleando los umbrales
+estándar de la OMS: menos de 18.5 "Bajo peso", de 18.5 a 25 "Normal", de 25
+a 30 "Sobrepeso" y 30 o más "Obesidad". Indica cuántos personajes hay en
+cada categoría.
+
+### Ejercicio 4: Resumen y agrupación
+
+Calcula la altura media y el número de personajes por especie, considerando
+únicamente las especies con al menos 3 personajes, y ordena el resultado de
+mayor a menor altura media.
+
+### Ejercicio 5: Unión de tablas
+
+Une `starwars` con `planetas` por la columna `homeworld` y muestra, para cada
+personaje, su nombre, `homeworld`, región y clima. ¿Qué ocurre con los
+personajes cuyo planeta no aparece en `planetas` (o cuyo `homeworld` es
+`NA`)? ¿Y con `"Hoth"`, que está en `planetas` pero no es el planeta natal de
+ningún personaje?
+
+### Ejercicio 6 (opcional): columnas-lista
+
+`starwars` incluye columnas que son listas, como `films` (las películas en
+las que aparece cada personaje). Calcula en cuántas películas aparece cada
+personaje y muestra los que más aparecen.
 

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>2.4 Eficiencia en R: preasignación, vectorización y desfases | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="2.4 Eficiencia en R: preasignación, vectorización y desfases | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="2.4 Eficiencia en R: preasignación, vectorización y desfases | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="contenidos.html"/>
-<link rel="next" href="fuentes-de-información.html"/>
+<link rel="prev" href="ejemplo-wos-data.html"/>
+<link rel="next" href="resumen-manipR.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -388,85 +388,78 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="planificación-tentativa" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Planificación (tentativa)<a href="planificación-tentativa.html#planificaci%C3%B3n-tentativa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los
-conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: <a href="https://forms.gle/D5bhiLLBUFuh6k1n8" class="uri">https://forms.gle/D5bhiLLBUFuh6k1n8</a></p>
-<ul>
-<li><p>Semana 1 (20/10) : 21/10 - Presentación</p></li>
-<li><p>Semana 2 (27/10) : 28 y 30/10 - Tema 1 - SQL</p></li>
-<li><p>Semana 3 (03/11) : 04 y 06/11 - Seminario dplyr</p></li>
-<li><p>Semana 4 (10/11) : 11, 13 y 14/11 - Tema 1 - SQL</p></li>
-<li><p>Semana 5 (17/11) : 18, 20/11 - Tema 1 - SQL. + 21/11 - Seminario texto proc. (CSV, excel, Json) y open data</p></li>
-<li><p>Semana 6 (24/11) : 25/11 - Tema 2 NOSQL + 27 y 28/11 - Tema 3 Big Data</p></li>
-<li><p>Semana 7 (1/12) : 2, 4 y 5/12 Tema 3 Big Data.</p></li>
-<li><p>Semana 8 (8/12) : 9 y 11/12 - Intro a AE + 12/12 Tutoría práctica ML.</p></li>
-<li><p>Semana 9 (15/12) : 16, 18 y 19/12 - Clases de paso / tutorías de cara a examen.</p></li>
-</ul>
-<!-- Curso 2019-2020
-
-- Clase 1 (12/9-R): Seminario R (Manipulación de datos con el paquete base de R)
-
-- Clase 2 (19/9): Tema 1: Conceptos de bases de datos
-
-- Clase 3 (26/9): Tema 1: Introducción a SQL
-
-- Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
-
-- Clase 5 (10/10): Jornada usuarios R Galicia (cubre objetivos de Seminario aplicaciones Big Data en investigación e industria)
-
-- Clase 6 (17/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
-
-- Clase 7 (24/10): Tema 2: Introducción a NoSQL
-
-- Clase 8 (31/10):  Tema 1: Continuación de ejercicios prácticos SQL
-
-- Clase 9 (7/11):  Tema 2: Ejercicios prácticos de NoSQL
-
-- Clase 10 (14/11):   Seminario visualización con power BI
-
-- Clase 11 (21/11):  Tema 3: Ecosistema Big Data (Hadoop, Spark)
-
-- Clase 12 (28/11):  Tecnologías Big Data (Rspark/sparklyr) + Seminario machine learning CESGA/localhost
-
-- Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos son sparklyr
-
-- Clase 14 (12/12): Tema 3: Prácticas de Aprendizaje Estadístico/Automático, Data Mining con rattle
-
-- Clase 15 (19/12-R): Seminario conectividad dplyr a BBDD
-
--->
-<div id="evaluación" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Evaluación<a href="planificación-tentativa.html#evaluaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p><strong>Examen</strong> (60%): El examen de la materia evaluará los siguientes aspectos:
-Conceptos de la materia: Dominio de los conocimientos teóricos y operativos de la materia.
-Asimilación práctica de materia: Asimilación y comprensión de los conocimientos teóricos y operativos de la materia.</p></li>
-<li><p><strong>Prácticas de laboratorio</strong> (40%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.</p></li>
-</ul>
-<!-- Curso 2019-2020
-#### Observaciones sobre la evaluación:
-
-* Las prácticas de laboratorio se realizarán de forma individual. El plazo para realizar las 3 prácticas será indicado en la presentación de la práctica. El plazo para la entrega de los trabajos tutelados es el último día de clase de la asignatura.
-
-* El estudiante que quiera realizar un trabajo tutelado ha de hablar (o mediante correo electrónico) con los profesores para validar y confirmar el tema y alcance del trabajo tutelado.
-
-* Para poder aprobar la asignatura en la primera oportunidad será necesario obtener como mínimo el 30% de la nota máxima de la suma de las prácticas de laboratorio y trabajos tutelados e, igualmente, el 30% de la nota máxima final de la Prueba mixta (examen), y tener una nota total (prácticas más trabajos tutelados más prueba mixta) igual o superior al 50% de la nota máxima.
-
-* En la segunda oportunidad solamente se podrá recuperar la nota del examen. Las notas de prácticas y de trabajos tutelados serán las obtenidas durante el curso. Para los alumnos que utilicen la oportunidad adelantada de diciembre se utilizarán las notas de prácticas y trabajos tutelados que obtuvieran en su último curso. En esta oportunidad solo será necesario para aprobar obtener una nota total igual o superior al 50% de la nota máxima.
-
-* Una vez que un estudiante es evaluado en una práctica de laboratorio o en un trabajo tutelado implica que será calificado. Por tanto, la calificación "No Presentado" no es posible una vez que una práctica/trabajo ha sido evaluada.
-
--->
-</div>
+<div id="eficiencia-manipR" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Eficiencia en R: preasignación, vectorización y desfases<a href="eficiencia-manipR.html#eficiencia-manipR" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R permite escribir código muy expresivo, pero no todas las formas de hacer lo mismo son igual de eficientes. A continuación se ilustran tres buenas prácticas habituales, empleando el paquete <a href="https://github.com/joshuaulrich/microbenchmark/"><code>microbenchmark</code></a> para comparar tiempos de ejecución (más fiable que una única medición con <a href="https://rdrr.io/r/base/proc.time.html"><code>proc.time()</code></a>, ya que repite cada alternativa varias veces).</p>
+<p><strong>Preasignar en lugar de crecer un vector dentro de un bucle.</strong> Cada vez que se amplía un vector elemento a elemento (<code>a[i] &lt;- i</code> sin haber fijado antes su longitud), R puede tener que reservar memoria nueva y copiar todo el vector; si se preasigna con <a href="https://rdrr.io/r/base/numeric.html"><code>numeric()</code></a> (o <code>vector()</code>), el tamaño ya es el definitivo y no hay redimensionamientos:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="eficiencia-manipR.html#cb179-1" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb179-2"><a href="eficiencia-manipR.html#cb179-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fl">3e4</span></span>
+<span id="cb179-3"><a href="eficiencia-manipR.html#cb179-3" tabindex="-1"></a><span class="fu">microbenchmark</span>(</span>
+<span id="cb179-4"><a href="eficiencia-manipR.html#cb179-4" tabindex="-1"></a>  <span class="at">crecer      =</span> { a <span class="ot">&lt;-</span> <span class="fu">numeric</span>(); <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(n)) a[i] <span class="ot">&lt;-</span> i },</span>
+<span id="cb179-5"><a href="eficiencia-manipR.html#cb179-5" tabindex="-1"></a>  <span class="at">preasignado =</span> { d <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n); <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(n)) d[i] <span class="ot">&lt;-</span> i },</span>
+<span id="cb179-6"><a href="eficiencia-manipR.html#cb179-6" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb179-7"><a href="eficiencia-manipR.html#cb179-7" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##         expr     min      lq     mean   median      uq
+##       crecer 11.2600 12.2017 12.90545 12.93315 13.3264
+##  preasignado  3.0892  3.6697  6.03477  5.78825  8.1019
+##      max neval cld
+##  15.4908    10  a 
+##   9.3904    10   b</code></pre>
+<p>Con un <code>n</code> mucho mayor la diferencia se dispara (no se evalúa en el libro por el tiempo de cómputo que implicaría repetirlo varias veces):</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="eficiencia-manipR.html#cb181-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fl">1e8</span></span>
+<span id="cb181-2"><a href="eficiencia-manipR.html#cb181-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb181-3"><a href="eficiencia-manipR.html#cb181-3" tabindex="-1"></a><span class="fu">system.time</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(n)) a[i] <span class="ot">&lt;-</span> i)</span>
+<span id="cb181-4"><a href="eficiencia-manipR.html#cb181-4" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb181-5"><a href="eficiencia-manipR.html#cb181-5" tabindex="-1"></a><span class="fu">system.time</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(n)) d[i] <span class="ot">&lt;-</span> i)</span></code></pre></div>
+<p><strong>Usar funciones vectorizadas en lugar de <a href="https://rdrr.io/r/base/apply.html"><code>apply()</code></a>.</strong> Funciones como <a href="https://rdrr.io/r/base/colSums.html"><code>colMeans()</code></a> o <a href="https://rdrr.io/r/base/colSums.html"><code>rowSums()</code></a> están implementadas internamente en C y evitan el bucle (implícito) de <code>apply()</code>:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="eficiencia-manipR.html#cb182-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fl">1e6</span>), <span class="at">nrow =</span> <span class="dv">1000</span>)</span>
+<span id="cb182-2"><a href="eficiencia-manipR.html#cb182-2" tabindex="-1"></a><span class="fu">microbenchmark</span>(</span>
+<span id="cb182-3"><a href="eficiencia-manipR.html#cb182-3" tabindex="-1"></a>  <span class="at">apply_mean =</span> <span class="fu">apply</span>(m, <span class="dv">2</span>, mean),</span>
+<span id="cb182-4"><a href="eficiencia-manipR.html#cb182-4" tabindex="-1"></a>  <span class="at">colMeans   =</span> <span class="fu">colMeans</span>(m),</span>
+<span id="cb182-5"><a href="eficiencia-manipR.html#cb182-5" tabindex="-1"></a>  <span class="at">apply_sum  =</span> <span class="fu">apply</span>(m, <span class="dv">1</span>, sum),</span>
+<span id="cb182-6"><a href="eficiencia-manipR.html#cb182-6" tabindex="-1"></a>  <span class="at">rowSums    =</span> <span class="fu">rowSums</span>(m),</span>
+<span id="cb182-7"><a href="eficiencia-manipR.html#cb182-7" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">20</span></span>
+<span id="cb182-8"><a href="eficiencia-manipR.html#cb182-8" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##        expr     min       lq      mean   median       uq
+##  apply_mean 17.8846 23.26870 25.467780 26.19270 27.43020
+##    colMeans  1.2296  1.36390  1.463310  1.46220  1.55245
+##   apply_sum 12.6796 14.78950 20.106695 16.27625 16.91945
+##     rowSums  1.2316  1.43565  2.263425  2.01455  3.30040
+##       max neval cld
+##   32.8468    20  a 
+##    1.8692    20   b
+##  101.8854    20  a 
+##    3.6706    20   b</code></pre>
+<p><strong>Calcular desfases (<em>lag</em>/<em>lead</em>) sin bucles.</strong> Para comparar cada valor con el anterior (o el siguiente) de un vector, en R base basta con desplazar el vector y alinearlo con <a href="https://rdrr.io/r/base/cbind.html"><code>cbind()</code></a>, en lugar de recorrerlo con un bucle:</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="eficiencia-manipR.html#cb184-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span></span>
+<span id="cb184-2"><a href="eficiencia-manipR.html#cb184-2" tabindex="-1"></a><span class="fu">diff</span>(a)                 <span class="co"># diferencias consecutivas</span></span></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="eficiencia-manipR.html#cb186-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, a[<span class="sc">-</span><span class="fu">length</span>(a)])  <span class="co"># &quot;lag&quot;: a desplazado una posición hacia atrás</span></span>
+<span id="cb186-2"><a href="eficiencia-manipR.html#cb186-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(a[<span class="sc">-</span><span class="dv">1</span>], <span class="cn">NA</span>)          <span class="co"># &quot;lead&quot;: a desplazado una posición hacia adelante</span></span>
+<span id="cb186-3"><a href="eficiencia-manipR.html#cb186-3" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">original =</span> a, <span class="at">lag =</span> y, <span class="at">lead =</span> x)</span></code></pre></div>
+<pre><code>##       original lag lead
+##  [1,]        1  NA    2
+##  [2,]        2   1    3
+##  [3,]        3   2    4
+##  [4,]        4   3    5
+##  [5,]        5   4    6
+##  [6,]        6   5    7
+##  [7,]        7   6    8
+##  [8,]        8   7    9
+##  [9,]        9   8   10
+## [10,]       10   9   11
+## [11,]       11  10   NA</code></pre>
+<p>En el Capítulo <a href="tidyverse.html#tidyverse">5</a> se retoma este mismo desfase con <code>dplyr::lag()</code>/<code>lead()</code> (Sección <a href="eficiencia-tidyverse.html#eficiencia-tidyverse">5.6</a>), comprobando que su sintaxis más legible no penaliza el rendimiento.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="contenidos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fuentes-de-información.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ejemplo-wos-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resumen-manipR.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -497,7 +490,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/gltaboada/tgdbook/edit/master/01-Introduccion.Rmd",
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/02-ManipulacionDatosR.Rmd",
     "text": "Edit"
   },
   "history": {

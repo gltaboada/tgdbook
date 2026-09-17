@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>2.6 Ejercicios | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="2.6 Ejercicios | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.2 Planificación (tentativa) | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="2.6 Ejercicios | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="contenidos.html"/>
-<link rel="next" href="fuentes-de-información.html"/>
+<link rel="prev" href="resumen-manipR.html"/>
+<link rel="next" href="introSQL.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -388,85 +388,80 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="planificación-tentativa" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Planificación (tentativa)<a href="planificación-tentativa.html#planificaci%C3%B3n-tentativa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La impartición de los contenidos durante el curso dependerá de los conocimientos de partida y la asimilación de los
-conceptos. Para completar nuestra visión de los conocimientos previos os requerimos completar este formulario en la primera sesión de clase: <a href="https://forms.gle/D5bhiLLBUFuh6k1n8" class="uri">https://forms.gle/D5bhiLLBUFuh6k1n8</a></p>
-<ul>
-<li><p>Semana 1 (20/10) : 21/10 - Presentación</p></li>
-<li><p>Semana 2 (27/10) : 28 y 30/10 - Tema 1 - SQL</p></li>
-<li><p>Semana 3 (03/11) : 04 y 06/11 - Seminario dplyr</p></li>
-<li><p>Semana 4 (10/11) : 11, 13 y 14/11 - Tema 1 - SQL</p></li>
-<li><p>Semana 5 (17/11) : 18, 20/11 - Tema 1 - SQL. + 21/11 - Seminario texto proc. (CSV, excel, Json) y open data</p></li>
-<li><p>Semana 6 (24/11) : 25/11 - Tema 2 NOSQL + 27 y 28/11 - Tema 3 Big Data</p></li>
-<li><p>Semana 7 (1/12) : 2, 4 y 5/12 Tema 3 Big Data.</p></li>
-<li><p>Semana 8 (8/12) : 9 y 11/12 - Intro a AE + 12/12 Tutoría práctica ML.</p></li>
-<li><p>Semana 9 (15/12) : 16, 18 y 19/12 - Clases de paso / tutorías de cara a examen.</p></li>
-</ul>
-<!-- Curso 2019-2020
+<div id="ejercicios-manipR" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Ejercicios<a href="ejercicios-manipR.html#ejercicios-manipR" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para practicar lo visto en este capítulo se proponen los siguientes
+ejercicios (los enunciados se dan sin solución; las soluciones se
+distribuyen aparte).</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="ejercicios-manipR.html#cb188-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/empleados.RData&quot;</span>)</span></code></pre></div>
+<div id="ejercicio-1-incremento-salarial-empleados" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Ejercicio 1: incremento salarial (<code>empleados</code>)<a href="ejercicios-manipR.html#ejercicio-1-incremento-salarial-empleados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A partir de los datos de <code>empleados</code> (Sección <a href="read.html#read">2.1</a>), calcula para
+cada empleado el incremento salarial relativo respecto a su salario inicial:
+<code>incremento = salario / salini - 1</code>. Muestra los 5 empleados con mayor
+incremento porcentual, junto con su categoría laboral (<code>catlab</code>) y su
+antigüedad en meses (<code>tiempemp</code>).</p>
+<p>Para los siguientes ejercicios se empleará el conjunto de datos <code>starwars</code>
+(incluido en el paquete <code>dplyr</code>, aunque aquí se usa únicamente como fuente
+de datos, sin necesidad de emplear sus funciones):</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="ejercicios-manipR.html#cb189-1" tabindex="-1"></a><span class="fu">data</span>(starwars, <span class="at">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb189-2"><a href="ejercicios-manipR.html#cb189-2" tabindex="-1"></a>starwars <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(starwars) <span class="co"># para evitar el formato tibble al imprimir</span></span></code></pre></div>
+<p>Para el ejercicio de unión de tablas se empleará además la siguiente tabla,
+creada manualmente, con información de algunos planetas:</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="ejercicios-manipR.html#cb190-1" tabindex="-1"></a>planetas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb190-2"><a href="ejercicios-manipR.html#cb190-2" tabindex="-1"></a>  <span class="at">homeworld =</span> <span class="fu">c</span>(<span class="st">&quot;Tatooine&quot;</span>, <span class="st">&quot;Naboo&quot;</span>, <span class="st">&quot;Alderaan&quot;</span>, <span class="st">&quot;Coruscant&quot;</span>, <span class="st">&quot;Kamino&quot;</span>,</span>
+<span id="cb190-3"><a href="ejercicios-manipR.html#cb190-3" tabindex="-1"></a>                <span class="st">&quot;Corellia&quot;</span>, <span class="st">&quot;Kashyyyk&quot;</span>, <span class="st">&quot;Ryloth&quot;</span>, <span class="st">&quot;Mirial&quot;</span>, <span class="st">&quot;Hoth&quot;</span>),</span>
+<span id="cb190-4"><a href="ejercicios-manipR.html#cb190-4" tabindex="-1"></a>  <span class="at">region    =</span> <span class="fu">c</span>(<span class="st">&quot;Outer Rim&quot;</span>, <span class="st">&quot;Mid Rim&quot;</span>, <span class="st">&quot;Core Worlds&quot;</span>, <span class="st">&quot;Core Worlds&quot;</span>, <span class="st">&quot;Outer Rim&quot;</span>,</span>
+<span id="cb190-5"><a href="ejercicios-manipR.html#cb190-5" tabindex="-1"></a>                <span class="st">&quot;Core Worlds&quot;</span>, <span class="st">&quot;Mid Rim&quot;</span>, <span class="st">&quot;Outer Rim&quot;</span>, <span class="st">&quot;Outer Rim&quot;</span>, <span class="st">&quot;Outer Rim&quot;</span>),</span>
+<span id="cb190-6"><a href="ejercicios-manipR.html#cb190-6" tabindex="-1"></a>  <span class="at">clima     =</span> <span class="fu">c</span>(<span class="st">&quot;Desértico&quot;</span>, <span class="st">&quot;Templado&quot;</span>, <span class="st">&quot;Templado&quot;</span>, <span class="st">&quot;Urbano&quot;</span>, <span class="st">&quot;Oceánico&quot;</span>,</span>
+<span id="cb190-7"><a href="ejercicios-manipR.html#cb190-7" tabindex="-1"></a>                <span class="st">&quot;Urbano&quot;</span>, <span class="st">&quot;Boscoso&quot;</span>, <span class="st">&quot;Húmedo&quot;</span>, <span class="st">&quot;Templado&quot;</span>, <span class="st">&quot;Helado&quot;</span>)</span>
+<span id="cb190-8"><a href="ejercicios-manipR.html#cb190-8" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="ejercicio-2-filtrado-y-selección-starwars" class="section level3 hasAnchor" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Ejercicio 2: Filtrado y selección (<code>starwars</code>)<a href="ejercicios-manipR.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Obtén el nombre, la altura, el peso y el planeta natal (<code>homeworld</code>) de los
+personajes de especie (<code>species</code>) <code>"Human"</code> con una altura (<code>height</code>)
+superior a 180 cm.</p>
+</div>
+<div id="ejercicio-3-creación-de-una-variable-y-categorización" class="section level3 hasAnchor" number="2.6.3">
+<h3><span class="header-section-number">2.6.3</span> Ejercicio 3: Creación de una variable y categorización<a href="ejercicios-manipR.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Calcula el índice de masa corporal (IMC = peso / altura<sup>2</sup>, con la altura en
+metros) de cada personaje, descartando aquellos con valores faltantes en
+peso o altura. A continuación, categoriza el IMC empleando los umbrales
+estándar de la OMS: menos de 18.5 “Bajo peso”, de 18.5 a 25 “Normal”, de 25
+a 30 “Sobrepeso” y 30 o más “Obesidad”. Indica cuántos personajes hay en
+cada categoría.</p>
+</div>
+<div id="ejercicio-4-resumen-y-agrupación" class="section level3 hasAnchor" number="2.6.4">
+<h3><span class="header-section-number">2.6.4</span> Ejercicio 4: Resumen y agrupación<a href="ejercicios-manipR.html#ejercicio-4-resumen-y-agrupaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Calcula la altura media y el número de personajes por especie, considerando
+únicamente las especies con al menos 3 personajes, y ordena el resultado de
+mayor a menor altura media.</p>
+</div>
+<div id="ejercicio-5-unión-de-tablas" class="section level3 hasAnchor" number="2.6.5">
+<h3><span class="header-section-number">2.6.5</span> Ejercicio 5: Unión de tablas<a href="ejercicios-manipR.html#ejercicio-5-uni%C3%B3n-de-tablas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Une <code>starwars</code> con <code>planetas</code> por la columna <code>homeworld</code> y muestra, para cada
+personaje, su nombre, <code>homeworld</code>, región y clima. ¿Qué ocurre con los
+personajes cuyo planeta no aparece en <code>planetas</code> (o cuyo <code>homeworld</code> es
+<code>NA</code>)? ¿Y con <code>"Hoth"</code>, que está en <code>planetas</code> pero no es el planeta natal de
+ningún personaje?</p>
+</div>
+<div id="ejercicio-6-opcional-columnas-lista" class="section level3 hasAnchor" number="2.6.6">
+<h3><span class="header-section-number">2.6.6</span> Ejercicio 6 (opcional): columnas-lista<a href="ejercicios-manipR.html#ejercicio-6-opcional-columnas-lista" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>starwars</code> incluye columnas que son listas, como <code>films</code> (las películas en
+las que aparece cada personaje). Calcula en cuántas películas aparece cada
+personaje y muestra los que más aparecen.</p>
 
-- Clase 1 (12/9-R): Seminario R (Manipulación de datos con el paquete base de R)
-
-- Clase 2 (19/9): Tema 1: Conceptos de bases de datos
-
-- Clase 3 (26/9): Tema 1: Introducción a SQL
-
-- Clase 4 (3/10-R): Seminario dplyr (Manipulación de datos con el paquete dplyr)
-
-- Clase 5 (10/10): Jornada usuarios R Galicia (cubre objetivos de Seminario aplicaciones Big Data en investigación e industria)
-
-- Clase 6 (17/10): Tema 1: Ejercicios prácticos de Entidad-relación y SQL
-
-- Clase 7 (24/10): Tema 2: Introducción a NoSQL
-
-- Clase 8 (31/10):  Tema 1: Continuación de ejercicios prácticos SQL
-
-- Clase 9 (7/11):  Tema 2: Ejercicios prácticos de NoSQL
-
-- Clase 10 (14/11):   Seminario visualización con power BI
-
-- Clase 11 (21/11):  Tema 3: Ecosistema Big Data (Hadoop, Spark)
-
-- Clase 12 (28/11):  Tecnologías Big Data (Rspark/sparklyr) + Seminario machine learning CESGA/localhost
-
-- Clase 13 (5/12): Tema 3: Introducción al análisis de datos masivos son sparklyr
-
-- Clase 14 (12/12): Tema 3: Prácticas de Aprendizaje Estadístico/Automático, Data Mining con rattle
-
-- Clase 15 (19/12-R): Seminario conectividad dplyr a BBDD
-
--->
-<div id="evaluación" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Evaluación<a href="planificación-tentativa.html#evaluaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p><strong>Examen</strong> (60%): El examen de la materia evaluará los siguientes aspectos:
-Conceptos de la materia: Dominio de los conocimientos teóricos y operativos de la materia.
-Asimilación práctica de materia: Asimilación y comprensión de los conocimientos teóricos y operativos de la materia.</p></li>
-<li><p><strong>Prácticas de laboratorio</strong> (40%): Evaluación de las prácticas de laboratorio desarrolladas por los estudiantes.</p></li>
-</ul>
-<!-- Curso 2019-2020
-#### Observaciones sobre la evaluación:
-
-* Las prácticas de laboratorio se realizarán de forma individual. El plazo para realizar las 3 prácticas será indicado en la presentación de la práctica. El plazo para la entrega de los trabajos tutelados es el último día de clase de la asignatura.
-
-* El estudiante que quiera realizar un trabajo tutelado ha de hablar (o mediante correo electrónico) con los profesores para validar y confirmar el tema y alcance del trabajo tutelado.
-
-* Para poder aprobar la asignatura en la primera oportunidad será necesario obtener como mínimo el 30% de la nota máxima de la suma de las prácticas de laboratorio y trabajos tutelados e, igualmente, el 30% de la nota máxima final de la Prueba mixta (examen), y tener una nota total (prácticas más trabajos tutelados más prueba mixta) igual o superior al 50% de la nota máxima.
-
-* En la segunda oportunidad solamente se podrá recuperar la nota del examen. Las notas de prácticas y de trabajos tutelados serán las obtenidas durante el curso. Para los alumnos que utilicen la oportunidad adelantada de diciembre se utilizarán las notas de prácticas y trabajos tutelados que obtuvieran en su último curso. En esta oportunidad solo será necesario para aprobar obtener una nota total igual o superior al 50% de la nota máxima.
-
-* Una vez que un estudiante es evaluado en una práctica de laboratorio o en un trabajo tutelado implica que será calificado. Por tanto, la calificación "No Presentado" no es posible una vez que una práctica/trabajo ha sido evaluada.
-
--->
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="contenidos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fuentes-de-información.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="resumen-manipR.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introSQL.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -497,7 +492,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/gltaboada/tgdbook/edit/master/01-Introduccion.Rmd",
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/02-ManipulacionDatosR.Rmd",
     "text": "Edit"
   },
   "history": {
