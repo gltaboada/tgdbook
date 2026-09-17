@@ -1,5 +1,7 @@
 # Manipulación de datos con R {#manipR}
 
+<!-- 2026/09/16 corrección de erratas -->
+
 
 ```{r global-options, include=FALSE}
 source("_global_options.R")
@@ -10,8 +12,8 @@ options(width = 60)
 ```
 
 En el proceso de análisis de datos, al margen de su obtención y organización, una de las primeras etapas es el acceso y la manipulación de los datos (ver Figura \@ref(fig:esquema2)).
-En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para ello.
-Posteriormente en el Capítulo \@ref(tidyverse) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html).
+En este capítulo se repasarán brevemente las principales herramientas disponibles en el paquete base de R para la lectura, exploración, filtrado, transformación y combinación de tablas de datos.
+Posteriormente en el Capítulo \@ref(tidyverse) se mostrará como alternativa el uso del paquete [`dplyr`](https://dplyr.tidyverse.org/index.html), resolviendo los mismos ejercicios de la Sección \@ref(ejercicios-manipR) con ambos enfoques.
 
 ```{r esquema2, echo=FALSE, out.width="80%", fig.cap="Etapas del proceso"}
 knitr::include_graphics("images/esquema2.png")
@@ -82,13 +84,13 @@ Con el comando `data()` podemos obtener un listado de las bases de datos disponi
 Para cargar una base de datos concreta se utiliza el comando
 `data(nombre)` (aunque en algunos casos se cargan automáticamente al emplearlos). 
 Por ejemplo, `data(cars)` carga la base de datos llamada `cars` en el entorno de trabajo (`".GlobalEnv"`)
-y `?cars` muestra la ayuda correspondiente con la descripición de la base de datos.
+y `?cars` muestra la ayuda correspondiente con la descripción de la base de datos.
 
 
 ### Lectura de archivos de texto {#cap2-texto}
 
 En R, para leer archivos de texto se suele utilizar la función `read.table()`.
-Suponinedo, por ejemplo, que en el directorio actual está el fichero
+Suponiendo, por ejemplo, que en el directorio actual está el fichero
 *empleados.txt*. La lectura de este fichero vendría dada por el código:
 
 ```{r}
@@ -127,7 +129,7 @@ read.table(file, header = FALSE, sep = "", dec = ".")
 Para más detalles sobre esta función véase
 `help(read.table)`.
 
-Estan disponibles otras funciones con valores por defecto de los parámetros 
+Están disponibles otras funciones con valores por defecto de los parámetros 
 adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores 
 se puede utilizar `read.delim()` o `read.delim2()`:
 ```{r, eval=FALSE}
@@ -210,7 +212,7 @@ del paquete [`dplyr`](https://dplyr.tidyverse.org), donde las columnas se empare
 ```{r eval=FALSE}
 df <- dplyr::bind_rows(file.list)
 ```
-El Capítulo 4, provee de otras utilidades  para la manipulación de datos con `dplyr` [@R-dplyr]. 
+El Capítulo \@ref(tidyverse) provee de otras utilidades para la manipulación de datos con `dplyr` [@R-dplyr].
 
 
 
@@ -247,7 +249,7 @@ Hay que tener en cuenta que si estas fuentes emplean el formato anglosajón, el 
 
 ### Exportación de datos  {#cap2-exporta}
 
-Puede ser de interés la exportacifn de datos para que puedan ser leídos con otros programas. Para ello, se puede emplear la función `write.table()`. Esta función es similar, pero funcionando en sentido inverso, a `read.table()`, ver Sección \@ref(cap2-texto).
+Puede ser de interés la exportación de datos para que puedan ser leídos con otros programas. Para ello, se puede emplear la función `write.table()`. Esta función es similar, pero funcionando en sentido inverso, a `read.table()`, ver Sección \@ref(cap2-texto).
 
 Veamos un ejemplo:
 
@@ -297,8 +299,7 @@ Desde julio de 2025 ya están disponibles versiones estables de [Positron](https
 
 
 
-Manipulación de datos
----------------------
+## Manipulación de datos {#manip}
 
 Una vez cargada una (o varias) bases de datos hay una series de operaciones que serán de interés para el tratamiento de datos: 
 
@@ -370,7 +371,7 @@ variable `distancia` (en metros), por lo que la transformación deseada es
 `metros=pies/3.2808`:
 
 ```{r}
-cars$distancia <- cars$dis / 3.2808
+cars$distancia <- cars$dist / 3.2808
 head(cars)
 ```
 
@@ -404,14 +405,14 @@ Con el comando `cut()` podemos crear variables categóricas a partir de variable
 El parámetro `breaks` permite especificar los intervalos para la discretización, puede ser un vector con los extremos de los intervalos o un entero con el número de intervalos.
 Por ejemplo, para categorizar la variable `cars$speed` en tres intervalos equidistantes podemos emplear^[Aunque si el objetivo es obtener las frecuencias de cada intervalo puede ser más eficiente emplear `hist()` con `plot = FALSE`.]:
 
-```{r }
+```{r}
 fspeed <- cut(cars$speed, 3, labels = c("Baja", "Media", "Alta"))
 table(fspeed)
 ```
 
 Para categorizar esta variable en tres niveles con aproximadamente el mismo número de observaciones podríamos combinar esta función con `quantile()`:
 
-```{r }
+```{r}
 breaks <- quantile(cars$speed, probs = 0:3/3)
 etiquetas3 <- c("Baja", "Media", "Alta")
 fspeed <- cut(cars$speed, breaks, labels = etiquetas3)
@@ -420,7 +421,7 @@ table(fspeed)
 
 Para otro tipo de recodificaciones podríamos emplear la función `ifelse()` vectorial:
 
-```{r }
+```{r}
 fspeed <- ifelse(cars$speed < 15, "Baja", "Alta")
 etiquetas2 <- c("Baja", "Alta")
 fspeed <- factor(fspeed, levels = etiquetas2)
@@ -429,7 +430,7 @@ table(fspeed)
 
 Alternativamente, en el caso de dos niveles podríamos emplear directamente la función `factor()`:
 
-```{r }
+```{r}
 fspeed <- factor(cars$speed >= 15, 
                  labels = etiquetas2) # levels = c("FALSE", "TRUE")
 table(fspeed)
@@ -437,7 +438,7 @@ table(fspeed)
 
 En el caso de múltiples niveles, se podría emplear `ifelse()` anidados:
 
-```{r }
+```{r}
 fspeed <- ifelse(cars$speed < 10, "Baja",
                  ifelse(cars$speed < 20, "Media", "Alta"))
 fspeed <- factor(fspeed, levels = etiquetas3)
@@ -446,7 +447,7 @@ table(fspeed)
 
 Otra alternativa, sería emplear la función [`recode()`](https://www.rdocumentation.org/packages/car/versions/3.0-9/topics/recode) del paquete `car`. 
 
-```{r }
+```{r}
 library(car)
 fspeed <- recode(cars$speed, "0:10 = 'Baja'; 
                  10:20 = 'Media';
@@ -572,7 +573,7 @@ La problemática originada por los datos faltantes (*missing data*) en cualquier
 realizar un análisis estadístico, para más información en R, se puede consultar [CRAN Task View: Missing Data](https://cran.r-project.org/web/views/MissingData.html)
 
 
-Vamos a ver un ejemplo, empleando el conjunto de datos `airquality` que contiene datos falntantes en sus dos primeras variables:
+Vamos a ver un ejemplo, empleando el conjunto de datos `airquality` que contiene datos faltantes en sus dos primeras variables:
 ```{r}
 data("airquality")
 datos <- airquality[,1:3]
@@ -584,12 +585,12 @@ sapply(datos, function(x) sum(is.na(x)))
 A continuación se muestra la distribución de los datos perdidos en el data.frame (a lo largo del tiempo, por mes):
 
 <!--
-```{r }
+```{r}
 library(naniar)
 vis_miss(airquality)
 ```
 -->
-```{r }
+```{r}
 plot(ts(airquality[,1:2]))
 ```
 
@@ -610,7 +611,7 @@ Sin embargo, en muchos estudios, se omite el paso anterior y se procede directam
 + Análisis de casos disponibles (borrado por parejas *pairwise cases*)
 + Imputación de datos faltantes (por la media, mediana, último valor observado, vecino más cercano, valores predichos usando los datos observados....)
 
-Siguiendo con el ejemplo, ante la presencia de datos faltantes, en R inicialmente no podemos conocer cómo se relacionan las tres primeras variables:"
+Siguiendo con el ejemplo, ante la presencia de datos faltantes, en R inicialmente no podemos conocer cómo se relacionan las tres primeras variables:
 
 ```{r}
 cor(datos[,1:3])
@@ -633,7 +634,7 @@ También, se podría usar toda la información disponible. El tamaño muestral $
 cor(datos[,1:3], use = "pairwise.complete.obs")
 ```
 
-Por ejmmplo, ahora la correlación usa los $146$ pares de observaciones disponibles para (`Solar.R`,`Wind`), en lugar de $111$ del primer caso.
+Por ejemplo, ahora la correlación usa los $146$ pares de observaciones disponibles para (`Solar.R`,`Wind`), en lugar de $111$ del primer caso.
 
 Por último, también se podría realizar una imputación [@van2018flexible]. A modo de ejemplo, en el siguiente código, se utiliza la media:
 ```{r}
@@ -749,7 +750,7 @@ cfuns <- function(x, funs = c(mean, median, sd)){
 c. La función [`tapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/tapply) es
 similar a la función `apply()` y permite aplicar una función a los datos desagregados,
 utilizando como criterio los distintos niveles de una variable factor. Es decir, 
- facilita la creación de tablars resumen por grupos. La sintaxis de esta función es como sigue:
+ facilita la creación de tablas resumen por grupos. La sintaxis de esta función es como sigue:
 ```{r, eval=FALSE}
     tapply(X, INDEX, FUN, ...,)
 
@@ -841,15 +842,15 @@ datatable(iris,options = list(scrollX = TRUE))
 
 ### Operaciones con tablas de datos
 
-***Unir tablas***:
+#### Unir tablas:
 
 * [`rbind()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind): combina vectores, matrices, arrays o data.frames por filas.
 
 * [`cbind()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind): Idem por columnas.
 
-* [`merge()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/merge): Fusiona dos data.frame por columnas o nombres de fila comunes.  También permite otras operaciones de unión (*join*) de bases de datos, algunas de ellas se verán con más detalle en el Capítulo 4.
+* [`merge()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/merge): Fusiona dos data.frame por columnas o nombres de fila comunes.  También permite otras operaciones de unión (*join*) de bases de datos, algunas de ellas se verán con más detalle en el Capítulo \@ref(tidyverse).
 
-***Combinar tablas***:
+#### Combinar tablas:
 
 
 * [`match(x, table)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match) devuelve un vector (de la misma longitud que `x`)  con las (primeras) posiciones de coincidencia de `x` en `table` (o `NA`, por defecto, si no hay coincidencia).
@@ -939,4 +940,156 @@ idd
 # View(Docs[idd, ])
 head(Docs[idd, 1:3])
 ```
+
+## Eficiencia en R: preasignación, vectorización y desfases {#eficiencia-manipR}
+
+R permite escribir código muy expresivo, pero no todas las formas de hacer lo mismo son igual de eficientes. A continuación se ilustran tres buenas prácticas habituales, empleando el paquete `r cite_pkg(microbenchmark)` para comparar tiempos de ejecución (más fiable que una única medición con `r cite_fun(proc.time)`, ya que repite cada alternativa varias veces).
+
+**Preasignar en lugar de crecer un vector dentro de un bucle.** Cada vez que se amplía un vector elemento a elemento (`a[i] <- i` sin haber fijado antes su longitud), R puede tener que reservar memoria nueva y copiar todo el vector; si se preasigna con `r cite_fun(numeric)` (o `vector()`), el tamaño ya es el definitivo y no hay redimensionamientos:
+
+```{r}
+library(microbenchmark)
+n <- 3e4
+microbenchmark(
+  crecer      = { a <- numeric(); for (i in seq_len(n)) a[i] <- i },
+  preasignado = { d <- numeric(n); for (i in seq_len(n)) d[i] <- i },
+  times = 10
+)
+```
+
+Con un `n` mucho mayor la diferencia se dispara (no se evalúa en el libro por el tiempo de cómputo que implicaría repetirlo varias veces):
+
+```{r eval=FALSE}
+n <- 1e8
+a <- numeric()
+system.time(for (i in seq_len(n)) a[i] <- i)
+d <- numeric(n)
+system.time(for (i in seq_len(n)) d[i] <- i)
+```
+
+**Usar funciones vectorizadas en lugar de `r cite_fun(apply)`.** Funciones como `r cite_fun(colMeans)` o `r cite_fun(rowSums)` están implementadas internamente en C y evitan el bucle (implícito) de `apply()`:
+
+```{r}
+m <- matrix(rnorm(1e6), nrow = 1000)
+microbenchmark(
+  apply_mean = apply(m, 2, mean),
+  colMeans   = colMeans(m),
+  apply_sum  = apply(m, 1, sum),
+  rowSums    = rowSums(m),
+  times = 20
+)
+```
+
+**Calcular desfases (*lag*/*lead*) sin bucles.** Para comparar cada valor con el anterior (o el siguiente) de un vector, en R base basta con desplazar el vector y alinearlo con `r cite_fun(cbind)`, en lugar de recorrerlo con un bucle:
+
+```{r}
+a <- 1:11
+diff(a)                 # diferencias consecutivas
+y <- c(NA, a[-length(a)])  # "lag": a desplazado una posición hacia atrás
+x <- c(a[-1], NA)          # "lead": a desplazado una posición hacia adelante
+cbind(original = a, lag = y, lead = x)
+```
+
+En el Capítulo \@ref(tidyverse) se retoma este mismo desfase con `dplyr::lag()`/`lead()` (Sección \@ref(eficiencia-tidyverse)), comprobando que su sintaxis más legible no penaliza el rendimiento.
+
+## Resumen: R base {#resumen-manipR}
+
+A modo de referencia rápida, la siguiente tabla recoge las tareas más
+habituales de manipulación de datos vistas en este capítulo. En el
+Capítulo \@ref(tidyverse) se retomará esta misma lista mostrando el
+equivalente en `dplyr`/`tidyr` para cada tarea (ver el resumen
+comparativo de la Sección \@ref(resumen-tidyverse)):
+
+| Tarea                     | R base                              |
+|---------------------------|--------------------------------------|
+| Leer texto/CSV            | `read.table()`, `read.delim()`       |
+| Leer Excel                | `openxlsx::read.xlsx()`              |
+| Escribir texto/CSV        | `write.table()`                      |
+| Seleccionar columnas      | `df[, c("a","b")]`                   |
+| Renombrar columnas        | `names(df)[i] <- "x"`                |
+| Filtrar filas             | `subset(df, cond)`, `df[cond, ]`     |
+| Ordenar filas             | `df[order(df$x), ]`                  |
+| Crear/transformar variable| `df$z <- expr`                       |
+| Recodificar/categorizar   | `cut()`, `ifelse()`                  |
+| Resumir                   | `aggregate()`, `tapply()`            |
+| Agrupar y resumir         | `aggregate(y ~ g, df, FUN)`          |
+| Unir tablas (*join*)      | `merge()`                            |
+| Filtrar por coincidencia  | `df1[df1$x %in% df2$x, ]`            |
+| Encadenar operaciones     | llamadas anidadas                    |
+
+## Ejercicios {#ejercicios-manipR}
+
+Para practicar lo visto en este capítulo se proponen los siguientes
+ejercicios (los enunciados se dan sin solución; las soluciones se
+distribuyen aparte).
+
+```{r}
+load("data/empleados.RData")
+```
+
+### Ejercicio 1: incremento salarial (`empleados`)
+
+A partir de los datos de `empleados` (Sección \@ref(read)), calcula para
+cada empleado el incremento salarial relativo respecto a su salario inicial:
+`incremento = salario / salini - 1`. Muestra los 5 empleados con mayor
+incremento porcentual, junto con su categoría laboral (`catlab`) y su
+antigüedad en meses (`tiempemp`).
+
+Para los siguientes ejercicios se empleará el conjunto de datos `starwars`
+(incluido en el paquete `dplyr`, aunque aquí se usa únicamente como fuente
+de datos, sin necesidad de emplear sus funciones):
+
+```{r}
+data(starwars, package = "dplyr")
+starwars <- as.data.frame(starwars) # para evitar el formato tibble al imprimir
+```
+
+Para el ejercicio de unión de tablas se empleará además la siguiente tabla,
+creada manualmente, con información de algunos planetas:
+
+```{r}
+planetas <- data.frame(
+  homeworld = c("Tatooine", "Naboo", "Alderaan", "Coruscant", "Kamino",
+                "Corellia", "Kashyyyk", "Ryloth", "Mirial", "Hoth"),
+  region    = c("Outer Rim", "Mid Rim", "Core Worlds", "Core Worlds", "Outer Rim",
+                "Core Worlds", "Mid Rim", "Outer Rim", "Outer Rim", "Outer Rim"),
+  clima     = c("Desértico", "Templado", "Templado", "Urbano", "Oceánico",
+                "Urbano", "Boscoso", "Húmedo", "Templado", "Helado")
+)
+```
+
+### Ejercicio 2: Filtrado y selección (`starwars`)
+
+Obtén el nombre, la altura, el peso y el planeta natal (`homeworld`) de los
+personajes de especie (`species`) `"Human"` con una altura (`height`)
+superior a 180 cm.
+
+### Ejercicio 3: Creación de una variable y categorización
+
+Calcula el índice de masa corporal (IMC = peso / altura^2^, con la altura en
+metros) de cada personaje, descartando aquellos con valores faltantes en
+peso o altura. A continuación, categoriza el IMC empleando los umbrales
+estándar de la OMS: menos de 18.5 "Bajo peso", de 18.5 a 25 "Normal", de 25
+a 30 "Sobrepeso" y 30 o más "Obesidad". Indica cuántos personajes hay en
+cada categoría.
+
+### Ejercicio 4: Resumen y agrupación
+
+Calcula la altura media y el número de personajes por especie, considerando
+únicamente las especies con al menos 3 personajes, y ordena el resultado de
+mayor a menor altura media.
+
+### Ejercicio 5: Unión de tablas
+
+Une `starwars` con `planetas` por la columna `homeworld` y muestra, para cada
+personaje, su nombre, `homeworld`, región y clima. ¿Qué ocurre con los
+personajes cuyo planeta no aparece en `planetas` (o cuyo `homeworld` es
+`NA`)? ¿Y con `"Hoth"`, que está en `planetas` pero no es el planeta natal de
+ningún personaje?
+
+### Ejercicio 6 (opcional): columnas-lista
+
+`starwars` incluye columnas que son listas, como `films` (las películas en
+las que aparece cada personaje). Calcula en cuántas películas aparece cada
+personaje y muestra los que más aparecen.
 
