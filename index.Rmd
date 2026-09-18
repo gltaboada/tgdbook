@@ -21,6 +21,14 @@ editor_options:
 
 # Prólogo {.unnumbered}
 
+<!-- 
+bookdown::render_book("index.Rmd","bookdown::pdf_book")
+bookdown::render_book("index.Rmd","bookdown::gitbook") 
+install.packages("servr")
+bookdown::serve_book()
+
+-->
+
 Este libro contiene algunas de las prácticas de la asignatura de
 [Tecnologías de Gestión de
 Datos](http://eamo.usc.es/pub/mte/index.php/es/?option=com_content&view=article&id=2202&idm=38&a%C3%B1o=2020)
@@ -60,11 +68,19 @@ instalados los siguientes paquetes:
 [`RSQLite`](https://r-dbi.github.io/RSQLite),
 [`foreign`](https://cran.r-project.org/web/packages/foreign/index.html),
 [`magrittr`](https://cran.r-project.org/web/packages/magrittr/index.html),
-[`knitr`](https://yihui.name/knitr) Por ejemplo mediante los comandos:
+[`knitr`](https://yihui.name/knitr),
+[`GGally`](https://ggobi.github.io/ggally),
+[`caret`](https://topepo.github.io/caret),
+[`MASS`](https://cran.r-project.org/web/packages/MASS/index.html),
+[`class`](https://cran.r-project.org/web/packages/class/index.html),
+[`e1071`](https://cran.r-project.org/web/packages/e1071/index.html),
+[`mpae`](https://cran.r-project.org/package=mpae) y
+[`microbenchmark`](https://cran.r-project.org/web/packages/microbenchmark/index.html). Por ejemplo mediante los comandos:
 
 ```{r eval=FALSE}
-pkgs <- c('dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr', 
-          'naniar', 'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr')
+pkgs <- c('dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr',
+          'naniar', 'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr',
+          'GGally', 'caret', 'MASS', 'class', 'e1071', 'mpae', 'microbenchmark')
 # install.packages(pkgs, dependencies=TRUE)
 install.packages(setdiff(pkgs, installed.packages()[,'Package']), dependencies = TRUE)
 ```
@@ -90,8 +106,9 @@ file.create('docs/.nojekyll')
 # Automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown',
-  'dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr', 
-  'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr'
+  'dplyr', 'tidyr', 'stringr', 'readxl', 'openxlsx', 'magrittr',
+  'RODBC', 'sqldf', 'RSQLite', 'foreign', 'knitr',
+  'GGally', 'caret', 'MASS', 'class', 'e1071', 'mpae', 'microbenchmark'
 ), 'packages.bib')
 # knitr::opts_chunk$set(cache = TRUE)
 ```

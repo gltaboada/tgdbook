@@ -1,22 +1,22 @@
 # Manipulación de datos con tidyverse {#tidyverse}
 
-Este la primera parte de este capítulo (Sección \@ref(introTidyverse)), se pretende realizar una breve introducción al *ecosistema* [**Tidyverse**](https://dplyr.tidyverse.org), una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente.
+En la primera parte de este capítulo (Sección \@ref(introTidyverse)), se pretende realizar una breve introducción al *ecosistema* [**Tidyverse**](https://dplyr.tidyverse.org), una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente, y en particular al paquete `dplyr`, que resuelve las mismas tareas de lectura, filtrado, transformación y combinación de tablas vistas en el Capítulo \@ref(manipR), pero con una sintaxis más uniforme.
 
 La referencia recomendada para usuarios de R que deseen iniciarse en el uso de estos paquetes es: 
 
 Wickham, H., y Grolemund, G. (2016). *[R for data science: import, tidy, transform, visualize, and model data](http://r4ds.had.co.nz)*, [online-castellano](https://es.r4ds.hadley.nz), [O'Reilly](http://shop.oreilly.com/product/0636920034407.do).
 
-En las consecutivas secciones se presentan las alternativas *tidyverse* a la lectura, manipulacióin y escritura de datos tratadas en Capítulo \@ref(manipR).
+En las consecutivas secciones se presentan las alternativas *tidyverse* a la lectura, manipulación y escritura de datos tratadas en Capítulo \@ref(manipR).
 
 Más adelante, en la Sección \@ref(dplyr) se realiza una breve introducción al paquete  [`dplyr`](https://dplyr.tidyverse.org) y en la Sección \@ref(tidyr-pkg) se comentan algunas de las utilidades del paquete [`tidyr`](https://tidyr.tidyverse.org) que pueden resultar de interés^[Otra alternativa (más rápida) es [`data.table`](https://rdatatable.gitlab.io/data.table) pero en versiones recientes ya se puede emplear desde `dplyr`, como se comenta más adelante.]. Finalmente, las secciones \@ref(dplyr-join) y \@ref(dbplyr) se muestra las utilizades para tratar tablas y bases de datos respectivamente.
 
 ```{r global-options, include=FALSE}
 source("_global_options.R")
-# knitr::purl("04_dplyr.Rmd", documentation = 2)
+# knitr::purl("05-dplyr.Rmd", documentation = 2)
 ```
 
-## Introducción al ecosistema tidyverse {#introTidyverse}
 
+## Introducción al ecosistema tidyverse {#introTidyverse}
 
 El paquete [`tidyverse`](https://tidyverse.tidyverse.org) está diseñado para facilitar la instalación y carga de los paquetes principales de la colección tidyverse con un solo comando.
 Al instalar este paquete se instalan paquetes que forman el denominado núcleo de tidyverse (se cargan con `library(tidyverse)`):
@@ -32,18 +32,20 @@ Al instalar este paquete se instalan paquetes que forman el denominado núcleo d
 - [`lubridate`](https://github.com/tidyverse/lubridate): manipulación de fechas y horas.
 
 y un conjunto de paquetes recomendados:  
-- [`feather`](https://github.com/wesm/feather): almacenamiento efeciente de data frames.
+
+- [`feather`](https://github.com/wesm/feather): almacenamiento eficiente de data frames.
 - [`haven`](https://github.com/tidyverse/haven): lectura y escritura de datos de SPSS, Stata y SAS en R 
-- [`modelr`](https://github.com/tidyverse/modelr):  crear pipelines^[serie de pasos conectados (tuberías) que procesan datos y los transforman en un formato deseado para su análisis o modelado] elegantes al modelar datos en R (obsoleto). [`broom`](https://github.com/tidymodels/broom)...): resumenes estadísticos en formato Tidy
+- [`modelr`](https://github.com/tidyverse/modelr): crear pipelines^[serie de pasos conectados (tuberías) que procesan datos y los transforman en un formato deseado para su análisis o modelado] elegantes al modelar datos en R (obsoleto).
+- [`broom`](https://github.com/tidymodels/broom): resúmenes estadísticos en formato Tidy.
 
 Otros paquetes de interés son:
 
 - [`readxl`](https://github.com/tidyverse/readxl): lectura de archivos Excel.
-- [`readxl`](https://github.com/ropensci/writexl): exportación a Excel.
+- [`writexl`](https://github.com/ropensci/writexl): exportación a Excel.
 - [`hms`](https://github.com/tidyverse/hms): manipulación de medidas de tiempo.
-- [`httr`](https://github.com/r-lib/httr): interactuar con web APIs.
+- [`httr2`](https://httr2.r-lib.org): interactuar con web APIs^[Sustituye a [`httr`](https://github.com/r-lib/httr), que se mantiene pero ya no recibe nuevas funcionalidades.].
 - [`jsonlite`](https://github.com/jeroen/jsonlite): Lectura y escritura de archivos JSON (*JavaScript Object Notation*).
-- [`rvest`](https://github.com/tidyverse/rvest): extraación de datos (estructurados) de páginas web *web scraping*.
+- [`rvest`](https://github.com/tidyverse/rvest): extracción de datos (estructurados) de páginas web *web scraping*.
 - [`xml2`](https://github.com/r-lib/xml2): lectura y escritura de archivos XML.
 - [`vroom`](https://github.com/tidyverse/vroom): lectura eficiente de archivos delimitados
 
@@ -52,14 +54,18 @@ Otros paquetes de interés son:
 library(tidyverse)
 ```
 
+Al cargar `tidyverse` es habitual que aparezcan avisos de *conflictos*: algunas funciones de estos paquetes tienen el mismo nombre que funciones de R base o de otros paquetes ya cargados (por ejemplo, `dplyr::filter()` enmascara a `stats::filter()`). Si esto ocurre, la función del paquete cargado en último
+lugar es la que se usará por defecto; para evitar ambigüedad se puede
+especificar explícitamente el paquete, p.&nbsp;ej. `stats::filter()`.
+
 También hay paquetes "asociados":
 
 - [`rlang`](https://rlang.r-lib.org): herramientas para programación funcional.
 - [`tidyselect`](https://tidyselect.r-lib.org) Sintaxis seleccionar variables (columnas).
 - [`tune`](https://tune.tidymodels.org/): hiperparámetros en modelos estadísticos
-- [`tidymodels`](https://tidymodels.tidymodels.org)  meta-paquete para todo el  proceso de modelado.
+- [`tidymodels`](https://tidymodels.tidymodels.org)  meta-paquete para todo el  proceso de modelado (juega para el modelado predictivo el mismo papel que `tidyverts`/`fable` para las series temporales, ver más abajo).
 
-Muchos otros paquetes están adaptando este estilo, por ejemplo, el meta paquete [`tidyverts`](https://tidyverts.org/)) para el análisis de series temporales (*time series*, TS), que incluye, por ejemplo:
+Muchos otros paquetes están adaptando este estilo, por ejemplo, el meta paquete [`tidyverts`](https://tidyverts.org/) para el análisis de series temporales (*time series*, TS), que incluye, por ejemplo:
 
 - [`tsibble`](https://tsibble.tidyverts.org/) (infra)estructuras de datos. 
 - [`fable`](https://fable.tidyverts.org/) predicción (*forecasting*)^[El libro [**Forecasting: Principles and Practice**](https://otexts.com/fpp3/) donde se describe su uso, y el paquete [`fpp3`](https://github.com/robjhyndman/fpp3package) asociado, también siguen una filosofía *tidy*.]. 
@@ -101,8 +107,7 @@ Otra alternativa sería:
 
 Chang, W. (2023). *[The R Graphics Cookbook](https://r-graphics.org)*. [O’Reilly](https://www.amazon.com/dp/1491978600). 
 
-En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añadir componentes de los gráficos (ver , en *Tidyverse* se emplea un operador de redirección para añadir operaciones.
-
+En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añadir componentes de los gráficos; en *Tidyverse* se emplea un operador de redirección (ver Sección \@ref(pipe)) para añadir operaciones.
 
 ### Operador *pipe* (redirección) {#pipe}
 
@@ -148,7 +153,7 @@ empleados %>%
 
 ### Lectura y escritura de archivos de texto {#readr}
 
-En esta seccón la alternativa *tidyverse*, a la tradicional, vista en las secciones \@ref(cap2-texto) y \@ref(cap2-exporta) del Capítulo 2.
+En esta sección se presenta la alternativa *tidyverse* a la tradicional, vista en las secciones \@ref(cap2-texto) y \@ref(cap2-exporta) del Capítulo \@ref(manipR).
 
 Para leer archivos de texto en distintos formatos se puede emplear el paquete `r cite_pkg(readr)`, disponible en la colección de paquetes `r cite_pkg(tidyverse)`. Para más información, se recomienda consultar el [Capítulo 11](https://r4ds.had.co.nz/data-import.html) del libro [*R for Data Science*](http://r4ds.had.co.nz) [@wickham2023r]  o la versión en español "[*R Para Ciencia de Datos*](https://es.r4ds.hadley.nz/)".
 
@@ -188,7 +193,7 @@ Con el ecosistema *tidyverse*, también con el paquete `r cite_pkg(readr)` se pu
 ```{r, eval=FALSE}
 write_csv2(datos, file = "datos.csv")
 ```
-y como opción más rápida, se podría usar `fwrite()` del paqute `data.table`:
+y como opción más rápida, se podría usar `fwrite()` del paquete `data.table`:
 
 ```{r, eval=FALSE}
 # datos2 <- data.table(datos)
@@ -345,7 +350,7 @@ Para más detalles ver [Per-operation grouping with .by/by](https://dplyr.tidyve
 
 ### Datos faltantes {#tidyr-missing}
 
-Continuamos con el ejemplo de la Sección \@ref{missing}. 
+Continuamos con el ejemplo de la Sección \@ref(missing). 
 *tidyverse* dispone de muchas herramientas para el tratamiento de los datos faltantes.
 
 ```{r eval=F}
@@ -411,6 +416,24 @@ Make naniar work with big data tools like sparklyr, and sparklingwater.
 Provide tools for assessing goodness of fit for classical approaches of MCAR, MAR, and MNAR (graphical inference from nullabor package)
 -->
 
+Antes de decidir cómo tratar los valores faltantes conviene tener en cuenta por qué faltan, ya que no todos los mecanismos son igual de "inofensivos":
+
+- **MCAR** (*missing completely at random*): la probabilidad de que falte un valor no depende ni de los datos observados ni de los no observados (p. ej. un fallo aleatorio del sensor). Es el caso más favorable.
+- **MAR** (*missing at random*): la probabilidad de que falte depende de otras variables observadas, pero no del propio valor ausente (p. ej. un sensor que falla más en ciertos meses).
+- **MNAR** (*missing not at random*): la probabilidad de que falte depende del propio valor no observado (p. ej. valores muy altos de un contaminante que saturan y estropean el sensor). Es el caso más problemático: ignorar estos datos puede sesgar el análisis.
+
+Una vez localizados y entendidos los valores faltantes, una opción sencilla es la **imputación**, es decir, sustituirlos por un valor "razonable" en lugar de eliminar la fila. Con `r cite_fun(replace_na, tidyr)` se puede imputar, por ejemplo, con la media de cada variable:
+
+```{r}
+airquality %>%
+  mutate(
+    Ozone = tidyr::replace_na(as.numeric(Ozone), mean(Ozone, na.rm = TRUE)),
+    Solar.R = tidyr::replace_na(as.numeric(Solar.R), mean(Solar.R, na.rm = TRUE))
+  ) %>%
+  summary()
+```
+
+Esta imputación simple (con la media, la mediana o el último valor válido, `r cite_fun(fill, tidyr)`) es rápida pero **reduce artificialmente la variabilidad** de los datos y puede introducir sesgo si el mecanismo no es MCAR. Para conjuntos de datos más exigentes existen paquetes especializados en imputación múltiple, como `r cite_pkg_("mice", "https://cran.r-project.org/package=mice")` o `r cite_pkg_("missForest", "https://cran.r-project.org/package=missForest")`, que quedan fuera del alcance de esta introducción.
 
 ## Herramientas tidyr {#tidyr-pkg}
 
@@ -600,6 +623,129 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
 Al finalizar hay que desconectar la base de datos:
 
 ```{r }
-DBI::dbDisconnect(chinook)            
+DBI::dbDisconnect(chinook)
 ```
+
+## Eficiencia y desfases con dplyr {#eficiencia-tidyverse}
+
+En la Sección \@ref(eficiencia-manipR) se calculó el desfase (*lag*/*lead*) de un vector desplazándolo "a mano" en R base. `dplyr` ofrece las funciones `r cite_fun(lag, dplyr)` y `r cite_fun(lead, dplyr)`, que hacen lo mismo con una sintaxis más legible (y son especialmente útiles dentro de `mutate()`, por ejemplo para calcular incrementos entre observaciones consecutivas):
+
+```{r}
+a <- 1:11
+dplyr::lag(a)
+dplyr::lead(a)
+```
+
+¿Tiene esta comodidad algún coste en rendimiento? Comparamos con `r cite_pkg(microbenchmark)` frente al desplazamiento manual de la Sección \@ref(eficiencia-manipR):
+
+```{r}
+library(microbenchmark)
+x <- rnorm(1e6)
+microbenchmark(
+  base_r    = c(NA, x[-length(x)]),
+  dplyr_lag = dplyr::lag(x),
+  times = 20
+)
+```
+
+`lag()`/`lead()` están vectorizadas internamente, por lo que su rendimiento es equiparable al del código base equivalente: la sintaxis más uniforme de `dplyr` no implica aquí una penalización relevante.
+
+## Resumen: dplyr/tidyr y R base {#resumen-tidyverse}
+
+A modo de referencia rápida, la siguiente tabla recoge las tareas más
+habituales de manipulación de datos vistas en este capítulo, junto con su
+equivalente en R base (Capítulo \@ref(manipR)):
+
+| Tarea                     | dplyr / tidyr                          | R base                              |
+|---------------------------|-----------------------------------------|--------------------------------------|
+| Leer texto/CSV            | `read_csv2()`, `read_delim()` (readr)   | `read.table()`, `read.delim()`       |
+| Leer Excel                | `read_excel()` (readxl)                 | `openxlsx::read.xlsx()`              |
+| Escribir texto/CSV        | `write_csv2()` (readr)                  | `write.table()`                      |
+| Seleccionar columnas      | `select(df, a, b)`                      | `df[, c("a","b")]`                   |
+| Renombrar columnas        | `rename(df, x = antiguo)`               | `names(df)[i] <- "x"`                |
+| Filtrar filas             | `filter(df, cond)`                      | `subset(df, cond)`, `df[cond, ]`     |
+| Ordenar filas             | `arrange(df, x)`                        | `df[order(df$x), ]`                  |
+| Crear/transformar variable| `mutate(df, z = expr)`                  | `df$z <- expr`                       |
+| Recodificar/categorizar   | `mutate(df, z = case_when(...))`        | `cut()`, `ifelse()`                  |
+| Resumir                   | `summarise(df, ...)`                    | `aggregate()`, `tapply()`            |
+| Agrupar y resumir         | `group_by(df, g) %>% summarise(...)`    | `aggregate(y ~ g, df, FUN)`          |
+| Unir tablas (*join*)      | `inner_join()`, `left_join()`, ...      | `merge()`                            |
+| Filtrar por coincidencia  | `semi_join(df1, df2)`                   | `df1[df1$x %in% df2$x, ]`            |
+| Encadenar operaciones     | `%>%` / `|>`                            | llamadas anidadas                    |
+
+## Ejercicios {#ejercicios-tidyverse}
+
+Los siguientes ejercicios son los mismos que los planteados al final del
+Capítulo \@ref(manipR) (Sección \@ref(ejercicios-manipR)), para resolverlos
+ahora empleando `dplyr`/`tidyr` en lugar de las funciones de R base. Los
+enunciados se dan sin solución; las soluciones se distribuyen aparte.
+
+```{r}
+load("data/empleados.RData")
+attr(empleados, "variable.labels") <- NULL
+```
+
+### Ejercicio 1: incremento salarial (`empleados`)
+
+A partir de los datos de `empleados` (Sección \@ref(readr)), calcula para
+cada empleado el incremento salarial relativo respecto a su salario inicial:
+`incremento = salario / salini - 1`. Muestra los 5 empleados con mayor
+incremento porcentual, junto con su categoría laboral (`catlab`) y su
+antigüedad en meses (`tiempemp`).
+
+Para los siguientes ejercicios se empleará el conjunto de datos `starwars`
+(incluido en el propio paquete `dplyr`):
+
+```{r}
+data(starwars, package = "dplyr")
+```
+
+Para el ejercicio de unión de tablas se empleará además la siguiente tabla,
+creada manualmente, con información de algunos planetas:
+
+```{r}
+planetas <- tibble::tibble(
+  homeworld = c("Tatooine", "Naboo", "Alderaan", "Coruscant", "Kamino",
+                "Corellia", "Kashyyyk", "Ryloth", "Mirial", "Hoth"),
+  region    = c("Outer Rim", "Mid Rim", "Core Worlds", "Core Worlds", "Outer Rim",
+                "Core Worlds", "Mid Rim", "Outer Rim", "Outer Rim", "Outer Rim"),
+  clima     = c("Desértico", "Templado", "Templado", "Urbano", "Oceánico",
+                "Urbano", "Boscoso", "Húmedo", "Templado", "Helado")
+)
+```
+
+### Ejercicio 2: Filtrado y selección (`starwars`)
+
+Obtén el nombre, la altura, el peso y el planeta natal (`homeworld`) de los
+personajes de especie (`species`) `"Human"` con una altura (`height`)
+superior a 180 cm.
+
+### Ejercicio 3: Creación de una variable y categorización
+
+Calcula el índice de masa corporal (IMC = peso / altura^2^, con la altura en
+metros) de cada personaje, descartando aquellos con valores faltantes en
+peso o altura. A continuación, categoriza el IMC empleando los umbrales
+estándar de la OMS: menos de 18.5 "Bajo peso", de 18.5 a 25 "Normal", de 25
+a 30 "Sobrepeso" y 30 o más "Obesidad". Indica cuántos personajes hay en
+cada categoría.
+
+### Ejercicio 4: Resumen y agrupación
+
+Calcula la altura media y el número de personajes por especie, considerando
+únicamente las especies con al menos 3 personajes, y ordena el resultado de
+mayor a menor altura media.
+
+### Ejercicio 5: Unión de tablas
+
+Une `starwars` con `planetas` por la columna `homeworld` y muestra, para cada
+personaje, su nombre, `homeworld`, región y clima. ¿Qué ocurre con los
+personajes cuyo planeta no aparece en `planetas` (o cuyo `homeworld` es
+`NA`)? ¿Y con `"Hoth"`, que está en `planetas` pero no es el planeta natal de
+ningún personaje?
+
+### Ejercicio 6 (opcional): columnas-lista
+
+`starwars` incluye columnas que son listas, como `films` (las películas en
+las que aparece cada personaje). Calcula en cuántas películas aparece cada
+personaje y muestra los que más aparecen.
 
