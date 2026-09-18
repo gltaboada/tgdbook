@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.3 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>7.4 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.3 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="7.4 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.3 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="7.4 Introducción al Análisis de Datos Masivos | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -34,7 +34,7 @@
   
 <link rel="prev" href="tecnologías-big-data-hadoopspark-y-visualización.html"/>
 
-<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,15 +54,15 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -140,7 +140,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -201,16 +200,27 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
 <li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
+<li class="chapter" data-level="2.2" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
-<li class="chapter" data-level="2.2.3" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
-<li class="chapter" data-level="2.2.4" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
-<li class="chapter" data-level="2.2.6" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="2.2.1" data-path="manip.html"><a href="manip.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="manip.html"><a href="manip.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manip.html"><a href="manip.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
+<li class="chapter" data-level="2.2.4" data-path="manip.html"><a href="manip.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="manip.html"><a href="manip.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
+<li class="chapter" data-level="2.2.6" data-path="manip.html"><a href="manip.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+<li class="chapter" data-level="2.4" data-path="eficiencia-manipR.html"><a href="eficiencia-manipR.html"><i class="fa fa-check"></i><b>2.4</b> Eficiencia en R: preasignación, vectorización y desfases</a></li>
+<li class="chapter" data-level="2.5" data-path="resumen-manipR.html"><a href="resumen-manipR.html"><i class="fa fa-check"></i><b>2.5</b> Resumen: R base</a></li>
+<li class="chapter" data-level="2.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html"><i class="fa fa-check"></i><b>2.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-1-incremento-salarial-empleados"><i class="fa fa-check"></i><b>2.6.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars"><i class="fa fa-check"></i><b>2.6.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-4-resumen-y-agrupaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-5-uni%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.6.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="2.6.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-6-opcional-columnas-lista"><i class="fa fa-check"></i><b>2.6.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introSQL.html"><a href="introSQL.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
 <ul>
@@ -312,6 +322,17 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.5.1</b> Ejemplos</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="eficiencia-tidyverse.html"><a href="eficiencia-tidyverse.html"><i class="fa fa-check"></i><b>5.6</b> Eficiencia y desfases con dplyr</a></li>
+<li class="chapter" data-level="5.7" data-path="resumen-tidyverse.html"><a href="resumen-tidyverse.html"><i class="fa fa-check"></i><b>5.7</b> Resumen: dplyr/tidyr y R base</a></li>
+<li class="chapter" data-level="5.8" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html"><i class="fa fa-check"></i><b>5.8</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-1-incremento-salarial-empleados-1"><i class="fa fa-check"></i><b>5.8.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="5.8.2" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars-1"><i class="fa fa-check"></i><b>5.8.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="5.8.3" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="5.8.4" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-4-resumen-y-agrupaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="5.8.5" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-5-uni%C3%B3n-de-tablas-1"><i class="fa fa-check"></i><b>5.8.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="5.8.6" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-6-opcional-columnas-lista-1"><i class="fa fa-check"></i><b>5.8.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introducción-a-tecnologías-nosql.html"><a href="introducción-a-tecnologías-nosql.html"><i class="fa fa-check"></i><b>6</b> Introducción a Tecnologías NoSQL</a>
 <ul>
@@ -330,15 +351,31 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>7</b> Tecnologías para el Tratamiendo de Datos Masivos</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="introducción-al-aprendizaje-estadístico.html"><a href="introducción-al-aprendizaje-estadístico.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a></li>
-<li class="chapter" data-level="7.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.2</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<li class="chapter" data-level="7.1" data-path="intro-AE.html"><a href="intro-AE.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
-<li class="chapter" data-level="7.2.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.2.2</b> Big Data y Machine Learning</a></li>
-<li class="chapter" data-level="7.2.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.2.3</b> Rattle como alternativa a RapidMiner en R</a></li>
-<li class="chapter" data-level="7.2.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.2.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+<li class="chapter" data-level="7.1.1" data-path="intro-AE.html"><a href="intro-AE.html#aprendizaje-estad%C3%ADstico-vs.-aprendizaje-autom%C3%A1tico"><i class="fa fa-check"></i><b>7.1.1</b> Aprendizaje estadístico vs. aprendizaje automático</a></li>
+<li class="chapter" data-level="7.1.2" data-path="intro-AE.html"><a href="intro-AE.html#m%C3%A9todos-de-aprendizaje-estad%C3%ADstico"><i class="fa fa-check"></i><b>7.1.2</b> Métodos de aprendizaje estadístico</a></li>
+<li class="chapter" data-level="7.1.3" data-path="intro-AE.html"><a href="intro-AE.html#const-eval"><i class="fa fa-check"></i><b>7.1.3</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="7.1.4" data-path="intro-AE.html"><a href="intro-AE.html#clasificacion"><i class="fa fa-check"></i><b>7.1.4</b> Clasificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.3</b> Introducción al Análisis de Datos Masivos</a></li>
+<li class="chapter" data-level="7.2" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>7.2</b> Modelización con <code>tidymodels</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-reg"><i class="fa fa-check"></i><b>7.2.1</b> Regresión: seleccionando el grado del polinomio con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-clas"><i class="fa fa-check"></i><b>7.2.2</b> Clasificación: seleccionando <span class="math inline">\(k\)</span> en KNN con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="tidymodels.html"><a href="tidymodels.html#desbalanceo"><i class="fa fa-check"></i><b>7.2.3</b> Clasificación desbalanceada: remuestreo dentro de la receta</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tidymodels.html"><a href="tidymodels.html#roc-auc"><i class="fa fa-check"></i><b>7.2.4</b> Curva ROC y AUC</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tidymodels.html"><a href="tidymodels.html#vip"><i class="fa fa-check"></i><b>7.2.5</b> Importancia de variables y efectos parciales: <code>vip</code> y <code>pdp</code></a></li>
+<li class="chapter" data-level="7.2.6" data-path="tidymodels.html"><a href="tidymodels.html#resumen-tidymodels"><i class="fa fa-check"></i><b>7.2.6</b> Resumen: tidymodels y R base</a></li>
+<li class="chapter" data-level="7.2.7" data-path="tidymodels.html"><a href="tidymodels.html#analisis-modelos"><i class="fa fa-check"></i><b>7.2.7</b> Análisis e interpretación de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.3</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.3.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.3.2</b> Big Data y Machine Learning</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.3.3</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="7.3.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.3.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.4</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -360,20 +397,17 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introducción-al-análisis-de-datos-masivos" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> Introducción al Análisis de Datos Masivos<a href="introducción-al-análisis-de-datos-masivos.html#introducci%C3%B3n-al-an%C3%A1lisis-de-datos-masivos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introducción-al-análisis-de-datos-masivos" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Introducción al Análisis de Datos Masivos<a href="introducción-al-análisis-de-datos-masivos.html#introducci%C3%B3n-al-an%C3%A1lisis-de-datos-masivos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía sparklyr.</p>
 <p>Este apartado, eminentemente práctico, lo trabajaremos a través de <a href="https://www.kaggle.com/gltaboada/t3-practice3-flights">la práctica 3 de TGD</a>.</p>
 <!--
 
-
 ## Práctica 3: Big Data
-
 
 Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato PDF o R MarkDown con el nombre de archivo P3X-Apellidos-Nombre.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) **antes** del miércoles 18 de Diciembre.
 
 ### Ejercicio A con sparklyr
-
 
 (3 puntos) Replicación del siguiente ejercicio con sparklyr y el dataset iris (https://spark.rstudio.com/mlib/) en modo local o modo YARN. Puede ser dentro de jupyterlab (así me entregáis archivo “Apellidos-Nombre.ipynb”) o en R remoto o en Rstudio (vía Desktop de visualización) (en estos dos últimos casos entregáis P3A-Apellidos-Nombre.R).
 
@@ -387,7 +421,6 @@ Se busca que realicéis un análisis con Rattle, mínimo con las pestañas Explo
 (3 puntos) Replicación del siguiente ejercicio con sparklyr en el CESGA, en análisis de los datos del dataset de vuelos:
 http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-flights.html  
 se valorarán análisis adicionales y detalles sobre tiempos de ejecución de los análisis, espera en colas yarn, listado de trabajos spark, etc… 
-
 
 ### Combinando los distintos elementos
 
@@ -442,14 +475,12 @@ hadoop fs -mkdir airports/
 hadoop fs -put airports.csv airports
 ```
 
-
 A continuación lanzamos la ejecución de 'hive':
 
 
 ``` r
 $ hive
 ```
-
 
 Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los datos en la tabla Hive:
 
@@ -497,9 +528,7 @@ TBLPROPERTIES("skip.header.line.count"="1");
 LOAD DATA INPATH 'flights' INTO TABLE flights230;
 ```
 
-
 Ídem para la tabla de aerolíneas, creamos los metadatos y cargamos los datos en la tabla HIVE:
-
 
 
 ``` r
@@ -523,7 +552,6 @@ LOAD DATA INPATH 'airlines' INTO TABLE airlines;
 ```
 
 Ídem para la tabla de aeropuertos, creamos los metadatos y cargamos los datos en la tabla HIVE:
-
 
 
 ``` r
@@ -555,7 +583,6 @@ STORED AS TEXTFILE;
 LOAD DATA INPATH 'airports' INTO TABLE airports;
 ```
 
-
 Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con 'sc <- spark_connect(master = "local")' )
 
 
@@ -567,7 +594,6 @@ library(ggplot2)
 sc <- spark_connect(master = "yarn-client", spark_home = Sys.getenv('SPARK_HOME')) 
 sc
 ```
-
 
 Si tenemos problemas para conectar podemos gestionar con YARN los recursos
 
@@ -585,9 +611,7 @@ yarn application -list | grep SUBMITTED
 yarn application -kill application_1575999528886_0161
 ```
 
-
 Crear tablas dplyr a tablas HIVE: 
-
 
 
 ``` r
@@ -598,7 +622,6 @@ flights_tbl %>% print(width = Inf)
 ```
 
 
-
 ``` r
 # Cache airlines Hive table into Spark
 #tbl_cache(sc, 'airlines')
@@ -607,15 +630,12 @@ airlines_tbl %>% print(width = Inf)
 ```
 
 
-
 ``` r
 # Cache airports Hive table into Spark
 #tbl_cache(sc, 'airports')
 airports_tbl <- tbl(sc, 'airports')
 airports_tbl %>% print(width = Inf)
 ```
-
-
 
 Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:
 
@@ -631,7 +651,6 @@ out <- flights_tbl %>%
 out
 out %>% ggplot(aes(x = year, y = n)) + geom_col()
 ```
-
 
 Vuelos con origen LAX (Los Angeles) por año:
 
@@ -666,7 +685,6 @@ out
 Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para ello buscaremos modelar como una regresión lineal la ganancia de un vuelo (gain) como (depdelay - arrdelay) basándose en la distancia, el retraso de la salida y la aerolínea usando datos del período 2003-2007:
 
 
-
 ``` r
 # Filter records and create target variable 'gain'
 system.time(
@@ -693,9 +711,7 @@ model_data %>%
   arrange(gain)
 ```
 
-
 Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un vuelo en función de la distancia, retraso en la salida y aerolínea procedemos de este modo:
-
 
 
 ``` r
@@ -776,7 +792,6 @@ ggplot(carrier, aes(gain, prediction)) +
   labs(title='Average Gains Forecast', x = 'Actual', y = 'Predicted')
 ```
 
-
 Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:
 
 
@@ -784,20 +799,11 @@ Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:
 spark_disconnect_all()
 ```
 
-
-
-
-
-
 En este tema vamos a ver las tecnologías más relevantes para el tratamiento de datos masivos dentro de R, como son Spark (con sparklyr) dentro del ecosistema Hadoop. Los ejercicios prácticos se realizarán sobre la [plataforma Big Data](http://bigdata.cesga.es/) del [Centro de Supercomputación de Galicia (CESGA)](http://www.cesga.es)
 
 ![](images/T3-bigdatacesga.png)
 
-
-
-
 Conexión vía SSH a CESGA (siempre con VPN activada!) y ejemplo #1:
-
 
 
 ``` r
@@ -841,8 +847,6 @@ SELECT * FROM bdp.hv_csv_table where Calendar_Year=2005 limit 10;
 SELECT * FROM bdp.hv_csv_table where Calendar_Year>2005;
 ```
 
-
-
 Y ejemplo #2:
  
 
@@ -884,7 +888,6 @@ iris_tbl
 
 ![](images/T3-sparklyr3.png)
 
-
 NOTA: en ausencia de clúster Hadoop con YARN, o para debugging, también se puede conectar usando las siguientes instrucciones, y obtener elm mismo resultado que en presencia de YARN.
 
 
@@ -897,18 +900,18 @@ iris_tbl
 
 -->
 
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
 Bezanson, Jeff, Alan Edelman, Stefan Karpinski, and Viral B Shah. 2017. <span>“Julia: A Fresh Approach to Numerical Computing.”</span> <em>SIAM Review</em> 59 (1): 65–98. <a href="https://doi.org/10.1137/141000671">https://doi.org/10.1137/141000671</a>.
 </div>
 <div class="csl-entry">
-James, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, et al. 2013. <em>An Introduction to Statistical Learning</em>. Vol. 112. Springer.
+<span class="nocase">James, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, et al.</span> 2013. <em>An Introduction to Statistical Learning</em>. Vol. 112. Springer.
 </div>
 <div class="csl-entry">
 James, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor. 2023. <em>An Introduction to Statistical Learning: With Applications in Python</em>. Springer Nature.
 </div>
 <div class="csl-entry">
-Little, Roderick JA. 1988. <span>“A Test of Missing Completely at Random for Multivariate Data with Missing Values.”</span> <em>Journal of the American Statistical Association</em> 83 (404): 1198–1202.
+Little, Roderick JA. 1988. <span>“A Test of Missing Completely at Random for Multivariate Data with Missing Values.”</span> <em>Journal of the American Statistical Association</em> 83 (404): 1198–202.
 </div>
 <div class="csl-entry">
 Van Buuren, Stef. 2018. <em>Flexible Imputation of Missing Data</em>. CRC press.
@@ -920,11 +923,12 @@ Van Rossum, Guido, and Fred L Drake Jr. 1995. <em>Python Reference Manual</em>. 
 Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science</em>. " O’Reilly Media, Inc.".
 </div>
 <div class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2026. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
 </div>
 </div>
 </div>
 <!-- </div> -->
+
 
 
 

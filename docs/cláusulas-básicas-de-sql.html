@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.5 Cláusulas básicas de SQL | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.5 Cláusulas básicas de SQL | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -34,7 +34,7 @@
   
 <link rel="prev" href="sintaxis-sql.html"/>
 <link rel="next" href="gestión-de-datos.html"/>
-<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,15 +54,15 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -140,7 +140,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -201,16 +200,27 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
 <li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
+<li class="chapter" data-level="2.2" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
-<li class="chapter" data-level="2.2.3" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
-<li class="chapter" data-level="2.2.4" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
-<li class="chapter" data-level="2.2.6" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="2.2.1" data-path="manip.html"><a href="manip.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="manip.html"><a href="manip.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manip.html"><a href="manip.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
+<li class="chapter" data-level="2.2.4" data-path="manip.html"><a href="manip.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="manip.html"><a href="manip.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
+<li class="chapter" data-level="2.2.6" data-path="manip.html"><a href="manip.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+<li class="chapter" data-level="2.4" data-path="eficiencia-manipR.html"><a href="eficiencia-manipR.html"><i class="fa fa-check"></i><b>2.4</b> Eficiencia en R: preasignación, vectorización y desfases</a></li>
+<li class="chapter" data-level="2.5" data-path="resumen-manipR.html"><a href="resumen-manipR.html"><i class="fa fa-check"></i><b>2.5</b> Resumen: R base</a></li>
+<li class="chapter" data-level="2.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html"><i class="fa fa-check"></i><b>2.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-1-incremento-salarial-empleados"><i class="fa fa-check"></i><b>2.6.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars"><i class="fa fa-check"></i><b>2.6.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-4-resumen-y-agrupaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-5-uni%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.6.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="2.6.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-6-opcional-columnas-lista"><i class="fa fa-check"></i><b>2.6.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introSQL.html"><a href="introSQL.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
 <ul>
@@ -312,6 +322,17 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.5.1</b> Ejemplos</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="eficiencia-tidyverse.html"><a href="eficiencia-tidyverse.html"><i class="fa fa-check"></i><b>5.6</b> Eficiencia y desfases con dplyr</a></li>
+<li class="chapter" data-level="5.7" data-path="resumen-tidyverse.html"><a href="resumen-tidyverse.html"><i class="fa fa-check"></i><b>5.7</b> Resumen: dplyr/tidyr y R base</a></li>
+<li class="chapter" data-level="5.8" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html"><i class="fa fa-check"></i><b>5.8</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-1-incremento-salarial-empleados-1"><i class="fa fa-check"></i><b>5.8.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="5.8.2" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars-1"><i class="fa fa-check"></i><b>5.8.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="5.8.3" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="5.8.4" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-4-resumen-y-agrupaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="5.8.5" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-5-uni%C3%B3n-de-tablas-1"><i class="fa fa-check"></i><b>5.8.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="5.8.6" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-6-opcional-columnas-lista-1"><i class="fa fa-check"></i><b>5.8.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introducción-a-tecnologías-nosql.html"><a href="introducción-a-tecnologías-nosql.html"><i class="fa fa-check"></i><b>6</b> Introducción a Tecnologías NoSQL</a>
 <ul>
@@ -330,15 +351,31 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>7</b> Tecnologías para el Tratamiendo de Datos Masivos</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="introducción-al-aprendizaje-estadístico.html"><a href="introducción-al-aprendizaje-estadístico.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a></li>
-<li class="chapter" data-level="7.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.2</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<li class="chapter" data-level="7.1" data-path="intro-AE.html"><a href="intro-AE.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
-<li class="chapter" data-level="7.2.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.2.2</b> Big Data y Machine Learning</a></li>
-<li class="chapter" data-level="7.2.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.2.3</b> Rattle como alternativa a RapidMiner en R</a></li>
-<li class="chapter" data-level="7.2.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.2.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+<li class="chapter" data-level="7.1.1" data-path="intro-AE.html"><a href="intro-AE.html#aprendizaje-estad%C3%ADstico-vs.-aprendizaje-autom%C3%A1tico"><i class="fa fa-check"></i><b>7.1.1</b> Aprendizaje estadístico vs. aprendizaje automático</a></li>
+<li class="chapter" data-level="7.1.2" data-path="intro-AE.html"><a href="intro-AE.html#m%C3%A9todos-de-aprendizaje-estad%C3%ADstico"><i class="fa fa-check"></i><b>7.1.2</b> Métodos de aprendizaje estadístico</a></li>
+<li class="chapter" data-level="7.1.3" data-path="intro-AE.html"><a href="intro-AE.html#const-eval"><i class="fa fa-check"></i><b>7.1.3</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="7.1.4" data-path="intro-AE.html"><a href="intro-AE.html#clasificacion"><i class="fa fa-check"></i><b>7.1.4</b> Clasificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.3</b> Introducción al Análisis de Datos Masivos</a></li>
+<li class="chapter" data-level="7.2" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>7.2</b> Modelización con <code>tidymodels</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-reg"><i class="fa fa-check"></i><b>7.2.1</b> Regresión: seleccionando el grado del polinomio con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-clas"><i class="fa fa-check"></i><b>7.2.2</b> Clasificación: seleccionando <span class="math inline">\(k\)</span> en KNN con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="tidymodels.html"><a href="tidymodels.html#desbalanceo"><i class="fa fa-check"></i><b>7.2.3</b> Clasificación desbalanceada: remuestreo dentro de la receta</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tidymodels.html"><a href="tidymodels.html#roc-auc"><i class="fa fa-check"></i><b>7.2.4</b> Curva ROC y AUC</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tidymodels.html"><a href="tidymodels.html#vip"><i class="fa fa-check"></i><b>7.2.5</b> Importancia de variables y efectos parciales: <code>vip</code> y <code>pdp</code></a></li>
+<li class="chapter" data-level="7.2.6" data-path="tidymodels.html"><a href="tidymodels.html#resumen-tidymodels"><i class="fa fa-check"></i><b>7.2.6</b> Resumen: tidymodels y R base</a></li>
+<li class="chapter" data-level="7.2.7" data-path="tidymodels.html"><a href="tidymodels.html#analisis-modelos"><i class="fa fa-check"></i><b>7.2.7</b> Análisis e interpretación de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.3</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.3.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.3.2</b> Big Data y Machine Learning</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.3.3</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="7.3.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.3.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.4</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -367,60 +404,60 @@ div.csl-indent {
 <ul>
 <li>Seleccionar todas las columnas de una tabla:</li>
 </ul>
-<div class="sourceCode" id="cb182"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb182-1"><a href="cláusulas-básicas-de-sql.html#cb182-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track;  </span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb194-1"><a href="cláusulas-básicas-de-sql.html#cb194-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track;  </span></code></pre></div>
 <ul>
 <li>Seleccionar columnas específicas:</li>
 </ul>
-<div class="sourceCode" id="cb183"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb183-1"><a href="cláusulas-básicas-de-sql.html#cb183-1" tabindex="-1"></a>  <span class="kw">SELECT</span> name, composer <span class="kw">FROM</span> Track; </span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb195-1"><a href="cláusulas-básicas-de-sql.html#cb195-1" tabindex="-1"></a>  <span class="kw">SELECT</span> name, composer <span class="kw">FROM</span> Track; </span></code></pre></div>
 <ul>
 <li>Alias de columna y tabla:</li>
 </ul>
-<div class="sourceCode" id="cb184"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb184-1"><a href="cláusulas-básicas-de-sql.html#cb184-1" tabindex="-1"></a>  <span class="kw">SELECT</span> name <span class="kw">AS</span> Canción <span class="kw">FROM</span> Track; </span>
-<span id="cb184-2"><a href="cláusulas-básicas-de-sql.html#cb184-2" tabindex="-1"></a></span>
-<span id="cb184-3"><a href="cláusulas-básicas-de-sql.html#cb184-3" tabindex="-1"></a>  <span class="kw">SELECT</span> T.name <span class="kw">FROM</span> Track <span class="kw">AS</span> T;</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb196-1"><a href="cláusulas-básicas-de-sql.html#cb196-1" tabindex="-1"></a>  <span class="kw">SELECT</span> name <span class="kw">AS</span> Canción <span class="kw">FROM</span> Track; </span>
+<span id="cb196-2"><a href="cláusulas-básicas-de-sql.html#cb196-2" tabindex="-1"></a></span>
+<span id="cb196-3"><a href="cláusulas-básicas-de-sql.html#cb196-3" tabindex="-1"></a>  <span class="kw">SELECT</span> T.name <span class="kw">FROM</span> Track <span class="kw">AS</span> T;</span></code></pre></div>
 <ul>
 <li>Funciones de agregación:</li>
 </ul>
-<div class="sourceCode" id="cb185"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb185-1"><a href="cláusulas-básicas-de-sql.html#cb185-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>), <span class="fu">SUM</span>(UnitPrice), <span class="fu">MIN</span>(UnitPrice), <span class="fu">MAX</span>(UnitPrice) <span class="kw">FROM</span> Track; </span>
-<span id="cb185-2"><a href="cláusulas-básicas-de-sql.html#cb185-2" tabindex="-1"></a></span>
-<span id="cb185-3"><a href="cláusulas-básicas-de-sql.html#cb185-3" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">AVG</span>(milliseconds) <span class="kw">AS</span> <span class="st">&#39;Duración Media&#39;</span> <span class="kw">FROM</span> Track; </span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb197-1"><a href="cláusulas-básicas-de-sql.html#cb197-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>), <span class="fu">SUM</span>(UnitPrice), <span class="fu">MIN</span>(UnitPrice), <span class="fu">MAX</span>(UnitPrice) <span class="kw">FROM</span> Track; </span>
+<span id="cb197-2"><a href="cláusulas-básicas-de-sql.html#cb197-2" tabindex="-1"></a></span>
+<span id="cb197-3"><a href="cláusulas-básicas-de-sql.html#cb197-3" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">AVG</span>(milliseconds) <span class="kw">AS</span> <span class="st">&#39;Duración Media&#39;</span> <span class="kw">FROM</span> Track; </span></code></pre></div>
 <ul>
 <li>Formato:</li>
 </ul>
-<div class="sourceCode" id="cb186"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb186-1"><a href="cláusulas-básicas-de-sql.html#cb186-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">CONCAT</span>(FirstName, <span class="st">&#39; &#39;</span>, LastName) <span class="kw">AS</span> Nombre <span class="kw">FROM</span> Employee; </span>
-<span id="cb186-2"><a href="cláusulas-básicas-de-sql.html#cb186-2" tabindex="-1"></a></span>
-<span id="cb186-3"><a href="cláusulas-básicas-de-sql.html#cb186-3" tabindex="-1"></a>  <span class="kw">SELECT</span> (FirstName <span class="op">||</span> <span class="st">&#39; &#39;</span> <span class="op">||</span> LastName) <span class="kw">AS</span> Nombre <span class="kw">FROM</span> Employee; </span>
-<span id="cb186-4"><a href="cláusulas-básicas-de-sql.html#cb186-4" tabindex="-1"></a></span>
-<span id="cb186-5"><a href="cláusulas-básicas-de-sql.html#cb186-5" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">ROUND</span>(<span class="fu">AVG</span>(Total), <span class="dv">2</span>) <span class="kw">AS</span> <span class="st">&#39;Facturacion Media&#39;</span> <span class="kw">FROM</span> Invoice; </span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb198-1"><a href="cláusulas-básicas-de-sql.html#cb198-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">CONCAT</span>(FirstName, <span class="st">&#39; &#39;</span>, LastName) <span class="kw">AS</span> Nombre <span class="kw">FROM</span> Employee; </span>
+<span id="cb198-2"><a href="cláusulas-básicas-de-sql.html#cb198-2" tabindex="-1"></a></span>
+<span id="cb198-3"><a href="cláusulas-básicas-de-sql.html#cb198-3" tabindex="-1"></a>  <span class="kw">SELECT</span> (FirstName <span class="op">||</span> <span class="st">&#39; &#39;</span> <span class="op">||</span> LastName) <span class="kw">AS</span> Nombre <span class="kw">FROM</span> Employee; </span>
+<span id="cb198-4"><a href="cláusulas-básicas-de-sql.html#cb198-4" tabindex="-1"></a></span>
+<span id="cb198-5"><a href="cláusulas-básicas-de-sql.html#cb198-5" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">ROUND</span>(<span class="fu">AVG</span>(Total), <span class="dv">2</span>) <span class="kw">AS</span> <span class="st">&#39;Facturacion Media&#39;</span> <span class="kw">FROM</span> Invoice; </span></code></pre></div>
 </div>
 <div id="número-de-filas-paginación" class="section level3 hasAnchor" number="3.5.2">
 <h3><span class="header-section-number">3.5.2</span> Número de filas (paginación)<a href="cláusulas-básicas-de-sql.html#n%C3%BAmero-de-filas-paginaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Obtener las N primeras:</li>
 </ul>
-<div class="sourceCode" id="cb187"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb187-1"><a href="cláusulas-básicas-de-sql.html#cb187-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
-<span id="cb187-2"><a href="cláusulas-básicas-de-sql.html#cb187-2" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title <span class="kw">ASC</span></span>
-<span id="cb187-3"><a href="cláusulas-básicas-de-sql.html#cb187-3" tabindex="-1"></a>  <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb199-1"><a href="cláusulas-básicas-de-sql.html#cb199-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
+<span id="cb199-2"><a href="cláusulas-básicas-de-sql.html#cb199-2" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title <span class="kw">ASC</span></span>
+<span id="cb199-3"><a href="cláusulas-básicas-de-sql.html#cb199-3" tabindex="-1"></a>  <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
 <ul>
 <li>Obtener las N filas siguientes:</li>
 </ul>
-<div class="sourceCode" id="cb188"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb188-1"><a href="cláusulas-básicas-de-sql.html#cb188-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
-<span id="cb188-2"><a href="cláusulas-básicas-de-sql.html#cb188-2" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title <span class="kw">ASC</span></span>
-<span id="cb188-3"><a href="cláusulas-básicas-de-sql.html#cb188-3" tabindex="-1"></a>  OFFSET <span class="dv">5</span> <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb200-1"><a href="cláusulas-básicas-de-sql.html#cb200-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
+<span id="cb200-2"><a href="cláusulas-básicas-de-sql.html#cb200-2" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title <span class="kw">ASC</span></span>
+<span id="cb200-3"><a href="cláusulas-básicas-de-sql.html#cb200-3" tabindex="-1"></a>  OFFSET <span class="dv">5</span> <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
 </div>
 <div id="filtrado-de-resultados" class="section level3 hasAnchor" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> Filtrado de Resultados<a href="cláusulas-básicas-de-sql.html#filtrado-de-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Filtrado de duplicados:</li>
 </ul>
-<div class="sourceCode" id="cb189"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb189-1"><a href="cláusulas-básicas-de-sql.html#cb189-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> FirstName <span class="kw">FROM</span> Customer; </span>
-<span id="cb189-2"><a href="cláusulas-básicas-de-sql.html#cb189-2" tabindex="-1"></a></span>
-<span id="cb189-3"><a href="cláusulas-básicas-de-sql.html#cb189-3" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> FirstName) <span class="kw">FROM</span> Customer; </span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb201-1"><a href="cláusulas-básicas-de-sql.html#cb201-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> FirstName <span class="kw">FROM</span> Customer; </span>
+<span id="cb201-2"><a href="cláusulas-básicas-de-sql.html#cb201-2" tabindex="-1"></a></span>
+<span id="cb201-3"><a href="cláusulas-básicas-de-sql.html#cb201-3" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> FirstName) <span class="kw">FROM</span> Customer; </span></code></pre></div>
 <ul>
 <li>Seleccionar filas con condiciones:</li>
 </ul>
-<div class="sourceCode" id="cb190"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb190-1"><a href="cláusulas-básicas-de-sql.html#cb190-1" tabindex="-1"></a><span class="kw">SELECT</span> name <span class="kw">FROM</span> Track</span>
-<span id="cb190-2"><a href="cláusulas-básicas-de-sql.html#cb190-2" tabindex="-1"></a><span class="kw">WHERE</span> UnitPrice <span class="op">&lt;</span> <span class="fl">2.0</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb202-1"><a href="cláusulas-básicas-de-sql.html#cb202-1" tabindex="-1"></a><span class="kw">SELECT</span> name <span class="kw">FROM</span> Track</span>
+<span id="cb202-2"><a href="cláusulas-básicas-de-sql.html#cb202-2" tabindex="-1"></a><span class="kw">WHERE</span> UnitPrice <span class="op">&lt;</span> <span class="fl">2.0</span>; </span></code></pre></div>
 <ul>
 <li><p>Múltiples condiciones:</p>
 <ul>
@@ -428,43 +465,43 @@ div.csl-indent {
 ‘BETWEEN x AND y’, ‘IN (lista)’</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb191"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb191-1"><a href="cláusulas-básicas-de-sql.html#cb191-1" tabindex="-1"></a>  <span class="kw">SELECT</span> name <span class="kw">FROM</span> Track</span>
-<span id="cb191-2"><a href="cláusulas-básicas-de-sql.html#cb191-2" tabindex="-1"></a>  <span class="kw">WHERE</span> milliseconds <span class="op">&gt;</span> <span class="dv">120000</span> <span class="kw">AND</span> UnitPrice <span class="op">&lt;</span> <span class="fl">2.0</span>; </span></code></pre></div>
-<div class="sourceCode" id="cb192"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb192-1"><a href="cláusulas-básicas-de-sql.html#cb192-1" tabindex="-1"></a>  <span class="kw">SELECT</span> name <span class="kw">FROM</span> Track</span>
-<span id="cb192-2"><a href="cláusulas-básicas-de-sql.html#cb192-2" tabindex="-1"></a>  <span class="kw">WHERE</span> composer <span class="kw">LIKE</span> <span class="st">&#39;Metallica&#39;</span> <span class="kw">OR</span> composer <span class="kw">LIKE</span> <span class="st">&#39;Ulrich&#39;</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb203-1"><a href="cláusulas-básicas-de-sql.html#cb203-1" tabindex="-1"></a>  <span class="kw">SELECT</span> name <span class="kw">FROM</span> Track</span>
+<span id="cb203-2"><a href="cláusulas-básicas-de-sql.html#cb203-2" tabindex="-1"></a>  <span class="kw">WHERE</span> milliseconds <span class="op">&gt;</span> <span class="dv">120000</span> <span class="kw">AND</span> UnitPrice <span class="op">&lt;</span> <span class="fl">2.0</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb204-1"><a href="cláusulas-básicas-de-sql.html#cb204-1" tabindex="-1"></a>  <span class="kw">SELECT</span> name <span class="kw">FROM</span> Track</span>
+<span id="cb204-2"><a href="cláusulas-básicas-de-sql.html#cb204-2" tabindex="-1"></a>  <span class="kw">WHERE</span> composer <span class="kw">LIKE</span> <span class="st">&#39;Metallica&#39;</span> <span class="kw">OR</span> composer <span class="kw">LIKE</span> <span class="st">&#39;Ulrich&#39;</span>; </span></code></pre></div>
 <ul>
 <li>Coincidencias parciales:</li>
 </ul>
-<div class="sourceCode" id="cb193"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb193-1"><a href="cláusulas-básicas-de-sql.html#cb193-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
-<span id="cb193-2"><a href="cláusulas-básicas-de-sql.html#cb193-2" tabindex="-1"></a>  <span class="kw">WHERE</span> name <span class="kw">LIKE</span> <span class="st">&#39;%Love%&#39;</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb205-1"><a href="cláusulas-básicas-de-sql.html#cb205-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
+<span id="cb205-2"><a href="cláusulas-básicas-de-sql.html#cb205-2" tabindex="-1"></a>  <span class="kw">WHERE</span> name <span class="kw">LIKE</span> <span class="st">&#39;%Love%&#39;</span>; </span></code></pre></div>
 <ul>
 <li><p>‘%’ : Reemplazo por un conjunto de caracteres</p></li>
 <li><p>’_’ : Reemplazo por un caracter</p></li>
 <li><p>Rangos:</p></li>
 </ul>
-<div class="sourceCode" id="cb194"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb194-1"><a href="cláusulas-básicas-de-sql.html#cb194-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
-<span id="cb194-2"><a href="cláusulas-básicas-de-sql.html#cb194-2" tabindex="-1"></a>  <span class="kw">WHERE</span> UnitPrice <span class="kw">BETWEEN</span> <span class="fl">0.5</span> <span class="kw">AND</span> <span class="fl">1.5</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb206-1"><a href="cláusulas-básicas-de-sql.html#cb206-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
+<span id="cb206-2"><a href="cláusulas-básicas-de-sql.html#cb206-2" tabindex="-1"></a>  <span class="kw">WHERE</span> UnitPrice <span class="kw">BETWEEN</span> <span class="fl">0.5</span> <span class="kw">AND</span> <span class="fl">1.5</span>; </span></code></pre></div>
 <ul>
 <li>Valores en una lista:</li>
 </ul>
-<div class="sourceCode" id="cb195"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb195-1"><a href="cláusulas-básicas-de-sql.html#cb195-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
-<span id="cb195-2"><a href="cláusulas-básicas-de-sql.html#cb195-2" tabindex="-1"></a>  <span class="kw">WHERE</span> composer <span class="kw">IN</span> (<span class="st">&#39;Metallica&#39;</span>, <span class="st">&#39;Ulrich&#39;</span>); </span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb207-1"><a href="cláusulas-básicas-de-sql.html#cb207-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
+<span id="cb207-2"><a href="cláusulas-básicas-de-sql.html#cb207-2" tabindex="-1"></a>  <span class="kw">WHERE</span> composer <span class="kw">IN</span> (<span class="st">&#39;Metallica&#39;</span>, <span class="st">&#39;Ulrich&#39;</span>); </span></code></pre></div>
 </div>
 <div id="ordenación-de-resultados" class="section level3 hasAnchor" number="3.5.4">
 <h3><span class="header-section-number">3.5.4</span> Ordenación de Resultados<a href="cláusulas-básicas-de-sql.html#ordenaci%C3%B3n-de-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Ordenar por una columna:</li>
 </ul>
-<div class="sourceCode" id="cb196"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb196-1"><a href="cláusulas-básicas-de-sql.html#cb196-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
-<span id="cb196-2"><a href="cláusulas-básicas-de-sql.html#cb196-2" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title <span class="kw">ASC</span>; </span>
-<span id="cb196-3"><a href="cláusulas-básicas-de-sql.html#cb196-3" tabindex="-1"></a></span>
-<span id="cb196-4"><a href="cláusulas-básicas-de-sql.html#cb196-4" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
-<span id="cb196-5"><a href="cláusulas-básicas-de-sql.html#cb196-5" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title <span class="kw">DESC</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb208-1"><a href="cláusulas-básicas-de-sql.html#cb208-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
+<span id="cb208-2"><a href="cláusulas-básicas-de-sql.html#cb208-2" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title <span class="kw">ASC</span>; </span>
+<span id="cb208-3"><a href="cláusulas-básicas-de-sql.html#cb208-3" tabindex="-1"></a></span>
+<span id="cb208-4"><a href="cláusulas-básicas-de-sql.html#cb208-4" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
+<span id="cb208-5"><a href="cláusulas-básicas-de-sql.html#cb208-5" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title <span class="kw">DESC</span>; </span></code></pre></div>
 <ul>
 <li>Ordenar por múltiples columnas:</li>
 </ul>
-<div class="sourceCode" id="cb197"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb197-1"><a href="cláusulas-básicas-de-sql.html#cb197-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
-<span id="cb197-2"><a href="cláusulas-básicas-de-sql.html#cb197-2" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> composer <span class="kw">ASC</span>, title <span class="kw">DESC</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb209-1"><a href="cláusulas-básicas-de-sql.html#cb209-1" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Track</span>
+<span id="cb209-2"><a href="cláusulas-básicas-de-sql.html#cb209-2" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> composer <span class="kw">ASC</span>, title <span class="kw">DESC</span>; </span></code></pre></div>
 </div>
 <div id="unión-de-tablas" class="section level3 hasAnchor" number="3.5.5">
 <h3><span class="header-section-number">3.5.5</span> Unión de tablas<a href="cláusulas-básicas-de-sql.html#uni%C3%B3n-de-tablas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -474,60 +511,60 @@ div.csl-indent {
 <li>Operador A <em>[INNER] JOIN</em> B: interesección de A y B</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb198"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb198-1"><a href="cláusulas-básicas-de-sql.html#cb198-1" tabindex="-1"></a>  <span class="kw">SELECT</span> ar.Name <span class="kw">AS</span> Artista, a.Title <span class="kw">AS</span> Album</span>
-<span id="cb198-2"><a href="cláusulas-básicas-de-sql.html#cb198-2" tabindex="-1"></a>  <span class="kw">FROM</span> Artist ar <span class="kw">JOIN</span> Album a <span class="kw">ON</span> ar.ArtistId <span class="op">=</span> a.ArtistId;</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb210-1"><a href="cláusulas-básicas-de-sql.html#cb210-1" tabindex="-1"></a>  <span class="kw">SELECT</span> ar.Name <span class="kw">AS</span> Artista, a.Title <span class="kw">AS</span> Album</span>
+<span id="cb210-2"><a href="cláusulas-básicas-de-sql.html#cb210-2" tabindex="-1"></a>  <span class="kw">FROM</span> Artist ar <span class="kw">JOIN</span> Album a <span class="kw">ON</span> ar.ArtistId <span class="op">=</span> a.ArtistId;</span></code></pre></div>
 <ul>
 <li>Operador A <em>LEFT JOIN</em> B: interesección de A y B, y filas de A sin correspondencia en B</li>
 </ul>
-<div class="sourceCode" id="cb199"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb199-1"><a href="cláusulas-básicas-de-sql.html#cb199-1" tabindex="-1"></a>  <span class="kw">SELECT</span> ar.Name <span class="kw">AS</span> Artista, a.Title <span class="kw">AS</span> Album</span>
-<span id="cb199-2"><a href="cláusulas-básicas-de-sql.html#cb199-2" tabindex="-1"></a>  <span class="kw">FROM</span> Artist ar <span class="kw">LEFT</span> <span class="kw">JOIN</span> Album a <span class="kw">ON</span> ar.ArtistId <span class="op">=</span> a.ArtistId;</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb211-1"><a href="cláusulas-básicas-de-sql.html#cb211-1" tabindex="-1"></a>  <span class="kw">SELECT</span> ar.Name <span class="kw">AS</span> Artista, a.Title <span class="kw">AS</span> Album</span>
+<span id="cb211-2"><a href="cláusulas-básicas-de-sql.html#cb211-2" tabindex="-1"></a>  <span class="kw">FROM</span> Artist ar <span class="kw">LEFT</span> <span class="kw">JOIN</span> Album a <span class="kw">ON</span> ar.ArtistId <span class="op">=</span> a.ArtistId;</span></code></pre></div>
 <ul>
 <li><p>Operador A <em>RIGHT JOIN</em> B: interesección de A y B, y filas de B sin correspondencia en A</p></li>
 <li><p>A ‘FULL [OUTER] JOIN’ B: interesección de A y B, y filas de A y B sin correspondencia</p></li>
 <li><p>sqlite no soporta directamente RIGHT JOIN ni FULL JOIN</p></li>
 <li><p>Producto cartesiano</p></li>
 </ul>
-<div class="sourceCode" id="cb200"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb200-1"><a href="cláusulas-básicas-de-sql.html#cb200-1" tabindex="-1"></a>  <span class="kw">SELECT</span> g.Name <span class="kw">AS</span> Genero, m.Name <span class="kw">AS</span> Formato</span>
-<span id="cb200-2"><a href="cláusulas-básicas-de-sql.html#cb200-2" tabindex="-1"></a>  <span class="kw">FROM</span> Genre g <span class="kw">CROSS</span> <span class="kw">JOIN</span> MediaType m</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb212-1"><a href="cláusulas-básicas-de-sql.html#cb212-1" tabindex="-1"></a>  <span class="kw">SELECT</span> g.Name <span class="kw">AS</span> Genero, m.Name <span class="kw">AS</span> Formato</span>
+<span id="cb212-2"><a href="cláusulas-básicas-de-sql.html#cb212-2" tabindex="-1"></a>  <span class="kw">FROM</span> Genre g <span class="kw">CROSS</span> <span class="kw">JOIN</span> MediaType m</span></code></pre></div>
 </div>
 <div id="agrupamiento" class="section level3 hasAnchor" number="3.5.6">
 <h3><span class="header-section-number">3.5.6</span> Agrupamiento<a href="cláusulas-básicas-de-sql.html#agrupamiento" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Funciones de agregación parciales</li>
 </ul>
-<div class="sourceCode" id="cb201"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb201-1"><a href="cláusulas-básicas-de-sql.html#cb201-1" tabindex="-1"></a>  <span class="kw">SELECT</span> A.Title <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio </span>
-<span id="cb201-2"><a href="cláusulas-básicas-de-sql.html#cb201-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId </span>
-<span id="cb201-3"><a href="cláusulas-básicas-de-sql.html#cb201-3" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.Title; </span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb213-1"><a href="cláusulas-básicas-de-sql.html#cb213-1" tabindex="-1"></a>  <span class="kw">SELECT</span> A.Title <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio </span>
+<span id="cb213-2"><a href="cláusulas-básicas-de-sql.html#cb213-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId </span>
+<span id="cb213-3"><a href="cláusulas-básicas-de-sql.html#cb213-3" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.Title; </span></code></pre></div>
 <ul>
 <li><em>CONSEJO:</em> Es importante agrupar por <em>clave candidata</em> o <em>superclave</em>.
 La consulta anterior daría resultados incorrectos si existen dos álbumes diferentes con el mismo título.
 Mejor:</li>
 </ul>
-<div class="sourceCode" id="cb202"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb202-1"><a href="cláusulas-básicas-de-sql.html#cb202-1" tabindex="-1"></a>  <span class="kw">SELECT</span> A.Title <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio </span>
-<span id="cb202-2"><a href="cláusulas-básicas-de-sql.html#cb202-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId </span>
-<span id="cb202-3"><a href="cláusulas-básicas-de-sql.html#cb202-3" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.AlbumId;</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb214-1"><a href="cláusulas-básicas-de-sql.html#cb214-1" tabindex="-1"></a>  <span class="kw">SELECT</span> A.Title <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio </span>
+<span id="cb214-2"><a href="cláusulas-básicas-de-sql.html#cb214-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId </span>
+<span id="cb214-3"><a href="cláusulas-básicas-de-sql.html#cb214-3" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.AlbumId;</span></code></pre></div>
 <ul>
 <li>Además, también es importante que ese campo de agrupación o algo que garantice la identificación unívoca
 se presente en los resultados. En el ejemplo anterior sí aparecerían los álbumes por separado, pero no
 sería posible identificar cuál es cuál en los resultados. Mejor:</li>
 </ul>
-<div class="sourceCode" id="cb203"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb203-1"><a href="cláusulas-básicas-de-sql.html#cb203-1" tabindex="-1"></a>  <span class="kw">SELECT</span> A.AlbumId, A.Title <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio </span>
-<span id="cb203-2"><a href="cláusulas-básicas-de-sql.html#cb203-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId </span>
-<span id="cb203-3"><a href="cláusulas-básicas-de-sql.html#cb203-3" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.AlbumId;</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb215-1"><a href="cláusulas-básicas-de-sql.html#cb215-1" tabindex="-1"></a>  <span class="kw">SELECT</span> A.AlbumId, A.Title <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio </span>
+<span id="cb215-2"><a href="cláusulas-básicas-de-sql.html#cb215-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId </span>
+<span id="cb215-3"><a href="cláusulas-básicas-de-sql.html#cb215-3" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.AlbumId;</span></code></pre></div>
 <ul>
 <li>Incluso mejor, si asumimos que no habrá un artista con dos álbumes con el mismo nombre:</li>
 </ul>
-<div class="sourceCode" id="cb204"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb204-1"><a href="cláusulas-básicas-de-sql.html#cb204-1" tabindex="-1"></a>  <span class="kw">SELECT</span> AR.Name <span class="kw">AS</span> Artista, <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio </span>
-<span id="cb204-2"><a href="cláusulas-básicas-de-sql.html#cb204-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId</span>
-<span id="cb204-3"><a href="cláusulas-básicas-de-sql.html#cb204-3" tabindex="-1"></a>               <span class="kw">JOIN</span> Artist AR <span class="kw">ON</span> A.ArtistId <span class="op">=</span> AR.ArtistId </span>
-<span id="cb204-4"><a href="cláusulas-básicas-de-sql.html#cb204-4" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.AlbumId;</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb216-1"><a href="cláusulas-básicas-de-sql.html#cb216-1" tabindex="-1"></a>  <span class="kw">SELECT</span> AR.Name <span class="kw">AS</span> Artista, <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio </span>
+<span id="cb216-2"><a href="cláusulas-básicas-de-sql.html#cb216-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId</span>
+<span id="cb216-3"><a href="cláusulas-básicas-de-sql.html#cb216-3" tabindex="-1"></a>               <span class="kw">JOIN</span> Artist AR <span class="kw">ON</span> A.ArtistId <span class="op">=</span> AR.ArtistId </span>
+<span id="cb216-4"><a href="cláusulas-básicas-de-sql.html#cb216-4" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.AlbumId;</span></code></pre></div>
 <ul>
 <li>Filtrado por grupos (seleccionar grupos con condiciones)</li>
 </ul>
-<div class="sourceCode" id="cb205"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb205-1"><a href="cláusulas-básicas-de-sql.html#cb205-1" tabindex="-1"></a>  <span class="kw">SELECT</span> AR.Name <span class="kw">AS</span> Artista, <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio</span>
-<span id="cb205-2"><a href="cláusulas-básicas-de-sql.html#cb205-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId </span>
-<span id="cb205-3"><a href="cláusulas-básicas-de-sql.html#cb205-3" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.AlbumId</span>
-<span id="cb205-4"><a href="cláusulas-básicas-de-sql.html#cb205-4" tabindex="-1"></a>  <span class="kw">HAVING</span> Canciones <span class="op">&gt;</span> <span class="dv">6</span>; </span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb217-1"><a href="cláusulas-básicas-de-sql.html#cb217-1" tabindex="-1"></a>  <span class="kw">SELECT</span> AR.Name <span class="kw">AS</span> Artista, <span class="kw">AS</span> Album, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Canciones, <span class="fu">SUM</span>(UnitPrice) <span class="kw">AS</span> Precio</span>
+<span id="cb217-2"><a href="cláusulas-básicas-de-sql.html#cb217-2" tabindex="-1"></a>  <span class="kw">FROM</span> Album A <span class="kw">JOIN</span> Track T <span class="kw">ON</span> A.AlbumId <span class="op">=</span> T.AlbumId </span>
+<span id="cb217-3"><a href="cláusulas-básicas-de-sql.html#cb217-3" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> A.AlbumId</span>
+<span id="cb217-4"><a href="cláusulas-básicas-de-sql.html#cb217-4" tabindex="-1"></a>  <span class="kw">HAVING</span> Canciones <span class="op">&gt;</span> <span class="dv">6</span>; </span></code></pre></div>
 </div>
 <div id="subconsultas-subqueries" class="section level3 hasAnchor" number="3.5.7">
 <h3><span class="header-section-number">3.5.7</span> Subconsultas (subqueries)<a href="cláusulas-básicas-de-sql.html#subconsultas-subqueries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -537,30 +574,30 @@ sería posible identificar cuál es cuál en los resultados. Mejor:</li>
 <li>La consulta debe devolver una única columna, y típicamente un único valor</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb206"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb206-1"><a href="cláusulas-básicas-de-sql.html#cb206-1" tabindex="-1"></a>  <span class="kw">SELECT</span> T.Name, (<span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) </span>
-<span id="cb206-2"><a href="cláusulas-básicas-de-sql.html#cb206-2" tabindex="-1"></a>                  <span class="kw">FROM</span> Track T2 </span>
-<span id="cb206-3"><a href="cláusulas-básicas-de-sql.html#cb206-3" tabindex="-1"></a>                  <span class="kw">WHERE</span> T2.GenreId <span class="op">=</span> T.GenreId) <span class="kw">AS</span> Canciones </span>
-<span id="cb206-4"><a href="cláusulas-básicas-de-sql.html#cb206-4" tabindex="-1"></a>  <span class="kw">FROM</span> Track T <span class="kw">JOIN</span> Genre G <span class="kw">ON</span> T.GenreId <span class="op">=</span> G.GenreId; </span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb218-1"><a href="cláusulas-básicas-de-sql.html#cb218-1" tabindex="-1"></a>  <span class="kw">SELECT</span> T.Name, (<span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) </span>
+<span id="cb218-2"><a href="cláusulas-básicas-de-sql.html#cb218-2" tabindex="-1"></a>                  <span class="kw">FROM</span> Track T2 </span>
+<span id="cb218-3"><a href="cláusulas-básicas-de-sql.html#cb218-3" tabindex="-1"></a>                  <span class="kw">WHERE</span> T2.GenreId <span class="op">=</span> T.GenreId) <span class="kw">AS</span> Canciones </span>
+<span id="cb218-4"><a href="cláusulas-básicas-de-sql.html#cb218-4" tabindex="-1"></a>  <span class="kw">FROM</span> Track T <span class="kw">JOIN</span> Genre G <span class="kw">ON</span> T.GenreId <span class="op">=</span> G.GenreId; </span></code></pre></div>
 <ul>
 <li><p><em>Observación:</em> en una subquery se puede hacer referencia a columnas de la consulta externa.</p></li>
 <li><p>Subqueries en la cláusula WHERE / HAVING:</p></li>
 </ul>
-<div class="sourceCode" id="cb207"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb207-1"><a href="cláusulas-básicas-de-sql.html#cb207-1" tabindex="-1"></a>  <span class="kw">SELECT</span> T.Name, T.Milliseconds </span>
-<span id="cb207-2"><a href="cláusulas-básicas-de-sql.html#cb207-2" tabindex="-1"></a>  <span class="kw">FROM</span> Track T </span>
-<span id="cb207-3"><a href="cláusulas-básicas-de-sql.html#cb207-3" tabindex="-1"></a>  <span class="kw">WHERE</span> T.Milliseconds <span class="op">&gt;</span> (<span class="kw">SELECT</span> <span class="fu">AVG</span>(Milliseconds) <span class="kw">FROM</span> Track);  </span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb219-1"><a href="cláusulas-básicas-de-sql.html#cb219-1" tabindex="-1"></a>  <span class="kw">SELECT</span> T.Name, T.Milliseconds </span>
+<span id="cb219-2"><a href="cláusulas-básicas-de-sql.html#cb219-2" tabindex="-1"></a>  <span class="kw">FROM</span> Track T </span>
+<span id="cb219-3"><a href="cláusulas-básicas-de-sql.html#cb219-3" tabindex="-1"></a>  <span class="kw">WHERE</span> T.Milliseconds <span class="op">&gt;</span> (<span class="kw">SELECT</span> <span class="fu">AVG</span>(Milliseconds) <span class="kw">FROM</span> Track);  </span></code></pre></div>
 <ul>
 <li>Subqueries en la cláusula FROM:</li>
 </ul>
-<div class="sourceCode" id="cb208"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb208-1"><a href="cláusulas-básicas-de-sql.html#cb208-1" tabindex="-1"></a>  <span class="kw">SELECT</span> T.Song, G.Name </span>
-<span id="cb208-2"><a href="cláusulas-básicas-de-sql.html#cb208-2" tabindex="-1"></a>  <span class="kw">FROM</span> Genre G <span class="kw">JOIN</span> (<span class="kw">SELECT</span> Name <span class="kw">AS</span> Song, GenreId <span class="kw">as</span> <span class="kw">Id</span> </span>
-<span id="cb208-3"><a href="cláusulas-básicas-de-sql.html#cb208-3" tabindex="-1"></a>                     <span class="kw">FROM</span> Track) <span class="kw">AS</span> T </span>
-<span id="cb208-4"><a href="cláusulas-básicas-de-sql.html#cb208-4" tabindex="-1"></a>               <span class="kw">ON</span> <span class="kw">Id</span> <span class="op">=</span> G.GenreId </span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb220-1"><a href="cláusulas-básicas-de-sql.html#cb220-1" tabindex="-1"></a>  <span class="kw">SELECT</span> T.Song, G.Name </span>
+<span id="cb220-2"><a href="cláusulas-básicas-de-sql.html#cb220-2" tabindex="-1"></a>  <span class="kw">FROM</span> Genre G <span class="kw">JOIN</span> (<span class="kw">SELECT</span> Name <span class="kw">AS</span> Song, GenreId <span class="kw">as</span> <span class="kw">Id</span> </span>
+<span id="cb220-3"><a href="cláusulas-básicas-de-sql.html#cb220-3" tabindex="-1"></a>                     <span class="kw">FROM</span> Track) <span class="kw">AS</span> T </span>
+<span id="cb220-4"><a href="cláusulas-básicas-de-sql.html#cb220-4" tabindex="-1"></a>               <span class="kw">ON</span> <span class="kw">Id</span> <span class="op">=</span> G.GenreId </span></code></pre></div>
 </div>
 <div id="operaciones-con-conjuntos-de-resultados" class="section level3 hasAnchor" number="3.5.8">
 <h3><span class="header-section-number">3.5.8</span> Operaciones con conjuntos de resultados<a href="cláusulas-básicas-de-sql.html#operaciones-con-conjuntos-de-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb209"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb209-1"><a href="cláusulas-básicas-de-sql.html#cb209-1" tabindex="-1"></a>  Query1 </span>
-<span id="cb209-2"><a href="cláusulas-básicas-de-sql.html#cb209-2" tabindex="-1"></a>  { <span class="kw">UNION</span> [ <span class="kw">ALL</span> ] | <span class="kw">INTERSECT</span> | <span class="kw">EXCEPT</span> } </span>
-<span id="cb209-3"><a href="cláusulas-básicas-de-sql.html#cb209-3" tabindex="-1"></a>  Query2 </span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb221-1"><a href="cláusulas-básicas-de-sql.html#cb221-1" tabindex="-1"></a>  Query1 </span>
+<span id="cb221-2"><a href="cláusulas-básicas-de-sql.html#cb221-2" tabindex="-1"></a>  { <span class="kw">UNION</span> [ <span class="kw">ALL</span> ] | <span class="kw">INTERSECT</span> | <span class="kw">EXCEPT</span> } </span>
+<span id="cb221-3"><a href="cláusulas-básicas-de-sql.html#cb221-3" tabindex="-1"></a>  Query2 </span></code></pre></div>
 <ul>
 <li>Query1 y Query2 deben devolver el <em>mismo número de columnas</em>, pero no necesariamente el mismo tipo de dato.
 Elimina filas duplicadas.</li>

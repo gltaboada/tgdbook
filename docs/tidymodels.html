@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.2 Modelización con tidymodels | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.2 Modelización con tidymodels | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  <meta name="github-repo" content="gltaboada/tgdbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.2 Modelización con tidymodels | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  
+  <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  
+
+<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es)" />
+<meta name="author" content="Diego Darriba (diego.darriba@udc.es)" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro-AE.html"/>
+<link rel="next" href="tecnologías-big-data-hadoopspark-y-visualización.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Prácticas de TGD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i><b>1.1</b> Contenidos</a></li>
+<li class="chapter" data-level="1.2" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html"><i class="fa fa-check"></i><b>1.2</b> Planificación (tentativa)</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html#evaluaci%C3%B3n"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html"><i class="fa fa-check"></i><b>1.3</b> Fuentes de información:</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#b%C3%A1sica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
+<li class="chapter" data-level="1.3.2" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#complementaria"><i class="fa fa-check"></i><b>1.3.2</b> Complementaria:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="manipR.html"><a href="manipR.html"><i class="fa fa-check"></i><b>2</b> Manipulación de datos con R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="read.html"><a href="read.html"><i class="fa fa-check"></i><b>2.1</b> Lectura, importación y exportación de datos</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="read.html"><a href="read.html#formato-de-datos-de-r"><i class="fa fa-check"></i><b>2.1.1</b> Formato de datos de R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="read.html"><a href="read.html#acceso-a-datos-en-paquetes"><i class="fa fa-check"></i><b>2.1.2</b> Acceso a datos en paquetes</a></li>
+<li class="chapter" data-level="2.1.3" data-path="read.html"><a href="read.html#cap2-texto"><i class="fa fa-check"></i><b>2.1.3</b> Lectura de archivos de texto</a></li>
+<li class="chapter" data-level="2.1.4" data-path="read.html"><a href="read.html#importaci%C3%B3n-desde-spss"><i class="fa fa-check"></i><b>2.1.4</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="read.html"><a href="read.html#importaci%C3%B3n-desde-excel"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
+<li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="manip.html"><a href="manip.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="manip.html"><a href="manip.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manip.html"><a href="manip.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
+<li class="chapter" data-level="2.2.4" data-path="manip.html"><a href="manip.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="manip.html"><a href="manip.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
+<li class="chapter" data-level="2.2.6" data-path="manip.html"><a href="manip.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+<li class="chapter" data-level="2.4" data-path="eficiencia-manipR.html"><a href="eficiencia-manipR.html"><i class="fa fa-check"></i><b>2.4</b> Eficiencia en R: preasignación, vectorización y desfases</a></li>
+<li class="chapter" data-level="2.5" data-path="resumen-manipR.html"><a href="resumen-manipR.html"><i class="fa fa-check"></i><b>2.5</b> Resumen: R base</a></li>
+<li class="chapter" data-level="2.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html"><i class="fa fa-check"></i><b>2.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-1-incremento-salarial-empleados"><i class="fa fa-check"></i><b>2.6.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars"><i class="fa fa-check"></i><b>2.6.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-4-resumen-y-agrupaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-5-uni%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.6.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="2.6.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-6-opcional-columnas-lista"><i class="fa fa-check"></i><b>2.6.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introSQL.html"><a href="introSQL.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>3.1</b> Bases de Datos Relacionales</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html#definiciones"><i class="fa fa-check"></i><b>3.1.1</b> Definiciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="restricciones.html"><a href="restricciones.html"><i class="fa fa-check"></i><b>3.2</b> Restricciones</a></li>
+<li class="chapter" data-level="3.3" data-path="sistemas-gestores-de-bases-de-datos-sgdb.html"><a href="sistemas-gestores-de-bases-de-datos-sgdb.html"><i class="fa fa-check"></i><b>3.3</b> Sistemas Gestores de Bases de Datos (SGDB)</a></li>
+<li class="chapter" data-level="3.4" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.4</b> Sintaxis SQL</a></li>
+<li class="chapter" data-level="3.5" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html"><i class="fa fa-check"></i><b>3.5</b> Cláusulas básicas de SQL</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#selecci%C3%B3n-de-campos"><i class="fa fa-check"></i><b>3.5.1</b> Selección de campos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#n%C3%BAmero-de-filas-paginaci%C3%B3n"><i class="fa fa-check"></i><b>3.5.2</b> Número de filas (paginación)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#filtrado-de-resultados"><i class="fa fa-check"></i><b>3.5.3</b> Filtrado de Resultados</a></li>
+<li class="chapter" data-level="3.5.4" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#ordenaci%C3%B3n-de-resultados"><i class="fa fa-check"></i><b>3.5.4</b> Ordenación de Resultados</a></li>
+<li class="chapter" data-level="3.5.5" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#uni%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>3.5.5</b> Unión de tablas</a></li>
+<li class="chapter" data-level="3.5.6" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#agrupamiento"><i class="fa fa-check"></i><b>3.5.6</b> Agrupamiento</a></li>
+<li class="chapter" data-level="3.5.7" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#subconsultas-subqueries"><i class="fa fa-check"></i><b>3.5.7</b> Subconsultas (subqueries)</a></li>
+<li class="chapter" data-level="3.5.8" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#operaciones-con-conjuntos-de-resultados"><i class="fa fa-check"></i><b>3.5.8</b> Operaciones con conjuntos de resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="gestión-de-datos.html"><a href="gestión-de-datos.html"><i class="fa fa-check"></i><b>3.6</b> Gestión de datos</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="gestión-de-datos.html"><a href="gestión-de-datos.html#operaciones-crud"><i class="fa fa-check"></i><b>3.6.1</b> Operaciones CRUD</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html"><i class="fa fa-check"></i><b>3.7</b> Gestión de Bases de Datos</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html#creaci%C3%B3n-de-una-base-de-datos"><i class="fa fa-check"></i><b>3.7.1</b> Creación de una base de datos</a></li>
+<li class="chapter" data-level="3.7.2" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html#eliminaci%C3%B3n-de-una-base-de-datos"><i class="fa fa-check"></i><b>3.7.2</b> Eliminación de una base de datos</a></li>
+<li class="chapter" data-level="3.7.3" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html#selecci%C3%B3n-de-base-de-datos"><i class="fa fa-check"></i><b>3.7.3</b> Selección de base de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html"><i class="fa fa-check"></i><b>3.8</b> Gestión de tablas</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html#creaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>3.8.1</b> Creación de tablas</a></li>
+<li class="chapter" data-level="3.8.2" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html#creaci%C3%B3n-de-%C3%ADndices"><i class="fa fa-check"></i><b>3.8.2</b> Creación de índices</a></li>
+<li class="chapter" data-level="3.8.3" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html#borrado-de-tablas"><i class="fa fa-check"></i><b>3.8.3</b> Borrado de tablas</a></li>
+<li class="chapter" data-level="3.8.4" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html#modificaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>3.8.4</b> Modificación de tablas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="vistas.html"><a href="vistas.html"><i class="fa fa-check"></i><b>3.9</b> Vistas</a></li>
+<li class="chapter" data-level="3.10" data-path="ejemplos-de-consultas-sql.html"><a href="ejemplos-de-consultas-sql.html"><i class="fa fa-check"></i><b>3.10</b> Ejemplos de consultas SQL</a></li>
+<li class="chapter" data-level="3.11" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.11</b> Conexión con bases de datos desde R</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#introducci%C3%B3n-a-sql-en-r"><i class="fa fa-check"></i><b>3.11.1</b> Introducción a SQL en R</a></li>
+<li class="chapter" data-level="3.11.2" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#el-paquete-sqldf"><i class="fa fa-check"></i><b>3.11.2</b> El paquete sqldf</a></li>
+<li class="chapter" data-level="3.11.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#sql-queries"><i class="fa fa-check"></i><b>3.11.3</b> SQL Queries</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="ejemplo-scopus-data.html"><a href="ejemplo-scopus-data.html"><i class="fa fa-check"></i><b>3.12</b> Ejemplo Scopus data</a></li>
+<li class="chapter" data-level="3.13" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html"><i class="fa fa-check"></i><b>3.13</b> Ejercicios SQL con RSQLite</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html#setup-de-rsqlite"><i class="fa fa-check"></i><b>3.13.1</b> Setup de RSQLite</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="práctica-1-sql.html"><a href="práctica-1-sql.html"><i class="fa fa-check"></i><b>3.14</b> Práctica 1: SQL</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introPython.html"><a href="introPython.html"><i class="fa fa-check"></i><b>4</b> Python</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="introPython.html"><a href="introPython.html#instalaci%C3%B3n"><i class="fa fa-check"></i><b>4.0.1</b> Instalación</a></li>
+<li class="chapter" data-level="4.1" data-path="introducción-a-python.html"><a href="introducción-a-python.html"><i class="fa fa-check"></i><b>4.1</b> Introducción a Python</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introducción-a-python.html"><a href="introducción-a-python.html#qu%C3%A9-es-python"><i class="fa fa-check"></i><b>4.1.1</b> ¿Qué es Python?</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introducción-a-python.html"><a href="introducción-a-python.html#primeros-pasos-hola-mundo"><i class="fa fa-check"></i><b>4.1.2</b> Primeros pasos: Hola Mundo</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introducción-a-python.html"><a href="introducción-a-python.html#sint%C3%A1xis-b%C3%A1sica"><i class="fa fa-check"></i><b>4.1.3</b> Sintáxis básica</a></li>
+<li class="chapter" data-level="4.1.4" data-path="introducción-a-python.html"><a href="introducción-a-python.html#librer%C3%ADas-populares"><i class="fa fa-check"></i><b>4.1.4</b> Librerías populares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="python-y-sqlite.html"><a href="python-y-sqlite.html"><i class="fa fa-check"></i><b>4.2</b> Python y SQLite</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="python-y-sqlite.html"><a href="python-y-sqlite.html#operaciones-de-inserci%C3%B3n-borrado-o-modificaci%C3%B3n-de-datos"><i class="fa fa-check"></i><b>4.2.1</b> Operaciones de inserción, borrado o modificación de datos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="python-y-sqlite.html"><a href="python-y-sqlite.html#operaciones-de-consulta"><i class="fa fa-check"></i><b>4.2.2</b> Operaciones de consulta</a></li>
+<li class="chapter" data-level="4.2.3" data-path="python-y-sqlite.html"><a href="python-y-sqlite.html#usar-sqlite-con-pandas"><i class="fa fa-check"></i><b>4.2.3</b> Usar SQLite con Pandas</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="context-manager.html"><a href="context-manager.html"><i class="fa fa-check"></i><b>4.3</b> Context Manager</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="context-manager.html"><a href="context-manager.html#ejemplo-conexi%C3%B3n-sqlite"><i class="fa fa-check"></i><b>4.3.1</b> Ejemplo: conexión SQLite</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="csv-en-python.html"><a href="csv-en-python.html"><i class="fa fa-check"></i><b>4.4</b> CSV en python</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="csv-en-python.html"><a href="csv-en-python.html#la-librer%C3%ADa-csv"><i class="fa fa-check"></i><b>4.4.1</b> La librería <code>csv</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path="csv-en-python.html"><a href="csv-en-python.html#trabajar-con-csv-usando-pandas"><i class="fa fa-check"></i><b>4.4.2</b> Trabajar con CSV usando <code>pandas</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="csv-en-python.html"><a href="csv-en-python.html#insertar-datos-en-sqlite-a-partir-de-csv"><i class="fa fa-check"></i><b>4.4.3</b> Insertar datos en SQLite a partir de CSV</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Manipulación de datos con tidyverse</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introTidyverse.html"><a href="introTidyverse.html"><i class="fa fa-check"></i><b>5.1</b> Introducción al ecosistema tidyverse</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="introTidyverse.html"><a href="introTidyverse.html#pipe"><i class="fa fa-check"></i><b>5.1.1</b> Operador <em>pipe</em> (redirección)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="introTidyverse.html"><a href="introTidyverse.html#readr"><i class="fa fa-check"></i><b>5.1.2</b> Lectura y escritura de archivos de texto</a></li>
+<li class="chapter" data-level="5.1.3" data-path="introTidyverse.html"><a href="introTidyverse.html#writer"><i class="fa fa-check"></i><b>5.1.3</b> Escritura</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.2</b> Manipulación de datos con dplyr y tidyr</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#dplyr-pkg"><i class="fa fa-check"></i><b>5.2.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#dplyr-variables"><i class="fa fa-check"></i><b>5.2.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="dplyr.html"><a href="dplyr.html#dplyr-casos"><i class="fa fa-check"></i><b>5.2.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="dplyr.html"><a href="dplyr.html#tidyr-missing"><i class="fa fa-check"></i><b>5.2.4</b> Datos faltantes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidyr-pkg.html"><a href="tidyr-pkg.html"><i class="fa fa-check"></i><b>5.3</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="5.4" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>5.4</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="5.5" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>5.5</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.5.1</b> Ejemplos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="eficiencia-tidyverse.html"><a href="eficiencia-tidyverse.html"><i class="fa fa-check"></i><b>5.6</b> Eficiencia y desfases con dplyr</a></li>
+<li class="chapter" data-level="5.7" data-path="resumen-tidyverse.html"><a href="resumen-tidyverse.html"><i class="fa fa-check"></i><b>5.7</b> Resumen: dplyr/tidyr y R base</a></li>
+<li class="chapter" data-level="5.8" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html"><i class="fa fa-check"></i><b>5.8</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-1-incremento-salarial-empleados-1"><i class="fa fa-check"></i><b>5.8.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="5.8.2" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars-1"><i class="fa fa-check"></i><b>5.8.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="5.8.3" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="5.8.4" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-4-resumen-y-agrupaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="5.8.5" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-5-uni%C3%B3n-de-tablas-1"><i class="fa fa-check"></i><b>5.8.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="5.8.6" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-6-opcional-columnas-lista-1"><i class="fa fa-check"></i><b>5.8.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introducción-a-tecnologías-nosql.html"><a href="introducción-a-tecnologías-nosql.html"><i class="fa fa-check"></i><b>6</b> Introducción a Tecnologías NoSQL</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>6.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#caracter%C3%ADsticas-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>6.1.1</b> Características de las bases de datos NoSQL</a></li>
+<li class="chapter" data-level="6.1.2" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#tipos-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>6.1.2</b> Tipos de Bases de Datos NoSQL</a></li>
+<li class="chapter" data-level="6.1.3" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#mongodb-nosql-documental"><i class="fa fa-check"></i><b>6.1.3</b> MongoDB: NoSQL documental</a></li>
+<li class="chapter" data-level="6.1.4" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#redis-nosql-key-value"><i class="fa fa-check"></i><b>6.1.4</b> Redis: NoSQL key-value</a></li>
+<li class="chapter" data-level="6.1.5" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#cassandra-nosql-columnar"><i class="fa fa-check"></i><b>6.1.5</b> Cassandra: NoSQL columnar</a></li>
+<li class="chapter" data-level="6.1.6" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#neo4j-nosql-grafos"><i class="fa fa-check"></i><b>6.1.6</b> Neo4j: NoSQL grafos</a></li>
+<li class="chapter" data-level="6.1.7" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#otros-search-engines"><i class="fa fa-check"></i><b>6.1.7</b> Otros: search engines</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="conexión-de-r-a-mongodb.html"><a href="conexión-de-r-a-mongodb.html"><i class="fa fa-check"></i><b>6.2</b> Conexión de R a MongoDB</a></li>
+<li class="chapter" data-level="6.3" data-path="ejercicios-prácticos-con-mongodb.html"><a href="ejercicios-prácticos-con-mongodb.html"><i class="fa fa-check"></i><b>6.3</b> Ejercicios prácticos con MongoDB</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>7</b> Tecnologías para el Tratamiendo de Datos Masivos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="intro-AE.html"><a href="intro-AE.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="intro-AE.html"><a href="intro-AE.html#aprendizaje-estad%C3%ADstico-vs.-aprendizaje-autom%C3%A1tico"><i class="fa fa-check"></i><b>7.1.1</b> Aprendizaje estadístico vs. aprendizaje automático</a></li>
+<li class="chapter" data-level="7.1.2" data-path="intro-AE.html"><a href="intro-AE.html#m%C3%A9todos-de-aprendizaje-estad%C3%ADstico"><i class="fa fa-check"></i><b>7.1.2</b> Métodos de aprendizaje estadístico</a></li>
+<li class="chapter" data-level="7.1.3" data-path="intro-AE.html"><a href="intro-AE.html#const-eval"><i class="fa fa-check"></i><b>7.1.3</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="7.1.4" data-path="intro-AE.html"><a href="intro-AE.html#clasificacion"><i class="fa fa-check"></i><b>7.1.4</b> Clasificación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>7.2</b> Modelización con <code>tidymodels</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-reg"><i class="fa fa-check"></i><b>7.2.1</b> Regresión: seleccionando el grado del polinomio con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-clas"><i class="fa fa-check"></i><b>7.2.2</b> Clasificación: seleccionando <span class="math inline">\(k\)</span> en KNN con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="tidymodels.html"><a href="tidymodels.html#desbalanceo"><i class="fa fa-check"></i><b>7.2.3</b> Clasificación desbalanceada: remuestreo dentro de la receta</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tidymodels.html"><a href="tidymodels.html#roc-auc"><i class="fa fa-check"></i><b>7.2.4</b> Curva ROC y AUC</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tidymodels.html"><a href="tidymodels.html#vip"><i class="fa fa-check"></i><b>7.2.5</b> Importancia de variables y efectos parciales: <code>vip</code> y <code>pdp</code></a></li>
+<li class="chapter" data-level="7.2.6" data-path="tidymodels.html"><a href="tidymodels.html#resumen-tidymodels"><i class="fa fa-check"></i><b>7.2.6</b> Resumen: tidymodels y R base</a></li>
+<li class="chapter" data-level="7.2.7" data-path="tidymodels.html"><a href="tidymodels.html#analisis-modelos"><i class="fa fa-check"></i><b>7.2.7</b> Análisis e interpretación de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.3</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.3.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.3.2</b> Big Data y Machine Learning</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.3.3</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="7.3.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.3.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.4</b> Introducción al Análisis de Datos Masivos</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prácticas de Tecnologías de Gestión y Manipulación de Datos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidymodels" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Modelización con <code>tidymodels</code><a href="tidymodels.html#tidymodels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como se comentó en la Sección <a href="intro-AE.html#metodos-pkgs">7.1.2.2</a>, cada paquete de modelización emplea su propia interfaz (argumentos, formato de los datos de entrada y salida…), lo que complica combinar y comparar métodos distintos. Paquetes como <code>caret</code> resuelven este problema ofreciendo una interfaz común; de hecho, el libro completo de referencia de esta sección (Fernández-Casal, Costa y Oviedo) emplea <code>caret</code> con este propósito. Como en este curso ya hemos trabajado con el universo <code>tidyverse</code> (Capítulo <a href="tidyverse.html#tidyverse">5</a>), resulta natural emplear en su lugar <a href="https://www.tidymodels.org"><code>tidymodels</code></a>, una colección de paquetes que sigue la misma filosofía (funciones que devuelven <em>tibbles</em>, uso extensivo de <em>pipes</em>) para cubrir todo el flujo de trabajo del AE:</p>
+<ul>
+<li><a href="https://rsample.tidymodels.org"><code>rsample</code></a>: partición y remuestreo de los datos (entrenamiento/test, validación cruzada, <em>bootstrap</em>…).</li>
+<li><a href="https://recipes.tidymodels.org"><code>recipes</code></a>: preprocesamiento de los datos (creación de variables, transformaciones…) de forma reproducible entre entrenamiento y test.</li>
+<li><a href="https://parsnip.tidymodels.org"><code>parsnip</code></a>: especificación de modelos con una interfaz común, independiente del paquete (<em>engine</em>) que finalmente ajusta el modelo.</li>
+<li><a href="https://workflows.tidymodels.org"><code>workflows</code></a>: combina receta y modelo en un único objeto.</li>
+<li><a href="https://tune.tidymodels.org"><code>tune</code></a> y <a href="https://dials.tidymodels.org"><code>dials</code></a>: selección de hiperparámetros (equivalente al <code>train()</code> de <code>caret</code>).</li>
+<li><a href="https://yardstick.tidymodels.org"><code>yardstick</code></a>: cálculo de medidas de precisión.</li>
+<li><a href="https://themis.tidymodels.org"><code>themis</code></a>: pasos adicionales de receta para remuestrear clases desbalanceadas.</li>
+<li><a href="https://broom.tidymodels.org"><code>broom</code></a>: convierte la salida (habitualmente poco manejable) de un modelo de R en un <em>tibble</em>; muy útil junto con <code>dplyr::group_by()</code>/<code>tidyr::nest()</code> y <code>purrr::map()</code> para ajustar y resumir muchos modelos a la vez (p. ej. un modelo por grupo).</li>
+</ul>
+<p>Para profundizar, la referencia principal es el libro (gratuito) <a href="https://www.tmwr.org"><em>Tidy Modeling with R</em></a> de Kuhn y Silge, junto con la documentación oficial en <a href="https://www.tidymodels.org" class="uri">https://www.tidymodels.org</a> (incluye <em>vignettes</em> y una <em>cheat sheet</em> para cada paquete).</p>
+<p>Veamos cómo, con estas herramientas, se puede reproducir lo que hicimos “a mano” tanto en el ejemplo de regresión (selección del grado del polinomio) como en el de clasificación (selección de <span class="math inline">\(k\)</span> en KNN).</p>
+<div id="tidymodels-reg" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Regresión: seleccionando el grado del polinomio con <code>tune_grid()</code><a href="tidymodels.html#tidymodels-reg" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Retomamos el ejemplo de la Sección <a href="intro-AE.html#cv">7.1.3.3</a> (valoración de viviendas <code>medv</code> frente al estatus <code>lstat</code>, conjunto <code>Boston</code>, mismas particiones <code>train</code>/<code>test</code>). En lugar del bucle manual, definimos una receta que incluye el grado del polinomio como hiperparámetro a ajustar (<code>step_poly()</code>), un modelo lineal (<code>linear_reg()</code>) y los combinamos en un flujo de trabajo (<code>workflow()</code>):</p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="tidymodels.html#cb490-1" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb490-2"><a href="tidymodels.html#cb490-2" tabindex="-1"></a></span>
+<span id="cb490-3"><a href="tidymodels.html#cb490-3" tabindex="-1"></a>receta_poly <span class="ot">&lt;-</span> <span class="fu">recipe</span>(medv <span class="sc">~</span> lstat, <span class="at">data =</span> train) <span class="sc">%&gt;%</span></span>
+<span id="cb490-4"><a href="tidymodels.html#cb490-4" tabindex="-1"></a>  <span class="fu">step_poly</span>(lstat, <span class="at">degree =</span> <span class="fu">tune</span>())</span>
+<span id="cb490-5"><a href="tidymodels.html#cb490-5" tabindex="-1"></a></span>
+<span id="cb490-6"><a href="tidymodels.html#cb490-6" tabindex="-1"></a>modelo_lm <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb490-7"><a href="tidymodels.html#cb490-7" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb490-8"><a href="tidymodels.html#cb490-8" tabindex="-1"></a></span>
+<span id="cb490-9"><a href="tidymodels.html#cb490-9" tabindex="-1"></a>flujo_reg <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb490-10"><a href="tidymodels.html#cb490-10" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receta_poly) <span class="sc">%&gt;%</span></span>
+<span id="cb490-11"><a href="tidymodels.html#cb490-11" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_lm)</span></code></pre></div>
+<p>Seleccionamos el grado óptimo por validación cruzada de 10 particiones (<code>vfold_cv()</code> + <code>tune_grid()</code>), en lugar de las predicciones tipo <em>leave-one-out</em> obtenidas con <code>rstandard()</code> empleadas anteriormente:</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="tidymodels.html#cb491-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb491-2"><a href="tidymodels.html#cb491-2" tabindex="-1"></a>cv_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(train, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb491-3"><a href="tidymodels.html#cb491-3" tabindex="-1"></a>grid_grados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">degree =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb491-4"><a href="tidymodels.html#cb491-4" tabindex="-1"></a></span>
+<span id="cb491-5"><a href="tidymodels.html#cb491-5" tabindex="-1"></a>res_tune <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb491-6"><a href="tidymodels.html#cb491-6" tabindex="-1"></a>  flujo_reg,</span>
+<span id="cb491-7"><a href="tidymodels.html#cb491-7" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb491-8"><a href="tidymodels.html#cb491-8" tabindex="-1"></a>  <span class="at">grid =</span> grid_grados,</span>
+<span id="cb491-9"><a href="tidymodels.html#cb491-9" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse)</span>
+<span id="cb491-10"><a href="tidymodels.html#cb491-10" tabindex="-1"></a>)</span>
+<span id="cb491-11"><a href="tidymodels.html#cb491-11" tabindex="-1"></a><span class="fu">show_best</span>(res_tune, <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 7
+##   degree .metric .estimator  mean     n std_err .config         
+##    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;           
+## 1      6 rmse    standard    5.25    10   0.344 pre06_mod0_post0
+## 2      5 rmse    standard    5.26    10   0.345 pre05_mod0_post0
+## 3      7 rmse    standard    5.30    10   0.343 pre07_mod0_post0
+## 4      4 rmse    standard    5.31    10   0.355 pre04_mod0_post0
+## 5      9 rmse    standard    5.31    10   0.343 pre09_mod0_post0</code></pre>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="tidymodels.html#cb493-1" tabindex="-1"></a>mejor_grado <span class="ot">&lt;-</span> <span class="fu">select_best</span>(res_tune, <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>)</span>
+<span id="cb493-2"><a href="tidymodels.html#cb493-2" tabindex="-1"></a>mejor_grado</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   degree .config         
+##    &lt;int&gt; &lt;chr&gt;           
+## 1      6 pre06_mod0_post0</code></pre>
+<p>Finalmente, ajustamos el modelo con el grado seleccionado sobre todo el entrenamiento y evaluamos sobre el test, igual que hicimos con <code>accuracy()</code> en la Sección <a href="intro-AE.html#eval-reg">7.1.3.4</a>:</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="tidymodels.html#cb495-1" tabindex="-1"></a>flujo_final <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(flujo_reg, mejor_grado)</span>
+<span id="cb495-2"><a href="tidymodels.html#cb495-2" tabindex="-1"></a>ajuste_final <span class="ot">&lt;-</span> <span class="fu">fit</span>(flujo_final, <span class="at">data =</span> train)</span>
+<span id="cb495-3"><a href="tidymodels.html#cb495-3" tabindex="-1"></a></span>
+<span id="cb495-4"><a href="tidymodels.html#cb495-4" tabindex="-1"></a>pred_tidymodels <span class="ot">&lt;-</span> test <span class="sc">%&gt;%</span></span>
+<span id="cb495-5"><a href="tidymodels.html#cb495-5" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(ajuste_final, <span class="at">new_data =</span> test))</span>
+<span id="cb495-6"><a href="tidymodels.html#cb495-6" tabindex="-1"></a></span>
+<span id="cb495-7"><a href="tidymodels.html#cb495-7" tabindex="-1"></a>metricas_reg <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(rmse, rsq, mae)</span>
+<span id="cb495-8"><a href="tidymodels.html#cb495-8" tabindex="-1"></a><span class="fu">metricas_reg</span>(pred_tidymodels, <span class="at">truth =</span> medv, <span class="at">estimate =</span> .pred)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard       4.83 
+## 2 rsq     standard       0.629
+## 3 mae     standard       3.66</code></pre>
+</div>
+<div id="tidymodels-clas" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Clasificación: seleccionando <span class="math inline">\(k\)</span> en KNN con <code>tune_grid()</code><a href="tidymodels.html#tidymodels-clas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El mismo patrón sirve para clasificación. Retomamos el ejemplo multiclase de la Sección <a href="intro-AE.html#knn-ejemplo">7.1.4.1</a> (<code>iris</code>, tres especies) y seleccionamos <span class="math inline">\(k\)</span> por validación cruzada (estratificada por <code>Species</code>, para mantener la proporción de clases en cada partición) en lugar de fijarlo arbitrariamente a 5:</p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="tidymodels.html#cb497-1" tabindex="-1"></a>receta_knn <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Species <span class="sc">~</span> Petal.Length <span class="sc">+</span> Petal.Width, <span class="at">data =</span> train3)</span>
+<span id="cb497-2"><a href="tidymodels.html#cb497-2" tabindex="-1"></a></span>
+<span id="cb497-3"><a href="tidymodels.html#cb497-3" tabindex="-1"></a>modelo_knn <span class="ot">&lt;-</span> <span class="fu">nearest_neighbor</span>(<span class="at">neighbors =</span> <span class="fu">tune</span>(),</span>
+<span id="cb497-4"><a href="tidymodels.html#cb497-4" tabindex="-1"></a>                                <span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb497-5"><a href="tidymodels.html#cb497-5" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;kknn&quot;</span>)</span>
+<span id="cb497-6"><a href="tidymodels.html#cb497-6" tabindex="-1"></a></span>
+<span id="cb497-7"><a href="tidymodels.html#cb497-7" tabindex="-1"></a>flujo_knn <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb497-8"><a href="tidymodels.html#cb497-8" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receta_knn) <span class="sc">%&gt;%</span></span>
+<span id="cb497-9"><a href="tidymodels.html#cb497-9" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_knn)</span></code></pre></div>
+<p>Recuérdese que en la Sección <a href="intro-AE.html#eval-reg">7.1.3.4</a> definimos nuestra propia función <code>accuracy()</code> (como sustituto de <code>mpae::accuracy()</code>), que enmascararía a <code>yardstick::accuracy()</code> si la referenciásemos sin cualificar; por eso, a partir de aquí, siempre la llamamos como <code>yardstick::accuracy()</code>:</p>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="tidymodels.html#cb498-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb498-2"><a href="tidymodels.html#cb498-2" tabindex="-1"></a>cv_folds3 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(train3, <span class="at">v =</span> <span class="dv">5</span>, <span class="at">strata =</span> Species)</span>
+<span id="cb498-3"><a href="tidymodels.html#cb498-3" tabindex="-1"></a>grid_k <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">neighbors =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span>
+<span id="cb498-4"><a href="tidymodels.html#cb498-4" tabindex="-1"></a></span>
+<span id="cb498-5"><a href="tidymodels.html#cb498-5" tabindex="-1"></a>res_tune_knn <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb498-6"><a href="tidymodels.html#cb498-6" tabindex="-1"></a>  flujo_knn,</span>
+<span id="cb498-7"><a href="tidymodels.html#cb498-7" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds3,</span>
+<span id="cb498-8"><a href="tidymodels.html#cb498-8" tabindex="-1"></a>  <span class="at">grid =</span> grid_k,</span>
+<span id="cb498-9"><a href="tidymodels.html#cb498-9" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(yardstick<span class="sc">::</span>accuracy)</span>
+<span id="cb498-10"><a href="tidymodels.html#cb498-10" tabindex="-1"></a>)</span></code></pre></div>
+<p><code>show_best()</code> muestra, a modo de inspección, las mejores combinaciones evaluadas (aquí, valores de <span class="math inline">\(k\)</span>) ordenadas según la métrica indicada; <code>select_best()</code> devuelve directamente la mejor combinación como una <em>tibble</em> de hiperparámetros, lista para pasar a <code>finalize_workflow()</code>:</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="tidymodels.html#cb499-1" tabindex="-1"></a><span class="fu">show_best</span>(res_tune_knn, <span class="at">metric =</span> <span class="st">&quot;accuracy&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 7
+##   neighbors .metric  .estimator  mean     n std_err .config         
+##       &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;           
+## 1         8 accuracy multiclass 0.959     5  0.0127 pre0_mod08_post0
+## 2         9 accuracy multiclass 0.959     5  0.0127 pre0_mod09_post0
+## 3        10 accuracy multiclass 0.959     5  0.0127 pre0_mod10_post0
+## 4        11 accuracy multiclass 0.959     5  0.0127 pre0_mod11_post0
+## 5        12 accuracy multiclass 0.959     5  0.0127 pre0_mod12_post0</code></pre>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="tidymodels.html#cb501-1" tabindex="-1"></a>mejor_k <span class="ot">&lt;-</span> <span class="fu">select_best</span>(res_tune_knn, <span class="at">metric =</span> <span class="st">&quot;accuracy&quot;</span>)</span>
+<span id="cb501-2"><a href="tidymodels.html#cb501-2" tabindex="-1"></a>mejor_k</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   neighbors .config         
+##       &lt;int&gt; &lt;chr&gt;           
+## 1         8 pre0_mod08_post0</code></pre>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="tidymodels.html#cb503-1" tabindex="-1"></a>flujo_knn_final <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(flujo_knn, mejor_k)</span>
+<span id="cb503-2"><a href="tidymodels.html#cb503-2" tabindex="-1"></a>ajuste_knn_final <span class="ot">&lt;-</span> <span class="fu">fit</span>(flujo_knn_final, <span class="at">data =</span> train3)</span>
+<span id="cb503-3"><a href="tidymodels.html#cb503-3" tabindex="-1"></a></span>
+<span id="cb503-4"><a href="tidymodels.html#cb503-4" tabindex="-1"></a>pred_knn_tidymodels <span class="ot">&lt;-</span> test3 <span class="sc">%&gt;%</span></span>
+<span id="cb503-5"><a href="tidymodels.html#cb503-5" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(ajuste_knn_final, <span class="at">new_data =</span> test3))</span>
+<span id="cb503-6"><a href="tidymodels.html#cb503-6" tabindex="-1"></a></span>
+<span id="cb503-7"><a href="tidymodels.html#cb503-7" tabindex="-1"></a>yardstick<span class="sc">::</span><span class="fu">accuracy</span>(pred_knn_tidymodels, <span class="at">truth =</span> Species,</span>
+<span id="cb503-8"><a href="tidymodels.html#cb503-8" tabindex="-1"></a>                     <span class="at">estimate =</span> .pred_class)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy multiclass     0.967</code></pre>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="tidymodels.html#cb505-1" tabindex="-1"></a>yardstick<span class="sc">::</span><span class="fu">conf_mat</span>(pred_knn_tidymodels, <span class="at">truth =</span> Species,</span>
+<span id="cb505-2"><a href="tidymodels.html#cb505-2" tabindex="-1"></a>                     <span class="at">estimate =</span> .pred_class)</span></code></pre></div>
+<pre><code>##             Truth
+## Prediction   setosa versicolor virginica
+##   setosa         11          0         0
+##   versicolor      0         12         1
+##   virginica       0          0         6</code></pre>
+<p>El mismo patrón (<code>recipe()</code> + especificación de modelo de <code>parsnip</code> + <code>workflow()</code> + <code>tune_grid()</code>) sirve para cualquier otro método: bastaría con cambiar <code>nearest_neighbor()</code> por, por ejemplo, <code>svm_linear()</code> con <code>set_engine("kernlab")</code> para repetir el ejemplo de máquinas de soporte vectorial de la sección anterior sin cambiar el resto del código. Es exactamente la misma idea que ofrece <code>caret</code> (cambiar el argumento <code>method</code> del modelo dentro de una interfaz común), pero expresada con la gramática de <em>pipes</em> y <em>tibbles</em> propia del universo <code>tidyverse</code> que hemos usado a lo largo del curso (Capítulo <a href="tidyverse.html#tidyverse">5</a>).</p>
+</div>
+<div id="desbalanceo" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Clasificación desbalanceada: remuestreo dentro de la receta<a href="tidymodels.html#desbalanceo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En los problemas de clasificación es habitual que las clases no estén balanceadas. Cuando esto ocurre, <code>accuracy</code> puede ser engañosa: un modelo que prediga siempre la clase mayoritaria puede obtener una precisión alta sin ser realmente útil. Conviene entonces mirar también otras medidas (sensibilidad, especificidad, <em>F1</em>…) y, si es necesario, remuestrear los datos de <strong>entrenamiento</strong>.</p>
+<p>Retomamos <code>Boston</code>, pero ahora con la variable <code>fmedv</code> (<code>"Alto"</code> si <code>medv &gt; 25</code>, <code>"Bajo"</code> en otro caso), claramente desbalanceada:</p>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="tidymodels.html#cb507-1" tabindex="-1"></a><span class="fu">data</span>(Boston, <span class="at">package =</span> <span class="st">&quot;MASS&quot;</span>)</span>
+<span id="cb507-2"><a href="tidymodels.html#cb507-2" tabindex="-1"></a>Boston<span class="sc">$</span>fmedv <span class="ot">&lt;-</span> <span class="fu">factor</span>(Boston<span class="sc">$</span>medv <span class="sc">&gt;</span> <span class="dv">25</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Bajo&quot;</span>, <span class="st">&quot;Alto&quot;</span>))</span>
+<span id="cb507-3"><a href="tidymodels.html#cb507-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb507-4"><a href="tidymodels.html#cb507-4" tabindex="-1"></a>itrain <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Boston), <span class="fu">round</span>(<span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(Boston)))</span>
+<span id="cb507-5"><a href="tidymodels.html#cb507-5" tabindex="-1"></a>train_desb <span class="ot">&lt;-</span> Boston[itrain, <span class="fu">c</span>(<span class="st">&quot;fmedv&quot;</span>, <span class="st">&quot;rm&quot;</span>, <span class="st">&quot;lstat&quot;</span>, <span class="st">&quot;dis&quot;</span>)]</span>
+<span id="cb507-6"><a href="tidymodels.html#cb507-6" tabindex="-1"></a>test_desb <span class="ot">&lt;-</span> Boston[<span class="sc">-</span>itrain, <span class="fu">c</span>(<span class="st">&quot;fmedv&quot;</span>, <span class="st">&quot;rm&quot;</span>, <span class="st">&quot;lstat&quot;</span>, <span class="st">&quot;dis&quot;</span>)]</span>
+<span id="cb507-7"><a href="tidymodels.html#cb507-7" tabindex="-1"></a><span class="fu">table</span>(train_desb<span class="sc">$</span>fmedv) <span class="co"># claramente desbalanceada</span></span></code></pre></div>
+<pre><code>## 
+## Bajo Alto 
+##  301  104</code></pre>
+<p>Para corregirlo basta con añadir un paso de remuestreo a la receta, por ejemplo <code>step_downsample()</code> del paquete <a href="https://themis.tidymodels.org"><code>themis</code></a> (submuestrea la clase mayoritaria hasta igualar a la minoritaria; también existe <code>step_upsample()</code>, que sobremuestrea la minoritaria). Es importante aplicarlo <strong>dentro de la receta</strong>, y no antes: así solo afecta a cada partición de entrenamiento durante el ajuste (y, en su caso, durante la validación cruzada), y nunca a la muestra de test, evitando una estimación optimista de la precisión:</p>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="tidymodels.html#cb509-1" tabindex="-1"></a><span class="fu">library</span>(themis)</span>
+<span id="cb509-2"><a href="tidymodels.html#cb509-2" tabindex="-1"></a></span>
+<span id="cb509-3"><a href="tidymodels.html#cb509-3" tabindex="-1"></a>modelo_glm <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb509-4"><a href="tidymodels.html#cb509-4" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;glm&quot;</span>)</span>
+<span id="cb509-5"><a href="tidymodels.html#cb509-5" tabindex="-1"></a></span>
+<span id="cb509-6"><a href="tidymodels.html#cb509-6" tabindex="-1"></a><span class="co"># Sin remuestrear</span></span>
+<span id="cb509-7"><a href="tidymodels.html#cb509-7" tabindex="-1"></a>flujo_sin <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb509-8"><a href="tidymodels.html#cb509-8" tabindex="-1"></a>  <span class="fu">add_recipe</span>(<span class="fu">recipe</span>(fmedv <span class="sc">~</span> ., <span class="at">data =</span> train_desb)) <span class="sc">%&gt;%</span></span>
+<span id="cb509-9"><a href="tidymodels.html#cb509-9" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_glm)</span>
+<span id="cb509-10"><a href="tidymodels.html#cb509-10" tabindex="-1"></a></span>
+<span id="cb509-11"><a href="tidymodels.html#cb509-11" tabindex="-1"></a><span class="co"># Con submuestreo de la clase mayoritaria dentro de la receta</span></span>
+<span id="cb509-12"><a href="tidymodels.html#cb509-12" tabindex="-1"></a>flujo_down <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb509-13"><a href="tidymodels.html#cb509-13" tabindex="-1"></a>  <span class="fu">add_recipe</span>(<span class="fu">recipe</span>(fmedv <span class="sc">~</span> ., <span class="at">data =</span> train_desb) <span class="sc">%&gt;%</span></span>
+<span id="cb509-14"><a href="tidymodels.html#cb509-14" tabindex="-1"></a>               <span class="fu">step_downsample</span>(fmedv)) <span class="sc">%&gt;%</span></span>
+<span id="cb509-15"><a href="tidymodels.html#cb509-15" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_glm)</span>
+<span id="cb509-16"><a href="tidymodels.html#cb509-16" tabindex="-1"></a></span>
+<span id="cb509-17"><a href="tidymodels.html#cb509-17" tabindex="-1"></a>ajuste_sin <span class="ot">&lt;-</span> <span class="fu">fit</span>(flujo_sin, <span class="at">data =</span> train_desb)</span>
+<span id="cb509-18"><a href="tidymodels.html#cb509-18" tabindex="-1"></a>ajuste_down <span class="ot">&lt;-</span> <span class="fu">fit</span>(flujo_down, <span class="at">data =</span> train_desb)</span></code></pre></div>
+<p>Comparamos ambos ajustes sobre el test (<code>fmedv</code> tiene “Alto” como segundo nivel, por lo que empleamos <code>event_level = "second"</code> para que las métricas lo traten como la clase de interés, igual que <code>positive = "Alto"</code> en <code>caret::confusionMatrix()</code>). Aprovechamos para obtener de una vez, con una pequeña función auxiliar, tanto la clase predicha como la probabilidad estimada (esta última nos hará falta más adelante, en la Sección <a href="tidymodels.html#roc-auc">7.2.4</a>):</p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="tidymodels.html#cb510-1" tabindex="-1"></a>predecir <span class="ot">&lt;-</span> <span class="cf">function</span>(ajuste) {</span>
+<span id="cb510-2"><a href="tidymodels.html#cb510-2" tabindex="-1"></a>  test_desb <span class="sc">%&gt;%</span></span>
+<span id="cb510-3"><a href="tidymodels.html#cb510-3" tabindex="-1"></a>    <span class="fu">bind_cols</span>(<span class="fu">predict</span>(ajuste, <span class="at">new_data =</span> test_desb)) <span class="sc">%&gt;%</span></span>
+<span id="cb510-4"><a href="tidymodels.html#cb510-4" tabindex="-1"></a>    <span class="fu">bind_cols</span>(<span class="fu">predict</span>(ajuste, <span class="at">new_data =</span> test_desb, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>))</span>
+<span id="cb510-5"><a href="tidymodels.html#cb510-5" tabindex="-1"></a>}</span>
+<span id="cb510-6"><a href="tidymodels.html#cb510-6" tabindex="-1"></a>pred_sin <span class="ot">&lt;-</span> <span class="fu">predecir</span>(ajuste_sin)</span>
+<span id="cb510-7"><a href="tidymodels.html#cb510-7" tabindex="-1"></a>pred_down <span class="ot">&lt;-</span> <span class="fu">predecir</span>(ajuste_down)</span>
+<span id="cb510-8"><a href="tidymodels.html#cb510-8" tabindex="-1"></a></span>
+<span id="cb510-9"><a href="tidymodels.html#cb510-9" tabindex="-1"></a>metricas_clas <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(yardstick<span class="sc">::</span>accuracy, yardstick<span class="sc">::</span>f_meas,</span>
+<span id="cb510-10"><a href="tidymodels.html#cb510-10" tabindex="-1"></a>                             yardstick<span class="sc">::</span>bal_accuracy)</span>
+<span id="cb510-11"><a href="tidymodels.html#cb510-11" tabindex="-1"></a><span class="fu">metricas_clas</span>(pred_sin, <span class="at">truth =</span> fmedv, <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb510-12"><a href="tidymodels.html#cb510-12" tabindex="-1"></a>              <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   .metric      .estimator .estimate
+##   &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy     binary         0.931
+## 2 f_meas       binary         0.8  
+## 3 bal_accuracy binary         0.844</code></pre>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="tidymodels.html#cb512-1" tabindex="-1"></a><span class="fu">metricas_clas</span>(pred_down, <span class="at">truth =</span> fmedv, <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb512-2"><a href="tidymodels.html#cb512-2" tabindex="-1"></a>              <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   .metric      .estimator .estimate
+##   &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy     binary         0.832
+## 2 f_meas       binary         0.653
+## 3 bal_accuracy binary         0.820</code></pre>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="tidymodels.html#cb514-1" tabindex="-1"></a>yardstick<span class="sc">::</span><span class="fu">conf_mat</span>(pred_down, <span class="at">truth =</span> fmedv, <span class="at">estimate =</span> .pred_class)</span></code></pre></div>
+<pre><code>##           Truth
+## Prediction Bajo Alto
+##       Bajo   68    4
+##       Alto   13   16</code></pre>
+<p>Lo habitual es que el submuestreo aumente la sensibilidad hacia la clase minoritaria (<code>Alto</code>) y la precisión balanceada, a costa de reducir ligeramente la exactitud global: exactamente el compromiso que se ilustraba con <code>caret::trainControl(sampling = "down")</code> en el libro de referencia, ahora resuelto añadiendo un paso más a la receta de <code>tidymodels</code>.</p>
+</div>
+<div id="roc-auc" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Curva ROC y AUC<a href="tidymodels.html#roc-auc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando el método proporciona estimaciones de las probabilidades (como aquí, la regresión logística), estas contienen más información que la clase predicha, y podemos aprovecharla en la evaluación mediante la <strong>curva ROC</strong> (<em>receiver operating characteristic</em>) y el área bajo la curva (AUC), tal y como se hace en la Sección “Evaluación de un método de clasificación” del libro de referencia de Fernández-Casal, Costa y Oviedo. La curva ROC representa la sensibilidad (TPR) frente a <span class="math inline">\(1-\)</span>especificidad (FPR) para todos los posibles puntos de corte de la probabilidad estimada (no solo <span class="math inline">\(c=0.5\)</span>); el AUC resume ese rendimiento en un único número, entre 0.5 (clasificador aleatorio) y 1 (clasificador perfecto).</p>
+<p><strong>Con <a href="https://cran.r-project.org/package=pROC"><code>pROC</code></a></strong>, exactamente como en el libro de referencia, a partir de las probabilidades estimadas por el modelo sin remuestrear (<code>ajuste_sin</code>):</p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="tidymodels.html#cb516-1" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb516-2"><a href="tidymodels.html#cb516-2" tabindex="-1"></a>roc_glm <span class="ot">&lt;-</span> <span class="fu">roc</span>(<span class="at">response =</span> pred_sin<span class="sc">$</span>fmedv, <span class="at">predictor =</span> pred_sin<span class="sc">$</span>.pred_Alto)</span>
+<span id="cb516-3"><a href="tidymodels.html#cb516-3" tabindex="-1"></a><span class="fu">plot</span>(roc_glm)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:roc-proc"></span>
+<img src="07-Hadoop_files/figure-html/roc-proc-1.png" alt="Curva ROC del modelo logístico sobre `fmedv`." width="80%" />
+<p class="caption">
+Figura 7.14: Curva ROC del modelo logístico sobre <code>fmedv</code>.
+</p>
+</div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="tidymodels.html#cb517-1" tabindex="-1"></a>roc_glm<span class="sc">$</span>auc</span></code></pre></div>
+<pre><code>## Area under the curve: 0.9198</code></pre>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="tidymodels.html#cb519-1" tabindex="-1"></a><span class="fu">ci.auc</span>(roc_glm)</span></code></pre></div>
+<pre><code>## 95% CI: 0.8477-0.9918 (DeLong)</code></pre>
+<p><strong>Con <code>tidymodels</code>/<code>yardstick</code></strong>, el equivalente son las funciones <code>roc_curve()</code> (para la curva) y <code>roc_auc()</code> (para el área), que trabajan directamente sobre la columna de probabilidad <code>.pred_Alto</code> que ya incluyen <code>pred_sin</code>/<code>pred_down</code> (Sección <a href="tidymodels.html#desbalanceo">7.2.3</a>). Aprovechamos para comparar el modelo sin remuestrear y el submuestreado (con <code>event_level = "second"</code>, como en el resto de la sección, ya que <code>"Alto"</code> es la segunda categoría):</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="tidymodels.html#cb521-1" tabindex="-1"></a>yardstick<span class="sc">::</span><span class="fu">roc_auc</span>(pred_sin, <span class="at">truth =</span> fmedv, .pred_Alto,</span>
+<span id="cb521-2"><a href="tidymodels.html#cb521-2" tabindex="-1"></a>                    <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.920</code></pre>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="tidymodels.html#cb523-1" tabindex="-1"></a>yardstick<span class="sc">::</span><span class="fu">roc_auc</span>(pred_down, <span class="at">truth =</span> fmedv, .pred_Alto,</span>
+<span id="cb523-2"><a href="tidymodels.html#cb523-2" tabindex="-1"></a>                    <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.914</code></pre>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="tidymodels.html#cb525-1" tabindex="-1"></a>pred_sin <span class="sc">%&gt;%</span></span>
+<span id="cb525-2"><a href="tidymodels.html#cb525-2" tabindex="-1"></a>  yardstick<span class="sc">::</span><span class="fu">roc_curve</span>(<span class="at">truth =</span> fmedv, .pred_Alto,</span>
+<span id="cb525-3"><a href="tidymodels.html#cb525-3" tabindex="-1"></a>                        <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb525-4"><a href="tidymodels.html#cb525-4" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:roc-yardstick"></span>
+<img src="07-Hadoop_files/figure-html/roc-yardstick-1.png" alt="Curvas ROC (`tidymodels`) de los modelos sin remuestrear y submuestreado." width="80%" />
+<p class="caption">
+Figura 7.15: Curvas ROC (<code>tidymodels</code>) de los modelos sin remuestrear y submuestreado.
+</p>
+</div>
+<p>El submuestreo apenas afecta al AUC (que solo depende del orden de las probabilidades predichas, no del punto de corte elegido: en este ejemplo baja de 0.92 a 0.918), aunque sí cambia notablemente qué punto de corte resulta más adecuado y, con él, las métricas basadas en la clase predicha (sensibilidad, especificidad, <span class="math inline">\(F_1\)</span>…) vistas en el apartado anterior.</p>
+</div>
+<div id="vip" class="section level3 hasAnchor" number="7.2.5">
+<h3><span class="header-section-number">7.2.5</span> Importancia de variables y efectos parciales: <code>vip</code> y <code>pdp</code><a href="tidymodels.html#vip" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Independientemente del modelo empleado, el paquete <a href="https://koalaverse.github.io/vip"><code>vip</code></a> (<em>variable importance plots</em>) permite representar la importancia de cada predictor con una única función, <code>vip()</code>. Cuando el modelo no proporciona una medida de importancia propia (como aquí, un modelo logístico dentro de un <code>workflow</code>), <code>vip</code> puede calcularla por <strong><em>permutación</em></strong>: para cada predictor se desordenan (se “permutan”) aleatoriamente sus valores y se mide cuánto empeora una métrica; cuanto mayor el empeoramiento, más importante es la variable. Esta idea es completamente genérica (no depende de la estructura interna del modelo), por lo que sirve igual para un modelo lineal, un KNN o, más adelante, para árboles y bosques aleatorios, sin necesidad de conocer los detalles de cada método. La aplicamos sobre el modelo con submuestreo de la sección anterior:</p>
+<p><code>vip()</code> extrae de <code>workflow</code> el ajuste <code>glm</code> subyacente antes de llamar a <code>pred_wrapper</code> (que por tanto recibe ese <code>glm</code>, no el <code>workflow</code>): usamos <code>predict.glm()</code> (vector de probabilidades) en vez del <code>predict()</code> de <code>tidymodels</code> (tibble con <code>.pred_class</code>), fijando el punto de corte habitual en 0.5:</p>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="tidymodels.html#cb526-1" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
+<span id="cb526-2"><a href="tidymodels.html#cb526-2" tabindex="-1"></a></span>
+<span id="cb526-3"><a href="tidymodels.html#cb526-3" tabindex="-1"></a><span class="fu">vip</span>(ajuste_down, <span class="at">method =</span> <span class="st">&quot;permute&quot;</span>, <span class="at">target =</span> <span class="st">&quot;fmedv&quot;</span>, <span class="at">metric =</span> <span class="st">&quot;accuracy&quot;</span>,</span>
+<span id="cb526-4"><a href="tidymodels.html#cb526-4" tabindex="-1"></a>    <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>, <span class="at">nsim =</span> <span class="dv">10</span>, <span class="at">train =</span> train_desb,</span>
+<span id="cb526-5"><a href="tidymodels.html#cb526-5" tabindex="-1"></a>    <span class="at">pred_wrapper =</span> <span class="cf">function</span>(object, newdata) {</span>
+<span id="cb526-6"><a href="tidymodels.html#cb526-6" tabindex="-1"></a>      prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(object, <span class="at">newdata =</span> newdata, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb526-7"><a href="tidymodels.html#cb526-7" tabindex="-1"></a>      <span class="fu">factor</span>(<span class="fu">ifelse</span>(prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="st">&quot;Alto&quot;</span>, <span class="st">&quot;Bajo&quot;</span>),</span>
+<span id="cb526-8"><a href="tidymodels.html#cb526-8" tabindex="-1"></a>             <span class="at">levels =</span> <span class="fu">levels</span>(train_desb<span class="sc">$</span>fmedv))</span>
+<span id="cb526-9"><a href="tidymodels.html#cb526-9" tabindex="-1"></a>    })</span></code></pre></div>
+<p><img src="07-Hadoop_files/figure-html/unnamed-chunk-24-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p>Más allá de la importancia global de cada variable, suele interesar también <strong>cómo</strong> influye cada predictor en la predicción: los <strong>gráficos de efectos parciales</strong> (<em>partial dependence plots</em>, PDP) muestran la predicción media del modelo al variar un predictor, manteniendo el resto en sus valores observados. A diferencia de <code>vip</code>, aquí sí podemos emplear directamente el <code>workflow</code> (<code>predict.workflow()</code> ya existe como método genérico; solo necesitamos indicarle a <code>pdp</code> cómo obtener un vector numérico de probabilidades a partir del resultado):</p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="tidymodels.html#cb527-1" tabindex="-1"></a><span class="fu">library</span>(pdp)</span>
+<span id="cb527-2"><a href="tidymodels.html#cb527-2" tabindex="-1"></a></span>
+<span id="cb527-3"><a href="tidymodels.html#cb527-3" tabindex="-1"></a>pdp_lstat <span class="ot">&lt;-</span> <span class="fu">partial</span>(ajuste_sin, <span class="at">pred.var =</span> <span class="st">&quot;lstat&quot;</span>, <span class="at">train =</span> train_desb,</span>
+<span id="cb527-4"><a href="tidymodels.html#cb527-4" tabindex="-1"></a>                      <span class="at">pred.fun =</span> <span class="cf">function</span>(object, newdata) {</span>
+<span id="cb527-5"><a href="tidymodels.html#cb527-5" tabindex="-1"></a>                        <span class="fu">predict</span>(object, <span class="at">new_data =</span> newdata,</span>
+<span id="cb527-6"><a href="tidymodels.html#cb527-6" tabindex="-1"></a>                                <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)<span class="sc">$</span>.pred_Alto</span>
+<span id="cb527-7"><a href="tidymodels.html#cb527-7" tabindex="-1"></a>                      })</span>
+<span id="cb527-8"><a href="tidymodels.html#cb527-8" tabindex="-1"></a><span class="fu">autoplot</span>(pdp_lstat)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pdp-example"></span>
+<img src="07-Hadoop_files/figure-html/pdp-example-1.png" alt="Efecto parcial de `lstat` sobre la probabilidad de valoración alta (`fmedv = Alto`)." width="80%" />
+<p class="caption">
+Figura 7.16: Efecto parcial de <code>lstat</code> sobre la probabilidad de valoración alta (<code>fmedv = Alto</code>).
+</p>
+</div>
+<p>Como es de esperar en un modelo logístico aditivo en <code>lstat</code>, la probabilidad estimada de <code>"Alto"</code> decrece de forma monótona (aproximadamente en forma de “S”) al aumentar el porcentaje de población con menor estatus. En modelos no aditivos el PDP puede ocultar interacciones entre predictores; para estudiarlas existe el paquete <a href="https://cran.r-project.org/package=vivid"><code>vivid</code></a> (<em>variable importance and variable interaction displays</em>), con gráficos tipo mapa de calor y red que combinan importancia e interacción. Su uso resulta más natural sobre modelos de árboles y bosques aleatorios, que aún no hemos visto en este curso introductorio (se tratarán, junto con <code>vivid</code>, en la parte de la asignatura dedicada a <em>Big Data</em>); de momento queda solo como referencia para cuando lleguemos a esos métodos.</p>
+</div>
+<div id="resumen-tidymodels" class="section level3 hasAnchor" number="7.2.6">
+<h3><span class="header-section-number">7.2.6</span> Resumen: tidymodels y R base<a href="tidymodels.html#resumen-tidymodels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A modo de referencia rápida, la siguiente tabla recoge las tareas más habituales de esta sección junto con su equivalente en R base (o <code>caret</code>), tal y como se han empleado a lo largo del capítulo:</p>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="36%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tarea</th>
+<th>R base / caret</th>
+<th>tidymodels</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Validación cruzada</td>
+<td>bucle manual (Sección <a href="intro-AE.html#cv">7.1.3.3</a>)</td>
+<td><code>rsample::vfold_cv()</code></td>
+</tr>
+<tr class="even">
+<td>Preprocesamiento</td>
+<td>manual (<code>$</code>, <code>factor()</code>…)</td>
+<td><code>recipe()</code> + <code>step_*()</code></td>
+</tr>
+<tr class="odd">
+<td>Especificar el modelo</td>
+<td><code>lm()</code>, <code>glm()</code>, <code>knn()</code>, <code>svm()</code>…</td>
+<td><code>linear_reg()</code>, <code>nearest_neighbor()</code>…</td>
+</tr>
+<tr class="even">
+<td>Combinar receta y modelo</td>
+<td>(no existe como tal)</td>
+<td><code>workflow()</code> + <code>add_recipe()</code>/<code>add_model()</code></td>
+</tr>
+<tr class="odd">
+<td>Seleccionar hiperparámetros</td>
+<td>bucle manual sobre la rejilla</td>
+<td><code>tune_grid()</code> + <code>show_best()</code>/<code>select_best()</code></td>
+</tr>
+<tr class="even">
+<td>Ajustar el modelo final</td>
+<td><code>lm()</code>, <code>glm()</code>…</td>
+<td><code>finalize_workflow()</code> + <code>fit()</code></td>
+</tr>
+<tr class="odd">
+<td>Medidas de error/acierto</td>
+<td><code>caret::postResample()</code>, <code>accuracy()</code> propia</td>
+<td><code>yardstick::accuracy()</code>, <code>metric_set()</code></td>
+</tr>
+<tr class="even">
+<td>Matriz de confusión</td>
+<td><code>table()</code>, <code>caret::confusionMatrix()</code></td>
+<td><code>yardstick::conf_mat()</code></td>
+</tr>
+<tr class="odd">
+<td>Remuestreo por desbalanceo</td>
+<td>(no se trata en este tema)</td>
+<td><code>step_downsample()</code></td>
+</tr>
+<tr class="even">
+<td>Curva ROC / AUC</td>
+<td><code>pROC::roc()</code></td>
+<td><code>yardstick::roc_curve()</code>/<code>roc_auc()</code></td>
+</tr>
+<tr class="odd">
+<td>Importancia de variables</td>
+<td><code>vip::vip()</code> (igual con ambos)</td>
+<td><code>vip::vip()</code> (igual con ambos)</td>
+</tr>
+<tr class="even">
+<td>Efectos parciales</td>
+<td><code>pdp::partial()</code> (igual con ambos)</td>
+<td><code>pdp::partial()</code> (igual con ambos)</td>
+</tr>
+</tbody>
+</table>
+<div class="exercise">
+<p><span id="exr:penguins-clas" class="exercise"><strong>Ejercicio 7.3  </strong></span>El conjunto de datos <code>penguins</code> del paquete <a href="https://allisonhorst.github.io/palmerpenguins"><code>palmerpenguins</code></a> (tres especies de pingüinos de la Antártida —Adelie, Chinstrap y Gentoo— con medidas del pico y de las aletas) permite practicar tanto clasificación como regresión con <code>tidymodels</code>, y además tiene algunos valores faltantes que conviene tratar antes de modelizar (ver Sección <a href="dplyr.html#tidyr-missing">5.2.4</a> del Tema 5):</p>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="tidymodels.html#cb528-1" tabindex="-1"></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">&quot;palmerpenguins&quot;</span>)</span>
+<span id="cb528-2"><a href="tidymodels.html#cb528-2" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(penguins))</span></code></pre></div>
+<pre><code>##           species            island    bill_length_mm     bill_depth_mm 
+##                 0                 0                 2                 2 
+## flipper_length_mm       body_mass_g               sex              year 
+##                 2                 2                11                 0</code></pre>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="tidymodels.html#cb530-1" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins) <span class="co"># o mejor, imputar (Sección \@ref(tidyr-missing))</span></span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Emplea <code>nearest_neighbor()</code> (o <code>svm_linear()</code>) para predecir la especie (<code>species</code>) a partir de <code>bill_length_mm</code> y <code>bill_depth_mm</code>, seleccionando el hiperparámetro por validación cruzada, como en la Sección <a href="tidymodels.html#tidymodels-clas">7.2.2</a>.</p></li>
+<li><p>Emplea <code>linear_reg()</code> para predecir el peso (<code>body_mass_g</code>) a partir de <code>flipper_length_mm</code>, como en la Sección <a href="tidymodels.html#tidymodels-reg">7.2.1</a>.</p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:penguins-simpson" class="exercise"><strong>Ejercicio 7.4  </strong></span>Curiosamente, en <code>penguins</code> la relación entre <code>bill_length_mm</code> y <code>bill_depth_mm</code> es negativa si se ignora la especie, pero positiva dentro de cada especie: un ejemplo real de la <strong>paradoja de Simpson</strong> (la relación global se invierte al no tener en cuenta una variable de agrupación relevante). Compruébalo calculando la correlación entre ambas variables (i) para el conjunto completo y (ii) por separado para cada especie (<code>dplyr::group_by(species)</code>), y represéntalo con un diagrama de dispersión coloreando por <code>species</code>.</p>
+</div>
+</div>
+<div id="analisis-modelos" class="section level3 hasAnchor" number="7.2.7">
+<h3><span class="header-section-number">7.2.7</span> Análisis e interpretación de los modelos<a href="tidymodels.html#analisis-modelos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Además de obtener buenas predicciones, en muchos problemas resulta importante <strong>analizar e interpretar los modelos ajustados</strong>, es decir, comprender qué variables influyen en la respuesta y de qué manera. Este aspecto ha cobrado especial relevancia dentro del AE y el ML, dando lugar al área conocida como <a href="https://christophm.github.io/interpretable-ml-book/"><em>interpretable machine learning</em></a>.</p>
+<p>Existe un compromiso claro entre <strong>capacidad predictiva e interpretabilidad</strong>: a mayor complejidad del modelo, suele ser menor la facilidad de interpretación. Por ello, cuando varios modelos presentan un rendimiento similar, suele preferirse el más simple. En los modelos estadísticos clásicos (lineales, aditivos) la interpretación se apoya directamente en la estructura del modelo, aunque la colinealidad o las interacciones pueden dificultarla. En modelos más complejos (“cajas negras”) se recurre a herramientas adicionales, como las <strong>medidas de importancia de variables</strong> o los <strong>gráficos de efectos parciales</strong> (ya vistos de forma concreta, con <code>vip</code> y <code>pdp</code>, en la Sección <a href="tidymodels.html#vip">7.2.5</a>).</p>
+<p>En esta asignatura se emplearán principalmente modelos con una estructura interpretable; las herramientas avanzadas de interpretación se introducirán solo cuando resulten necesarias en capítulos posteriores.</p>
+<p>Para quien quiera profundizar en aprendizaje estadístico más allá de esta introducción, el libro completo de referencia dedica capítulos específicos a la regresión (selección de variables, regularización, regresión logística y multinomial), a la clasificación (más allá de KNN: árboles, SVM, evaluación específica con curvas ROC…), a la regresión no paramétrica (splines, modelos aditivos, regresión local), a la maldición de la dimensionalidad y al uso de <code>caret</code> como interfaz unificada, contenidos que quedan fuera del alcance de esta asignatura pero pueden ser de interés para quien continúe por esa línea (en la Sección <a href="tidymodels.html#tidymodels">7.2</a> hemos visto una alternativa equivalente con <code>tidymodels</code>, más coherente con el resto del <code>tidyverse</code> empleado en el curso).</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro-AE.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tecnologías-big-data-hadoopspark-y-visualización.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/07-Hadoop.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Practicas_de_TGD.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

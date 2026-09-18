@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.4 CSV en python | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.4 CSV en python | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -34,7 +34,7 @@
   
 <link rel="prev" href="context-manager.html"/>
 <link rel="next" href="tidyverse.html"/>
-<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,15 +54,15 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -140,7 +140,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -201,16 +200,27 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
 <li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
+<li class="chapter" data-level="2.2" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
-<li class="chapter" data-level="2.2.3" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
-<li class="chapter" data-level="2.2.4" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
-<li class="chapter" data-level="2.2.6" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="2.2.1" data-path="manip.html"><a href="manip.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="manip.html"><a href="manip.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manip.html"><a href="manip.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
+<li class="chapter" data-level="2.2.4" data-path="manip.html"><a href="manip.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="manip.html"><a href="manip.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
+<li class="chapter" data-level="2.2.6" data-path="manip.html"><a href="manip.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+<li class="chapter" data-level="2.4" data-path="eficiencia-manipR.html"><a href="eficiencia-manipR.html"><i class="fa fa-check"></i><b>2.4</b> Eficiencia en R: preasignación, vectorización y desfases</a></li>
+<li class="chapter" data-level="2.5" data-path="resumen-manipR.html"><a href="resumen-manipR.html"><i class="fa fa-check"></i><b>2.5</b> Resumen: R base</a></li>
+<li class="chapter" data-level="2.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html"><i class="fa fa-check"></i><b>2.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-1-incremento-salarial-empleados"><i class="fa fa-check"></i><b>2.6.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars"><i class="fa fa-check"></i><b>2.6.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-4-resumen-y-agrupaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-5-uni%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.6.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="2.6.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-6-opcional-columnas-lista"><i class="fa fa-check"></i><b>2.6.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introSQL.html"><a href="introSQL.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
 <ul>
@@ -312,6 +322,17 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.5.1</b> Ejemplos</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="eficiencia-tidyverse.html"><a href="eficiencia-tidyverse.html"><i class="fa fa-check"></i><b>5.6</b> Eficiencia y desfases con dplyr</a></li>
+<li class="chapter" data-level="5.7" data-path="resumen-tidyverse.html"><a href="resumen-tidyverse.html"><i class="fa fa-check"></i><b>5.7</b> Resumen: dplyr/tidyr y R base</a></li>
+<li class="chapter" data-level="5.8" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html"><i class="fa fa-check"></i><b>5.8</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-1-incremento-salarial-empleados-1"><i class="fa fa-check"></i><b>5.8.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="5.8.2" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars-1"><i class="fa fa-check"></i><b>5.8.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="5.8.3" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="5.8.4" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-4-resumen-y-agrupaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="5.8.5" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-5-uni%C3%B3n-de-tablas-1"><i class="fa fa-check"></i><b>5.8.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="5.8.6" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-6-opcional-columnas-lista-1"><i class="fa fa-check"></i><b>5.8.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introducción-a-tecnologías-nosql.html"><a href="introducción-a-tecnologías-nosql.html"><i class="fa fa-check"></i><b>6</b> Introducción a Tecnologías NoSQL</a>
 <ul>
@@ -330,15 +351,31 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>7</b> Tecnologías para el Tratamiendo de Datos Masivos</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="introducción-al-aprendizaje-estadístico.html"><a href="introducción-al-aprendizaje-estadístico.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a></li>
-<li class="chapter" data-level="7.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.2</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<li class="chapter" data-level="7.1" data-path="intro-AE.html"><a href="intro-AE.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
-<li class="chapter" data-level="7.2.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.2.2</b> Big Data y Machine Learning</a></li>
-<li class="chapter" data-level="7.2.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.2.3</b> Rattle como alternativa a RapidMiner en R</a></li>
-<li class="chapter" data-level="7.2.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.2.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+<li class="chapter" data-level="7.1.1" data-path="intro-AE.html"><a href="intro-AE.html#aprendizaje-estad%C3%ADstico-vs.-aprendizaje-autom%C3%A1tico"><i class="fa fa-check"></i><b>7.1.1</b> Aprendizaje estadístico vs. aprendizaje automático</a></li>
+<li class="chapter" data-level="7.1.2" data-path="intro-AE.html"><a href="intro-AE.html#m%C3%A9todos-de-aprendizaje-estad%C3%ADstico"><i class="fa fa-check"></i><b>7.1.2</b> Métodos de aprendizaje estadístico</a></li>
+<li class="chapter" data-level="7.1.3" data-path="intro-AE.html"><a href="intro-AE.html#const-eval"><i class="fa fa-check"></i><b>7.1.3</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="7.1.4" data-path="intro-AE.html"><a href="intro-AE.html#clasificacion"><i class="fa fa-check"></i><b>7.1.4</b> Clasificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.3</b> Introducción al Análisis de Datos Masivos</a></li>
+<li class="chapter" data-level="7.2" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>7.2</b> Modelización con <code>tidymodels</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-reg"><i class="fa fa-check"></i><b>7.2.1</b> Regresión: seleccionando el grado del polinomio con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-clas"><i class="fa fa-check"></i><b>7.2.2</b> Clasificación: seleccionando <span class="math inline">\(k\)</span> en KNN con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="tidymodels.html"><a href="tidymodels.html#desbalanceo"><i class="fa fa-check"></i><b>7.2.3</b> Clasificación desbalanceada: remuestreo dentro de la receta</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tidymodels.html"><a href="tidymodels.html#roc-auc"><i class="fa fa-check"></i><b>7.2.4</b> Curva ROC y AUC</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tidymodels.html"><a href="tidymodels.html#vip"><i class="fa fa-check"></i><b>7.2.5</b> Importancia de variables y efectos parciales: <code>vip</code> y <code>pdp</code></a></li>
+<li class="chapter" data-level="7.2.6" data-path="tidymodels.html"><a href="tidymodels.html#resumen-tidymodels"><i class="fa fa-check"></i><b>7.2.6</b> Resumen: tidymodels y R base</a></li>
+<li class="chapter" data-level="7.2.7" data-path="tidymodels.html"><a href="tidymodels.html#analisis-modelos"><i class="fa fa-check"></i><b>7.2.7</b> Análisis e interpretación de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.3</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.3.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.3.2</b> Big Data y Machine Learning</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.3.3</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="7.3.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.3.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.4</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -367,51 +404,51 @@ div.csl-indent {
 <p>La librería <code>csv</code> viene incluida en Python, por lo que no requiere instalación.</p>
 <div id="leer-un-csv-con-csv.reader" class="section level4 hasAnchor" number="4.4.1.1">
 <h4><span class="header-section-number">4.4.1.1</span> Leer un CSV con <code>csv.reader()</code><a href="csv-en-python.html#leer-un-csv-con-csv.reader" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb310"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb310-1"><a href="csv-en-python.html#cb310-1" tabindex="-1"></a><span class="im">import</span> csv</span>
-<span id="cb310-2"><a href="csv-en-python.html#cb310-2" tabindex="-1"></a></span>
-<span id="cb310-3"><a href="csv-en-python.html#cb310-3" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;datos.csv&quot;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>, encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb310-4"><a href="csv-en-python.html#cb310-4" tabindex="-1"></a>    reader <span class="op">=</span> csv.reader(f)</span>
-<span id="cb310-5"><a href="csv-en-python.html#cb310-5" tabindex="-1"></a>    <span class="cf">for</span> fila <span class="kw">in</span> reader:</span>
-<span id="cb310-6"><a href="csv-en-python.html#cb310-6" tabindex="-1"></a>        <span class="bu">print</span>(fila)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb322-1"><a href="csv-en-python.html#cb322-1" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb322-2"><a href="csv-en-python.html#cb322-2" tabindex="-1"></a></span>
+<span id="cb322-3"><a href="csv-en-python.html#cb322-3" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;datos.csv&quot;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>, encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb322-4"><a href="csv-en-python.html#cb322-4" tabindex="-1"></a>    reader <span class="op">=</span> csv.reader(f)</span>
+<span id="cb322-5"><a href="csv-en-python.html#cb322-5" tabindex="-1"></a>    <span class="cf">for</span> fila <span class="kw">in</span> reader:</span>
+<span id="cb322-6"><a href="csv-en-python.html#cb322-6" tabindex="-1"></a>        <span class="bu">print</span>(fila)</span></code></pre></div>
 </div>
 <div id="leer-un-csv-con-cabeceras-csv.dictreader" class="section level4 hasAnchor" number="4.4.1.2">
 <h4><span class="header-section-number">4.4.1.2</span> Leer un CSV con cabeceras: <code>csv.DictReader()</code><a href="csv-en-python.html#leer-un-csv-con-cabeceras-csv.dictreader" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb311"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb311-1"><a href="csv-en-python.html#cb311-1" tabindex="-1"></a><span class="im">import</span> csv</span>
-<span id="cb311-2"><a href="csv-en-python.html#cb311-2" tabindex="-1"></a></span>
-<span id="cb311-3"><a href="csv-en-python.html#cb311-3" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;datos.csv&quot;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>, encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb311-4"><a href="csv-en-python.html#cb311-4" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
-<span id="cb311-5"><a href="csv-en-python.html#cb311-5" tabindex="-1"></a>    <span class="cf">for</span> fila <span class="kw">in</span> reader:</span>
-<span id="cb311-6"><a href="csv-en-python.html#cb311-6" tabindex="-1"></a>        <span class="bu">print</span>(fila[<span class="st">&quot;Nombre&quot;</span>], fila[<span class="st">&quot;Edad&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb323-1"><a href="csv-en-python.html#cb323-1" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb323-2"><a href="csv-en-python.html#cb323-2" tabindex="-1"></a></span>
+<span id="cb323-3"><a href="csv-en-python.html#cb323-3" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;datos.csv&quot;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>, encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb323-4"><a href="csv-en-python.html#cb323-4" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
+<span id="cb323-5"><a href="csv-en-python.html#cb323-5" tabindex="-1"></a>    <span class="cf">for</span> fila <span class="kw">in</span> reader:</span>
+<span id="cb323-6"><a href="csv-en-python.html#cb323-6" tabindex="-1"></a>        <span class="bu">print</span>(fila[<span class="st">&quot;Nombre&quot;</span>], fila[<span class="st">&quot;Edad&quot;</span>])</span></code></pre></div>
 </div>
 <div id="escribir-un-csv-con-csv.writer" class="section level4 hasAnchor" number="4.4.1.3">
 <h4><span class="header-section-number">4.4.1.3</span> Escribir un CSV con <code>csv.writer()</code><a href="csv-en-python.html#escribir-un-csv-con-csv.writer" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb312"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb312-1"><a href="csv-en-python.html#cb312-1" tabindex="-1"></a><span class="im">import</span> csv</span>
-<span id="cb312-2"><a href="csv-en-python.html#cb312-2" tabindex="-1"></a></span>
-<span id="cb312-3"><a href="csv-en-python.html#cb312-3" tabindex="-1"></a>datos <span class="op">=</span> [</span>
-<span id="cb312-4"><a href="csv-en-python.html#cb312-4" tabindex="-1"></a>    [<span class="st">&quot;Nombre&quot;</span>, <span class="st">&quot;Edad&quot;</span>],</span>
-<span id="cb312-5"><a href="csv-en-python.html#cb312-5" tabindex="-1"></a>    [<span class="st">&quot;Ana&quot;</span>, <span class="dv">40</span>],</span>
-<span id="cb312-6"><a href="csv-en-python.html#cb312-6" tabindex="-1"></a>    [<span class="st">&quot;Diego&quot;</span>, <span class="dv">41</span>]</span>
-<span id="cb312-7"><a href="csv-en-python.html#cb312-7" tabindex="-1"></a>]</span>
-<span id="cb312-8"><a href="csv-en-python.html#cb312-8" tabindex="-1"></a></span>
-<span id="cb312-9"><a href="csv-en-python.html#cb312-9" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;salida.csv&quot;</span>, <span class="st">&quot;w&quot;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>, encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb312-10"><a href="csv-en-python.html#cb312-10" tabindex="-1"></a>    writer <span class="op">=</span> csv.writer(f)</span>
-<span id="cb312-11"><a href="csv-en-python.html#cb312-11" tabindex="-1"></a>    writer.writerows(datos)</span>
-<span id="cb312-12"><a href="csv-en-python.html#cb312-12" tabindex="-1"></a>```<span class="op">*</span></span>
-<span id="cb312-13"><a href="csv-en-python.html#cb312-13" tabindex="-1"></a></span>
-<span id="cb312-14"><a href="csv-en-python.html#cb312-14" tabindex="-1"></a><span class="co">#### Escribir un CSV con cabeceras: `csv.DictWriter()`</span></span>
-<span id="cb312-15"><a href="csv-en-python.html#cb312-15" tabindex="-1"></a></span>
-<span id="cb312-16"><a href="csv-en-python.html#cb312-16" tabindex="-1"></a>```python</span>
-<span id="cb312-17"><a href="csv-en-python.html#cb312-17" tabindex="-1"></a><span class="im">import</span> csv</span>
-<span id="cb312-18"><a href="csv-en-python.html#cb312-18" tabindex="-1"></a></span>
-<span id="cb312-19"><a href="csv-en-python.html#cb312-19" tabindex="-1"></a>personas <span class="op">=</span> [</span>
-<span id="cb312-20"><a href="csv-en-python.html#cb312-20" tabindex="-1"></a>    {<span class="st">&quot;Nombre&quot;</span>: <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Edad&quot;</span>: <span class="dv">40</span>},</span>
-<span id="cb312-21"><a href="csv-en-python.html#cb312-21" tabindex="-1"></a>    {<span class="st">&quot;Nombre&quot;</span>: <span class="st">&quot;Diego&quot;</span>, <span class="st">&quot;Edad&quot;</span>: <span class="dv">41</span>}</span>
-<span id="cb312-22"><a href="csv-en-python.html#cb312-22" tabindex="-1"></a>]</span>
-<span id="cb312-23"><a href="csv-en-python.html#cb312-23" tabindex="-1"></a></span>
-<span id="cb312-24"><a href="csv-en-python.html#cb312-24" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;salida.csv&quot;</span>, <span class="st">&quot;w&quot;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>, encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb312-25"><a href="csv-en-python.html#cb312-25" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>[<span class="st">&quot;Nombre&quot;</span>, <span class="st">&quot;Edad&quot;</span>])</span>
-<span id="cb312-26"><a href="csv-en-python.html#cb312-26" tabindex="-1"></a>    writer.writeheader()</span>
-<span id="cb312-27"><a href="csv-en-python.html#cb312-27" tabindex="-1"></a>    writer.writerows(personas)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb324-1"><a href="csv-en-python.html#cb324-1" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb324-2"><a href="csv-en-python.html#cb324-2" tabindex="-1"></a></span>
+<span id="cb324-3"><a href="csv-en-python.html#cb324-3" tabindex="-1"></a>datos <span class="op">=</span> [</span>
+<span id="cb324-4"><a href="csv-en-python.html#cb324-4" tabindex="-1"></a>    [<span class="st">&quot;Nombre&quot;</span>, <span class="st">&quot;Edad&quot;</span>],</span>
+<span id="cb324-5"><a href="csv-en-python.html#cb324-5" tabindex="-1"></a>    [<span class="st">&quot;Ana&quot;</span>, <span class="dv">40</span>],</span>
+<span id="cb324-6"><a href="csv-en-python.html#cb324-6" tabindex="-1"></a>    [<span class="st">&quot;Diego&quot;</span>, <span class="dv">41</span>]</span>
+<span id="cb324-7"><a href="csv-en-python.html#cb324-7" tabindex="-1"></a>]</span>
+<span id="cb324-8"><a href="csv-en-python.html#cb324-8" tabindex="-1"></a></span>
+<span id="cb324-9"><a href="csv-en-python.html#cb324-9" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;salida.csv&quot;</span>, <span class="st">&quot;w&quot;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>, encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb324-10"><a href="csv-en-python.html#cb324-10" tabindex="-1"></a>    writer <span class="op">=</span> csv.writer(f)</span>
+<span id="cb324-11"><a href="csv-en-python.html#cb324-11" tabindex="-1"></a>    writer.writerows(datos)</span>
+<span id="cb324-12"><a href="csv-en-python.html#cb324-12" tabindex="-1"></a>```<span class="op">*</span></span>
+<span id="cb324-13"><a href="csv-en-python.html#cb324-13" tabindex="-1"></a></span>
+<span id="cb324-14"><a href="csv-en-python.html#cb324-14" tabindex="-1"></a><span class="co">#### Escribir un CSV con cabeceras: `csv.DictWriter()`</span></span>
+<span id="cb324-15"><a href="csv-en-python.html#cb324-15" tabindex="-1"></a></span>
+<span id="cb324-16"><a href="csv-en-python.html#cb324-16" tabindex="-1"></a>```python</span>
+<span id="cb324-17"><a href="csv-en-python.html#cb324-17" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb324-18"><a href="csv-en-python.html#cb324-18" tabindex="-1"></a></span>
+<span id="cb324-19"><a href="csv-en-python.html#cb324-19" tabindex="-1"></a>personas <span class="op">=</span> [</span>
+<span id="cb324-20"><a href="csv-en-python.html#cb324-20" tabindex="-1"></a>    {<span class="st">&quot;Nombre&quot;</span>: <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Edad&quot;</span>: <span class="dv">40</span>},</span>
+<span id="cb324-21"><a href="csv-en-python.html#cb324-21" tabindex="-1"></a>    {<span class="st">&quot;Nombre&quot;</span>: <span class="st">&quot;Diego&quot;</span>, <span class="st">&quot;Edad&quot;</span>: <span class="dv">41</span>}</span>
+<span id="cb324-22"><a href="csv-en-python.html#cb324-22" tabindex="-1"></a>]</span>
+<span id="cb324-23"><a href="csv-en-python.html#cb324-23" tabindex="-1"></a></span>
+<span id="cb324-24"><a href="csv-en-python.html#cb324-24" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;salida.csv&quot;</span>, <span class="st">&quot;w&quot;</span>, newline<span class="op">=</span><span class="st">&#39;&#39;</span>, encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb324-25"><a href="csv-en-python.html#cb324-25" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>[<span class="st">&quot;Nombre&quot;</span>, <span class="st">&quot;Edad&quot;</span>])</span>
+<span id="cb324-26"><a href="csv-en-python.html#cb324-26" tabindex="-1"></a>    writer.writeheader()</span>
+<span id="cb324-27"><a href="csv-en-python.html#cb324-27" tabindex="-1"></a>    writer.writerows(personas)</span></code></pre></div>
 </div>
 </div>
 <div id="trabajar-con-csv-usando-pandas" class="section level3 hasAnchor" number="4.4.2">
@@ -419,60 +456,60 @@ div.csl-indent {
 <p><code>pandas</code> es la librería más potente para análisis de datos en Python.</p>
 <div id="leer-un-csv" class="section level4 hasAnchor" number="4.4.2.1">
 <h4><span class="header-section-number">4.4.2.1</span> Leer un CSV<a href="csv-en-python.html#leer-un-csv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb313"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb313-1"><a href="csv-en-python.html#cb313-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb313-2"><a href="csv-en-python.html#cb313-2" tabindex="-1"></a></span>
-<span id="cb313-3"><a href="csv-en-python.html#cb313-3" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;datos.csv&quot;</span>)</span>
-<span id="cb313-4"><a href="csv-en-python.html#cb313-4" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb325-1"><a href="csv-en-python.html#cb325-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb325-2"><a href="csv-en-python.html#cb325-2" tabindex="-1"></a></span>
+<span id="cb325-3"><a href="csv-en-python.html#cb325-3" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;datos.csv&quot;</span>)</span>
+<span id="cb325-4"><a href="csv-en-python.html#cb325-4" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code></pre></div>
 </div>
 <div id="guardar-un-csv" class="section level4 hasAnchor" number="4.4.2.2">
 <h4><span class="header-section-number">4.4.2.2</span> Guardar un CSV<a href="csv-en-python.html#guardar-un-csv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb314"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb314-1"><a href="csv-en-python.html#cb314-1" tabindex="-1"></a>df.to_csv(<span class="st">&quot;salida.csv&quot;</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb326-1"><a href="csv-en-python.html#cb326-1" tabindex="-1"></a>df.to_csv(<span class="st">&quot;salida.csv&quot;</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 <div id="operaciones-básicas" class="section level4 hasAnchor" number="4.4.2.3">
 <h4><span class="header-section-number">4.4.2.3</span> Operaciones básicas<a href="csv-en-python.html#operaciones-b%C3%A1sicas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb315"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb315-1"><a href="csv-en-python.html#cb315-1" tabindex="-1"></a>df[<span class="st">&quot;Nombre&quot;</span>]                <span class="co"># Acceder a una columna</span></span>
-<span id="cb315-2"><a href="csv-en-python.html#cb315-2" tabindex="-1"></a>df[<span class="st">&quot;Edad&quot;</span>].mean()           <span class="co"># Media de una columna numérica</span></span>
-<span id="cb315-3"><a href="csv-en-python.html#cb315-3" tabindex="-1"></a>df[df[<span class="st">&quot;Edad&quot;</span>] <span class="op">&gt;</span> <span class="dv">30</span>]         <span class="co"># Filtrar filas</span></span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb327-1"><a href="csv-en-python.html#cb327-1" tabindex="-1"></a>df[<span class="st">&quot;Nombre&quot;</span>]                <span class="co"># Acceder a una columna</span></span>
+<span id="cb327-2"><a href="csv-en-python.html#cb327-2" tabindex="-1"></a>df[<span class="st">&quot;Edad&quot;</span>].mean()           <span class="co"># Media de una columna numérica</span></span>
+<span id="cb327-3"><a href="csv-en-python.html#cb327-3" tabindex="-1"></a>df[df[<span class="st">&quot;Edad&quot;</span>] <span class="op">&gt;</span> <span class="dv">30</span>]         <span class="co"># Filtrar filas</span></span></code></pre></div>
 </div>
 </div>
 <div id="insertar-datos-en-sqlite-a-partir-de-csv" class="section level3 hasAnchor" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> Insertar datos en SQLite a partir de CSV<a href="csv-en-python.html#insertar-datos-en-sqlite-a-partir-de-csv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb316"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb316-1"><a href="csv-en-python.html#cb316-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;venues.csv&#39;</span>) <span class="im">as</span> csvfile:</span>
-<span id="cb316-2"><a href="csv-en-python.html#cb316-2" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(csvfile)</span>
-<span id="cb316-3"><a href="csv-en-python.html#cb316-3" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
-<span id="cb316-4"><a href="csv-en-python.html#cb316-4" tabindex="-1"></a>        cursor.execute(<span class="st">&#39;&#39;&#39;</span></span>
-<span id="cb316-5"><a href="csv-en-python.html#cb316-5" tabindex="-1"></a><span class="st">            INSERT INTO Venue (Name, Capacity, Street, Number, City)</span></span>
-<span id="cb316-6"><a href="csv-en-python.html#cb316-6" tabindex="-1"></a><span class="st">            VALUES (?, ?, ?, ?, ?)</span></span>
-<span id="cb316-7"><a href="csv-en-python.html#cb316-7" tabindex="-1"></a><span class="st">        &#39;&#39;&#39;</span>, (row[<span class="st">&#39;Name&#39;</span>], row[<span class="st">&#39;Capacity&#39;</span>], row[<span class="st">&#39;Street&#39;</span>], row[<span class="st">&#39;Number&#39;</span>], row[<span class="st">&#39;City&#39;</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb328-1"><a href="csv-en-python.html#cb328-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;venues.csv&#39;</span>) <span class="im">as</span> csvfile:</span>
+<span id="cb328-2"><a href="csv-en-python.html#cb328-2" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(csvfile)</span>
+<span id="cb328-3"><a href="csv-en-python.html#cb328-3" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb328-4"><a href="csv-en-python.html#cb328-4" tabindex="-1"></a>        cursor.execute(<span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb328-5"><a href="csv-en-python.html#cb328-5" tabindex="-1"></a><span class="st">            INSERT INTO Venue (Name, Capacity, Street, Number, City)</span></span>
+<span id="cb328-6"><a href="csv-en-python.html#cb328-6" tabindex="-1"></a><span class="st">            VALUES (?, ?, ?, ?, ?)</span></span>
+<span id="cb328-7"><a href="csv-en-python.html#cb328-7" tabindex="-1"></a><span class="st">        &#39;&#39;&#39;</span>, (row[<span class="st">&#39;Name&#39;</span>], row[<span class="st">&#39;Capacity&#39;</span>], row[<span class="st">&#39;Street&#39;</span>], row[<span class="st">&#39;Number&#39;</span>], row[<span class="st">&#39;City&#39;</span>]))</span></code></pre></div>
 <p>A menudo un CSV contiene nombres en vez de IDs, por ejemplo:</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb317-1"><a href="csv-en-python.html#cb317-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;concerts.csv&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb317-2"><a href="csv-en-python.html#cb317-2" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
-<span id="cb317-3"><a href="csv-en-python.html#cb317-3" tabindex="-1"></a></span>
-<span id="cb317-4"><a href="csv-en-python.html#cb317-4" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
-<span id="cb317-5"><a href="csv-en-python.html#cb317-5" tabindex="-1"></a>        venue_name <span class="op">=</span> row[<span class="st">&quot;Venue&quot;</span>].strip()</span>
-<span id="cb317-6"><a href="csv-en-python.html#cb317-6" tabindex="-1"></a></span>
-<span id="cb317-7"><a href="csv-en-python.html#cb317-7" tabindex="-1"></a>        <span class="co"># Buscar VenueId</span></span>
-<span id="cb317-8"><a href="csv-en-python.html#cb317-8" tabindex="-1"></a>        cur.execute(<span class="st">&quot;SELECT VenueId FROM Venue WHERE Name = ?&quot;</span>, (venue_name,))</span>
-<span id="cb317-9"><a href="csv-en-python.html#cb317-9" tabindex="-1"></a>        result <span class="op">=</span> cur.fetchone()</span>
-<span id="cb317-10"><a href="csv-en-python.html#cb317-10" tabindex="-1"></a></span>
-<span id="cb317-11"><a href="csv-en-python.html#cb317-11" tabindex="-1"></a>        <span class="cf">if</span> result <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb317-12"><a href="csv-en-python.html#cb317-12" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;ERROR: No existe el Venue:&quot;</span>, venue_name)</span>
-<span id="cb317-13"><a href="csv-en-python.html#cb317-13" tabindex="-1"></a>            <span class="cf">continue</span></span>
-<span id="cb317-14"><a href="csv-en-python.html#cb317-14" tabindex="-1"></a></span>
-<span id="cb317-15"><a href="csv-en-python.html#cb317-15" tabindex="-1"></a>        venue_id <span class="op">=</span> result[<span class="dv">0</span>]</span>
-<span id="cb317-16"><a href="csv-en-python.html#cb317-16" tabindex="-1"></a></span>
-<span id="cb317-17"><a href="csv-en-python.html#cb317-17" tabindex="-1"></a>        <span class="co"># Insertar en la tabla Concert</span></span>
-<span id="cb317-18"><a href="csv-en-python.html#cb317-18" tabindex="-1"></a>        cur.execute(<span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb317-19"><a href="csv-en-python.html#cb317-19" tabindex="-1"></a><span class="st">            INSERT INTO Concert (ConcertId, VenueId, Name, Tickets, TicketsSold, Date)</span></span>
-<span id="cb317-20"><a href="csv-en-python.html#cb317-20" tabindex="-1"></a><span class="st">            VALUES (?, ?, ?, ?, ?, ?)</span></span>
-<span id="cb317-21"><a href="csv-en-python.html#cb317-21" tabindex="-1"></a><span class="st">        &quot;&quot;&quot;</span>, (</span>
-<span id="cb317-22"><a href="csv-en-python.html#cb317-22" tabindex="-1"></a>            <span class="bu">int</span>(row[<span class="st">&quot;ConcertId&quot;</span>]),</span>
-<span id="cb317-23"><a href="csv-en-python.html#cb317-23" tabindex="-1"></a>            venue_id,</span>
-<span id="cb317-24"><a href="csv-en-python.html#cb317-24" tabindex="-1"></a>            row[<span class="st">&quot;Name&quot;</span>],</span>
-<span id="cb317-25"><a href="csv-en-python.html#cb317-25" tabindex="-1"></a>            <span class="bu">int</span>(row[<span class="st">&quot;Tickets&quot;</span>]),</span>
-<span id="cb317-26"><a href="csv-en-python.html#cb317-26" tabindex="-1"></a>            <span class="bu">int</span>(row[<span class="st">&quot;TicketsSold&quot;</span>]),</span>
-<span id="cb317-27"><a href="csv-en-python.html#cb317-27" tabindex="-1"></a>            row[<span class="st">&quot;Date&quot;</span>]</span>
-<span id="cb317-28"><a href="csv-en-python.html#cb317-28" tabindex="-1"></a>        ))</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb329-1"><a href="csv-en-python.html#cb329-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;concerts.csv&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb329-2"><a href="csv-en-python.html#cb329-2" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
+<span id="cb329-3"><a href="csv-en-python.html#cb329-3" tabindex="-1"></a></span>
+<span id="cb329-4"><a href="csv-en-python.html#cb329-4" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb329-5"><a href="csv-en-python.html#cb329-5" tabindex="-1"></a>        venue_name <span class="op">=</span> row[<span class="st">&quot;Venue&quot;</span>].strip()</span>
+<span id="cb329-6"><a href="csv-en-python.html#cb329-6" tabindex="-1"></a></span>
+<span id="cb329-7"><a href="csv-en-python.html#cb329-7" tabindex="-1"></a>        <span class="co"># Buscar VenueId</span></span>
+<span id="cb329-8"><a href="csv-en-python.html#cb329-8" tabindex="-1"></a>        cur.execute(<span class="st">&quot;SELECT VenueId FROM Venue WHERE Name = ?&quot;</span>, (venue_name,))</span>
+<span id="cb329-9"><a href="csv-en-python.html#cb329-9" tabindex="-1"></a>        result <span class="op">=</span> cur.fetchone()</span>
+<span id="cb329-10"><a href="csv-en-python.html#cb329-10" tabindex="-1"></a></span>
+<span id="cb329-11"><a href="csv-en-python.html#cb329-11" tabindex="-1"></a>        <span class="cf">if</span> result <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb329-12"><a href="csv-en-python.html#cb329-12" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">&quot;ERROR: No existe el Venue:&quot;</span>, venue_name)</span>
+<span id="cb329-13"><a href="csv-en-python.html#cb329-13" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb329-14"><a href="csv-en-python.html#cb329-14" tabindex="-1"></a></span>
+<span id="cb329-15"><a href="csv-en-python.html#cb329-15" tabindex="-1"></a>        venue_id <span class="op">=</span> result[<span class="dv">0</span>]</span>
+<span id="cb329-16"><a href="csv-en-python.html#cb329-16" tabindex="-1"></a></span>
+<span id="cb329-17"><a href="csv-en-python.html#cb329-17" tabindex="-1"></a>        <span class="co"># Insertar en la tabla Concert</span></span>
+<span id="cb329-18"><a href="csv-en-python.html#cb329-18" tabindex="-1"></a>        cur.execute(<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb329-19"><a href="csv-en-python.html#cb329-19" tabindex="-1"></a><span class="st">            INSERT INTO Concert (ConcertId, VenueId, Name, Tickets, TicketsSold, Date)</span></span>
+<span id="cb329-20"><a href="csv-en-python.html#cb329-20" tabindex="-1"></a><span class="st">            VALUES (?, ?, ?, ?, ?, ?)</span></span>
+<span id="cb329-21"><a href="csv-en-python.html#cb329-21" tabindex="-1"></a><span class="st">        &quot;&quot;&quot;</span>, (</span>
+<span id="cb329-22"><a href="csv-en-python.html#cb329-22" tabindex="-1"></a>            <span class="bu">int</span>(row[<span class="st">&quot;ConcertId&quot;</span>]),</span>
+<span id="cb329-23"><a href="csv-en-python.html#cb329-23" tabindex="-1"></a>            venue_id,</span>
+<span id="cb329-24"><a href="csv-en-python.html#cb329-24" tabindex="-1"></a>            row[<span class="st">&quot;Name&quot;</span>],</span>
+<span id="cb329-25"><a href="csv-en-python.html#cb329-25" tabindex="-1"></a>            <span class="bu">int</span>(row[<span class="st">&quot;Tickets&quot;</span>]),</span>
+<span id="cb329-26"><a href="csv-en-python.html#cb329-26" tabindex="-1"></a>            <span class="bu">int</span>(row[<span class="st">&quot;TicketsSold&quot;</span>]),</span>
+<span id="cb329-27"><a href="csv-en-python.html#cb329-27" tabindex="-1"></a>            row[<span class="st">&quot;Date&quot;</span>]</span>
+<span id="cb329-28"><a href="csv-en-python.html#cb329-28" tabindex="-1"></a>        ))</span></code></pre></div>
 
 </div>
 </div>

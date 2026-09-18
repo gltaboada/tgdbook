@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.1 Introducción al Aprendizaje Estadístico | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.1 Introducción al Aprendizaje Estadístico | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  <meta name="github-repo" content="gltaboada/tgdbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.1 Introducción al Aprendizaje Estadístico | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  
+  <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
+  
+
+<meta name="author" content="Guillermo López Taboada (guillermo.lopez.taboada@udc.es)" />
+<meta name="author" content="Diego Darriba (diego.darriba@udc.es)" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"/>
+<link rel="next" href="tidymodels.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Prácticas de TGD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i><b>1.1</b> Contenidos</a></li>
+<li class="chapter" data-level="1.2" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html"><i class="fa fa-check"></i><b>1.2</b> Planificación (tentativa)</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="planificación-tentativa.html"><a href="planificación-tentativa.html#evaluaci%C3%B3n"><i class="fa fa-check"></i><b>1.2.1</b> Evaluación</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html"><i class="fa fa-check"></i><b>1.3</b> Fuentes de información:</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#b%C3%A1sica"><i class="fa fa-check"></i><b>1.3.1</b> Básica</a></li>
+<li class="chapter" data-level="1.3.2" data-path="fuentes-de-información.html"><a href="fuentes-de-información.html#complementaria"><i class="fa fa-check"></i><b>1.3.2</b> Complementaria:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="manipR.html"><a href="manipR.html"><i class="fa fa-check"></i><b>2</b> Manipulación de datos con R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="read.html"><a href="read.html"><i class="fa fa-check"></i><b>2.1</b> Lectura, importación y exportación de datos</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="read.html"><a href="read.html#formato-de-datos-de-r"><i class="fa fa-check"></i><b>2.1.1</b> Formato de datos de R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="read.html"><a href="read.html#acceso-a-datos-en-paquetes"><i class="fa fa-check"></i><b>2.1.2</b> Acceso a datos en paquetes</a></li>
+<li class="chapter" data-level="2.1.3" data-path="read.html"><a href="read.html#cap2-texto"><i class="fa fa-check"></i><b>2.1.3</b> Lectura de archivos de texto</a></li>
+<li class="chapter" data-level="2.1.4" data-path="read.html"><a href="read.html#importaci%C3%B3n-desde-spss"><i class="fa fa-check"></i><b>2.1.4</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="read.html"><a href="read.html#importaci%C3%B3n-desde-excel"><i class="fa fa-check"></i><b>2.1.5</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
+<li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="manip.html"><a href="manip.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="manip.html"><a href="manip.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manip.html"><a href="manip.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
+<li class="chapter" data-level="2.2.4" data-path="manip.html"><a href="manip.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="manip.html"><a href="manip.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
+<li class="chapter" data-level="2.2.6" data-path="manip.html"><a href="manip.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+<li class="chapter" data-level="2.4" data-path="eficiencia-manipR.html"><a href="eficiencia-manipR.html"><i class="fa fa-check"></i><b>2.4</b> Eficiencia en R: preasignación, vectorización y desfases</a></li>
+<li class="chapter" data-level="2.5" data-path="resumen-manipR.html"><a href="resumen-manipR.html"><i class="fa fa-check"></i><b>2.5</b> Resumen: R base</a></li>
+<li class="chapter" data-level="2.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html"><i class="fa fa-check"></i><b>2.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-1-incremento-salarial-empleados"><i class="fa fa-check"></i><b>2.6.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars"><i class="fa fa-check"></i><b>2.6.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-4-resumen-y-agrupaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-5-uni%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.6.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="2.6.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-6-opcional-columnas-lista"><i class="fa fa-check"></i><b>2.6.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introSQL.html"><a href="introSQL.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>3.1</b> Bases de Datos Relacionales</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="bases-de-datos-relacionales.html"><a href="bases-de-datos-relacionales.html#definiciones"><i class="fa fa-check"></i><b>3.1.1</b> Definiciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="restricciones.html"><a href="restricciones.html"><i class="fa fa-check"></i><b>3.2</b> Restricciones</a></li>
+<li class="chapter" data-level="3.3" data-path="sistemas-gestores-de-bases-de-datos-sgdb.html"><a href="sistemas-gestores-de-bases-de-datos-sgdb.html"><i class="fa fa-check"></i><b>3.3</b> Sistemas Gestores de Bases de Datos (SGDB)</a></li>
+<li class="chapter" data-level="3.4" data-path="sintaxis-sql.html"><a href="sintaxis-sql.html"><i class="fa fa-check"></i><b>3.4</b> Sintaxis SQL</a></li>
+<li class="chapter" data-level="3.5" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html"><i class="fa fa-check"></i><b>3.5</b> Cláusulas básicas de SQL</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#selecci%C3%B3n-de-campos"><i class="fa fa-check"></i><b>3.5.1</b> Selección de campos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#n%C3%BAmero-de-filas-paginaci%C3%B3n"><i class="fa fa-check"></i><b>3.5.2</b> Número de filas (paginación)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#filtrado-de-resultados"><i class="fa fa-check"></i><b>3.5.3</b> Filtrado de Resultados</a></li>
+<li class="chapter" data-level="3.5.4" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#ordenaci%C3%B3n-de-resultados"><i class="fa fa-check"></i><b>3.5.4</b> Ordenación de Resultados</a></li>
+<li class="chapter" data-level="3.5.5" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#uni%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>3.5.5</b> Unión de tablas</a></li>
+<li class="chapter" data-level="3.5.6" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#agrupamiento"><i class="fa fa-check"></i><b>3.5.6</b> Agrupamiento</a></li>
+<li class="chapter" data-level="3.5.7" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#subconsultas-subqueries"><i class="fa fa-check"></i><b>3.5.7</b> Subconsultas (subqueries)</a></li>
+<li class="chapter" data-level="3.5.8" data-path="cláusulas-básicas-de-sql.html"><a href="cláusulas-básicas-de-sql.html#operaciones-con-conjuntos-de-resultados"><i class="fa fa-check"></i><b>3.5.8</b> Operaciones con conjuntos de resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="gestión-de-datos.html"><a href="gestión-de-datos.html"><i class="fa fa-check"></i><b>3.6</b> Gestión de datos</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="gestión-de-datos.html"><a href="gestión-de-datos.html#operaciones-crud"><i class="fa fa-check"></i><b>3.6.1</b> Operaciones CRUD</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html"><i class="fa fa-check"></i><b>3.7</b> Gestión de Bases de Datos</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html#creaci%C3%B3n-de-una-base-de-datos"><i class="fa fa-check"></i><b>3.7.1</b> Creación de una base de datos</a></li>
+<li class="chapter" data-level="3.7.2" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html#eliminaci%C3%B3n-de-una-base-de-datos"><i class="fa fa-check"></i><b>3.7.2</b> Eliminación de una base de datos</a></li>
+<li class="chapter" data-level="3.7.3" data-path="gestión-de-bases-de-datos.html"><a href="gestión-de-bases-de-datos.html#selecci%C3%B3n-de-base-de-datos"><i class="fa fa-check"></i><b>3.7.3</b> Selección de base de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html"><i class="fa fa-check"></i><b>3.8</b> Gestión de tablas</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html#creaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>3.8.1</b> Creación de tablas</a></li>
+<li class="chapter" data-level="3.8.2" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html#creaci%C3%B3n-de-%C3%ADndices"><i class="fa fa-check"></i><b>3.8.2</b> Creación de índices</a></li>
+<li class="chapter" data-level="3.8.3" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html#borrado-de-tablas"><i class="fa fa-check"></i><b>3.8.3</b> Borrado de tablas</a></li>
+<li class="chapter" data-level="3.8.4" data-path="gestión-de-tablas.html"><a href="gestión-de-tablas.html#modificaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>3.8.4</b> Modificación de tablas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="vistas.html"><a href="vistas.html"><i class="fa fa-check"></i><b>3.9</b> Vistas</a></li>
+<li class="chapter" data-level="3.10" data-path="ejemplos-de-consultas-sql.html"><a href="ejemplos-de-consultas-sql.html"><i class="fa fa-check"></i><b>3.10</b> Ejemplos de consultas SQL</a></li>
+<li class="chapter" data-level="3.11" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html"><i class="fa fa-check"></i><b>3.11</b> Conexión con bases de datos desde R</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#introducci%C3%B3n-a-sql-en-r"><i class="fa fa-check"></i><b>3.11.1</b> Introducción a SQL en R</a></li>
+<li class="chapter" data-level="3.11.2" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#el-paquete-sqldf"><i class="fa fa-check"></i><b>3.11.2</b> El paquete sqldf</a></li>
+<li class="chapter" data-level="3.11.3" data-path="conexión-con-bases-de-datos-desde-r.html"><a href="conexión-con-bases-de-datos-desde-r.html#sql-queries"><i class="fa fa-check"></i><b>3.11.3</b> SQL Queries</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="ejemplo-scopus-data.html"><a href="ejemplo-scopus-data.html"><i class="fa fa-check"></i><b>3.12</b> Ejemplo Scopus data</a></li>
+<li class="chapter" data-level="3.13" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html"><i class="fa fa-check"></i><b>3.13</b> Ejercicios SQL con RSQLite</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="ejercicios-sql-con-rsqlite.html"><a href="ejercicios-sql-con-rsqlite.html#setup-de-rsqlite"><i class="fa fa-check"></i><b>3.13.1</b> Setup de RSQLite</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="práctica-1-sql.html"><a href="práctica-1-sql.html"><i class="fa fa-check"></i><b>3.14</b> Práctica 1: SQL</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introPython.html"><a href="introPython.html"><i class="fa fa-check"></i><b>4</b> Python</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="introPython.html"><a href="introPython.html#instalaci%C3%B3n"><i class="fa fa-check"></i><b>4.0.1</b> Instalación</a></li>
+<li class="chapter" data-level="4.1" data-path="introducción-a-python.html"><a href="introducción-a-python.html"><i class="fa fa-check"></i><b>4.1</b> Introducción a Python</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introducción-a-python.html"><a href="introducción-a-python.html#qu%C3%A9-es-python"><i class="fa fa-check"></i><b>4.1.1</b> ¿Qué es Python?</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introducción-a-python.html"><a href="introducción-a-python.html#primeros-pasos-hola-mundo"><i class="fa fa-check"></i><b>4.1.2</b> Primeros pasos: Hola Mundo</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introducción-a-python.html"><a href="introducción-a-python.html#sint%C3%A1xis-b%C3%A1sica"><i class="fa fa-check"></i><b>4.1.3</b> Sintáxis básica</a></li>
+<li class="chapter" data-level="4.1.4" data-path="introducción-a-python.html"><a href="introducción-a-python.html#librer%C3%ADas-populares"><i class="fa fa-check"></i><b>4.1.4</b> Librerías populares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="python-y-sqlite.html"><a href="python-y-sqlite.html"><i class="fa fa-check"></i><b>4.2</b> Python y SQLite</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="python-y-sqlite.html"><a href="python-y-sqlite.html#operaciones-de-inserci%C3%B3n-borrado-o-modificaci%C3%B3n-de-datos"><i class="fa fa-check"></i><b>4.2.1</b> Operaciones de inserción, borrado o modificación de datos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="python-y-sqlite.html"><a href="python-y-sqlite.html#operaciones-de-consulta"><i class="fa fa-check"></i><b>4.2.2</b> Operaciones de consulta</a></li>
+<li class="chapter" data-level="4.2.3" data-path="python-y-sqlite.html"><a href="python-y-sqlite.html#usar-sqlite-con-pandas"><i class="fa fa-check"></i><b>4.2.3</b> Usar SQLite con Pandas</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="context-manager.html"><a href="context-manager.html"><i class="fa fa-check"></i><b>4.3</b> Context Manager</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="context-manager.html"><a href="context-manager.html#ejemplo-conexi%C3%B3n-sqlite"><i class="fa fa-check"></i><b>4.3.1</b> Ejemplo: conexión SQLite</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="csv-en-python.html"><a href="csv-en-python.html"><i class="fa fa-check"></i><b>4.4</b> CSV en python</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="csv-en-python.html"><a href="csv-en-python.html#la-librer%C3%ADa-csv"><i class="fa fa-check"></i><b>4.4.1</b> La librería <code>csv</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path="csv-en-python.html"><a href="csv-en-python.html#trabajar-con-csv-usando-pandas"><i class="fa fa-check"></i><b>4.4.2</b> Trabajar con CSV usando <code>pandas</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="csv-en-python.html"><a href="csv-en-python.html#insertar-datos-en-sqlite-a-partir-de-csv"><i class="fa fa-check"></i><b>4.4.3</b> Insertar datos en SQLite a partir de CSV</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Manipulación de datos con tidyverse</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introTidyverse.html"><a href="introTidyverse.html"><i class="fa fa-check"></i><b>5.1</b> Introducción al ecosistema tidyverse</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="introTidyverse.html"><a href="introTidyverse.html#pipe"><i class="fa fa-check"></i><b>5.1.1</b> Operador <em>pipe</em> (redirección)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="introTidyverse.html"><a href="introTidyverse.html#readr"><i class="fa fa-check"></i><b>5.1.2</b> Lectura y escritura de archivos de texto</a></li>
+<li class="chapter" data-level="5.1.3" data-path="introTidyverse.html"><a href="introTidyverse.html#writer"><i class="fa fa-check"></i><b>5.1.3</b> Escritura</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.2</b> Manipulación de datos con dplyr y tidyr</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#dplyr-pkg"><i class="fa fa-check"></i><b>5.2.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#dplyr-variables"><i class="fa fa-check"></i><b>5.2.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="dplyr.html"><a href="dplyr.html#dplyr-casos"><i class="fa fa-check"></i><b>5.2.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="dplyr.html"><a href="dplyr.html#tidyr-missing"><i class="fa fa-check"></i><b>5.2.4</b> Datos faltantes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidyr-pkg.html"><a href="tidyr-pkg.html"><i class="fa fa-check"></i><b>5.3</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="5.4" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>5.4</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="5.5" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>5.5</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.5.1</b> Ejemplos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="eficiencia-tidyverse.html"><a href="eficiencia-tidyverse.html"><i class="fa fa-check"></i><b>5.6</b> Eficiencia y desfases con dplyr</a></li>
+<li class="chapter" data-level="5.7" data-path="resumen-tidyverse.html"><a href="resumen-tidyverse.html"><i class="fa fa-check"></i><b>5.7</b> Resumen: dplyr/tidyr y R base</a></li>
+<li class="chapter" data-level="5.8" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html"><i class="fa fa-check"></i><b>5.8</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-1-incremento-salarial-empleados-1"><i class="fa fa-check"></i><b>5.8.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="5.8.2" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars-1"><i class="fa fa-check"></i><b>5.8.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="5.8.3" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="5.8.4" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-4-resumen-y-agrupaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="5.8.5" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-5-uni%C3%B3n-de-tablas-1"><i class="fa fa-check"></i><b>5.8.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="5.8.6" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-6-opcional-columnas-lista-1"><i class="fa fa-check"></i><b>5.8.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introducción-a-tecnologías-nosql.html"><a href="introducción-a-tecnologías-nosql.html"><i class="fa fa-check"></i><b>6</b> Introducción a Tecnologías NoSQL</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><i class="fa fa-check"></i><b>6.1</b> Conceptos y tipos de bases de datos NoSQL (documental, columnar, clave/valor y de grafos)</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#caracter%C3%ADsticas-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>6.1.1</b> Características de las bases de datos NoSQL</a></li>
+<li class="chapter" data-level="6.1.2" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#tipos-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>6.1.2</b> Tipos de Bases de Datos NoSQL</a></li>
+<li class="chapter" data-level="6.1.3" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#mongodb-nosql-documental"><i class="fa fa-check"></i><b>6.1.3</b> MongoDB: NoSQL documental</a></li>
+<li class="chapter" data-level="6.1.4" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#redis-nosql-key-value"><i class="fa fa-check"></i><b>6.1.4</b> Redis: NoSQL key-value</a></li>
+<li class="chapter" data-level="6.1.5" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#cassandra-nosql-columnar"><i class="fa fa-check"></i><b>6.1.5</b> Cassandra: NoSQL columnar</a></li>
+<li class="chapter" data-level="6.1.6" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#neo4j-nosql-grafos"><i class="fa fa-check"></i><b>6.1.6</b> Neo4j: NoSQL grafos</a></li>
+<li class="chapter" data-level="6.1.7" data-path="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html"><a href="conceptos-y-tipos-de-bases-de-datos-nosql-documental-columnar-clavevalor-y-de-grafos.html#otros-search-engines"><i class="fa fa-check"></i><b>6.1.7</b> Otros: search engines</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="conexión-de-r-a-mongodb.html"><a href="conexión-de-r-a-mongodb.html"><i class="fa fa-check"></i><b>6.2</b> Conexión de R a MongoDB</a></li>
+<li class="chapter" data-level="6.3" data-path="ejercicios-prácticos-con-mongodb.html"><a href="ejercicios-prácticos-con-mongodb.html"><i class="fa fa-check"></i><b>6.3</b> Ejercicios prácticos con MongoDB</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>7</b> Tecnologías para el Tratamiendo de Datos Masivos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="intro-AE.html"><a href="intro-AE.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="intro-AE.html"><a href="intro-AE.html#aprendizaje-estad%C3%ADstico-vs.-aprendizaje-autom%C3%A1tico"><i class="fa fa-check"></i><b>7.1.1</b> Aprendizaje estadístico vs. aprendizaje automático</a></li>
+<li class="chapter" data-level="7.1.2" data-path="intro-AE.html"><a href="intro-AE.html#m%C3%A9todos-de-aprendizaje-estad%C3%ADstico"><i class="fa fa-check"></i><b>7.1.2</b> Métodos de aprendizaje estadístico</a></li>
+<li class="chapter" data-level="7.1.3" data-path="intro-AE.html"><a href="intro-AE.html#const-eval"><i class="fa fa-check"></i><b>7.1.3</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="7.1.4" data-path="intro-AE.html"><a href="intro-AE.html#clasificacion"><i class="fa fa-check"></i><b>7.1.4</b> Clasificación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>7.2</b> Modelización con <code>tidymodels</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-reg"><i class="fa fa-check"></i><b>7.2.1</b> Regresión: seleccionando el grado del polinomio con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-clas"><i class="fa fa-check"></i><b>7.2.2</b> Clasificación: seleccionando <span class="math inline">\(k\)</span> en KNN con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="tidymodels.html"><a href="tidymodels.html#desbalanceo"><i class="fa fa-check"></i><b>7.2.3</b> Clasificación desbalanceada: remuestreo dentro de la receta</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tidymodels.html"><a href="tidymodels.html#roc-auc"><i class="fa fa-check"></i><b>7.2.4</b> Curva ROC y AUC</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tidymodels.html"><a href="tidymodels.html#vip"><i class="fa fa-check"></i><b>7.2.5</b> Importancia de variables y efectos parciales: <code>vip</code> y <code>pdp</code></a></li>
+<li class="chapter" data-level="7.2.6" data-path="tidymodels.html"><a href="tidymodels.html#resumen-tidymodels"><i class="fa fa-check"></i><b>7.2.6</b> Resumen: tidymodels y R base</a></li>
+<li class="chapter" data-level="7.2.7" data-path="tidymodels.html"><a href="tidymodels.html#analisis-modelos"><i class="fa fa-check"></i><b>7.2.7</b> Análisis e interpretación de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.3</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.3.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.3.2</b> Big Data y Machine Learning</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.3.3</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="7.3.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.3.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.4</b> Introducción al Análisis de Datos Masivos</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prácticas de Tecnologías de Gestión y Manipulación de Datos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro-AE" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Introducción al Aprendizaje Estadístico<a href="intro-AE.html#intro-AE" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Este apartado es una adaptación (reducida, pensada para 2 sesiones de 2 horas) del <a href="https://rubenfcasal.github.io/aprendizaje_estadistico/intro-AE.html">Capítulo 1</a> de Fernández-Casal, Costa y Oviedo, <a href="https://rubenfcasal.github.io/aprendizaje_estadistico/"><em>Métodos predictivos de aprendizaje estadístico</em></a>, que se sigue empleando como referencia completa para quien quiera profundizar (incluye, entre otros contenidos que aquí solo se tratarán brevemente por falta de tiempo, un desarrollo más completo de la maldición de la dimensionalidad y del paquete <code>caret</code>).</p>
+<p><img src="images/T3-CientificoDatos.png" style="width:60.0%" /></p>
+<p>La denominada <strong>ciencia de datos</strong> (<em>data science</em>) se ha vuelto muy popular hoy en día. Se trata de un campo multidisciplinar, con importantes aportaciones estadísticas e informáticas, dentro del que se incluyen disciplinas como <strong>minería de datos</strong> (<em>data mining</em>), <strong>aprendizaje automático</strong> (<em>machine learning</em>), <strong>aprendizaje profundo</strong> (<em>deep learning</em>), <strong>modelado predictivo</strong> (<em>predictive modeling</em>), <strong>extracción de conocimiento</strong> (<em>knowledge discovery</em>) y también el <strong>aprendizaje estadístico</strong> (<em>statistical learning</em>). Puede resumirse en el diagrama de Venn de la ciencia de datos de <a href="http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram">Drew Conway</a> (Figura <a href="intro-AE.html#fig:venn">7.1</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:venn"></span>
+<img src="images/Data-Science-Venn-Diagram_alt.png" alt="Diagrama de Venn de la ciencia de datos" width="50%" />
+<p class="caption">
+Figura 7.1: Diagrama de Venn de la ciencia de datos
+</p>
+</div>
+<p>Podemos definir la ciencia de datos como el conjunto de conocimientos y herramientas utilizados en las distintas etapas del análisis de datos (Figura <a href="manipR.html#fig:esquema2">2.1</a>), incluyendo la gestión, obtención y manipulación de los datos (ver Capítulo <a href="manipR.html#manipR">2</a>).</p>
+<p>Una de estas etapas es la construcción de modelos, a partir de los datos, para aprender y predecir. El <strong>aprendizaje estadístico</strong> (AE) se encarga de este problema desde un punto de vista estadístico: se consideran modelos estocásticos (con componente aleatoria) para tener en cuenta la incertidumbre debida a no disponer de toda la información sobre las variables que influyen en el fenómeno de interés.</p>
+<p>En la inferencia estadística clásica se trata de explicar por completo lo que ocurre en la población y, suponiendo que esto se puede hacer con modelos tratables analíticamente, emplear resultados teóricos (típicamente asintóticos) para realizar inferencias, incluida la predicción. Los avances en computación han permitido el uso de modelos estadísticos más avanzados, principalmente métodos no paramétricos, muchos de los cuales no se pueden tratar analíticamente (o no por completo): este es el campo de la <strong>estadística computacional</strong>, en el que se enmarcaría el AE.</p>
+<p>Cuando pensamos en AE, pensamos en:</p>
+<ul>
+<li><p><strong>Flexibilidad</strong>: se tratan de obtener las conclusiones basándose únicamente en los datos, evitando asumir hipótesis para poder emplear resultados teóricos. La idea es “dejar hablar” a los datos, no “encorsetarlos” a priori.</p></li>
+<li><p><strong>Procesamiento automático de datos</strong>: el proceso de aprendizaje puede realizarse con la menor intervención interactiva posible por parte del analista.</p></li>
+<li><p><strong><em>Big data</em></strong>: en sentido amplio, no solo tamaño muestral, también datos complejos o con necesidad de alta velocidad de proceso.</p></li>
+<li><p><strong>Predicción</strong>: el objetivo (inicial) suele ser únicamente la predicción de nuevas observaciones, con métodos que son simples algoritmos.</p></li>
+</ul>
+<p>Por el contrario, muchos de los métodos del AE no se preocupan (o se preocupan poco) por:</p>
+<ul>
+<li><p><strong>Reproducibilidad</strong>: pequeños cambios en los datos pueden producir cambios notables en el modelo ajustado, aunque no deberían influir mucho en las predicciones. Muchas técnicas son además aleatorias, por lo que el resultado puede depender de la semilla empleada.</p></li>
+<li><p><strong>Cuantificación de la incertidumbre</strong>: se obtienen medidas globales de la eficiencia del algoritmo, pero resulta complicado cuantificar la precisión de una predicción concreta.</p></li>
+<li><p><strong>Inferencia</strong>: aparte de la predicción, la mayoría de los métodos no permiten realizar inferencias sobre características de la población (como contrastes de hipótesis).</p></li>
+</ul>
+<p>Además, esta aproximación puede presentar diversos inconvenientes: algunos métodos son poco interpretables (“cajas negras”), pueden aparecer problemas de sobreajuste (<em>overfitting</em>, ver Sección <a href="intro-AE.html#const-eval">7.1.3</a>) y pueden presentar más problemas al extrapolar o interpolar que los métodos clásicos (cuanto más flexible el algoritmo, más cuidado hay que tener al predecir en observaciones alejadas de la muestra empleada en el ajuste).</p>
+<div id="aprendizaje-estadístico-vs.-aprendizaje-automático" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Aprendizaje estadístico vs. aprendizaje automático<a href="intro-AE.html#aprendizaje-estad%C3%ADstico-vs.-aprendizaje-autom%C3%A1tico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El término <em>machine learning</em> (ML; aprendizaje automático) se utiliza en <em>inteligencia artificial</em> desde 1959 para referirse, fundamentalmente, a algoritmos de predicción. Muchas de sus herramientas provienen de la estadística, que es la base de todos estos enfoques (conviene no perder la base formal). Por ello, desde la estadística computacional se introdujo el término <em>statistical learning</em> (aprendizaje estadístico) para referirse a este tipo de herramientas, pero desde el punto de vista estadístico (teniendo en cuenta la incertidumbre debida a no disponer de toda la información).</p>
+<p>Tradicionalmente, ML no se preocupa del origen de los datos; incluso es habitual considerar que un conjunto enorme de datos equivale a disponer de toda la información (la población). Por el contrario, en AE se trata de comprender, en la medida de lo posible, el proceso subyacente del que provienen los datos y si son representativos de la población de interés (si tienen algún tipo de sesgo, especialmente de selección).</p>
+<div id="las-dos-culturas" class="section level4 hasAnchor" number="7.1.1.1">
+<h4><span class="header-section-number">7.1.1.1</span> Las dos culturas<a href="intro-AE.html#las-dos-culturas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Breiman (2001), en su célebre artículo <em>Statistical modeling: the two cultures</em>, diferencia dos objetivos en el análisis de datos, <em>información</em> (en el sentido de inferencia) y <em>predicción</em>, que dan lugar a dos culturas:</p>
+<ul>
+<li><p><em>Modelización de datos</em>: desarrollo de modelos (estocásticos) que permitan ajustar los datos y hacer inferencia. Es el trabajo habitual de los estadísticos académicos.</p></li>
+<li><p><em>Modelización algorítmica</em> (predictiva): no está interesada en los mecanismos que generan los datos, solo en los algoritmos de predicción. Es el trabajo habitual de muchos estadísticos industriales y de muchos ingenieros informáticos. El ML es el núcleo de esta cultura, que pone todo el énfasis en la precisión predictiva (de ahí el papel dinamizador de competiciones entre algoritmos, al estilo del <a href="https://en.wikipedia.org/wiki/Netflix_Prize">Netflix Challenge</a>).</p></li>
+</ul>
+</div>
+</div>
+<div id="métodos-de-aprendizaje-estadístico" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Métodos de aprendizaje estadístico<a href="intro-AE.html#m%C3%A9todos-de-aprendizaje-estad%C3%ADstico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dentro del AE se suelen diferenciar dos grandes bloques. El <strong>aprendizaje no supervisado</strong> comprende los métodos exploratorios, en los que no hay una variable respuesta explícita, y cuyo objetivo es entender las relaciones y estructuras presentes en los datos: análisis descriptivo, métodos de reducción de la dimensión (componentes principales, análisis factorial…), métodos de agrupación (análisis clúster) y detección de datos atípicos.</p>
+<p>El <strong>aprendizaje supervisado</strong> engloba los métodos predictivos, en los que una de las variables está definida como variable respuesta, y cuyo objetivo es construir modelos que se utilizarán sobre todo para predecir. Dependiendo del tipo de variable respuesta se diferencia entre:</p>
+<ul>
+<li><p><strong>Clasificación</strong>: si la respuesta es categórica.</p></li>
+<li><p><strong>Regresión</strong>: cuando la respuesta es numérica.</p></li>
+</ul>
+<p>En lo que sigue nos centraremos en el aprendizaje supervisado, combinando terminología estadística con la empleada en AE/ML.</p>
+<div id="notacion" class="section level4 hasAnchor" number="7.1.2.1">
+<h4><span class="header-section-number">7.1.2.1</span> Notación y terminología<a href="intro-AE.html#notacion" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Denotaremos por <span class="math inline">\(\mathbf{X}=(X_1, X_2, \ldots, X_p)\)</span> al vector de variables predictoras (explicativas o independientes; <em>inputs</em> o <em>features</em> en ML), cada una numérica o categórica. Emplearemos <span class="math inline">\(Y(\mathbf{X})\)</span> para la variable objetivo (respuesta o dependiente; <em>output</em> o <em>target</em> en ML), numérica (regresión) o categórica (clasificación).</p>
+<p>Supondremos que el objetivo principal es, a partir de una muestra <span class="math inline">\(\left\{\left( y_{i}, x_{1i}, \ldots, x_{pi} \right)  : i = 1, \ldots, n \right\}\)</span>, ajustar en regresión un modelo general de la forma (posiblemente tras una transformación de la respuesta):</p>
+<p><span class="math display" id="eq:modelogeneral">\[\begin{equation}
+  Y(\mathbf{X})=m(\mathbf{X})+\varepsilon
+  \tag{7.1}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(m(\mathbf{x}) = E\left( \left. Y\right\vert \mathbf{X}=\mathbf{x} \right)\)</span> es la media condicional (función de regresión o tendencia) y <span class="math inline">\(\varepsilon\)</span> un error aleatorio de media cero y varianza <span class="math inline">\(\sigma^2\)</span>, independiente de <span class="math inline">\(\mathbf{X}\)</span>.</p>
+<p>Esta hipótesis de independencia (o al menos de incorrelación) entre observaciones es razonable cuando los datos provienen de un muestreo aleatorio simple, pero puede no ser adecuada con datos dependientes, como series temporales (dependencia temporal, ver Capítulo <a href="tidyverse.html#tidyverse">5</a>) o datos espaciales (dependencia espacial). En esos casos habría que emplear métodos específicos que tengan en cuenta esa dependencia, lo que queda fuera del alcance de esta introducción.</p>
+</div>
+<div id="metodos-pkgs" class="section level4 hasAnchor" number="7.1.2.2">
+<h4><span class="header-section-number">7.1.2.2</span> Métodos (de aprendizaje supervisado) y paquetes de R<a href="intro-AE.html#metodos-pkgs" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Hay una gran cantidad de métodos de aprendizaje supervisado implementados en centenares de paquetes de <code>R</code> (ver <a href="https://cran.r-project.org/web/views/MachineLearning.html">CRAN Task View: Machine Learning</a>). Algunos de los principales:</p>
+<p>Métodos (principalmente) de clasificación:</p>
+<ul>
+<li>Análisis discriminante, regresión logística, multinomial…: <code>stats</code>, <code>MASS</code>.</li>
+<li><em>k</em>-vecinos más próximos (KNN): <code>class</code>, <code>kknn</code>, <code>caret</code>.</li>
+<li>Árboles de decisión, <em>bagging</em>, bosques aleatorios, <em>boosting</em>: <code>rpart</code>, <code>party</code>, <code>C50</code>, <code>randomForest</code>, <code>adabag</code>, <code>xgboost</code>.</li>
+<li>Máquinas de soporte vectorial: <code>kernlab</code>, <code>e1071</code>.</li>
+</ul>
+<p>Métodos (principalmente) de regresión:</p>
+<ul>
+<li>Modelos lineales (<code>lm()</code>), regularizados (<em>ridge</em>, LASSO: <code>glmnet</code>) y lineales generalizados (<code>glm()</code>).</li>
+<li>Modelos paramétricos no lineales (<code>nls()</code>).</li>
+<li>Regresión local y suavizado: <code>kknn</code>, <code>loess()</code>, <code>np</code>.</li>
+<li>Modelos aditivos generalizados: <code>mgcv</code>.</li>
+<li>Redes neuronales: <code>nnet</code>, <code>neuralnet</code>.</li>
+</ul>
+<p>Como todos estos paquetes emplean opciones y convenciones distintas, se han desarrollado paquetes que ofrecen interfaces unificadas, entre ellos <a href="https://topepo.github.io/caret"><code>caret</code></a>, <a href="https://mlr3.mlr-org.com"><code>mlr3</code></a> y <a href="https://www.tidymodels.org"><code>tidymodels</code></a> (este último juega, para el modelado predictivo, un papel similar al que <code>tidyverts</code>/<code>fable</code> de Hyndman juega para las series temporales; ver Capítulo <a href="tidyverse.html#tidyverse">5</a>). También existen paquetes con entornos gráficos que evitan el uso de código, como <a href="https://rattle.togaware.com"><code>rattle</code></a>.</p>
+</div>
+</div>
+<div id="const-eval" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Construcción y evaluación de los modelos<a href="intro-AE.html#const-eval" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En la inferencia estadística clásica se emplea toda la información disponible para ajustar un modelo y, asumiendo que es correcto, se usan resultados teóricos para evaluar su precisión (por ejemplo, el coeficiente de determinación ajustado en regresión lineal múltiple). En estadística computacional, en cambio, es habitual evaluar la precisión mediante técnicas de remuestreo, como la validación cruzada, el <em>jackknife</em> o el <em>bootstrap</em>, entrenando el modelo con los datos disponibles y estimando el error de predicción de forma empírica.</p>
+<p>Muchos métodos de AE son muy flexibles y pueden llegar a sobreajustarse a los datos de entrenamiento. Para evitarlo hay que controlar el proceso de aprendizaje mediante <strong>hiperparámetros</strong> (<em>tuning parameters</em>), que imponen restricciones al modelo. Una elección inadecuada puede dar lugar a sobreajuste (<em>overfitting</em>) o infraajuste (<em>underfitting</em>); además, una mayor complejidad suele reducir la interpretabilidad, por lo que el objetivo es lograr buenas predicciones con el modelo más simple posible.</p>
+<div id="bias-variance" class="section level4 hasAnchor" number="7.1.3.1">
+<h4><span class="header-section-number">7.1.3.1</span> Equilibrio entre sesgo y varianza: infraajuste y sobreajuste<a href="intro-AE.html#bias-variance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Queremos aprender más allá de los datos de entrenamiento (hacer inferencia sobre nuevas observaciones). En AE hay que tener especial cuidado con el sobreajuste: el modelo se ajusta demasiado bien a los datos de entrenamiento pero falla con datos nunca vistos.</p>
+<p>Recordando el modelo general <a href="intro-AE.html#eq:modelogeneral">(7.1)</a>, bajo una función de pérdida cuadrática el predictor óptimo (desconocido) sería la media condicional <span class="math inline">\(m(\mathbf{x})\)</span>: el objetivo de cualquier método de AE es aproximarla lo mejor posible a partir de la muestra disponible.</p>
+<p>Como ejemplo ilustrativo empleamos regresión polinómica, considerando el grado del polinomio como hiperparámetro que determina la complejidad del modelo. Simulamos una muestra y ajustamos modelos con distinta complejidad:</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="intro-AE.html#cb431-1" tabindex="-1"></a><span class="co"># Simulación datos</span></span>
+<span id="cb431-2"><a href="intro-AE.html#cb431-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb431-3"><a href="intro-AE.html#cb431-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length =</span> n)</span>
+<span id="cb431-4"><a href="intro-AE.html#cb431-4" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span><span class="sc">*</span>(<span class="dv">5</span><span class="sc">*</span>x <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">*</span>(<span class="dv">4</span><span class="sc">*</span>x <span class="sc">-</span> <span class="dv">2</span>)<span class="sc">*</span>(x <span class="sc">-</span> <span class="fl">0.8</span>)<span class="sc">^</span><span class="dv">2</span> <span class="co"># grado 4</span></span>
+<span id="cb431-5"><a href="intro-AE.html#cb431-5" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb431-6"><a href="intro-AE.html#cb431-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb431-7"><a href="intro-AE.html#cb431-7" tabindex="-1"></a>y <span class="ot">&lt;-</span> mu <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, sd)</span>
+<span id="cb431-8"><a href="intro-AE.html#cb431-8" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb431-9"><a href="intro-AE.html#cb431-9" tabindex="-1"></a><span class="fu">lines</span>(x, mu, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb431-10"><a href="intro-AE.html#cb431-10" tabindex="-1"></a><span class="co"># Ajuste de los modelos</span></span>
+<span id="cb431-11"><a href="intro-AE.html#cb431-11" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb431-12"><a href="intro-AE.html#cb431-12" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(fit1))</span>
+<span id="cb431-13"><a href="intro-AE.html#cb431-13" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">4</span>))</span>
+<span id="cb431-14"><a href="intro-AE.html#cb431-14" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(fit2), <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb431-15"><a href="intro-AE.html#cb431-15" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">20</span>))</span>
+<span id="cb431-16"><a href="intro-AE.html#cb431-16" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(fit3), <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb431-17"><a href="intro-AE.html#cb431-17" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb431-18"><a href="intro-AE.html#cb431-18" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Verdadero&quot;</span>, <span class="st">&quot;Ajuste con grado 1&quot;</span>,</span>
+<span id="cb431-19"><a href="intro-AE.html#cb431-19" tabindex="-1"></a>                  <span class="st">&quot;Ajuste con grado 4&quot;</span>,</span>
+<span id="cb431-20"><a href="intro-AE.html#cb431-20" tabindex="-1"></a>                  <span class="st">&quot;Ajuste con grado 20&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:polyfit"></span>
+<img src="07-Hadoop_files/figure-html/polyfit-1.png" alt="Muestra (simulada) y ajustes polinómicos con distinta complejidad." width="80%" />
+<p class="caption">
+Figura 7.2: Muestra (simulada) y ajustes polinómicos con distinta complejidad.
+</p>
+</div>
+<p>Al aumentar la complejidad se consigue un mejor ajuste a los datos de entrenamiento (Figura <a href="intro-AE.html#fig:polyfit">7.2</a>), a costa de un incremento de la variabilidad de las predicciones, lo que puede empeorar el comportamiento del modelo con datos distintos de los observados. Si calculamos medidas de bondad de ajuste (MSE, <span class="math inline">\(R^2\)</span>) se obtienen mejores resultados al aumentar la complejidad (Tabla <a href="intro-AE.html#tab:gof-polyfit">7.1</a>):</p>
+<table>
+<caption><span id="tab:gof-polyfit">Tabla 7.1: </span>Medidas de bondad de ajuste de los modelos polinómicos (entrenamiento).</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right"><span class="math inline">\(MSE\)</span></th>
+<th align="right"><span class="math inline">\(R^2\)</span></th>
+<th align="right"><span class="math inline">\(R^2_{adj}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>fit1</code></td>
+<td align="right">1.22</td>
+<td align="right">0.20</td>
+<td align="right">0.17</td>
+</tr>
+<tr class="even">
+<td align="left"><code>fit2</code></td>
+<td align="right">0.19</td>
+<td align="right">0.87</td>
+<td align="right">0.85</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fit3</code></td>
+<td align="right">0.07</td>
+<td align="right">0.95</td>
+<td align="right">0.84</td>
+</tr>
+</tbody>
+</table>
+<p>Pero si generamos nuevas respuestas del mismo proceso (predecimos), la precisión del modelo más complejo empeora considerablemente (Figura <a href="intro-AE.html#fig:polyfit2">7.3</a>):</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="intro-AE.html#cb432-1" tabindex="-1"></a>y.new <span class="ot">&lt;-</span> mu <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, sd)</span>
+<span id="cb432-2"><a href="intro-AE.html#cb432-2" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb432-3"><a href="intro-AE.html#cb432-3" tabindex="-1"></a><span class="fu">points</span>(x, y.new, <span class="at">pch =</span> <span class="dv">2</span>)</span>
+<span id="cb432-4"><a href="intro-AE.html#cb432-4" tabindex="-1"></a><span class="fu">lines</span>(x, mu, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb432-5"><a href="intro-AE.html#cb432-5" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(fit1))</span>
+<span id="cb432-6"><a href="intro-AE.html#cb432-6" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(fit2), <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb432-7"><a href="intro-AE.html#cb432-7" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(fit3), <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb432-8"><a href="intro-AE.html#cb432-8" tabindex="-1"></a>leyenda <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Verdadero&quot;</span>, <span class="st">&quot;Muestra&quot;</span>, <span class="st">&quot;Ajuste con grado 1&quot;</span>,</span>
+<span id="cb432-9"><a href="intro-AE.html#cb432-9" tabindex="-1"></a>       <span class="st">&quot;Ajuste con grado 4&quot;</span>, <span class="st">&quot;Ajuste con grado 20&quot;</span>, <span class="st">&quot;Nuevas observaciones&quot;</span>)</span>
+<span id="cb432-10"><a href="intro-AE.html#cb432-10" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> leyenda, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">NA</span>),</span>
+<span id="cb432-11"><a href="intro-AE.html#cb432-11" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="cn">NA</span>), <span class="at">pch =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:polyfit2"></span>
+<img src="07-Hadoop_files/figure-html/polyfit2-1.png" alt="Muestra con ajustes polinómicos con distinta complejidad y nuevas observaciones." width="90%" />
+<p class="caption">
+Figura 7.3: Muestra con ajustes polinómicos con distinta complejidad y nuevas observaciones.
+</p>
+</div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="intro-AE.html#cb433-1" tabindex="-1"></a>MSEP <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">list</span>(<span class="at">fit1 =</span> fit1, <span class="at">fit2 =</span> fit2, <span class="at">fit3 =</span> fit3),</span>
+<span id="cb433-2"><a href="intro-AE.html#cb433-2" tabindex="-1"></a>               <span class="cf">function</span>(x) <span class="fu">mean</span>((y.new <span class="sc">-</span> <span class="fu">fitted</span>(x))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb433-3"><a href="intro-AE.html#cb433-3" tabindex="-1"></a>MSEP</span></code></pre></div>
+<pre><code>##      fit1      fit2      fit3 
+## 1.4983208 0.1711238 0.2621064</code></pre>
+<p>Repitiendo la simulación 100 veces variando el grado del polinomio de 1 a 20 y evaluando la precisión tanto en la muestra de ajuste como en un nuevo conjunto de datos, obtenemos la Figura <a href="intro-AE.html#fig:polyfitsim">7.4</a>: los errores de entrenamiento disminuyen al aumentar la complejidad, pero los errores de predicción en nuevas observaciones inicialmente disminuyen, alcanzan un mínimo (línea vertical discontinua, modelo de grado 4) y después aumentan. A la izquierda de esa línea habría infraajuste (mayor sesgo, menor varianza) y a la derecha, sobreajuste (menor sesgo, mayor varianza).</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="intro-AE.html#cb435-1" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb435-2"><a href="intro-AE.html#cb435-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb435-3"><a href="intro-AE.html#cb435-3" tabindex="-1"></a>grado.max <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb435-4"><a href="intro-AE.html#cb435-4" tabindex="-1"></a>grados <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(grado.max)</span>
+<span id="cb435-5"><a href="intro-AE.html#cb435-5" tabindex="-1"></a><span class="co"># Simulación, ajustes y errores cuadráticos</span></span>
+<span id="cb435-6"><a href="intro-AE.html#cb435-6" tabindex="-1"></a>mse <span class="ot">&lt;-</span> mse.new <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> grado.max, <span class="at">ncol =</span> nsim)</span>
+<span id="cb435-7"><a href="intro-AE.html#cb435-7" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_len</span>(nsim)) {</span>
+<span id="cb435-8"><a href="intro-AE.html#cb435-8" tabindex="-1"></a>  y <span class="ot">&lt;-</span> mu <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, sd)</span>
+<span id="cb435-9"><a href="intro-AE.html#cb435-9" tabindex="-1"></a>  y.new <span class="ot">&lt;-</span> mu <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, sd)</span>
+<span id="cb435-10"><a href="intro-AE.html#cb435-10" tabindex="-1"></a>  <span class="cf">for</span> (grado <span class="cf">in</span> grados) {</span>
+<span id="cb435-11"><a href="intro-AE.html#cb435-11" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, grado))</span>
+<span id="cb435-12"><a href="intro-AE.html#cb435-12" tabindex="-1"></a>    mse[grado, i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">residuals</span>(fit)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb435-13"><a href="intro-AE.html#cb435-13" tabindex="-1"></a>    mse.new[grado, i] <span class="ot">&lt;-</span> <span class="fu">mean</span>((y.new <span class="sc">-</span> <span class="fu">fitted</span>(fit))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb435-14"><a href="intro-AE.html#cb435-14" tabindex="-1"></a>  }</span>
+<span id="cb435-15"><a href="intro-AE.html#cb435-15" tabindex="-1"></a>}</span>
+<span id="cb435-16"><a href="intro-AE.html#cb435-16" tabindex="-1"></a><span class="co"># Representación errores simulaciones</span></span>
+<span id="cb435-17"><a href="intro-AE.html#cb435-17" tabindex="-1"></a><span class="fu">matplot</span>(grados, mse, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>,</span>
+<span id="cb435-18"><a href="intro-AE.html#cb435-18" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="at">xlab =</span> <span class="st">&quot;Grado del polinomio (complejidad)&quot;</span>, </span>
+<span id="cb435-19"><a href="intro-AE.html#cb435-19" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Error cuadrático medio&quot;</span>)</span>
+<span id="cb435-20"><a href="intro-AE.html#cb435-20" tabindex="-1"></a><span class="fu">matlines</span>(grados, mse.new, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span>
+<span id="cb435-21"><a href="intro-AE.html#cb435-21" tabindex="-1"></a><span class="co"># Errores globales</span></span>
+<span id="cb435-22"><a href="intro-AE.html#cb435-22" tabindex="-1"></a>precision <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(mse)</span>
+<span id="cb435-23"><a href="intro-AE.html#cb435-23" tabindex="-1"></a>precision.new <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(mse.new)</span>
+<span id="cb435-24"><a href="intro-AE.html#cb435-24" tabindex="-1"></a><span class="fu">lines</span>(grados, precision, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb435-25"><a href="intro-AE.html#cb435-25" tabindex="-1"></a><span class="fu">lines</span>(grados, precision.new, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb435-26"><a href="intro-AE.html#cb435-26" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> sd<span class="sc">^</span><span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>); <span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">4</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb435-27"><a href="intro-AE.html#cb435-27" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb435-28"><a href="intro-AE.html#cb435-28" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Muestras&quot;</span>, <span class="st">&quot;Nuevas observaciones&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:polyfitsim"></span>
+<img src="07-Hadoop_files/figure-html/polyfitsim-1.png" alt="Precisiones (errores cuadráticos medios) de ajustes polinómicos en las muestras empleadas en el ajuste y en nuevas observaciones." width="80%" />
+<p class="caption">
+Figura 7.4: Precisiones (errores cuadráticos medios) de ajustes polinómicos en las muestras empleadas en el ajuste y en nuevas observaciones.
+</p>
+</div>
+<p>En general, al aumentar la complejidad disminuye el sesgo y aumenta la varianza (y viceversa): es el compromiso entre sesgo y varianza (<em>bias-variance tradeoff</em>, Figura <a href="intro-AE.html#fig:biasvar">7.5</a>). La recomendación es seleccionar los hiperparámetros tratando de equilibrar ambos.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:biasvar"></span>
+<img src="images/Bias-variance_tradeoff.png" alt="Equilibrio entre sesgo y varianza (Fuente: Wikimedia Commons)." width="80%" />
+<p class="caption">
+Figura 7.5: Equilibrio entre sesgo y varianza (Fuente: Wikimedia Commons).
+</p>
+</div>
+</div>
+<div id="entrenamiento-test" class="section level4 hasAnchor" number="7.1.3.2">
+<h4><span class="header-section-number">7.1.3.2</span> Datos de entrenamiento y datos de test<a href="intro-AE.html#entrenamiento-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Si el número de observaciones no es muy grande, se puede entrenar el modelo con todos los datos y emplear técnicas de remuestreo para evaluar la precisión (validación cruzada o <em>bootstrap</em>). Si el número de observaciones es grande, se suele particionar la base de datos en 2 (o 3) conjuntos disjuntos: <strong>entrenamiento</strong> (para construir los modelos) y <strong>test</strong> (para evaluar el rendimiento; los errores en esta muestra aproximan lo que ocurriría con nuevas observaciones). Típicamente se selecciona al azar un 80% para entrenamiento y un 20% para test.</p>
+<p>Como ejemplo consideraremos el conjunto de datos <code>Boston</code> del paquete <code>MASS</code>, con la valoración de viviendas (<code>medv</code>) y el porcentaje de población con “menor estatus” (<code>lstat</code>) en los suburbios de Boston:</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="intro-AE.html#cb436-1" tabindex="-1"></a><span class="fu">data</span>(Boston, <span class="at">package =</span> <span class="st">&quot;MASS&quot;</span>)</span>
+<span id="cb436-2"><a href="intro-AE.html#cb436-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb436-3"><a href="intro-AE.html#cb436-3" tabindex="-1"></a>nobs <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Boston)</span>
+<span id="cb436-4"><a href="intro-AE.html#cb436-4" tabindex="-1"></a>itrain <span class="ot">&lt;-</span> <span class="fu">sample</span>(nobs, <span class="fu">round</span>(<span class="fl">0.8</span> <span class="sc">*</span> nobs))</span>
+<span id="cb436-5"><a href="intro-AE.html#cb436-5" tabindex="-1"></a>train <span class="ot">&lt;-</span> Boston[itrain, ]</span>
+<span id="cb436-6"><a href="intro-AE.html#cb436-6" tabindex="-1"></a>test <span class="ot">&lt;-</span> Boston[<span class="sc">-</span>itrain, ]</span></code></pre></div>
+<p>Análisis descriptivo básico de la muestra de entrenamiento:</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="intro-AE.html#cb437-1" tabindex="-1"></a><span class="fu">str</span>(train)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    405 obs. of  14 variables:
+##  $ crim   : num  0.0615 6.6549 0.0467 0.5341 18.0846 ...
+##  $ zn     : num  0 0 80 20 0 0 20 80 0 95 ...
+##  $ indus  : num  5.19 18.1 1.52 3.97 18.1 18.1 6.96 2.01 18.1 2.68 ...
+##  $ chas   : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ nox    : num  0.515 0.713 0.404 0.647 0.679 ...
+##  $ rm     : num  5.97 6.32 7.11 7.52 6.43 ...
+##  $ age    : num  58.5 83 36.6 89.4 100 82.5 58.7 29.7 65.4 33.2 ...
+##  $ dis    : num  4.81 2.73 7.31 2.14 1.83 ...
+##  $ rad    : int  5 24 2 5 24 24 3 4 24 4 ...
+##  $ tax    : num  224 666 329 264 666 666 223 280 666 224 ...
+##  $ ptratio: num  20.2 20.2 12.6 13 20.2 20.2 18.6 17 20.2 14.7 ...
+##  $ black  : num  396.9 396.9 354.3 388.4 27.2 ...
+##  $ lstat  : num  9.29 13.99 8.61 7.26 29.05 ...
+##  $ medv   : num  18.7 19.5 30.3 43.1 7.2 23.2 24.4 24.5 21.4 48.5 ...</code></pre>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="intro-AE.html#cb439-1" tabindex="-1"></a><span class="fu">summary</span>(train)</span></code></pre></div>
+<pre><code>##       crim                zn             indus            chas        
+##  Min.   : 0.00632   Min.   :  0.00   Min.   : 0.46   Min.   :0.00000  
+##  1st Qu.: 0.07151   1st Qu.:  0.00   1st Qu.: 4.95   1st Qu.:0.00000  
+##  Median : 0.21977   Median :  0.00   Median : 8.56   Median :0.00000  
+##  Mean   : 3.36920   Mean   : 11.69   Mean   :10.91   Mean   :0.06914  
+##  3rd Qu.: 3.47428   3rd Qu.: 18.00   3rd Qu.:18.10   3rd Qu.:0.00000  
+##  Max.   :88.97620   Max.   :100.00   Max.   :27.74   Max.   :1.00000  
+##       nox               rm             age              dis        
+##  Min.   :0.3890   Min.   :3.561   Min.   :  2.90   Min.   : 1.137  
+##  1st Qu.:0.4480   1st Qu.:5.895   1st Qu.: 42.30   1st Qu.: 2.122  
+##  Median :0.5240   Median :6.223   Median : 74.30   Median : 3.317  
+##  Mean   :0.5517   Mean   :6.309   Mean   : 67.25   Mean   : 3.835  
+##  3rd Qu.:0.6240   3rd Qu.:6.635   3rd Qu.: 93.90   3rd Qu.: 5.245  
+##  Max.   :0.8710   Max.   :8.780   Max.   :100.00   Max.   :12.127  
+##       rad              tax           ptratio          black       
+##  Min.   : 1.000   Min.   :187.0   Min.   :12.60   Min.   :  0.32  
+##  1st Qu.: 4.000   1st Qu.:276.0   1st Qu.:17.00   1st Qu.:377.07  
+##  Median : 5.000   Median :313.0   Median :18.70   Median :392.23  
+##  Mean   : 9.306   Mean   :400.9   Mean   :18.37   Mean   :358.58  
+##  3rd Qu.:24.000   3rd Qu.:666.0   3rd Qu.:20.20   3rd Qu.:396.90  
+##  Max.   :24.000   Max.   :711.0   Max.   :22.00   Max.   :396.90  
+##      lstat            medv      
+##  Min.   : 1.92   Min.   : 5.00  
+##  1st Qu.: 6.78   1st Qu.:17.20  
+##  Median :10.74   Median :21.60  
+##  Mean   :12.39   Mean   :22.92  
+##  3rd Qu.:16.44   3rd Qu.:26.40  
+##  Max.   :37.97   Max.   :50.00</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="intro-AE.html#cb441-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb441-2"><a href="intro-AE.html#cb441-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(train[, <span class="st">&quot;medv&quot;</span>]), <span class="at">main =</span> <span class="st">&quot;Densidad&quot;</span>)</span>
+<span id="cb441-3"><a href="intro-AE.html#cb441-3" tabindex="-1"></a><span class="fu">boxplot</span>(train<span class="sc">$</span>medv, <span class="at">main =</span> <span class="st">&quot;Boxplot&quot;</span>)</span>
+<span id="cb441-4"><a href="intro-AE.html#cb441-4" tabindex="-1"></a>vioplot<span class="sc">::</span><span class="fu">vioplot</span>(train<span class="sc">$</span>medv, <span class="at">main =</span> <span class="st">&quot;Violín&quot;</span>)</span></code></pre></div>
+<p><img src="07-Hadoop_files/figure-html/unnamed-chunk-2-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p>Para explorar las relaciones entre variables numéricas podemos representar la matriz de correlaciones con <code>GGally::ggpairs()</code>:</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="intro-AE.html#cb442-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb442-2"><a href="intro-AE.html#cb442-2" tabindex="-1"></a><span class="co"># solo se visualizan las variables de la posición (columna) 7 a 14</span></span>
+<span id="cb442-3"><a href="intro-AE.html#cb442-3" tabindex="-1"></a><span class="fu">ggpairs</span>(train, <span class="at">columns =</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">14</span>)</span></code></pre></div>
+<p><img src="07-Hadoop_files/figure-html/unnamed-chunk-3-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="intro-AE.html#cb443-1" tabindex="-1"></a><span class="co"># Alternativas clásicas:</span></span>
+<span id="cb443-2"><a href="intro-AE.html#cb443-2" tabindex="-1"></a><span class="fu">pairs</span>(train[, <span class="dv">7</span><span class="sc">:</span><span class="dv">14</span>])</span>
+<span id="cb443-3"><a href="intro-AE.html#cb443-3" tabindex="-1"></a>mcor <span class="ot">&lt;-</span> <span class="fu">cor</span>(train)</span>
+<span id="cb443-4"><a href="intro-AE.html#cb443-4" tabindex="-1"></a><span class="fu">round</span>(mcor, <span class="dv">2</span>)</span>
+<span id="cb443-5"><a href="intro-AE.html#cb443-5" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb443-6"><a href="intro-AE.html#cb443-6" tabindex="-1"></a><span class="fu">corrplot</span>(mcor)</span></code></pre></div>
+<p>Los datos de <em>test</em> deben utilizarse <strong>exclusivamente</strong> para evaluar el rendimiento final de los modelos, nunca para seleccionar hiperparámetros. Para esto último hay varias estrategias habituales:</p>
+<ul>
+<li><p><strong>Partición entrenamiento-validación-test</strong>: la muestra se divide en tres subconjuntos (por ejemplo 70%-15%-15%). Los hiperparámetros se seleccionan con la muestra de validación y el modelo final se evalúa una única vez sobre el test.</p></li>
+<li><p><strong>Validación cruzada (<em>cross-validation</em>)</strong>: los datos de entrenamiento se reutilizan mediante remuestreo. En la validación cruzada <em>k-fold</em>, los datos se dividen en <em>k</em> bloques disjuntos; en cada iteración uno actúa como validación y los <em>k-1</em> restantes como entrenamiento, repitiendo el proceso <em>k</em> veces.</p></li>
+<li><p><strong>Validación cruzada dejando una observación fuera</strong> (<em>leave-one-out</em>, LOOCV): caso particular de <em>k-fold</em> con tantos bloques como observaciones. Aprovecha al máximo los datos, pero puede ser costosa computacionalmente y dar estimaciones con elevada varianza.</p></li>
+<li><p><strong>Bootstrap</strong>: se generan remuestras con reemplazamiento; el modelo se ajusta en cada una y se evalúa sobre las observaciones no seleccionadas (<em>out-of-bag</em>).</p></li>
+</ul>
+<p>En el caso de series temporales no es adecuado emplear particiones aleatorias, ya que se rompería la dependencia temporal: se emplean esquemas que respetan el orden cronológico (bloques temporales, o <em>rolling forecasting</em>/<em>time series cross-validation</em>, reentrenando sucesivamente con observaciones pasadas para predecir valores futuros; ver Capítulo <a href="tidyverse.html#tidyverse">5</a> y, para más detalle, la <a href="https://otexts.com/fpp3/tscv.html">Sección 5.10 de <em>Forecasting: Principles and Practice</em></a> de Hyndman y Athanasopoulos).</p>
+</div>
+<div id="cv" class="section level4 hasAnchor" number="7.1.3.3">
+<h4><span class="header-section-number">7.1.3.3</span> Selección de hiperparámetros mediante validación cruzada<a href="intro-AE.html#cv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Continuando con el ejemplo anterior, empleemos regresión polinómica para explicar la valoración de las viviendas a partir del estatus de los residentes (Figura <a href="intro-AE.html#fig:bostonmass">7.6</a>), considerando de nuevo el grado del polinomio como hiperparámetro:</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="intro-AE.html#cb444-1" tabindex="-1"></a>formula <span class="ot">&lt;-</span> medv <span class="sc">~</span> lstat</span>
+<span id="cb444-2"><a href="intro-AE.html#cb444-2" tabindex="-1"></a><span class="fu">plot</span>(formula, <span class="at">data =</span> train)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bostonmass"></span>
+<img src="07-Hadoop_files/figure-html/bostonmass-1.png" alt="Valoración de las viviendas (medv) frente al porcentaje de población con menor estatus (lstat)." width="85%" />
+<p class="caption">
+Figura 7.6: Valoración de las viviendas (medv) frente al porcentaje de población con menor estatus (lstat).
+</p>
+</div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="intro-AE.html#cb445-1" tabindex="-1"></a>modelo0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, train)</span>
+<span id="cb445-2"><a href="intro-AE.html#cb445-2" tabindex="-1"></a>modelo0</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = formula, data = train)
+## 
+## Coefficients:
+## (Intercept)        lstat  
+##     34.7024      -0.9512</code></pre>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="intro-AE.html#cb447-1" tabindex="-1"></a><span class="fu">summary</span>(modelo0)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = formula, data = train)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -9.974 -4.133 -1.353  2.081 24.363 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 34.70241    0.62997   55.09   &lt;2e-16 ***
+## lstat       -0.95125    0.04419  -21.53   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.271 on 403 degrees of freedom
+## Multiple R-squared:  0.5349, Adjusted R-squared:  0.5337 
+## F-statistic: 463.5 on 1 and 403 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>El ajuste lineal simple no es del todo adecuado (Figura <a href="intro-AE.html#fig:bostondiag">7.7</a>), lo que motiva probar con polinomios de mayor grado:</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="intro-AE.html#cb449-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb449-2"><a href="intro-AE.html#cb449-2" tabindex="-1"></a><span class="fu">plot</span>(modelo0)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bostondiag"></span>
+<img src="07-Hadoop_files/figure-html/bostondiag-1.png" alt="Gráficos de diagnóstico del modelo lineal simple." width="80%" />
+<p class="caption">
+Figura 7.7: Gráficos de diagnóstico del modelo lineal simple.
+</p>
+</div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="intro-AE.html#cb450-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p>En el caso de regresión lineal múltiple (y otros predictores lineales) se pueden obtener fácilmente las predicciones eliminando una observación a partir del ajuste con todos los datos (ver <code>?rstandard</code>), evitando así ajustar el modelo tantas veces como observaciones:</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="intro-AE.html#cb451-1" tabindex="-1"></a>cv.lm <span class="ot">&lt;-</span> <span class="cf">function</span>(formula, datos) {</span>
+<span id="cb451-2"><a href="intro-AE.html#cb451-2" tabindex="-1"></a>    modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, datos)</span>
+<span id="cb451-3"><a href="intro-AE.html#cb451-3" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">rstandard</span>(modelo, <span class="at">type =</span> <span class="st">&quot;predictive&quot;</span>))</span>
+<span id="cb451-4"><a href="intro-AE.html#cb451-4" tabindex="-1"></a>}</span>
+<span id="cb451-5"><a href="intro-AE.html#cb451-5" tabindex="-1"></a>res.cv2 <span class="ot">&lt;-</span> <span class="fu">cv.lm</span>(medv <span class="sc">~</span> <span class="fu">poly</span>(lstat, <span class="dv">2</span>), train)</span>
+<span id="cb451-6"><a href="intro-AE.html#cb451-6" tabindex="-1"></a>res.cv4 <span class="ot">&lt;-</span> <span class="fu">cv.lm</span>(medv <span class="sc">~</span> <span class="fu">poly</span>(lstat, <span class="dv">4</span>), train)</span>
+<span id="cb451-7"><a href="intro-AE.html#cb451-7" tabindex="-1"></a>res.cv5 <span class="ot">&lt;-</span> <span class="fu">cv.lm</span>(medv <span class="sc">~</span> <span class="fu">poly</span>(lstat, <span class="dv">5</span>), train) <span class="co"># Óptimo con 5 grados</span></span>
+<span id="cb451-8"><a href="intro-AE.html#cb451-8" tabindex="-1"></a>res.cv6 <span class="ot">&lt;-</span> <span class="fu">cv.lm</span>(medv <span class="sc">~</span> <span class="fu">poly</span>(lstat, <span class="dv">6</span>), train)</span>
+<span id="cb451-9"><a href="intro-AE.html#cb451-9" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">mean</span>(res.cv2<span class="sc">^</span><span class="dv">2</span>), <span class="fu">mean</span>(res.cv4<span class="sc">^</span><span class="dv">2</span>), <span class="fu">mean</span>(res.cv5<span class="sc">^</span><span class="dv">2</span>), <span class="fu">mean</span>(res.cv6<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 30.88877 29.06375 28.20607 28.38612</code></pre>
+<p>Calculamos el error cuadrático medio de validación cruzada para cada grado del polinomio y seleccionamos el que lo minimiza (Figura <a href="intro-AE.html#fig:cvmse">7.8</a>):</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="intro-AE.html#cb453-1" tabindex="-1"></a>grado.max <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb453-2"><a href="intro-AE.html#cb453-2" tabindex="-1"></a>grados <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(grado.max)</span>
+<span id="cb453-3"><a href="intro-AE.html#cb453-3" tabindex="-1"></a>cv.mse <span class="ot">&lt;-</span> cv.mse.sd <span class="ot">&lt;-</span> <span class="fu">numeric</span>(grado.max)</span>
+<span id="cb453-4"><a href="intro-AE.html#cb453-4" tabindex="-1"></a><span class="cf">for</span> (grado <span class="cf">in</span> grados) {</span>
+<span id="cb453-5"><a href="intro-AE.html#cb453-5" tabindex="-1"></a>  cv.res <span class="ot">&lt;-</span> <span class="fu">cv.lm</span>(medv <span class="sc">~</span> <span class="fu">poly</span>(lstat, grado), train)</span>
+<span id="cb453-6"><a href="intro-AE.html#cb453-6" tabindex="-1"></a>  se <span class="ot">&lt;-</span> cv.res<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb453-7"><a href="intro-AE.html#cb453-7" tabindex="-1"></a>  cv.mse[grado] <span class="ot">&lt;-</span> <span class="fu">mean</span>(se)</span>
+<span id="cb453-8"><a href="intro-AE.html#cb453-8" tabindex="-1"></a>  cv.mse.sd[grado] <span class="ot">&lt;-</span> <span class="fu">sd</span>(se) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(se))</span>
+<span id="cb453-9"><a href="intro-AE.html#cb453-9" tabindex="-1"></a>}</span>
+<span id="cb453-10"><a href="intro-AE.html#cb453-10" tabindex="-1"></a><span class="fu">plot</span>(grados, cv.mse, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">45</span>), <span class="at">xlab =</span> <span class="st">&quot;Grado del polinomio&quot;</span>)</span>
+<span id="cb453-11"><a href="intro-AE.html#cb453-11" tabindex="-1"></a>imin.mse <span class="ot">&lt;-</span> <span class="fu">which.min</span>(cv.mse)</span>
+<span id="cb453-12"><a href="intro-AE.html#cb453-12" tabindex="-1"></a>grado.min <span class="ot">&lt;-</span> grados[imin.mse]</span>
+<span id="cb453-13"><a href="intro-AE.html#cb453-13" tabindex="-1"></a><span class="fu">points</span>(grado.min, cv.mse[imin.mse], <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cvmse"></span>
+<img src="07-Hadoop_files/figure-html/cvmse-1.png" alt="Error cuadrático medio de validación cruzada según el grado del polinomio (complejidad)." width="80%" />
+<p class="caption">
+Figura 7.8: Error cuadrático medio de validación cruzada según el grado del polinomio (complejidad).
+</p>
+</div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="intro-AE.html#cb454-1" tabindex="-1"></a>grado.min</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>En lugar de emplear el valor óptimo del hiperparámetro, Breiman et al. (1984) propusieron la regla de “un error estándar” (<em>one-standard-error rule</em>): dado que las estimaciones de precisión presentan variabilidad, se selecciona el modelo más simple cuya precisión esté dentro de un error estándar de la del modelo óptimo (Figura <a href="intro-AE.html#fig:cvonese">7.9</a>):</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="intro-AE.html#cb456-1" tabindex="-1"></a><span class="fu">plot</span>(grados, cv.mse, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">45</span>), <span class="at">xlab =</span> <span class="st">&quot;Grado del polinomio&quot;</span>)</span>
+<span id="cb456-2"><a href="intro-AE.html#cb456-2" tabindex="-1"></a><span class="fu">segments</span>(grados, cv.mse <span class="sc">-</span> cv.mse.sd, grados, cv.mse <span class="sc">+</span> cv.mse.sd)</span>
+<span id="cb456-3"><a href="intro-AE.html#cb456-3" tabindex="-1"></a>upper.cv.mse <span class="ot">&lt;-</span> cv.mse[imin.mse] <span class="sc">+</span> cv.mse.sd[imin.mse]</span>
+<span id="cb456-4"><a href="intro-AE.html#cb456-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> upper.cv.mse, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb456-5"><a href="intro-AE.html#cb456-5" tabindex="-1"></a>imin<span class="fl">.1</span>se <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">which</span>(cv.mse <span class="sc">&lt;=</span> upper.cv.mse))</span>
+<span id="cb456-6"><a href="intro-AE.html#cb456-6" tabindex="-1"></a>grado<span class="fl">.1</span>se <span class="ot">&lt;-</span> grados[imin<span class="fl">.1</span>se]</span>
+<span id="cb456-7"><a href="intro-AE.html#cb456-7" tabindex="-1"></a><span class="fu">points</span>(grado<span class="fl">.1</span>se, cv.mse[imin<span class="fl">.1</span>se], <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cvonese"></span>
+<img src="07-Hadoop_files/figure-html/cvonese-1.png" alt="Selección del grado del polinomio mediante validación cruzada: valor óptimo y criterio de un error estándar (punto sólido)." width="80%" />
+<p class="caption">
+Figura 7.9: Selección del grado del polinomio mediante validación cruzada: valor óptimo y criterio de un error estándar (punto sólido).
+</p>
+</div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="intro-AE.html#cb457-1" tabindex="-1"></a>grado<span class="fl">.1</span>se</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="intro-AE.html#cb459-1" tabindex="-1"></a><span class="fu">plot</span>(medv <span class="sc">~</span> lstat, <span class="at">data =</span> train)</span>
+<span id="cb459-2"><a href="intro-AE.html#cb459-2" tabindex="-1"></a>fit.min <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> <span class="fu">poly</span>(lstat, grado.min), train)</span>
+<span id="cb459-3"><a href="intro-AE.html#cb459-3" tabindex="-1"></a>fit<span class="fl">.1</span>se <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> <span class="fu">poly</span>(lstat, grado<span class="fl">.1</span>se), train)</span>
+<span id="cb459-4"><a href="intro-AE.html#cb459-4" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lstat =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">40</span>, <span class="at">len =</span> <span class="dv">100</span>))</span>
+<span id="cb459-5"><a href="intro-AE.html#cb459-5" tabindex="-1"></a><span class="fu">lines</span>(newdata<span class="sc">$</span>lstat, <span class="fu">predict</span>(fit.min, <span class="at">newdata =</span> newdata), <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb459-6"><a href="intro-AE.html#cb459-6" tabindex="-1"></a><span class="fu">lines</span>(newdata<span class="sc">$</span>lstat, <span class="fu">predict</span>(fit<span class="fl">.1</span>se, <span class="at">newdata =</span> newdata),</span>
+<span id="cb459-7"><a href="intro-AE.html#cb459-7" tabindex="-1"></a>      <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb459-8"><a href="intro-AE.html#cb459-8" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">&quot;Grado óptimo:&quot;</span>, grado.min),</span>
+<span id="cb459-9"><a href="intro-AE.html#cb459-9" tabindex="-1"></a>       <span class="fu">paste</span>(<span class="st">&quot;oneSE rule:&quot;</span>, grado<span class="fl">.1</span>se)), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bostonfinal"></span>
+<img src="07-Hadoop_files/figure-html/bostonfinal-1.png" alt="Ajuste de los modelos finales: valor óptimo (línea continua) y criterio de un error estándar (línea discontinua)." width="80%" />
+<p class="caption">
+Figura 7.10: Ajuste de los modelos finales: valor óptimo (línea continua) y criterio de un error estándar (línea discontinua).
+</p>
+</div>
+<div class="exercise">
+<p><span id="exr:train-validate-test" class="exercise"><strong>Ejercicio 7.1  </strong></span>Particiona la muestra <code>Boston</code> en datos de entrenamiento (70%), validación (15%) y test (15%), para entrenar los modelos polinómicos, seleccionar el grado óptimo (el hiperparámetro) y evaluar las predicciones del modelo final. Puede ser de utilidad:</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="intro-AE.html#cb460-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> Boston</span>
+<span id="cb460-2"><a href="intro-AE.html#cb460-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb460-3"><a href="intro-AE.html#cb460-3" tabindex="-1"></a>nobs <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb460-4"><a href="intro-AE.html#cb460-4" tabindex="-1"></a>itrain <span class="ot">&lt;-</span> <span class="fu">sample</span>(nobs, <span class="fl">0.7</span> <span class="sc">*</span> nobs)</span>
+<span id="cb460-5"><a href="intro-AE.html#cb460-5" tabindex="-1"></a>inotrain <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">seq_len</span>(nobs), itrain)</span>
+<span id="cb460-6"><a href="intro-AE.html#cb460-6" tabindex="-1"></a>ivalidate <span class="ot">&lt;-</span> <span class="fu">sample</span>(inotrain, <span class="fl">0.15</span> <span class="sc">*</span> nobs)</span>
+<span id="cb460-7"><a href="intro-AE.html#cb460-7" tabindex="-1"></a>itest <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(inotrain, ivalidate)</span>
+<span id="cb460-8"><a href="intro-AE.html#cb460-8" tabindex="-1"></a>train <span class="ot">&lt;-</span> df[itrain, ]</span>
+<span id="cb460-9"><a href="intro-AE.html#cb460-9" tabindex="-1"></a>validate <span class="ot">&lt;-</span> df[ivalidate, ]</span>
+<span id="cb460-10"><a href="intro-AE.html#cb460-10" tabindex="-1"></a>test <span class="ot">&lt;-</span> df[itest, ]</span></code></pre></div>
+</div>
+<div class="exercise">
+<p><span id="exr:train-boot-boston" class="exercise"><strong>Ejercicio 7.2  </strong></span>Una alternativa a la partición clásica en entrenamiento y validación es emplear <strong>bootstrap</strong> para estimar el error de predicción: se genera una remuestra bootstrap a partir del entrenamiento, se ajusta el modelo sobre ella y se evalúa el error en las observaciones no seleccionadas (<em>out-of-bag</em>, OOB). Trabajando de nuevo con <code>Boston</code> (<code>medv</code> frente a <code>lstat</code>), realiza el ajuste empleando una única muestra bootstrap y evalúa las predicciones en la muestra de test. Puede ser de utilidad:</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="intro-AE.html#cb461-1" tabindex="-1"></a><span class="fu">data</span>(Boston, <span class="at">package =</span> <span class="st">&quot;MASS&quot;</span>)</span>
+<span id="cb461-2"><a href="intro-AE.html#cb461-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb461-3"><a href="intro-AE.html#cb461-3" tabindex="-1"></a>nobs <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Boston)</span>
+<span id="cb461-4"><a href="intro-AE.html#cb461-4" tabindex="-1"></a>itrain <span class="ot">&lt;-</span> <span class="fu">sample</span>(nobs, <span class="at">size =</span> <span class="fu">floor</span>(<span class="fl">0.8</span> <span class="sc">*</span> nobs))</span>
+<span id="cb461-5"><a href="intro-AE.html#cb461-5" tabindex="-1"></a>train <span class="ot">&lt;-</span> Boston[itrain, ]</span>
+<span id="cb461-6"><a href="intro-AE.html#cb461-6" tabindex="-1"></a>test  <span class="ot">&lt;-</span> Boston[<span class="sc">-</span>itrain, ]</span>
+<span id="cb461-7"><a href="intro-AE.html#cb461-7" tabindex="-1"></a><span class="co"># Remuestra bootstrap (con reemplazamiento) </span></span>
+<span id="cb461-8"><a href="intro-AE.html#cb461-8" tabindex="-1"></a><span class="co"># de los índices de entrenamiento</span></span>
+<span id="cb461-9"><a href="intro-AE.html#cb461-9" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb461-10"><a href="intro-AE.html#cb461-10" tabindex="-1"></a>ntrain <span class="ot">&lt;-</span> <span class="fu">nrow</span>(train)</span>
+<span id="cb461-11"><a href="intro-AE.html#cb461-11" tabindex="-1"></a>itrain_boot <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(ntrain), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb461-12"><a href="intro-AE.html#cb461-12" tabindex="-1"></a>train_boot <span class="ot">&lt;-</span> train[itrain_boot, ]</span>
+<span id="cb461-13"><a href="intro-AE.html#cb461-13" tabindex="-1"></a><span class="co"># Observaciones &quot;out of bag&quot; (no seleccionadas en la remuestra)</span></span>
+<span id="cb461-14"><a href="intro-AE.html#cb461-14" tabindex="-1"></a>oob <span class="ot">&lt;-</span> train[<span class="sc">-</span>itrain_boot, ]</span></code></pre></div>
+</div>
+</div>
+<div id="eval-reg" class="section level4 hasAnchor" number="7.1.3.4">
+<h4><span class="header-section-number">7.1.3.4</span> Evaluación de un método de regresión<a href="intro-AE.html#eval-reg" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para estudiar la precisión de las predicciones se evalúa el modelo en el conjunto de test y se comparan las predicciones frente a los valores reales. En un gráfico de dispersión de observaciones frente a predicciones (Figura <a href="intro-AE.html#fig:obspredplot">7.11</a>), los puntos deberían estar en torno a la recta <span class="math inline">\(y=x\)</span>:</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="intro-AE.html#cb462-1" tabindex="-1"></a>obs <span class="ot">&lt;-</span> test<span class="sc">$</span>medv</span>
+<span id="cb462-2"><a href="intro-AE.html#cb462-2" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.min, <span class="at">newdata =</span> test)</span>
+<span id="cb462-3"><a href="intro-AE.html#cb462-3" tabindex="-1"></a><span class="fu">plot</span>(pred, obs, <span class="at">xlab =</span> <span class="st">&quot;Predicción&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Observado&quot;</span>)</span>
+<span id="cb462-4"><a href="intro-AE.html#cb462-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>)</span>
+<span id="cb462-5"><a href="intro-AE.html#cb462-5" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lm</span>(obs <span class="sc">~</span> pred)</span>
+<span id="cb462-6"><a href="intro-AE.html#cb462-6" tabindex="-1"></a><span class="fu">abline</span>(res, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:obspredplot"></span>
+<img src="07-Hadoop_files/figure-html/obspredplot-1.png" alt="Observaciones frente a predicciones (identidad, línea continua, y ajuste lineal, línea discontinua)." width="80%" />
+<p class="caption">
+Figura 7.11: Observaciones frente a predicciones (identidad, línea continua, y ajuste lineal, línea discontinua).
+</p>
+</div>
+<p>También es habitual calcular medidas de error, como las que proporciona <code>caret::postResample()</code>:</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="intro-AE.html#cb463-1" tabindex="-1"></a>caret<span class="sc">::</span><span class="fu">postResample</span>(pred, obs)</span></code></pre></div>
+<pre><code>##      RMSE  Rsquared       MAE 
+## 4.8529138 0.6234068 3.6652591</code></pre>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="intro-AE.html#cb465-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 4.852914</code></pre>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="intro-AE.html#cb467-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(obs <span class="sc">-</span> pred))</span></code></pre></div>
+<pre><code>## [1] 3.665259</code></pre>
+<p>Además de las medidas de error habituales, <code>postResample()</code> calcula un <em>pseudo R-cuadrado</em> basado en el cuadrado de la correlación entre predicciones y observaciones, que no tiene en cuenta el sesgo (obtendríamos el mismo valor si desplazamos las predicciones sumando una constante). Una alternativa preferible sería:
+<span class="math display">\[\tilde R^2 = 1 - \frac{\sum_{i=1}^n(y_i - \hat y_i)^2}{\sum_{i=1}^n(y_i - \bar y)^2}\]</span>
+(equivalente al coeficiente de determinación ajustado, pero sin depender de las hipótesis estructurales del modelo), implementada junto con otras medidas de error en la función <code>accuracy()</code> del paquete <a href="https://cran.r-project.org/package=mpae"><code>mpae</code></a> (el mismo paquete de los autores del libro de referencia de esta sección):</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="intro-AE.html#cb469-1" tabindex="-1"></a><span class="fu">library</span>(mpae)</span>
+<span id="cb469-2"><a href="intro-AE.html#cb469-2" tabindex="-1"></a>accuracy <span class="ot">&lt;-</span> <span class="cf">function</span>(pred, obs, <span class="at">na.rm =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb469-3"><a href="intro-AE.html#cb469-3" tabindex="-1"></a>                     <span class="at">tol =</span> <span class="fu">sqrt</span>(.Machine<span class="sc">$</span>double.eps)) {</span>
+<span id="cb469-4"><a href="intro-AE.html#cb469-4" tabindex="-1"></a>  err <span class="ot">&lt;-</span> obs <span class="sc">-</span> pred     <span class="co"># Errores</span></span>
+<span id="cb469-5"><a href="intro-AE.html#cb469-5" tabindex="-1"></a>  <span class="cf">if</span> (na.rm) {</span>
+<span id="cb469-6"><a href="intro-AE.html#cb469-6" tabindex="-1"></a>    is.a <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(err)</span>
+<span id="cb469-7"><a href="intro-AE.html#cb469-7" tabindex="-1"></a>    err <span class="ot">&lt;-</span> err[is.a]</span>
+<span id="cb469-8"><a href="intro-AE.html#cb469-8" tabindex="-1"></a>    obs <span class="ot">&lt;-</span> obs[is.a]</span>
+<span id="cb469-9"><a href="intro-AE.html#cb469-9" tabindex="-1"></a>  }</span>
+<span id="cb469-10"><a href="intro-AE.html#cb469-10" tabindex="-1"></a>  perr <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> err <span class="sc">/</span> <span class="fu">pmax</span>(obs, tol)  <span class="co"># Errores porcentuales</span></span>
+<span id="cb469-11"><a href="intro-AE.html#cb469-11" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(</span>
+<span id="cb469-12"><a href="intro-AE.html#cb469-12" tabindex="-1"></a>    <span class="at">me =</span> <span class="fu">mean</span>(err),           <span class="co"># Error medio</span></span>
+<span id="cb469-13"><a href="intro-AE.html#cb469-13" tabindex="-1"></a>    <span class="at">rmse =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(err<span class="sc">^</span><span class="dv">2</span>)), <span class="co"># Raíz del error cuadrático medio</span></span>
+<span id="cb469-14"><a href="intro-AE.html#cb469-14" tabindex="-1"></a>    <span class="at">mae =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(err)),     <span class="co"># Error absoluto medio</span></span>
+<span id="cb469-15"><a href="intro-AE.html#cb469-15" tabindex="-1"></a>    <span class="at">mpe =</span> <span class="fu">mean</span>(perr),         <span class="co"># Error porcentual medio</span></span>
+<span id="cb469-16"><a href="intro-AE.html#cb469-16" tabindex="-1"></a>    <span class="at">mape =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(perr)),   <span class="co"># Error porcentual absoluto medio</span></span>
+<span id="cb469-17"><a href="intro-AE.html#cb469-17" tabindex="-1"></a>    <span class="co"># Pseudo R-cuadrado</span></span>
+<span id="cb469-18"><a href="intro-AE.html#cb469-18" tabindex="-1"></a>    <span class="at">r.squared =</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(err<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sum</span>((obs <span class="sc">-</span> <span class="fu">mean</span>(obs))<span class="sc">^</span><span class="dv">2</span>) </span>
+<span id="cb469-19"><a href="intro-AE.html#cb469-19" tabindex="-1"></a>  ))</span>
+<span id="cb469-20"><a href="intro-AE.html#cb469-20" tabindex="-1"></a>}</span>
+<span id="cb469-21"><a href="intro-AE.html#cb469-21" tabindex="-1"></a>accu.min <span class="ot">&lt;-</span> <span class="fu">accuracy</span>(pred, obs)</span>
+<span id="cb469-22"><a href="intro-AE.html#cb469-22" tabindex="-1"></a>accu.min</span></code></pre></div>
+<pre><code>##         me       rmse        mae        mpe       mape  r.squared 
+## -0.6932010  4.8529138  3.6652591 -8.7126633 19.9985572  0.6086314</code></pre>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="intro-AE.html#cb471-1" tabindex="-1"></a>accu<span class="fl">.1</span>se <span class="ot">&lt;-</span> <span class="fu">accuracy</span>(<span class="fu">predict</span>(fit<span class="fl">.1</span>se, <span class="at">newdata =</span> test), obs)</span>
+<span id="cb471-2"><a href="intro-AE.html#cb471-2" tabindex="-1"></a>accu<span class="fl">.1</span>se</span></code></pre></div>
+<pre><code>##        me      rmse       mae       mpe      mape r.squared 
+## -0.863974  5.216321  4.077066 -9.109356 21.570488  0.547822</code></pre>
+<p>En este caso, el ajuste polinómico con el grado óptimo explicaría un 60.9 % de la variabilidad de la respuesta en nuevas observaciones (un 6.1 % más que el modelo seleccionado con el criterio de un error estándar).</p>
+</div>
+</div>
+<div id="clasificacion" class="section level3 hasAnchor" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Clasificación<a href="intro-AE.html#clasificacion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Todo lo anterior se ilustró con un problema de regresión (<code>medv</code> es numérica), ajustado al modelo general <a href="intro-AE.html#eq:modelogeneral">(7.1)</a>. Cuando la respuesta es categórica hablamos de <strong>clasificación</strong>: ese modelo no es directamente aplicable a variables categóricas, aunque muchos métodos (como la regresión logística) lo emplean para una variable auxiliar numérica que después se transforma a probabilidades mediante la función logística. Veamos un ejemplo breve, tanto con dos clases (clasificación <em>binaria</em>) como con más de dos (<em>multiclase</em>), empleando el conjunto de datos <code>iris</code> (tres especies de lirio a partir de las medidas de sépalos y pétalos).</p>
+<div id="knn-ejemplo" class="section level4 hasAnchor" number="7.1.4.1">
+<h4><span class="header-section-number">7.1.4.1</span> Ejemplo: clasificación binaria y multiclase con KNN<a href="intro-AE.html#knn-ejemplo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El método de los <strong>k-vecinos más próximos</strong> (<em>k-nearest neighbors</em>, KNN) es uno de los más simples e intuitivos: para clasificar una nueva observación, busca las <span class="math inline">\(k\)</span> observaciones de entrenamiento más cercanas (según alguna distancia, típicamente la euclídea) y le asigna la clase mayoritaria entre ellas.</p>
+<p>Para el caso binario nos quedamos únicamente con dos de las tres especies:</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="intro-AE.html#cb473-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb473-2"><a href="intro-AE.html#cb473-2" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(<span class="fu">subset</span>(iris, Species <span class="sc">!=</span> <span class="st">&quot;setosa&quot;</span>))</span>
+<span id="cb473-3"><a href="intro-AE.html#cb473-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb473-4"><a href="intro-AE.html#cb473-4" tabindex="-1"></a>nobs <span class="ot">&lt;-</span> <span class="fu">nrow</span>(iris2)</span>
+<span id="cb473-5"><a href="intro-AE.html#cb473-5" tabindex="-1"></a>itrain <span class="ot">&lt;-</span> <span class="fu">sample</span>(nobs, <span class="fu">round</span>(<span class="fl">0.8</span> <span class="sc">*</span> nobs))</span>
+<span id="cb473-6"><a href="intro-AE.html#cb473-6" tabindex="-1"></a>train2 <span class="ot">&lt;-</span> iris2[itrain, ]</span>
+<span id="cb473-7"><a href="intro-AE.html#cb473-7" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> iris2[<span class="sc">-</span>itrain, ]</span>
+<span id="cb473-8"><a href="intro-AE.html#cb473-8" tabindex="-1"></a></span>
+<span id="cb473-9"><a href="intro-AE.html#cb473-9" tabindex="-1"></a><span class="fu">library</span>(class)</span>
+<span id="cb473-10"><a href="intro-AE.html#cb473-10" tabindex="-1"></a>pred2 <span class="ot">&lt;-</span> <span class="fu">knn</span>(<span class="at">train =</span> train2[, <span class="fu">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Petal.Width&quot;</span>)],</span>
+<span id="cb473-11"><a href="intro-AE.html#cb473-11" tabindex="-1"></a>             <span class="at">test =</span> test2[, <span class="fu">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Petal.Width&quot;</span>)],</span>
+<span id="cb473-12"><a href="intro-AE.html#cb473-12" tabindex="-1"></a>             <span class="at">cl =</span> train2<span class="sc">$</span>Species, <span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb473-13"><a href="intro-AE.html#cb473-13" tabindex="-1"></a><span class="fu">table</span>(<span class="at">Predicho =</span> pred2, <span class="at">Real =</span> test2<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>##             Real
+## Predicho     versicolor virginica
+##   versicolor         11         0
+##   virginica           0         9</code></pre>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="intro-AE.html#cb475-1" tabindex="-1"></a><span class="fu">mean</span>(pred2 <span class="sc">==</span> test2<span class="sc">$</span>Species) <span class="co"># precisión (proporción de aciertos)</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Lo interesante de KNN es que se extiende de forma <strong>directa</strong> al caso multiclase: la votación por mayoría entre los <span class="math inline">\(k\)</span> vecinos funciona igual sea cual sea el número de clases, sin necesidad de ningún truco adicional. Repitamos el ejemplo con las tres especies:</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="intro-AE.html#cb477-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb477-2"><a href="intro-AE.html#cb477-2" tabindex="-1"></a>nobs <span class="ot">&lt;-</span> <span class="fu">nrow</span>(iris)</span>
+<span id="cb477-3"><a href="intro-AE.html#cb477-3" tabindex="-1"></a>itrain <span class="ot">&lt;-</span> <span class="fu">sample</span>(nobs, <span class="fu">round</span>(<span class="fl">0.8</span> <span class="sc">*</span> nobs))</span>
+<span id="cb477-4"><a href="intro-AE.html#cb477-4" tabindex="-1"></a>train3 <span class="ot">&lt;-</span> iris[itrain, ]</span>
+<span id="cb477-5"><a href="intro-AE.html#cb477-5" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> iris[<span class="sc">-</span>itrain, ]</span>
+<span id="cb477-6"><a href="intro-AE.html#cb477-6" tabindex="-1"></a></span>
+<span id="cb477-7"><a href="intro-AE.html#cb477-7" tabindex="-1"></a>pred3 <span class="ot">&lt;-</span> <span class="fu">knn</span>(<span class="at">train =</span> train3[, <span class="fu">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Petal.Width&quot;</span>)],</span>
+<span id="cb477-8"><a href="intro-AE.html#cb477-8" tabindex="-1"></a>             <span class="at">test =</span> test3[, <span class="fu">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Petal.Width&quot;</span>)],</span>
+<span id="cb477-9"><a href="intro-AE.html#cb477-9" tabindex="-1"></a>             <span class="at">cl =</span> train3<span class="sc">$</span>Species, <span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb477-10"><a href="intro-AE.html#cb477-10" tabindex="-1"></a><span class="fu">table</span>(<span class="at">Predicho =</span> pred3, <span class="at">Real =</span> test3<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>##             Real
+## Predicho     setosa versicolor virginica
+##   setosa         11          0         0
+##   versicolor      0         12         1
+##   virginica       0          0         6</code></pre>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="intro-AE.html#cb479-1" tabindex="-1"></a><span class="fu">mean</span>(pred3 <span class="sc">==</span> test3<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## [1] 0.9666667</code></pre>
+<p>No todos los métodos son tan flexibles: muchos clasificadores habituales (regresión logística, máquinas de soporte vectorial…) son <em>binarios por construcción</em> y necesitan una estrategia adicional para abordar más de dos clases. Las dos más empleadas son:</p>
+<ul>
+<li><strong>Uno contra uno</strong> (<em>one-vs-one</em>, OVO): se entrena un clasificador binario para cada posible par de clases (<span class="math inline">\(\binom{K}{2}\)</span> modelos con <span class="math inline">\(K\)</span> clases) y se decide por votación mayoritaria entre todos ellos.</li>
+<li><strong>Uno contra el resto</strong> (<em>one-vs-all</em>/<em>one-vs-rest</em>, OVA/OVR): se entrena un clasificador binario por cada clase frente a todas las demás juntas (<span class="math inline">\(K\)</span> modelos), y se asigna la clase cuyo modelo dé mayor confianza.</li>
+</ul>
+<p>Antes de ver cómo resuelve esto un paquete concreto, conviene visualizar qué observaciones entran realmente en cada uno de los clasificadores binarios que componen cada estrategia: en OvR, cada uno de los <span class="math inline">\(K\)</span> clasificadores ve <strong>todas</strong> las observaciones (solo cambia qué especie se toma como positiva); en OvO, cada uno de los <span class="math inline">\(\binom{K}{2}\)</span> clasificadores ve <strong>únicamente</strong> las observaciones de las dos especies implicadas:</p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="intro-AE.html#cb481-1" tabindex="-1"></a>lev <span class="ot">&lt;-</span> <span class="fu">levels</span>(train3<span class="sc">$</span>Species)</span>
+<span id="cb481-2"><a href="intro-AE.html#cb481-2" tabindex="-1"></a>col_clase <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#2a78d6&quot;</span>, <span class="st">&quot;#eb6834&quot;</span>, <span class="st">&quot;#1baf7a&quot;</span>)</span>
+<span id="cb481-3"><a href="intro-AE.html#cb481-3" tabindex="-1"></a><span class="fu">names</span>(col_clase) <span class="ot">&lt;-</span> lev</span>
+<span id="cb481-4"><a href="intro-AE.html#cb481-4" tabindex="-1"></a>col_resto <span class="ot">&lt;-</span> <span class="st">&quot;grey80&quot;</span></span>
+<span id="cb481-5"><a href="intro-AE.html#cb481-5" tabindex="-1"></a>bord_resto <span class="ot">&lt;-</span> <span class="st">&quot;grey55&quot;</span></span>
+<span id="cb481-6"><a href="intro-AE.html#cb481-6" tabindex="-1"></a></span>
+<span id="cb481-7"><a href="intro-AE.html#cb481-7" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">range</span>(train3<span class="sc">$</span>Petal.Length)</span>
+<span id="cb481-8"><a href="intro-AE.html#cb481-8" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">range</span>(train3<span class="sc">$</span>Petal.Width)</span>
+<span id="cb481-9"><a href="intro-AE.html#cb481-9" tabindex="-1"></a></span>
+<span id="cb481-10"><a href="intro-AE.html#cb481-10" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">rbind</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), <span class="dv">6</span>, <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)),</span>
+<span id="cb481-11"><a href="intro-AE.html#cb481-11" tabindex="-1"></a>       <span class="at">heights =</span> <span class="fu">c</span>(<span class="fl">0.09</span>, <span class="fl">0.055</span>, <span class="fl">0.40</span>, <span class="fl">0.055</span>, <span class="fl">0.40</span>))</span>
+<span id="cb481-12"><a href="intro-AE.html#cb481-12" tabindex="-1"></a></span>
+<span id="cb481-13"><a href="intro-AE.html#cb481-13" tabindex="-1"></a>titulo <span class="ot">&lt;-</span> <span class="cf">function</span>(txt) {</span>
+<span id="cb481-14"><a href="intro-AE.html#cb481-14" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb481-15"><a href="intro-AE.html#cb481-15" tabindex="-1"></a>  <span class="fu">plot.new</span>()</span>
+<span id="cb481-16"><a href="intro-AE.html#cb481-16" tabindex="-1"></a>  <span class="fu">text</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, txt, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">cex =</span> <span class="fl">1.15</span>, <span class="at">font =</span> <span class="dv">2</span>)</span>
+<span id="cb481-17"><a href="intro-AE.html#cb481-17" tabindex="-1"></a>}</span>
+<span id="cb481-18"><a href="intro-AE.html#cb481-18" tabindex="-1"></a></span>
+<span id="cb481-19"><a href="intro-AE.html#cb481-19" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb481-20"><a href="intro-AE.html#cb481-20" tabindex="-1"></a><span class="fu">plot.new</span>()</span>
+<span id="cb481-21"><a href="intro-AE.html#cb481-21" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;center&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(lev, <span class="st">&quot;Resto&quot;</span>),</span>
+<span id="cb481-22"><a href="intro-AE.html#cb481-22" tabindex="-1"></a>       <span class="at">pt.bg =</span> <span class="fu">c</span>(col_clase, col_resto), <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">pt.cex =</span> <span class="fl">1.6</span>,</span>
+<span id="cb481-23"><a href="intro-AE.html#cb481-23" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;black&quot;</span>, <span class="dv">3</span>), bord_resto),</span>
+<span id="cb481-24"><a href="intro-AE.html#cb481-24" tabindex="-1"></a>       <span class="at">horiz =</span> <span class="cn">TRUE</span>, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="at">cex =</span> <span class="fl">1.05</span>, <span class="at">text.width =</span> <span class="fl">0.16</span>)</span>
+<span id="cb481-25"><a href="intro-AE.html#cb481-25" tabindex="-1"></a></span>
+<span id="cb481-26"><a href="intro-AE.html#cb481-26" tabindex="-1"></a><span class="fu">titulo</span>(<span class="st">&quot;Uno contra el resto (OvR / OvA): un clasificador por especie&quot;</span>)</span>
+<span id="cb481-27"><a href="intro-AE.html#cb481-27" tabindex="-1"></a></span>
+<span id="cb481-28"><a href="intro-AE.html#cb481-28" tabindex="-1"></a><span class="cf">for</span> (especie <span class="cf">in</span> lev) {</span>
+<span id="cb481-29"><a href="intro-AE.html#cb481-29" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">2.5</span>, <span class="dv">1</span>))</span>
+<span id="cb481-30"><a href="intro-AE.html#cb481-30" tabindex="-1"></a>  es_foco <span class="ot">&lt;-</span> train3<span class="sc">$</span>Species <span class="sc">==</span> especie</span>
+<span id="cb481-31"><a href="intro-AE.html#cb481-31" tabindex="-1"></a>  <span class="fu">plot</span>(train3<span class="sc">$</span>Petal.Length[<span class="sc">!</span>es_foco], train3<span class="sc">$</span>Petal.Width[<span class="sc">!</span>es_foco],</span>
+<span id="cb481-32"><a href="intro-AE.html#cb481-32" tabindex="-1"></a>       <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">col =</span> bord_resto,</span>
+<span id="cb481-33"><a href="intro-AE.html#cb481-33" tabindex="-1"></a>       <span class="at">bg =</span> col_resto, <span class="at">xlab =</span> <span class="st">&quot;Petal.Length&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Petal.Width&quot;</span>,</span>
+<span id="cb481-34"><a href="intro-AE.html#cb481-34" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste0</span>(especie, <span class="st">&quot; vs. Resto&quot;</span>))</span>
+<span id="cb481-35"><a href="intro-AE.html#cb481-35" tabindex="-1"></a>  <span class="fu">points</span>(train3<span class="sc">$</span>Petal.Length[es_foco], train3<span class="sc">$</span>Petal.Width[es_foco],</span>
+<span id="cb481-36"><a href="intro-AE.html#cb481-36" tabindex="-1"></a>         <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">cex =</span> <span class="fl">1.3</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">bg =</span> col_clase[especie])</span>
+<span id="cb481-37"><a href="intro-AE.html#cb481-37" tabindex="-1"></a>}</span>
+<span id="cb481-38"><a href="intro-AE.html#cb481-38" tabindex="-1"></a></span>
+<span id="cb481-39"><a href="intro-AE.html#cb481-39" tabindex="-1"></a><span class="fu">titulo</span>(<span class="st">&quot;Uno contra uno (OvO): un clasificador por cada par de especies&quot;</span>)</span>
+<span id="cb481-40"><a href="intro-AE.html#cb481-40" tabindex="-1"></a></span>
+<span id="cb481-41"><a href="intro-AE.html#cb481-41" tabindex="-1"></a>pares <span class="ot">&lt;-</span> <span class="fu">combn</span>(lev, <span class="dv">2</span>, <span class="at">simplify =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb481-42"><a href="intro-AE.html#cb481-42" tabindex="-1"></a><span class="cf">for</span> (par_esp <span class="cf">in</span> pares) {</span>
+<span id="cb481-43"><a href="intro-AE.html#cb481-43" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">2.5</span>, <span class="dv">1</span>))</span>
+<span id="cb481-44"><a href="intro-AE.html#cb481-44" tabindex="-1"></a>  sel <span class="ot">&lt;-</span> train3<span class="sc">$</span>Species <span class="sc">%in%</span> par_esp</span>
+<span id="cb481-45"><a href="intro-AE.html#cb481-45" tabindex="-1"></a>  datos_par <span class="ot">&lt;-</span> train3[sel, ]</span>
+<span id="cb481-46"><a href="intro-AE.html#cb481-46" tabindex="-1"></a>  <span class="fu">plot</span>(datos_par<span class="sc">$</span>Petal.Length, datos_par<span class="sc">$</span>Petal.Width,</span>
+<span id="cb481-47"><a href="intro-AE.html#cb481-47" tabindex="-1"></a>       <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">cex =</span> <span class="fl">1.3</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb481-48"><a href="intro-AE.html#cb481-48" tabindex="-1"></a>       <span class="at">bg =</span> col_clase[<span class="fu">as.character</span>(datos_par<span class="sc">$</span>Species)],</span>
+<span id="cb481-49"><a href="intro-AE.html#cb481-49" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">&quot;Petal.Length&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Petal.Width&quot;</span>,</span>
+<span id="cb481-50"><a href="intro-AE.html#cb481-50" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(par_esp, <span class="at">collapse =</span> <span class="st">&quot; vs. &quot;</span>))</span>
+<span id="cb481-51"><a href="intro-AE.html#cb481-51" tabindex="-1"></a>}</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ovo-ova"></span>
+<img src="07-Hadoop_files/figure-html/ovo-ova-1.png" alt="Qué observaciones entran en cada clasificador binario: arriba, uno contra el resto (OvR/OvA); abajo, uno contra uno (OvO)." width="80%" />
+<p class="caption">
+Figura 7.12: Qué observaciones entran en cada clasificador binario: arriba, uno contra el resto (OvR/OvA); abajo, uno contra uno (OvO).
+</p>
+</div>
+<p>Puede apreciarse que OvO necesita más clasificadores conforme crece <span class="math inline">\(K\)</span> (<span class="math inline">\(\binom{K}{2}\)</span> frente a <span class="math inline">\(K\)</span>), pero cada uno se entrena con un problema más sencillo: menos observaciones, y una frontera potencialmente más clara al enfrentar solo dos especies a la vez en lugar de una especie contra el resto.</p>
+<p>Alternativamente, la misma figura puede construirse con <code>ggplot2</code>/<code>patchwork</code> (código no evaluado; se deja aquí por si se prefiere retomar esta versión más adelante):</p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="intro-AE.html#cb482-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb482-2"><a href="intro-AE.html#cb482-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb482-3"><a href="intro-AE.html#cb482-3" tabindex="-1"></a></span>
+<span id="cb482-4"><a href="intro-AE.html#cb482-4" tabindex="-1"></a>col_clase <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">setosa =</span> <span class="st">&quot;#2a78d6&quot;</span>, <span class="at">versicolor =</span> <span class="st">&quot;#eb6834&quot;</span>,</span>
+<span id="cb482-5"><a href="intro-AE.html#cb482-5" tabindex="-1"></a>                <span class="at">virginica =</span> <span class="st">&quot;#1baf7a&quot;</span>, <span class="at">Resto =</span> <span class="st">&quot;grey80&quot;</span>)</span>
+<span id="cb482-6"><a href="intro-AE.html#cb482-6" tabindex="-1"></a>lev <span class="ot">&lt;-</span> <span class="fu">levels</span>(train3<span class="sc">$</span>Species)</span>
+<span id="cb482-7"><a href="intro-AE.html#cb482-7" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">range</span>(train3<span class="sc">$</span>Petal.Length)</span>
+<span id="cb482-8"><a href="intro-AE.html#cb482-8" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">range</span>(train3<span class="sc">$</span>Petal.Width)</span>
+<span id="cb482-9"><a href="intro-AE.html#cb482-9" tabindex="-1"></a></span>
+<span id="cb482-10"><a href="intro-AE.html#cb482-10" tabindex="-1"></a>ovr <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(lev, <span class="cf">function</span>(especie) {</span>
+<span id="cb482-11"><a href="intro-AE.html#cb482-11" tabindex="-1"></a>  d <span class="ot">&lt;-</span> train3</span>
+<span id="cb482-12"><a href="intro-AE.html#cb482-12" tabindex="-1"></a>  d<span class="sc">$</span>panel <span class="ot">&lt;-</span> <span class="fu">paste0</span>(especie, <span class="st">&quot; vs. Resto&quot;</span>)</span>
+<span id="cb482-13"><a href="intro-AE.html#cb482-13" tabindex="-1"></a>  d<span class="sc">$</span>grupo <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d<span class="sc">$</span>Species <span class="sc">==</span> especie, especie, <span class="st">&quot;Resto&quot;</span>)</span>
+<span id="cb482-14"><a href="intro-AE.html#cb482-14" tabindex="-1"></a>  d</span>
+<span id="cb482-15"><a href="intro-AE.html#cb482-15" tabindex="-1"></a>}))</span>
+<span id="cb482-16"><a href="intro-AE.html#cb482-16" tabindex="-1"></a>ovr<span class="sc">$</span>panel <span class="ot">&lt;-</span> <span class="fu">factor</span>(ovr<span class="sc">$</span>panel, <span class="at">levels =</span> <span class="fu">paste0</span>(lev, <span class="st">&quot; vs. Resto&quot;</span>))</span>
+<span id="cb482-17"><a href="intro-AE.html#cb482-17" tabindex="-1"></a>ovr<span class="sc">$</span>grupo <span class="ot">&lt;-</span> <span class="fu">factor</span>(ovr<span class="sc">$</span>grupo, <span class="at">levels =</span> <span class="fu">c</span>(lev, <span class="st">&quot;Resto&quot;</span>))</span>
+<span id="cb482-18"><a href="intro-AE.html#cb482-18" tabindex="-1"></a>ovr <span class="ot">&lt;-</span> ovr[<span class="fu">order</span>(ovr<span class="sc">$</span>grupo <span class="sc">!=</span> <span class="st">&quot;Resto&quot;</span>), ]</span>
+<span id="cb482-19"><a href="intro-AE.html#cb482-19" tabindex="-1"></a></span>
+<span id="cb482-20"><a href="intro-AE.html#cb482-20" tabindex="-1"></a>pares <span class="ot">&lt;-</span> <span class="fu">combn</span>(lev, <span class="dv">2</span>, <span class="at">simplify =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb482-21"><a href="intro-AE.html#cb482-21" tabindex="-1"></a>ovo <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(pares, <span class="cf">function</span>(par_esp) {</span>
+<span id="cb482-22"><a href="intro-AE.html#cb482-22" tabindex="-1"></a>  d <span class="ot">&lt;-</span> train3[train3<span class="sc">$</span>Species <span class="sc">%in%</span> par_esp, ]</span>
+<span id="cb482-23"><a href="intro-AE.html#cb482-23" tabindex="-1"></a>  d<span class="sc">$</span>panel <span class="ot">&lt;-</span> <span class="fu">paste</span>(par_esp, <span class="at">collapse =</span> <span class="st">&quot; vs. &quot;</span>)</span>
+<span id="cb482-24"><a href="intro-AE.html#cb482-24" tabindex="-1"></a>  d<span class="sc">$</span>grupo <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(d<span class="sc">$</span>Species), <span class="at">levels =</span> lev)</span>
+<span id="cb482-25"><a href="intro-AE.html#cb482-25" tabindex="-1"></a>  d</span>
+<span id="cb482-26"><a href="intro-AE.html#cb482-26" tabindex="-1"></a>}))</span>
+<span id="cb482-27"><a href="intro-AE.html#cb482-27" tabindex="-1"></a>ovo<span class="sc">$</span>panel <span class="ot">&lt;-</span> <span class="fu">factor</span>(ovo<span class="sc">$</span>panel,</span>
+<span id="cb482-28"><a href="intro-AE.html#cb482-28" tabindex="-1"></a>                     <span class="at">levels =</span> <span class="fu">sapply</span>(pares, paste, <span class="at">collapse =</span> <span class="st">&quot; vs. &quot;</span>))</span>
+<span id="cb482-29"><a href="intro-AE.html#cb482-29" tabindex="-1"></a></span>
+<span id="cb482-30"><a href="intro-AE.html#cb482-30" tabindex="-1"></a>tema_panel <span class="ot">&lt;-</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb482-31"><a href="intro-AE.html#cb482-31" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb482-32"><a href="intro-AE.html#cb482-32" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb482-33"><a href="intro-AE.html#cb482-33" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb482-34"><a href="intro-AE.html#cb482-34" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>))</span>
+<span id="cb482-35"><a href="intro-AE.html#cb482-35" tabindex="-1"></a></span>
+<span id="cb482-36"><a href="intro-AE.html#cb482-36" tabindex="-1"></a>p_ovr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ovr, <span class="fu">aes</span>(Petal.Length, Petal.Width, <span class="at">fill =</span> grupo)) <span class="sc">+</span></span>
+<span id="cb482-37"><a href="intro-AE.html#cb482-37" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">2.4</span>, <span class="at">stroke =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb482-38"><a href="intro-AE.html#cb482-38" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> panel, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb482-39"><a href="intro-AE.html#cb482-39" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> col_clase, <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb482-40"><a href="intro-AE.html#cb482-40" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(lev, <span class="st">&quot;Resto&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb482-41"><a href="intro-AE.html#cb482-41" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span></span>
+<span id="cb482-42"><a href="intro-AE.html#cb482-42" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Uno contra el resto (OvR / OvA)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb482-43"><a href="intro-AE.html#cb482-43" tabindex="-1"></a>  tema_panel</span>
+<span id="cb482-44"><a href="intro-AE.html#cb482-44" tabindex="-1"></a></span>
+<span id="cb482-45"><a href="intro-AE.html#cb482-45" tabindex="-1"></a>p_ovo <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ovo, <span class="fu">aes</span>(Petal.Length, Petal.Width, <span class="at">fill =</span> grupo)) <span class="sc">+</span></span>
+<span id="cb482-46"><a href="intro-AE.html#cb482-46" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">2.4</span>, <span class="at">stroke =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb482-47"><a href="intro-AE.html#cb482-47" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> panel, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb482-48"><a href="intro-AE.html#cb482-48" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> col_clase, <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb482-49"><a href="intro-AE.html#cb482-49" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(lev, <span class="st">&quot;Resto&quot;</span>), <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb482-50"><a href="intro-AE.html#cb482-50" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span></span>
+<span id="cb482-51"><a href="intro-AE.html#cb482-51" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Uno contra uno (OvO)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb482-52"><a href="intro-AE.html#cb482-52" tabindex="-1"></a>  tema_panel</span>
+<span id="cb482-53"><a href="intro-AE.html#cb482-53" tabindex="-1"></a></span>
+<span id="cb482-54"><a href="intro-AE.html#cb482-54" tabindex="-1"></a>(p_ovr <span class="sc">/</span> p_ovo) <span class="sc">+</span></span>
+<span id="cb482-55"><a href="intro-AE.html#cb482-55" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&quot;collect&quot;</span>) <span class="sc">&amp;</span></span>
+<span id="cb482-56"><a href="intro-AE.html#cb482-56" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p>Por ejemplo, <a href="https://cran.r-project.org/package=e1071"><code>e1071</code></a> resuelve el caso multiclase de las máquinas de soporte vectorial mediante la estrategia OVO por defecto:</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="intro-AE.html#cb483-1" tabindex="-1"></a><span class="fu">library</span>(e1071)</span>
+<span id="cb483-2"><a href="intro-AE.html#cb483-2" tabindex="-1"></a>modelo_ovo <span class="ot">&lt;-</span> <span class="fu">svm</span>(Species <span class="sc">~</span> Petal.Length <span class="sc">+</span> Petal.Width,</span>
+<span id="cb483-3"><a href="intro-AE.html#cb483-3" tabindex="-1"></a>                   <span class="at">data =</span> train3, <span class="at">kernel =</span> <span class="st">&quot;linear&quot;</span>)</span>
+<span id="cb483-4"><a href="intro-AE.html#cb483-4" tabindex="-1"></a>pred_ovo <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_ovo, <span class="at">newdata =</span> test3)</span>
+<span id="cb483-5"><a href="intro-AE.html#cb483-5" tabindex="-1"></a><span class="fu">table</span>(<span class="at">Predicho =</span> pred_ovo, <span class="at">Real =</span> test3<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>##             Real
+## Predicho     setosa versicolor virginica
+##   setosa         11          0         0
+##   versicolor      0         12         1
+##   virginica       0          0         6</code></pre>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="intro-AE.html#cb485-1" tabindex="-1"></a><span class="fu">mean</span>(pred_ovo <span class="sc">==</span> test3<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## [1] 0.9666667</code></pre>
+<p>Como con la regresión, la evaluación (matriz de confusión, precisión, u otras medidas como sensibilidad/especificidad) debe hacerse siempre sobre datos de test no utilizados para entrenar, y los hiperparámetros (aquí, <span class="math inline">\(k\)</span> o el tipo de <em>kernel</em>) se seleccionarían por validación cruzada (Sección <a href="intro-AE.html#cv">7.1.3.3</a>) igual que en regresión.</p>
+</div>
+<div id="maldicion" class="section level4 hasAnchor" number="7.1.4.2">
+<h4><span class="header-section-number">7.1.4.2</span> La maldición de la dimensionalidad<a href="intro-AE.html#maldicion" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Los métodos basados en distancias o vecindarios locales, como KNN, se ven especialmente afectados por la llamada <strong>maldición de la dimensionalidad</strong> (<em>curse of dimensionality</em>): a medida que aumenta el número de predictores <span class="math inline">\(p\)</span>, los datos se vuelven cada vez más dispersos en ese espacio de mayor dimensión, y el concepto de “vecino cercano” deja de ser realmente local.</p>
+<p>Una forma sencilla de verlo: para capturar una fracción fija <span class="math inline">\(r\)</span> del volumen de datos mediante un hipercubo centrado en el punto de interés, el lado necesario de ese hipercubo es <span class="math inline">\(r^{1/p}\)</span>. Cuanto mayor es <span class="math inline">\(p\)</span>, más se acerca ese lado al rango completo de cada variable:</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="intro-AE.html#cb487-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fl">0.1</span>  <span class="co"># fracción de datos que queremos capturar (10%)</span></span>
+<span id="cb487-2"><a href="intro-AE.html#cb487-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">100</span>)</span>
+<span id="cb487-3"><a href="intro-AE.html#cb487-3" tabindex="-1"></a>lado <span class="ot">&lt;-</span> r<span class="sc">^</span>(<span class="dv">1</span> <span class="sc">/</span> p)</span>
+<span id="cb487-4"><a href="intro-AE.html#cb487-4" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">p =</span> p, <span class="at">lado_hipercubo =</span> <span class="fu">round</span>(lado, <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##     p lado_hipercubo
+## 1   1          0.100
+## 2   2          0.316
+## 3   5          0.631
+## 4  10          0.794
+## 5  20          0.891
+## 6  50          0.955
+## 7 100          0.977</code></pre>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="intro-AE.html#cb489-1" tabindex="-1"></a><span class="fu">plot</span>(p, lado, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb489-2"><a href="intro-AE.html#cb489-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Número de predictores (p)&quot;</span>,</span>
+<span id="cb489-3"><a href="intro-AE.html#cb489-3" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Lado del hipercubo necesario&quot;</span>)</span>
+<span id="cb489-4"><a href="intro-AE.html#cb489-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:maldicion"></span>
+<img src="07-Hadoop_files/figure-html/maldicion-1.png" alt="Lado del hipercubo necesario para capturar un 10% de los datos, según la dimensión." width="80%" />
+<p class="caption">
+Figura 7.13: Lado del hipercubo necesario para capturar un 10% de los datos, según la dimensión.
+</p>
+</div>
+<p>Con <span class="math inline">\(p=1\)</span> basta con recorrer el <span class="math inline">\(10\%\)</span> del rango de la variable; con <span class="math inline">\(p=100\)</span> haría falta cubrir prácticamente el rango completo (<span class="math inline">\(97.7\%\)</span>) en <em>cada</em> predictor para conseguir esos mismos “vecinos”. Es decir, con muchos predictores, los vecinos más próximos dejan de ser realmente próximos, salvo que se disponga de muestras enormes. Esto explica por qué, en dimensión alta, suelen preferirse métodos que no dependen tanto de la localidad (modelos lineales, regularización) o técnicas previas de selección/reducción de variables, que se tratan en el libro completo de referencia.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidymodels.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/07-Hadoop.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Practicas_de_TGD.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

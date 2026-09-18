@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.11 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>5.6 Eficiencia y desfases con dplyr | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.11 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="5.6 Eficiencia y desfases con dplyr | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.11 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="5.6 Eficiencia y desfases con dplyr | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ejemplos-de-consultas-sql.html"/>
-<link rel="next" href="ejemplo-scopus-data.html"/>
+<link rel="prev" href="dbplyr.html"/>
+<link rel="next" href="resumen-tidyverse.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -397,125 +397,35 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conexión-con-bases-de-datos-desde-r" class="section level2 hasAnchor" number="3.11">
-<h2><span class="header-section-number">3.11</span> Conexión con bases de datos desde R<a href="conexión-con-bases-de-datos-desde-r.html#conexi%C3%B3n-con-bases-de-datos-desde-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="introducción-a-sql-en-r" class="section level3 hasAnchor" number="3.11.1">
-<h3><span class="header-section-number">3.11.1</span> Introducción a SQL en R<a href="conexión-con-bases-de-datos-desde-r.html#introducci%C3%B3n-a-sql-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>SQL se usa para manipular datos dentro de una base de datos. Si la base de datos no es muy grande se puede cargar toda en un data.frame.
-No obstante, por escalabilidad y offloading de la carga de trabajo al servidor SGBD utilizaremos SQL.</p>
-<p>Existen varios SGBD (SQLite, Microsoft SQL Server, MySQL, PostgreSQL, etc) los cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada gestor extiende SQL
-de formas sutiles buscando minar cierta portabilidad de código (<em>vendor-locking</em>). En efecto, un código SQL desarrollado para SQLite es probable que falle con MySQL
-aunque tras aplicar ligeras modificaciones ya funcionará. Asimismo el mecanismo de conexión, configuración, rendimiento y operación suele diferir entre SGBD.</p>
-<p>A continuación se lista una serie de paquetes utilizados en el acceso a los datos, lo que suele ser el principal esfuerzo a realizar cuando se trabaja con SGBD:</p>
-<ul>
-<li><a href="https://cran.r-project.org/web/packages/DBI/index.html">DBI</a></li>
-<li><a href="https://cran.r-project.org/web/packages/RODBC/index.html">RODBC</a></li>
-<li><a href="https://cran.r-project.org/web/packages/dbConnect/index.html">dbConnect</a></li>
-<li><a href="https://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a></li>
-<li><a href="https://cran.r-project.org/web/packages/RMySQL/index.html">RMySQL</a></li>
-<li><a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL</a></li>
-</ul>
-</div>
-<div id="el-paquete-sqldf" class="section level3 hasAnchor" number="3.11.2">
-<h3><span class="header-section-number">3.11.2</span> El paquete sqldf<a href="conexión-con-bases-de-datos-desde-r.html#el-paquete-sqldf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A continuación se presenta una serie de ejercicios con la sintaxis de SQL operando sobre un data.frame con el paquete sqldf. Esto inicialmente no incluye los detalles de conectarse a un SGBD, ni modificar los
-datos, solamente el uso de SQL para extraer datos con el objetivo de ser analizados en R.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb240-1" tabindex="-1"></a><span class="fu">library</span>(sqldf)</span></code></pre></div>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb241-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC&#39;</span>)</span></code></pre></div>
-<pre><code>##    age circumference
-## 1  118            30
-## 2  484            58
-## 3  664            87
-## 4 1004           115
-## 5 1231           120
-## 6 1372           142
-## 7 1582           145</code></pre>
-</div>
-<div id="sql-queries" class="section level3 hasAnchor" number="3.11.3">
-<h3><span class="header-section-number">3.11.3</span> SQL Queries<a href="conexión-con-bases-de-datos-desde-r.html#sql-queries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb243-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&quot;SELECT * FROM iris&quot;</span>)</span>
-<span id="cb243-2"><a href="conexión-con-bases-de-datos-desde-r.html#cb243-2" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&quot;select * from iris&quot;</span>)</span></code></pre></div>
-<p>pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb244-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&quot;SELECT * FROM IRIS&quot;</span>)</span></code></pre></div>
-<p>La sintaxis básica de SELECT es:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb245-1" tabindex="-1"></a>SELECT variable1, variable2 FROM data</span></code></pre></div>
-<div id="asteriscowildcard" class="section level4 hasAnchor" number="3.11.3.1">
-<h4><span class="header-section-number">3.11.3.1</span> Asterisco/Wildcard<a href="conexión-con-bases-de-datos-desde-r.html#asteriscowildcard" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Lo extrae todo</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb246-1" tabindex="-1"></a>bod2 <span class="ot">&lt;-</span> <span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD&#39;</span>)</span></code></pre></div>
-</div>
-<div id="limit" class="section level4 hasAnchor" number="3.11.3.2">
-<h4><span class="header-section-number">3.11.3.2</span> Limit<a href="conexión-con-bases-de-datos-desde-r.html#limit" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Limita el número de resultados</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb247-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM iris LIMIT 5&#39;</span>)</span></code></pre></div>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa</code></pre>
-</div>
-<div id="order-by" class="section level4 hasAnchor" number="3.11.3.3">
-<h4><span class="header-section-number">3.11.3.3</span> Order By<a href="conexión-con-bases-de-datos-desde-r.html#order-by" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Ordena las variables</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb249-1" tabindex="-1"></a>ORDER BY var1 {ASC<span class="sc">/</span>DESC}, var2 {ASC<span class="sc">/</span>DESC}</span></code></pre></div>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb250-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&quot;SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5&quot;</span>)</span></code></pre></div>
-<pre><code>##   Tree age circumference
-## 1    2 118            33
-## 2    4 118            32
-## 3    1 118            30
-## 4    3 118            30
-## 5    5 118            30</code></pre>
-</div>
-<div id="where" class="section level4 hasAnchor" number="3.11.3.4">
-<h4><span class="header-section-number">3.11.3.4</span> Where<a href="conexión-con-bases-de-datos-desde-r.html#where" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb252-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT demand FROM BOD WHERE Time &lt; 3&#39;</span>)</span></code></pre></div>
-<pre><code>##   demand
-## 1    8.3
-## 2   10.3</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb254-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM rock WHERE (peri &gt; 5000 AND shape &lt; .05) OR perm &gt; 1000&#39;</span>)</span></code></pre></div>
-<pre><code>##   area     peri    shape perm
-## 1 5048  941.543 0.328641 1300
-## 2 1016  308.642 0.230081 1300
-## 3 5605 1145.690 0.464125 1300
-## 4 8793 2280.490 0.420477 1300</code></pre>
-<p>Y extendiendo su uso con IN o LIKE (es último sólo con %), pudiendo aplicárseles el NOT:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb256-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time IN (1,7)&#39;</span>)</span></code></pre></div>
-<pre><code>##   Time demand
-## 1    1    8.3
-## 2    7   19.8</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb258-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time NOT IN (1,7)&#39;</span>)</span></code></pre></div>
-<pre><code>##   Time demand
-## 1    2   10.3
-## 2    3   19.0
-## 3    4   16.0
-## 4    5   15.6</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb260-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</span></code></pre></div>
-<pre><code>##   weight      feed
-## 1    179 horsebean
-## 2    160 horsebean
-## 3    136 horsebean
-## 4    227 horsebean
-## 5    217 horsebean</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb262-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed NOT LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</span></code></pre></div>
-<pre><code>##   weight    feed
-## 1    309 linseed
-## 2    229 linseed
-## 3    181 linseed
-## 4    141 linseed
-## 5    260 linseed</code></pre>
-</div>
-</div>
+<div id="eficiencia-tidyverse" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Eficiencia y desfases con dplyr<a href="eficiencia-tidyverse.html#eficiencia-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En la Sección <a href="eficiencia-manipR.html#eficiencia-manipR">2.4</a> se calculó el desfase (<em>lag</em>/<em>lead</em>) de un vector desplazándolo “a mano” en R base. <code>dplyr</code> ofrece las funciones <a href="https://dplyr.tidyverse.org/reference/lead-lag.html"><code>lag()</code></a> y <a href="https://dplyr.tidyverse.org/reference/lead-lag.html"><code>lead()</code></a>, que hacen lo mismo con una sintaxis más legible (y son especialmente útiles dentro de <code>mutate()</code>, por ejemplo para calcular incrementos entre observaciones consecutivas):</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="eficiencia-tidyverse.html#cb420-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span></span>
+<span id="cb420-2"><a href="eficiencia-tidyverse.html#cb420-2" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">lag</span>(a)</span></code></pre></div>
+<pre><code>##  [1] NA  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="eficiencia-tidyverse.html#cb422-1" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">lead</span>(a)</span></code></pre></div>
+<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11 NA</code></pre>
+<p>¿Tiene esta comodidad algún coste en rendimiento? Comparamos con <a href="https://github.com/joshuaulrich/microbenchmark/"><code>microbenchmark</code></a> frente al desplazamiento manual de la Sección <a href="eficiencia-manipR.html#eficiencia-manipR">2.4</a>:</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="eficiencia-tidyverse.html#cb424-1" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb424-2"><a href="eficiencia-tidyverse.html#cb424-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e6</span>)</span>
+<span id="cb424-3"><a href="eficiencia-tidyverse.html#cb424-3" tabindex="-1"></a><span class="fu">microbenchmark</span>(</span>
+<span id="cb424-4"><a href="eficiencia-tidyverse.html#cb424-4" tabindex="-1"></a>  <span class="at">base_r    =</span> <span class="fu">c</span>(<span class="cn">NA</span>, x[<span class="sc">-</span><span class="fu">length</span>(x)]),</span>
+<span id="cb424-5"><a href="eficiencia-tidyverse.html#cb424-5" tabindex="-1"></a>  <span class="at">dplyr_lag =</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(x),</span>
+<span id="cb424-6"><a href="eficiencia-tidyverse.html#cb424-6" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">20</span></span>
+<span id="cb424-7"><a href="eficiencia-tidyverse.html#cb424-7" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##       expr    min      lq     mean  median       uq      max neval cld
+##     base_r 6.5569 7.58160 35.19722 15.2558 17.94405 440.0706    20   a
+##  dplyr_lag 5.9889 6.84205 30.42360  9.3262 15.50945 413.5255    20   a</code></pre>
+<p><code>lag()</code>/<code>lead()</code> están vectorizadas internamente, por lo que su rendimiento es equiparable al del código base equivalente: la sintaxis más uniforme de <code>dplyr</code> no implica aquí una penalización relevante.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="ejemplos-de-consultas-sql.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ejemplo-scopus-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dbplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resumen-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -546,7 +456,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/gltaboada/tgdbook/edit/master/03-SQL.Rmd",
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/05-dplyr.Rmd",
     "text": "Edit"
   },
   "history": {

@@ -29,12 +29,14 @@ Al instalar este paquete se instalan paquetes que forman el denominado núcleo d
 - [`lubridate`](https://github.com/tidyverse/lubridate): manipulación de fechas y horas.
 
 y un conjunto de paquetes recomendados:  
+
 - [`feather`](https://github.com/wesm/feather): almacenamiento eficiente de data frames.
 - [`haven`](https://github.com/tidyverse/haven): lectura y escritura de datos de SPSS, Stata y SAS en R 
 - [`modelr`](https://github.com/tidyverse/modelr): crear pipelines^[serie de pasos conectados (tuberías) que procesan datos y los transforman en un formato deseado para su análisis o modelado] elegantes al modelar datos en R (obsoleto).
 - [`broom`](https://github.com/tidymodels/broom): resúmenes estadísticos en formato Tidy.
 
 Otros paquetes de interés son:
+
 - [`readxl`](https://github.com/tidyverse/readxl): lectura de archivos Excel.
 - [`writexl`](https://github.com/ropensci/writexl): exportación a Excel.
 - [`hms`](https://github.com/tidyverse/hms): manipulación de medidas de tiempo.
@@ -50,10 +52,7 @@ Otros paquetes de interés son:
 library(tidyverse)
 ```
 
-Al cargar `tidyverse` es habitual que aparezcan avisos de *conflictos*: algunas
-funciones de estos paquetes tienen el mismo nombre que funciones de R base o
-de otros paquetes ya cargados (por ejemplo, `dplyr::filter()` enmascara a
-`stats::filter()`). Si esto ocurre, la función del paquete cargado en último
+Al cargar `tidyverse` es habitual que aparezcan avisos de *conflictos*: algunas funciones de estos paquetes tienen el mismo nombre que funciones de R base o de otros paquetes ya cargados (por ejemplo, `dplyr::filter()` enmascara a `stats::filter()`). Si esto ocurre, la función del paquete cargado en último
 lugar es la que se usará por defecto; para evitar ambigüedad se puede
 especificar explícitamente el paquete, p.&nbsp;ej. `stats::filter()`.
 
@@ -1107,9 +1106,9 @@ microbenchmark(
 
 ```
 ## Unit: milliseconds
-##       expr    min      lq     mean median       uq      max neval cld
-##     base_r 4.3350 5.43185 22.04644 8.8238 12.62165 271.1181    20   a
-##  dplyr_lag 3.8369 4.44960 23.06593 8.8857 12.56055 298.7548    20   a
+##       expr    min      lq     mean  median       uq      max neval cld
+##     base_r 6.5569 7.58160 35.19722 15.2558 17.94405 440.0706    20   a
+##  dplyr_lag 5.9889 6.84205 30.42360  9.3262 15.50945 413.5255    20   a
 ```
 
 `lag()`/`lead()` están vectorizadas internamente, por lo que su rendimiento es equiparable al del código base equivalente: la sintaxis más uniforme de `dplyr` no implica aquí una penalización relevante.

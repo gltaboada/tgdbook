@@ -15,7 +15,13 @@ fig:bostonfinal
 exr:train-validate-test
 exr:train-boot-boston
 fig:obspredplot
+fig:ovo-ova
 fig:maldicion
+fig:roc-proc
+fig:roc-yardstick
+fig:pdp-example
+exr:penguins-clas
+exr:penguins-simpson
 introducción
 contenidos
 planificación-tentativa
@@ -198,6 +204,13 @@ eval-reg
 clasificacion
 knn-ejemplo
 maldicion
+tidymodels
+tidymodels-reg
+tidymodels-clas
+desbalanceo
+roc-auc
+vip
+resumen-tidymodels
 analisis-modelos
 tecnologías-big-data-hadoopspark-y-visualización
 tecnologías-hadoop-spark-y-sparklyr

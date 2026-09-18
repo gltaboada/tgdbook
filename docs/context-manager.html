@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.3 Context Manager | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.3 Context Manager | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
@@ -34,7 +34,7 @@
   
 <link rel="prev" href="python-y-sqlite.html"/>
 <link rel="next" href="csv-en-python.html"/>
-<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,15 +54,15 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -140,7 +140,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -201,16 +200,27 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.6" data-path="read.html"><a href="read.html#cap2-exporta"><i class="fa fa-check"></i><b>2.1.6</b> Exportación de datos</a></li>
 <li class="chapter" data-level="2.1.7" data-path="read.html"><a href="read.html#python-julia-y-otros-lenguajes-de-programaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.7</b> Python, Julia y otros lenguajes de programación</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
+<li class="chapter" data-level="2.2" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>2.2</b> Manipulación de datos</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
-<li class="chapter" data-level="2.2.3" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
-<li class="chapter" data-level="2.2.4" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
-<li class="chapter" data-level="2.2.6" data-path="manipulación-de-datos.html"><a href="manipulación-de-datos.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="2.2.1" data-path="manip.html"><a href="manip.html#operaciones-con-variables"><i class="fa fa-check"></i><b>2.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="manip.html"><a href="manip.html#operaciones-con-casos"><i class="fa fa-check"></i><b>2.2.2</b> Operaciones con casos</a></li>
+<li class="chapter" data-level="2.2.3" data-path="manip.html"><a href="manip.html#missing"><i class="fa fa-check"></i><b>2.2.3</b> Datos faltantes</a></li>
+<li class="chapter" data-level="2.2.4" data-path="manip.html"><a href="manip.html#funciones-apply"><i class="fa fa-check"></i><b>2.2.4</b> Funciones <code>apply</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="manip.html"><a href="manip.html#generaci%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.2.5</b> Generación de tablas</a></li>
+<li class="chapter" data-level="2.2.6" data-path="manip.html"><a href="manip.html#operaciones-con-tablas-de-datos"><i class="fa fa-check"></i><b>2.2.6</b> Operaciones con tablas de datos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="ejemplo-wos-data.html"><a href="ejemplo-wos-data.html"><i class="fa fa-check"></i><b>2.3</b> Ejemplo WoS data</a></li>
+<li class="chapter" data-level="2.4" data-path="eficiencia-manipR.html"><a href="eficiencia-manipR.html"><i class="fa fa-check"></i><b>2.4</b> Eficiencia en R: preasignación, vectorización y desfases</a></li>
+<li class="chapter" data-level="2.5" data-path="resumen-manipR.html"><a href="resumen-manipR.html"><i class="fa fa-check"></i><b>2.5</b> Resumen: R base</a></li>
+<li class="chapter" data-level="2.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html"><i class="fa fa-check"></i><b>2.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-1-incremento-salarial-empleados"><i class="fa fa-check"></i><b>2.6.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars"><i class="fa fa-check"></i><b>2.6.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-4-resumen-y-agrupaci%C3%B3n"><i class="fa fa-check"></i><b>2.6.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-5-uni%C3%B3n-de-tablas"><i class="fa fa-check"></i><b>2.6.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="2.6.6" data-path="ejercicios-manipR.html"><a href="ejercicios-manipR.html#ejercicio-6-opcional-columnas-lista"><i class="fa fa-check"></i><b>2.6.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introSQL.html"><a href="introSQL.html"><i class="fa fa-check"></i><b>3</b> Introducción al lenguaje SQL</a>
 <ul>
@@ -312,6 +322,17 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.5.1</b> Ejemplos</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="eficiencia-tidyverse.html"><a href="eficiencia-tidyverse.html"><i class="fa fa-check"></i><b>5.6</b> Eficiencia y desfases con dplyr</a></li>
+<li class="chapter" data-level="5.7" data-path="resumen-tidyverse.html"><a href="resumen-tidyverse.html"><i class="fa fa-check"></i><b>5.7</b> Resumen: dplyr/tidyr y R base</a></li>
+<li class="chapter" data-level="5.8" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html"><i class="fa fa-check"></i><b>5.8</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-1-incremento-salarial-empleados-1"><i class="fa fa-check"></i><b>5.8.1</b> Ejercicio 1: incremento salarial (<code>empleados</code>)</a></li>
+<li class="chapter" data-level="5.8.2" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars-1"><i class="fa fa-check"></i><b>5.8.2</b> Ejercicio 2: Filtrado y selección (<code>starwars</code>)</a></li>
+<li class="chapter" data-level="5.8.3" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.3</b> Ejercicio 3: Creación de una variable y categorización</a></li>
+<li class="chapter" data-level="5.8.4" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-4-resumen-y-agrupaci%C3%B3n-1"><i class="fa fa-check"></i><b>5.8.4</b> Ejercicio 4: Resumen y agrupación</a></li>
+<li class="chapter" data-level="5.8.5" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-5-uni%C3%B3n-de-tablas-1"><i class="fa fa-check"></i><b>5.8.5</b> Ejercicio 5: Unión de tablas</a></li>
+<li class="chapter" data-level="5.8.6" data-path="ejercicios-tidyverse.html"><a href="ejercicios-tidyverse.html#ejercicio-6-opcional-columnas-lista-1"><i class="fa fa-check"></i><b>5.8.6</b> Ejercicio 6 (opcional): columnas-lista</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introducción-a-tecnologías-nosql.html"><a href="introducción-a-tecnologías-nosql.html"><i class="fa fa-check"></i><b>6</b> Introducción a Tecnologías NoSQL</a>
 <ul>
@@ -330,15 +351,31 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><a href="tecnologías-para-el-tratamiendo-de-datos-masivos.html"><i class="fa fa-check"></i><b>7</b> Tecnologías para el Tratamiendo de Datos Masivos</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="introducción-al-aprendizaje-estadístico.html"><a href="introducción-al-aprendizaje-estadístico.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a></li>
-<li class="chapter" data-level="7.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.2</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<li class="chapter" data-level="7.1" data-path="intro-AE.html"><a href="intro-AE.html"><i class="fa fa-check"></i><b>7.1</b> Introducción al Aprendizaje Estadístico</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.2.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
-<li class="chapter" data-level="7.2.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.2.2</b> Big Data y Machine Learning</a></li>
-<li class="chapter" data-level="7.2.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.2.3</b> Rattle como alternativa a RapidMiner en R</a></li>
-<li class="chapter" data-level="7.2.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.2.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+<li class="chapter" data-level="7.1.1" data-path="intro-AE.html"><a href="intro-AE.html#aprendizaje-estad%C3%ADstico-vs.-aprendizaje-autom%C3%A1tico"><i class="fa fa-check"></i><b>7.1.1</b> Aprendizaje estadístico vs. aprendizaje automático</a></li>
+<li class="chapter" data-level="7.1.2" data-path="intro-AE.html"><a href="intro-AE.html#m%C3%A9todos-de-aprendizaje-estad%C3%ADstico"><i class="fa fa-check"></i><b>7.1.2</b> Métodos de aprendizaje estadístico</a></li>
+<li class="chapter" data-level="7.1.3" data-path="intro-AE.html"><a href="intro-AE.html#const-eval"><i class="fa fa-check"></i><b>7.1.3</b> Construcción y evaluación de los modelos</a></li>
+<li class="chapter" data-level="7.1.4" data-path="intro-AE.html"><a href="intro-AE.html#clasificacion"><i class="fa fa-check"></i><b>7.1.4</b> Clasificación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.3</b> Introducción al Análisis de Datos Masivos</a></li>
+<li class="chapter" data-level="7.2" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>7.2</b> Modelización con <code>tidymodels</code></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-reg"><i class="fa fa-check"></i><b>7.2.1</b> Regresión: seleccionando el grado del polinomio con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="tidymodels.html"><a href="tidymodels.html#tidymodels-clas"><i class="fa fa-check"></i><b>7.2.2</b> Clasificación: seleccionando <span class="math inline">\(k\)</span> en KNN con <code>tune_grid()</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="tidymodels.html"><a href="tidymodels.html#desbalanceo"><i class="fa fa-check"></i><b>7.2.3</b> Clasificación desbalanceada: remuestreo dentro de la receta</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tidymodels.html"><a href="tidymodels.html#roc-auc"><i class="fa fa-check"></i><b>7.2.4</b> Curva ROC y AUC</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tidymodels.html"><a href="tidymodels.html#vip"><i class="fa fa-check"></i><b>7.2.5</b> Importancia de variables y efectos parciales: <code>vip</code> y <code>pdp</code></a></li>
+<li class="chapter" data-level="7.2.6" data-path="tidymodels.html"><a href="tidymodels.html#resumen-tidymodels"><i class="fa fa-check"></i><b>7.2.6</b> Resumen: tidymodels y R base</a></li>
+<li class="chapter" data-level="7.2.7" data-path="tidymodels.html"><a href="tidymodels.html#analisis-modelos"><i class="fa fa-check"></i><b>7.2.7</b> Análisis e interpretación de los modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html"><i class="fa fa-check"></i><b>7.3</b> Tecnologías Big Data (Hadoop/Spark y Visualización)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#tecnolog%C3%ADas-hadoop-spark-y-sparklyr"><i class="fa fa-check"></i><b>7.3.1</b> Tecnologías Hadoop, Spark, y Sparklyr</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#big-data-y-machine-learning"><i class="fa fa-check"></i><b>7.3.2</b> Big Data y Machine Learning</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#rattle-como-alternativa-a-rapidminer-en-r"><i class="fa fa-check"></i><b>7.3.3</b> Rattle como alternativa a RapidMiner en R</a></li>
+<li class="chapter" data-level="7.3.4" data-path="tecnologías-big-data-hadoopspark-y-visualización.html"><a href="tecnologías-big-data-hadoopspark-y-visualización.html#visualizaci%C3%B3n-y-generaci%C3%B3n-de-cuadros-de-mando"><i class="fa fa-check"></i><b>7.3.4</b> Visualización y Generación de Cuadros de Mando</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="introducción-al-análisis-de-datos-masivos.html"><a href="introducción-al-análisis-de-datos-masivos.html"><i class="fa fa-check"></i><b>7.4</b> Introducción al Análisis de Datos Masivos</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -374,13 +411,13 @@ El objetivo de un context manager es <strong>gestionar recursos de forma automá
 </ul>
 <p>Sin un context manager, el programador debe encargarse de abrir y cerrar recursos manualmente.<br />
 Por ejemplo, al trabajar con archivos:</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb306-1"><a href="context-manager.html#cb306-1" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;datos.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)</span>
-<span id="cb306-2"><a href="context-manager.html#cb306-2" tabindex="-1"></a>contenido <span class="op">=</span> f.read()</span>
-<span id="cb306-3"><a href="context-manager.html#cb306-3" tabindex="-1"></a>f.close()</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb318-1"><a href="context-manager.html#cb318-1" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;datos.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)</span>
+<span id="cb318-2"><a href="context-manager.html#cb318-2" tabindex="-1"></a>contenido <span class="op">=</span> f.read()</span>
+<span id="cb318-3"><a href="context-manager.html#cb318-3" tabindex="-1"></a>f.close()</span></code></pre></div>
 <p>Si ocurre un error entre <code>open()</code> y <code>close()</code>, el archivo podría quedar <strong>abierto</strong>, generando fugas de recursos o comportamientos inesperados.</p>
 <p>El uso de <code>with</code> garantiza que el recurso se cierre automáticamente cuando termina el bloque, incluso si ocurre una excepción.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb307-1"><a href="context-manager.html#cb307-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;datos.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb307-2"><a href="context-manager.html#cb307-2" tabindex="-1"></a>    contenido <span class="op">=</span> f.read()</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb319-1"><a href="context-manager.html#cb319-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;datos.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb319-2"><a href="context-manager.html#cb319-2" tabindex="-1"></a>    contenido <span class="op">=</span> f.read()</span></code></pre></div>
 <p>Aquí:</p>
 <ul>
 <li>se abre el archivo</li>
@@ -388,19 +425,19 @@ Por ejemplo, al trabajar con archivos:</p>
 <li>al salir del bloque, Python llama automáticamente a <code>f.close()</code></li>
 </ul>
 <p>Esto hace que el código sea más <strong>seguro</strong>, <strong>limpio</strong> y <strong>fácil de leer</strong>.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb308-1"><a href="context-manager.html#cb308-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;datos.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb308-2"><a href="context-manager.html#cb308-2" tabindex="-1"></a>    f.write(<span class="st">&quot;Ejemplo de context manager&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb320-1"><a href="context-manager.html#cb320-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;datos.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb320-2"><a href="context-manager.html#cb320-2" tabindex="-1"></a>    f.write(<span class="st">&quot;Ejemplo de context manager&quot;</span>)</span></code></pre></div>
 <p>En este caso, <code>open()</code> devuelve un objeto archivo que actúa como context manager.<br />
 Al finalizar el bloque, Python ejecuta automáticamente el cierre del archivo.</p>
 <div id="ejemplo-conexión-sqlite" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Ejemplo: conexión SQLite<a href="context-manager.html#ejemplo-conexi%C3%B3n-sqlite" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Las conexiones SQLite también son context managers.<br />
 El siguiente código garantiza un <code>commit()</code> si todo va bien, o un <code>rollback()</code> si hay errores:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb309-1"><a href="context-manager.html#cb309-1" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb309-2"><a href="context-manager.html#cb309-2" tabindex="-1"></a></span>
-<span id="cb309-3"><a href="context-manager.html#cb309-3" tabindex="-1"></a><span class="cf">with</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;personas.sqlite&quot;</span>) <span class="im">as</span> conn:</span>
-<span id="cb309-4"><a href="context-manager.html#cb309-4" tabindex="-1"></a>    cursor <span class="op">=</span> conn.cursor()</span>
-<span id="cb309-5"><a href="context-manager.html#cb309-5" tabindex="-1"></a>    cursor.execute(<span class="st">&quot;INSERT INTO usuarios(nombre) VALUES (&#39;Ana&#39;)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb321-1"><a href="context-manager.html#cb321-1" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb321-2"><a href="context-manager.html#cb321-2" tabindex="-1"></a></span>
+<span id="cb321-3"><a href="context-manager.html#cb321-3" tabindex="-1"></a><span class="cf">with</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;personas.sqlite&quot;</span>) <span class="im">as</span> conn:</span>
+<span id="cb321-4"><a href="context-manager.html#cb321-4" tabindex="-1"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb321-5"><a href="context-manager.html#cb321-5" tabindex="-1"></a>    cursor.execute(<span class="st">&quot;INSERT INTO usuarios(nombre) VALUES (&#39;Ana&#39;)&quot;</span>)</span></code></pre></div>
 </div>
 </div>
             </section>

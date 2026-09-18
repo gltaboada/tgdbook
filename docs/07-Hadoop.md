@@ -11,7 +11,6 @@ En este apartado trataremos los siguientes epígrafes:
 
 
 
-
 ## Introducción al Aprendizaje Estadístico {#intro-AE}
 
 Este apartado es una adaptación (reducida, pensada para 2 sesiones de 2 horas) del [Capítulo 1](https://rubenfcasal.github.io/aprendizaje_estadistico/intro-AE.html) de Fernández-Casal, Costa y Oviedo, [*Métodos predictivos de aprendizaje estadístico*](https://rubenfcasal.github.io/aprendizaje_estadistico/), que se sigue empleando como referencia completa para quien quiera profundizar (incluye, entre otros contenidos que aquí solo se tratarán brevemente por falta de tiempo, un desarrollo más completo de la maldición de la dimensionalidad y del paquete `caret`).
@@ -90,7 +89,7 @@ Supondremos que el objetivo principal es, a partir de una muestra $\left\{\left(
 
 donde $m(\mathbf{x}) = E\left( \left. Y\right\vert \mathbf{X}=\mathbf{x} \right)$ es la media condicional (función de regresión o tendencia) y $\varepsilon$ un error aleatorio de media cero y varianza $\sigma^2$, independiente de $\mathbf{X}$.
 
-Además, salvo que se indique lo contrario, se asume que las $n$ observaciones de la muestra son **independientes entre sí** (y en muchos desarrollos teóricos, también idénticamente distribuidas, supuesto habitualmente conocido como i.i.d.). Cuando esto no se cumple —por ejemplo con **series temporales** (observaciones consecutivas en el tiempo, ver `tidyverts`/`fable` en la Sección \@ref(tidyverse)), datos **agrupados o longitudinales** (varias medidas repetidas sobre un mismo individuo) o datos **espaciales** (observaciones cercanas geográficamente más parecidas entre sí)— la dependencia entre observaciones debe tenerse en cuenta explícitamente, tanto al ajustar el modelo como al evaluarlo (por ejemplo, particionar entrenamiento/test al azar dejaría de ser adecuado; ver Sección \@ref(cv)). El tratamiento de datos dependientes requiere métodos específicos que quedan fuera del alcance de esta introducción.
+Esta hipótesis de independencia (o al menos de incorrelación) entre observaciones es razonable cuando los datos provienen de un muestreo aleatorio simple, pero puede no ser adecuada con datos dependientes, como series temporales (dependencia temporal, ver Capítulo \@ref(tidyverse)) o datos espaciales (dependencia espacial). En esos casos habría que emplear métodos específicos que tengan en cuenta esa dependencia, lo que queda fuera del alcance de esta introducción.
 
 #### Métodos (de aprendizaje supervisado) y paquetes de R {#metodos-pkgs}
 
@@ -123,6 +122,8 @@ Muchos métodos de AE son muy flexibles y pueden llegar a sobreajustarse a los d
 
 Queremos aprender más allá de los datos de entrenamiento (hacer inferencia sobre nuevas observaciones). En AE hay que tener especial cuidado con el sobreajuste: el modelo se ajusta demasiado bien a los datos de entrenamiento pero falla con datos nunca vistos.
 
+Recordando el modelo general \@ref(eq:modelogeneral), bajo una función de pérdida cuadrática el predictor óptimo (desconocido) sería la media condicional $m(\mathbf{x})$: el objetivo de cualquier método de AE es aproximarla lo mejor posible a partir de la muestra disponible.
+
 Como ejemplo ilustrativo empleamos regresión polinómica, considerando el grado del polinomio como hiperparámetro que determina la complejidad del modelo. Simulamos una muestra y ajustamos modelos con distinta complejidad:
 
 
@@ -145,7 +146,8 @@ fit3 <- lm(y ~ poly(x, 20))
 lines(x, fitted(fit3), lty = 3)
 legend("topright", lty = c(1, 1, 2, 3), lwd = c(2, 1, 1, 1),
        legend = c("Verdadero", "Ajuste con grado 1",
-                  "Ajuste con grado 4", "Ajuste con grado 20"))
+                  "Ajuste con grado 4",
+                  "Ajuste con grado 20"))
 ```
 
 <div class="figure" style="text-align: center">
@@ -156,7 +158,7 @@ legend("topright", lty = c(1, 1, 2, 3), lwd = c(2, 1, 1, 1),
 Al aumentar la complejidad se consigue un mejor ajuste a los datos de entrenamiento (Figura \@ref(fig:polyfit)), a costa de un incremento de la variabilidad de las predicciones, lo que puede empeorar el comportamiento del modelo con datos distintos de los observados. Si calculamos medidas de bondad de ajuste (MSE, $R^2$) se obtienen mejores resultados al aumentar la complejidad (Tabla \@ref(tab:gof-polyfit)):
 
 
-Table: (\#tab:gof-polyfit)Medidas de bondad de ajuste de los modelos polinómicos (muestra de entrenamiento).
+Table: (\#tab:gof-polyfit)Medidas de bondad de ajuste de los modelos polinómicos (entrenamiento).
 
 |       | $MSE$| $R^2$| $R^2_{adj}$|
 |:------|-----:|-----:|-----------:|
@@ -217,8 +219,9 @@ for(i in seq_len(nsim)) {
   }
 }
 # Representación errores simulaciones
-matplot(grados, mse, type = "l", col = "lightgray", lty = 1, ylim = c(0, 2),
-  xlab = "Grado del polinomio (complejidad)", ylab = "Error cuadrático medio")
+matplot(grados, mse, type = "l", col = "lightgray", lty = 1,
+        ylim = c(0, 2), xlab = "Grado del polinomio (complejidad)", 
+        ylab = "Error cuadrático medio")
 matlines(grados, mse.new, type = "l", lty = 2, col = "lightgray")
 # Errores globales
 precision <- rowMeans(mse)
@@ -226,7 +229,8 @@ precision.new <- rowMeans(mse.new)
 lines(grados, precision, lwd = 2)
 lines(grados, precision.new, lty = 2, lwd = 2)
 abline(h = sd^2, lty = 3); abline(v = 4, lty = 3)
-legend("topright", legend = c("Muestras", "Nuevas observaciones"), lty = c(1, 2))
+legend("topright", lty = c(1, 2),
+       legend = c("Muestras", "Nuevas observaciones"))
 ```
 
 <div class="figure" style="text-align: center">
@@ -318,9 +322,10 @@ summary(train)
 ```
 
 ``` r
-par(mfrow = c(1, 2))
-plot(density(train[, "medv"]))
-boxplot(train$medv)
+par(mfrow = c(1, 3))
+plot(density(train[, "medv"]), main = "Densidad")
+boxplot(train$medv, main = "Boxplot")
+vioplot::vioplot(train$medv, main = "Violín")
 ```
 
 <img src="07-Hadoop_files/figure-html/unnamed-chunk-2-1.png" alt="" width="80%" style="display: block; margin: auto;" />
@@ -514,7 +519,8 @@ fit.min <- lm(medv ~ poly(lstat, grado.min), train)
 fit.1se <- lm(medv ~ poly(lstat, grado.1se), train)
 newdata <- data.frame(lstat = seq(0, 40, len = 100))
 lines(newdata$lstat, predict(fit.min, newdata = newdata), lwd = 3)
-lines(newdata$lstat, predict(fit.1se, newdata = newdata), lty = 2, col = 2, lwd = 3)
+lines(newdata$lstat, predict(fit.1se, newdata = newdata),
+      lty = 2, col = 2, lwd = 3)
 legend("topright", legend = c(paste("Grado óptimo:", grado.min),
        paste("oneSE rule:", grado.1se)), lty = c(1, 2))
 ```
@@ -553,7 +559,8 @@ nobs <- nrow(Boston)
 itrain <- sample(nobs, size = floor(0.8 * nobs))
 train <- Boston[itrain, ]
 test  <- Boston[-itrain, ]
-# Remuestra bootstrap (con reemplazamiento) de los índices de entrenamiento
+# Remuestra bootstrap (con reemplazamiento) 
+# de los índices de entrenamiento
 set.seed(1)
 ntrain <- nrow(train)
 itrain_boot <- sample(seq_len(ntrain), replace = TRUE)
@@ -582,7 +589,7 @@ abline(res, lty = 2)
 <p class="caption">(\#fig:obspredplot)Observaciones frente a predicciones (identidad, línea continua, y ajuste lineal, línea discontinua).</p>
 </div>
 
-También es habitual calcular medidas de error, por ejemplo con `caret::postResample()`:
+También es habitual calcular medidas de error, como las que proporciona `caret::postResample()`:
 
 
 ``` r
@@ -632,7 +639,8 @@ accuracy <- function(pred, obs, na.rm = FALSE,
     mae = mean(abs(err)),     # Error absoluto medio
     mpe = mean(perr),         # Error porcentual medio
     mape = mean(abs(perr)),   # Error porcentual absoluto medio
-    r.squared = 1 - sum(err^2) / sum((obs - mean(obs))^2) # Pseudo R-cuadrado
+    # Pseudo R-cuadrado
+    r.squared = 1 - sum(err^2) / sum((obs - mean(obs))^2) 
   ))
 }
 accu.min <- accuracy(pred, obs)
@@ -658,7 +666,7 @@ En este caso, el ajuste polinómico con el grado óptimo explicaría un 60.9 % d
 
 ### Clasificación {#clasificacion}
 
-Todo lo anterior se ilustró con un problema de regresión (`medv` es numérica). Cuando la respuesta es categórica hablamos de **clasificación**; veamos un ejemplo breve, tanto con dos clases (clasificación *binaria*) como con más de dos (*multiclase*), empleando el conjunto de datos `iris` (tres especies de lirio a partir de las medidas de sépalos y pétalos).
+Todo lo anterior se ilustró con un problema de regresión (`medv` es numérica), ajustado al modelo general \@ref(eq:modelogeneral). Cuando la respuesta es categórica hablamos de **clasificación**: ese modelo no es directamente aplicable a variables categóricas, aunque muchos métodos (como la regresión logística) lo emplean para una variable auxiliar numérica que después se transforma a probabilidades mediante la función logística. Veamos un ejemplo breve, tanto con dos clases (clasificación *binaria*) como con más de dos (*multiclase*), empleando el conjunto de datos `iris` (tres especies de lirio a partir de las medidas de sépalos y pétalos).
 
 #### Ejemplo: clasificación binaria y multiclase con KNN {#knn-ejemplo}
 
@@ -735,12 +743,139 @@ No todos los métodos son tan flexibles: muchos clasificadores habituales (regre
 - **Uno contra uno** (*one-vs-one*, OVO): se entrena un clasificador binario para cada posible par de clases ($\binom{K}{2}$ modelos con $K$ clases) y se decide por votación mayoritaria entre todos ellos.
 - **Uno contra el resto** (*one-vs-all*/*one-vs-rest*, OVA/OVR): se entrena un clasificador binario por cada clase frente a todas las demás juntas ($K$ modelos), y se asigna la clase cuyo modelo dé mayor confianza.
 
+Antes de ver cómo resuelve esto un paquete concreto, conviene visualizar qué observaciones entran realmente en cada uno de los clasificadores binarios que componen cada estrategia: en OvR, cada uno de los $K$ clasificadores ve **todas** las observaciones (solo cambia qué especie se toma como positiva); en OvO, cada uno de los $\binom{K}{2}$ clasificadores ve **únicamente** las observaciones de las dos especies implicadas:
+
+
+``` r
+lev <- levels(train3$Species)
+col_clase <- c("#2a78d6", "#eb6834", "#1baf7a")
+names(col_clase) <- lev
+col_resto <- "grey80"
+bord_resto <- "grey55"
+
+xlim <- range(train3$Petal.Length)
+ylim <- range(train3$Petal.Width)
+
+layout(rbind(1, 2, c(3, 4, 5), 6, c(7, 8, 9)),
+       heights = c(0.09, 0.055, 0.40, 0.055, 0.40))
+
+titulo <- function(txt) {
+  par(mar = c(0, 1, 0, 0))
+  plot.new()
+  text(0, 0.5, txt, adj = c(0, 0.5), cex = 1.15, font = 2)
+}
+
+par(mar = c(0, 0, 0, 0))
+plot.new()
+legend("center", legend = c(lev, "Resto"),
+       pt.bg = c(col_clase, col_resto), pch = 21, pt.cex = 1.6,
+       col = c(rep("black", 3), bord_resto),
+       horiz = TRUE, bty = "n", cex = 1.05, text.width = 0.16)
+
+titulo("Uno contra el resto (OvR / OvA): un clasificador por especie")
+
+for (especie in lev) {
+  par(mar = c(4, 4, 2.5, 1))
+  es_foco <- train3$Species == especie
+  plot(train3$Petal.Length[!es_foco], train3$Petal.Width[!es_foco],
+       xlim = xlim, ylim = ylim, pch = 21, cex = 1, col = bord_resto,
+       bg = col_resto, xlab = "Petal.Length", ylab = "Petal.Width",
+       main = paste0(especie, " vs. Resto"))
+  points(train3$Petal.Length[es_foco], train3$Petal.Width[es_foco],
+         pch = 21, cex = 1.3, col = "black", bg = col_clase[especie])
+}
+
+titulo("Uno contra uno (OvO): un clasificador por cada par de especies")
+
+pares <- combn(lev, 2, simplify = FALSE)
+for (par_esp in pares) {
+  par(mar = c(4, 4, 2.5, 1))
+  sel <- train3$Species %in% par_esp
+  datos_par <- train3[sel, ]
+  plot(datos_par$Petal.Length, datos_par$Petal.Width,
+       xlim = xlim, ylim = ylim, pch = 21, cex = 1.3, col = "black",
+       bg = col_clase[as.character(datos_par$Species)],
+       xlab = "Petal.Length", ylab = "Petal.Width",
+       main = paste(par_esp, collapse = " vs. "))
+}
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-Hadoop_files/figure-html/ovo-ova-1.png" alt="Qué observaciones entran en cada clasificador binario: arriba, uno contra el resto (OvR/OvA); abajo, uno contra uno (OvO)." width="80%" />
+<p class="caption">(\#fig:ovo-ova)Qué observaciones entran en cada clasificador binario: arriba, uno contra el resto (OvR/OvA); abajo, uno contra uno (OvO).</p>
+</div>
+
+Puede apreciarse que OvO necesita más clasificadores conforme crece $K$ ($\binom{K}{2}$ frente a $K$), pero cada uno se entrena con un problema más sencillo: menos observaciones, y una frontera potencialmente más clara al enfrentar solo dos especies a la vez en lugar de una especie contra el resto.
+
+Alternativamente, la misma figura puede construirse con `ggplot2`/`patchwork` (código no evaluado; se deja aquí por si se prefiere retomar esta versión más adelante):
+
+
+``` r
+library(ggplot2)
+library(patchwork)
+
+col_clase <- c(setosa = "#2a78d6", versicolor = "#eb6834",
+                virginica = "#1baf7a", Resto = "grey80")
+lev <- levels(train3$Species)
+xlim <- range(train3$Petal.Length)
+ylim <- range(train3$Petal.Width)
+
+ovr <- do.call(rbind, lapply(lev, function(especie) {
+  d <- train3
+  d$panel <- paste0(especie, " vs. Resto")
+  d$grupo <- ifelse(d$Species == especie, especie, "Resto")
+  d
+}))
+ovr$panel <- factor(ovr$panel, levels = paste0(lev, " vs. Resto"))
+ovr$grupo <- factor(ovr$grupo, levels = c(lev, "Resto"))
+ovr <- ovr[order(ovr$grupo != "Resto"), ]
+
+pares <- combn(lev, 2, simplify = FALSE)
+ovo <- do.call(rbind, lapply(pares, function(par_esp) {
+  d <- train3[train3$Species %in% par_esp, ]
+  d$panel <- paste(par_esp, collapse = " vs. ")
+  d$grupo <- factor(as.character(d$Species), levels = lev)
+  d
+}))
+ovo$panel <- factor(ovo$panel,
+                     levels = sapply(pares, paste, collapse = " vs. "))
+
+tema_panel <- theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        strip.text = element_text(face = "bold"),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold", size = 12))
+
+p_ovr <- ggplot(ovr, aes(Petal.Length, Petal.Width, fill = grupo)) +
+  geom_point(shape = 21, color = "black", size = 2.4, stroke = 0.3) +
+  facet_wrap(~ panel, nrow = 1) +
+  scale_fill_manual(values = col_clase, name = NULL,
+                     limits = c(lev, "Resto")) +
+  coord_cartesian(xlim = xlim, ylim = ylim) +
+  labs(title = "Uno contra el resto (OvR / OvA)") +
+  tema_panel
+
+p_ovo <- ggplot(ovo, aes(Petal.Length, Petal.Width, fill = grupo)) +
+  geom_point(shape = 21, color = "black", size = 2.4, stroke = 0.3) +
+  facet_wrap(~ panel, nrow = 1) +
+  scale_fill_manual(values = col_clase, name = NULL,
+                     limits = c(lev, "Resto"), drop = FALSE) +
+  coord_cartesian(xlim = xlim, ylim = ylim) +
+  labs(title = "Uno contra uno (OvO)") +
+  tema_panel
+
+(p_ovr / p_ovo) +
+  plot_layout(guides = "collect") &
+  theme(legend.position = "bottom")
+```
+
 Por ejemplo, [`e1071`](https://cran.r-project.org/package=e1071) resuelve el caso multiclase de las máquinas de soporte vectorial mediante la estrategia OVO por defecto:
 
 
 ``` r
 library(e1071)
-modelo_ovo <- svm(Species ~ Petal.Length + Petal.Width, data = train3, kernel = "linear")
+modelo_ovo <- svm(Species ~ Petal.Length + Petal.Width,
+                   data = train3, kernel = "linear")
 pred_ovo <- predict(modelo_ovo, newdata = test3)
 table(Predicho = pred_ovo, Real = test3$Species)
 ```
@@ -789,7 +924,8 @@ data.frame(p = p, lado_hipercubo = round(lado, 3))
 ```
 
 ``` r
-plot(p, lado, type = "b", ylim = c(0, 1), xlab = "Número de predictores (p)",
+plot(p, lado, type = "b", ylim = c(0, 1),
+     xlab = "Número de predictores (p)",
      ylab = "Lado del hipercubo necesario")
 abline(h = 1, lty = 2)
 ```
@@ -801,15 +937,481 @@ abline(h = 1, lty = 2)
 
 Con $p=1$ basta con recorrer el $10\%$ del rango de la variable; con $p=100$ haría falta cubrir prácticamente el rango completo ($97.7\%$) en *cada* predictor para conseguir esos mismos "vecinos". Es decir, con muchos predictores, los vecinos más próximos dejan de ser realmente próximos, salvo que se disponga de muestras enormes. Esto explica por qué, en dimensión alta, suelen preferirse métodos que no dependen tanto de la localidad (modelos lineales, regularización) o técnicas previas de selección/reducción de variables, que se tratan en el libro completo de referencia.
 
+## Modelización con `tidymodels` {#tidymodels}
+
+Como se comentó en la Sección \@ref(metodos-pkgs), cada paquete de modelización emplea su propia interfaz (argumentos, formato de los datos de entrada y salida...), lo que complica combinar y comparar métodos distintos. Paquetes como `caret` resuelven este problema ofreciendo una interfaz común; de hecho, el libro completo de referencia de esta sección (Fernández-Casal, Costa y Oviedo) emplea `caret` con este propósito. Como en este curso ya hemos trabajado con el universo `tidyverse` (Capítulo \@ref(tidyverse)), resulta natural emplear en su lugar [`tidymodels`](https://www.tidymodels.org), una colección de paquetes que sigue la misma filosofía (funciones que devuelven *tibbles*, uso extensivo de *pipes*) para cubrir todo el flujo de trabajo del AE:
+
+- [`rsample`](https://rsample.tidymodels.org): partición y remuestreo de los datos (entrenamiento/test, validación cruzada, *bootstrap*...).
+- [`recipes`](https://recipes.tidymodels.org): preprocesamiento de los datos (creación de variables, transformaciones...) de forma reproducible entre entrenamiento y test.
+- [`parsnip`](https://parsnip.tidymodels.org): especificación de modelos con una interfaz común, independiente del paquete (*engine*) que finalmente ajusta el modelo.
+- [`workflows`](https://workflows.tidymodels.org): combina receta y modelo en un único objeto.
+- [`tune`](https://tune.tidymodels.org) y [`dials`](https://dials.tidymodels.org): selección de hiperparámetros (equivalente al `train()` de `caret`).
+- [`yardstick`](https://yardstick.tidymodels.org): cálculo de medidas de precisión.
+- [`themis`](https://themis.tidymodels.org): pasos adicionales de receta para remuestrear clases desbalanceadas.
+- [`broom`](https://broom.tidymodels.org): convierte la salida (habitualmente poco manejable) de un modelo de R en un *tibble*; muy útil junto con `dplyr::group_by()`/`tidyr::nest()` y `purrr::map()` para ajustar y resumir muchos modelos a la vez (p. ej. un modelo por grupo).
+
+Para profundizar, la referencia principal es el libro (gratuito) [*Tidy Modeling with R*](https://www.tmwr.org) de Kuhn y Silge, junto con la documentación oficial en <https://www.tidymodels.org> (incluye *vignettes* y una *cheat sheet* para cada paquete).
+
+Veamos cómo, con estas herramientas, se puede reproducir lo que hicimos "a mano" tanto en el ejemplo de regresión (selección del grado del polinomio) como en el de clasificación (selección de $k$ en KNN).
+
+### Regresión: seleccionando el grado del polinomio con `tune_grid()` {#tidymodels-reg}
+
+Retomamos el ejemplo de la Sección \@ref(cv) (valoración de viviendas `medv` frente al estatus `lstat`, conjunto `Boston`, mismas particiones `train`/`test`). En lugar del bucle manual, definimos una receta que incluye el grado del polinomio como hiperparámetro a ajustar (`step_poly()`), un modelo lineal (`linear_reg()`) y los combinamos en un flujo de trabajo (`workflow()`):
+
+
+``` r
+library(tidymodels)
+
+receta_poly <- recipe(medv ~ lstat, data = train) %>%
+  step_poly(lstat, degree = tune())
+
+modelo_lm <- linear_reg() %>%
+  set_engine("lm")
+
+flujo_reg <- workflow() %>%
+  add_recipe(receta_poly) %>%
+  add_model(modelo_lm)
+```
+
+Seleccionamos el grado óptimo por validación cruzada de 10 particiones (`vfold_cv()` + `tune_grid()`), en lugar de las predicciones tipo *leave-one-out* obtenidas con `rstandard()` empleadas anteriormente:
+
+
+``` r
+set.seed(1)
+cv_folds <- vfold_cv(train, v = 10)
+grid_grados <- tibble(degree = 1:10)
+
+res_tune <- tune_grid(
+  flujo_reg,
+  resamples = cv_folds,
+  grid = grid_grados,
+  metrics = metric_set(rmse)
+)
+show_best(res_tune, metric = "rmse", n = 5)
+```
+
+```
+## # A tibble: 5 × 7
+##   degree .metric .estimator  mean     n std_err .config         
+##    <int> <chr>   <chr>      <dbl> <int>   <dbl> <chr>           
+## 1      6 rmse    standard    5.25    10   0.344 pre06_mod0_post0
+## 2      5 rmse    standard    5.26    10   0.345 pre05_mod0_post0
+## 3      7 rmse    standard    5.30    10   0.343 pre07_mod0_post0
+## 4      4 rmse    standard    5.31    10   0.355 pre04_mod0_post0
+## 5      9 rmse    standard    5.31    10   0.343 pre09_mod0_post0
+```
+
+``` r
+mejor_grado <- select_best(res_tune, metric = "rmse")
+mejor_grado
+```
+
+```
+## # A tibble: 1 × 2
+##   degree .config         
+##    <int> <chr>           
+## 1      6 pre06_mod0_post0
+```
+
+Finalmente, ajustamos el modelo con el grado seleccionado sobre todo el entrenamiento y evaluamos sobre el test, igual que hicimos con `accuracy()` en la Sección \@ref(eval-reg):
+
+
+``` r
+flujo_final <- finalize_workflow(flujo_reg, mejor_grado)
+ajuste_final <- fit(flujo_final, data = train)
+
+pred_tidymodels <- test %>%
+  bind_cols(predict(ajuste_final, new_data = test))
+
+metricas_reg <- metric_set(rmse, rsq, mae)
+metricas_reg(pred_tidymodels, truth = medv, estimate = .pred)
+```
+
+```
+## # A tibble: 3 × 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 rmse    standard       4.83 
+## 2 rsq     standard       0.629
+## 3 mae     standard       3.66
+```
+
+### Clasificación: seleccionando $k$ en KNN con `tune_grid()` {#tidymodels-clas}
+
+El mismo patrón sirve para clasificación. Retomamos el ejemplo multiclase de la Sección \@ref(knn-ejemplo) (`iris`, tres especies) y seleccionamos $k$ por validación cruzada (estratificada por `Species`, para mantener la proporción de clases en cada partición) en lugar de fijarlo arbitrariamente a 5:
+
+
+``` r
+receta_knn <- recipe(Species ~ Petal.Length + Petal.Width, data = train3)
+
+modelo_knn <- nearest_neighbor(neighbors = tune(),
+                                mode = "classification") %>%
+  set_engine("kknn")
+
+flujo_knn <- workflow() %>%
+  add_recipe(receta_knn) %>%
+  add_model(modelo_knn)
+```
+
+Recuérdese que en la Sección \@ref(eval-reg) definimos nuestra propia función `accuracy()` (como sustituto de `mpae::accuracy()`), que enmascararía a `yardstick::accuracy()` si la referenciásemos sin cualificar; por eso, a partir de aquí, siempre la llamamos como `yardstick::accuracy()`:
+
+
+``` r
+set.seed(1)
+cv_folds3 <- vfold_cv(train3, v = 5, strata = Species)
+grid_k <- tibble(neighbors = 1:15)
+
+res_tune_knn <- tune_grid(
+  flujo_knn,
+  resamples = cv_folds3,
+  grid = grid_k,
+  metrics = metric_set(yardstick::accuracy)
+)
+```
+
+`show_best()` muestra, a modo de inspección, las mejores combinaciones evaluadas (aquí, valores de $k$) ordenadas según la métrica indicada; `select_best()` devuelve directamente la mejor combinación como una *tibble* de hiperparámetros, lista para pasar a `finalize_workflow()`:
+
+
+``` r
+show_best(res_tune_knn, metric = "accuracy", n = 5)
+```
+
+```
+## # A tibble: 5 × 7
+##   neighbors .metric  .estimator  mean     n std_err .config         
+##       <int> <chr>    <chr>      <dbl> <int>   <dbl> <chr>           
+## 1         8 accuracy multiclass 0.959     5  0.0127 pre0_mod08_post0
+## 2         9 accuracy multiclass 0.959     5  0.0127 pre0_mod09_post0
+## 3        10 accuracy multiclass 0.959     5  0.0127 pre0_mod10_post0
+## 4        11 accuracy multiclass 0.959     5  0.0127 pre0_mod11_post0
+## 5        12 accuracy multiclass 0.959     5  0.0127 pre0_mod12_post0
+```
+
+``` r
+mejor_k <- select_best(res_tune_knn, metric = "accuracy")
+mejor_k
+```
+
+```
+## # A tibble: 1 × 2
+##   neighbors .config         
+##       <int> <chr>           
+## 1         8 pre0_mod08_post0
+```
+
+
+``` r
+flujo_knn_final <- finalize_workflow(flujo_knn, mejor_k)
+ajuste_knn_final <- fit(flujo_knn_final, data = train3)
+
+pred_knn_tidymodels <- test3 %>%
+  bind_cols(predict(ajuste_knn_final, new_data = test3))
+
+yardstick::accuracy(pred_knn_tidymodels, truth = Species,
+                     estimate = .pred_class)
+```
+
+```
+## # A tibble: 1 × 3
+##   .metric  .estimator .estimate
+##   <chr>    <chr>          <dbl>
+## 1 accuracy multiclass     0.967
+```
+
+``` r
+yardstick::conf_mat(pred_knn_tidymodels, truth = Species,
+                     estimate = .pred_class)
+```
+
+```
+##             Truth
+## Prediction   setosa versicolor virginica
+##   setosa         11          0         0
+##   versicolor      0         12         1
+##   virginica       0          0         6
+```
+
+El mismo patrón (`recipe()` + especificación de modelo de `parsnip` + `workflow()` + `tune_grid()`) sirve para cualquier otro método: bastaría con cambiar `nearest_neighbor()` por, por ejemplo, `svm_linear()` con `set_engine("kernlab")` para repetir el ejemplo de máquinas de soporte vectorial de la sección anterior sin cambiar el resto del código. Es exactamente la misma idea que ofrece `caret` (cambiar el argumento `method` del modelo dentro de una interfaz común), pero expresada con la gramática de *pipes* y *tibbles* propia del universo `tidyverse` que hemos usado a lo largo del curso (Capítulo \@ref(tidyverse)).
+
+### Clasificación desbalanceada: remuestreo dentro de la receta {#desbalanceo}
+
+En los problemas de clasificación es habitual que las clases no estén balanceadas. Cuando esto ocurre, `accuracy` puede ser engañosa: un modelo que prediga siempre la clase mayoritaria puede obtener una precisión alta sin ser realmente útil. Conviene entonces mirar también otras medidas (sensibilidad, especificidad, *F1*...) y, si es necesario, remuestrear los datos de **entrenamiento**.
+
+Retomamos `Boston`, pero ahora con la variable `fmedv` (`"Alto"` si `medv > 25`, `"Bajo"` en otro caso), claramente desbalanceada:
+
+
+``` r
+data(Boston, package = "MASS")
+Boston$fmedv <- factor(Boston$medv > 25, labels = c("Bajo", "Alto"))
+set.seed(1)
+itrain <- sample(nrow(Boston), round(0.8 * nrow(Boston)))
+train_desb <- Boston[itrain, c("fmedv", "rm", "lstat", "dis")]
+test_desb <- Boston[-itrain, c("fmedv", "rm", "lstat", "dis")]
+table(train_desb$fmedv) # claramente desbalanceada
+```
+
+```
+## 
+## Bajo Alto 
+##  301  104
+```
+
+Para corregirlo basta con añadir un paso de remuestreo a la receta, por ejemplo `step_downsample()` del paquete [`themis`](https://themis.tidymodels.org) (submuestrea la clase mayoritaria hasta igualar a la minoritaria; también existe `step_upsample()`, que sobremuestrea la minoritaria). Es importante aplicarlo **dentro de la receta**, y no antes: así solo afecta a cada partición de entrenamiento durante el ajuste (y, en su caso, durante la validación cruzada), y nunca a la muestra de test, evitando una estimación optimista de la precisión:
+
+
+``` r
+library(themis)
+
+modelo_glm <- logistic_reg() %>%
+  set_engine("glm")
+
+# Sin remuestrear
+flujo_sin <- workflow() %>%
+  add_recipe(recipe(fmedv ~ ., data = train_desb)) %>%
+  add_model(modelo_glm)
+
+# Con submuestreo de la clase mayoritaria dentro de la receta
+flujo_down <- workflow() %>%
+  add_recipe(recipe(fmedv ~ ., data = train_desb) %>%
+               step_downsample(fmedv)) %>%
+  add_model(modelo_glm)
+
+ajuste_sin <- fit(flujo_sin, data = train_desb)
+ajuste_down <- fit(flujo_down, data = train_desb)
+```
+
+Comparamos ambos ajustes sobre el test (`fmedv` tiene "Alto" como segundo nivel, por lo que empleamos `event_level = "second"` para que las métricas lo traten como la clase de interés, igual que `positive = "Alto"` en `caret::confusionMatrix()`). Aprovechamos para obtener de una vez, con una pequeña función auxiliar, tanto la clase predicha como la probabilidad estimada (esta última nos hará falta más adelante, en la Sección \@ref(roc-auc)):
+
+
+``` r
+predecir <- function(ajuste) {
+  test_desb %>%
+    bind_cols(predict(ajuste, new_data = test_desb)) %>%
+    bind_cols(predict(ajuste, new_data = test_desb, type = "prob"))
+}
+pred_sin <- predecir(ajuste_sin)
+pred_down <- predecir(ajuste_down)
+
+metricas_clas <- metric_set(yardstick::accuracy, yardstick::f_meas,
+                             yardstick::bal_accuracy)
+metricas_clas(pred_sin, truth = fmedv, estimate = .pred_class,
+              event_level = "second")
+```
+
+```
+## # A tibble: 3 × 3
+##   .metric      .estimator .estimate
+##   <chr>        <chr>          <dbl>
+## 1 accuracy     binary         0.931
+## 2 f_meas       binary         0.8  
+## 3 bal_accuracy binary         0.844
+```
+
+``` r
+metricas_clas(pred_down, truth = fmedv, estimate = .pred_class,
+              event_level = "second")
+```
+
+```
+## # A tibble: 3 × 3
+##   .metric      .estimator .estimate
+##   <chr>        <chr>          <dbl>
+## 1 accuracy     binary         0.832
+## 2 f_meas       binary         0.653
+## 3 bal_accuracy binary         0.820
+```
+
+``` r
+yardstick::conf_mat(pred_down, truth = fmedv, estimate = .pred_class)
+```
+
+```
+##           Truth
+## Prediction Bajo Alto
+##       Bajo   68    4
+##       Alto   13   16
+```
+
+Lo habitual es que el submuestreo aumente la sensibilidad hacia la clase minoritaria (`Alto`) y la precisión balanceada, a costa de reducir ligeramente la exactitud global: exactamente el compromiso que se ilustraba con `caret::trainControl(sampling = "down")` en el libro de referencia, ahora resuelto añadiendo un paso más a la receta de `tidymodels`.
+
+### Curva ROC y AUC {#roc-auc}
+
+Cuando el método proporciona estimaciones de las probabilidades (como aquí, la regresión logística), estas contienen más información que la clase predicha, y podemos aprovecharla en la evaluación mediante la **curva ROC** (*receiver operating characteristic*) y el área bajo la curva (AUC), tal y como se hace en la Sección "Evaluación de un método de clasificación" del libro de referencia de Fernández-Casal, Costa y Oviedo. La curva ROC representa la sensibilidad (TPR) frente a $1-$especificidad (FPR) para todos los posibles puntos de corte de la probabilidad estimada (no solo $c=0.5$); el AUC resume ese rendimiento en un único número, entre 0.5 (clasificador aleatorio) y 1 (clasificador perfecto).
+
+**Con [`pROC`](https://cran.r-project.org/package=pROC)**, exactamente como en el libro de referencia, a partir de las probabilidades estimadas por el modelo sin remuestrear (`ajuste_sin`):
+
+
+``` r
+library(pROC)
+roc_glm <- roc(response = pred_sin$fmedv, predictor = pred_sin$.pred_Alto)
+plot(roc_glm)
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-Hadoop_files/figure-html/roc-proc-1.png" alt="Curva ROC del modelo logístico sobre `fmedv`." width="80%" />
+<p class="caption">(\#fig:roc-proc)Curva ROC del modelo logístico sobre `fmedv`.</p>
+</div>
+
+
+``` r
+roc_glm$auc
+```
+
+```
+## Area under the curve: 0.9198
+```
+
+``` r
+ci.auc(roc_glm)
+```
+
+```
+## 95% CI: 0.8477-0.9918 (DeLong)
+```
+
+**Con `tidymodels`/`yardstick`**, el equivalente son las funciones `roc_curve()` (para la curva) y `roc_auc()` (para el área), que trabajan directamente sobre la columna de probabilidad `.pred_Alto` que ya incluyen `pred_sin`/`pred_down` (Sección \@ref(desbalanceo)). Aprovechamos para comparar el modelo sin remuestrear y el submuestreado (con `event_level = "second"`, como en el resto de la sección, ya que `"Alto"` es la segunda categoría):
+
+
+``` r
+yardstick::roc_auc(pred_sin, truth = fmedv, .pred_Alto,
+                    event_level = "second")
+```
+
+```
+## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 roc_auc binary         0.920
+```
+
+``` r
+yardstick::roc_auc(pred_down, truth = fmedv, .pred_Alto,
+                    event_level = "second")
+```
+
+```
+## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 roc_auc binary         0.914
+```
+
+``` r
+pred_sin %>%
+  yardstick::roc_curve(truth = fmedv, .pred_Alto,
+                        event_level = "second") %>%
+  autoplot()
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-Hadoop_files/figure-html/roc-yardstick-1.png" alt="Curvas ROC (`tidymodels`) de los modelos sin remuestrear y submuestreado." width="80%" />
+<p class="caption">(\#fig:roc-yardstick)Curvas ROC (`tidymodels`) de los modelos sin remuestrear y submuestreado.</p>
+</div>
+
+El submuestreo apenas afecta al AUC (que solo depende del orden de las probabilidades predichas, no del punto de corte elegido: en este ejemplo baja de 0.92 a 0.918), aunque sí cambia notablemente qué punto de corte resulta más adecuado y, con él, las métricas basadas en la clase predicha (sensibilidad, especificidad, $F_1$...) vistas en el apartado anterior.
+
+
+
+### Importancia de variables y efectos parciales: `vip` y `pdp` {#vip}
+
+Independientemente del modelo empleado, el paquete [`vip`](https://koalaverse.github.io/vip) (*variable importance plots*) permite representar la importancia de cada predictor con una única función, `vip()`. Cuando el modelo no proporciona una medida de importancia propia (como aquí, un modelo logístico dentro de un `workflow`), `vip` puede calcularla por ***permutación***: para cada predictor se desordenan (se "permutan") aleatoriamente sus valores y se mide cuánto empeora una métrica; cuanto mayor el empeoramiento, más importante es la variable. Esta idea es completamente genérica (no depende de la estructura interna del modelo), por lo que sirve igual para un modelo lineal, un KNN o, más adelante, para árboles y bosques aleatorios, sin necesidad de conocer los detalles de cada método. La aplicamos sobre el modelo con submuestreo de la sección anterior:
+
+`vip()` extrae de `workflow` el ajuste `glm` subyacente antes de llamar a `pred_wrapper` (que por tanto recibe ese `glm`, no el `workflow`): usamos `predict.glm()` (vector de probabilidades) en vez del `predict()` de `tidymodels` (tibble con `.pred_class`), fijando el punto de corte habitual en 0.5:
+
+
+``` r
+library(vip)
+
+vip(ajuste_down, method = "permute", target = "fmedv", metric = "accuracy",
+    event_level = "second", nsim = 10, train = train_desb,
+    pred_wrapper = function(object, newdata) {
+      prob <- predict(object, newdata = newdata, type = "response")
+      factor(ifelse(prob > 0.5, "Alto", "Bajo"),
+             levels = levels(train_desb$fmedv))
+    })
+```
+
+<img src="07-Hadoop_files/figure-html/unnamed-chunk-24-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+
+Más allá de la importancia global de cada variable, suele interesar también **cómo** influye cada predictor en la predicción: los **gráficos de efectos parciales** (*partial dependence plots*, PDP) muestran la predicción media del modelo al variar un predictor, manteniendo el resto en sus valores observados. A diferencia de `vip`, aquí sí podemos emplear directamente el `workflow` (`predict.workflow()` ya existe como método genérico; solo necesitamos indicarle a `pdp` cómo obtener un vector numérico de probabilidades a partir del resultado):
+
+
+``` r
+library(pdp)
+
+pdp_lstat <- partial(ajuste_sin, pred.var = "lstat", train = train_desb,
+                      pred.fun = function(object, newdata) {
+                        predict(object, new_data = newdata,
+                                type = "prob")$.pred_Alto
+                      })
+autoplot(pdp_lstat)
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-Hadoop_files/figure-html/pdp-example-1.png" alt="Efecto parcial de `lstat` sobre la probabilidad de valoración alta (`fmedv = Alto`)." width="80%" />
+<p class="caption">(\#fig:pdp-example)Efecto parcial de `lstat` sobre la probabilidad de valoración alta (`fmedv = Alto`).</p>
+</div>
+
+Como es de esperar en un modelo logístico aditivo en `lstat`, la probabilidad estimada de `"Alto"` decrece de forma monótona (aproximadamente en forma de "S") al aumentar el porcentaje de población con menor estatus. En modelos no aditivos el PDP puede ocultar interacciones entre predictores; para estudiarlas existe el paquete [`vivid`](https://cran.r-project.org/package=vivid) (*variable importance and variable interaction displays*), con gráficos tipo mapa de calor y red que combinan importancia e interacción. Su uso resulta más natural sobre modelos de árboles y bosques aleatorios, que aún no hemos visto en este curso introductorio (se tratarán, junto con `vivid`, en la parte de la asignatura dedicada a *Big Data*); de momento queda solo como referencia para cuando lleguemos a esos métodos.
+
+### Resumen: tidymodels y R base {#resumen-tidymodels}
+
+A modo de referencia rápida, la siguiente tabla recoge las tareas más habituales de esta sección junto con su equivalente en R base (o `caret`), tal y como se han empleado a lo largo del capítulo:
+
+| Tarea                        | R base / caret                          | tidymodels                              |
+|-------------------------------|-------------------------------------------|--------------------------------------------|
+| Validación cruzada            | bucle manual (Sección \@ref(cv))          | `rsample::vfold_cv()`                     |
+| Preprocesamiento              | manual (`$`, `factor()`...)               | `recipe()` + `step_*()`                   |
+| Especificar el modelo         | `lm()`, `glm()`, `knn()`, `svm()`...      | `linear_reg()`, `nearest_neighbor()`...   |
+| Combinar receta y modelo      | (no existe como tal)                      | `workflow()` + `add_recipe()`/`add_model()`|
+| Seleccionar hiperparámetros   | bucle manual sobre la rejilla             | `tune_grid()` + `show_best()`/`select_best()` |
+| Ajustar el modelo final       | `lm()`, `glm()`...                        | `finalize_workflow()` + `fit()`           |
+| Medidas de error/acierto      | `caret::postResample()`, `accuracy()` propia | `yardstick::accuracy()`, `metric_set()`  |
+| Matriz de confusión           | `table()`, `caret::confusionMatrix()`     | `yardstick::conf_mat()`                   |
+| Remuestreo por desbalanceo    | (no se trata en este tema)                | `step_downsample()`                       |
+| Curva ROC / AUC               | `pROC::roc()`                             | `yardstick::roc_curve()`/`roc_auc()`      |
+| Importancia de variables      | `vip::vip()` (igual con ambos)            | `vip::vip()` (igual con ambos)            |
+| Efectos parciales             | `pdp::partial()` (igual con ambos)        | `pdp::partial()` (igual con ambos)        |
+
+::: {.exercise #penguins-clas}
+El conjunto de datos `penguins` del paquete [`palmerpenguins`](https://allisonhorst.github.io/palmerpenguins) (tres especies de pingüinos de la Antártida —Adelie, Chinstrap y Gentoo— con medidas del pico y de las aletas) permite practicar tanto clasificación como regresión con `tidymodels`, y además tiene algunos valores faltantes que conviene tratar antes de modelizar (ver Sección \@ref(tidyr-missing) del Tema 5):
+
+
+``` r
+data(penguins, package = "palmerpenguins")
+colSums(is.na(penguins))
+```
+
+```
+##           species            island    bill_length_mm     bill_depth_mm 
+##                 0                 0                 2                 2 
+## flipper_length_mm       body_mass_g               sex              year 
+##                 2                 2                11                 0
+```
+
+``` r
+penguins <- na.omit(penguins) # o mejor, imputar (Sección \@ref(tidyr-missing))
+```
+
+a) Emplea `nearest_neighbor()` (o `svm_linear()`) para predecir la especie (`species`) a partir de `bill_length_mm` y `bill_depth_mm`, seleccionando el hiperparámetro por validación cruzada, como en la Sección \@ref(tidymodels-clas).
+
+b) Emplea `linear_reg()` para predecir el peso (`body_mass_g`) a partir de `flipper_length_mm`, como en la Sección \@ref(tidymodels-reg).
+:::
+
+::: {.exercise #penguins-simpson}
+Curiosamente, en `penguins` la relación entre `bill_length_mm` y `bill_depth_mm` es negativa si se ignora la especie, pero positiva dentro de cada especie: un ejemplo real de la **paradoja de Simpson** (la relación global se invierte al no tener en cuenta una variable de agrupación relevante). Compruébalo calculando la correlación entre ambas variables (i) para el conjunto completo y (ii) por separado para cada especie (`dplyr::group_by(species)`), y represéntalo con un diagrama de dispersión coloreando por `species`.
+:::
+
 ### Análisis e interpretación de los modelos {#analisis-modelos}
 
 Además de obtener buenas predicciones, en muchos problemas resulta importante **analizar e interpretar los modelos ajustados**, es decir, comprender qué variables influyen en la respuesta y de qué manera. Este aspecto ha cobrado especial relevancia dentro del AE y el ML, dando lugar al área conocida como [*interpretable machine learning*](https://christophm.github.io/interpretable-ml-book/).
 
-Existe un compromiso claro entre **capacidad predictiva e interpretabilidad**: a mayor complejidad del modelo, suele ser menor la facilidad de interpretación. Por ello, cuando varios modelos presentan un rendimiento similar, suele preferirse el más simple. En los modelos estadísticos clásicos (lineales, aditivos) la interpretación se apoya directamente en la estructura del modelo, aunque la colinealidad o las interacciones pueden dificultarla. En modelos más complejos ("cajas negras") se recurre a herramientas adicionales, como las **medidas de importancia de variables** o los **gráficos de efectos parciales**.
+Existe un compromiso claro entre **capacidad predictiva e interpretabilidad**: a mayor complejidad del modelo, suele ser menor la facilidad de interpretación. Por ello, cuando varios modelos presentan un rendimiento similar, suele preferirse el más simple. En los modelos estadísticos clásicos (lineales, aditivos) la interpretación se apoya directamente en la estructura del modelo, aunque la colinealidad o las interacciones pueden dificultarla. En modelos más complejos ("cajas negras") se recurre a herramientas adicionales, como las **medidas de importancia de variables** o los **gráficos de efectos parciales** (ya vistos de forma concreta, con `vip` y `pdp`, en la Sección \@ref(vip)).
 
 En esta asignatura se emplearán principalmente modelos con una estructura interpretable; las herramientas avanzadas de interpretación se introducirán solo cuando resulten necesarias en capítulos posteriores.
 
-Para quien quiera profundizar en aprendizaje estadístico más allá de esta introducción, el libro completo de referencia dedica capítulos específicos a la regresión (selección de variables, regularización, regresión logística y multinomial), a la clasificación (más allá de KNN: árboles, SVM, evaluación específica con curvas ROC...), a la regresión no paramétrica (splines, modelos aditivos, regresión local) y a la maldición de la dimensionalidad, contenidos que quedan fuera del alcance de esta asignatura pero pueden ser de interés para quien continúe por esa línea.
+Para quien quiera profundizar en aprendizaje estadístico más allá de esta introducción, el libro completo de referencia dedica capítulos específicos a la regresión (selección de variables, regularización, regresión logística y multinomial), a la clasificación (más allá de KNN: árboles, SVM, evaluación específica con curvas ROC...), a la regresión no paramétrica (splines, modelos aditivos, regresión local), a la maldición de la dimensionalidad y al uso de `caret` como interfaz unificada, contenidos que quedan fuera del alcance de esta asignatura pero pueden ser de interés para quien continúe por esa línea (en la Sección \@ref(tidymodels) hemos visto una alternativa equivalente con `tidymodels`, más coherente con el resto del `tidyverse` empleado en el curso).
+
 
 ## Tecnologías Big Data (Hadoop/Spark y Visualización)
 
@@ -819,9 +1421,7 @@ A continuación se introducen los conceptos básicos de las tecnologías Hadoop,
 
 - Hadoop: framework open-source desarrollado en Java principalmente que soporta aplicaciones distribuidas sobre miles de nodos y a escala Petabyte. Está inspirado en el diseño de las operaciones de MapReduce de Google y el Google File System (GFS). Entre sus principales componentes destaca HDFS Hadoop Distributed File System, sistema de ficheros distribuido sobre múltiples nodos y accesible a nivel de aplicación. También destaca YARN como gestor de recursos, para ejecutar aplicaciones. Destacar que la versión original, Hadoop 1, estaba basada extensivamente en Map Reduce, Hadoop 2 colocó en su core a YARN y Hadoop 3 está orientado a la provisión de Plataforma como servicio y ejecución simultánea de múltiples cargas de trabajo distribuidas sobre recursos solicitados bajo demanda. 
 
-
 - Hive: es un sistema de almancenamiento y explotación de datos del estilo de un data warehouse open source diseñado para ser ejecutado en entornos Hadoop. Permite agrupar, consultar y analizar datos almacenados en Hadoop File System y en Amazon S3 (almacenamiento de objetos en general) en esquema en estrella. Su lenguaje de consulta de datos, Hive Query Language o (HQL). 
-
 
 - Spark: framework de computación distribuida open-source para el procesamiento de datos masivos sobre Hadoop con un paralelismo implícito sobre su estructura de datos (Resilient Distributed Dataset o RDD), permite operar en paralelo sobre una colección de datos sin saber en qué servidores están disponibles dichos datos y de una forma tolerante a fallos. Es uno de los principales frameworks de programación de entornos Hadoop al estar optimizado su procesamiento sobre memoria (en lugar de sobre archivos en disco) para obtener velocidad, tanto en sus vertientes Spark streaming y Spark SQL, como Spark Machile Learning MLlib. Dispone de interfaces en Java, Scala, Python y R, siendo las interfaces de R Rspark y Sparklyr.
 
@@ -829,12 +1429,9 @@ A continuación se introducen los conceptos básicos de las tecnologías Hadoop,
 
 - Sparklyr: es una librería para conectar R con Spark posterior a SparkR. Intenta ser lo más parecida a dplyr y embeber SQL en las consultas, soportando una mayor cantidad de paquetes. Por este motivo es el proyecto más activo actualmente, sustituyendo a SparkR.
 
-
-
 ![](images/T3-ecosistema.png)
 
 ![](images/T3-DMvsBD.jpg){width="60%"}
-
 
 ### Big Data y Machine Learning
 
@@ -845,8 +1442,6 @@ El Machine Learning o Aprendizaje Máquina es aquella parte de la inteligencia a
 ![](images/T3-MLvsDL.png)
 
 ![](images/T3-machinelearning.png)
-
-
 
 
 
@@ -868,13 +1463,7 @@ https://pythonmachinelearning.pro/supervised-learning-using-decision-trees-to-cl
 
 ![](images/T3-ML-indicadores.png){width="70%"}
 
-
-
-
-
-
 ### Rattle como alternativa a RapidMiner en R
-
 
 Las instrucciones para instalar R está en el [Apéndice 3 de este documento](https://gltaboada.github.io/tgdbook/instalaci%C3%B3n-de-r.html)
 
@@ -882,17 +1471,11 @@ Un tutorial adecuado para introducirse en Rattle es [éste](https://www.dummies.
  
 ![](images/T3-rattle1.png)
 
-
 Con el tutorial se pueden ver las capacidades de rattle de explorar los datos, como se puede apreciar a continuación.
 
 ![](images/T3-rattle2.png)
 
-
-
 ![](images/T3-rattle3.png)
-
-
-
 
 ### Visualización y Generación de Cuadros de Mando
 
@@ -900,28 +1483,19 @@ Se sigue un tutorial de la herramienta [PowerBI, con datos de Excel y OData Feed
 
 Como documentación de se soporte se cuenta con la web de [PowerBI](https://docs.microsoft.com/es-es/power-bi/) y [un tutorial adicional](https://ccance.net/manuales/powerbi/capitulo_01_introduccion.pdf)
 
-
-
-
-
 ## Introducción al Análisis de Datos Masivos
 
 En primer lugar se ha de considerar explorar los datos y realizar minería con ellos, y eso es posible hacerlo vía sparklyr. 
 
 Este apartado, eminentemente práctico, lo trabajaremos a través de [la práctica 3 de TGD](https://www.kaggle.com/gltaboada/t3-practice3-flights).
 
-
-
 <!--
 
-
 ## Práctica 3: Big Data
-
 
 Los ejercicios se entregarán por correo electrónico a guillermo.lopez.taboada@udc.es en formato PDF o R MarkDown con el nombre de archivo P3X-Apellidos-Nombre.Rmd (sin tildes ni caracteres especiales en el nombre del arhivo) **antes** del miércoles 18 de Diciembre.
 
 ### Ejercicio A con sparklyr
-
 
 (3 puntos) Replicación del siguiente ejercicio con sparklyr y el dataset iris (https://spark.rstudio.com/mlib/) en modo local o modo YARN. Puede ser dentro de jupyterlab (así me entregáis archivo “Apellidos-Nombre.ipynb”) o en R remoto o en Rstudio (vía Desktop de visualización) (en estos dos últimos casos entregáis P3A-Apellidos-Nombre.R).
 
@@ -935,7 +1509,6 @@ Se busca que realicéis un análisis con Rattle, mínimo con las pestañas Explo
 (3 puntos) Replicación del siguiente ejercicio con sparklyr en el CESGA, en análisis de los datos del dataset de vuelos:
 http://hua-zhou.github.io/teaching/biostatm280-2019winter/slides/16-sparklyr/sparklyr-flights.html  
 se valorarán análisis adicionales y detalles sobre tiempos de ejecución de los análisis, espera en colas yarn, listado de trabajos spark, etc… 
-
 
 ### Combinando los distintos elementos
 
@@ -990,14 +1563,12 @@ hadoop fs -mkdir airports/
 hadoop fs -put airports.csv airports
 ```
 
-
 A continuación lanzamos la ejecución de 'hive':
 
 
 ``` r
 $ hive
 ```
-
 
 Y creamos los metadatos que estructurarán la tabla de vuelos y cargamos los datos en la tabla Hive:
 
@@ -1045,9 +1616,7 @@ TBLPROPERTIES("skip.header.line.count"="1");
 LOAD DATA INPATH 'flights' INTO TABLE flights230;
 ```
 
-
 Ídem para la tabla de aerolíneas, creamos los metadatos y cargamos los datos en la tabla HIVE:
-
 
 
 ``` r
@@ -1071,7 +1640,6 @@ LOAD DATA INPATH 'airlines' INTO TABLE airlines;
 ```
 
 Ídem para la tabla de aeropuertos, creamos los metadatos y cargamos los datos en la tabla HIVE:
-
 
 
 ``` r
@@ -1103,7 +1671,6 @@ STORED AS TEXTFILE;
 LOAD DATA INPATH 'airports' INTO TABLE airports;
 ```
 
-
 Nos conectamos a Spark (desde jupyter-lab o R): (alternativamente con 'sc <- spark_connect(master = "local")' )
 
 
@@ -1115,7 +1682,6 @@ library(ggplot2)
 sc <- spark_connect(master = "yarn-client", spark_home = Sys.getenv('SPARK_HOME')) 
 sc
 ```
-
 
 Si tenemos problemas para conectar podemos gestionar con YARN los recursos
 
@@ -1133,9 +1699,7 @@ yarn application -list | grep SUBMITTED
 yarn application -kill application_1575999528886_0161
 ```
 
-
 Crear tablas dplyr a tablas HIVE: 
-
 
 
 ``` r
@@ -1146,7 +1710,6 @@ flights_tbl %>% print(width = Inf)
 ```
 
 
-
 ``` r
 # Cache airlines Hive table into Spark
 #tbl_cache(sc, 'airlines')
@@ -1155,15 +1718,12 @@ airlines_tbl %>% print(width = Inf)
 ```
 
 
-
 ``` r
 # Cache airports Hive table into Spark
 #tbl_cache(sc, 'airports')
 airports_tbl <- tbl(sc, 'airports')
 airports_tbl %>% print(width = Inf)
 ```
-
-
 
 Ejemplos de análisis exploratorio de datos. Todos los vuelos por año:
 
@@ -1179,7 +1739,6 @@ out <- flights_tbl %>%
 out
 out %>% ggplot(aes(x = year, y = n)) + geom_col()
 ```
-
 
 Vuelos con origen LAX (Los Angeles) por año:
 
@@ -1214,7 +1773,6 @@ out
 Vamos a proceder a generar un conjunto de datos para calcular un modelo. Para ello buscaremos modelar como una regresión lineal la ganancia de un vuelo (gain) como (depdelay - arrdelay) basándose en la distancia, el retraso de la salida y la aerolínea usando datos del período 2003-2007:
 
 
-
 ``` r
 # Filter records and create target variable 'gain'
 system.time(
@@ -1241,9 +1799,7 @@ model_data %>%
   arrange(gain)
 ```
 
-
 Para entrenar la regresión lineal y predecir el tiempo ganado o perdido en un vuelo en función de la distancia, retraso en la salida y aerolínea procedemos de este modo:
-
 
 
 ``` r
@@ -1324,7 +1880,6 @@ ggplot(carrier, aes(gain, prediction)) +
   labs(title='Average Gains Forecast', x = 'Actual', y = 'Predicted')
 ```
 
-
 Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:
 
 
@@ -1332,20 +1887,11 @@ Al terminar cualquier ejercicio con sparklyr desconectamos de Spark:
 spark_disconnect_all()
 ```
 
-
-
-
-
-
 En este tema vamos a ver las tecnologías más relevantes para el tratamiento de datos masivos dentro de R, como son Spark (con sparklyr) dentro del ecosistema Hadoop. Los ejercicios prácticos se realizarán sobre la [plataforma Big Data](http://bigdata.cesga.es/) del [Centro de Supercomputación de Galicia (CESGA)](http://www.cesga.es)
 
 ![](images/T3-bigdatacesga.png)
 
-
-
-
 Conexión vía SSH a CESGA (siempre con VPN activada!) y ejemplo #1:
-
 
 
 ``` r
@@ -1389,8 +1935,6 @@ SELECT * FROM bdp.hv_csv_table where Calendar_Year=2005 limit 10;
 SELECT * FROM bdp.hv_csv_table where Calendar_Year>2005;
 ```
 
-
-
 Y ejemplo #2:
  
 
@@ -1432,7 +1976,6 @@ iris_tbl
 
 ![](images/T3-sparklyr3.png)
 
-
 NOTA: en ausencia de clúster Hadoop con YARN, o para debugging, también se puede conectar usando las siguientes instrucciones, y obtener elm mismo resultado que en presencia de YARN.
 
 
@@ -1444,6 +1987,4 @@ iris_tbl
 ```
 
 -->
-
-
 

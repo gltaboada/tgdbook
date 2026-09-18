@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.11 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
+  <title>5.8 Ejercicios | Prácticas de Tecnologías de Gestión y Manipulación de Datos</title>
   <meta name="description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.11 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta property="og:title" content="5.8 Ejercicios | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   <meta name="github-repo" content="gltaboada/tgdbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.11 Conexión con bases de datos desde R | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
+  <meta name="twitter:title" content="5.8 Ejercicios | Prácticas de Tecnologías de Gestión y Manipulación de Datos" />
   
   <meta name="twitter:description" content="Prácticas de la asignatura de Tecnologías de Gestión de Datos del Máster en Técnicas Estadísticas." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ejemplos-de-consultas-sql.html"/>
-<link rel="next" href="ejemplo-scopus-data.html"/>
+<link rel="prev" href="resumen-tidyverse.html"/>
+<link rel="next" href="introducción-a-tecnologías-nosql.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -397,125 +397,80 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conexión-con-bases-de-datos-desde-r" class="section level2 hasAnchor" number="3.11">
-<h2><span class="header-section-number">3.11</span> Conexión con bases de datos desde R<a href="conexión-con-bases-de-datos-desde-r.html#conexi%C3%B3n-con-bases-de-datos-desde-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="introducción-a-sql-en-r" class="section level3 hasAnchor" number="3.11.1">
-<h3><span class="header-section-number">3.11.1</span> Introducción a SQL en R<a href="conexión-con-bases-de-datos-desde-r.html#introducci%C3%B3n-a-sql-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>SQL se usa para manipular datos dentro de una base de datos. Si la base de datos no es muy grande se puede cargar toda en un data.frame.
-No obstante, por escalabilidad y offloading de la carga de trabajo al servidor SGBD utilizaremos SQL.</p>
-<p>Existen varios SGBD (SQLite, Microsoft SQL Server, MySQL, PostgreSQL, etc) los cuales comparten el soporte de SQL (en concreto ANSI SQL) aunque cada gestor extiende SQL
-de formas sutiles buscando minar cierta portabilidad de código (<em>vendor-locking</em>). En efecto, un código SQL desarrollado para SQLite es probable que falle con MySQL
-aunque tras aplicar ligeras modificaciones ya funcionará. Asimismo el mecanismo de conexión, configuración, rendimiento y operación suele diferir entre SGBD.</p>
-<p>A continuación se lista una serie de paquetes utilizados en el acceso a los datos, lo que suele ser el principal esfuerzo a realizar cuando se trabaja con SGBD:</p>
-<ul>
-<li><a href="https://cran.r-project.org/web/packages/DBI/index.html">DBI</a></li>
-<li><a href="https://cran.r-project.org/web/packages/RODBC/index.html">RODBC</a></li>
-<li><a href="https://cran.r-project.org/web/packages/dbConnect/index.html">dbConnect</a></li>
-<li><a href="https://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a></li>
-<li><a href="https://cran.r-project.org/web/packages/RMySQL/index.html">RMySQL</a></li>
-<li><a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL</a></li>
-</ul>
+<div id="ejercicios-tidyverse" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Ejercicios<a href="ejercicios-tidyverse.html#ejercicios-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los siguientes ejercicios son los mismos que los planteados al final del
+Capítulo <a href="manipR.html#manipR">2</a> (Sección <a href="ejercicios-manipR.html#ejercicios-manipR">2.6</a>), para resolverlos
+ahora empleando <code>dplyr</code>/<code>tidyr</code> en lugar de las funciones de R base. Los
+enunciados se dan sin solución; las soluciones se distribuyen aparte.</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="ejercicios-tidyverse.html#cb426-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/empleados.RData&quot;</span>)</span>
+<span id="cb426-2"><a href="ejercicios-tidyverse.html#cb426-2" tabindex="-1"></a><span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
+<div id="ejercicio-1-incremento-salarial-empleados-1" class="section level3 hasAnchor" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> Ejercicio 1: incremento salarial (<code>empleados</code>)<a href="ejercicios-tidyverse.html#ejercicio-1-incremento-salarial-empleados-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A partir de los datos de <code>empleados</code> (Sección <a href="introTidyverse.html#readr">5.1.2</a>), calcula para
+cada empleado el incremento salarial relativo respecto a su salario inicial:
+<code>incremento = salario / salini - 1</code>. Muestra los 5 empleados con mayor
+incremento porcentual, junto con su categoría laboral (<code>catlab</code>) y su
+antigüedad en meses (<code>tiempemp</code>).</p>
+<p>Para los siguientes ejercicios se empleará el conjunto de datos <code>starwars</code>
+(incluido en el propio paquete <code>dplyr</code>):</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="ejercicios-tidyverse.html#cb427-1" tabindex="-1"></a><span class="fu">data</span>(starwars, <span class="at">package =</span> <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<p>Para el ejercicio de unión de tablas se empleará además la siguiente tabla,
+creada manualmente, con información de algunos planetas:</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="ejercicios-tidyverse.html#cb428-1" tabindex="-1"></a>planetas <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb428-2"><a href="ejercicios-tidyverse.html#cb428-2" tabindex="-1"></a>  <span class="at">homeworld =</span> <span class="fu">c</span>(<span class="st">&quot;Tatooine&quot;</span>, <span class="st">&quot;Naboo&quot;</span>, <span class="st">&quot;Alderaan&quot;</span>, <span class="st">&quot;Coruscant&quot;</span>, <span class="st">&quot;Kamino&quot;</span>,</span>
+<span id="cb428-3"><a href="ejercicios-tidyverse.html#cb428-3" tabindex="-1"></a>                <span class="st">&quot;Corellia&quot;</span>, <span class="st">&quot;Kashyyyk&quot;</span>, <span class="st">&quot;Ryloth&quot;</span>, <span class="st">&quot;Mirial&quot;</span>, <span class="st">&quot;Hoth&quot;</span>),</span>
+<span id="cb428-4"><a href="ejercicios-tidyverse.html#cb428-4" tabindex="-1"></a>  <span class="at">region    =</span> <span class="fu">c</span>(<span class="st">&quot;Outer Rim&quot;</span>, <span class="st">&quot;Mid Rim&quot;</span>, <span class="st">&quot;Core Worlds&quot;</span>, <span class="st">&quot;Core Worlds&quot;</span>, <span class="st">&quot;Outer Rim&quot;</span>,</span>
+<span id="cb428-5"><a href="ejercicios-tidyverse.html#cb428-5" tabindex="-1"></a>                <span class="st">&quot;Core Worlds&quot;</span>, <span class="st">&quot;Mid Rim&quot;</span>, <span class="st">&quot;Outer Rim&quot;</span>, <span class="st">&quot;Outer Rim&quot;</span>, <span class="st">&quot;Outer Rim&quot;</span>),</span>
+<span id="cb428-6"><a href="ejercicios-tidyverse.html#cb428-6" tabindex="-1"></a>  <span class="at">clima     =</span> <span class="fu">c</span>(<span class="st">&quot;Desértico&quot;</span>, <span class="st">&quot;Templado&quot;</span>, <span class="st">&quot;Templado&quot;</span>, <span class="st">&quot;Urbano&quot;</span>, <span class="st">&quot;Oceánico&quot;</span>,</span>
+<span id="cb428-7"><a href="ejercicios-tidyverse.html#cb428-7" tabindex="-1"></a>                <span class="st">&quot;Urbano&quot;</span>, <span class="st">&quot;Boscoso&quot;</span>, <span class="st">&quot;Húmedo&quot;</span>, <span class="st">&quot;Templado&quot;</span>, <span class="st">&quot;Helado&quot;</span>)</span>
+<span id="cb428-8"><a href="ejercicios-tidyverse.html#cb428-8" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="el-paquete-sqldf" class="section level3 hasAnchor" number="3.11.2">
-<h3><span class="header-section-number">3.11.2</span> El paquete sqldf<a href="conexión-con-bases-de-datos-desde-r.html#el-paquete-sqldf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A continuación se presenta una serie de ejercicios con la sintaxis de SQL operando sobre un data.frame con el paquete sqldf. Esto inicialmente no incluye los detalles de conectarse a un SGBD, ni modificar los
-datos, solamente el uso de SQL para extraer datos con el objetivo de ser analizados en R.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb240-1" tabindex="-1"></a><span class="fu">library</span>(sqldf)</span></code></pre></div>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb241-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC&#39;</span>)</span></code></pre></div>
-<pre><code>##    age circumference
-## 1  118            30
-## 2  484            58
-## 3  664            87
-## 4 1004           115
-## 5 1231           120
-## 6 1372           142
-## 7 1582           145</code></pre>
+<div id="ejercicio-2-filtrado-y-selección-starwars-1" class="section level3 hasAnchor" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> Ejercicio 2: Filtrado y selección (<code>starwars</code>)<a href="ejercicios-tidyverse.html#ejercicio-2-filtrado-y-selecci%C3%B3n-starwars-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Obtén el nombre, la altura, el peso y el planeta natal (<code>homeworld</code>) de los
+personajes de especie (<code>species</code>) <code>"Human"</code> con una altura (<code>height</code>)
+superior a 180 cm.</p>
 </div>
-<div id="sql-queries" class="section level3 hasAnchor" number="3.11.3">
-<h3><span class="header-section-number">3.11.3</span> SQL Queries<a href="conexión-con-bases-de-datos-desde-r.html#sql-queries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>El comando inicial es SELECT. SQL no es case-sensitive, por lo que esto va a funcionar:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb243-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&quot;SELECT * FROM iris&quot;</span>)</span>
-<span id="cb243-2"><a href="conexión-con-bases-de-datos-desde-r.html#cb243-2" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&quot;select * from iris&quot;</span>)</span></code></pre></div>
-<p>pero lo siguiente no va a funcionar (a menos que tengamos un objeto IRIS:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb244-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&quot;SELECT * FROM IRIS&quot;</span>)</span></code></pre></div>
-<p>La sintaxis básica de SELECT es:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb245-1" tabindex="-1"></a>SELECT variable1, variable2 FROM data</span></code></pre></div>
-<div id="asteriscowildcard" class="section level4 hasAnchor" number="3.11.3.1">
-<h4><span class="header-section-number">3.11.3.1</span> Asterisco/Wildcard<a href="conexión-con-bases-de-datos-desde-r.html#asteriscowildcard" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Lo extrae todo</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb246-1" tabindex="-1"></a>bod2 <span class="ot">&lt;-</span> <span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD&#39;</span>)</span></code></pre></div>
+<div id="ejercicio-3-creación-de-una-variable-y-categorización-1" class="section level3 hasAnchor" number="5.8.3">
+<h3><span class="header-section-number">5.8.3</span> Ejercicio 3: Creación de una variable y categorización<a href="ejercicios-tidyverse.html#ejercicio-3-creaci%C3%B3n-de-una-variable-y-categorizaci%C3%B3n-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Calcula el índice de masa corporal (IMC = peso / altura<sup>2</sup>, con la altura en
+metros) de cada personaje, descartando aquellos con valores faltantes en
+peso o altura. A continuación, categoriza el IMC empleando los umbrales
+estándar de la OMS: menos de 18.5 “Bajo peso”, de 18.5 a 25 “Normal”, de 25
+a 30 “Sobrepeso” y 30 o más “Obesidad”. Indica cuántos personajes hay en
+cada categoría.</p>
 </div>
-<div id="limit" class="section level4 hasAnchor" number="3.11.3.2">
-<h4><span class="header-section-number">3.11.3.2</span> Limit<a href="conexión-con-bases-de-datos-desde-r.html#limit" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Limita el número de resultados</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb247-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM iris LIMIT 5&#39;</span>)</span></code></pre></div>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa</code></pre>
+<div id="ejercicio-4-resumen-y-agrupación-1" class="section level3 hasAnchor" number="5.8.4">
+<h3><span class="header-section-number">5.8.4</span> Ejercicio 4: Resumen y agrupación<a href="ejercicios-tidyverse.html#ejercicio-4-resumen-y-agrupaci%C3%B3n-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Calcula la altura media y el número de personajes por especie, considerando
+únicamente las especies con al menos 3 personajes, y ordena el resultado de
+mayor a menor altura media.</p>
 </div>
-<div id="order-by" class="section level4 hasAnchor" number="3.11.3.3">
-<h4><span class="header-section-number">3.11.3.3</span> Order By<a href="conexión-con-bases-de-datos-desde-r.html#order-by" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Ordena las variables</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb249-1" tabindex="-1"></a>ORDER BY var1 {ASC<span class="sc">/</span>DESC}, var2 {ASC<span class="sc">/</span>DESC}</span></code></pre></div>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb250-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&quot;SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5&quot;</span>)</span></code></pre></div>
-<pre><code>##   Tree age circumference
-## 1    2 118            33
-## 2    4 118            32
-## 3    1 118            30
-## 4    3 118            30
-## 5    5 118            30</code></pre>
+<div id="ejercicio-5-unión-de-tablas-1" class="section level3 hasAnchor" number="5.8.5">
+<h3><span class="header-section-number">5.8.5</span> Ejercicio 5: Unión de tablas<a href="ejercicios-tidyverse.html#ejercicio-5-uni%C3%B3n-de-tablas-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Une <code>starwars</code> con <code>planetas</code> por la columna <code>homeworld</code> y muestra, para cada
+personaje, su nombre, <code>homeworld</code>, región y clima. ¿Qué ocurre con los
+personajes cuyo planeta no aparece en <code>planetas</code> (o cuyo <code>homeworld</code> es
+<code>NA</code>)? ¿Y con <code>"Hoth"</code>, que está en <code>planetas</code> pero no es el planeta natal de
+ningún personaje?</p>
 </div>
-<div id="where" class="section level4 hasAnchor" number="3.11.3.4">
-<h4><span class="header-section-number">3.11.3.4</span> Where<a href="conexión-con-bases-de-datos-desde-r.html#where" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Sentencias condicionales, donde se puede incorporar operadores lógicos AND y OR, expresando el orden de evaluación con paréntesis en caso de ser necesario.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb252-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT demand FROM BOD WHERE Time &lt; 3&#39;</span>)</span></code></pre></div>
-<pre><code>##   demand
-## 1    8.3
-## 2   10.3</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb254-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM rock WHERE (peri &gt; 5000 AND shape &lt; .05) OR perm &gt; 1000&#39;</span>)</span></code></pre></div>
-<pre><code>##   area     peri    shape perm
-## 1 5048  941.543 0.328641 1300
-## 2 1016  308.642 0.230081 1300
-## 3 5605 1145.690 0.464125 1300
-## 4 8793 2280.490 0.420477 1300</code></pre>
-<p>Y extendiendo su uso con IN o LIKE (es último sólo con %), pudiendo aplicárseles el NOT:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb256-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time IN (1,7)&#39;</span>)</span></code></pre></div>
-<pre><code>##   Time demand
-## 1    1    8.3
-## 2    7   19.8</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb258-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time NOT IN (1,7)&#39;</span>)</span></code></pre></div>
-<pre><code>##   Time demand
-## 1    2   10.3
-## 2    3   19.0
-## 3    4   16.0
-## 4    5   15.6</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb260-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</span></code></pre></div>
-<pre><code>##   weight      feed
-## 1    179 horsebean
-## 2    160 horsebean
-## 3    136 horsebean
-## 4    227 horsebean
-## 5    217 horsebean</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="conexión-con-bases-de-datos-desde-r.html#cb262-1" tabindex="-1"></a><span class="fu">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed NOT LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</span></code></pre></div>
-<pre><code>##   weight    feed
-## 1    309 linseed
-## 2    229 linseed
-## 3    181 linseed
-## 4    141 linseed
-## 5    260 linseed</code></pre>
+<div id="ejercicio-6-opcional-columnas-lista-1" class="section level3 hasAnchor" number="5.8.6">
+<h3><span class="header-section-number">5.8.6</span> Ejercicio 6 (opcional): columnas-lista<a href="ejercicios-tidyverse.html#ejercicio-6-opcional-columnas-lista-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>starwars</code> incluye columnas que son listas, como <code>films</code> (las películas en
+las que aparece cada personaje). Calcula en cuántas películas aparece cada
+personaje y muestra los que más aparecen.</p>
+
 </div>
 </div>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="ejemplos-de-consultas-sql.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ejemplo-scopus-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="resumen-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introducción-a-tecnologías-nosql.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -546,7 +501,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/gltaboada/tgdbook/edit/master/03-SQL.Rmd",
+    "link": "https://github.com/gltaboada/tgdbook/edit/master/05-dplyr.Rmd",
     "text": "Edit"
   },
   "history": {
